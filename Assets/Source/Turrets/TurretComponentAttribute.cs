@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Turrets
 {
-    [AttributeUsage(AttributeTargets.Interface, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class TurretComponentAttribute : Attribute
     {
     }

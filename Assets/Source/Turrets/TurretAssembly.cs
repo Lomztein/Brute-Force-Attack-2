@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Turrets
         [ModelProperty]
         public float HeatCapacity;
 
-        public float Heat { get; private set; }
+        public float Heat;
 
         // Start is called before the first frame update
         void Start()
@@ -55,6 +55,11 @@ namespace Lomztein.BFA2.Turrets
         public ITurretComponent[] GetComponents()
         {
             return _components.ToArray();
+        }
+
+        void ITurretAssembly.Heat(float amount)
+        {
+            Heat += amount;
         }
     }
 }

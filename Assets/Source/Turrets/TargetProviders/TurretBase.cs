@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,21 +13,21 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         [ModelProperty]
         public float Range;
 
+        public override void End()
+        {
+        }
+
         public Transform[] GetTargets()
         {
-            throw new System.NotImplementedException();
+            return Array.Empty<Transform>();
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public override void Init()
         {
-
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Tick(float deltaTime)
         {
-
         }
     }
 }

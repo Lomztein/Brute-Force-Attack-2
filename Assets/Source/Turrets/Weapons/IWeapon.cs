@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Turrets.Weapons
 {
-    [TurretComponent]
     public interface IWeapon
     {
     }

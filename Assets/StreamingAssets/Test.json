@@ -11,6 +11,23 @@
       "Static": false,
       "Children": [
         {
+          "Name": "Base",
+          "Tag": "Untagged",
+          "Layer": 0,
+          "Static": false,
+          "Children": [],
+          "Components": [
+            {
+              "TypeName": "UnityEngine.Transform",
+              "Properties": []
+            },
+            {
+              "TypeName": "UnityEngine.SpriteRenderer",
+              "Properties": []
+            }
+          ]
+        },
+        {
           "Name": "TurretRotator",
           "Tag": "Untagged",
           "Layer": 0,
@@ -21,7 +38,25 @@
               "Tag": "Untagged",
               "Layer": 0,
               "Static": false,
-              "Children": [],
+              "Children": [
+                {
+                  "Name": "MachineGun_Tier1_0",
+                  "Tag": "Untagged",
+                  "Layer": 0,
+                  "Static": false,
+                  "Children": [],
+                  "Components": [
+                    {
+                      "TypeName": "UnityEngine.Transform",
+                      "Properties": []
+                    },
+                    {
+                      "TypeName": "UnityEngine.SpriteRenderer",
+                      "Properties": []
+                    }
+                  ]
+                }
+              ],
               "Components": [
                 {
                   "TypeName": "UnityEngine.Transform",
@@ -31,10 +66,31 @@
                   "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
                   "Properties": [
                     {
+                      "Name": "FireTreshold",
+                      "Value": 15.0
+                    },
+                    {
                       "Name": "PassiveHeatProduction",
                       "Value": 2.5
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "Name": "Rotator",
+              "Tag": "Untagged",
+              "Layer": 0,
+              "Static": false,
+              "Children": [],
+              "Components": [
+                {
+                  "TypeName": "UnityEngine.Transform",
+                  "Properties": []
+                },
+                {
+                  "TypeName": "UnityEngine.SpriteRenderer",
+                  "Properties": []
                 }
               ]
             }
@@ -66,16 +122,8 @@
           "Properties": []
         },
         {
-          "TypeName": "Lomztein.BFA2.Turrets.TargetProviders.TurretBase",
+          "TypeName": "Lomztein.BFA2.Turrets.TargetProviders.TurretMouseTargetProvider",
           "Properties": [
-            {
-              "Name": "SimultaniousTargets",
-              "Value": 1
-            },
-            {
-              "Name": "Range",
-              "Value": 25.0
-            },
             {
               "Name": "PassiveHeatProduction",
               "Value": 2.5
