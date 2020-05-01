@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IStatContainer : MonoBehaviour
+namespace Lomztein.BFA2.Modification.Stats
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IStatContainer
     {
-        
-    }
+        bool HasStat(string identifier);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IStatReference AddStat(string identifier, string name, string description);
+
+        void RemoveStat(string identifier);
+
+        void AddStatElement(string identifier, IStatElement element, Stat.Type type);
+
+        void RemoveStatElement(string identifier, object owner, Stat.Type type);
+
+        IStatReference GetStat(string identifier);
+
+        void Init(IStatBaseValues baseValues);
     }
 }

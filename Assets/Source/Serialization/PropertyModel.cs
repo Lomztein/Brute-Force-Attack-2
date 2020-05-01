@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Serialization
             return new JsonDataStruct(new JObject()
             {
                 { "Name", new JValue (Name) },
-                { "Value", new JValue (Value) }
+                { "Value",  JToken.FromObject(Value) }
             });
         }
     }

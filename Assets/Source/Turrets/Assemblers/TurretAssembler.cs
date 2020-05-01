@@ -24,7 +24,6 @@ namespace Lomztein.BFA2.Turrets.Assemblers
             GameObject componentObject = (component as TurretComponent).gameObject;
             Type componentType = component.GetType();
             IEnumerable<FieldInfo> fields = componentType.GetFields().Where(x => x.IsDefined(typeof(TurretComponentAttribute)));
-            Debug.Log(componentType.Name + " - " + fields.Count());
             foreach (FieldInfo field in fields)
             {
                 field.SetValue(component, GetNearestComponent(componentObject, field.FieldType));

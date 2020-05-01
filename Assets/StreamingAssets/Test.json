@@ -142,12 +142,19 @@
       "TypeName": "Lomztein.BFA2.Turrets.TurretAssembly",
       "Properties": [
         {
-          "Name": "PassiveCooling",
-          "Value": 10.0
-        },
-        {
-          "Name": "HeatCapacity",
-          "Value": 100.0
+          "Name": "StatBaseValues",
+          "Value": {
+            "BaseValues": [
+              {
+                "Identifier": "PassiveCooling",
+                "Value": 2.5
+              },
+              {
+                "Identifier": "HeatCapacity",
+                "Value": 10.0
+              }
+            ]
+          }
         }
       ]
     }

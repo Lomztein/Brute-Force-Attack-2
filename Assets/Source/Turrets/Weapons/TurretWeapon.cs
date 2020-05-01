@@ -23,10 +23,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         public override void Tick(float deltaTime)
         {
-            Debug.Log(Targeter.GetDistance());
             if (Targeter != null && Targeter.GetDistance () < FireTreshold)
             {
-                //Debug.Log("Fire!");
             }
         }
     }

@@ -232,8 +232,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eddd8946f1c2ff847a3f286ee8efa042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PassiveCooling: 10
-  HeatCapacity: 100
+  StatBaseValues:
+    BaseValues:
+    - Identifier: PassiveCooling
+      Value: 2.5
+    - Identifier: HeatCapacity
+      Value: 10
   Heat: 0
 --- !u!4 &18116928
 Transform:
