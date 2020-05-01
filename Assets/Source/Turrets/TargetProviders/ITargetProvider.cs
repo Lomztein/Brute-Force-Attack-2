@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ITargetProvider : MonoBehaviour
+namespace Lomztein.BFA2.Turrets.TargetProviders
 {
-    // Start is called before the first frame update
-    void Start()
+    [TurretComponent]
+    public interface ITargetProvider
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Transform[] GetTargets();
     }
 }

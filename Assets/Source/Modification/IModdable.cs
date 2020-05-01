@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectAssembler : MonoBehaviour
+public class IModdable : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

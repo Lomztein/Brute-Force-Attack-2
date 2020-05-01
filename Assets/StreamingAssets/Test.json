@@ -1,0 +1,107 @@
+{
+  "Name": "TurretAssembly",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Children": [
+    {
+      "Name": "TurretBase",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Children": [
+        {
+          "Name": "TurretRotator",
+          "Tag": "Untagged",
+          "Layer": 0,
+          "Static": false,
+          "Children": [
+            {
+              "Name": "TurretWeapon",
+              "Tag": "Untagged",
+              "Layer": 0,
+              "Static": false,
+              "Children": [],
+              "Components": [
+                {
+                  "TypeName": "UnityEngine.Transform",
+                  "Properties": []
+                },
+                {
+                  "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
+                  "Properties": [
+                    {
+                      "Name": "PassiveHeatProduction",
+                      "Value": 2.5
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Components": [
+            {
+              "TypeName": "UnityEngine.Transform",
+              "Properties": []
+            },
+            {
+              "TypeName": "Lomztein.BFA2.Turrets.Targeters.TurretRotator",
+              "Properties": [
+                {
+                  "Name": "Speed",
+                  "Value": 90.0
+                },
+                {
+                  "Name": "PassiveHeatProduction",
+                  "Value": 2.5
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": []
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Turrets.TargetProviders.TurretBase",
+          "Properties": [
+            {
+              "Name": "SimultaniousTargets",
+              "Value": 1
+            },
+            {
+              "Name": "Range",
+              "Value": 25.0
+            },
+            {
+              "Name": "PassiveHeatProduction",
+              "Value": 2.5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": []
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Turrets.TurretAssembly",
+      "Properties": [
+        {
+          "Name": "PassiveCooling",
+          "Value": 10.0
+        },
+        {
+          "Name": "HeatCapacity",
+          "Value": 100.0
+        }
+      ]
+    }
+  ]
+}

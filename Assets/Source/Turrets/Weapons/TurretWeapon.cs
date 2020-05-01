@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretWeapon : MonoBehaviour
+namespace Lomztein.BFA2.Turrets.Weapons
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TurretWeapon : TurretComponent, IWeapon
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

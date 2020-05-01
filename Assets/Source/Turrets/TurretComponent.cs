@@ -1,18 +1,15 @@
-﻿using System.Collections;
+﻿using Lomztein.BFA2.Serialization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretComponent : MonoBehaviour
+namespace Lomztein.BFA2.Turrets
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TurretComponent : MonoBehaviour, ITurretComponent
     {
-        
-    }
+        public ITurretAssembly Assembly { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [ModelProperty]
+        public float PassiveHeatProduction;
     }
 }

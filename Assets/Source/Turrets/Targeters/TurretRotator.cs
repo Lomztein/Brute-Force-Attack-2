@@ -1,18 +1,29 @@
-﻿using System.Collections;
+﻿using Lomztein.BFA2.Serialization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretRotator : MonoBehaviour
+namespace Lomztein.BFA2.Turrets.Targeters
 {
-    // Start is called before the first frame update
-    void Start()
+    public class TurretRotator : TurretComponent, ITargeter
     {
-        
-    }
+        [ModelProperty]
+        public float Speed;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public float GetDistance()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

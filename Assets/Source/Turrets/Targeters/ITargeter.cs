@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ITargeter : MonoBehaviour
+namespace Lomztein.BFA2.Turrets.Targeters
 {
-    // Start is called before the first frame update
-    void Start()
+    [TurretComponent]
+    public interface ITargeter
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        float GetDistance();
     }
 }
