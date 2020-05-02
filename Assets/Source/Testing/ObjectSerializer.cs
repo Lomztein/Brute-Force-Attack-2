@@ -13,6 +13,6 @@ public class ObjectSerializer : MonoBehaviour
         string path = StreamingAssets.Path;
         IGameObjectModel model = GameObjectModel.Create(Object);
         string data = model.Serialize().ToString();
-        File.WriteAllText(path + "Test.json", data);
+        File.WriteAllText(path + "Content/Core/Test.json", data);
     }
 }
