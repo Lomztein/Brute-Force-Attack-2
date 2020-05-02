@@ -1,17 +1,17 @@
-﻿using Lomztein.BFA2.Content.Loaders;
+﻿using Lomztein.BFA2.Content.Loaders.TypeLoaders;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content
+namespace Lomztein.BFA2.Content.Loaders
 {
-    public class ContentGroup : IContentGroup
+    public class RawContentLoader : IRawContentLoader
     {
         private string _rootPath;
 
-        private IRawContentLoader[] _loaders = new IRawContentLoader[]
+        private readonly IRawContentTypeLoader[] _loaders = new IRawContentTypeLoader[]
         {
             new GameObjectModelRawContentLoader (),
             new Texture2DRawContentLoader (),
@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Content
 
         public object LoadContent(string path, Type type)
         {
-            foreach (IRawContentLoader loader in _loaders)
+            foreach (IRawContentTypeLoader loader in _loaders)
             {
                 if (loader.ContentType == type)
                 {

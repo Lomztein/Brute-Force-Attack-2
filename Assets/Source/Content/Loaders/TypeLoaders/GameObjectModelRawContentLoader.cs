@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Loaders
+namespace Lomztein.BFA2.Content.Loaders.TypeLoaders
 {
-    public class GameObjectModelRawContentLoader : IRawContentLoader
+    public class GameObjectModelRawContentLoader : IRawContentTypeLoader
     {
         public Type ContentType => typeof(IGameObjectModel);
 

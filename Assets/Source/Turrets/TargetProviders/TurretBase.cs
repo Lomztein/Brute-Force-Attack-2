@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Turrets.Rangers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.TargetProviders
 {
-    public class TurretBase : TurretComponent, ITargetProvider
+    public class TurretBase : TurretComponent, ITargetProvider, IRanger
     {
         [ModelProperty]
         public int SimultaniousTargets;
@@ -15,6 +16,11 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
 
         public override void End()
         {
+        }
+
+        public float GetRange()
+        {
+            return Range;
         }
 
         public Transform[] GetTargets()

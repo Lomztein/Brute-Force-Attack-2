@@ -7,8 +7,6 @@ namespace Lomztein.BFA2.Content.Loaders
 {
     public interface IRawContentLoader
     {
-        Type ContentType { get; }
-
-        object Load(string path);
+        object LoadContent(string path, Type type);
     }
 }

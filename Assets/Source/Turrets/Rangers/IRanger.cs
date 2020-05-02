@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Turrets.Weapons
+namespace Lomztein.BFA2.Turrets.Rangers
 {
-    public interface IWeapon
+    public interface IRanger
     {
+        float GetRange();
     }
 }

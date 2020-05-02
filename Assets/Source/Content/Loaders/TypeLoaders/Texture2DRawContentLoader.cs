@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Loaders
+namespace Lomztein.BFA2.Content.Loaders.TypeLoaders
 {
-    public class Texture2DRawContentLoader : IRawContentLoader
+    public class Texture2DRawContentLoader : IRawContentTypeLoader
     {
         public Type ContentType => typeof(Texture2D);
 
