@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Colorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

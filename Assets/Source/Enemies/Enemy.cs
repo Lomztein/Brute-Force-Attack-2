@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Enemies.Motors;
+﻿using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Enemies.Motors;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Weaponary;
 using System;
@@ -17,6 +18,7 @@ namespace Lomztein.BFA2.Enemies
         [ModelProperty]
         public float Armor;
         public float Health { get; private set; }
+        public ColorCache Color;
 
         private IEnemyMotor _motor;
         private Action _onDeath;
@@ -39,7 +41,7 @@ namespace Lomztein.BFA2.Enemies
             float damageTaken = Mathf.Max(Health, damage);
             Health -= damage;
             damageInfo.DamageDealt = damageTaken;
-            if (Health < 0f)
+            if (Health <= 0f)
             {
                 Die();
             }

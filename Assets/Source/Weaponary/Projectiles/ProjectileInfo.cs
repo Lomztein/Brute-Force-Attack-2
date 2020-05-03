@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public float Damage { get; set; }
         public float Range { get; set; }
         public LayerMask Layer { get; set; }
-        public Color Color { get; set; }
+        public Colorization.Color Color { get; set; }
         public Transform Target { get; set; }
         public IObjectPool<IProjectile> Pool { get; set; }
 

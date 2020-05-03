@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
         {
             if (TargetProvider != null)
             {
-                Transform target = TargetProvider.GetTargets().FirstOrDefault();
+                Transform target = TargetProvider.GetTarget();
                 if (target != null)
                 {
                     Vector3 tpos = target.position;

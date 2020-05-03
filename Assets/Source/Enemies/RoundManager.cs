@@ -39,7 +39,7 @@ namespace Lomztein.BFA2.Enemies
             callback();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (State == RoundState.Ready && Input.GetButtonDown("StartWave"))
             {

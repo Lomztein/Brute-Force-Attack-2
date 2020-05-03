@@ -6,6 +6,6 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
 {
     public interface ITargetProvider
     {
-        Transform[] GetTargets();
+        Transform GetTarget();
     }
 }

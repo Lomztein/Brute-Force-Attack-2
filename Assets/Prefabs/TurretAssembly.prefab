@@ -57,6 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8325029833614044983}
   - component: {fileID: 8325029833614044982}
+  - component: {fileID: 8307433755799149129}
   m_Layer: 0
   m_Name: TurretBase
   m_TagString: Untagged
@@ -98,6 +99,18 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &8307433755799149129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325029833614044980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c4f08a83e0c16428c8071f5fe520b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8325029833978048802
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +448,7 @@ GameObject:
   - component: {fileID: 8325029835161171086}
   - component: {fileID: 8325029835161171072}
   - component: {fileID: 8325029835161171073}
+  - component: {fileID: 7610858181974673698}
   m_Layer: 0
   m_Name: TurretWeapon
   m_TagString: Untagged
@@ -479,8 +493,8 @@ MonoBehaviour:
     m_Bits: 256
   Deviation: 1.5
   Speed: 100
-  Firerate: 7.5
-  Color:
+  Firerate: 5
+  ColorCache:
     ColorName: Blue
 --- !u!114 &8325029835161171072
 MonoBehaviour:
@@ -509,3 +523,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabObject: {fileID: 180462137954481132, guid: f28efbe87b1fcb449a75929ef9dfbd86,
     type: 3}
+--- !u!114 &7610858181974673698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325029835161171084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimatedSprite: {fileID: 8325029833978048804}
+  DefaultSprite: {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092,
+    type: 3}
+  PlaySpeedMultiplier: 1
+  AnimationSprites:
+  - {fileID: -887899700249308605, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
+  - {fileID: -353275849368992647, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
+  - {fileID: 5243002817666469811, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
+  - {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}

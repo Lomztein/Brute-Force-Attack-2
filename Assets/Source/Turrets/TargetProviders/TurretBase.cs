@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.Turrets.Rangers;
 using System;
 using System.Collections;
@@ -18,6 +19,8 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
 
         private Transform _target;
 
+        private ITargetFinder _targetFinder;
+
         public override void End()
         {
         }
@@ -27,20 +30,21 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
             return Range;
         }
 
-        public Transform[] GetTargets()
+        public Transform GetTarget()
         {
-            return new Transform[] { _target };
+            return _target;
         }
 
         public override void Init()
         {
+            _targetFinder = GetComponent<ITargetFinder>();
         }
 
         public override void Tick(float deltaTime)
         {
             if (_target == null)
             {
-                _target = Physics2D.OverlapCircleAll(transform.position, Range, TargetLayer).FirstOrDefault()?.transform;
+                _target = _targetFinder.FindTarget (Physics2D.OverlapCircleAll(transform.position, Range, TargetLayer));
             }
             else
             {

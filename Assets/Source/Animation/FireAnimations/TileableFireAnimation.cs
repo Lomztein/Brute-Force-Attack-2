@@ -1,0 +1,70 @@
+﻿using System.Collections;
+using UnityEngine;
+
+namespace Lomztein.BFA2.Animation.FireAnimations
+{
+    public class TileableFireAnimation : FireAnimation
+    {
+        public Sprite[] StartAnimationSprites;
+        public Sprite[] MidAnimationSprites;
+        public Sprite[] EndAnimationSprites;
+
+        private Coroutine _coroutine;
+        private bool _continue;
+
+        public override void Play(float animSpeed)
+        {
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+            }
+
+            float delay = GetAnimationDelay(MidAnimationSprites, animSpeed);
+            _coroutine = StartCoroutine(PlayInternal(delay));
+        }
+
+        private IEnumerator PlayInternal (float delay)
+        {
+            if (_continue == false)
+            {
+                yield return StartAnimation(delay);
+                _continue = true;
+            }
+            else
+            {
+                yield return ContinueAnimation(delay);
+                yield return EndAnimation(delay);
+                _continue = false;
+            }
+        }
+
+        private IEnumerator StartAnimation(float delay)
+        {
+            yield return Animate(StartAnimationSprites, delay);
+        }
+
+        private IEnumerator ContinueAnimation(float delay)
+        {
+            yield return Animate(MidAnimationSprites, delay);
+        }
+
+        private IEnumerator EndAnimation (float delay)
+        {
+            yield return Animate(EndAnimationSprites, delay);
+        }
+
+        private IEnumerator Switch (float delay, bool weaponStatus)
+        {
+            if (weaponStatus)
+            {
+                yield return Animate(MidAnimationSprites, delay);
+                yield return Switch(delay, _continue);
+            }
+            else
+            {
+                yield return Animate(EndAnimationSprites, delay);
+                ResetSprite();
+            }
+        }
+    }
+}

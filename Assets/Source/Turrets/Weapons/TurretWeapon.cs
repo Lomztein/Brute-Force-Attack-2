@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.Serialization;
+﻿using Lomztein.BFA2.Animation.FireAnimations;
+using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Rangers;
 using Lomztein.BFA2.Turrets.Targeters;
 using Lomztein.BFA2.Turrets.TargetProviders;
@@ -11,7 +13,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.Weapons
 {
-    public class TurretWeapon : TurretComponent
+    public class TurretWeapon : TurretComponent, IColorProvider
     {
         [TurretComponent]
         public ITargeter Targeter;
@@ -37,7 +39,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public float Cooldown => 1f / Firerate;
 
         private IWeaponFire _weaponFire;
-        public ColorCache Color;
+        private IFireAnimation _fireAnimation;
+        public ColorCache ColorCache;
         private bool _chambered;
 
         public override void End()
@@ -48,6 +51,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
         {
             Rechamber();
             _weaponFire = GetComponent<WeaponFire>();
+            _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
         }
 
         private void Rechamber ()
@@ -70,13 +74,19 @@ namespace Lomztein.BFA2.Turrets.Weapons
         private void Fire ()
         {
             IProjectileInfo info = new ProjectileInfo();
-            info.Color = Color.Get();
+            info.Color = ColorCache.Get();
             info.Damage = Damage;
             info.Layer = HitLayer;
-            info.Target = Provider?.GetTargets()?.FirstOrDefault();
+            info.Target = Provider?.GetTarget();
             info.Range = Ranger?.GetRange() ?? 50f;
 
+            _fireAnimation.Play(Cooldown);
             _weaponFire.Fire(info, Speed, Deviation, ProjectileAmount);
+        }
+
+        public Colorization.Color GetColor()
+        {
+            return ColorCache.Get();
         }
     }
 }

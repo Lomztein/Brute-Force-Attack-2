@@ -19,9 +19,9 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
             }
         }
 
-        public Transform[] GetTargets()
+        public Transform GetTarget()
         {
-            return new Transform[] { _mousePointer };
+            return _mousePointer;
         }
 
         public override void Init()
