@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
         [ModelProperty]
         public int ProjectileAmount;
         [ModelProperty]
-        public int HitLayer;
+        public LayerMask HitLayer;
         [ModelProperty]
         public float Deviation;
         [ModelProperty]
@@ -74,7 +74,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
             info.Damage = Damage;
             info.Layer = HitLayer;
             info.Target = Provider?.GetTargets()?.FirstOrDefault();
-            info.Range = 50f;
+            info.Range = Ranger?.GetRange() ?? 50f;
 
             _weaponFire.Fire(info, Speed, Deviation, ProjectileAmount);
         }

@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
         [ModelProperty]
         public float Speed;
 
-        private float _angleToTarget;
+        private float _angleToTarget = 180;
 
         public override void End()
         {
@@ -43,6 +43,10 @@ namespace Lomztein.BFA2.Turrets.Targeters
                     float angle = Mathf.Rad2Deg * Mathf.Atan2(tpos.y - spos.y, tpos.x - spos.x);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, angle), Speed * deltaTime);
                     _angleToTarget = Mathf.Abs (Mathf.DeltaAngle(angle, transform.eulerAngles.z));
+                }
+                else
+                {
+                    _angleToTarget = 180f;
                 }
             }
             else

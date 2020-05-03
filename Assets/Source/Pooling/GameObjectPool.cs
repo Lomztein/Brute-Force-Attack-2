@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Pooling
     public class GameObjectPool<T> : IObjectPool<T> where T : IPoolObject
     {
         public event Action<T> OnNew;
-        private List<T> _objects;
+        private List<T> _objects = new List<T>();
         private GameObject _prefab;
 
         public GameObjectPool (GameObject prefab)
@@ -33,6 +33,7 @@ namespace Lomztein.BFA2.Pooling
             if (obj == null)
             {
                 obj = UnityEngine.Object.Instantiate(_prefab).GetComponent<T>();
+                _objects.Add(obj);
                 OnNew?.Invoke(obj);
             }
             obj.EnableSelf();
