@@ -29,14 +29,15 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 
         public void Init(IProjectile parent)
         {
-            Ray ray = new Ray(transform.position, parent.Info.Direction);
-            RaycastHit[] hits = Physics.RaycastAll(ray, parent.Info.Range, parent.Info.Layer);
-            foreach (RaycastHit hit in hits)
+            Ray2D ray = new Ray2D(transform.position, parent.Info.Direction);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, parent.Info.Range, parent.Info.Layer);
+            foreach (RaycastHit2D hit in hits)
             {
                 IDamagable damagable = parent.CheckHit(hit.collider);
                 if (damagable != null)
                 {
-                    parent.Info.Damage -= parent.Hit(damagable, new HitInfo (hit.collider, hit.point, parent, _weapon));
+                    DamageInfo damageInfo = _parent.Hit(damagable, new HitInfo(hit.collider, hit.point, _parent, _weapon));
+                    _parent.Info.Damage -= damageInfo.DamageDealt;
                     if (parent.Info.Damage <= 0f)
                     {
                         _renderer.SetPositions(transform.position, hit.point);

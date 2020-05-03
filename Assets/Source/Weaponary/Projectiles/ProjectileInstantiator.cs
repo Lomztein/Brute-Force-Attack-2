@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         private void Awake()
         {
-            Source = new NoGameObjectPool<IProjectile>(PrefabObject);
+            Source = new GameObjectPool<IProjectile>(PrefabObject);
         }
 
         public IProjectile[] Create(IProjectileInfo info, Vector3 position, Quaternion rotation, int amount, float deviation, float speed) 

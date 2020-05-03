@@ -8,6 +8,6 @@ namespace Lomztein.BFA2.Weaponary
 {
     public interface IDamagable
     {
-        int TakeDamage(DamageInfo damageInfo);
+        float TakeDamage(DamageInfo damageInfo);
     }
 }

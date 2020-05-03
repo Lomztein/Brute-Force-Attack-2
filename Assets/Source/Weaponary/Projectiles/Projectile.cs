@@ -23,8 +23,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public void Init()
         {
             transform.position = Info.Position;
-            _projectileComponents.AddRange(GetComponents<IProjectileComponent>());
             _projectileComponents.ForEach(x => x.Init(this));
+        }
+
+        public void Awake()
+        {
+            _projectileComponents.AddRange(GetComponents<IProjectileComponent>());
         }
 
         public void AddProjectileComponent (IProjectileComponent component)
@@ -47,7 +51,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             _projectileComponents.ForEach(x => x.Link(weapon));
         }
 
-        public IDamagable CheckHit (Collider hit)
+        public IDamagable CheckHit (Collider2D hit)
         {
             IDamagable damagable = hit.GetComponent<IDamagable>();
             if (damagable != null)
@@ -57,7 +61,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             return null;
         }
 
-        public float Hit (IDamagable damagable, HitInfo info)
+        public DamageInfo Hit (IDamagable damagable, HitInfo info)
         {
             DamageInfo damage = new DamageInfo(Info.Damage, Info.Color);
             float life = damagable.TakeDamage(damage);
@@ -66,7 +70,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             {
                 OnKill?.Invoke(info);
             }
-            return life;
+            return damage;
         }
 
         public void End ()

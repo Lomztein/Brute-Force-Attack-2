@@ -35,16 +35,18 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 
         public void Tick(float deltaTime)
         {
-            Ray ray = new Ray(transform.position, _parent.Info.Direction * _parent.Info.Speed * deltaTime);
-            RaycastHit[] hits = Physics.RaycastAll(ray, _parent.Info.Speed * deltaTime, _parent.Info.Layer);
-            foreach (RaycastHit hit in hits)
+            Ray2D ray = new Ray2D(transform.position, _parent.Info.Direction * _parent.Info.Speed * deltaTime);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, _parent.Info.Speed * deltaTime, _parent.Info.Layer);
+            foreach (RaycastHit2D hit in hits)
             {
                 IDamagable damagable = _parent.CheckHit(hit.collider);
                 if (damagable != null)
                 {
-                    _parent.Info.Damage -= _parent.Hit(damagable, new HitInfo(hit.collider, hit.point, _parent, _weapon));
+                    DamageInfo damageInfo = _parent.Hit(damagable, new HitInfo(hit.collider, hit.point, _parent, _weapon));
+                    _parent.Info.Damage -= damageInfo.DamageDealt;
                     if (_parent.Info.Damage <= 0f)
                     {
+                        _parent.End();
                         break;
                     }
                 }

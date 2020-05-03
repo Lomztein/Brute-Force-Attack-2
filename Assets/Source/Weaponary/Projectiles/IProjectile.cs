@@ -15,9 +15,9 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         void Link(IWeaponFire weapon);
 
-        IDamagable CheckHit(Collider hit);
+        IDamagable CheckHit(Collider2D hit);
 
-        float Hit(IDamagable damagable, HitInfo info);
+        DamageInfo Hit(IDamagable damagable, HitInfo info);
 
         event Action<HitInfo> OnHit;
         event Action<HitInfo> OnKill;
