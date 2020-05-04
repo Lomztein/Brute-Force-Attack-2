@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Pooling;
+﻿using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles
 {
-    class Projectile : MonoBehaviour, IProjectile
+    class Projectile : MonoBehaviour, IProjectile, IColorProvider
     {
         public IProjectileInfo Info { get; set; }
 
@@ -92,6 +93,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public void DestroySelf()
         {
             Destroy(gameObject);
+        }
+
+        public Colorization.Color GetColor()
+        {
+            return Info?.Color ?? Colorization.Color.Blue;
         }
     }
 }

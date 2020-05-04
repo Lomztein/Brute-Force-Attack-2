@@ -181,8 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -204,7 +203,7 @@ GameObject:
   - component: {fileID: 8325029833986787721}
   - component: {fileID: 8325029833986787830}
   m_Layer: 0
-  m_Name: TurretAssembly
+  m_Name: LaserAssembly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,8 +243,8 @@ MonoBehaviour:
     - Identifier: HeatCapacity
       Value: 10
   Heat: 0
-  _name: Machine Gun
-  _description: A gun that fires quickly lol
+  _name: Laser
+  _description: Pew pew
   _cost:
     Elements:
     - Type: 0
@@ -454,7 +453,6 @@ GameObject:
   - component: {fileID: 8325029835161171086}
   - component: {fileID: 8325029835161171072}
   - component: {fileID: 8325029835161171073}
-  - component: {fileID: 7610858181974673698}
   m_Layer: 0
   m_Name: TurretWeapon
   m_TagString: Untagged
@@ -491,15 +489,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
-  FireTreshold: 15
-  Damage: 10
+  FireTreshold: 1
+  Damage: 30
   ProjectileAmount: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Deviation: 1.5
+  Deviation: 0
   Speed: 100
-  Firerate: 5
+  Firerate: 1
   Color: 0
 --- !u!114 &8325029835161171072
 MonoBehaviour:
@@ -526,26 +524,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 180462137954481132, guid: f28efbe87b1fcb449a75929ef9dfbd86,
+  PrefabObject: {fileID: 3207407503699224747, guid: 6b7734f031158e54280be118cfa7d44e,
     type: 3}
---- !u!114 &7610858181974673698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8325029835161171084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimatedSprite: {fileID: 8325029833978048804}
-  DefaultSprite: {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092,
-    type: 3}
-  PlaySpeedMultiplier: 1
-  AnimationSprites:
-  - {fileID: -887899700249308605, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
-  - {fileID: -353275849368992647, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
-  - {fileID: 5243002817666469811, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
-  - {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}

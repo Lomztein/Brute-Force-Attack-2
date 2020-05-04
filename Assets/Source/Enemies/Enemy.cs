@@ -42,10 +42,10 @@ namespace Lomztein.BFA2.Enemies
 
         public float TakeDamage(DamageInfo damageInfo)
         {
+            float prev = Health;
             float damage = Mathf.Max (damageInfo.Damage - Armor, 0f);
-            float damageTaken = Mathf.Max(Health, damage);
-            Health -= damage;
-            damageInfo.DamageDealt = damageTaken;
+            Health -= Mathf.Min (damage, Health);
+            damageInfo.DamageDealt = prev - Health;
             if (Health <= 0f)
             {
                 Die();

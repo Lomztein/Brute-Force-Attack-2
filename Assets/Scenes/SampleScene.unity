@@ -554,27 +554,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves:
-  - SpawnDelay: 0.5
+  - SpawnDelay: 0.3
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
       type: 3}
     SpawnAmount: 20
     Alive: 0
-  - SpawnDelay: 0.4
-    Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
+  - SpawnDelay: 0.2
+    Prefab: {fileID: 2491341172321060995, guid: fd4e184fa6420a84f8f920abaec47f01,
       type: 3}
     SpawnAmount: 40
     Alive: 0
-  - SpawnDelay: 0.3
-    Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
+  - SpawnDelay: 0.1
+    Prefab: {fileID: 2491341172321060995, guid: 60abcddfc329bfb45b93c1798146444b,
       type: 3}
     SpawnAmount: 60
     Alive: 0
-  - SpawnDelay: 0.2
-    Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
+  - SpawnDelay: 0.05
+    Prefab: {fileID: 2491341172321060995, guid: fd4e184fa6420a84f8f920abaec47f01,
       type: 3}
     SpawnAmount: 100
     Alive: 0
-  - SpawnDelay: 0.1
+  - SpawnDelay: 0.02
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
       type: 3}
     SpawnAmount: 2147483647
@@ -855,7 +855,7 @@ MonoBehaviour:
   Resources:
     Elements:
     - Type: 0
-      Value: 1000
+      Value: 1000000
 --- !u!114 &1573689058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +881,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Purchasables:
+  - {fileID: 8325029833986787831, guid: 6ea93906c1d16724d9f7694576d53c0c, type: 3}
   - {fileID: 8325029833986787831, guid: f127c308358bf6045af6f9e8968fe6e5, type: 3}
+  - {fileID: 8325029833986787831, guid: b8f2f8a333d14c64ea25e8361f5045c4, type: 3}
   ButtonPrefab: {fileID: 3679529093035341646, guid: 4a2595a7c7c539c4d8bdc294402e6ddf,
     type: 3}
   ButtonParent: {fileID: 416121142}
