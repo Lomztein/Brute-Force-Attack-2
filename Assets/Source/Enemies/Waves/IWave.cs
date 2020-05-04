@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 {
     public interface IWave
     {
-        void Start(IRoundManager manager);
+        void Start(IRoundController manager);
 
         event Action<IEnemy> OnSpawn;
         event Action OnFinished;

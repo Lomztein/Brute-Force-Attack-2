@@ -2,7 +2,7 @@
 
 namespace Lomztein.BFA2.Enemies
 {
-    public interface IRoundManager
+    public interface IRoundController
     {
         void InvokeDelayed(Action callback, float time);
     }

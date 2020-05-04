@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Color = Lomztein.BFA2.Colorization.Color;
 
 namespace Lomztein.BFA2.Turrets.Weapons
 {
@@ -40,7 +41,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         private IWeaponFire _weaponFire;
         private IFireAnimation _fireAnimation;
-        public ColorCache ColorCache;
+        public Color Color;
         private bool _chambered;
 
         public override void End()
@@ -74,7 +75,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
         private void Fire ()
         {
             IProjectileInfo info = new ProjectileInfo();
-            info.Color = ColorCache.Get();
+            info.Color = Color;
             info.Damage = Damage;
             info.Layer = HitLayer;
             info.Target = Provider?.GetTarget();
@@ -84,9 +85,9 @@ namespace Lomztein.BFA2.Turrets.Weapons
             _weaponFire.Fire(info, Speed, Deviation, ProjectileAmount);
         }
 
-        public Colorization.Color GetColor()
+        public Color GetColor()
         {
-            return ColorCache.Get();
+            return Color;
         }
     }
 }

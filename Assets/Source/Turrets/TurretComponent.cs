@@ -19,8 +19,11 @@ namespace Lomztein.BFA2.Turrets
 
         public void FixedUpdate()
         {
-            HeatAssembly(PassiveHeatProduction, Time.fixedDeltaTime);
-            Tick(Time.fixedDeltaTime);
+            if (Assembly.Enabled)
+            {
+                HeatAssembly(PassiveHeatProduction, Time.fixedDeltaTime);
+                Tick(Time.fixedDeltaTime);
+            }
         }
 
         public void OnDestroy()

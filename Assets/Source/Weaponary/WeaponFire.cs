@@ -20,6 +20,10 @@ namespace Lomztein.BFA2.Weaponary
         private void Awake()
         {
             _projectileInstantiator = GetComponent<IProjectileInstantiator>();
+        }
+
+        private void Start()
+        {
             _projectileInstantiator.Source.OnNew += OnNewFromPool;
         }
 

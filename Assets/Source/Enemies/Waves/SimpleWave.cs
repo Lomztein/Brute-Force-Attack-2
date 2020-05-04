@@ -18,9 +18,9 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         public event Action<IEnemy> OnSpawn;
         public event Action OnFinished;
-        private IRoundManager _manager;
+        private IRoundController _manager;
 
-        public void Start(IRoundManager manager)
+        public void Start(IRoundController manager)
         {
             _manager = manager;
             Alive = SpawnAmount;

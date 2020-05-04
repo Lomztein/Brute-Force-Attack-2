@@ -1,4 +1,8 @@
-﻿using Lomztein.BFA2.Modification.Stats;
+﻿using Lomztein.BFA2.Grid;
+using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Placement;
+using Lomztein.BFA2.Purchasing;
+using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Assemblers;
 using System.Collections;
@@ -8,7 +12,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public class TurretAssembly : MonoBehaviour, ITurretAssembly
+    public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridPlaceable, IPurchasable
     {
         private List<ITurretComponent> _components;
         private ITurretAssembler _assembler = new TurretAssembler();
@@ -18,13 +22,25 @@ namespace Lomztein.BFA2.Turrets
         private IStatReference _passiveCooling;
         private IStatReference _heatCapacity;
 
+        public bool Enabled { get; private set; }
+
         [ModelProperty]
         public StatBaseValues StatBaseValues;
 
         public float Heat;
 
+        [ModelProperty][SerializeField] private string _name;
+        public string Name => _name;
+        [ModelProperty][SerializeField] private string _description;
+        public string Description => _description;
+        [ModelProperty][SerializeField] private ResourceCost _cost;
+        public IResourceCost Cost => _cost;
+        public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
+
+        public Size Size => Size.Small;
+
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             ResetComponentList();
             InitStats();
@@ -32,8 +48,8 @@ namespace Lomztein.BFA2.Turrets
 
         void InitStats ()
         {
-            _passiveCooling = _statContainer.AddStat("PassiveCooling", "Passive Cooling", "");
-            _heatCapacity = _statContainer.AddStat("HeatCapacity", "Heat Capacity", "");
+            _passiveCooling = _statContainer.AddStat("PassiveCooling", "Passive Cooling", "How quickly the passively cools.");
+            _heatCapacity = _statContainer.AddStat("HeatCapacity", "Heat Capacity", "Total heat capacity before a complete temporary shutdown.");
 
             _statContainer.Init(StatBaseValues);
         }
@@ -73,6 +89,16 @@ namespace Lomztein.BFA2.Turrets
         void ITurretAssembly.Heat(float amount)
         {
             Heat += amount;
+        }
+
+        public void Place()
+        {
+            Enabled = true;
+        }
+
+        public void Pickup()
+        {
+            Enabled = false;
         }
     }
 }

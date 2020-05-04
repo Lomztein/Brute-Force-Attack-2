@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Targeting
         {
             Enemy enemy = target.GetComponent<Enemy>();
             float baseValue = _internalEvaluator.Evaluate(enemy);
-            return baseValue + (enemy.Color.Get() == _targetColor ? 100000f : 0f);
+            return baseValue + (enemy.Color == _targetColor ? 100000f : 0f);
         }
     }
 }

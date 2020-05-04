@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 
 namespace Lomztein.BFA2.Enemies
 {
-    public class RoundManager : MonoBehaviour, IRoundManager
+    public class RoundController : MonoBehaviour, IRoundController
     {
         public enum RoundState { Ready, Preparing, InProgress }
 

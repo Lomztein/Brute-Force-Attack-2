@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Colorization;
 using Lomztein.BFA2.Enemies.Motors;
+using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Weaponary;
 using System;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Color = Lomztein.BFA2.Colorization.Color;
 
 namespace Lomztein.BFA2.Enemies
 {
@@ -17,8 +19,11 @@ namespace Lomztein.BFA2.Enemies
         public float MaxHealth;
         [ModelProperty]
         public float Armor;
+        [ModelProperty]
+        public int Value;
+
         public float Health { get; private set; }
-        public ColorCache Color;
+        public Color Color;
 
         private IEnemyMotor _motor;
         private Action _onDeath;
@@ -60,6 +65,7 @@ namespace Lomztein.BFA2.Enemies
 
         private void Die ()
         {
+            GameObject.Find("PurchaseController").GetComponent<IResourceContainer>().ChangeResource(Resource.Credits, Value); // TODO: Figure out a better way to earn money from kills.
             Destroy(gameObject);
             _onDeath();
         }

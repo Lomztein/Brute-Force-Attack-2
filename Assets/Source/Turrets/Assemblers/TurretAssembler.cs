@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Turrets.Assemblers
             ITurretComponent[] components = assembly.GetComponents();
             foreach (ITurretComponent component in components)
             {
+                component.Assembly = assembly;
                 AssembleComponent(component);
             }
         }
