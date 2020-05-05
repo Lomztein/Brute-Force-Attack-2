@@ -181,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3984755808035046311, guid: 2c55c39df31f66c4da0e2d4923f39baf,
+  m_Sprite: {fileID: -6448753690660712858, guid: 7bdfaf3b61652874d89c1ac8410dc7e0,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 8325029833986787721}
   - component: {fileID: 8325029833986787830}
   m_Layer: 0
-  m_Name: LaserAssembly
+  m_Name: MiniGunAssembly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,12 +244,12 @@ MonoBehaviour:
     - Identifier: HeatCapacity
       Value: 10
   Heat: 0
-  _name: Laser
-  _description: Pew pew
+  _name: MINIGUN
+  _description: A gun that fires quickly lol
   _cost:
     Elements:
     - Type: 0
-      Value: 500
+      Value: 2000
 --- !u!1 &8325029834417264137
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 8325029835161171086}
   - component: {fileID: 8325029835161171072}
   - component: {fileID: 8325029835161171073}
-  - component: {fileID: 762813861687216149}
+  - component: {fileID: 9171773488041797517}
   m_Layer: 0
   m_Name: TurretWeapon
   m_TagString: Untagged
@@ -491,15 +491,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
-  FireTreshold: 1
-  Damage: 30
+  FireTreshold: 30
+  Damage: 20
   ProjectileAmount: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Deviation: 0
+  Deviation: 4.5
   Speed: 100
-  Firerate: 1
+  Firerate: 15
   Color: 0
 --- !u!114 &8325029835161171072
 MonoBehaviour:
@@ -526,9 +526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 3207407503699224747, guid: 6b7734f031158e54280be118cfa7d44e,
+  PrefabObject: {fileID: 180462137954481132, guid: f28efbe87b1fcb449a75929ef9dfbd86,
     type: 3}
---- !u!114 &762813861687216149
+--- !u!114 &9171773488041797517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -537,17 +537,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8325029835161171084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a1ccb4c4de8934e818714a768cc6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatedSprite: {fileID: 8325029833978048804}
-  DefaultSprite: {fileID: 3984755808035046311, guid: 2c55c39df31f66c4da0e2d4923f39baf,
+  DefaultSprite: {fileID: -6448753690660712858, guid: 7bdfaf3b61652874d89c1ac8410dc7e0,
     type: 3}
   PlaySpeedMultiplier: 1
-  AnimationSprites:
-  - {fileID: 3135640391782986191, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
-  - {fileID: 2777158998176384704, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
-  - {fileID: -3005660427862148039, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
-  - {fileID: 4320379525272204451, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
-  - {fileID: -8858919330332434829, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
-  - {fileID: 3984755808035046311, guid: 2c55c39df31f66c4da0e2d4923f39baf, type: 3}
+  StartAnimationSprites:
+  - {fileID: 7455062654120908511, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: 6654994773612056702, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: 8547988916062872848, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  MidAnimationSprites:
+  - {fileID: 7455062654120908511, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: 6654994773612056702, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: 8547988916062872848, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: -7010181358311542337, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  EndAnimationSprites:
+  - {fileID: 7455062654120908511, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: 6654994773612056702, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: 8547988916062872848, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}
+  - {fileID: -6448753690660712858, guid: 7bdfaf3b61652874d89c1ac8410dc7e0, type: 3}

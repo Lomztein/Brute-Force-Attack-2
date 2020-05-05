@@ -20,6 +20,8 @@ namespace Lomztein.BFA2.Enemies
         [ModelProperty]
         public float Armor;
         [ModelProperty]
+        public float Shields;
+        [ModelProperty]
         public int Value;
 
         public float Health { get; private set; }
@@ -42,15 +44,27 @@ namespace Lomztein.BFA2.Enemies
 
         public float TakeDamage(DamageInfo damageInfo)
         {
-            float prev = Health;
-            float damage = Mathf.Max (damageInfo.Damage - Armor, 0f);
+            float damage = GetDamage(damageInfo);
+            damageInfo.DamageDealt = Mathf.Min (Health + GetDamageReduction (damage), damageInfo.Damage);
+
             Health -= Mathf.Min (damage, Health);
-            damageInfo.DamageDealt = prev - Health;
+            Shields--;
+
             if (Health <= 0f)
             {
                 Die();
             }
             return Health;
+        }
+
+        private float GetDamage (DamageInfo info)
+        {
+            return Mathf.Max(info.Damage - GetDamageReduction(info.Damage), 0f);
+        }
+
+        private float GetDamageReduction (float damage)
+        {
+            return Armor + Shields;
         }
 
         public void SetPosition(Vector3 position)
