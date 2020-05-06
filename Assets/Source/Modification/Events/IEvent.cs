@@ -1,8 +1,22 @@
 ﻿using System;
 
-public interface IEvent
+namespace Lomztein.BFA2.Modification.Events
 {
-    event Action<IEventArgs> OnExecute;
+    public interface IEvent
+    {
+        string Identifier { get; }
+        string Name { get; }
+        string Description { get; }
 
-    void Execute(IEventArgs args);
+        event Action<IEventArgs> OnExecute;
+
+        void Execute(IEventArgs args);
+    }
+
+    public interface IEvent<T> : IEvent where T : IEventArgs
+    {
+        new event Action<T> OnExecute;
+
+        void Execute(T args);
+    }
 }

@@ -45,7 +45,9 @@ namespace Lomztein.BFA2.Serialization
             Type componentType = component.GetType();
             model.Type = componentType;
 
-            IEnumerable<FieldInfo> properties = componentType.GetFields().Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true));
+            IEnumerable<FieldInfo> properties = componentType.GetFields()
+                .Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true));
+
             foreach (FieldInfo info in properties)
             {
                 model._properties.Add(new PropertyModel(info.Name, info.GetValue(component)));

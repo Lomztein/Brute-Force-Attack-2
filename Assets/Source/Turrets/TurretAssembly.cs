@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Grid;
+using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
@@ -18,11 +19,12 @@ namespace Lomztein.BFA2.Turrets
         private ITurretAssembler _assembler = new TurretAssembler();
 
         private IStatContainer _statContainer = new StatContainer ();
+        private IEventContainer _eventContainer = new EventContainer();
 
         private IStatReference _passiveCooling;
         private IStatReference _heatCapacity;
 
-        public bool Enabled { get; private set; }
+        public bool Enabled { get; private set; } = true;
 
         [ModelProperty]
         public StatBaseValues StatBaseValues;

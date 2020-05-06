@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA.Purchasing
+namespace Lomztein.BFA2.Purchasing
 {
     public class PurchaseController : MonoBehaviour
     {

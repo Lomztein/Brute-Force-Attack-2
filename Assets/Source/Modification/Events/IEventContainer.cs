@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IEventContainer : MonoBehaviour
+namespace Lomztein.BFA2.Modification.Events
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IEventContainer
     {
-        
-    }
+        IEventCaller<T> AddEvent<T>(string identifier, string name, string description) where T : IEventArgs;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IEventReference<T> GetEvent<T>(string identifier) where T : IEventArgs;
     }
 }
