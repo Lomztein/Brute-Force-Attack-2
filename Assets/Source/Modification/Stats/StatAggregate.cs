@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.Modification.Stats
     public class StatAggregate
     {
         public Stat.Type Type { get; private set; }
-        private bool _hasChanged;
+        private bool _hasChanged = true;
         private float _cache;
 
         private List<IStatElement> _elements = new List<IStatElement>();
@@ -36,10 +36,6 @@ namespace Lomztein.BFA2.Modification.Stats
 
         public void AddElement (IStatElement element)
         {
-            if (_elements.Any (x => x.Owner == element.Owner))
-            {
-                throw new ArgumentException("The given elements owner already has a registered stat element.");
-            }
             _elements.Add(element);
             _hasChanged = true;
         }

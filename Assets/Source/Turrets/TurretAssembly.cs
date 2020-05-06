@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Grid;
+using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Placement;
@@ -13,13 +14,14 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridPlaceable, IPurchasable
+    public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridPlaceable, IPurchasable, IModdable
     {
         private List<ITurretComponent> _components;
         private ITurretAssembler _assembler = new TurretAssembler();
 
-        private IStatContainer _statContainer = new StatContainer ();
-        private IEventContainer _eventContainer = new EventContainer();
+        public IStatContainer Stats = new StatContainer ();
+        public IEventContainer Events = new EventContainer();
+        public IModContainer Mods { get; private set; }
 
         private IStatReference _passiveCooling;
         private IStatReference _heatCapacity;
@@ -50,10 +52,12 @@ namespace Lomztein.BFA2.Turrets
 
         void InitStats ()
         {
-            _passiveCooling = _statContainer.AddStat("PassiveCooling", "Passive Cooling", "How quickly the passively cools.");
-            _heatCapacity = _statContainer.AddStat("HeatCapacity", "Heat Capacity", "Total heat capacity before a complete temporary shutdown.");
+            Mods = new ModContainer(Stats, Events);
 
-            _statContainer.Init(StatBaseValues);
+            _passiveCooling = Stats.AddStat("PassiveCooling", "Passive Cooling", "How quickly the passively cools.");
+            _heatCapacity = Stats.AddStat("HeatCapacity", "Heat Capacity", "Total heat capacity before a complete temporary shutdown.");
+
+            Stats.Init(StatBaseValues);
         }
 
         void ResetComponentList ()

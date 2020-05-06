@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Animation.FireAnimations;
 using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Rangers;
 using Lomztein.BFA2.Turrets.Targeters;
@@ -25,19 +26,14 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         [ModelProperty]
         public float FireTreshold;
-        [ModelProperty]
-        public float Damage;
-        [ModelProperty]
-        public int ProjectileAmount;
-        [ModelProperty]
         public LayerMask HitLayer;
-        [ModelProperty]
-        public float Deviation;
-        [ModelProperty]
-        public float Speed;
-        [ModelProperty]
-        public float Firerate;
-        public float Cooldown => 1f / Firerate;
+
+        public IStatReference Damage;
+        public IStatReference ProjectileAmount;
+        public IStatReference Spread;
+        public IStatReference Speed;
+        public IStatReference Firerate;
+        public float Cooldown => 1f / Firerate.GetValue();
 
         private IWeaponFire _weaponFire;
         private IFireAnimation _fireAnimation;
@@ -53,6 +49,12 @@ namespace Lomztein.BFA2.Turrets.Weapons
             Rechamber();
             _weaponFire = GetComponent<WeaponFire>();
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
+
+            Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.");
+            ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.");
+            Spread = Stats.AddStat("Spread", "Spread", "How much the projectiles spread.");
+            Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.");
+            Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.");
         }
 
         private void Rechamber ()
@@ -76,13 +78,13 @@ namespace Lomztein.BFA2.Turrets.Weapons
         {
             IProjectileInfo info = new ProjectileInfo();
             info.Color = Color;
-            info.Damage = Damage;
+            info.Damage = Damage.GetValue ();
             info.Layer = HitLayer;
             info.Target = Provider?.GetTarget();
             info.Range = Ranger?.GetRange() ?? 50f;
 
             _fireAnimation.Play(Cooldown);
-            _weaponFire.Fire(info, Speed, Deviation, ProjectileAmount);
+            _weaponFire.Fire(info, Speed.GetValue (), Spread.GetValue(), (int)ProjectileAmount.GetValue());
         }
 
         public Color GetColor()

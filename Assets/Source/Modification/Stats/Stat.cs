@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Modification.Stats
 
         public float GetValue()
         {
-            return (_baseValue + _additive.GetValue()) * _multiplicative.GetValue();
+            return (_baseValue + _additive.GetValue()) * (1 + _multiplicative.GetValue());
         }
 
         private StatAggregate GetAggregate (Type type)
