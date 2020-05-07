@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
+  StatBaseValues:
+    BaseValues: []
   Speed: 180
 --- !u!1 &8325029833614044980
 GameObject:
@@ -94,6 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
+  StatBaseValues:
+    BaseValues: []
   SimultaniousTargets: 1
   Range: 15
   TargetLayer:
@@ -491,15 +495,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
+  StatBaseValues:
+    BaseValues:
+    - Identifier: Damage
+      Value: 20
+    - Identifier: ProjectileAmount
+      Value: 1
+    - Identifier: Spread
+      Value: 3
+    - Identifier: Speed
+      Value: 100
+    - Identifier: Firerate
+      Value: 15
   FireTreshold: 30
-  Damage: 20
-  ProjectileAmount: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Deviation: 4.5
-  Speed: 100
-  Firerate: 15
   Color: 0
 --- !u!114 &8325029835161171072
 MonoBehaviour:

@@ -12,5 +12,7 @@ namespace Lomztein.BFA2.Enemies
         void SetPosition(Vector3 position);
 
         void SetOnDeathCallback(Action onDeath);
+
+        int Value { get; }
     }
 }

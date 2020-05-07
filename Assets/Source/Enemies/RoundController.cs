@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Purchasing.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,10 +23,12 @@ namespace Lomztein.BFA2.Enemies
         public Vector2 SpawnAreaCenter;
 
         private IWaveCollection _waveCollection = new WaveCollection();
+        private IResourceContainer _resourceContainer;
 
         private void Awake()
         {
             _waveCollection.Init(Waves);
+            _resourceContainer = GetComponent<IResourceContainer>();
         }
 
         public void InvokeDelayed(Action callback, float time)
@@ -98,6 +101,11 @@ namespace Lomztein.BFA2.Enemies
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireCube(SpawnAreaCenter, SpawnAreaSize * 2f);
+        }
+
+        public void OnEnemyDeath(IEnemy enemy)
+        {
+            _resourceContainer.ChangeResource(Resource.Credits, enemy.Value);
         }
     }
 }

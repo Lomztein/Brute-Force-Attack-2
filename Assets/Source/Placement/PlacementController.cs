@@ -29,6 +29,18 @@ namespace Lomztein.BFA2.Placement
                 {
                     PlaceCurrent();
                 }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    CancelCurrent();
+                }
+            }
+        }
+
+        private void CancelCurrent()
+        {
+            if (_currentPlaceable.Cancel())
+            {
+                _currentPlaceable = null;
             }
         }
 

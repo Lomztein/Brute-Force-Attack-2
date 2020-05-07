@@ -18,12 +18,12 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders
 
         public void ApplyTo (GameObject obj)
         {
-            obj.GetComponent<IModdable>()?.Mods?.AddMod(_mod);
+            obj.GetComponent<IModdable>().Mods.AddMod(_mod);
         }
 
         public void RemoveFrom (GameObject obj)
         {
-            obj.GetComponent<IModdable>()?.Mods?.RemoveMod(_mod);
+            obj.GetComponent<IModdable>().Mods.RemoveMod(_mod);
         }
     }
 }

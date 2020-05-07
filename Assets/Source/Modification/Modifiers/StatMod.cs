@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Serialization;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers
 {
     public class StatMod : BaseModComponent, IMod
     {
+        [ModelProperty]
         public Element[] Stats;
 
         [Serializable]

@@ -5,19 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Serialization;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers
 {
     public abstract class BaseModComponent : MonoBehaviour, IMod
     {
-        [SerializeField] private string _identifier;
+        [ModelProperty] [SerializeField] private string _identifier;
         public string Identifier => _identifier;
 
-        [SerializeField] private string _name;
+        [ModelProperty] [SerializeField] private string _name;
         public string Name => _name;
 
-        [SerializeField] private string _description;
+        [ModelProperty] [SerializeField] private string _description;
         public string Description => _description;
 
         public abstract void ApplyBase(IStatContainer stats, IEventContainer events);

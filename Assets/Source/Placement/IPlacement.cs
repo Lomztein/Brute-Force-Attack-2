@@ -14,6 +14,10 @@ namespace Lomztein.BFA2.Placement
         bool ToTransform(Transform transform);
 
         bool Place();
+        event Action OnPlaced;
+
+        bool Cancel();
+        event Action OnCancelled;
 
         bool Pickup(GameObject obj);
     }

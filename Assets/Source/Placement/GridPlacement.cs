@@ -9,12 +9,23 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Placement
 {
+    // TODO: Create a PlacementBase that handles _placeRequirements or something.
     public class GridPlacement : IPlacement
     {
         private GameObject _obj;
         private IGridPlaceable _placeable;
         private LayerMask _blockingLayer;
-        
+
+        public event Action OnPlaced;
+        public event Action OnCancelled;
+
+        private Func<bool>[] _placeRequirements;
+
+        public GridPlacement (params Func<bool>[] placeRequirements)
+        {
+            _placeRequirements = placeRequirements;
+        }
+
         public bool Pickup(GameObject obj)
         {
             _obj = obj;
@@ -28,6 +39,7 @@ namespace Lomztein.BFA2.Placement
             if (CanPlace (_obj.transform.position, _obj.transform.rotation))
             {
                 _placeable.Place();
+                OnPlaced?.Invoke();
                 return true;
             }
             return false;
@@ -44,23 +56,31 @@ namespace Lomztein.BFA2.Placement
         private bool CanPlace (Vector2 position, Quaternion rotation)
         {
             float radius = GridDimensions.SizeOf (_placeable.Size) / 2f;
-            return !Physics2D.OverlapCircle(position, radius);
+            return !Physics2D.OverlapCircle(position, radius) && _placeRequirements.All (x => x() == true);
         }
 
         private Vector2 Snap (Vector2 position)
         {
             float size = GridDimensions.CELL_SIZE;
-
-            float x = Mathf.Round(position.x / size) * size;
-            float y = Mathf.Round(position.y / size) * size;
             bool even = GridDimensions.IsEven(_placeable.Size);
+            Vector2 offset = !even ? new Vector2(size / 2f, size / 2f) : Vector2.zero;
 
-            return new Vector2(x, y) + (even ? new Vector2 (size / 2f, size / 2f) : Vector2.zero);
+            float x = Mathf.Round((position.x - offset.x) / size) * size + offset.x;
+            float y = Mathf.Round((position.y - offset.y) / size) * size + offset.x;
+
+            return new Vector2(x, y);
         }
 
         public bool ToTransform(Transform transform)
         {
             return false;
+        }
+
+        public bool Cancel()
+        {
+            OnCancelled?.Invoke();
+            UnityEngine.Object.Destroy(_obj);
+            return true;
         }
     }
 }

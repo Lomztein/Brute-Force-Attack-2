@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         {
             IEnemy enemy = UnityEngine.Object.Instantiate(Prefab).GetComponent<IEnemy>();
             OnSpawn?.Invoke(enemy);
-            enemy.SetOnDeathCallback(() => OnEnemyKill ());
+            enemy.SetOnDeathCallback(() => OnEnemyKill (enemy));
             SpawnAmount--;
 
             if (SpawnAmount > 0)
@@ -40,13 +40,14 @@ namespace Lomztein.BFA2.Enemies.Waves
             }
         }
 
-        private void OnEnemyKill()
+        private void OnEnemyKill(IEnemy enemy)
         {
             Alive--;
             if (Alive == 0)
             {
                 OnFinished?.Invoke();
             }
+            _manager.OnEnemyDeath(enemy);
         }
     }
 }

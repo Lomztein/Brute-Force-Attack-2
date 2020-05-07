@@ -21,8 +21,9 @@ namespace Lomztein.BFA2.Enemies
         public float Armor;
         [ModelProperty]
         public float Shields;
-        [ModelProperty]
-        public int Value;
+        [SerializeField][ModelProperty]
+        private int _value;
+        public int Value { get => _value; }
 
         public float Health { get; private set; }
         public Color Color;
@@ -79,7 +80,6 @@ namespace Lomztein.BFA2.Enemies
 
         private void Die ()
         {
-            GameObject.Find("PurchaseController").GetComponent<IResourceContainer>().ChangeResource(Resource.Credits, Value); // TODO: Figure out a better way to earn money from kills.
             Destroy(gameObject);
             _onDeath();
         }

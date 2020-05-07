@@ -8,8 +8,6 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
 {
     public interface ITargetProvider
     {
-        IEventCaller<TargetEventArgs> OnTargetAcquired { get; }
-
         Transform GetTarget();
     }
 }

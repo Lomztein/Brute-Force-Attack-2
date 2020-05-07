@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
+  StatBaseValues:
+    BaseValues: []
   Speed: 180
 --- !u!1 &8325029833614044980
 GameObject:
@@ -94,6 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
+  StatBaseValues:
+    BaseValues: []
   SimultaniousTargets: 1
   Range: 15
   TargetLayer:
@@ -218,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8325029833986787831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: -10.5, z: 0}
+  m_LocalPosition: {x: -2, y: -10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8325029833614044983}
@@ -491,16 +495,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PassiveHeatProduction: 2.5
+  StatBaseValues:
+    BaseValues:
+    - Identifier: Damage
+      Value: 30
+    - Identifier: ProjectileAmount
+      Value: 1
+    - Identifier: Spread
+      Value: 0
+    - Identifier: Speed
+      Value: 100
+    - Identifier: Firerate
+      Value: 1
   FireTreshold: 1
-  Damage: 30
-  ProjectileAmount: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Deviation: 0
-  Speed: 100
-  Firerate: 1
-  Color: 0
+  Color: 1
 --- !u!114 &8325029835161171072
 MonoBehaviour:
   m_ObjectHideFlags: 0

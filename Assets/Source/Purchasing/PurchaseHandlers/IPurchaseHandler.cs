@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Purchasing.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Lomztein.BFA2.Purchasing.PurchaseHandlers
 {
     public interface IPurchaseHandler
     {
-        bool Handle(IPurchasable purchasable);
+        bool Handle(IPurchasable purchasable, IResourceContainer resources);
     }
 }
