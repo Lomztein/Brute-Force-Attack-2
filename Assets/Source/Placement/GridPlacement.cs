@@ -10,6 +10,7 @@ using UnityEngine;
 namespace Lomztein.BFA2.Placement
 {
     // TODO: Create a PlacementBase that handles _placeRequirements or something.
+    // TODO: Turn placement objects into monobehaviours.
     public class GridPlacement : IPlacement
     {
         private GameObject _obj;
@@ -56,7 +57,7 @@ namespace Lomztein.BFA2.Placement
         private bool CanPlace (Vector2 position, Quaternion rotation)
         {
             float radius = GridDimensions.SizeOf (_placeable.Size) / 2f;
-            return !Physics2D.OverlapCircle(position, radius) && _placeRequirements.All (x => x() == true);
+            return !Physics2D.OverlapCircle(position, radius - 0.1f) && _placeRequirements.All (x => x() == true);
         }
 
         private Vector2 Snap (Vector2 position)
@@ -71,16 +72,16 @@ namespace Lomztein.BFA2.Placement
             return new Vector2(x, y);
         }
 
-        public bool ToTransform(Transform transform)
-        {
-            return false;
-        }
-
         public bool Cancel()
         {
             OnCancelled?.Invoke();
             UnityEngine.Object.Destroy(_obj);
             return true;
+        }
+
+        public override string ToString()
+        {
+            return _placeable.ToString();
         }
     }
 }

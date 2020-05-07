@@ -9,5 +9,7 @@ namespace Lomztein.BFA2.Enemies.Motors
     public interface IEnemyMotor
     {
         void Tick(float deltaTime);
+
+        bool HasReachedEnded();
     }
 }

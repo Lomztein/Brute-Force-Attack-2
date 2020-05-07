@@ -55,6 +55,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
             Spread = Stats.AddStat("Spread", "Spread", "How much the projectiles spread.");
             Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.");
             Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.");
+
+            AddAttribute(Modification.ModdableAttribute.Weapon);
         }
 
         private void Rechamber ()

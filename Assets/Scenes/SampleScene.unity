@@ -121,6 +121,99 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &180393293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180393294}
+  - component: {fileID: 180393297}
+  - component: {fileID: 180393296}
+  - component: {fileID: 180393295}
+  m_Layer: 5
+  m_Name: PlacementDisplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &180393294
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180393293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 416121142}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -737.85, y: 15}
+  m_SizeDelta: {x: 1450.3086, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &180393295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180393293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a3e130afc199a45b375a2a5f5235ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: {fileID: 180393296}
+  PlacementController: {fileID: 1516892383}
+--- !u!114 &180393296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180393293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.89716387, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 21
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &180393297
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180393293}
+  m_CullTransparentMesh: 0
 --- !u!1 &416121141
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +247,7 @@ RectTransform:
   - {fileID: 2021530273}
   - {fileID: 1043989241}
   - {fileID: 1572487594}
+  - {fileID: 180393294}
   m_Father: {fileID: 1282759377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -536,53 +630,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waves:
-  - SpawnDelay: 0.3
+  - SpawnDelay: 0.5
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 20
     Alive: 0
-  - SpawnDelay: 0.2
+  - SpawnDelay: 0.33
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 40
     Alive: 0
-  - SpawnDelay: 0.2
-    Prefab: {fileID: 2491341172321060995, guid: 60abcddfc329bfb45b93c1798146444b,
+  - SpawnDelay: 0.3
+    Prefab: {fileID: 2491341172321060995, guid: fd4e184fa6420a84f8f920abaec47f01,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 30
     Alive: 0
-  - SpawnDelay: 0.2
-    Prefab: {fileID: 2491341172321060995, guid: fd4e184fa6420a84f8f920abaec47f01,
+  - SpawnDelay: 0.3
+    Prefab: {fileID: 2491341172321060995, guid: 60abcddfc329bfb45b93c1798146444b,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 40
     Alive: 0
-  - SpawnDelay: 0.1
+  - SpawnDelay: 0.15
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
       type: 3}
-    SpawnAmount: 12
-    Alive: 0
-  - SpawnDelay: 0.1
-    Prefab: {fileID: 2491341172321060995, guid: 60abcddfc329bfb45b93c1798146444b,
-      type: 3}
-    SpawnAmount: 50
-    Alive: 0
-  - SpawnDelay: 0.1
-    Prefab: {fileID: 2491341172321060995, guid: 60abcddfc329bfb45b93c1798146444b,
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 80
     Alive: 0
+  - SpawnDelay: 0.15
+    Prefab: {fileID: 2491341172321060995, guid: fd4e184fa6420a84f8f920abaec47f01,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
+      type: 3}
+    SpawnAmount: 60
+    Alive: 0
   - SpawnDelay: 0.05
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
       type: 3}
-    SpawnAmount: 200
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
+      type: 3}
+    SpawnAmount: 100
+    Alive: 0
+  - SpawnDelay: 0.1
+    Prefab: {fileID: 2491341172321060995, guid: 60abcddfc329bfb45b93c1798146444b,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
+      type: 3}
+    SpawnAmount: 100
     Alive: 0
   - SpawnDelay: 0.05
     Prefab: {fileID: 2491341172321060995, guid: fd4e184fa6420a84f8f920abaec47f01,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 100
     Alive: 0
   - SpawnDelay: 0.02
     Prefab: {fileID: 2491341172321060995, guid: 866850d5fd1b38745b608efb999203f5,
+      type: 3}
+    SpawnerPrefab: {fileID: 1728763116868555419, guid: e8bf9555918febf4697ce48f41675f71,
       type: 3}
     SpawnAmount: 2147483647
     Alive: 0
@@ -706,8 +820,8 @@ GameObject:
   - component: {fileID: 1043989244}
   - component: {fileID: 1043989243}
   - component: {fileID: 1043989242}
-  - component: {fileID: 1043989246}
   - component: {fileID: 1043989245}
+  - component: {fileID: 1043989246}
   m_Layer: 5
   m_Name: ExpansionCardTab
   m_TagString: Untagged
@@ -786,8 +900,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Purchasables:
-  - {fileID: 8325029833986787831, guid: 6ea93906c1d16724d9f7694576d53c0c, type: 3}
-  - {fileID: 8325029833986787831, guid: f127c308358bf6045af6f9e8968fe6e5, type: 3}
+  - {fileID: 4464707990728181029, guid: 108bcaab75df3214ca1000ef33b2a1bd, type: 3}
+  - {fileID: 4464707990728181029, guid: 546dad37b595ab847b18a53a9e642581, type: 3}
+  - {fileID: 4464707990728181029, guid: 52d35f0075201154390f9ebb36db3c3a, type: 3}
+  - {fileID: 4464707990728181029, guid: 27b67c4954e3e2240a3d123501eaaf4d, type: 3}
   ButtonPrefab: {fileID: 3679529093035341646, guid: 4a2595a7c7c539c4d8bdc294402e6ddf,
     type: 3}
   ButtonParent: {fileID: 1043989241}
@@ -813,7 +929,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043989240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90589321233898f48843913d8d5af145, type: 3}
+  m_Script: {fileID: 11500000, guid: dca7ed6bfbc8c4844b7770688bec0f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1205910151
@@ -849,9 +965,9 @@ MonoBehaviour:
   Resources:
     Elements:
     - Type: 0
-      Value: 1000
+      Value: 850
     - Type: 1
-      Value: 0
+      Value: 1
 --- !u!114 &1205910153
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,6 +21,9 @@ namespace Lomztein.BFA2.Enemies
         public float Armor;
         [ModelProperty]
         public float Shields;
+        [ModelProperty]
+        public float Damage;
+
         [SerializeField][ModelProperty]
         private int _value;
         public int Value { get => _value; }
@@ -29,18 +32,29 @@ namespace Lomztein.BFA2.Enemies
         public Color Color;
 
         private IEnemyMotor _motor;
-        private Action _onDeath;
+
+        public event Action<IEnemy, int> OnDeath;
+        public event Action<IEnemy, float> OnFinished;
 
         private void Awake()
         {
             Health = MaxHealth;
             _motor = GetComponent<IEnemyMotor>();
-            Invoke("Die", 10);
         }
 
         private void FixedUpdate()
         {
             _motor.Tick(Time.fixedDeltaTime);
+            if (_motor.HasReachedEnded ())
+            {
+                DoDamage();
+            }
+        }
+
+        private void DoDamage ()
+        {
+            Destroy(gameObject);
+            OnFinished?.Invoke(this, Damage);
         }
 
         public float TakeDamage(DamageInfo damageInfo)
@@ -68,20 +82,15 @@ namespace Lomztein.BFA2.Enemies
             return Armor + Shields;
         }
 
-        public void SetPosition(Vector3 position)
-        {
-            transform.position = position;
-        }
-
-        public void SetOnDeathCallback(Action onDeath)
-        {
-            _onDeath = onDeath;
-        }
-
         private void Die ()
         {
             Destroy(gameObject);
-            _onDeath();
+            OnDeath?.Invoke(this, Value);
+        }
+
+        public void Init(Vector3 position)
+        {
+            transform.position = position;
         }
     }
 }

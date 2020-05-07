@@ -63,5 +63,7 @@ namespace Lomztein.BFA2.Placement
             }
             return false;
         }
+
+        public string CurrentToString() => _currentPlaceable?.ToString() ?? "No current placement.";
     }
 }

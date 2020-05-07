@@ -11,8 +11,6 @@ namespace Lomztein.BFA2.Placement
     {
         bool ToPosition(Vector2 position, Quaternion rotation);
 
-        bool ToTransform(Transform transform);
-
         bool Place();
         event Action OnPlaced;
 

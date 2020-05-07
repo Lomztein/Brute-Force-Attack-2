@@ -9,10 +9,9 @@ namespace Lomztein.BFA2.Enemies
 {
     public interface IEnemy
     {
-        void SetPosition(Vector3 position);
+        void Init(Vector3 position);
 
-        void SetOnDeathCallback(Action onDeath);
-
-        int Value { get; }
+        event Action<IEnemy, int> OnDeath;
+        event Action<IEnemy, float> OnFinished;
     }
 }

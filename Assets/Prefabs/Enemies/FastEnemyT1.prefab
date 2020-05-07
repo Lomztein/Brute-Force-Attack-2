@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 901656202398654903}
   - component: {fileID: 9150559930344985836}
   m_Layer: 8
-  m_Name: BasicEnemyT1
+  m_Name: FastEnemyT1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c113e36a5d58724f8b5e3e3d71eef4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
+  MaxHealth: 7.5
   Armor: 0
   Shields: 0
-  _value: 10
-  Color: 0
+  Damage: 0
+  _value: 15
+  Color: 1
 --- !u!114 &4061269102758423044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +66,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Direction: {x: 0, y: -1, z: 0}
-  Speed: 5
+  Speed: 10
+  Range: 32
 --- !u!50 &901656202398654903
 Rigidbody2D:
   serializedVersion: 4
@@ -183,7 +185,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 966a75dc79935514bbf1ff0e7629da4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77f4005e1582e104abbfdcc15d92f4b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

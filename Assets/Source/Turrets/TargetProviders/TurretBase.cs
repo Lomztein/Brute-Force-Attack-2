@@ -43,6 +43,8 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         {
             _targetFinder = GetComponent<ITargetFinder>();
             _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
+
+            AddAttribute(Modification.ModdableAttribute.Ranged);
         }
 
         public override void Tick(float deltaTime)

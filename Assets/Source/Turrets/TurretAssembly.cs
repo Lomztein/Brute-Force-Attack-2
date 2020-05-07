@@ -7,6 +7,7 @@ using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Assemblers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,11 +38,20 @@ namespace Lomztein.BFA2.Turrets
         public string Name => _name;
         [ModelProperty][SerializeField] private string _description;
         public string Description => _description;
-        [ModelProperty][SerializeField] private ResourceCost _cost;
-        public IResourceCost Cost => _cost;
+        public IResourceCost Cost => GetCost();
+
+        private IResourceCost GetCost()
+        {
+            IEnumerable<IPurchasable> children = GetComponentsInChildren<ITurretComponent>().Select (x => x as IPurchasable).Where (x => x != null);
+            return children.Select(x => x.Cost).Sum();
+        }
+
         public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
         public Size Size => Size.Small;
+
+        [SerializeField] [ModelProperty] ModdableAttribute[] _modAttributes;
+        public ModdableAttribute[] Attributes => _modAttributes;
 
         // Start is called before the first frame update
         void Awake()
@@ -100,11 +110,24 @@ namespace Lomztein.BFA2.Turrets
         public void Place()
         {
             Enabled = true;
+            foreach (var col in GetComponentsInChildren<Collider2D>())
+            {
+                col.enabled = true;
+            }
         }
 
         public void Pickup()
         {
             Enabled = false;
+            foreach (var col in GetComponentsInChildren<Collider2D>())
+            {
+                col.enabled = false;
+            }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

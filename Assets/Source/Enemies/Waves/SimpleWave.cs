@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Enemies.Waves.Spawners;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,42 +13,44 @@ namespace Lomztein.BFA2.Enemies.Waves
     {
         public float SpawnDelay;
         public GameObject Prefab;
+        public GameObject SpawnerPrefab;
 
         public int SpawnAmount;
         public int Alive;
 
         public event Action<IEnemy> OnSpawn;
         public event Action OnFinished;
-        private IRoundController _manager;
 
-        public void Start(IRoundController manager)
+        public void Start()
         {
-            _manager = manager;
+            Spawn();
             Alive = SpawnAmount;
-            _manager.InvokeDelayed(() => Spawn(), SpawnDelay);
         }
 
         private void Spawn()
         {
-            IEnemy enemy = UnityEngine.Object.Instantiate(Prefab).GetComponent<IEnemy>();
-            OnSpawn?.Invoke(enemy);
-            enemy.SetOnDeathCallback(() => OnEnemyKill (enemy));
-            SpawnAmount--;
+            ISpawner spawner = UnityEngine.Object.Instantiate(SpawnerPrefab).GetComponent<ISpawner>();
+            spawner.OnSpawn += Spawner_OnSpawn;
 
-            if (SpawnAmount > 0)
-            {
-                _manager.InvokeDelayed(() => Spawn(), SpawnDelay);
-            }
+            spawner.Spawn(SpawnAmount, SpawnDelay, Prefab);
         }
 
-        private void OnEnemyKill(IEnemy enemy)
+        private void Spawner_OnSpawn(GameObject obj)
+        {
+            IEnemy enemy = obj.GetComponent<IEnemy>();
+            OnSpawn?.Invoke(enemy);
+
+            enemy.OnDeath += (x, y) => OnEnemyDeath(x);
+            enemy.OnFinished += (x, y) => OnEnemyDeath(x);
+        }
+
+        private void OnEnemyDeath(IEnemy enemy)
         {
             Alive--;
             if (Alive == 0)
             {
                 OnFinished?.Invoke();
             }
-            _manager.OnEnemyDeath(enemy);
         }
     }
 }

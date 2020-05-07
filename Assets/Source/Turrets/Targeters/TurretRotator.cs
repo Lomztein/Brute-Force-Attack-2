@@ -28,6 +28,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
 
         public override void Init()
         {
+            AddAttribute(Modification.ModdableAttribute.Rotator);
         }
 
         public override void Tick(float deltaTime)

@@ -17,5 +17,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
 
         void RemoveBase(IStatContainer stats, IEventContainer events);
         void RemoveStack(IStatContainer stats, IEventContainer events);
+
+        bool CompatableWith(ModdableAttribute[] attributes);
     }
 }
