@@ -10,5 +10,7 @@ namespace Lomztein.BFA2.Content
         string Path { get; }
 
         object GetContent(string path, Type type);
+
+        object[] GetAllContent(string path, Type type);
     }
 }

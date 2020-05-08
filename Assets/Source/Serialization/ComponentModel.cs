@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Serialization
 
             foreach (IDataStruct property in properties)
             {
-                _properties.Add(new PropertyModel (property.GetValue<string>("Name"), property.GetValue<string>("Value")));
+                _properties.Add(new PropertyModel (property.GetValue<string>("Name"), property.GetValue("Value", typeof (object))));
             }
         }
 

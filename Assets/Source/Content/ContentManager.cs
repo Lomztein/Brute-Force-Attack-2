@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,38 +11,57 @@ namespace Lomztein.BFA2.Content
 {
     public class ContentManager : MonoBehaviour
     {
-        private string[] Sources => new string[]
-        {
-            Paths.StreamingAssets + "Content/",
-            Paths.Data + "Content/",
-        };
+        IContentPackSource _source = new ContentPackSource();
+
+        private const string WILDCARD = "*";
+        private IContentPack[] _packs;
 
         public void Init ()
         {
-            IContentPack[] packs = InitializeContentPacks(Sources);
-            foreach (IContentPack pack in packs)
-            {
-                Debug.Log(pack.ToString());
-            }
+            _packs = _source.GetPacks ();
+            var content = GetAllContent("*/Assemblies/", typeof (IGameObjectModel));
+            Debug.Log(string.Join (", ", content.Select (x => x.ToString())));
         }
 
-        // Loading of content packs should perhaps be offloaded to a ContentPackLoader
-        private IContentPack[] InitializeContentPacks (string[] sources)
+        public object GetContent (string path, Type type)
         {
-            List<IContentPack> packs = new List<IContentPack>();
-            foreach (string source in sources)
-            {
-                if (Directory.Exists(source))
-                {
-                    string[] directories = Directory.GetDirectories(source);
-                    foreach (string directory in directories)
-                    {
-                        packs.Add(new ContentPack(directory, Path.GetFileName (directory), "Unauthored", ""));
-                    }
-                }
-            }
-
-            return packs.ToArray();
+            return GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
         }
+
+        private string GetPackFolder (string path) 
+        { 
+            return  path.Split('/').First();
+        }
+
+        private string GetContentPath (string path)
+        {
+            return path.Substring(path.IndexOf('/'));
+        }
+
+        public object[] GetAllContent (string path, Type type)
+        {
+            string packFolder = GetPackFolder(path);
+            bool wildcard = packFolder == WILDCARD;
+
+            string contentPath = GetContentPath(path);
+
+            if (wildcard)
+            {
+                List<object> objects = new List<object>();
+                foreach (IContentPack pack in _packs)
+                {
+                    objects.AddRange(pack.GetAllContent(contentPath, type));
+                }
+                return objects.ToArray();
+            }
+            else
+            {
+                return GetPack(packFolder).GetAllContent(contentPath, type);
+            }
+        }
+
+        private IContentPack GetPack(string name) => _packs.FirstOrDefault(x => x.Name == name);
+
+
     }
 }

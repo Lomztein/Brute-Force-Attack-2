@@ -9,13 +9,13 @@ namespace Lomztein.BFA2.Content.Loaders
 {
     public class RawContentLoader : IRawContentLoader
     {
-        private string _rootPath;
-
-        private readonly IRawContentTypeLoader[] _loaders = new IRawContentTypeLoader[]
+        private static readonly List<IRawContentTypeLoader> _loaders = new List<IRawContentTypeLoader>
         {
             new GameObjectModelRawContentLoader (),
             new Texture2DRawContentLoader (),
         };
+
+        public static void AddLoader(IRawContentTypeLoader loader) => _loaders.Add(loader);
 
         public object LoadContent(string path, Type type)
         {
@@ -23,8 +23,9 @@ namespace Lomztein.BFA2.Content.Loaders
             {
                 if (loader.ContentType == type)
                 {
-                    return loader.Load(Path.Combine(_rootPath, path));
+                    return loader.Load(path);
                 }
+                throw new NotImplementedException($"Failed to load object of {nameof(type)} {type.FullName}, no fitting RawContentTypeLoader available.");
             }
             throw new FileNotFoundException($"Could not load content file {path}, file not found.");
         }

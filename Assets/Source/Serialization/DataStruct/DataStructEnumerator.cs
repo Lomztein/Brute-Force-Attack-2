@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.DataStruct
 {
-    public class DataStructEnumerator : IEnumerator<object>
+    public class DataStructEnumerator : IEnumerator<IDataStruct>
     {
         private IDataStruct ToEnumerate { get; set; }
         private int CurrentIndex { get; set; }
@@ -18,7 +18,9 @@ namespace Lomztein.BFA2.Serialization.DataStruct
             Reset();
         }
 
-        public object Current => ToEnumerate.GetValue<object>(CurrentIndex);
+        public IDataStruct Current => ToEnumerate.Get(CurrentIndex);
+
+        object IEnumerator.Current => Current;
 
         public bool MoveNext()
         {

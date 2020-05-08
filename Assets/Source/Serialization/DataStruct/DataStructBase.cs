@@ -16,13 +16,18 @@ namespace Lomztein.BFA2.Serialization.DataStruct
 
         public abstract IDataStruct Get(object identifier);
 
-        public abstract T GetValue<T>(object identifier);
 
         public IEnumerator GetEnumerator()
         {
             return new DataStructEnumerator(this);
         }
 
-        public abstract T ToObject<T>();
+        public abstract object GetValue(object identifier, Type type);
+        public abstract object ToObject(Type type);
+
+        IEnumerator<IDataStruct> IEnumerable<IDataStruct>.GetEnumerator()
+        {
+            return new DataStructEnumerator(this);
+        }
     }
 }

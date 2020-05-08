@@ -37,9 +37,9 @@ namespace Lomztein.BFA2.Serialization.DataStruct
             }
         }
 
-        public override T GetValue<T>(object identifier)
+        public override object GetValue(object identifier, Type type)
         {
-            var value = _token[identifier].ToObject<T>();
+            var value = _token[identifier].ToObject (type);
             return value;
         }
 
@@ -48,9 +48,9 @@ namespace Lomztein.BFA2.Serialization.DataStruct
             return _token.ToString();
         }
 
-        public override T ToObject<T>()
+        public override object ToObject(Type type)
         {
-            return _token.ToObject<T>();
+            return _token.ToObject(type);
         }
     }
 }

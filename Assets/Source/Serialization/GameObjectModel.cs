@@ -79,5 +79,10 @@ namespace Lomztein.BFA2.Serialization
 
             return model;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

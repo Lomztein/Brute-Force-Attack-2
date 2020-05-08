@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Lomztein.BFA2.Content.Loaders;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,8 @@ namespace Lomztein.BFA2.Content
         public string Author { get; private set; }
         public string Description { get; private set; }
 
+        private IRawContentLoader _contentLoader = new RawContentLoader();
+
         public ContentPack(string path, string name, string author, string description)
         {
             Name = name;
@@ -24,7 +28,20 @@ namespace Lomztein.BFA2.Content
 
         public object GetContent(string path, Type type)
         {
-            throw new NotImplementedException();
+            return _contentLoader.LoadContent(Path + path, type);
+        }
+
+        public object[] GetAllContent(string path, Type type)
+        {
+            List<object> content = new List<object>();
+            string spath = Path + path;
+
+            string[] files = Directory.GetFiles(spath, "*.json");
+            foreach (string file in files)
+            {
+                content.Add(_contentLoader.LoadContent(file, type));
+            }
+            return content.ToArray();
         }
 
         public override string ToString()
