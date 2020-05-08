@@ -1,0 +1,14 @@
+﻿using System;
+
+namespace Lomztein.BFA2.Content
+{
+    public interface IContentPack
+    {
+        string Name { get; }
+        string Author { get; }
+        string Description { get; }
+        string Path { get; }
+
+        object GetContent(string path, Type type);
+    }
+}

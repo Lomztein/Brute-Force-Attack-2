@@ -15,7 +15,7 @@ using Color = Lomztein.BFA2.Colorization.Color;
 
 namespace Lomztein.BFA2.Turrets.Weapons
 {
-    public class TurretWeapon : TurretComponent, IColorProvider
+    public class TurretWeapon : TurretComponent, IColorProvider, IWeapon
     {
         [TurretComponent]
         public ITargeter Targeter;
@@ -44,6 +44,16 @@ namespace Lomztein.BFA2.Turrets.Weapons
         {
         }
 
+        public float GetDamage() => Damage.GetValue();
+
+        public float GetFirerate() => Firerate.GetValue();
+
+        public int GetProjectileAmount() => (int)ProjectileAmount.GetValue();
+
+        public float GetSpread() => Spread.GetValue();
+
+        public float GetSpeed() => Speed.GetValue();
+
         public override void Init()
         {
             Rechamber();
@@ -59,34 +69,42 @@ namespace Lomztein.BFA2.Turrets.Weapons
             AddAttribute(Modification.ModdableAttribute.Weapon);
         }
 
-        private void Rechamber ()
+        private void Rechamber()
         {
             _chambered = true;
         }
 
         public override void Tick(float deltaTime)
         {
-            if (Targeter != null && Targeter.GetDistance () < FireTreshold)
+            if (Targeter != null && Targeter.GetDistance() < FireTreshold)
             {
-                if (_chambered) {
-                    Fire();
-                    _chambered = false;
-                    Invoke("Rechamber", Cooldown);
-                }
+                TryFire();
             }
         }
 
-        private void Fire ()
+        public bool TryFire()
+        {
+            if (_chambered)
+            {
+                Fire();
+                _chambered = false;
+                Invoke("Rechamber", Cooldown);
+                return true;
+            }
+            return false;
+        }
+
+        private void Fire()
         {
             IProjectileInfo info = new ProjectileInfo();
             info.Color = Color;
-            info.Damage = Damage.GetValue ();
+            info.Damage = Damage.GetValue();
             info.Layer = HitLayer;
             info.Target = Provider?.GetTarget();
             info.Range = Ranger?.GetRange() ?? 50f;
 
             _fireAnimation.Play(Cooldown);
-            _weaponFire.Fire(info, Speed.GetValue (), Spread.GetValue(), (int)ProjectileAmount.GetValue());
+            _weaponFire.Fire(info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue());
         }
 
         public Color GetColor()
