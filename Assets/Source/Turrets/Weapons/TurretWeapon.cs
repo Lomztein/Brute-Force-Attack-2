@@ -26,6 +26,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         [ModelProperty]
         public float FireTreshold;
+        [ModelProperty]
+        public float RangeMultiplier = 1f;
         public LayerMask HitLayer;
 
         public IStatReference Damage;
@@ -101,7 +103,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
             info.Damage = Damage.GetValue();
             info.Layer = HitLayer;
             info.Target = Provider?.GetTarget();
-            info.Range = Ranger?.GetRange() ?? 50f;
+            info.Range = Ranger == null ? 50f : Ranger.GetRange() * RangeMultiplier;
 
             _fireAnimation.Play(Cooldown);
             _weaponFire.Fire(info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue());

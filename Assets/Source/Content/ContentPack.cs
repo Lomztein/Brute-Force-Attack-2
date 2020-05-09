@@ -36,11 +36,15 @@ namespace Lomztein.BFA2.Content
             List<object> content = new List<object>();
             string spath = Path + path;
 
-            string[] files = Directory.GetFiles(spath, "*.json");
-            foreach (string file in files)
+            if (Directory.Exists(spath))
             {
-                content.Add(_contentLoader.LoadContent(file, type));
+                string[] files = Directory.GetFiles(spath, "*.json");
+                foreach (string file in files)
+                {
+                    content.Add(_contentLoader.LoadContent(file, type));
+                }
             }
+
             return content.ToArray();
         }
 

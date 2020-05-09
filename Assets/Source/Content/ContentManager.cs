@@ -9,36 +9,36 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Content
 {
-    public class ContentManager : MonoBehaviour
+    public class ContentManager : MonoBehaviour, IContentManager
     {
         IContentPackSource _source = new ContentPackSource();
 
         private const string WILDCARD = "*";
         private IContentPack[] _packs;
 
-        public void Init ()
+        public void Init()
         {
-            _packs = _source.GetPacks ();
-            var content = GetAllContent("*/Assemblies/", typeof (IGameObjectModel));
-            Debug.Log(string.Join (", ", content.Select (x => x.ToString())));
+            _packs = _source.GetPacks();
+            var content = GetAllContent("*/Assemblies/", typeof(IGameObjectModel));
+            Debug.Log(string.Join(", ", content.Select(x => x.ToString())));
         }
 
-        public object GetContent (string path, Type type)
+        public object GetContent(string path, Type type)
         {
             return GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
         }
 
-        private string GetPackFolder (string path) 
-        { 
-            return  path.Split('/').First();
+        private string GetPackFolder(string path)
+        {
+            return path.Split('/').First();
         }
 
-        private string GetContentPath (string path)
+        private string GetContentPath(string path)
         {
             return path.Substring(path.IndexOf('/'));
         }
 
-        public object[] GetAllContent (string path, Type type)
+        public object[] GetAllContent(string path, Type type)
         {
             string packFolder = GetPackFolder(path);
             bool wildcard = packFolder == WILDCARD;
