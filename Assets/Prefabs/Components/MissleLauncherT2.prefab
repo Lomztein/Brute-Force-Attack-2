@@ -135,27 +135,29 @@ MonoBehaviour:
   _cost:
     Elements:
     - Type: 0
-      Value: 500
+      Value: 1500
   _modAttributes: 0400000006000000
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
-      Value: 50
+      Value: 100
     - Identifier: ProjectileAmount
       Value: 1
     - Identifier: Spread
-      Value: 15
+      Value: 0
     - Identifier: Speed
-      Value: 30
+      Value: 20
     - Identifier: Firerate
-      Value: 0.75
+      Value: 0.8
   ExpansionCardCapacity: 2
   FireTreshold: 30
   RangeMultiplier: 2.5
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+  Muzzles:
+  - {fileID: 8983164370671711078}
   Color: 2
 --- !u!114 &8983164369808527854
 MonoBehaviour:
@@ -169,7 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62db0a3b70e62af4d8adcfb34b83fddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Muzzle: {fileID: 8983164370671711078}
 --- !u!114 &8983164369808527855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 180462137954481132, guid: db93182dee0639248851935e001c2719,
+  PrefabObject: {fileID: 180462137954481132, guid: 1b904025629b24c4083e8b721ba5d770,
     type: 3}
 --- !u!114 &8139534575009318368
 MonoBehaviour:
@@ -197,18 +198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatedSprite: {fileID: 8983164369162933322}
-  DefaultSprite: {fileID: 176569872027871047, guid: b4d1af69cecfaa245b8995fbc9559bbb,
-    type: 3}
+  DefaultSprite: {fileID: 21300000, guid: b0314430a700c7a4d9ed99aac3323950, type: 3}
   PlaySpeedMultiplier: 1
-  AnimationSprites:
-  - {fileID: -7521317802617937183, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: -7143504160173325873, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: 966004605447180144, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: 2706079692505951424, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: 2217139923984045594, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: -1109976980220631498, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: 3256567853845021735, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
-  - {fileID: 176569872027871047, guid: b4d1af69cecfaa245b8995fbc9559bbb, type: 3}
+  AnimationSprites: []
 --- !u!58 &5813048448918230106
 CircleCollider2D:
   m_ObjectHideFlags: 0

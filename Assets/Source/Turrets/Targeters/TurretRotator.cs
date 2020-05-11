@@ -44,6 +44,11 @@ namespace Lomztein.BFA2.Turrets.Targeters
                 Transform target = TargetProvider.GetTarget();
                 if (target != null)
                 {
+                    if (!_prevPos.HasValue)
+                    {
+                        _prevPos = target.position;
+                    }
+
                     Vector3 tpos = target.position;
                     Vector3 spos = transform.position;
                     Vector3 delta = (tpos - _prevPos ?? tpos) / deltaTime;

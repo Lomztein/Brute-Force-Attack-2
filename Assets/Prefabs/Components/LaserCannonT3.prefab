@@ -84,7 +84,7 @@ MonoBehaviour:
   _cost:
     Elements:
     - Type: 0
-      Value: 250
+      Value: 6000
   _modAttributes: 0600000003000000
   PassiveHeatProduction: 2.5
   StatBaseValues:
@@ -96,7 +96,7 @@ MonoBehaviour:
     - Identifier: Spread
       Value: 0
     - Identifier: Speed
-      Value: 100
+      Value: 1337
     - Identifier: Firerate
       Value: 1
   ExpansionCardCapacity: 2
@@ -105,6 +105,8 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+  Muzzles:
+  - {fileID: 1013188143243235162}
   Color: 1
 --- !u!114 &1013188143988452818
 MonoBehaviour:
@@ -118,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62db0a3b70e62af4d8adcfb34b83fddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Muzzle: {fileID: 1013188143243235162}
 --- !u!114 &1013188143988452819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatedSprite: {fileID: 1013188144953337974}
-  DefaultSprite: {fileID: 3984755808035046311, guid: 2c55c39df31f66c4da0e2d4923f39baf,
-    type: 3}
+  DefaultSprite: {fileID: 21300000, guid: 4f3c9e5fb7e6567419172176a95f451d, type: 3}
   PlaySpeedMultiplier: 1
   AnimationSprites: []
 --- !u!58 &-5090018618559331163

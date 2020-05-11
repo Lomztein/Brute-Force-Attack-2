@@ -13,10 +13,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
     {
         IProjectile _parent;
         float _baseSpeed;
+
         [ModelProperty]
         public Vector2 RotateMinMax;
-        [ModelProperty]
-        public Vector2 SpeedMultMinMax;
+        public AnimationCurve RotateCurve;
+
         private ITargetFinder _retargeter;
         private bool Retarget => _retargeter != null;
 
@@ -44,9 +45,9 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
             if (_parent?.Info?.Target != null)
             {
                 float angle = Mathf.Atan2(_parent.Info.Target.position.y - transform.position.y, _parent.Info.Target.position.x - transform.position.x) * Mathf.Rad2Deg;
-                float dot = Vector3.Dot(transform.right, (_parent.Info.Target.position - transform.position).normalized);
+                float dot = Vector3.Dot(transform.right, Vector3.Normalize(_parent.Info.Target.position - transform.position));
+
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, angle), GetRotSpeed(dot) * deltaTime);
-                _parent.Info.Speed = GetSpeed(dot);
                 _parent.Info.Direction = transform.right;
             }
             if (Retarget && _parent?.Info?.Target == null)
@@ -57,18 +58,13 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 
         private float GetRotSpeed (float dot)
         {
-            return MapDot(-dot, RotateMinMax);
+            return MapDot(-dot, RotateMinMax, RotateCurve);
         }
 
-        private float GetSpeed (float dot)
-        {
-            return _baseSpeed * MapDot(dot, SpeedMultMinMax);
-        }
-
-        private float MapDot (float dot, Vector2 minmax)
+        private float MapDot (float dot, Vector2 minmax, AnimationCurve curve)
         {
             float t = (dot + 1) / 2f;
-            return Mathf.Lerp(minmax.x, minmax.y, t);
+            return Mathf.Lerp(minmax.x, minmax.y, curve.Evaluate (t));
         }
     }
 }

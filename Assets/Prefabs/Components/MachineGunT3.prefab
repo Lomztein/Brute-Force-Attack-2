@@ -183,9 +183,12 @@ MonoBehaviour:
       Value: 15
   ExpansionCardCapacity: 4
   FireTreshold: 30
+  RangeMultiplier: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+  Muzzles:
+  - {fileID: 1599087991583226261}
   Color: 0
 --- !u!114 &1599087991926430493
 MonoBehaviour:
@@ -199,7 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62db0a3b70e62af4d8adcfb34b83fddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Muzzle: {fileID: 1599087991583226261}
 --- !u!114 &1599087991926430492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 180462137954481132, guid: db93182dee0639248851935e001c2719,
+  PrefabObject: {fileID: 180462137954481132, guid: f28efbe87b1fcb449a75929ef9dfbd86,
     type: 3}
 --- !u!114 &1941552731688978448
 MonoBehaviour:

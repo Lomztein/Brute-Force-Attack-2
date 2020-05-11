@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,15 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Purchasing.UI
 {
-    public class PurchaseButton : MonoBehaviour, IPurchaseButton
+    public class PurchaseButton : MonoBehaviour, IPurchaseButton, ITooltip
     {
         private IPurchasable _purchasable;
         private Action _onSelected;
 
         public Button Button;
-        public Text Text;
         public Image Image;
+
+        public string Text => $"<b>{_purchasable.Name}</b> - <i>{_purchasable.Description}</i>\n\t" + string.Join("\n\t", _purchasable.Cost.GetCost().Select(x => ResourceInfo.Get(x.Key).Shorthand + ": " + x.Value));
 
         private void Awake()
         {
@@ -25,13 +27,13 @@ namespace Lomztein.BFA2.Purchasing.UI
 
         private void UpdateGraphics ()
         {
-            if (Text)
-            {
-                Text.text = _purchasable.Name + " - " + string.Join(", ", _purchasable.Cost.GetCost().Select(x => $"{ResourceInfo.Get(x.Key).Shorthand}: {x.Value}"));
-            }
             if (Image)
             {
                 Image.sprite = _purchasable.Sprite;
+                if (Image.sprite == null)
+                {
+                    Image.enabled = false;
+                }
             }
         }
 

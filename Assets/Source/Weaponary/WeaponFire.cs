@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Pooling;
+using Lomztein.BFA2.Weaponary.FireControl;
 using Lomztein.BFA2.Weaponary.Projectiles;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Weaponary
 {
+    // TODO: Find an actual use for this class, or remove it completely.
     public class WeaponFire : MonoBehaviour, IWeaponFire
     {
         public event Action<HitInfo> OnHit;
         public event Action<HitInfo> OnKill;
 
         private IProjectileInstantiator _projectileInstantiator;
-        public Transform Muzzle;
 
         private void Awake()
         {
@@ -41,9 +42,9 @@ namespace Lomztein.BFA2.Weaponary
             _projectileInstantiator.Source.Clear();
         }
 
-        public IProjectile[] Fire(IProjectileInfo info, float speed, float deviation, int amount)
+        public IProjectile[] Fire(Vector3 position, Quaternion rotation, IProjectileInfo info, float speed, float deviation, int amount)
         {
-            return _projectileInstantiator.Create(info, Muzzle.position, Muzzle.rotation, amount, deviation, speed);
+            return _projectileInstantiator.Create(info, position, rotation, amount, deviation, speed);
         }
     }
 }

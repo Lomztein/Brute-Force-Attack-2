@@ -96,14 +96,17 @@ MonoBehaviour:
     - Identifier: Spread
       Value: 0
     - Identifier: Speed
-      Value: 100
+      Value: 1337
     - Identifier: Firerate
       Value: 1
   ExpansionCardCapacity: 2
   FireTreshold: 1
+  RangeMultiplier: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+  Muzzles:
+  - {fileID: 1013188143243235162}
   Color: 1
 --- !u!114 &1013188143988452818
 MonoBehaviour:
@@ -117,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62db0a3b70e62af4d8adcfb34b83fddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Muzzle: {fileID: 1013188143243235162}
 --- !u!114 &1013188143988452819
 MonoBehaviour:
   m_ObjectHideFlags: 0

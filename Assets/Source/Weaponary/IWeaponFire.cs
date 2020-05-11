@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Weaponary
 {
     public interface IWeaponFire
     {
-        IProjectile[] Fire(IProjectileInfo info, float speed, float deviation, int amount);
+        IProjectile[] Fire(Vector3 position, Quaternion rotation, IProjectileInfo info, float speed, float deviation, int amount);
         void ClearObjectPool();
 
         event Action<HitInfo> OnHit;

@@ -7,6 +7,7 @@ using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Assemblers;
+using Lomztein.BFA2.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Lomztein.BFA2.Turrets
             return children.Select(x => x.Cost).Sum();
         }
 
-        public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
+        public Sprite Sprite => Sprite.Create (Iconography.GenerateIcon (gameObject), new Rect (0f, 0f, Iconography.RENDER_SIZE, Iconography.RENDER_SIZE), Vector2.one / 2f);
 
         public Size Size => Size.Small;
 

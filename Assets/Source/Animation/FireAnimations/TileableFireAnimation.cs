@@ -28,6 +28,7 @@ namespace Lomztein.BFA2.Animation.FireAnimations
             if (_continue == false)
             {
                 yield return StartAnimation(delay);
+                yield return EndAnimation(delay);
                 _continue = true;
             }
             else
@@ -51,20 +52,7 @@ namespace Lomztein.BFA2.Animation.FireAnimations
         private IEnumerator EndAnimation (float delay)
         {
             yield return Animate(EndAnimationSprites, delay);
-        }
-
-        private IEnumerator Switch (float delay, bool weaponStatus)
-        {
-            if (weaponStatus)
-            {
-                yield return Animate(MidAnimationSprites, delay);
-                yield return Switch(delay, _continue);
-            }
-            else
-            {
-                yield return Animate(EndAnimationSprites, delay);
-                ResetSprite();
-            }
+            ResetSprite();
         }
     }
 }

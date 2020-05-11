@@ -6,6 +6,7 @@ using Lomztein.BFA2.Turrets.Rangers;
 using Lomztein.BFA2.Turrets.Targeters;
 using Lomztein.BFA2.Turrets.TargetProviders;
 using Lomztein.BFA2.Weaponary;
+using Lomztein.BFA2.Weaponary.FireControl;
 using Lomztein.BFA2.Weaponary.Projectiles;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public float RangeMultiplier = 1f;
         public LayerMask HitLayer;
 
+        public Transform[] Muzzles;
         public IStatReference Damage;
         public IStatReference ProjectileAmount;
         public IStatReference Spread;
@@ -39,6 +41,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         private IWeaponFire _weaponFire;
         private IFireAnimation _fireAnimation;
+        private IFireControl _fireControl;
+
         public Color Color;
         private bool _chambered;
 
@@ -61,6 +65,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
             Rechamber();
             _weaponFire = GetComponent<WeaponFire>();
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
+            _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
 
             Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.");
             ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.");
@@ -98,15 +103,20 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         private void Fire()
         {
-            IProjectileInfo info = new ProjectileInfo();
-            info.Color = Color;
-            info.Damage = Damage.GetValue();
-            info.Layer = HitLayer;
-            info.Target = Provider?.GetTarget();
-            info.Range = Ranger == null ? 50f : Ranger.GetRange() * RangeMultiplier;
+            IProjectileInfo info = new ProjectileInfo
+            {
+                Color = Color,
+                Damage = Damage.GetValue(),
+                Layer = HitLayer,
+                Target = Provider?.GetTarget(),
+                Range = Ranger == null ? 50f : Ranger.GetRange() * RangeMultiplier
+            };
 
             _fireAnimation.Play(Cooldown);
-            _weaponFire.Fire(info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue());
+
+            _fireControl.Fire(Muzzles.Length, Cooldown, (i) =>
+               _weaponFire.Fire(Muzzles[i].position, Muzzles[i].rotation, info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue())
+            );
         }
 
         public Color GetColor()
