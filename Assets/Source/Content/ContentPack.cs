@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Content
 {
     public class ContentPack : IContentPack
     {
-        public string Path { get; private set; }
+        private readonly string _path;
 
         public string Name { get; private set; }
         public string Author { get; private set; }
@@ -20,21 +20,21 @@ namespace Lomztein.BFA2.Content
 
         public ContentPack(string path, string name, string author, string description)
         {
+            _path = path;
             Name = name;
-            Path = path;
             Author = author;
             Description = description;
         }
 
         public object GetContent(string path, Type type)
         {
-            return _contentLoader.LoadContent(Path + path, type);
+            return _contentLoader.LoadContent(_path + path, type);
         }
 
         public object[] GetAllContent(string path, Type type)
         {
             List<object> content = new List<object>();
-            string spath = Path + path;
+            string spath = _path + path;
 
             if (Directory.Exists(spath))
             {

@@ -16,6 +16,11 @@ namespace Lomztein.BFA2.Content
         private const string WILDCARD = "*";
         private IContentPack[] _packs;
 
+        private void Awake()
+        {
+            Init();
+        }
+
         public void Init()
         {
             _packs = _source.GetPacks();

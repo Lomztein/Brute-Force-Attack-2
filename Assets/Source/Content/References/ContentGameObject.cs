@@ -7,10 +7,10 @@ using Lomztein.BFA2.Serialization.DataStruct;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.ContentReferences
+namespace Lomztein.BFA2.Content.References
 {
     [Serializable]
-    public class GameObjectContentReference : ISerializable
+    public class ContentGameObject : ISerializable
     {
         public string Path;
 

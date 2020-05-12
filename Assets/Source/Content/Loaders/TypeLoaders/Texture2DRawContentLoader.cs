@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Content.Loaders.TypeLoaders
@@ -11,7 +12,9 @@ namespace Lomztein.BFA2.Content.Loaders.TypeLoaders
 
         public object Load(string path)
         {
-            throw new NotImplementedException();
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(File.ReadAllBytes(path));
+            return texture;
         }
     }
 }

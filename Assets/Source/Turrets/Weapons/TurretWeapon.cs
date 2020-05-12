@@ -43,6 +43,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
         private IFireAnimation _fireAnimation;
         private IFireControl _fireControl;
 
+        [ModelProperty]
         public Color Color;
         private bool _chambered;
 

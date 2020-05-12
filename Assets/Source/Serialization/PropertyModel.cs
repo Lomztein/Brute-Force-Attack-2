@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Serialization
         public void Deserialize(IDataStruct data)
         {
             Name = data.GetValue<string>("Name");
-            Value = data.GetValue<string>("Name");
+            Value = data.GetValue<object>("Value");
         }
 
         public IDataStruct Serialize()
@@ -33,8 +33,8 @@ namespace Lomztein.BFA2.Serialization
             return new JsonDataStruct(new JObject()
             {
                 { "Name", new JValue (Name) },
-                { "Value",  JToken.FromObject(Value) }
-            });
+                { "Value",  Value is ISerializable val ? JToken.Parse (val.Serialize().ToString ()) : JToken.FromObject(Value) }
+            }) ;
         }
     }
 }

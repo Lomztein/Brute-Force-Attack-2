@@ -19,6 +19,8 @@ namespace Lomztein.BFA2.Content
         public IContentPack[] GetPacks()
         {
             List<IContentPack> packs = new List<IContentPack>();
+            packs.Add(new ResourcesContentPack());
+
             foreach (string source in Sources)
             {
                 if (Directory.Exists(source))

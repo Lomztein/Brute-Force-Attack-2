@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.DataStruct;
+using Lomztein.BFA2.Serialization.EngineComponentSerializers;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -12,8 +13,22 @@ namespace Lomztein.BFA2.Serialization
 {
     public class ComponentModel : IComponentModel
     {
+        private static IEngineComponentSerializer[] _engineComponentSerializers = new IEngineComponentSerializer[]
+        {
+            new TransformSerializer(),
+        };
+
         public Type Type { get; private set; }
         private List<IPropertyModel> _properties = new List<IPropertyModel>();
+
+        public ComponentModel() { }
+
+        public ComponentModel(Type type, params IPropertyModel[] properties)
+        {
+            Type = type;
+            _properties = properties.ToList();
+        }
+
 
         public void Deserialize(IDataStruct data)
         {
@@ -26,7 +41,7 @@ namespace Lomztein.BFA2.Serialization
             }
         }
 
-        public object[] GetProperties() => _properties.ToArray();
+        public IPropertyModel[] GetProperties() => _properties.ToArray();
 
         public IDataStruct Serialize()
         {
@@ -38,8 +53,14 @@ namespace Lomztein.BFA2.Serialization
             );
         }
 
-        public static ComponentModel Create (Component component)
+        public static IComponentModel Create (Component component)
         {
+            var serializer = _engineComponentSerializers.FirstOrDefault(x => x.Type == component.GetType());
+            if (serializer != null)
+            {
+                return serializer.Serialize(component);
+            }
+
             ComponentModel model = new ComponentModel();
 
             Type componentType = component.GetType();

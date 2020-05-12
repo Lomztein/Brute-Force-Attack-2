@@ -10,6 +10,6 @@ namespace Lomztein.BFA2.Serialization
     {
         Type Type { get; }
 
-        object[] GetProperties();
+        IPropertyModel[] GetProperties();
     }
 }

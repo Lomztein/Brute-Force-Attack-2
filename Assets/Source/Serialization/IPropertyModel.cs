@@ -11,4 +11,9 @@ namespace Lomztein.BFA2.Serialization
         string Name { get; }
         object Value { get; }
     }
+
+    public static class PropertyModelExtensions
+    {
+        public static IPropertyModel GetProperty(this IEnumerable<IPropertyModel> list, string name) => list.FirstOrDefault(x => x.Name == name);
+    }
 }

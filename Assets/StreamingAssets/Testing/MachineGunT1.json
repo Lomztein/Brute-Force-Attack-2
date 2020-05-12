@@ -1,0 +1,215 @@
+{
+  "Name": "MachineGunT1",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Children": [
+    {
+      "Name": "MachineGun_Tier1_0",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Children": [],
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "PosX",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosY",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosZ",
+              "Value": -1.0
+            },
+            {
+              "Name": "PosX",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosY",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosZ",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosX",
+              "Value": 1.0
+            },
+            {
+              "Name": "PosY",
+              "Value": 1.0
+            },
+            {
+              "Name": "PosZ",
+              "Value": 1.0
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Content.References.Components.ContentSpriteRenderer",
+          "Properties": []
+        }
+      ]
+    },
+    {
+      "Name": "Muzzle",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Children": [],
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "PosX",
+              "Value": 0.5
+            },
+            {
+              "Name": "PosY",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosZ",
+              "Value": -1.0
+            },
+            {
+              "Name": "PosX",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosY",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosZ",
+              "Value": 0.0
+            },
+            {
+              "Name": "PosX",
+              "Value": 1.0
+            },
+            {
+              "Name": "PosY",
+              "Value": 1.0
+            },
+            {
+              "Name": "PosZ",
+              "Value": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": [
+        {
+          "Name": "PosX",
+          "Value": 0.0
+        },
+        {
+          "Name": "PosY",
+          "Value": 0.0
+        },
+        {
+          "Name": "PosZ",
+          "Value": -1.0
+        },
+        {
+          "Name": "PosX",
+          "Value": 0.0
+        },
+        {
+          "Name": "PosY",
+          "Value": 0.0
+        },
+        {
+          "Name": "PosZ",
+          "Value": 0.0
+        },
+        {
+          "Name": "PosX",
+          "Value": 1.0
+        },
+        {
+          "Name": "PosY",
+          "Value": 1.0
+        },
+        {
+          "Name": "PosZ",
+          "Value": 1.0
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
+      "Properties": [
+        {
+          "Name": "FireTreshold",
+          "Value": 5.0
+        },
+        {
+          "Name": "RangeMultiplier",
+          "Value": 1.0
+        },
+        {
+          "Name": "Color",
+          "Value": 0
+        },
+        {
+          "Name": "PassiveHeatProduction",
+          "Value": 2.5
+        },
+        {
+          "Name": "StatBaseValues",
+          "Value": {
+            "BaseValues": [
+              {
+                "Identifier": "Damage",
+                "Value": 10.0
+              },
+              {
+                "Identifier": "ProjectileAmount",
+                "Value": 1.0
+              },
+              {
+                "Identifier": "Spread",
+                "Value": 1.5
+              },
+              {
+                "Identifier": "Speed",
+                "Value": 100.0
+              },
+              {
+                "Identifier": "Firerate",
+                "Value": 5.0
+              }
+            ]
+          }
+        },
+        {
+          "Name": "ExpansionCardCapacity",
+          "Value": 2
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Weaponary.WeaponFire",
+      "Properties": []
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileInstantiator",
+      "Properties": []
+    }
+  ]
+}

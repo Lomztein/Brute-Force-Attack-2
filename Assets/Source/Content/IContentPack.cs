@@ -7,7 +7,6 @@ namespace Lomztein.BFA2.Content
         string Name { get; }
         string Author { get; }
         string Description { get; }
-        string Path { get; }
 
         object GetContent(string path, Type type);
 

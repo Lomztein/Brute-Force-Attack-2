@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Content.Loaders
@@ -19,15 +20,19 @@ namespace Lomztein.BFA2.Content.Loaders
 
         public object LoadContent(string path, Type type)
         {
-            foreach (IRawContentTypeLoader loader in _loaders)
+            if (File.Exists(path))
             {
-                if (loader.ContentType == type)
+                var loader = _loaders.FirstOrDefault(x => x.ContentType == type);
+                if (loader != null)
                 {
                     return loader.Load(path);
                 }
                 throw new NotImplementedException($"Failed to load object of {nameof(type)} {type.FullName}, no fitting RawContentTypeLoader available.");
             }
-            throw new FileNotFoundException($"Could not load content file {path}, file not found.");
+            else
+            {
+                throw new FileNotFoundException($"Could not load content file {path}, file not found.");
+            }
         }
     }
 }
