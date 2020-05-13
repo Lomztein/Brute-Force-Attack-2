@@ -29,6 +29,7 @@ public class GameObjectAssembler : IGameObjectAssembler
             childObj.transform.SetParent(obj.transform);
         }
 
+        obj.BroadcastMessage("OnGameObjectAssembled", SendMessageOptions.DontRequireReceiver);
         return obj;
     }
 

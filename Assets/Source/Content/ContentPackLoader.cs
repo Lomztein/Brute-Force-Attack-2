@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.Content
                 File.WriteAllText(Path.Combine(path, ABOUT_FILE), info.Serialize().ToString());
             }
 
-            return new ContentPack(path, info.Name, info.Author, info.Description);
+            return new ContentPack(path + "/", info.Name, info.Author, info.Description);
         }
     }
 }

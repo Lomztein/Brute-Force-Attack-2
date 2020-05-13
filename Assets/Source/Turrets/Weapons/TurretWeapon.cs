@@ -31,7 +31,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public float RangeMultiplier = 1f;
         public LayerMask HitLayer;
 
-        public Transform[] Muzzles;
+        private Transform[] _muzzles;
+        private const string MUZZLE_PARENT = "Muzzles";
         public IStatReference Damage;
         public IStatReference ProjectileAmount;
         public IStatReference Spread;
@@ -61,12 +62,24 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         public float GetSpeed() => Speed.GetValue();
 
+        private Transform[] GetMuzzles ()
+        {
+            List<Transform> muzzles = new List<Transform>();
+            Transform muzzleParent = transform.Find(MUZZLE_PARENT);
+            foreach (Transform child in muzzleParent)
+            {
+                muzzles.Add(child);
+            }
+            return muzzles.ToArray();
+        }
+
         public override void Init()
         {
             Rechamber();
             _weaponFire = GetComponent<WeaponFire>();
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
+            _muzzles = GetMuzzles();
 
             Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.");
             ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.");
@@ -115,8 +128,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
             _fireAnimation.Play(Cooldown);
 
-            _fireControl.Fire(Muzzles.Length, Cooldown, (i) =>
-               _weaponFire.Fire(Muzzles[i].position, Muzzles[i].rotation, info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue())
+            _fireControl.Fire(_muzzles.Length, Cooldown, (i) =>
+               _weaponFire.Fire(_muzzles[i].position, _muzzles[i].rotation, info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue())
             );
         }
 

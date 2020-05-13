@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.Pooling;
+﻿using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Pooling;
+using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +12,24 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 {
     public class ProjectileInstantiator : MonoBehaviour, IProjectileInstantiator
     {
-        public GameObject PrefabObject;
+        [ModelProperty]
+        public ContentGameObject ContentPrefabObject;
+        private GameObjectPrefab _prefab;
 
         public IObjectPool<IProjectile> Source { get; set; }
 
         private void Awake()
         {
-            Source = new NoGameObjectPool<IProjectile>(PrefabObject);
+            _prefab = ContentPrefabObject.GetPrefab();
+            Source = new NoGameObjectPool<IProjectile>(_prefab);
+        }
+
+        private void OnDestroy()
+        {
+            if (_prefab != null)
+            {
+                _prefab.Dispose();
+            }
         }
 
         public IProjectile[] Create(IProjectileInfo info, Vector3 position, Quaternion rotation, int amount, float deviation, float speed) 

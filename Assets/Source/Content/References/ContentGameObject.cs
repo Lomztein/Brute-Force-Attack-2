@@ -25,5 +25,8 @@ namespace Lomztein.BFA2.Content.References
 
         public GameObject Get()
             => Content.Get(Path, typeof(GameObject)) as GameObject;
+
+        public GameObjectPrefab GetPrefab ()
+            => new GameObjectPrefab(Get());
     }
 }

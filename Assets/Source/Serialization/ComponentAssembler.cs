@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Serialization
         private IEngineComponentSerializer[] _engineSerializers = new IEngineComponentSerializer[]
         {
             new TransformSerializer (),
+            new CircleCollider2DSerializer(),
         };
 
         private IEngineComponentSerializer GetEngineComponentSerializer(Type type) => _engineSerializers.FirstOrDefault(x => x.Type == type);
@@ -54,6 +55,9 @@ namespace Lomztein.BFA2.Serialization
 
                 field.SetValue(component, value);
             }
+
+            var onAssembled = modelType.GetMethod("OnAssembled", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            onAssembled?.Invoke(component, Array.Empty<object>());
         }
         
         public IComponentModel Dissasemble(Component component)

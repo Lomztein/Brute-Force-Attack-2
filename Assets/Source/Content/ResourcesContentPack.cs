@@ -24,5 +24,10 @@ namespace Lomztein.BFA2.Content
         {
             return Resources.Load(path, type);
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

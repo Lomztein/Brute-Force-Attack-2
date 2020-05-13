@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &261833147323174906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777524971168772053}
+  m_Layer: 0
+  m_Name: Muzzles (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &777524971168772053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261833147323174906}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8306588520399912658}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8306588519832492536
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,9 +39,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8306588519832492543}
-  - component: {fileID: 8306588519832492542}
+  - component: {fileID: 3116462493430905811}
   m_Layer: 0
-  m_Name: MachineGun_Tier1_0
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,57 +61,28 @@ Transform:
   m_Father: {fileID: 8306588521249971285}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8306588519832492542
-SpriteRenderer:
+--- !u!114 &3116462493430905811
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8306588519832492536}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reference:
+    Path: Core/Sprites/MachineGun_Tier1.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
 --- !u!1 &8306588520399912659
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8306588520399912658}
   m_Layer: 0
-  m_Name: Muzzle
+  m_Name: Muzzles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +109,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 777524971168772053}
   m_Father: {fileID: 8306588521249971285}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -187,8 +189,6 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Muzzles:
-  - {fileID: 8306588520399912658}
   Color: 0
 --- !u!114 &8306588521249971290
 MonoBehaviour:
@@ -214,8 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 180462137954481132, guid: f28efbe87b1fcb449a75929ef9dfbd86,
-    type: 3}
+  ContentPrefabObject:
+    Path: Resources/Projectiles/MachineGunProjectile
 --- !u!114 &819893084500431819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,15 +228,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimatedSprite: {fileID: 8306588519832492542}
-  DefaultSprite: {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092,
-    type: 3}
+  DefaultSprite:
+    Path: Core/Sprites/MachineGun_Tier1.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
   PlaySpeedMultiplier: 1
   AnimationSprites:
-  - {fileID: -887899700249308605, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
-  - {fileID: -353275849368992647, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
-  - {fileID: 5243002817666469811, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
-  - {fileID: 4611183750277276844, guid: 487390f88c6f1ab4fa07e66063c8c092, type: 3}
+  - Path: Core/Sprites/MachineGun_Tier1.png
+    Rect:
+      serializedVersion: 2
+      x: 32
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
+  - Path: Core/Sprites/MachineGun_Tier1.png
+    Rect:
+      serializedVersion: 2
+      x: 64
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
+  - Path: Core/Sprites/MachineGun_Tier1.png
+    Rect:
+      serializedVersion: 2
+      x: 96
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
+  - Path: Core/Sprites/MachineGun_Tier1.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
 --- !u!58 &3347518590941506566
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Content.References;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace Lomztein.BFA2.Pooling
     {
         public event Action<T> OnNew;
 
-        private GameObject _prefab;
+        private GameObjectPrefab _prefab;
 
-        public NoGameObjectPool (GameObject prefab)
+        public NoGameObjectPool (GameObjectPrefab prefab)
         {
             _prefab = prefab;
         }
@@ -24,7 +25,7 @@ namespace Lomztein.BFA2.Pooling
 
         public T Get()
         {
-            GameObject obj = UnityEngine.Object.Instantiate(_prefab);
+            GameObject obj = _prefab.Instantiate();
             T component = obj.GetComponent<T>();
             OnNew?.Invoke(component);
             return component;

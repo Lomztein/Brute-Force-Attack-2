@@ -25,6 +25,7 @@ namespace Lomztein.BFA2.UI
         {
             // First create object and strip away all non-transform non-renderer components.
             GameObject model = Instantiate(source, position, rotation);
+
             List<Component> nonVitals = model.GetComponentsInChildren<Component>().Where(x => !(x is Transform) && !(x is Renderer) && !(x is MeshFilter)).ToList();
             foreach (Component comp in nonVitals)
             {

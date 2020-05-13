@@ -12,6 +12,13 @@ namespace Lomztein.BFA2.Serialization
 {
     public class ComponentModel : IComponentModel
     {
+        private static Assembly[] _typeSourceAssemblies = new Assembly[]
+        {
+            typeof (ComponentModel).Assembly,
+            typeof (GameObject).Assembly,
+            typeof (Collider2D).Assembly,
+        };
+
         public Type Type { get; private set; }
         private List<IPropertyModel> _properties = new List<IPropertyModel>();
 
@@ -26,8 +33,19 @@ namespace Lomztein.BFA2.Serialization
 
         public void Deserialize(JToken data)
         {
-            Type = typeof(GameObject).Assembly.GetType(data["TypeName"].ToString());
-            Type = Type == null ? Type.GetType(data["TypeName"].ToString()) : Type;
+            Type = null;
+            foreach (Assembly assembly in _typeSourceAssemblies)
+            {
+                if (Type == null)
+                {
+                    Type = assembly.GetType(data["TypeName"].ToString());
+                }
+                else
+                {
+                    break;
+                }
+            }
+
             JToken properties = data["Properties"];
 
             foreach (JToken property in properties)

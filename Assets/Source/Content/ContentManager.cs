@@ -39,7 +39,7 @@ namespace Lomztein.BFA2.Content
 
         private string GetContentPath(string path)
         {
-            return path.Substring(path.IndexOf('/'));
+            return path.Substring(path.IndexOf('/')+1);
         }
 
         public object[] GetAllContent(string path, Type type)
