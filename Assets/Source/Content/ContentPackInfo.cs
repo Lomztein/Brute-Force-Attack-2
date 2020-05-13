@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.DataStruct;
 using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Content
@@ -15,17 +14,17 @@ namespace Lomztein.BFA2.Content
         public string Author;
         public string Version;
 
-        public void Deserialize(IDataStruct data)
+        public void Deserialize(JToken data)
         {
-            Name = data.GetValue<string>("Name");
-            Description = data.GetValue<string>("Description");
-            Author = data.GetValue<string>("Description");
-            Version = data.GetValue<string>("Version");
+            Name = data["Name"].ToString();
+            Description = data["Description"].ToString();
+            Author = data["Author"].ToString();
+            Version = data["Version"].ToString();
         }
 
-        public IDataStruct Serialize()
+        public JToken Serialize()
         {
-            return new JsonDataStruct(JToken.FromObject(this));
+            return JToken.FromObject(this);
         }
     }
 }

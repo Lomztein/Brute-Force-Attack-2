@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.DataStruct;
 using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Serialization
@@ -12,7 +11,7 @@ namespace Lomztein.BFA2.Serialization
     {
         public PropertyModel () { }
 
-        public PropertyModel (string name, object value)
+        public PropertyModel (string name, JToken value)
         {
             Name = name;
             Value = value;
@@ -20,21 +19,21 @@ namespace Lomztein.BFA2.Serialization
 
         public string Name { get; private set; }
 
-        public object Value { get; private set; }
+        public JToken Value { get; private set; }
 
-        public void Deserialize(IDataStruct data)
+        public void Deserialize(JToken data)
         {
-            Name = data.GetValue<string>("Name");
-            Value = data.GetValue<object>("Value");
+            Name = data["Name"].ToString();
+            Value = data["Value"];
         }
 
-        public IDataStruct Serialize()
+        public JToken Serialize()
         {
-            return new JsonDataStruct(new JObject()
+            return new JObject()
             {
                 { "Name", new JValue (Name) },
                 { "Value",  Value is ISerializable val ? JToken.Parse (val.Serialize().ToString ()) : JToken.FromObject(Value) }
-            }) ;
+            };
         }
     }
 }

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.DataStruct;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq; 
 using UnityEngine;
 
 namespace Lomztein.BFA2.Content.References
@@ -14,14 +13,14 @@ namespace Lomztein.BFA2.Content.References
     {
         public string Path;
 
-        public void Deserialize(IDataStruct data)
+        public void Deserialize(JToken data)
         {
             Path = data.ToObject<string>();
         }
 
-        public IDataStruct Serialize()
+        public JToken Serialize()
         {
-            return new JsonDataStruct (new JValue(Path));
+            return new JValue(Path);
         }
 
         public GameObject Get()

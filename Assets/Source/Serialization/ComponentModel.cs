@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.DataStruct;
 using Lomztein.BFA2.Serialization.EngineComponentSerializers;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -30,27 +29,26 @@ namespace Lomztein.BFA2.Serialization
         }
 
 
-        public void Deserialize(IDataStruct data)
+        public void Deserialize(JToken data)
         {
-            Type = Type.GetType (data.GetValue<string>("TypeName"));
-            IDataStruct properties = data.Get("Properties");
+            Type = Type.GetType (data["TypeName"].ToString());
+            JToken properties = data["Properties"];
 
-            foreach (IDataStruct property in properties)
+            foreach (JToken property in properties)
             {
-                _properties.Add(new PropertyModel (property.GetValue<string>("Name"), property.GetValue("Value", typeof (object))));
+                _properties.Add(new PropertyModel (property["Name"].ToString(), property["Value"]));
             }
         }
 
         public IPropertyModel[] GetProperties() => _properties.ToArray();
 
-        public IDataStruct Serialize()
+        public JToken Serialize()
         {
-            return new JsonDataStruct(new JObject()
+            return new JObject()
             {
                 { "TypeName", new JValue (Type.FullName) },
-                { "Properties", new JArray (_properties.Select(x => JObject.Parse (x.Serialize ().ToString ())).ToArray ()) }
-            }
-            );
+                { "Properties", new JArray (_properties.Select(x => x.Serialize ()).ToArray ()) }
+            };
         }
 
         public static IComponentModel Create (Component component)
@@ -71,7 +69,10 @@ namespace Lomztein.BFA2.Serialization
 
             foreach (FieldInfo info in properties)
             {
-                model._properties.Add(new PropertyModel(info.Name, info.GetValue(component)));
+                object componentValue = info.GetValue(component);
+                JToken value = componentValue is ISerializable serializable ? serializable.Serialize() : JToken.FromObject(componentValue);
+
+                model._properties.Add(new PropertyModel(info.Name, value));
             }
 
             return model;

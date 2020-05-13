@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.DataStruct;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -19,23 +18,23 @@ namespace Lomztein.BFA2.Serialization
         private List<IGameObjectModel> _children = new List<IGameObjectModel>();
         private List<IComponentModel> _componentModels = new List<IComponentModel>();
 
-        public void Deserialize(IDataStruct data)
+        public void Deserialize(JToken data)
         {
-            Name = data.GetValue<string>("Name");
-            Tag = data.GetValue<string>("Tag");
-            Layer = data.GetValue<int>("Layer");
-            Static = data.GetValue<bool>("Static");
+            Name = data["Name"].ToString ();
+            Tag = data["Tag"].ToString();
+            Layer = data["Layer"].ToObject<int>();
+            Static = data["Static"].ToObject<bool>();
 
-            IDataStruct children = data.Get("Children");
-            foreach (IDataStruct child in children)
+            JArray children = data["Children"] as JArray;
+            foreach (JToken child in children)
             {
                 IGameObjectModel model = new GameObjectModel();
                 model.Deserialize(child);
                 _children.Add(model);
             }
 
-            IDataStruct components = data.Get("Components");
-            foreach (IDataStruct component in components)
+            JArray components = data["Components"] as JArray;
+            foreach (JToken component in components)
             {
                 ComponentModel model = new ComponentModel();
                 model.Deserialize(component);
@@ -45,17 +44,17 @@ namespace Lomztein.BFA2.Serialization
 
         public IComponentModel[] GetComponentModels() => _componentModels.ToArray();
 
-        public IDataStruct Serialize()
+        public JToken Serialize()
         {
-            return new JsonDataStruct(new JObject()
+            return new JObject()
             {
                 { "Name", new JValue(Name) },
                 { "Tag", new JValue(Tag) },
                 { "Layer", new JValue(Layer) },
                 { "Static", new JValue(Static) },
-                { "Children", new JArray (_children.Select (x => JObject.Parse (x.Serialize().ToString ())).ToArray ()) },
-                { "Components", new JArray (_componentModels.Select (x => JObject.Parse (x.Serialize().ToString ())).ToArray ()) }
-            });
+                { "Children", new JArray (_children.Select (x => x.Serialize()).ToArray ()) },
+                { "Components", new JArray (_componentModels.Select (x => x.Serialize()).ToArray ()) }
+            };
         }
 
         public static GameObjectModel Create (GameObject baseObject)

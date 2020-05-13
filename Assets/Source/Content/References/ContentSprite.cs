@@ -1,6 +1,4 @@
-﻿using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.DataStruct;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using UnityEngine;
 
@@ -16,14 +14,14 @@ namespace Lomztein.BFA2.Content.References
         public Vector2 Pivot;
         public float PixelsPerUnit;
 
-        public void Deserialize(IDataStruct data)
+        public void Deserialize(JToken data)
         {
             Path = data.ToObject<string>();
         }
 
-        public IDataStruct Serialize()
+        public JToken Serialize()
         {
-            return new JsonDataStruct(new JValue(Path));
+            return new JValue(Path);
         }
 
         public Sprite Get()

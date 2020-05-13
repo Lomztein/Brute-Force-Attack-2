@@ -1,5 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.DataStruct;
-using Lomztein.BFA2.Serialization.IO;
+﻿using Lomztein.BFA2.Serialization.IO;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Content
             ContentPackInfo info = new ContentPackInfo();
             try
             {
-                IDataStruct data = DataParse.FromFile(Path.Combine(path, ABOUT_FILE));
+                JToken data = DataSerialization.FromFile(Path.Combine(path, ABOUT_FILE));
                 info.Deserialize(data);
             }
             catch (FileNotFoundException)

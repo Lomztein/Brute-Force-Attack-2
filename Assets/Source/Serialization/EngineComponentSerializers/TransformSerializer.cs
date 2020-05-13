@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +15,21 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
             var properties = model.GetProperties();
 
             Vector3 position = new Vector3(
-                Convert.ToSingle (properties.GetProperty("PosX")),
-                Convert.ToSingle(properties.GetProperty("PosY")),
-                Convert.ToSingle(properties.GetProperty("PosZ"))
+                properties.GetProperty("Position").Value["X"].ToObject<float>(),
+                properties.GetProperty("Position").Value["Y"].ToObject<float>(),
+                properties.GetProperty("Position").Value["Z"].ToObject<float>()
                 );
 
             Vector3 rotation = new Vector3(
-                Convert.ToSingle(properties.GetProperty("RotX")),
-                Convert.ToSingle(properties.GetProperty("RotY")),
-                Convert.ToSingle(properties.GetProperty("RotZ"))
+                properties.GetProperty("Rotation").Value["X"].ToObject<float>(),
+                properties.GetProperty("Rotation").Value["Y"].ToObject<float>(),
+                properties.GetProperty("Rotation").Value["Z"].ToObject<float>()
                 );
 
             Vector3 scale = new Vector3(
-                Convert.ToSingle(properties.GetProperty("ScaleX")),
-                Convert.ToSingle(properties.GetProperty("ScaleY")),
-                Convert.ToSingle(properties.GetProperty("ScaleZ"))
+                properties.GetProperty("Scale").Value["X"].ToObject<float>(),
+                properties.GetProperty("Scale").Value["Y"].ToObject<float>(),
+                properties.GetProperty("Scale").Value["Z"].ToObject<float>()
                 );
 
             target.transform.position = position;
@@ -39,18 +40,21 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
         public override IComponentModel Serialize(Transform source)
         {
             return new ComponentModel(typeof(Transform),
-                new PropertyModel("PosX", source.position.x),
-                new PropertyModel("PosY", source.position.y),
-                new PropertyModel("PosZ", source.position.z),
-
-                new PropertyModel("PosX", source.rotation.eulerAngles.x),
-                new PropertyModel("PosY", source.rotation.eulerAngles.y),
-                new PropertyModel("PosZ", source.rotation.eulerAngles.z),
-
-                new PropertyModel("PosX", source.localScale.x),
-                new PropertyModel("PosY", source.localScale.y),
-                new PropertyModel("PosZ", source.localScale.z));
-
+                new PropertyModel("Position", new JObject() {
+                    { "X", source.position.x },
+                    { "Y", source.position.y },
+                    { "Z", source.position.z }
+                }),
+                new PropertyModel("Rotation", new JObject() {
+                    { "X", source.rotation.eulerAngles.x },
+                    { "Y", source.rotation.eulerAngles.y },
+                    { "Z", source.rotation.eulerAngles.z }
+                }),
+                new PropertyModel("Scale", new JObject() {
+                    { "X", source.localScale.x },
+                    { "Y", source.localScale.y },
+                    { "Z", source.localScale.z }
+                }));
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Lomztein.BFA2.Serialization.DataStruct;
+﻿using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface ISerializable
 {
-    IDataStruct Serialize();
+    JToken Serialize();
 
-    void Deserialize(IDataStruct data);
+    void Deserialize(JToken source);
 }

@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.DataStruct;
 using Lomztein.BFA2.Serialization.IO;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Content.Loaders.TypeLoaders
         public object Load(string path)
         {
             GameObjectModel model = new GameObjectModel();
-            IDataStruct data = DataParse.FromFile(path);
+            JToken data = DataSerialization.FromFile(path);
             model.Deserialize(data);
             return model;
         }
