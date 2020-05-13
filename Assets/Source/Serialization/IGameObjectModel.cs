@@ -14,5 +14,6 @@ namespace Lomztein.BFA2.Serialization
         bool Static { get; }
 
         IComponentModel[] GetComponentModels();
+        IGameObjectModel[] GetChildren();
     }
 }

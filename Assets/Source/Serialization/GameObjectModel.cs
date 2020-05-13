@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization
 {
-    class GameObjectModel : IGameObjectModel
+    public class GameObjectModel : IGameObjectModel
     {
         public string Name { get; private set; }
         public string Tag { get; private set; }
@@ -17,6 +17,18 @@ namespace Lomztein.BFA2.Serialization
 
         private List<IGameObjectModel> _children = new List<IGameObjectModel>();
         private List<IComponentModel> _componentModels = new List<IComponentModel>();
+
+        public GameObjectModel() { }
+
+        public GameObjectModel(string name, string tag, int layer, bool @static, IEnumerable<IGameObjectModel> children, IEnumerable<IComponentModel> componentModels)
+        {
+            Name = name;
+            Tag = tag;
+            Layer = layer;
+            Static = @static;
+            _children = children.ToList();
+            _componentModels = componentModels.ToList();
+        }
 
         public void Deserialize(JToken data)
         {
@@ -43,6 +55,7 @@ namespace Lomztein.BFA2.Serialization
         }
 
         public IComponentModel[] GetComponentModels() => _componentModels.ToArray();
+        public IGameObjectModel[] GetChildren() => _children.ToArray();
 
         public JToken Serialize()
         {
@@ -55,28 +68,6 @@ namespace Lomztein.BFA2.Serialization
                 { "Children", new JArray (_children.Select (x => x.Serialize()).ToArray ()) },
                 { "Components", new JArray (_componentModels.Select (x => x.Serialize()).ToArray ()) }
             };
-        }
-
-        public static GameObjectModel Create (GameObject baseObject)
-        {
-            GameObjectModel model = new GameObjectModel();
-            model.Name = baseObject.name;
-            model.Tag = baseObject.tag;
-            model.Layer = baseObject.layer;
-            model.Static = baseObject.isStatic;
-
-            foreach (Transform child in baseObject.transform)
-            {
-                model._children.Add(GameObjectModel.Create(child.gameObject));
-            }
-
-            Component[] components = baseObject.GetComponents<Component>();
-            foreach (Component component in components)
-            {
-                model._componentModels.Add(ComponentModel.Create(component));
-            }
-
-            return model;
         }
 
         public override string ToString()

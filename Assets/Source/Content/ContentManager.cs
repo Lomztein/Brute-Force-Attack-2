@@ -25,7 +25,6 @@ namespace Lomztein.BFA2.Content
         {
             _packs = _source.GetPacks();
             var content = GetAllContent("*/Assemblies/", typeof(IGameObjectModel));
-            Debug.Log(string.Join(", ", content.Select(x => x.ToString())));
         }
 
         public object GetContent(string path, Type type)

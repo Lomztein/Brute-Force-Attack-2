@@ -10,9 +10,10 @@ namespace Lomztein.BFA2.Content.References.Components
         [ModelProperty]
         public ContentSprite Reference;
 
-        private void Awake()
+        private void Start()
         {
             SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
+            Debug.Log(Reference);
             renderer.sprite = Reference.Get();
             Destroy(this);
         }
