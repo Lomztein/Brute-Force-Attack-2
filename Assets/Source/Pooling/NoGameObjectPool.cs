@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Content.References.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

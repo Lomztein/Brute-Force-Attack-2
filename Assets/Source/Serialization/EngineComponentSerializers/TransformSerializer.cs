@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Lomztein.BFA2.Serialization.EngineObjectSerializers;
+using Lomztein.BFA2.Serialization.Models.Component;
+using Lomztein.BFA2.Serialization.Models.Property;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,48 +16,26 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
         public override void Deserialize(IComponentModel model, GameObject target)
         {
             var properties = model.GetProperties();
+            Vector3Serializer serializer = new Vector3Serializer();
 
-            Vector3 position = new Vector3(
-                properties.GetProperty("Position").Value["X"].ToObject<float>(),
-                properties.GetProperty("Position").Value["Y"].ToObject<float>(),
-                properties.GetProperty("Position").Value["Z"].ToObject<float>()
-                );
-
-            Vector3 rotation = new Vector3(
-                properties.GetProperty("Rotation").Value["X"].ToObject<float>(),
-                properties.GetProperty("Rotation").Value["Y"].ToObject<float>(),
-                properties.GetProperty("Rotation").Value["Z"].ToObject<float>()
-                );
-
-            Vector3 scale = new Vector3(
-                properties.GetProperty("Scale").Value["X"].ToObject<float>(),
-                properties.GetProperty("Scale").Value["Y"].ToObject<float>(),
-                properties.GetProperty("Scale").Value["Z"].ToObject<float>()
-                );
+            Vector3 position = serializer.DeserializeValue(properties.GetProperty("Position").Value);
+            Vector3 rotation = serializer.DeserializeValue(properties.GetProperty("Rotation").Value);
+            Vector3 scale = serializer.DeserializeValue(properties.GetProperty("Scale").Value);
 
             target.transform.position = position;
-            target.transform.rotation = Quaternion.Euler(rotation);
+            target.transform.rotation = Quaternion.Euler (rotation);
             target.transform.localScale = scale;
         }
 
         public override IComponentModel Serialize(Transform source)
         {
+            Vector3Serializer serializer = new Vector3Serializer();
+
             return new ComponentModel(typeof(Transform),
-                new PropertyModel("Position", new JObject() {
-                    { "X", source.position.x },
-                    { "Y", source.position.y },
-                    { "Z", source.position.z }
-                }),
-                new PropertyModel("Rotation", new JObject() {
-                    { "X", source.rotation.eulerAngles.x },
-                    { "Y", source.rotation.eulerAngles.y },
-                    { "Z", source.rotation.eulerAngles.z }
-                }),
-                new PropertyModel("Scale", new JObject() {
-                    { "X", source.localScale.x },
-                    { "Y", source.localScale.y },
-                    { "Z", source.localScale.z }
-                }));
+                new PropertyModel("Position", serializer.Serialize(source.position)),
+                new PropertyModel("Rotation", serializer.Serialize(source.rotation.eulerAngles)),
+                new PropertyModel("Scale", serializer.Serialize(source.localScale))
+                );
         }
     }
 }

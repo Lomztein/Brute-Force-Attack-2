@@ -1,6 +1,8 @@
-﻿using Lomztein.BFA2.Modification;
+﻿using Lomztein.BFA2.Grid;
+using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
@@ -12,7 +14,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IExpansionCardAcceptor, IPurchasable
+    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IExpansionCardAcceptor, IPurchasable, IGridPlaceable
     {
         public ITurretAssembly Assembly { get; set; }
 
@@ -24,12 +26,16 @@ namespace Lomztein.BFA2.Turrets
         public IResourceCost Cost => _cost;
         public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
-        [SerializeField] [ModelProperty] List<ModdableAttribute> _modAttributes;
+        [ModelProperty] private List<ModdableAttribute> _modAttributes;
         public ModdableAttribute[] Attributes => _modAttributes.ToArray();
 
         public IStatContainer Stats { get; private set; } = new StatContainer();
         public IEventContainer Events { get; private set; } = new EventContainer();
         public IModContainer Mods { get; private set; }
+
+        [SerializeField][ModelProperty]
+        private Size _size;
+        public Size Size => _size;
 
         [ModelProperty]
         public float PassiveHeatProduction;
@@ -103,6 +109,18 @@ namespace Lomztein.BFA2.Turrets
         public bool HasCapacity()
         {
             return _expansionCards.Count <= ExpansionCardCapacity - 1;
+        }
+
+        public void Place()
+        {
+            enabled = true;
+            GetComponent<Collider2D>().enabled = true;
+        }
+
+        public void Pickup()
+        {
+            enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
     }
 }

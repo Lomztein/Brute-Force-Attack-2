@@ -22,8 +22,8 @@ namespace Lomztein.BFA2.Content.References
             Vector2Serializer vSerializer = new Vector2Serializer();
 
             Path = data["Path"].ToObject<string>();
-            Rect = (Rect)rSerializer.Deserialize (data["Rect"]);
-            Pivot = (Vector2)vSerializer.Deserialize(data["Pivot"]);
+            Rect = rSerializer.DeserializeValue(data["Rect"]);
+            Pivot = vSerializer.DeserializeValue(data["Pivot"]);
             PixelsPerUnit = data["PixelsPerUnit"].ToObject<int>();
         }
 

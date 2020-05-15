@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Serialization;
 using System.Collections;
 using UnityEngine;
 
@@ -6,8 +7,11 @@ namespace Lomztein.BFA2.Animation.FireAnimations
 {
     public class TileableFireAnimation : FireAnimation
     {
+        [ModelProperty]
         public ContentSprite[] StartAnimationSprites;
+        [ModelProperty]
         public ContentSprite[] MidAnimationSprites;
+        [ModelProperty]
         public ContentSprite[] EndAnimationSprites;
 
         private Coroutine _coroutine;

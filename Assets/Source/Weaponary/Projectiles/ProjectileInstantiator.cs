@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Content.References.GameObjects;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
 using System;
@@ -18,7 +19,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public IObjectPool<IProjectile> Source { get; set; }
 
-        private void Awake()
+        private void OnAssembled ()
         {
             _prefab = ContentPrefabObject.GetPrefab();
             Source = new NoGameObjectPool<IProjectile>(_prefab);

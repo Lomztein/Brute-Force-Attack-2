@@ -29,6 +29,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public float FireTreshold;
         [ModelProperty]
         public float RangeMultiplier = 1f;
+        [ModelProperty]
         public LayerMask HitLayer;
 
         private Transform[] _muzzles;

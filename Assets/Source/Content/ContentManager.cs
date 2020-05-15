@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,7 @@ namespace Lomztein.BFA2.Content
 {
     public class ContentManager : MonoBehaviour, IContentManager
     {
-        IContentPackSource _source = new ContentPackSource();
+        readonly IContentPackSource _source = new ContentPackSource();
 
         private const string WILDCARD = "*";
         private IContentPack[] _packs;
@@ -21,10 +22,11 @@ namespace Lomztein.BFA2.Content
             Init();
         }
 
+        public IContentPack[] GetContentPacks() => _packs;
+
         public void Init()
         {
             _packs = _source.GetPacks();
-            var content = GetAllContent("*/Assemblies/", typeof(IGameObjectModel));
         }
 
         public object GetContent(string path, Type type)

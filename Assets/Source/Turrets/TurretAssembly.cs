@@ -49,7 +49,7 @@ namespace Lomztein.BFA2.Turrets
 
         public Sprite Sprite => Sprite.Create (Iconography.GenerateIcon (gameObject), new Rect (0f, 0f, Iconography.RENDER_SIZE, Iconography.RENDER_SIZE), Vector2.one / 2f);
 
-        public Size Size => Size.Small;
+        public Size Size => (_components.FirstOrDefault() as IGridPlaceable).Size;
 
         [SerializeField] [ModelProperty] ModdableAttribute[] _modAttributes;
         public ModdableAttribute[] Attributes => _modAttributes;

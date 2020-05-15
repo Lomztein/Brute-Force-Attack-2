@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
     public class ModelPropertyAttribute : Attribute
     {
         public string Name { get; private set; }

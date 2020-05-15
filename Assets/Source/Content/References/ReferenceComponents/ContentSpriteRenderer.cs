@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.References.Components
+namespace Lomztein.BFA2.Content.References.Componentsnny
 {
     public class ContentSpriteRenderer : MonoBehaviour
     {
@@ -11,6 +11,16 @@ namespace Lomztein.BFA2.Content.References.Components
         public ContentSprite Reference;
 
         public void OnAssembled()
+        {
+            Convert();
+        }
+
+        private void Start()
+        {
+            Convert();
+        }
+
+        private void Convert ()
         {
             SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
             renderer.sprite = Reference.Get();

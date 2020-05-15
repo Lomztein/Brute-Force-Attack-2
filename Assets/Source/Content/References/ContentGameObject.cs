@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lomztein.BFA2.Content.References.GameObjects;
 using Newtonsoft.Json.Linq; 
 using UnityEngine;
 
@@ -27,6 +28,6 @@ namespace Lomztein.BFA2.Content.References
             => Content.Get(Path, typeof(GameObject)) as GameObject;
 
         public GameObjectPrefab GetPrefab ()
-            => new GameObjectPrefab(Get());
+            => new GameObjectPrefab(Get(), false);
     }
 }
