@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization.Models.GameObject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Lomztein.BFA2.Content.References.GameObjects.PrefabProviders
     {
         public string Path;
 
-        public GameObjectPrefab[] Get()
-            => Content.GetAll(Path, typeof(GameObject)).Select(x => new GameObjectPrefab(x as GameObject, false)).ToArray();
+        public ContentGameObject[] Get()
+            => Content.GetAll(Path, typeof(IGameObjectModel)).Select(x => new ContentGameObject(x as IGameObjectModel)).ToArray();
     }
 }

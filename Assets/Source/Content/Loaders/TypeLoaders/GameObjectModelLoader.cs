@@ -11,18 +11,16 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Content.Loaders.TypeLoaders
 {
-    public class GameObjectLoader : IRawContentTypeLoader
+    public class GameObjectModelLoader : IRawContentTypeLoader
     {
-        public Type ContentType => typeof(GameObject);
+        public Type ContentType => typeof(IGameObjectModel);
 
         public object Load(string path)
         {
             GameObjectModel model = new GameObjectModel();
             JToken data = DataSerialization.FromFile(path);
             model.Deserialize(data);
-
-            GameObjectAssembler assembler = new GameObjectAssembler();
-            return assembler.Assemble(model);
+            return model;
         }
     }
 }

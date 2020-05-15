@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Purchasing
 {
     public class PurchaseMenu : MonoBehaviour, ITabMenuElement
     {
-        private GameObjectPrefab[] _purchasables;
+        private CachedGameObject[] _purchasables;
         public GameObject ButtonPrefab;
         public Transform ButtonParent;
 
@@ -33,9 +33,9 @@ namespace Lomztein.BFA2.Purchasing
         private void Awake()
         {
             _prefabSource = GetComponent<IPrefabProvider>();
-            _purchasables = _prefabSource.Get();
+            _purchasables = _prefabSource.Get().Select (x => new CachedGameObject(x)).ToArray();
 
-            _purchaseableCollection = new PurchasableCollection(_purchasables.Select(x => x.Prefab.GetComponent<IPurchasable>()));
+            _purchaseableCollection = new PurchasableCollection(_purchasables.Select(x => x.Get().GetComponent<IPurchasable>()));
             _purchaseHandler = GetComponent<IPurchaseHandler>();
             _resourceContainer = GetComponent<IResourceContainer>();
             CreateButtons();

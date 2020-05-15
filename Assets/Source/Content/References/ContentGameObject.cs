@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Content.References.GameObjects;
+using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models.GameObject;
 using Newtonsoft.Json.Linq; 
 using UnityEngine;
 
@@ -13,6 +15,19 @@ namespace Lomztein.BFA2.Content.References
     public class ContentGameObject : ISerializable
     {
         public string Path;
+        private IGameObjectModel _model;
+
+        public ContentGameObject() { }
+
+        public ContentGameObject(string path)
+        {
+            Path = path;
+        }
+
+        public ContentGameObject(IGameObjectModel model)
+        {
+            _model = model;
+        }
 
         public void Deserialize(JToken data)
         {
@@ -24,10 +39,19 @@ namespace Lomztein.BFA2.Content.References
             return new JValue(Path);
         }
 
-        public GameObject Get()
-            => Content.Get(Path, typeof(GameObject)) as GameObject;
+        private IGameObjectModel GetModel ()
+        {
+            if (_model == null)
+            {
+                _model = Content.Get(Path, typeof(GameObjectModel)) as IGameObjectModel;
+            }
+            return _model;
+        }
 
-        public GameObjectPrefab GetPrefab ()
-            => new GameObjectPrefab(Get(), false);
+        public GameObject Instantiate()
+        {
+            IGameObjectAssembler assembler = new GameObjectAssembler();
+            return assembler.Assemble(_model);
+        }
     }
 }

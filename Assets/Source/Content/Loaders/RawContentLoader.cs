@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Content.Loaders
     {
         private static readonly List<IRawContentTypeLoader> _loaders = new List<IRawContentTypeLoader>
         {
-            new GameObjectLoader (),
+            new GameObjectModelLoader (),
             new Texture2DRawContentLoader (),
         };
 

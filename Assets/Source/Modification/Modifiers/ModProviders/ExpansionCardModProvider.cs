@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Purchasing;
+﻿using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.ExpansionCards;
@@ -24,8 +25,8 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders
         [SerializeField] [ModelProperty] private ResourceCost _cost;
         public IResourceCost Cost => _cost;
 
-        [SerializeField] [ModelProperty] private Sprite _sprite;
-        public Sprite Sprite => _sprite;
+        [SerializeField] [ModelProperty] private ContentSprite _sprite;
+        public Sprite Sprite => _sprite.Get();
 
         private void Awake()
         {

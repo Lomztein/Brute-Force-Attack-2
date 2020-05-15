@@ -14,23 +14,13 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
     public class ProjectileInstantiator : MonoBehaviour, IProjectileInstantiator
     {
         [ModelProperty]
-        public ContentGameObject ContentPrefabObject;
-        private GameObjectPrefab _prefab;
+        public ContentGameObject _prefab;
 
         public IObjectPool<IProjectile> Source { get; set; }
 
         private void OnAssembled ()
         {
-            _prefab = ContentPrefabObject.GetPrefab();
             Source = new NoGameObjectPool<IProjectile>(_prefab);
-        }
-
-        private void OnDestroy()
-        {
-            if (_prefab != null)
-            {
-                _prefab.Dispose();
-            }
         }
 
         public IProjectile[] Create(IProjectileInfo info, Vector3 position, Quaternion rotation, int amount, float deviation, float speed) 

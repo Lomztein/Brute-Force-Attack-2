@@ -13,9 +13,9 @@ namespace Lomztein.BFA2.Pooling
     {
         public event Action<T> OnNew;
 
-        private GameObjectPrefab _prefab;
+        private ContentGameObject _prefab;
 
-        public NoGameObjectPool (GameObjectPrefab prefab)
+        public NoGameObjectPool (ContentGameObject prefab)
         {
             _prefab = prefab;
         }
