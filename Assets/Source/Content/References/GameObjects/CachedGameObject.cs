@@ -13,12 +13,12 @@ namespace Lomztein.BFA2.Content.References.GameObjects
         private const string CACHE_OBJ_NAME = "_GO_CACHE";
         private static GameObject _cacheObj;
 
-        private ContentGameObject _contentGO;
+        private IContentGameObject _contentGO;
 
 
         private GameObject _cache;
 
-        public CachedGameObject (ContentGameObject contentGO)
+        public CachedGameObject (IContentGameObject contentGO)
         {
             _contentGO = contentGO;
         }

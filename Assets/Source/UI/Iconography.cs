@@ -43,6 +43,7 @@ namespace Lomztein.BFA2.UI
             Camera.aspect = 1f;
 
             GameObject model = InstantiateModel(obj, _instance.transform.position, Quaternion.identity);
+            model.SetActive(true);
 
             RenderTexture renderTexture = new RenderTexture(RENDER_SIZE, RENDER_SIZE, 24);
             renderTexture.Create();

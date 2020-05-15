@@ -6,6 +6,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     public interface IGameObjectAssembler
     {
         GameObject Assemble(IGameObjectModel model);
-        IGameObjectModel Dissassemble(GameObject gameObject);
+        IGameObjectModel Disassemble(GameObject gameObject);
     }
 }

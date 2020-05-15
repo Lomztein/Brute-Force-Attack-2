@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
     public class TurretBase : TurretComponent, ITargetProvider, IRanger
     {
         public IStatReference Range;
+        [ModelProperty]
         public LayerMask TargetLayer;
 
         private Transform _target;

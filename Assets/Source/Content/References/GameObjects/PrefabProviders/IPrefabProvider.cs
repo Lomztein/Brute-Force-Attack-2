@@ -8,6 +8,6 @@ namespace Lomztein.BFA2.Content.References.GameObjects.PrefabProviders
 {
     public interface IPrefabProvider
     {
-        ContentGameObject[] Get();
+        IContentGameObject[] Get();
     }
 }

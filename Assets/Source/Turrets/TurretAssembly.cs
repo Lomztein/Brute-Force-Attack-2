@@ -34,11 +34,11 @@ namespace Lomztein.BFA2.Turrets
         public StatBaseValues StatBaseValues;
 
         public float Heat;
-
         [ModelProperty][SerializeField] private string _name;
-        public string Name => _name;
+        public string Name { get => _name; set => _name = value; }
         [ModelProperty][SerializeField] private string _description;
-        public string Description => _description;
+        public string Description { get => _description; set => _description = value; }
+
         public IResourceCost Cost => GetCost();
 
         private IResourceCost GetCost()
@@ -49,7 +49,7 @@ namespace Lomztein.BFA2.Turrets
 
         public Sprite Sprite => Sprite.Create (Iconography.GenerateIcon (gameObject), new Rect (0f, 0f, Iconography.RENDER_SIZE, Iconography.RENDER_SIZE), Vector2.one / 2f);
 
-        public Size Size => (_components.FirstOrDefault() as IGridPlaceable).Size;
+        public Size Size => GetRootComponent().Size;
 
         [SerializeField] [ModelProperty] ModdableAttribute[] _modAttributes;
         public ModdableAttribute[] Attributes => _modAttributes;
@@ -57,7 +57,7 @@ namespace Lomztein.BFA2.Turrets
         // Start is called before the first frame update
         void Awake()
         {
-            ResetComponentList();
+            Rebuild();
             InitStats();
         }
 
@@ -71,7 +71,7 @@ namespace Lomztein.BFA2.Turrets
             Stats.Init(StatBaseValues);
         }
 
-        void ResetComponentList ()
+        private void Rebuild ()
         {
             _components = GetComponentsInChildren<ITurretComponent>().ToList();
             Reassemble();
@@ -79,12 +79,12 @@ namespace Lomztein.BFA2.Turrets
 
         public void AddComponent (ITurretComponent component)
         {
-            ResetComponentList();
+            Rebuild();
         }
 
         public void RemoveComponent (ITurretComponent component)
         {
-            ResetComponentList();
+            Rebuild();
         }
 
         // Update is called once per frame
@@ -129,6 +129,11 @@ namespace Lomztein.BFA2.Turrets
         public override string ToString()
         {
             return Name;
+        }
+
+        public ITurretComponent GetRootComponent()
+        {
+            return GetComponentInChildren<ITurretComponent>();
         }
     }
 }

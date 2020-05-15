@@ -29,7 +29,10 @@ namespace Lomztein.BFA2.Serialization.EngineObjectSerializers
     {
         public override Vector3 DeserializeValue(JToken value)
         {
-            return new Vector3(value["X"].ToObject<float>(), value["Y"].ToObject<float>(), value["Z"].ToObject<float>());
+            return new Vector3(
+                value["X"].ToObject<float>(),
+                value["Y"].ToObject<float>(),
+                value["Z"].ToObject<float>());
         }
 
         public override JToken Serialize(Vector3 value)
@@ -37,7 +40,7 @@ namespace Lomztein.BFA2.Serialization.EngineObjectSerializers
                 {
                     { "X", value.x },
                     { "Y", value.y },
-                    { "Z", value.y }
+                    { "Z", value.z }
                 };
     }
 

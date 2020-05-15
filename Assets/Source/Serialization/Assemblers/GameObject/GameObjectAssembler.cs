@@ -36,12 +36,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             return obj;
         }
 
-        public IGameObjectModel Dissassemble(GameObject gameObject)
+        public IGameObjectModel Disassemble(GameObject gameObject)
         {
             var children = new List<IGameObjectModel>();
             foreach (Transform child in gameObject.transform)
             {
-                children.Add(Dissassemble(child.gameObject));
+                children.Add(Disassemble(child.gameObject));
             }
 
             Component[] components = gameObject.GetComponents<Component>();

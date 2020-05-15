@@ -17,12 +17,12 @@ namespace Lomztein.BFA2.Content
 
         public object[] GetAllContent(string path, Type type)
         {
-            return Resources.LoadAll(path, type).Select (x => UnityEngine.Object.Instantiate(x)).ToArray();
+            return Resources.LoadAll(path, type);
         }
 
         public object GetContent(string path, Type type)
         {
-            return UnityEngine.Object.Instantiate(Resources.Load(path, type));
+            return Resources.Load(path, type);
         }
 
         public override string ToString()

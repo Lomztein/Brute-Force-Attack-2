@@ -8,11 +8,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Content.References.GameObjects.PrefabProviders
 {
-    public class ContentPrefabProvider : MonoBehaviour, IPrefabProvider
+    public class ContentGameObjectPrefabProvider : MonoBehaviour, IPrefabProvider
     {
         public string Path;
 
-        public ContentGameObject[] Get()
-            => Content.GetAll(Path, typeof(IGameObjectModel)).Select(x => new ContentGameObject(x as IGameObjectModel)).ToArray();
+        public IContentGameObject[] Get()
+            => Content.GetAll(Path, typeof(IGameObjectModel)).Select(x => new ContentGameObjectModel(x as IGameObjectModel)).ToArray();
     }
 }

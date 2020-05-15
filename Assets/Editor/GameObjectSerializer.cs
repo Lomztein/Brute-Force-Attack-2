@@ -1,7 +1,10 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Assemblers.Turret;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Turrets;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -10,10 +13,17 @@ using UnityEngine;
 
 public class GameObjectSerializer : EditorWindow
 {
+    public enum TargetType
+    {
+        GameObject, Assembly
+    }
+
     public GameObject Object;
     public string Path;
+    public TargetType Type;
 
     private IGameObjectAssembler _assembler = new GameObjectAssembler();
+    private GameObjectTurretAssemblyAssembler _assemblyAssembler = new GameObjectTurretAssemblyAssembler();
     
     [MenuItem("BFA2/GameObject Serializer")]
     public static void ShowWindow ()
@@ -25,32 +35,29 @@ public class GameObjectSerializer : EditorWindow
     {
         Object = EditorGUILayout.ObjectField("Object", Object, typeof(GameObject), true) as GameObject;
         Path = EditorGUILayout.TextField("Path", Path);
+        Type = (TargetType)EditorGUILayout.EnumPopup("Type", Type);
         if (GUILayout.Button ("Dissasemble!"))
         {
             Dissasemble();
-        }
-
-        if (GUILayout.Button("Assemble!"))
-        {
-            Assemble();
         }
     }
 
     private void Dissasemble()
     {
         string path = Paths.StreamingAssets;
-        IGameObjectModel model = _assembler.Dissassemble(Object);
-        string data = model.Serialize().ToString();
+        string data = string.Empty;
+
+        switch (Type)
+        {
+            case TargetType.Assembly:
+                data = _assemblyAssembler.Dissasemble(Object.GetComponent<ITurretAssembly>()).Serialize().ToString();
+                break;
+
+            case TargetType.GameObject:
+                data = _assembler.Disassemble(Object).Serialize().ToString();
+                break;
+        }
+
         File.WriteAllText(path + Path, data);
-    }
-
-    private void Assemble ()
-    {
-        string path = Paths.StreamingAssets;
-
-        JToken data = DataSerialization.FromFile(path + Path);
-        GameObjectModel model = new GameObjectModel();
-        model.Deserialize(data);
-        _assembler.Assemble(model);
     }
 }

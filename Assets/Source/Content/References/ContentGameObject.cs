@@ -1,37 +1,40 @@
-﻿using System;
+﻿using Lomztein.BFA2.Content.References.GameObjects;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Content.References.GameObjects;
-using Lomztein.BFA2.Serialization.Assemblers;
-using Lomztein.BFA2.Serialization.Models.GameObject;
-using Newtonsoft.Json.Linq; 
 using UnityEngine;
 
 namespace Lomztein.BFA2.Content.References
 {
     [Serializable]
-    public class ContentGameObject : ISerializable
+    public class ContentGameObject : IContentGameObject, IDisposable, ISerializable
     {
         public string Path;
-        private IGameObjectModel _model;
+        private GameObject _cache;
 
-        public ContentGameObject() { }
-
-        public ContentGameObject(string path)
+        private GameObject GetCache ()
         {
-            Path = path;
+            if (_cache == null)
+            {
+                _cache = Content.Get(Path, typeof(GameObject)) as GameObject;
+                _cache.SetActive(false);
+            }
+            return _cache;
         }
 
-        public ContentGameObject(IGameObjectModel model)
+        public GameObject Instantiate()
         {
-            _model = model;
+            GameObject go = UnityEngine.Object.Instantiate(GetCache());
+            go.SetActive(true);
+            return go;
         }
 
-        public void Deserialize(JToken data)
+        public void Dispose()
         {
-            Path = data.ToObject<string>();
+            UnityEngine.Object.Destroy(_cache);
         }
 
         public JToken Serialize()
@@ -39,19 +42,9 @@ namespace Lomztein.BFA2.Content.References
             return new JValue(Path);
         }
 
-        private IGameObjectModel GetModel ()
+        public void Deserialize(JToken source)
         {
-            if (_model == null)
-            {
-                _model = Content.Get(Path, typeof(GameObjectModel)) as IGameObjectModel;
-            }
-            return _model;
-        }
-
-        public GameObject Instantiate()
-        {
-            IGameObjectAssembler assembler = new GameObjectAssembler();
-            return assembler.Assemble(_model);
+            Path = source.ToString();
         }
     }
 }

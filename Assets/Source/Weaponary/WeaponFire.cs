@@ -18,7 +18,12 @@ namespace Lomztein.BFA2.Weaponary
 
         private IProjectileInstantiator _projectileInstantiator;
 
-        private void Awake()
+        public void OnAssembled()
+        {
+            _projectileInstantiator = GetComponent<IProjectileInstantiator>();
+        }
+
+        public void Awake()
         {
             _projectileInstantiator = GetComponent<IProjectileInstantiator>();
         }
