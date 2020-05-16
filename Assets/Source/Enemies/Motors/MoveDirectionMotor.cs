@@ -1,4 +1,6 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.EngineObjectSerializers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +13,13 @@ namespace Lomztein.BFA2.Enemies.Motors
     public class MoveDirectionMotor : MonoBehaviour, IEnemyMotor
     {
         [ModelProperty]
-        public Vector3 Direction;
-        [ModelProperty]
         public float Speed;
         [ModelProperty]
         public float Range;
 
         private bool _finished;
 
-        private void Awake()
+        private void Start()
         {
             Invoke("Finish", Range / Speed);
         }
@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Enemies.Motors
 
         public void Tick(float deltaTime)
         {
-            transform.Translate(Direction * Speed * deltaTime);
+            transform.Translate(Vector3.down * Speed * deltaTime);
         }
 
         private void Finish ()

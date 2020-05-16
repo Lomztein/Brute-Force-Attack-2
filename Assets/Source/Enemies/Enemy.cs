@@ -39,7 +39,7 @@ namespace Lomztein.BFA2.Enemies
         public event Action<IEnemy, int> OnDeath;
         public event Action<IEnemy, float> OnFinished;
 
-        private void Awake()
+        private void Start()
         {
             Health = MaxHealth;
             _motor = GetComponent<IEnemyMotor>();

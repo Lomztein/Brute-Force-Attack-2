@@ -32,7 +32,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 childObj.transform.SetParent(obj.transform);
             }
 
-            obj.BroadcastMessage("OnGameObjectAssembled", SendMessageOptions.DontRequireReceiver);
             return obj;
         }
 

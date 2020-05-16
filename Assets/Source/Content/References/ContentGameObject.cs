@@ -10,10 +10,9 @@ using UnityEngine;
 namespace Lomztein.BFA2.Content.References
 {
     [Serializable]
-    public class ContentGameObject : IContentGameObject, IDisposable, ISerializable
+    public class ContentGameObject : IContentGameObject, ISerializable
     {
         public string Path;
-        private GameObject _cache;
 
         public ContentGameObject () { }
 
@@ -22,32 +21,14 @@ namespace Lomztein.BFA2.Content.References
             Path = path;
         }
 
-        public ContentGameObject(GameObject cache)
-        {
-            _cache = cache;
-        }
-
-        private GameObject GetCache ()
-        {
-            if (_cache == null)
-            {
-                _cache = Content.Get(Path, typeof(GameObject)) as GameObject;
-                _cache.SetActive(false);
-            }
-            return _cache;
-        }
-
         public GameObject Instantiate()
         {
-            GameObject go = UnityEngine.Object.Instantiate(GetCache());
+            GameObject go = UnityEngine.Object.Instantiate(Get());
             go.SetActive(true);
             return go;
         }
 
-        public void Dispose()
-        {
-            UnityEngine.Object.Destroy(_cache);
-        }
+        public GameObject Get() => Content.Get(Path, typeof(GameObject)) as GameObject;
 
         public JToken Serialize()
         {

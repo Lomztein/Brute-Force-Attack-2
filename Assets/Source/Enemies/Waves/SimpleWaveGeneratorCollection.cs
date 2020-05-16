@@ -20,6 +20,8 @@ namespace Lomztein.BFA2.Enemies.Waves
         private CachedGameObject[] _enemies;
         private System.Random _random;
 
+        public GameObject Spawner;
+
         public int Seed;
         public float StartingCredits;
         public float Coeffecient;
@@ -36,9 +38,13 @@ namespace Lomztein.BFA2.Enemies.Waves
         {
             if (_enemies == null)
             {
-                _enemies = Content.Content.GetAll(ENEMY_CONTENT_PATH, typeof(IGameObjectModel))
-                    .Select(x => new CachedGameObject(new ContentGameObjectModel(x as IGameObjectModel)))
-                    .ToArray();
+                var models = Content.Content.GetAll(ENEMY_CONTENT_PATH, typeof(IGameObjectModel));
+                List<CachedGameObject> enemies = new List<CachedGameObject>();
+                foreach (IGameObjectModel model in models)
+                {
+                    enemies.Add(new CachedGameObject(new ContentGameObjectModel(model)));
+                }
+                _enemies = enemies.ToArray();
             }
             return _enemies;
         }
@@ -47,6 +53,9 @@ namespace Lomztein.BFA2.Enemies.Waves
         {
             if (_random == null)
             {
+                System.Random seedRandom = new System.Random();
+                Seed = seedRandom.Next(int.MinValue, int.MaxValue);
+
                 _random = new System.Random(Seed);
             }
             return _random;
@@ -54,7 +63,8 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private (CachedGameObject enemy, int amount) GetRandomEnemy (float credits)
         {
-            CachedGameObject enemy = GetEnemies()[_random.Next(0, _enemies.Length)];
+            var enemies = GetEnemies();
+            CachedGameObject enemy = enemies[_random.Next(0, enemies.Length)];
             IEnemy component = enemy.Get().GetComponent<IEnemy>();
             return (enemy, Mathf.RoundToInt(credits / component.DifficultyValue));
         }
@@ -79,11 +89,10 @@ namespace Lomztein.BFA2.Enemies.Waves
         {
             float credits = GetAvailableCredits(index);
             float frequency = GetSpawnFrequency(index);
-            credits /= frequency;
 
             (CachedGameObject enemy, int amount) = GetRandomEnemy(credits);
 
-            return new SimpleWave(enemy, GetSpawner(), amount, 1 / frequency);
+            return new SimpleWave(enemy, Spawner, amount, 1 / frequency);
         }
     }
 }

@@ -1,5 +1,5 @@
 {
-  "Name": "BasicEnemyT1",
+  "Name": "FastEnemyT1",
   "Tag": "Untagged",
   "Layer": 8,
   "Static": false,
@@ -38,11 +38,11 @@
       "Properties": [
         {
           "Name": "_difficultyValue",
-          "Value": 10.0
+          "Value": 15.0
         },
         {
           "Name": "MaxHealth",
-          "Value": 10.0
+          "Value": 7.5
         },
         {
           "Name": "Armor",
@@ -58,7 +58,7 @@
         },
         {
           "Name": "_value",
-          "Value": 10
+          "Value": 15
         }
       ]
     },
@@ -67,11 +67,20 @@
       "Properties": [
         {
           "Name": "Speed",
-          "Value": 5.0
+          "Value": 10.0
         },
         {
           "Name": "Range",
           "Value": 32.0
+        }
+      ]
+    },
+    {
+      "TypeName": "UnityEngine.Rigidbody2D",
+      "Properties": [
+        {
+          "Name": "BodyType",
+          "Value": 1
         }
       ]
     },
@@ -137,7 +146,7 @@
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/Enemies/BasicEnemy.png",
+                "Path": "Core/Sprites/Enemies/FastEnemy.png",
                 "Rect": {
                   "X": 0.0,
                   "Y": 0.0,

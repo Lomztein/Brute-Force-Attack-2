@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Enemies.Waves
     {
         public float SpawnDelay;
         public IContentGameObject Prefab;
-        public IContentGameObject SpawnerPrefab;
+        public GameObject SpawnerPrefab;
 
         public int SpawnAmount;
         public int Alive;
@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             Alive = SpawnAmount;
         }
         
-        public SimpleWave (IContentGameObject prefab, IContentGameObject spawner, int amount, float delay)
+        public SimpleWave (IContentGameObject prefab, GameObject spawner, int amount, float delay)
         {
             Prefab = prefab;
             SpawnerPrefab = spawner;
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private void Spawn()
         {
-            ISpawner spawner = SpawnerPrefab.Instantiate().GetComponent<ISpawner>();
+            ISpawner spawner = UnityEngine.Object.Instantiate(SpawnerPrefab).GetComponent<ISpawner>();
             spawner.OnSpawn += Spawner_OnSpawn;
 
             spawner.Spawn(SpawnAmount, SpawnDelay, Prefab);

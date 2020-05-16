@@ -1217,9 +1217,11 @@ MonoBehaviour:
   SpawnAreaSize: {x: 15, y: 1}
   SpawnAreaCenter: {x: 0, y: 15}
   _internalWaveCollection:
-    Seed: 1337
+    Spawner: {fileID: 1728763116868555419, guid: 4f5a23a3891afcc49915354dfb607841,
+      type: 3}
+    Seed: 0
     StartingCredits: 500
-    Coeffecient: 1.5
+    Coeffecient: 2
     MaxSpawnFrequency: 50
     MinSpawnFrequency: 2
     MaxSpawnFrequencyCurve:
@@ -1228,18 +1230,18 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0
@@ -1270,7 +1272,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    MaxSpawnDelayWave: 20
+    MaxSpawnDelayWave: 10
 --- !u!4 &972623044
 Transform:
   m_ObjectHideFlags: 0
@@ -1553,7 +1555,7 @@ MonoBehaviour:
   Resources:
     Elements:
     - Type: 0
-      Value: 900000
+      Value: 850
     - Type: 1
       Value: 1
 --- !u!114 &1205910153

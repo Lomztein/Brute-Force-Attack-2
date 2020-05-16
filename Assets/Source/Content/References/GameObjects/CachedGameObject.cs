@@ -23,6 +23,18 @@ namespace Lomztein.BFA2.Content.References.GameObjects
             _contentGO = contentGO;
         }
 
+        public CachedGameObject(GameObject cache)
+        {
+            _cache = cache;
+            CacheCache();
+        }
+
+        private void CacheCache ()
+        {
+            _cache.SetActive(false);
+            _cache.transform.SetParent(GetCacheObject().transform);
+        }
+
         private GameObject GetCacheObject ()
         {
             if (_cacheObj == null)
@@ -37,9 +49,7 @@ namespace Lomztein.BFA2.Content.References.GameObjects
             if (_cache == null)
             {
                 _cache = _contentGO.Instantiate();
-                _cache.SetActive(false);
-
-                _cache.transform.SetParent(GetCacheObject().transform);
+                CacheCache();
             }
             return _cache;
         }
