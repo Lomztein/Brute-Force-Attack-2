@@ -19,14 +19,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             JArray array = model as JArray;
             Type elementType = type.GetElementType();
 
-            Type listType = typeof(List<>).MakeGenericType(elementType);
-            dynamic list = Activator.CreateInstance(listType);
-            foreach (JToken token in array)
+            object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
+            MethodInfo add = list.GetType().GetMethod("Add");
+            MethodInfo toArray = list.GetType().GetMethod("ToArray");
+            // I barfed a little writing that. Blame Unity for being outdated.
+
+            for (int i = 0; i < array.Count; i++) 
             {
-                dynamic element = _elementAssembler.Assemble(token, elementType);
-                list.Add(element);
+                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], elementType) });
             }
-            return list.ToArray();
+            return toArray.Invoke(list, new object[] { });
         }
 
         public JToken Dissassemble(object obj, Type type)
