@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7831723556362487543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749877113268985868}
+  m_Layer: 0
+  m_Name: Muzzles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1749877113268985868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831723556362487543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8983164370671711078}
+  m_Father: {fileID: 8983164369808527841}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8983164369162933324
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8983164369162933323}
-  - component: {fileID: 8983164369162933322}
+  - component: {fileID: 4046499078206474247}
   m_Layer: 0
-  m_Name: MachineGun_Tier1_0
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,56 +62,28 @@ Transform:
   m_Father: {fileID: 8983164369808527841}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8983164369162933322
-SpriteRenderer:
+--- !u!114 &4046499078206474247
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8983164369162933324}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b0314430a700c7a4d9ed99aac3323950, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reference:
+    Path: Core/Sprites/Components/RocketLauncherT2.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
 --- !u!1 &8983164369808527842
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8983164369162933323}
-  - {fileID: 8983164370671711078}
+  - {fileID: 1749877113268985868}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,13 +133,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83ecbb5b5424c47abb848f053a0a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Missile Launcher
-  _description: 
+  _identifier: Core.RocketLauncherT2
+  _name: Heavy Rocket Launcher
+  _description: FWOOOOMF
   _cost:
     Elements:
     - Type: 0
       Value: 1500
   _modAttributes: 0400000006000000
+  _size: 1
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
@@ -149,15 +154,13 @@ MonoBehaviour:
     - Identifier: Speed
       Value: 20
     - Identifier: Firerate
-      Value: 0.8
-  ExpansionCardCapacity: 2
+      Value: 0.5
+  ExpansionCardCapacity: 3
   FireTreshold: 30
   RangeMultiplier: 2.5
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Muzzles:
-  - {fileID: 8983164370671711078}
   Color: 2
 --- !u!114 &8983164369808527854
 MonoBehaviour:
@@ -183,8 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 180462137954481132, guid: 1b904025629b24c4083e8b721ba5d770,
-    type: 3}
+  _prefab:
+    Path: Resources/Projectiles/ThiccRocketProjectile
 --- !u!114 &8139534575009318368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,8 +200,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimatedSprite: {fileID: 8983164369162933322}
-  DefaultSprite: {fileID: 21300000, guid: b0314430a700c7a4d9ed99aac3323950, type: 3}
+  DefaultSprite:
+    Path: Core/Sprites/Components/RocketLauncherT2.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
   PlaySpeedMultiplier: 1
   AnimationSprites: []
 --- !u!58 &5813048448918230106
@@ -240,10 +251,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8983164370671711079}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8983164369808527841}
-  m_RootOrder: 1
+  m_Father: {fileID: 1749877113268985868}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

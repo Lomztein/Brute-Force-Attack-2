@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &340147360829618020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3126098130463752737}
+  m_Layer: 0
+  m_Name: Muzzles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3126098130463752737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340147360829618020}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1013188143243235162}
+  m_Father: {fileID: 1013188143988452829}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013188143243235163
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,12 +54,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013188143243235163}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1013188143988452829}
-  m_RootOrder: 1
+  m_Father: {fileID: 3126098130463752737}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013188143988452830
 GameObject:
@@ -63,7 +94,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1013188144953337975}
-  - {fileID: 1013188143243235162}
+  - {fileID: 3126098130463752737}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -79,13 +110,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83ecbb5b5424c47abb848f053a0a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Laser Cannon
-  _description: 
+  _identifier: Core.LaserCannonT3
+  _name: Heavy Laser Cannon
+  _description: Goes <b>FUCKING PEEEEW</b>
   _cost:
     Elements:
     - Type: 0
       Value: 6000
   _modAttributes: 0600000003000000
+  _size: 1
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
@@ -105,8 +138,6 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Muzzles:
-  - {fileID: 1013188143243235162}
   Color: 1
 --- !u!114 &1013188143988452818
 MonoBehaviour:
@@ -132,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62c58f3c4d9bf148833805bdddb00e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabObject: {fileID: 3207407503699224747, guid: eb1c3e30ead42b74b8f4c00c7186416d,
-    type: 3}
+  _prefab:
+    Path: Resources/Projectiles/ThiccLaserProjectile
 --- !u!114 &8579898881888915783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +177,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimatedSprite: {fileID: 1013188144953337974}
-  DefaultSprite: {fileID: 21300000, guid: 4f3c9e5fb7e6567419172176a95f451d, type: 3}
+  DefaultSprite:
+    Path: Core/Sprites/Components/LaserCannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
   PlaySpeedMultiplier: 1
   AnimationSprites: []
 --- !u!58 &-5090018618559331163
@@ -175,9 +214,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1013188144953337975}
-  - component: {fileID: 1013188144953337974}
+  - component: {fileID: 611382422923221886}
   m_Layer: 0
-  m_Name: MachineGun_Tier1_0
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,53 +236,25 @@ Transform:
   m_Father: {fileID: 1013188143988452829}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1013188144953337974
-SpriteRenderer:
+--- !u!114 &611382422923221886
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013188144953337968}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4f3c9e5fb7e6567419172176a95f451d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Reference:
+    Path: Core/Sprites/Components/LaserCannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32

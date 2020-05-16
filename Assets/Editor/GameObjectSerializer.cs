@@ -58,6 +58,8 @@ public class GameObjectSerializer : EditorWindow
                 break;
         }
 
-        File.WriteAllText(path + Path, data);
+        path = path + Path + Object.name + ".json";
+        Debug.Log(path);
+        File.WriteAllText(path, data);
     }
 }

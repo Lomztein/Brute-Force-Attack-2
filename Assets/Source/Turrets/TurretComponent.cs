@@ -18,18 +18,18 @@ namespace Lomztein.BFA2.Turrets
     {
         public ITurretAssembly Assembly { get; set; }
 
-        [ModelProperty] [SerializeField] private string _identifier;
+        [ModelProperty] [SerializeField] protected string _identifier;
         public string UniqueIdentifier => _identifier;
 
-        [ModelProperty] [SerializeField] private string _name;
+        [ModelProperty] [SerializeField] protected string _name;
         public string Name => _name;
-        [ModelProperty] [SerializeField] private string _description;
+        [ModelProperty] [SerializeField] protected string _description;
         public string Description => _description;
-        [ModelProperty] [SerializeField] private ResourceCost _cost;
+        [ModelProperty] [SerializeField] protected ResourceCost _cost;
         public IResourceCost Cost => _cost;
         public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
-        [ModelProperty] public List<ModdableAttribute> _modAttributes;
+        [ModelProperty] [SerializeField] protected List<ModdableAttribute> _modAttributes;
         public ModdableAttribute[] Attributes => _modAttributes.ToArray();
 
         public IStatContainer Stats { get; private set; } = new StatContainer();
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Turrets
         public IModContainer Mods { get; private set; }
 
         [SerializeField][ModelProperty]
-        private Size _size;
+        protected Size _size;
         public Size Size => _size;
 
         [ModelProperty]

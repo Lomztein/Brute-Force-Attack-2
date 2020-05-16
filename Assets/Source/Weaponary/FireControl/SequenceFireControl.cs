@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Lomztein.BFA2.Weaponary.FireControl
 {
     public class SequenceFireControl : MonoBehaviour, IFireControl
     {
+        [ModelProperty]
         public float DelayDenominator;
 
         public void Fire(int amount, float duration, Action<int> callback)

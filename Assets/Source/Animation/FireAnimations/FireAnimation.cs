@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Animation.FireAnimations
 
         protected void ResetSprite()
         {
-            _spriteRenderer.sprite = DefaultSprite.Get();
+            GetSpriteRenderer().sprite = DefaultSprite.Get();
         }
     }
 }

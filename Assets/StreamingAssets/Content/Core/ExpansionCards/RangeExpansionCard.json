@@ -1,0 +1,114 @@
+{
+  "Name": "RangeExpansionCard",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": [
+        {
+          "Name": "Position",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Rotation",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Scale",
+          "Value": {
+            "X": 1.0,
+            "Y": 1.0,
+            "Z": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.ExpansionCardModProvider",
+      "Properties": [
+        {
+          "Name": "_name",
+          "Value": "Range+"
+        },
+        {
+          "Name": "_description",
+          "Value": "Increase range by 20%"
+        },
+        {
+          "Name": "_cost",
+          "Value": {
+            "Elements": [
+              {
+                "Type": 1,
+                "Value": 1
+              }
+            ]
+          }
+        },
+        {
+          "Name": "_sprite",
+          "Value": {
+            "Path": "Core/Sprites/ExpansionCards/RangeUpgrade.png",
+            "Rect": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Width": 0.0,
+              "Height": 0.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+      "Properties": [
+        {
+          "Name": "Stats",
+          "Value": [
+            {
+              "Identifier": "Range",
+              "Name": "",
+              "Description": "",
+              "Type": 1,
+              "Value": 0.2
+            }
+          ]
+        },
+        {
+          "Name": "RequiredAttributes",
+          "Value": [
+            0
+          ]
+        },
+        {
+          "Name": "_identifier",
+          "Value": "IncreaseRange20Percent"
+        },
+        {
+          "Name": "_name",
+          "Value": ""
+        },
+        {
+          "Name": "_description",
+          "Value": ""
+        }
+      ]
+    }
+  ],
+  "Children": []
+}

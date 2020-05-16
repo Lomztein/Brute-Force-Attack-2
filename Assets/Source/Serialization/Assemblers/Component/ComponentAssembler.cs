@@ -95,15 +95,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         private IEnumerable<FieldInfo> GetModelFields (Type type)
         {
             BindingFlags _bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-
-            List<FieldInfo> fields = new List<FieldInfo>();
-            fields.AddRange(type.GetFields(_bindingFlags).Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true)));
-            if (type.BaseType != null)
-            {
-                fields.AddRange(GetModelFields(type.BaseType));
-            }
-
-            return fields;
+            return type.GetFields(_bindingFlags).Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true));
         }
     }
 }

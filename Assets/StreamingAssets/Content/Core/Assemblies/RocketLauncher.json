@@ -1,25 +1,28 @@
 {
-  "Name": "Machine Gun",
-  "Description": "A gun that fires quickly lol",
+  "Name": "Rocket Launcher",
+  "Description": "Fwooompf",
   "RootComponent": {
     "ComponentIdentifier": "Core.BasicBase",
     "RelativePosition": {
       "X": 0.0,
-      "Y": 0.0
+      "Y": 0.0,
+      "Z": 0.0
     },
     "Children": [
       {
         "ComponentIdentifier": "Core.BasicRotator",
         "RelativePosition": {
           "X": 0.0,
-          "Y": 0.0
+          "Y": 0.0,
+          "Z": -1.0
         },
         "Children": [
           {
-            "ComponentIdentifier": "Core.MachineGun",
+            "ComponentIdentifier": "Core.RocketLauncherT1",
             "RelativePosition": {
               "X": 0.0,
-              "Y": 0.0
+              "Y": 0.0,
+              "Z": -1.0
             },
             "Children": []
           }

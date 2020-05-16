@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Reference:
-    Path: Core/Sprites/MachineGun_Tier1.png
+    Path: Core/Sprites/Components/MachineGunT1.png
     Rect:
       serializedVersion: 2
       x: 0
@@ -163,13 +163,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83ecbb5b5424c47abb848f053a0a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _identifier: Core.MachineGun
+  _identifier: Core.MachineGunT1
   _name: Machine Gun
-  _description: 
+  _description: shootin doods
   _cost:
     Elements:
     - Type: 0
       Value: 250
+  _modAttributes: 
   _size: 1
   PassiveHeatProduction: 2.5
   StatBaseValues:
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab:
-    Path: Resources/Projectile/MachineGunProjectile
+    Path: Resources/Projectiles/MachineGunProjectile
 --- !u!114 &819893084500431819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultSprite:
-    Path: Core/Sprites/MachineGun_Tier1.png
+    Path: Core/Sprites/Components/MachineGunT1.png
     Rect:
       serializedVersion: 2
       x: 0
@@ -241,7 +242,7 @@ MonoBehaviour:
     PixelsPerUnit: 32
   PlaySpeedMultiplier: 1
   AnimationSprites:
-  - Path: Core/Sprites/MachineGun_Tier1.png
+  - Path: Core/Sprites/Components/MachineGunT1.png
     Rect:
       serializedVersion: 2
       x: 32
@@ -250,7 +251,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
-  - Path: Core/Sprites/MachineGun_Tier1.png
+  - Path: Core/Sprites/Components/MachineGunT1.png
     Rect:
       serializedVersion: 2
       x: 64
@@ -259,7 +260,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
-  - Path: Core/Sprites/MachineGun_Tier1.png
+  - Path: Core/Sprites/Components/MachineGunT1.png
     Rect:
       serializedVersion: 2
       x: 96
@@ -268,7 +269,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
-  - Path: Core/Sprites/MachineGun_Tier1.png
+  - Path: Core/Sprites/Components/MachineGunT1.png
     Rect:
       serializedVersion: 2
       x: 0
