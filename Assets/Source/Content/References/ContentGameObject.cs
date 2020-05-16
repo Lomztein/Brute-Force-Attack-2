@@ -15,6 +15,18 @@ namespace Lomztein.BFA2.Content.References
         public string Path;
         private GameObject _cache;
 
+        public ContentGameObject () { }
+
+        public ContentGameObject (string path)
+        {
+            Path = path;
+        }
+
+        public ContentGameObject(GameObject cache)
+        {
+            _cache = cache;
+        }
+
         private GameObject GetCache ()
         {
             if (_cache == null)
@@ -29,6 +41,7 @@ namespace Lomztein.BFA2.Content.References
         {
             GameObject go = UnityEngine.Object.Instantiate(GetCache());
             go.SetActive(true);
+            Debug.Log(go, go);
             return go;
         }
 

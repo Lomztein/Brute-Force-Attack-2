@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Content.References;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,16 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
     {
         public event Action<GameObject> OnSpawn;
 
-        public void Spawn(int amount, float delay, GameObject prefab)
+        public void Spawn(int amount, float delay, IContentGameObject prefab)
         {
             StartCoroutine(InternalSpawn(amount, delay, prefab));
         }
 
-        private IEnumerator InternalSpawn(int amount, float delay, GameObject prefab)
+        private IEnumerator InternalSpawn(int amount, float delay, IContentGameObject prefab)
         {
             for (int i = 0; i < amount; i++)
             {
-                OnSpawn?.Invoke(Instantiate(prefab));
+                OnSpawn?.Invoke(prefab.Instantiate());
                 yield return new WaitForSeconds(delay);
             }
             Destroy(gameObject);

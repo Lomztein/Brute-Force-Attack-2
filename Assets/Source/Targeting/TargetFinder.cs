@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Targeting
 
             foreach (Collider2D option in options)
             {
-                float value = _evalutator.Evaluate(option);
+                float value = _evalutator?.Evaluate(option) ?? 0;
 
                 if (value > bestValue)
                 {

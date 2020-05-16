@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Enemies.Waves.Spawners;
+﻿using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Enemies.Waves.Spawners;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Enemies.Waves
 {
-    [Serializable]
     public class SimpleWave : IWave
     {
         public float SpawnDelay;
-        public GameObject Prefab;
-        public GameObject SpawnerPrefab;
+        public IContentGameObject Prefab;
+        public IContentGameObject SpawnerPrefab;
 
         public int SpawnAmount;
         public int Alive;
@@ -26,10 +26,18 @@ namespace Lomztein.BFA2.Enemies.Waves
             Spawn();
             Alive = SpawnAmount;
         }
+        
+        public SimpleWave (IContentGameObject prefab, IContentGameObject spawner, int amount, float delay)
+        {
+            Prefab = prefab;
+            SpawnerPrefab = spawner;
+            SpawnAmount = amount;
+            SpawnDelay = delay;
+        }
 
         private void Spawn()
         {
-            ISpawner spawner = UnityEngine.Object.Instantiate(SpawnerPrefab).GetComponent<ISpawner>();
+            ISpawner spawner = SpawnerPrefab.Instantiate().GetComponent<ISpawner>();
             spawner.OnSpawn += Spawner_OnSpawn;
 
             spawner.Spawn(SpawnAmount, SpawnDelay, Prefab);

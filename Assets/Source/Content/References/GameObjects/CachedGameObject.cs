@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Content.References.GameObjects
 {
-    public class CachedGameObject : IDisposable
+    public class CachedGameObject : IContentGameObject, IDisposable
     {
         private const string CACHE_OBJ_NAME = "_GO_CACHE";
         private static GameObject _cacheObj;
@@ -53,6 +53,11 @@ namespace Lomztein.BFA2.Content.References.GameObjects
         public void Dispose()
         {
             UnityEngine.Object.Destroy(_cache);
+        }
+
+        public override string ToString()
+        {
+            return Get().ToString();
         }
     }
 }

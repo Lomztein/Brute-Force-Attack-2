@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
         {
             new ArrayPropertyAssembler (),
             new SerializablePropertyAssembler(),
+            new EngineObjectPropertyAssembler(),
             new SimplePropertyAssembler(),
         };
 

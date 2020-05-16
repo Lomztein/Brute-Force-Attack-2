@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Content.References
         {
             if (_model == null)
             {
-                _model = Content.Get(Path, typeof(GameObjectModel)) as IGameObjectModel;
+                _model = Content.Get(Path, typeof(IGameObjectModel)) as IGameObjectModel;
             }
             return _model;
         }
@@ -51,7 +51,9 @@ namespace Lomztein.BFA2.Content.References
         public GameObject Instantiate()
         {
             IGameObjectAssembler assembler = new GameObjectAssembler();
-            return assembler.Assemble(_model);
+            GameObject instance = assembler.Assemble(GetModel());
+            instance.SetActive(true);
+            return instance;
         }
     }
 }

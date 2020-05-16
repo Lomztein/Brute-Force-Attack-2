@@ -2,7 +2,6 @@
 {
     public interface IWaveCollection
     {
-        void Init(IWave[] waves);
         IWave GetWave(int index);
     }
 }

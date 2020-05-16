@@ -15,19 +15,18 @@ namespace Lomztein.BFA2.Enemies
     {
         public enum RoundState { Ready, Preparing, InProgress }
 
-        public SimpleWave[] Waves;
         public int CurrentWave;
         public RoundState State;
 
         public Vector2 SpawnAreaSize;
         public Vector2 SpawnAreaCenter;
 
-        private IWaveCollection _waveCollection = new WaveCollection();
+        [SerializeField] private SimpleWaveGeneratorCollection _internalWaveCollection = new SimpleWaveGeneratorCollection();
+        private IWaveCollection WaveCollection => _internalWaveCollection;
         private IResourceContainer _resourceContainer;
 
         private void Awake()
         {
-            _waveCollection.Init(Waves);
             _resourceContainer = GetComponent<IResourceContainer>();
         }
 
@@ -66,7 +65,7 @@ namespace Lomztein.BFA2.Enemies
         private void StartWave(int wave)
         {
             State = RoundState.InProgress;
-            IWave next = _waveCollection.GetWave(wave);
+            IWave next = WaveCollection.GetWave(wave);
             next.OnFinished += OnWaveFinished;
             next.OnSpawn += OnSpawn;
             next.Start();
@@ -94,7 +93,7 @@ namespace Lomztein.BFA2.Enemies
 
         private void EndWave(int wave)
         {
-            IWave ended = _waveCollection.GetWave(wave);
+            IWave ended = WaveCollection.GetWave(wave);
             ended.OnFinished -= OnWaveFinished;
             ended.OnSpawn -= OnSpawn;
             State = RoundState.Ready;

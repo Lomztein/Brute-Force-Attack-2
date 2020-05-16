@@ -7,18 +7,14 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Enemies.Waves
 {
-    public class WaveCollection : IWaveCollection
+    [Serializable]
+    public class SimpleWaveCollection : IWaveCollection
     {
-        private IWave[] _waves;
-
-        public void Init(IWave[] waves)
-        {
-            _waves = waves;
-        }
+        public SimpleWave[] Waves;
 
         public IWave GetWave(int index)
         {
-            return _waves[index];
+            return Waves[index];
         }
     }
 }

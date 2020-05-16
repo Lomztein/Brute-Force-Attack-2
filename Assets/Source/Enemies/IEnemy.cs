@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Enemies
 {
     public interface IEnemy
     {
+        float DifficultyValue { get; }
         void Init(Vector3 position);
 
         event Action<IEnemy, int> OnDeath;

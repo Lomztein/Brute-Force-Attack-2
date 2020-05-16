@@ -15,6 +15,9 @@ namespace Lomztein.BFA2.Enemies
 {
     public class Enemy : MonoBehaviour, IEnemy, IDamagable
     {
+        [ModelProperty] [SerializeField]
+        private float _difficultyValue;
+        public float DifficultyValue => _difficultyValue;
         [ModelProperty]
         public float MaxHealth;
         [ModelProperty]

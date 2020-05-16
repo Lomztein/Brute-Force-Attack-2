@@ -21,6 +21,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         {
             new TransformSerializer (),
             new CircleCollider2DSerializer(),
+            new BoxCollider2DSerializer(),
+            new Rigidbody2DSerializer(),
         };
 
         private IPropertyAssembler _propertyAssembler = new DefaultPropertyAssemblers();

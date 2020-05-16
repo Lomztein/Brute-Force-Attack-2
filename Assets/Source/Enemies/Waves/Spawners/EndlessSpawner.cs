@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Content.References;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
 {
     public class EndlessSpawner : MonoBehaviour, ISpawner
     {
-        public GameObject SpawnerPrefab;
+        public IContentGameObject SpawnerPrefab;
 
         public float StepUpDelay;
         public float StepUpSpawnFrequencyMult;
@@ -16,9 +17,9 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
 
         private int _amount;
         private float _delay;
-        private GameObject _prefab;
+        private IContentGameObject _prefab;
 
-        public void Spawn(int amount, float delay, GameObject prefab)
+        public void Spawn(int amount, float delay, IContentGameObject prefab)
         {
             _amount = amount;
             _delay = delay;
@@ -34,9 +35,9 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             SpawnSpawner(_amount, delay, _prefab);
         }
 
-        private void SpawnSpawner (int amount, float delay, GameObject prefab)
+        private void SpawnSpawner (int amount, float delay, IContentGameObject prefab)
         {
-            GameObject obj = Instantiate(SpawnerPrefab);
+            GameObject obj = SpawnerPrefab.Instantiate();
             ISpawner spawner = obj.GetComponent<ISpawner>();
             spawner.OnSpawn += OnNestedSpawn;
             spawner.Spawn(amount, delay, prefab);

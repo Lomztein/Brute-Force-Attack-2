@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,13 @@ namespace Lomztein.BFA2.Enemies.Motors
 {
     public class MoveDirectionMotor : MonoBehaviour, IEnemyMotor
     {
+        [ModelProperty]
         public Vector3 Direction;
+        [ModelProperty]
         public float Speed;
-
+        [ModelProperty]
         public float Range;
+
         private bool _finished;
 
         private void Awake()
