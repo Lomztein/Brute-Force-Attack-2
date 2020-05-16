@@ -52,7 +52,6 @@ namespace Lomztein.BFA2.Content.References
         {
             IGameObjectAssembler assembler = new GameObjectAssembler();
             GameObject instance = assembler.Assemble(GetModel());
-            instance.SetActive(true);
             return instance;
         }
     }

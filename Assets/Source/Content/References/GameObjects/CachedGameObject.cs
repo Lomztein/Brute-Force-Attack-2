@@ -38,6 +38,7 @@ namespace Lomztein.BFA2.Content.References.GameObjects
             {
                 _cache = _contentGO.Instantiate();
                 _cache.SetActive(false);
+
                 _cache.transform.SetParent(GetCacheObject().transform);
             }
             return _cache;

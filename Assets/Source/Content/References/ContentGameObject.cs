@@ -41,7 +41,6 @@ namespace Lomztein.BFA2.Content.References
         {
             GameObject go = UnityEngine.Object.Instantiate(GetCache());
             go.SetActive(true);
-            Debug.Log(go, go);
             return go;
         }
 

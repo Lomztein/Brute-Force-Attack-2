@@ -68,6 +68,7 @@ namespace Lomztein.BFA2.Enemies
             Health -= Mathf.Min (damage, Health);
             Shields--;
 
+
             if (Health <= 0f)
             {
                 Die();
