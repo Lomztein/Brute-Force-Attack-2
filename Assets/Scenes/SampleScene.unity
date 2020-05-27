@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 876530761}
   m_Layer: 0
   m_Name: ContentManager
-  m_TagString: Untagged
+  m_TagString: ContentManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 972623045}
   m_Layer: 0
   m_Name: RoundController
-  m_TagString: Untagged
+  m_TagString: RoundController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1221,9 +1221,9 @@ MonoBehaviour:
       type: 3}
     Seed: 0
     StartingCredits: 20
-    Coeffecient: 2
+    Coeffecient: 1.5
     StartingFrequency: 1
-    FrequencyCoeffecient: 1.75
+    FrequencyCoeffecient: 1.4
     MaxSpawnDelayWave: 10
 --- !u!4 &972623044
 Transform:
@@ -1487,7 +1487,7 @@ GameObject:
   - component: {fileID: 1205910152}
   m_Layer: 0
   m_Name: PlayerResourceContainer
-  m_TagString: Untagged
+  m_TagString: PlayerResourceContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1507,9 +1507,9 @@ MonoBehaviour:
   Resources:
     Elements:
     - Type: 0
-      Value: 850
+      Value: 1000
     - Type: 1
-      Value: 1
+      Value: 0
 --- !u!114 &1205910153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1782,7 +1782,7 @@ GameObject:
   - component: {fileID: 1516892383}
   m_Layer: 0
   m_Name: PlacementController
-  m_TagString: Untagged
+  m_TagString: PlacementController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2279,7 +2279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
 --- !u!1 &2110639146
 GameObject:
   m_ObjectHideFlags: 0

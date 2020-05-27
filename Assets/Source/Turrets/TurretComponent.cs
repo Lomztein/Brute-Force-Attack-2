@@ -40,10 +40,6 @@ namespace Lomztein.BFA2.Turrets
         [SerializeField][ModelProperty]
         protected Size _size;
         public Size Size => _size;
-        [SerializeField]
-        [ModelProperty]
-        protected int _tier;
-        public int Tier => _tier;
 
         [ModelProperty]
         public float PassiveHeatProduction;

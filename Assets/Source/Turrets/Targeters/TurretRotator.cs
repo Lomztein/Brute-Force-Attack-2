@@ -10,7 +10,7 @@ using Lomztein.BFA2.UI.Tooltip;
 
 namespace Lomztein.BFA2.Turrets.Targeters
 {
-    public class TurretRotator : TurretComponent, ITargeter, ITooltip
+    public class TurretRotator : TurretComponent, ITargeter
     {
         [TurretComponent]
         public ITargetProvider TargetProvider;
@@ -21,7 +21,6 @@ namespace Lomztein.BFA2.Turrets.Targeters
         private float _angleToTarget = 180;
         private Vector3? _prevPos;
         private Vector3 _tpos;
-
         public string Text => "Turnrate: " + Turnrate.GetValue();
 
         public override void End()

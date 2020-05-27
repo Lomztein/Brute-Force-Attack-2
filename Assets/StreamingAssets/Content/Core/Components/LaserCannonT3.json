@@ -72,7 +72,7 @@
             "Elements": [
               {
                 "Type": 0,
-                "Value": 20000
+                "Value": 2250
               }
             ]
           }
@@ -87,10 +87,6 @@
         {
           "Name": "_size",
           "Value": 1
-        },
-        {
-          "Name": "_tier",
-          "Value": 3
         },
         {
           "Name": "PassiveHeatProduction",
@@ -193,6 +189,30 @@
         {
           "Name": "UsedByEffector",
           "Value": false
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.TurretComponentModUpgrader",
+      "Properties": [
+        {
+          "Name": "_cost",
+          "Value": {
+            "Cost": {
+              "Elements": [
+                {
+                  "Type": 0,
+                  "Value": 3000
+                }
+              ]
+            },
+            "Coeffecient": 2.0,
+            "X": 0
+          }
+        },
+        {
+          "Name": "MaxUpgrades",
+          "Value": 7
         }
       ]
     }
@@ -334,6 +354,79 @@
           "Children": []
         }
       ]
+    },
+    {
+      "Name": "UpgradeMod",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -2.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "Properties": [
+            {
+              "Name": "Stats",
+              "Value": [
+                {
+                  "Identifier": "Damage",
+                  "Name": "",
+                  "Description": "",
+                  "Type": 1,
+                  "Value": 1.0
+                }
+              ]
+            },
+            {
+              "Name": "RequiredAttributes",
+              "Value": [
+                6
+              ]
+            },
+            {
+              "Name": "_identifier",
+              "Value": "UpgradeModDamage100Percent"
+            },
+            {
+              "Name": "_name",
+              "Value": "Damage +100%"
+            },
+            {
+              "Name": "_description",
+              "Value": "Increase damage by +100%"
+            }
+          ]
+        }
+      ],
+      "Children": []
     }
   ]
 }

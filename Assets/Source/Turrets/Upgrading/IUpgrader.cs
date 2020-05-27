@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Turrets.Upgrading
 {
-    public interface ITurretComponentUpgrader
+    public interface IUpgrader
     {
         IResourceCost Cost { get; }
 
-        string Text { get; }
+        string Description { get; }
 
         void Upgrade();
     }

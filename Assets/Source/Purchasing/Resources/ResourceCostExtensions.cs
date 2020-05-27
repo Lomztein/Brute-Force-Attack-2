@@ -33,5 +33,10 @@ namespace Lomztein.BFA2.Purchasing.Resources
                 same.Value += element.Value;
             }
         }
+
+        public static string Format(this IResourceCost cost)
+        {
+            return string.Join("\n\t", cost.GetCost().Select(x => ResourceInfo.Get(x.Key).Shorthand + ": " + x.Value));
+        }
     }
 }

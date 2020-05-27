@@ -10,8 +10,6 @@ namespace Lomztein.BFA2.Turrets
 
         string UniqueIdentifier { get; }
 
-        int Tier { get; }
-
         Grid.Size Size { get; }
     }
 }

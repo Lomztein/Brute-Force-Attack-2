@@ -10,38 +10,16 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.Upgrading
 {
-    public class TurretComponentTypeUpgrader : MonoBehaviour, ITurretComponentUpgrader, ITooltip
+    public class TurretComponentTypeUpgrader : MonoBehaviour, IUpgrader
     {
         [ModelProperty]
         public string UpgradeComponentIdentifier;
-        private IResourceContainer _resourceContainer;
 
-        public string Text => $"{GetThis().Name} -> {GetUpgrade().Name}\n\t{GetUpgrade().Cost.ToString()}";
-
+        public string Description => $"{GetThis().Name} -> {GetUpgrade().Name}";
         public IResourceCost Cost => GetUpgrade().Cost;
-
-        private void Start()
-        {
-            _resourceContainer = GetComponent<IResourceContainer>();
-        }
-
-        public void OnMouseDown()
-        {
-            if (CanUpgrade())
-            {
-                Upgrade();
-            }
-        }
-
-        private bool CanUpgrade()
-        {
-            return _resourceContainer.HasEnough(GetUpgrade().Cost);
-        }
 
         private void Upgrade()
         {
-            _resourceContainer.TrySpend(GetUpgrade().Cost);
-
             ITurretAssembly assembly = GetComponentInParent<ITurretAssembly>();
             ITurretComponent current = GetComponent<ITurretComponent>();
 
@@ -66,7 +44,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
             return GameObjectTurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).GetCache().GetComponent<IPurchasable>();
         }
 
-        void ITurretComponentUpgrader.Upgrade()
+        void IUpgrader.Upgrade()
         {
             Upgrade();
         }

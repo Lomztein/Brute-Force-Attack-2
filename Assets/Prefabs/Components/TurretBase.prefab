@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5246017201175003113}
   - component: {fileID: 5191529570489633430}
   - component: {fileID: -3377766451071044650}
+  - component: {fileID: 3611657151604057726}
   m_Layer: 9
   m_Name: TurretBase
   m_TagString: Untagged
@@ -31,6 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5246017202535924012}
+  - {fileID: 717786030313460309}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55,7 +57,6 @@ MonoBehaviour:
       Value: 200
   _modAttributes: 
   _size: 1
-  _tier: 1
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
@@ -93,6 +94,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3611657151604057726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246017201175003115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4fc15437c240a4e9f6c4195bddb015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cost:
+    Cost:
+      Elements:
+      - Type: 0
+        Value: 250
+    Coeffecient: 2
+  MaxUpgrades: 10
 --- !u!1 &5246017202535924015
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,3 +166,56 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
+--- !u!1 &7589574359406796267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717786030313460309}
+  - component: {fileID: 828626924744628612}
+  m_Layer: 9
+  m_Name: UpgradeMod
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &717786030313460309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589574359406796267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5246017201175003112}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828626924744628612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7589574359406796267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequiredAttributes: 00000000
+  _identifier: UpgradeModIncreaseRange+20
+  _name: Range +20%
+  _description: Increase range by +20%
+  Stats:
+  - Identifier: Range
+    Name: 
+    Description: 
+    Type: 1
+    Value: 0.2
