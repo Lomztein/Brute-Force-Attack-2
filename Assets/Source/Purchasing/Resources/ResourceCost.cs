@@ -23,5 +23,10 @@ namespace Lomztein.BFA2.Purchasing.Resources
         {
             return Elements.ToDictionary(x => x.Type, y => y.Value);
         }
+
+        public override string ToString()
+        {
+            return string.Join("\n\t", GetCost().Select(x => ResourceInfo.Get(x.Key).Shorthand + ": " + x.Value));
+        }
     }
 }

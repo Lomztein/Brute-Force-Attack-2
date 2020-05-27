@@ -1,7 +1,7 @@
 {
   "Name": "MissleLauncher",
   "Tag": "Untagged",
-  "Layer": 0,
+  "Layer": 9,
   "Static": false,
   "Components": [
     {
@@ -86,6 +86,10 @@
         },
         {
           "Name": "_size",
+          "Value": 1
+        },
+        {
+          "Name": "_tier",
           "Value": 1
         },
         {
@@ -191,13 +195,26 @@
           "Value": false
         }
       ]
+    },
+    {
+      "TypeName": "TurretUpgrade",
+      "Properties": [
+        {
+          "Name": "UpgradeComponentIdentifier",
+          "Value": "Core.RocketLauncherT2"
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
+      "Properties": []
     }
   ],
   "Children": [
     {
       "Name": "Sprite",
       "Tag": "Untagged",
-      "Layer": 0,
+      "Layer": 9,
       "Static": false,
       "Components": [
         {
@@ -257,7 +274,7 @@
     {
       "Name": "Muzzles",
       "Tag": "Untagged",
-      "Layer": 0,
+      "Layer": 9,
       "Static": false,
       "Components": [
         {
@@ -294,7 +311,7 @@
         {
           "Name": "Muzzle",
           "Tag": "Untagged",
-          "Layer": 0,
+          "Layer": 9,
           "Static": false,
           "Components": [
             {

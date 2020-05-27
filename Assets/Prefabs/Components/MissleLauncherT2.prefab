@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1749877113268985868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muzzles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8983164369162933323}
   - component: {fileID: 4046499078206474247}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,9 @@ GameObject:
   - component: {fileID: 8983164369808527855}
   - component: {fileID: 8139534575009318368}
   - component: {fileID: 5813048448918230106}
-  m_Layer: 0
+  - component: {fileID: -6559678726320766276}
+  - component: {fileID: 8539995618159568600}
+  m_Layer: 9
   m_Name: MissleLauncherT2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +144,7 @@ MonoBehaviour:
       Value: 1500
   _modAttributes: 0400000006000000
   _size: 1
+  _tier: 2
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
@@ -228,6 +231,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-6559678726320766276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983164369808527842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c534066ffecbbf48a2bf5d08fc5af0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeComponentIdentifier: Core.RocketLauncherT3
+--- !u!114 &8539995618159568600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983164369808527842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1774fcb862c4d3439f1843d28cb8f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8983164370671711079
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8983164370671711078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

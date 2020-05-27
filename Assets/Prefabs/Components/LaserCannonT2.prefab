@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1013188143243235162}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,9 @@ GameObject:
   - component: {fileID: 1013188143988452819}
   - component: {fileID: 8579898881888915783}
   - component: {fileID: -5090018618559331163}
-  m_Layer: 0
+  - component: {fileID: -3223633711966631306}
+  - component: {fileID: -704937759905073183}
+  m_Layer: 9
   m_Name: LaserCannonT2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,6 +90,7 @@ MonoBehaviour:
       Value: 750
   _modAttributes: 0600000003000000
   _size: 1
+  _tier: 2
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
@@ -174,6 +177,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-3223633711966631306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013188143988452830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c534066ffecbbf48a2bf5d08fc5af0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeComponentIdentifier: Core.LaserCannonT3
+--- !u!114 &-704937759905073183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013188143988452830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1774fcb862c4d3439f1843d28cb8f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1013188144953337968
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1013188144953337975}
   - component: {fileID: 5835422889818807411}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1801648029916199089}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muzzle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678813072138769591}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Muzzles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,7 +1,7 @@
 {
   "Name": "MachineGunT2",
   "Tag": "Untagged",
-  "Layer": 0,
+  "Layer": 9,
   "Static": false,
   "Components": [
     {
@@ -87,6 +87,10 @@
         {
           "Name": "_size",
           "Value": 1
+        },
+        {
+          "Name": "_tier",
+          "Value": 2
         },
         {
           "Name": "PassiveHeatProduction",
@@ -351,13 +355,26 @@
           "Value": false
         }
       ]
+    },
+    {
+      "TypeName": "TurretUpgrade",
+      "Properties": [
+        {
+          "Name": "UpgradeComponentIdentifier",
+          "Value": "Core.MachineGunT3"
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
+      "Properties": []
     }
   ],
   "Children": [
     {
       "Name": "Sprite",
       "Tag": "Untagged",
-      "Layer": 0,
+      "Layer": 9,
       "Static": false,
       "Components": [
         {
@@ -417,7 +434,7 @@
     {
       "Name": "Muzzles",
       "Tag": "Untagged",
-      "Layer": 0,
+      "Layer": 9,
       "Static": false,
       "Components": [
         {
@@ -454,7 +471,7 @@
         {
           "Name": "Muzzle",
           "Tag": "Untagged",
-          "Layer": 0,
+          "Layer": 9,
           "Static": false,
           "Components": [
             {
@@ -492,7 +509,7 @@
         {
           "Name": "Muzzle (1)",
           "Tag": "Untagged",
-          "Layer": 0,
+          "Layer": 9,
           "Static": false,
           "Components": [
             {

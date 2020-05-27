@@ -7,6 +7,7 @@ using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.ExpansionCards;
+using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,6 +40,10 @@ namespace Lomztein.BFA2.Turrets
         [SerializeField][ModelProperty]
         protected Size _size;
         public Size Size => _size;
+        [SerializeField]
+        [ModelProperty]
+        protected int _tier;
+        public int Tier => _tier;
 
         [ModelProperty]
         public float PassiveHeatProduction;

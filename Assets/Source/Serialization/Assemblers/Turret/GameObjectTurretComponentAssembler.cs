@@ -54,7 +54,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
             return new TurretComponentModel(component.UniqueIdentifier, obj.transform.localPosition, children.ToArray());
         }
 
-        private IContentCachedPrefab[] GetComponents ()
+        // TODO: Create a common provider for turret components.
+        public static IContentCachedPrefab[] GetComponents ()
         {
             if (_allComponents == null)
             {
@@ -63,7 +64,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
             return _allComponents;
         }
 
-        private IContentCachedPrefab GetComponent (string identifier)
+        public static IContentCachedPrefab GetComponent (string identifier)
         {
             return GetComponents().First(x => x.GetCache().GetComponent<ITurretComponent>().UniqueIdentifier == identifier);
         }
