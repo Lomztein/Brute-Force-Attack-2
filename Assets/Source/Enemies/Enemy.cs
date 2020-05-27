@@ -15,6 +15,8 @@ namespace Lomztein.BFA2.Enemies
 {
     public class Enemy : MonoBehaviour, IEnemy, IDamagable
     {
+        private const float CRITICAL_DAMAGE_MULT = 2f;
+
         [ModelProperty] [SerializeField]
         private float _difficultyValue;
         public float DifficultyValue => _difficultyValue;
@@ -32,6 +34,7 @@ namespace Lomztein.BFA2.Enemies
         public int Value { get => _value; }
 
         public float Health { get; private set; }
+        [ModelProperty]
         public Color Color;
 
         private IEnemyMotor _motor;
@@ -66,7 +69,7 @@ namespace Lomztein.BFA2.Enemies
             damageInfo.DamageDealt = Mathf.Min (Health + GetDamageReduction (damage), damageInfo.Damage);
 
             Health -= Mathf.Min (damage, Health);
-            Shields--;
+            Shields = Mathf.Max (Shields - 1, 0);
 
 
             if (Health <= 0f)
@@ -78,7 +81,9 @@ namespace Lomztein.BFA2.Enemies
 
         private float GetDamage (DamageInfo info)
         {
-            return Mathf.Max(info.Damage - GetDamageReduction(info.Damage), 0f);
+            float damage = info.Damage * (info.Color == Color ? CRITICAL_DAMAGE_MULT : 1f);
+            damage = Mathf.Max(damage - GetDamageReduction(damage), 0f);
+            return damage;
         }
 
         private float GetDamageReduction (float damage)

@@ -15,18 +15,8 @@ namespace Lomztein.BFA2.UI.Tooltip
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var colliders = Physics2D.OverlapPointAll(position, TargetLayers);
-            ITooltip tooltip = null;
-
-            foreach (var collider in colliders)
-            {
-                tooltip = collider.GetComponent<ITooltip>();
-                if (tooltip != null)
-                {
-                    break;
-                }
-            }
-
-            return tooltip?.Text;
+            IEnumerable<ITooltip> tooltips = colliders.SelectMany (x => x.GetComponents<ITooltip>()).Where(x => x != null);
+            return string.Join("\n", tooltips.Select(x => x.Text));
         }
     }
 }

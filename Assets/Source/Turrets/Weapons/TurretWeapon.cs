@@ -5,6 +5,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Rangers;
 using Lomztein.BFA2.Turrets.Targeters;
 using Lomztein.BFA2.Turrets.TargetProviders;
+using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.FireControl;
 using Lomztein.BFA2.Weaponary.Projectiles;
@@ -16,7 +17,7 @@ using Color = Lomztein.BFA2.Colorization.Color;
 
 namespace Lomztein.BFA2.Turrets.Weapons
 {
-    public class TurretWeapon : TurretComponent, IColorProvider, IWeapon
+    public class TurretWeapon : TurretComponent, IColorProvider, IWeapon, ITooltip
     {
         [TurretComponent]
         public ITargeter Targeter;
@@ -40,6 +41,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public IStatReference Speed;
         public IStatReference Firerate;
         public float Cooldown => 1f / Firerate.GetValue();
+
+        public string Text => $"DPS: {Mathf.RoundToInt(GetDamage() * GetFirerate() * _muzzles.Length)}";
 
         private IWeaponFire _weaponFire;
         private IFireAnimation _fireAnimation;

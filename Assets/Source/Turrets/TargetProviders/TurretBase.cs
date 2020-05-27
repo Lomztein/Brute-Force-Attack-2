@@ -4,6 +4,7 @@ using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.Turrets.Rangers;
+using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.TargetProviders
 {
-    public class TurretBase : TurretComponent, ITargetProvider, IRanger
+    public class TurretBase : TurretComponent, ITargetProvider, IRanger, ITooltip
     {
         public IStatReference Range;
         [ModelProperty]
@@ -23,6 +24,8 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         private ITargetFinder _targetFinder;
 
         private IEventCaller<TargetEventArgs> _onTargetAcquired;
+
+        public string Text => "Range: " + Range.GetValue();
 
         public override void End()
         {

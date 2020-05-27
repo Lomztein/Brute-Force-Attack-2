@@ -13,10 +13,8 @@ namespace Lomztein.BFA2.Content.References.PrefabProviders
     public class ContentAssemblyPrefabProvider : MonoBehaviour, ICachedPrefabProvider
     {
         public string Path;
-        public int MaxTier;
 
         public IContentCachedPrefab[] Get()
-            => Content.GetAll(Path, typeof (ContentCachedTurretAssemblyPrefab)).Cast<IContentCachedPrefab>().Where(x => x.GetCache()
-            .GetComponentsInChildren<ITurretComponent>().All(y => y.Tier <= MaxTier)).ToArray();
+            => Content.GetAll(Path, typeof(ContentCachedTurretAssemblyPrefab)).Cast<IContentCachedPrefab>().ToArray();
     }
 }
