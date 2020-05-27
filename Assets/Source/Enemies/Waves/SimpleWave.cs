@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Content.References;
+﻿using Lomztein.BFA2.Content.Objects;
+using Lomztein.BFA2.Content.References;
 using Lomztein.BFA2.Enemies.Waves.Spawners;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Lomztein.BFA2.Enemies.Waves
     public class SimpleWave : IWave
     {
         public float SpawnDelay;
-        public IContentGameObject Prefab;
+        public IContentPrefab Prefab;
         public GameObject SpawnerPrefab;
 
         public int SpawnAmount;
@@ -27,7 +28,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             Alive = SpawnAmount;
         }
         
-        public SimpleWave (IContentGameObject prefab, GameObject spawner, int amount, float delay)
+        public SimpleWave (IContentPrefab prefab, GameObject spawner, int amount, float delay)
         {
             Prefab = prefab;
             SpawnerPrefab = spawner;

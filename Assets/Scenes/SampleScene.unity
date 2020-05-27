@@ -1217,61 +1217,13 @@ MonoBehaviour:
   SpawnAreaSize: {x: 15, y: 1}
   SpawnAreaCenter: {x: 0, y: 15}
   _internalWaveCollection:
-    Spawner: {fileID: 1728763116868555419, guid: 4f5a23a3891afcc49915354dfb607841,
+    Spawner: {fileID: 1728763116868555419, guid: a6cd82beadf41274d8aab72ddc301e83,
       type: 3}
     Seed: 0
-    StartingCredits: 500
+    StartingCredits: 20
     Coeffecient: 2
-    MaxSpawnFrequency: 50
-    MinSpawnFrequency: 2
-    MaxSpawnFrequencyCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    MinSpawnFrequencyCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    StartingFrequency: 1
+    FrequencyCoeffecient: 1.75
     MaxSpawnDelayWave: 10
 --- !u!4 &972623044
 Transform:

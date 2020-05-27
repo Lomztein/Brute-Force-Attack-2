@@ -1,12 +1,6 @@
 ﻿using Lomztein.BFA2.Content.References;
-using Lomztein.BFA2.Content.References.GameObjects;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles
@@ -14,7 +8,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
     public class ProjectileInstantiator : MonoBehaviour, IProjectileInstantiator
     {
         [ModelProperty]
-        public ContentGameObject _prefab;
+        public ContentPrefabReference _prefab;
 
         public IObjectPool<IProjectile> Source { get; set; }
 

@@ -8,7 +8,8 @@ namespace Lomztein.BFA2.Content.References.Componentsnny
     public class ContentSpriteRenderer : MonoBehaviour
     {
         [ModelProperty]
-        public ContentSprite Reference;
+        public ContentSpriteReference Reference;
+        private bool _converted = false;
 
         public void OnAssembled()
         {
@@ -22,9 +23,13 @@ namespace Lomztein.BFA2.Content.References.Componentsnny
 
         private void Convert ()
         {
-            SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
-            renderer.sprite = Reference.Get();
-            DestroyImmediate(this, true);
+            if (!_converted)
+            {
+                SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
+                renderer.sprite = Reference.Get();
+                _converted = true;
+                Destroy(this);
+            }
         }
     }
 }

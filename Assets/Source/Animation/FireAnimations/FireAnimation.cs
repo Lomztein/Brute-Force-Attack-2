@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.Animation.FireAnimations
     {
         private SpriteRenderer _spriteRenderer;
         [ModelProperty]
-        public ContentSprite DefaultSprite;
+        public ContentSpriteReference DefaultSprite;
         [ModelProperty]
         public float PlaySpeedMultiplier = 1f;
 
@@ -17,12 +17,12 @@ namespace Lomztein.BFA2.Animation.FireAnimations
 
         public abstract void Play(float animSpeed);
 
-        protected float GetAnimationDelay(ContentSprite[] sprites, float animationLength)
+        protected float GetAnimationDelay(ContentSpriteReference[] sprites, float animationLength)
         {
             return animationLength / sprites.Length;
         }
 
-        protected IEnumerator Animate(ContentSprite[] sprites, float delay)
+        protected IEnumerator Animate(ContentSpriteReference[] sprites, float delay)
         {
             for (int i = 0; i < sprites.Length; i++)
             {

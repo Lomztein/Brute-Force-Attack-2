@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Content.Loaders;
+using Lomztein.BFA2.Content.Loaders.ContentLoaders;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,11 @@ namespace Lomztein.BFA2.Content
         public string Author { get; private set; }
         public string Description { get; private set; }
 
-        private IRawContentLoader _contentLoader = new RawContentLoader();
+        private IRawContentLoader _contentLoader = new RawContentLoader(
+                new Texture2DRawContentLoader(),
+                new TurretAssemblyRawLoader(),
+                new PrefabRawLoader()
+            );
 
         public ContentPack(string path, string name, string author, string description)
         {

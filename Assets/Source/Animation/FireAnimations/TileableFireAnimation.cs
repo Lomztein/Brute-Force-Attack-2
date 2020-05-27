@@ -8,11 +8,11 @@ namespace Lomztein.BFA2.Animation.FireAnimations
     public class TileableFireAnimation : FireAnimation
     {
         [ModelProperty]
-        public ContentSprite[] StartAnimationSprites;
+        public ContentSpriteReference[] StartAnimationSprites;
         [ModelProperty]
-        public ContentSprite[] MidAnimationSprites;
+        public ContentSpriteReference[] MidAnimationSprites;
         [ModelProperty]
-        public ContentSprite[] EndAnimationSprites;
+        public ContentSpriteReference[] EndAnimationSprites;
 
         private Coroutine _coroutine;
         private bool _continue;

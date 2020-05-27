@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Animation.FireAnimations
     public class SimpleFireAnimation : FireAnimation
     {
         [ModelProperty]
-        public ContentSprite[] AnimationSprites;
+        public ContentSpriteReference[] AnimationSprites;
 
         public override void Play (float animSpeed)
         {

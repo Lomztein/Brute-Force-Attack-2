@@ -1,13 +1,9 @@
-﻿using Lomztein.BFA2.Content.References;
-using Lomztein.BFA2.Content.References.GameObjects;
+﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.Serialization.Models.GameObject;
 using Lomztein.BFA2.Serialization.Models.Turret;
 using Lomztein.BFA2.Turrets;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.Turret
@@ -15,11 +11,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
     public class GameObjectTurretComponentAssembler
     {
         private static string COMPONENTS_CONTENT_PATH = "*/Components";
-        private static CachedGameObject[] _allComponents;
+        private static IContentCachedPrefab[] _allComponents;
 
         public void Assemble (ITurretComponentModel model, ITurretComponent parent, ITurretAssembly assembly)
         {
-            CachedGameObject component = GetComponent(model.ComponentIdentifier);
+            IContentCachedPrefab component = GetComponent(model.ComponentIdentifier);
             GameObject obj = component.Instantiate();
 
             if (parent != null)
@@ -58,24 +54,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
             return new TurretComponentModel(component.UniqueIdentifier, obj.transform.localPosition, children.ToArray());
         }
 
-        private CachedGameObject[] GetComponents ()
+        private IContentCachedPrefab[] GetComponents ()
         {
             if (_allComponents == null)
             {
-                List<CachedGameObject> objects = new List<CachedGameObject>();
-                var components = Content.Content.GetAll(COMPONENTS_CONTENT_PATH, typeof(IGameObjectModel));
-                foreach (IGameObjectModel component in components)
-                {
-                    objects.Add(new CachedGameObject(new ContentGameObjectModel(component)));
-                }
-                _allComponents = objects.ToArray();
+                _allComponents = Content.Content.GetAll(COMPONENTS_CONTENT_PATH, typeof (IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
             }
             return _allComponents;
         }
 
-        private CachedGameObject GetComponent (string identifier)
+        private IContentCachedPrefab GetComponent (string identifier)
         {
-            return GetComponents().First(x => x.Get().GetComponent<ITurretComponent>().UniqueIdentifier == identifier);
+            return GetComponents().First(x => x.GetCache().GetComponent<ITurretComponent>().UniqueIdentifier == identifier);
         }
     }
 }

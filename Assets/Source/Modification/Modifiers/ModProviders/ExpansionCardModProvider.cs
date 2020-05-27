@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders
         [SerializeField] [ModelProperty] private ResourceCost _cost;
         public IResourceCost Cost => _cost;
 
-        [SerializeField] [ModelProperty] private ContentSprite _sprite;
+        [SerializeField] [ModelProperty] private ContentSpriteReference _sprite;
         public Sprite Sprite => _sprite.Get();
 
         private void Awake()
