@@ -27,7 +27,8 @@ namespace Lomztein.BFA2.Purchasing.UI
 
         private void Update()
         {
-            Text.text = $"{_container.GetResource(Resource)} {_info.Shorthand}";
+            int amount = _container.GetResource(Resource);
+            Text.text = $"{(amount == int.MaxValue ? "Infinite" : amount.ToString())} {_info.Shorthand}";
         }
     }
 }

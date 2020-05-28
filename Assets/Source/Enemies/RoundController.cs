@@ -67,15 +67,13 @@ namespace Lomztein.BFA2.Enemies
             State = RoundState.InProgress;
             IWave next = WaveCollection.GetWave(wave);
             next.OnFinished += OnWaveFinished;
-            next.OnSpawn += OnSpawn;
-            next.Start();
+            next.OnEnemySpawn += OnSpawn;
+            next.Start(_resourceContainer);
         }
 
         private void OnSpawn(IEnemy obj)
         {
             obj.Init(GetRandomPosition());
-            obj.OnDeath += OnEnemyDeath;
-            obj.OnFinished += OnEnemyFinished;
         }
 
         private Vector2 GetRandomPosition()
@@ -95,7 +93,7 @@ namespace Lomztein.BFA2.Enemies
         {
             IWave ended = WaveCollection.GetWave(wave);
             ended.OnFinished -= OnWaveFinished;
-            ended.OnSpawn -= OnSpawn;
+            ended.OnEnemySpawn -= OnSpawn;
             State = RoundState.Ready;
             _resourceContainer.ChangeResource(Resource.Research, 1);
         }
@@ -103,16 +101,6 @@ namespace Lomztein.BFA2.Enemies
         private void OnDrawGizmos()
         {
             Gizmos.DrawWireCube(SpawnAreaCenter, SpawnAreaSize * 2f);
-        }
-
-        public void OnEnemyDeath(IEnemy enemy, int credits)
-        {
-            _resourceContainer.ChangeResource(Resource.Credits, credits);
-        }
-
-        public void OnEnemyFinished (IEnemy enemy, float damage)
-        {
-
         }
     }
 }

@@ -29,9 +29,9 @@ namespace Lomztein.BFA2.Enemies
         [ModelProperty]
         public float Damage;
 
-        [SerializeField][ModelProperty]
-        private int _value;
-        public int Value { get => _value; }
+        [SerializeField]
+        [ModelProperty]
+        public float Value;
 
         public float Health { get; private set; }
         [ModelProperty]
@@ -39,8 +39,8 @@ namespace Lomztein.BFA2.Enemies
 
         private IEnemyMotor _motor;
 
-        public event Action<IEnemy, int> OnDeath;
-        public event Action<IEnemy, float> OnFinished;
+        public event Action<IEnemy> OnKilled;
+        public event Action<IEnemy> OnFinished;
 
         private void Start()
         {
@@ -60,7 +60,7 @@ namespace Lomztein.BFA2.Enemies
         private void DoDamage ()
         {
             Destroy(gameObject);
-            OnFinished?.Invoke(this, Damage);
+            OnFinished?.Invoke(this);
         }
 
         public float TakeDamage(DamageInfo damageInfo)
@@ -70,7 +70,6 @@ namespace Lomztein.BFA2.Enemies
 
             Health -= Mathf.Min (damage, Health);
             Shields = Mathf.Max (Shields - 1, 0);
-
 
             if (Health <= 0f)
             {
@@ -94,7 +93,7 @@ namespace Lomztein.BFA2.Enemies
         private void Die ()
         {
             Destroy(gameObject);
-            OnDeath?.Invoke(this, Value);
+            OnKilled?.Invoke(this);
         }
 
         public void Init(Vector3 position)

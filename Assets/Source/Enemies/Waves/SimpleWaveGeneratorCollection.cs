@@ -25,6 +25,12 @@ namespace Lomztein.BFA2.Enemies.Waves
         public float StartingFrequency;
         public float FrequencyCoeffecient;
 
+        public float StartingEarnedFromKills;
+        public float EarnedFromKillsCoeffecient;
+
+        public float StartingCompletionReward;
+        public float CompletionRewardCoeffecient;
+
         public int MaxSpawnDelayWave;
 
         private IContentCachedPrefab[] GetEnemies ()
@@ -60,6 +66,10 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private float GetAvailableCredits(int wave) => StartingCredits * Mathf.Pow(Coeffecient, wave);
 
+        private float GetEarnedFromKills (int wave) => StartingEarnedFromKills * Mathf.Pow(EarnedFromKillsCoeffecient, wave);
+
+        private float GetCompletionReward (int wave) => StartingCompletionReward * Mathf.Pow(CompletionRewardCoeffecient, wave);
+
         public IWave GetWave(int index)
         {
             float credits = GetAvailableCredits(index);
@@ -67,7 +77,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             (IContentCachedPrefab enemy, int amount) = GetRandomEnemy(credits);
             float frequency = GetSpawnFrequency(index) / enemy.GetCache().GetComponent<IEnemy>().DifficultyValue;
 
-            return new SimpleWave(enemy, Spawner, amount, 1 / frequency);
+            return new SimpleWave(enemy, Spawner, amount, 1 / frequency, Mathf.RoundToInt(GetEarnedFromKills (index)), Mathf.RoundToInt(GetCompletionReward(index)));
         }
     }
 }

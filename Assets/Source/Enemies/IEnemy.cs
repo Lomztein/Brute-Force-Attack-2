@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Enemies
         float DifficultyValue { get; }
         void Init(Vector3 position);
 
-        event Action<IEnemy, int> OnDeath;
-        event Action<IEnemy, float> OnFinished;
+        event Action<IEnemy> OnKilled;
+        event Action<IEnemy> OnFinished;
     }
 }

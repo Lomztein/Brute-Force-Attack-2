@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.Content.References;
 using Lomztein.BFA2.Enemies.Waves.Spawners;
+using Lomztein.BFA2.Purchasing.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,21 +20,33 @@ namespace Lomztein.BFA2.Enemies.Waves
         public int SpawnAmount;
         public int Alive;
 
-        public event Action<IEnemy> OnSpawn;
+        public event Action<IEnemy> OnEnemySpawn;
+        public event Action<IEnemy> OnEnemyKill;
+        public event Action<IEnemy> OnEnemyFinish;
         public event Action OnFinished;
 
-        public void Start()
+        public int EarnedFromKills;
+        public int CompletionReward;
+
+        private IResourceContainer _rewardTarget;
+        private float _earnings;
+
+        public void Start(IResourceContainer rewardTarget) // TODO: Delegate rewarding to a different class, like a WaveRewarder or something.
         {
             Spawn();
             Alive = SpawnAmount;
+            _rewardTarget = rewardTarget;
         }
         
-        public SimpleWave (IContentPrefab prefab, GameObject spawner, int amount, float delay)
+        public SimpleWave (IContentPrefab prefab, GameObject spawner, int amount, float delay, int earnedFromKills, int reward)
         {
             Prefab = prefab;
             SpawnerPrefab = spawner;
             SpawnAmount = amount;
             SpawnDelay = delay;
+
+            EarnedFromKills = earnedFromKills;
+            CompletionReward = reward;
         }
 
         private void Spawn()
@@ -47,10 +60,32 @@ namespace Lomztein.BFA2.Enemies.Waves
         private void Spawner_OnSpawn(GameObject obj)
         {
             IEnemy enemy = obj.GetComponent<IEnemy>();
-            OnSpawn?.Invoke(enemy);
+            OnEnemySpawn?.Invoke(enemy);
 
-            enemy.OnDeath += (x, y) => OnEnemyDeath(x);
-            enemy.OnFinished += (x, y) => OnEnemyDeath(x);
+            enemy.OnKilled += OnEnemyDeath;
+            enemy.OnFinished += OnEnemyDeath;
+
+            enemy.OnKilled += OnEnemyKilled;
+            enemy.OnFinished += OnEnemyFinished;
+        }
+
+        private void OnEnemyFinished(IEnemy obj)
+        {
+            OnEnemyFinish?.Invoke(obj);
+        }
+
+        private void OnEnemyKilled(IEnemy obj)
+        {
+            OnEnemyKill?.Invoke(obj);
+            Earn((float)EarnedFromKills / SpawnAmount);
+        }
+
+        private void Earn (float value)
+        {
+            _earnings += value;
+            int floored = Mathf.FloorToInt(_earnings);
+            _rewardTarget.ChangeResource(Resource.Credits, floored);
+            _earnings -= floored;
         }
 
         private void OnEnemyDeath(IEnemy enemy)
@@ -59,6 +94,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             if (Alive == 0)
             {
                 OnFinished?.Invoke();
+                _rewardTarget.ChangeResource(Resource.Credits, CompletionReward);
             }
         }
     }

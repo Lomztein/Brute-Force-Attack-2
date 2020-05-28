@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Purchasing.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,11 @@ namespace Lomztein.BFA2.Enemies.Waves
 {
     public interface IWave
     {
-        void Start();
+        void Start(IResourceContainer rewardTarget);
 
-        event Action<IEnemy> OnSpawn;
+        event Action<IEnemy> OnEnemySpawn;
+        event Action<IEnemy> OnEnemyKill;
+        event Action<IEnemy> OnEnemyFinish;
         event Action OnFinished;
     }
 }

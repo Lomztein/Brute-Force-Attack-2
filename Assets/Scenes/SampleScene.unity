@@ -1223,7 +1223,11 @@ MonoBehaviour:
     StartingCredits: 20
     Coeffecient: 1.5
     StartingFrequency: 1
-    FrequencyCoeffecient: 1.4
+    FrequencyCoeffecient: 1.45
+    StartingEarnedFromKills: 250
+    EarnedFromKillsCoeffecient: 1.25
+    StartingCompletionReward: 100
+    CompletionRewardCoeffecient: 1.1
     MaxSpawnDelayWave: 10
 --- !u!4 &972623044
 Transform:
@@ -1483,8 +1487,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205910154}
-  - component: {fileID: 1205910153}
   - component: {fileID: 1205910152}
+  - component: {fileID: 1205910153}
   m_Layer: 0
   m_Name: PlayerResourceContainer
   m_TagString: PlayerResourceContainer
