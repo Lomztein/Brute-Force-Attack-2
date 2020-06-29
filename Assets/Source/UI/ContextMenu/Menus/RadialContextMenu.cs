@@ -89,7 +89,8 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
             for (int i = 0; i < _buttons.Count; i++)
             {
                 _buttons[i].transform.GetChild(0).GetComponent<Image>().sprite = arr[i].Sprite;
-                _buttons[i].GetComponent<Tooltip.Tooltip>()._Text = arr[i].Name + "\n<i><size=14><color=silver>" + arr[i].Description + "</color></size></i>";
+                _buttons[i].GetComponent<Tooltip.Tooltip>()._Title = arr[i].Name;
+                _buttons[i].GetComponent<Tooltip.Tooltip>()._Description = arr[i].Description;
             }
         }
 

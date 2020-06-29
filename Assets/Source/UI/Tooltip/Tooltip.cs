@@ -9,8 +9,14 @@ namespace Lomztein.BFA2.UI.Tooltip
 {
     public class Tooltip : MonoBehaviour, ITooltip
     {
-        public string _Text;
+        public string _Title;
+        public string _Description;
+        public string _Footnote;
 
-        public string Text => _Text;
+        public string Title => _Title;
+
+        public string Description => _Description;
+
+        public string Footnote => _Footnote;
     }
 }

@@ -11,7 +11,9 @@ namespace Lomztein.BFA2.UI.Tooltip
     public class TooltipController : MonoBehaviour
     {
         public Transform TooltipTransform;
-        public Text TooltipText;
+        public Text TooltipTitle;
+        public Text TooltipDescription;
+        public Text TooltipFooter;
         public Vector2 Offset;
 
         public GameObject[] Updaters;
@@ -24,19 +26,27 @@ namespace Lomztein.BFA2.UI.Tooltip
 
         private void Update()
         {
-            TooltipText.text = string.Empty;
+            TooltipTitle.text = string.Empty;
+            TooltipDescription.text = string.Empty;
+            TooltipFooter.text = string.Empty;
 
             foreach (ITooltipUpdater updater in _updaters)
             {
-                string result = updater.GetTooltip();
-                if (!string.IsNullOrEmpty(result))
+                ITooltip tooltip = updater.GetTooltip();
+                if (tooltip != null)
                 {
-                    TooltipText.text = result;
+                    TooltipTitle.text = tooltip.Title;
+                    TooltipDescription.text = tooltip.Description;
+                    TooltipFooter.text = tooltip.Footnote;
                     break;
                 }
             }
 
-            TooltipTransform.gameObject.SetActive(!string.IsNullOrEmpty(TooltipText.text));
+
+            TooltipTransform.gameObject.SetActive(!string.IsNullOrEmpty(TooltipTitle.text));
+
+            TooltipDescription.gameObject.SetActive(!string.IsNullOrEmpty(TooltipDescription.text));
+            TooltipFooter.gameObject.SetActive(!string.IsNullOrEmpty(TooltipFooter.text));
 
             Vector2 mousePos = Input.mousePosition;
             TooltipTransform.position = mousePos + Offset;

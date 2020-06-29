@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.UI.Tooltip
         public GraphicRaycaster Raycaster;
         public EventSystem EventSystem;
 
-        public string GetTooltip()
+        public ITooltip GetTooltip()
         {
             PointerEventData data = new PointerEventData(EventSystem);
             data.position = Input.mousePosition;
@@ -28,11 +28,11 @@ namespace Lomztein.BFA2.UI.Tooltip
                 ITooltip tooltip = result.gameObject.GetComponent<ITooltip>();
                 if (tooltip != null)
                 {
-                    return tooltip.Text;
+                    return tooltip;
                 }
             }
 
-            return string.Empty;
+            return null;
         }
     }
 }

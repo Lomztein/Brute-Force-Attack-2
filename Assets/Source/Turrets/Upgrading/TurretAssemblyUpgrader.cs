@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
         public Sprite UpgradeSprite;
         public IResourceCost Cost => GetUpgradersInComponents().Select(x => x.Cost).Sum();
 
-        public string Description => string.Join("\n", GetUpgradersInComponents().Select(x => x.Description)) + "\n\nUpgrade cost:\n\t" + Cost.Format();
+        public string Description => string.Join("\n", GetUpgradersInComponents().Select(x => x.Description));
         
         public void Upgrade()
         {
@@ -47,7 +47,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption ("Upgrade Assembly", Description, UpgradeSprite, () => TryUpgrade(), () => CanUpgrade())
+                new ContextMenuOption ("Upgrade Assembly - " + Cost.Format(), Description, UpgradeSprite, () => TryUpgrade(), () => CanUpgrade())
             };
         }
     }

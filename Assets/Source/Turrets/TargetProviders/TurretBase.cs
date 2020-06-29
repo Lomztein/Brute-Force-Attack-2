@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.TargetProviders
 {
-    public class TurretBase : TurretComponent, ITargetProvider, IRanger, ITooltip
+    public class TurretBase : TurretComponent, ITargetProvider, IRanger
     {
         public IStatReference Range;
         [ModelProperty]
@@ -24,8 +24,6 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         private ITargetFinder _targetFinder;
 
         private IEventCaller<TargetEventArgs> _onTargetAcquired;
-
-        public string Text => "Range: " + Range.GetValue();
 
         public override void End()
         {
