@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Events.EventArgs;
 using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.Turrets.Rangers;

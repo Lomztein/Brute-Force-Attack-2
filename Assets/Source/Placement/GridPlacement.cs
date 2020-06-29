@@ -11,6 +11,7 @@ namespace Lomztein.BFA2.Placement
 {
     // TODO: Create a PlacementBase that handles _placeRequirements or something.
     // TODO: Turn placement objects into monobehaviours.
+    // TODO: Use mocked gameobjects to display the placement graphic.
     public class GridPlacement : IPlacement
     {
         private GameObject _obj;
@@ -35,10 +36,21 @@ namespace Lomztein.BFA2.Placement
             return _placeable != null;
         }
 
+        private void TintObject (GameObject obj, Color color)
+        {
+            foreach (SpriteRenderer renderer in obj.GetComponentsInChildren<SpriteRenderer>())
+            {
+                renderer.color = color;
+            }
+        }
+
+        private void ResetObjectTint(GameObject obj) => TintObject(obj, Color.white);
+
         public bool Place()
         {
             if (CanPlace (_obj.transform.position, _obj.transform.rotation))
             {
+                ResetObjectTint(_obj);
                 _placeable.Place();
                 OnPlaced?.Invoke();
                 return true;
@@ -51,7 +63,13 @@ namespace Lomztein.BFA2.Placement
             position = Snap(position);
             _obj.transform.position = position;
             _obj.transform.rotation = rotation;
-            return CanPlace(position, rotation);
+            bool canPlace = CanPlace(position, rotation);
+            if (canPlace) {
+                TintObject(_obj, Color.green);
+            } else {
+                TintObject(_obj, Color.red);
+            }
+            return canPlace;
         }
 
         private bool CanPlace (Vector2 position, Quaternion rotation)
@@ -82,6 +100,16 @@ namespace Lomztein.BFA2.Placement
         public override string ToString()
         {
             return _placeable.ToString();
+        }
+
+        public bool PlaceRepeat()
+        {
+            if (Place())
+            {
+                Pickup(UnityEngine.Object.Instantiate(_obj));
+                return true;
+            }
+            return false;
         }
     }
 }

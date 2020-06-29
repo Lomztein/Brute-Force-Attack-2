@@ -46,6 +46,10 @@ namespace Lomztein.BFA2.Placement
 
         public bool PickUp(IPlacement placeable, GameObject obj)
         {
+            if (_currentPlaceable != null)
+            {
+                CancelCurrent();
+            }
             if (placeable.Pickup(obj))
             {
                 _currentPlaceable = placeable;
@@ -56,10 +60,17 @@ namespace Lomztein.BFA2.Placement
 
         public bool PlaceCurrent()
         {
-            if (_currentPlaceable.Place())
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                _currentPlaceable = null;
-                return true;
+                return _currentPlaceable.PlaceRepeat();
+            }
+            else
+            {
+                if (_currentPlaceable.Place())
+                {
+                    _currentPlaceable = null;
+                    return true;
+                }
             }
             return false;
         }

@@ -14,6 +14,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
         public Transform MenuParent;
 
         public LayerMask TargetLayer;
+        private Dictionary<Object, Object> _activeMenus = new Dictionary<Object, Object>();
 
         public void Update()
         {
@@ -24,16 +25,33 @@ namespace Lomztein.BFA2.UI.ContextMenu
                 if (Input.GetMouseButtonDown (0))
                 {
                     IEnumerable<IContextMenuOption> providers = colliders.SelectMany(x => x.GetComponents<IContextMenuOptionProvider>()).Distinct().SelectMany(x => x.GetContextMenuOptions());
-                    Open(providers, Camera.main.WorldToScreenPoint(colliders[0].transform.position));
+                    Open(colliders[0], providers, Camera.main.WorldToScreenPoint(colliders[0].transform.position));
                 }
             }
         }
 
-        private void Open (IEnumerable<IContextMenuOption> options, Vector2 position)
+        private bool HasActiveWindow(Object obj) => _activeMenus.ContainsKey(obj) && _activeMenus[obj] != null;
+        private void SetActiveWindow(Object obj, IContextMenu menu)
         {
-            GameObject menuObj = Instantiate(MenuPrefab, position, Quaternion.identity, MenuParent);
-            IContextMenu menu = menuObj.GetComponent<IContextMenu>();
-            menu.Open(options);
+            if (_activeMenus.ContainsKey(obj))
+            {
+                _activeMenus[obj] = menu as Object;
+            }
+            else
+            {
+                _activeMenus.Add(obj, menu as Object);
+            }
+        }
+
+        private void Open (Object obj, IEnumerable<IContextMenuOption> options, Vector2 position)
+        {
+            if (!HasActiveWindow(obj))
+            {
+                GameObject menuObj = Instantiate(MenuPrefab, position, Quaternion.identity, MenuParent);
+                IContextMenu menu = menuObj.GetComponent<IContextMenu>();
+                menu.Open(options);
+                SetActiveWindow(obj, menu);
+            }
         }
     }
 }

@@ -89,5 +89,10 @@ namespace Lomztein.BFA2.Placement
                 return _expansionCard.ToString();
             }
         }
+
+        public bool PlaceRepeat()
+        {
+            return false;
+        }
     }
 }
