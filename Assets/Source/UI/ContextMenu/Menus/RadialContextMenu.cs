@@ -50,7 +50,7 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
 
         private void CreateButton (IContextMenuOption option)
         {
-            GameObject buttObj = Instantiate(ButtonPrefab, transform);
+            GameObject buttObj = Instantiate(ButtonPrefab, transform.position, Quaternion.identity, transform);
             Button button = buttObj.GetComponent<Button>();
             button.onClick.AddListener(() => ClickButton(option));
             _buttons.Add(button);
@@ -102,7 +102,7 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
         private Vector3 GetButtonTargetPosition (int index)
         {
             float angle = 360 / _buttons.Count * index;
-            angle += angle * 0.5f;
+            angle += 360 / _buttons.Count;
 
             float rads = Mathf.Deg2Rad * angle;
             float x = Mathf.Cos(rads);
