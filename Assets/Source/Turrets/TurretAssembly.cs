@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridPlaceable, IPurchasable, IModdable
+    public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridObject, IPurchasable, IModdable
     {
         private List<ITurretComponent> _components;
         private ITurretAssembler _assembler = new TurretAssembler();
@@ -49,7 +49,8 @@ namespace Lomztein.BFA2.Turrets
 
         public Sprite Sprite => Sprite.Create (Iconography.GenerateIcon (gameObject), new Rect (0f, 0f, Iconography.RENDER_SIZE, Iconography.RENDER_SIZE), Vector2.one / 2f);
 
-        public Size Size => GetRootComponent().Size;
+        public Size Width => GetRootComponent().Width;
+        public Size Height => GetRootComponent().Height;
 
         [SerializeField] [ModelProperty] ModdableAttribute[] _modAttributes;
         public ModdableAttribute[] Attributes => _modAttributes;
@@ -106,24 +107,6 @@ namespace Lomztein.BFA2.Turrets
         void ITurretAssembly.Heat(float amount)
         {
             Heat += amount;
-        }
-
-        public void Place()
-        {
-            Enabled = true;
-            foreach (var col in GetComponentsInChildren<Collider2D>())
-            {
-                col.enabled = true;
-            }
-        }
-
-        public void Pickup()
-        {
-            Enabled = false;
-            foreach (var col in GetComponentsInChildren<Collider2D>())
-            {
-                col.enabled = false;
-            }
         }
 
         public override string ToString()

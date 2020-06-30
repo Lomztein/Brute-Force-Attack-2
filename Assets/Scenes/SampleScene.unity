@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 180393297}
   - component: {fileID: 180393296}
   - component: {fileID: 180393295}
+  - component: {fileID: 180393298}
   m_Layer: 5
   m_Name: PlacementDisplay
   m_TagString: Untagged
@@ -418,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.89716387, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -446,6 +447,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180393293}
   m_CullTransparentMesh: 0
+--- !u!114 &180393298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180393293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac8031c67d4dfe439ecb154a75ba4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot: 5
 --- !u!1 &378947631
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +689,7 @@ GameObject:
   - component: {fileID: 416121146}
   - component: {fileID: 416121145}
   - component: {fileID: 416121143}
+  - component: {fileID: 416121144}
   m_Layer: 5
   m_Name: PurchaseMenu
   m_TagString: Untagged
@@ -726,6 +741,19 @@ MonoBehaviour:
   TabButtonPrefab: {fileID: 3679529093035341646, guid: eb499a2ca5813b9468148d8e89f4307b,
     type: 3}
   TabButtonParent: {fileID: 1572487594}
+--- !u!114 &416121144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416121141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac8031c67d4dfe439ecb154a75ba4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot: 0
 --- !u!114 &416121145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,13 +767,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d56073161e7ee54a866379db346b9c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 542b0f64046e1614d8edfae5a6eb6284, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1058,6 +1086,49 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1 &530806774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 530806775}
+  - component: {fileID: 530806776}
+  m_Layer: 0
+  m_Name: ForcedUpdater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &530806775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530806774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1408334357}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &530806776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530806774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf47fec6cc175a44926251c93f8e787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &707707818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1172,7 @@ GameObject:
   - component: {fileID: 715582712}
   - component: {fileID: 715582711}
   - component: {fileID: 715582710}
+  - component: {fileID: 715582713}
   m_Layer: 5
   m_Name: CreditsDisplay
   m_TagString: Untagged
@@ -1155,7 +1227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.89716387, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1183,6 +1255,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715582708}
   m_CullTransparentMesh: 0
+--- !u!114 &715582713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715582708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac8031c67d4dfe439ecb154a75ba4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot: 5
 --- !u!1 &876530760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1336,7 @@ GameObject:
   - component: {fileID: 911131056}
   - component: {fileID: 911131055}
   - component: {fileID: 911131054}
+  - component: {fileID: 911131057}
   m_Layer: 5
   m_Name: ContentDisplay
   m_TagString: Untagged
@@ -1304,7 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.89716387, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1332,6 +1418,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911131052}
   m_CullTransparentMesh: 0
+--- !u!114 &911131057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911131052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac8031c67d4dfe439ecb154a75ba4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot: 0
 --- !u!1 &972623042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1666,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1408334357}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1061759784
 MonoBehaviour:
@@ -1801,6 +1900,7 @@ GameObject:
   - component: {fileID: 1282759380}
   - component: {fileID: 1282759379}
   - component: {fileID: 1282759378}
+  - component: {fileID: 1282759381}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1893,6 +1993,57 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1282759381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282759376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54382ffc7d038c544a41c30e33a68de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvailableStyles:
+  - Name: Classic
+    Description: A moody cyan reminicient of colors similar to moody cyan colors.
+    _colors:
+    - {r: 0, g: 1, b: 1, a: 1}
+    - {r: 0, g: 0.8666663, b: 1, a: 1}
+    - {r: 0.53333336, g: 1, b: 1, a: 1}
+    - {r: 0, g: 0.5019608, b: 0.5019608, a: 1}
+    - {r: 0, g: 0.5943396, b: 0.5943396, a: 1}
+    - {r: 0, g: 1, b: 1, a: 1}
+  - Name: Warm
+    Description: Warm and red, like a nostalgic summer vacation currently flooded
+      by lava.
+    _colors:
+    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0.5917661, b: 0, a: 1}
+    - {r: 1, g: 0.7555321, b: 0.53333336, a: 1}
+    - {r: 0.5019608, g: 0.012555422, b: 0, a: 1}
+    - {r: 0.59607846, g: 0.028869664, b: 0, a: 1}
+    - {r: 1, g: 0, b: 0, a: 1}
+  - Name: Terminal
+    Description: As if Hackerman himself had birthed it from his tender loins.
+    _colors:
+    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 0.21960783, g: 1, b: 0.4909445, a: 1}
+    - {r: 0.53333336, g: 1, b: 0.6123245, a: 1}
+    - {r: 0.017719464, g: 0.5019608, b: 0, a: 1}
+    - {r: 0.034125008, g: 0.59607846, b: 0, a: 1}
+    - {r: 0, g: 1, b: 0.003575325, a: 1}
+  - Name: Sunlight
+    Description: IT'S FUCKING PISS
+    _colors:
+    - {r: 1, g: 0.99149597, b: 0, a: 1}
+    - {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
+    - {r: 0.9732837, g: 1, b: 0.5254902, a: 1}
+    - {r: 0.49824965, g: 0.5019608, b: 0, a: 1}
+    - {r: 0.5916716, g: 0.59607846, b: 0, a: 1}
+    - {r: 1, g: 0.98480475, b: 0, a: 1}
+  Selection: 1
 --- !u!1 &1293649539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2158,7 @@ MonoBehaviour:
   TooltipFooter: {fileID: 387052505}
   Offset: {x: 12, y: 0}
   Updaters:
+  - {fileID: 530806774}
   - {fileID: 1061759782}
   - {fileID: 2045097824}
 --- !u!4 &1408334357
@@ -2020,6 +2172,7 @@ Transform:
   m_LocalPosition: {x: 3.991455, y: -1.1949463, z: -283.6875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 530806775}
   - {fileID: 1061759783}
   - {fileID: 2045097825}
   m_Father: {fileID: 1282759377}
@@ -2141,6 +2294,7 @@ GameObject:
   - component: {fileID: 1754638277}
   - component: {fileID: 1754638276}
   - component: {fileID: 1754638275}
+  - component: {fileID: 1754638278}
   m_Layer: 5
   m_Name: ResearchDisplay
   m_TagString: Untagged
@@ -2195,7 +2349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.89716387, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2223,6 +2377,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754638273}
   m_CullTransparentMesh: 0
+--- !u!114 &1754638278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754638273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac8031c67d4dfe439ecb154a75ba4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot: 5
 --- !u!1 &1771365594
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,7 +2685,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1408334357}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2045097826
 MonoBehaviour:

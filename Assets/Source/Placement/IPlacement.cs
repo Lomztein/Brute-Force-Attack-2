@@ -12,11 +12,10 @@ namespace Lomztein.BFA2.Placement
         bool ToPosition(Vector2 position, Quaternion rotation);
 
         bool Place();
-        bool PlaceRepeat();
         event Action OnPlaced;
 
-        bool Cancel();
-        event Action OnCancelled;
+        bool Finish();
+        event Action OnFinished;
 
         bool Pickup(GameObject obj);
     }

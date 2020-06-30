@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,18 +22,9 @@ namespace Lomztein.BFA2.UI
             gameObject.SetActive(false);
         }
 
-        public static GameObject InstantiateModel(GameObject source, Vector3 position, Quaternion rotation)
+        public static GameObject InstantiateModel(GameObject source)
         {
-            // First create object and strip away all non-transform non-renderer components.
-            GameObject model = Instantiate(source, position, rotation);
-
-            List<Component> nonVitals = model.GetComponentsInChildren<Component>().Where(x => !(x is Transform) && !(x is Renderer) && !(x is MeshFilter)).ToList();
-            foreach (Component comp in nonVitals)
-            {
-                Destroy(comp); // Might not be neccesary, test sometime.
-            }
-
-            return model;
+            return UnityUtils.InstantiateMockGO(source);
         }
 
         public static Texture2D GenerateIcon(GameObject obj)
@@ -42,7 +34,8 @@ namespace Lomztein.BFA2.UI
             Camera.enabled = true;
             Camera.aspect = 1f;
 
-            GameObject model = InstantiateModel(obj, _instance.transform.position, Quaternion.identity);
+            GameObject model = InstantiateModel(obj);
+            model.transform.position = _instance.transform.position;
             model.SetActive(true);
 
             RenderTexture renderTexture = new RenderTexture(RENDER_SIZE, RENDER_SIZE, 24);

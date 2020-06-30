@@ -31,14 +31,14 @@ namespace Lomztein.BFA2.Placement
                 }
                 if (Input.GetMouseButtonDown(1))
                 {
-                    CancelCurrent();
+                    FinishCurrent();
                 }
             }
         }
 
-        private void CancelCurrent()
+        private void FinishCurrent()
         {
-            if (_currentPlaceable.Cancel())
+            if (_currentPlaceable.Finish())
             {
                 _currentPlaceable = null;
             }
@@ -48,7 +48,7 @@ namespace Lomztein.BFA2.Placement
         {
             if (_currentPlaceable != null)
             {
-                CancelCurrent();
+                FinishCurrent();
             }
             if (placeable.Pickup(obj))
             {
@@ -60,17 +60,13 @@ namespace Lomztein.BFA2.Placement
 
         public bool PlaceCurrent()
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (_currentPlaceable.Place())
             {
-                return _currentPlaceable.PlaceRepeat();
-            }
-            else
-            {
-                if (_currentPlaceable.Place())
+                if (!Input.GetKey(KeyCode.LeftShift))
                 {
-                    _currentPlaceable = null;
-                    return true;
+                    FinishCurrent();
                 }
+                return true;
             }
             return false;
         }

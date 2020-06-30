@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Placement
 {
-    public interface IPlaceable
+    public interface IGridObject
     {
-        void Place();
-
-        void Pickup();
+        Grid.Size Width { get; }
+        Grid.Size Height { get; }
     }
 }

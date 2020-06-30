@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IExpansionCardAcceptor, IPurchasable, IGridPlaceable
+    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IExpansionCardAcceptor, IPurchasable, IGridObject
     {
         public ITurretAssembly Assembly { get; set; }
 
@@ -38,8 +38,12 @@ namespace Lomztein.BFA2.Turrets
         public IModContainer Mods { get; private set; }
 
         [SerializeField][ModelProperty]
-        protected Size _size;
-        public Size Size => _size;
+        protected Size _width;
+
+        [SerializeField][ModelProperty]
+        protected Size _height;
+        public Size Width => _width;
+        public Size Height => _height;
 
         [ModelProperty]
         public float PassiveHeatProduction;
@@ -117,14 +121,10 @@ namespace Lomztein.BFA2.Turrets
 
         public void Place()
         {
-            enabled = true;
-            GetComponent<Collider2D>().enabled = true;
         }
 
         public void Pickup()
         {
-            enabled = false;
-            GetComponent<Collider2D>().enabled = false;
         }
     }
 }
