@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Lomztein.BFA2.Turrets.Highlighters;
+using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +13,8 @@ namespace Lomztein.BFA2.Placement
     public class PlacementController : MonoBehaviour
     {
         private IPlacement _currentPlaceable;
+        private HighlighterCollection _highlighters;
+
         public static PlacementController Instance { get; private set; }
         public bool Busy => _currentPlaceable != null;
 
@@ -24,8 +29,15 @@ namespace Lomztein.BFA2.Placement
 
             if (_currentPlaceable != null)
             {
-                _currentPlaceable.ToPosition(mousePos, Quaternion.identity);
-                if (Input.GetMouseButtonDown(0))
+                if (_currentPlaceable.ToPosition(mousePos, Quaternion.identity))
+                {
+                    ForcedTooltipUpdater.ResetTooltip();
+                }
+                else
+                {
+                    ForcedTooltipUpdater.SetTooltip("Unable to Place", "Cannot place here, something is blocking.", null);
+                }
+                if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
                 {
                     PlaceCurrent();
                 }
@@ -40,6 +52,9 @@ namespace Lomztein.BFA2.Placement
         {
             if (_currentPlaceable.Finish())
             {
+                _highlighters.EndHighlight();
+
+                _highlighters = null;
                 _currentPlaceable = null;
             }
         }
@@ -52,6 +67,8 @@ namespace Lomztein.BFA2.Placement
             }
             if (placeable.Pickup(obj))
             {
+                _highlighters = HighlighterCollection.Create(obj);
+                _highlighters.Highlight();
                 _currentPlaceable = placeable;
                 return true;
             }

@@ -11,17 +11,17 @@ namespace Lomztein.BFA2.UI.Tooltip
 {
     public class UITooltipUpdater : MonoBehaviour, ITooltipUpdater
     {
-        public GraphicRaycaster Raycaster;
-        public EventSystem EventSystem;
-
         public ITooltip GetTooltip()
         {
-            PointerEventData data = new PointerEventData(EventSystem);
+            GraphicRaycaster raycaster = UIController.Instance.GraphicRaycaster;
+            EventSystem eventSystem = UIController.Instance.EventSystem;
+
+            PointerEventData data = new PointerEventData(eventSystem);
             data.position = Input.mousePosition;
 
             List<RaycastResult> results = new List<RaycastResult>();
 
-            Raycaster.Raycast(data, results);
+            raycaster.Raycast(data, results);
 
             foreach (RaycastResult result in results)
             {

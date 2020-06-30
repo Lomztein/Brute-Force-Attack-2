@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Lomztein.BFA2.Purchasing.PurchaseHandlers
         {
             GameObject go = (purchasable as Component).gameObject;
             GameObject instance = Instantiate(go);
+            ReflectionUtils.DynamicBroadcastInvoke(instance, "OnInstantiated"); // Definitively hacky, but better than immidiate alternative.
             instance.SetActive(true);
 
             IPlacement placement = GetPlacement(purchasable, resources);

@@ -56,7 +56,19 @@ namespace Lomztein.BFA2.Turrets
         public void Start()
         {
             Mods = new ModContainer(Stats, Events);
+            InternalInitComponent();
             Init();
+        }
+
+        public void OnInstantiated()
+        {
+            InternalInitComponent();
+        }
+
+        private void InternalInitComponent()
+        {
+            InitStats();
+            InitEvents();
             Stats.Init(StatBaseValues);
         }
 
@@ -82,8 +94,11 @@ namespace Lomztein.BFA2.Turrets
             }
         }
 
-        public abstract void Tick(float deltaTime);
+
+        public abstract void InitStats();
+        public abstract void InitEvents();
         public abstract void Init();
+        public abstract void Tick(float deltaTime);
         public abstract void End();
 
         public bool InsertCard(IExpansionCard card)

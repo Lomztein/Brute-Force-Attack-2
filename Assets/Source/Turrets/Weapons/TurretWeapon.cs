@@ -82,12 +82,6 @@ namespace Lomztein.BFA2.Turrets.Weapons
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
             _muzzles = GetMuzzles();
 
-            Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.");
-            ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.");
-            Spread = Stats.AddStat("Spread", "Spread", "How much the projectiles spread.");
-            Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.");
-            Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.");
-
             AddAttribute(Modification.ModdableAttribute.Weapon);
         }
 
@@ -137,6 +131,19 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public Color GetColor()
         {
             return Color;
+        }
+
+        public override void InitStats()
+        {
+            Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.");
+            ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.");
+            Spread = Stats.AddStat("Spread", "Spread", "How much the projectiles spread.");
+            Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.");
+            Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.");
+        }
+
+        public override void InitEvents()
+        {
         }
     }
 }

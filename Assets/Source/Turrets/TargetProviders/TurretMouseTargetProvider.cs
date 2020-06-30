@@ -30,8 +30,16 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
 
         public override void Init()
         {
-            OnTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Fires when the mouse pointer is initialized.");
             _mousePointer = new GameObject("MousePointer").transform;
+        }
+
+        public override void InitEvents()
+        {
+            OnTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Fires when the mouse pointer is initialized.");
+        }
+
+        public override void InitStats()
+        {
         }
 
         public override void Tick(float deltaTime)

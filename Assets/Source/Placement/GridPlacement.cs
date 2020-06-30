@@ -65,16 +65,16 @@ namespace Lomztein.BFA2.Placement
         public bool ToPosition(Vector2 position, Quaternion rotation)
         {
             position = Snap(position);
+            _obj.transform.position = position;
+            _obj.transform.rotation = rotation;
             _model.transform.position = position;
             _model.transform.rotation = rotation;
             bool canPlace = CanPlace(position, rotation);
             if (canPlace) {
                 TintObject(_model, Color.green);
-                ForcedTooltipUpdater.ResetTooltip();
             }
             else {
                 TintObject(_model, Color.red);
-                ForcedTooltipUpdater.SetTooltip("Cannot place", "Something is blocking placement.", null);
             }
             return canPlace;
         }

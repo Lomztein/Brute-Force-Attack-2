@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1680,8 +1680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27cda770cc489264e94a5b6c94bc22b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Raycaster: {fileID: 1282759378}
-  EventSystem: {fileID: 2110639148}
 --- !u!1 &1092959422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,7 +1898,9 @@ GameObject:
   - component: {fileID: 1282759380}
   - component: {fileID: 1282759379}
   - component: {fileID: 1282759378}
+  - component: {fileID: 1282759383}
   - component: {fileID: 1282759381}
+  - component: {fileID: 1282759382}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2019,16 +2019,16 @@ MonoBehaviour:
     Description: Warm and red, like a nostalgic summer vacation currently flooded
       by lava.
     _colors:
-    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0.26967293, b: 0, a: 1}
     - {r: 1, g: 0.5917661, b: 0, a: 1}
     - {r: 1, g: 0.7555321, b: 0.53333336, a: 1}
     - {r: 0.5019608, g: 0.012555422, b: 0, a: 1}
     - {r: 0.59607846, g: 0.028869664, b: 0, a: 1}
-    - {r: 1, g: 0, b: 0, a: 1}
+    - {r: 1, g: 0.3234831, b: 0, a: 1}
   - Name: Terminal
     Description: As if Hackerman himself had birthed it from his tender loins.
     _colors:
-    - {r: 0, g: 1, b: 0, a: 1}
+    - {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
     - {r: 0.21960783, g: 1, b: 0.4909445, a: 1}
     - {r: 0.53333336, g: 1, b: 0.6123245, a: 1}
     - {r: 0.017719464, g: 0.5019608, b: 0, a: 1}
@@ -2043,7 +2043,35 @@ MonoBehaviour:
     - {r: 0.49824965, g: 0.5019608, b: 0, a: 1}
     - {r: 0.5916716, g: 0.59607846, b: 0, a: 1}
     - {r: 1, g: 0.98480475, b: 0, a: 1}
-  Selection: 1
+  Selection: 0
+--- !u!114 &1282759382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282759376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468da2f299b638249836a44f5cfed6f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1282759383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282759376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77176b3a7ca82b74ca01df448cc6f5e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCanvas: {fileID: 1282759380}
+  GraphicRaycaster: {fileID: 1282759378}
+  EventSystem: {fileID: 2110639148}
+  Windows: {fileID: 1282759382}
 --- !u!1 &1293649539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,7 +2377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

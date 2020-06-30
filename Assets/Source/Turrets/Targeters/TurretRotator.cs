@@ -36,7 +36,6 @@ namespace Lomztein.BFA2.Turrets.Targeters
         {
             AddAttribute(Modification.ModdableAttribute.Rotator);
             _weapon = GetComponentInChildren<IWeapon>();
-            Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.");
         }
 
         public override void Tick(float deltaTime)
@@ -94,6 +93,15 @@ namespace Lomztein.BFA2.Turrets.Targeters
                     Gizmos.DrawWireSphere(_prevPos.Value, 0.75f);
                 }
             }
+        }
+
+        public override void InitStats()
+        {
+            Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.");
+        }
+
+        public override void InitEvents()
+        {
         }
     }
 }

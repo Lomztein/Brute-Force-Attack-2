@@ -43,10 +43,17 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         public override void Init()
         {
             _targetFinder = GetComponent<ITargetFinder>();
-            _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
-            Range = Stats.AddStat("Range", "Range", "The range that this base can acquire targets at.");
-
             AddAttribute(Modification.ModdableAttribute.Ranged);
+        }
+
+        public override void InitEvents()
+        {
+            _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
+        }
+
+        public override void InitStats()
+        {
+            Range = Stats.AddStat("Range", "Range", "The range that this base can acquire targets at.");
         }
 
         public override void Tick(float deltaTime)
