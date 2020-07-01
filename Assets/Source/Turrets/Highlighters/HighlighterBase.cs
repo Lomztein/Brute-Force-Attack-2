@@ -16,18 +16,37 @@ namespace Lomztein.BFA2.Turrets.Highlighters
             return typeof (T).IsAssignableFrom (componentType);
         }
 
-        public abstract void EndHighlight();
+        public virtual void EndHighlight()
+        {
+            Destroy(gameObject);
+        }
+
         public abstract void Highlight(T component);
 
         public void Highlight(Component component)
         {
             _parent = component.transform;
+
+            transform.position = _parent.position;
+            transform.rotation = _parent.rotation;
+
             Highlight(component as T);
+            Tick(Time.fixedDeltaTime);
         }
+
+        public abstract void Tint(Color color);
+
+        public virtual void Tick(float deltaTime) { }
 
         private void Update()
         {
             transform.position = _parent.position;
+            transform.rotation = _parent.rotation;
+        }
+
+        private void FixedUpdate()
+        {
+            Tick(Time.fixedDeltaTime);
         }
     }
 }

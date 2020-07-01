@@ -56,19 +56,17 @@ namespace Lomztein.BFA2.Turrets
         public void Start()
         {
             Mods = new ModContainer(Stats, Events);
-            InternalInitComponent();
-            Init();
+            InitComponent();
         }
 
         public void OnInstantiated()
         {
-            InternalInitComponent();
+            InitComponent();
         }
 
-        private void InternalInitComponent()
+        private void InitComponent()
         {
-            InitStats();
-            InitEvents();
+            Init();
             Stats.Init(StatBaseValues);
         }
 
@@ -94,9 +92,6 @@ namespace Lomztein.BFA2.Turrets
             }
         }
 
-
-        public abstract void InitStats();
-        public abstract void InitEvents();
         public abstract void Init();
         public abstract void Tick(float deltaTime);
         public abstract void End();

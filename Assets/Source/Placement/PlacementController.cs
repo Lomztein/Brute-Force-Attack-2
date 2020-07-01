@@ -32,10 +32,12 @@ namespace Lomztein.BFA2.Placement
                 if (_currentPlaceable.ToPosition(mousePos, Quaternion.identity))
                 {
                     ForcedTooltipUpdater.ResetTooltip();
+                    _highlighters.Tint(Color.green);
                 }
                 else
                 {
                     ForcedTooltipUpdater.SetTooltip("Unable to Place", "Cannot place here, something is blocking.", null);
+                    _highlighters.Tint(Color.red);
                 }
                 if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
                 {

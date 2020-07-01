@@ -14,5 +14,7 @@ namespace Lomztein.BFA2.Turrets.Highlighters
         void Highlight(Component component);
 
         void EndHighlight();
+
+        void Tint(Color color);
     }
 }

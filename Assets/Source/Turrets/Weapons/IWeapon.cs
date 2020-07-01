@@ -7,6 +7,7 @@
         int GetProjectileAmount();
         float GetSpeed();
         float GetSpread();
+        float GetRange();
         bool TryFire();
     }
 }

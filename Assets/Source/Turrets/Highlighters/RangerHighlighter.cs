@@ -10,22 +10,26 @@ namespace Lomztein.BFA2.Turrets.Highlighters
 {
     public class RangerHighlighter : HighlighterBase<IRanger>
     {
-        public GameObject RangeIndicator;
         public float ScaleMultiplier;
 
         private GameObject _instance;
-
-        public override void EndHighlight()
-        {
-            Destroy(_instance);
-            Destroy(gameObject);
-        }
+        private IRanger _component;
 
         public override void Highlight(IRanger component)
         {
-            float range = component.GetRange();
-            _instance = Instantiate(RangeIndicator, transform.position, transform.rotation, transform);
+            _component = component;
+            _instance = transform.GetChild(0).gameObject;
+        }
+
+        public override void Tick(float deltaTime)
+        {
+            float range = _component.GetRange();
             _instance.transform.localScale = new Vector3(range, range) * ScaleMultiplier + Vector3.forward;
+        }
+
+        public override void Tint(Color color)
+        {
+            _instance.GetComponent<SpriteRenderer>().color = color;
         }
     }
 }

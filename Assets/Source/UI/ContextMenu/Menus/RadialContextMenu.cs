@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,10 +17,13 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
         private List<Button> _buttons = new List<Button>();
         private List<IContextMenuOption> _options = new List<IContextMenuOption>();
 
+        public event Action OnClosed;
+
         public void Close()
         {
             ClearButtons();
             Destroy(gameObject);
+            OnClosed?.Invoke();
         }
 
         public void Open(IEnumerable<IContextMenuOption> options)
@@ -76,11 +80,6 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
                 LerpButton(_buttons[i].transform, i);
                 _buttons[i].interactable = _options[i].Interactable();
             }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                Close();
-            }
         }
 
         private void UpdateButtons (IEnumerable<IContextMenuOption> options)
@@ -109,6 +108,10 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
             float y = Mathf.Sin(rads);
 
             return new Vector2(x, y) * ButtonDist;
+        }
+
+        public void Init()
+        {
         }
     }
 }
