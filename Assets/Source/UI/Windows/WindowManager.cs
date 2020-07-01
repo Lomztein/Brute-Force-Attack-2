@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.UI.Windows
         public DarkOverlay DarkOverlay;
         private List<IWindow> _windows = new List<IWindow>();
         private List<GameObject> _windowObjects = new List<GameObject>();
+        private bool _openedThisFrame = false;
 
         private void Awake()
         {
@@ -22,15 +23,18 @@ namespace Lomztein.BFA2.UI.Windows
         {
             GameObject window = Instantiate(original, UIController.Instance.MainCanvas.transform);
             window.transform.SetSiblingIndex(_instance.DarkOverlay.transform.GetSiblingIndex() - 1);
-
             IWindow w = window.GetComponent<IWindow>();
+            
+            _instance._openedThisFrame = true;
+
+            _instance._windows.Add(w);
+            _instance._windowObjects.Add(window);
+
             w.Init();
-            _instance.StartCoroutine(_instance.DelayedAdd(w, window));
 
             w.OnClosed += () =>
             {
                 _instance.OnWindowClosed(w, window);
-
             };
 
             return window;
@@ -56,13 +60,6 @@ namespace Lomztein.BFA2.UI.Windows
             DarkOverlay.FadeOut();
         }
 
-        private IEnumerator DelayedAdd (IWindow window, GameObject windowObj)
-        {
-            yield return new WaitForEndOfFrame();
-            _instance._windows.Add(window);
-            _instance._windowObjects.Add(windowObj);
-        }
-
         public static GameObject OpenWindowAboveOverlay (GameObject original)
         {
             GameObject window = OpenWindow(original);
@@ -73,10 +70,11 @@ namespace Lomztein.BFA2.UI.Windows
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
+            if (!_openedThisFrame && Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
             {
                 CloseAllWindows();
             }
+            _openedThisFrame = false;
         }
 
         public static void CloseAllWindows()
