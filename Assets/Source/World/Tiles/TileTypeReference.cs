@@ -5,11 +5,9 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
-    public class TileTypeReference : ISerializable
+    public struct TileTypeReference : ISerializable
     {
         public string WallType;
-
-        public TileTypeReference() { }
 
         public TileTypeReference(string type)
         {

@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World.Tiles;
 using Newtonsoft.Json.Linq;
 using System.Collections;
@@ -8,6 +9,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.World
 {
+    [System.Serializable]
     public class MapData : ISerializable
     {
         public string Name;
@@ -16,7 +18,7 @@ namespace Lomztein.BFA2.World
         public int Width;
         public int Height;
 
-        public TileTypeReference[,] Walls;
+        public TileData Tiles;
         public IGameObjectModel[] Objects = new IGameObjectModel[0];
 
         public MapData (string name, string desc, int width, int height)
@@ -25,8 +27,7 @@ namespace Lomztein.BFA2.World
             Description = desc;
             Width = width;
             Height = height;
-
-            ResetWalls(TileType.Empty);
+            Tiles = new TileData(Width, Height);
         }
 
         public MapData () { }
@@ -46,7 +47,6 @@ namespace Lomztein.BFA2.World
         public void ResetWalls (TileType type)
         {
             // Bit strange but live with it.
-            Walls = TwoDifyWalls(new TileTypeReference[Width * Height].Select(x => new TileTypeReference(type.Name)).ToArray());
         }
 
         public Graph GenerateGraph ()
@@ -66,7 +66,7 @@ namespace Lomztein.BFA2.World
 
                         if (IsInsideMap(xx, yy))
                         {
-                            edges.Add(new Graph.Edge(CoordsToIndex(x, y), CoordsToIndex(xx, yy)));
+                            edges.Add(new Graph.Edge(MapUtils.CoordsToIndex(x, y, Width), MapUtils.CoordsToIndex(xx, yy, Width)));
                         }
                     }
                 }
@@ -75,15 +75,8 @@ namespace Lomztein.BFA2.World
             return new Graph(nodes.ToArray(), edges.ToArray());
         }
 
-        private int CoordsToIndex(int x, int y) => y * Width + x;
-        private (int x, int y) IndexToCoords(int index)
-        {
-            int x = index % Width;
-            int y = Mathf.FloorToInt((float)index / Width);
-            return (x, y);
-        }
 
-        public bool IsInsideMap (int x, int y)
+        public bool IsInsideMap(int x, int y)
         {
             if (x < 0 || x > Width - 1)
                 return false;
@@ -92,29 +85,7 @@ namespace Lomztein.BFA2.World
             return true;
         }
 
-        private TileTypeReference[] EnflattenWalls(TileTypeReference[,] walls)
-        {
-            TileTypeReference[] flattened = new TileTypeReference[Width * Height];
-            for (int y = 0; y < Height; y++)
-            {
-                for (int x = 0; x < Width; x++)
-                {
-                    flattened[CoordsToIndex(x, y)] = walls[x, y];
-                }
-            }
-            return flattened;
-        }
-
-        private TileTypeReference[,] TwoDifyWalls (TileTypeReference[] walls)
-        {
-            TileTypeReference[,] twodi = new TileTypeReference[Width, Height];
-            for (int i = 0; i < walls.Length; i++)
-            {
-                (int x, int y) = IndexToCoords(i);
-                twodi[x, y] = walls[i];
-            }
-            return twodi;
-        }
+        
 
         public JToken Serialize()
         {
@@ -124,7 +95,7 @@ namespace Lomztein.BFA2.World
                 {"Description", Description },
                 {"Width", Width },
                 {"Height", Height },
-                {"Walls", new JArray(EnflattenWalls(Walls).Select(x => x.Serialize()).ToArray()) },
+                {"Tiles", Tiles.Serialize() },
                 {"Objects", new JArray(Objects.Select(x => x.Serialize()).ToArray()) }
             };
         }
@@ -135,15 +106,15 @@ namespace Lomztein.BFA2.World
             Description = source["Description"].ToObject<string>();
             Width = source["Width"].ToObject<int>();
             Height = source["Height"].ToObject<int>();
-            Walls = TwoDifyWalls((source["Walls"] as JArray).Select(x => DeserializeWallTypeReference(x)).ToArray());
+            Tiles = DeserializeTileData(source["Tiles"]);
             Objects = (source["Objects"] as JArray).Select(x => DeserializeGameObjectModel(x)).ToArray();
         }
 
-        private TileTypeReference DeserializeWallTypeReference (JToken token)
+        private TileData DeserializeTileData (JToken token)
         {
-            TileTypeReference reference = new TileTypeReference();
-            reference.Deserialize(token);
-            return reference;
+            TileData data = new TileData(Width, Height);
+            data.Deserialize(token);
+            return data;
         }
 
         private IGameObjectModel DeserializeGameObjectModel (JToken token)

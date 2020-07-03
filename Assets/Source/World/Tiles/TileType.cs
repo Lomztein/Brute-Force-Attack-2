@@ -8,17 +8,15 @@ namespace Lomztein.BFA2.World.Tiles
     public class TileType
     {
         public string Name;
-        public string Description;
 
-        public TileType(string name, string desc)
+        public TileType(string name)
         {
             Name = name;
-            Description = desc;
         }
 
-        public static TileType Empty = new TileType("Empty", "Completely empty tile.");
-        public static TileType PlayerWall = new TileType("PlayerWall", "Player made walls. Structures can be built on these, enemies cannot move through.");
-        public static TileType BlockingWall = new TileType("BlockingWall", "Totally blocking wall. Does not support structures nor enemy movement.");
-        public static TileType NoBuildZone = new TileType("NoBuildZone", "Blocks building of structures, but enemies may pass through.");
+        public static TileType Empty = new TileType("Empty"); // Player can build, allows enemies.
+        public static TileType PlayerWall = new TileType("PlayerWall"); // Player can build, blocks enemies
+        public static TileType BlockingWall = new TileType("BlockingWall"); // Player cannot build, blocks enemies.
+        public static TileType NoBuildZone = new TileType("NoBuildZone"); // Player cannot build, allows enemies.
     }
 }

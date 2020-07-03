@@ -23,6 +23,12 @@ public class Graph
         List<int>[] incoming = new List<int>[_nodes.Length];
         List<int>[] outgoing = new List<int>[_nodes.Length];
 
+        for (int i = 0; i < _nodes.Length; i++)
+        {
+            incoming[i] = new List<int>();
+            outgoing[i] = new List<int>();
+        }
+
         for (int i = 0; i < _edges.Length; i++)
         {
             Edge edge = _edges[i];
