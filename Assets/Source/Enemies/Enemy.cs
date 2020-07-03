@@ -83,7 +83,7 @@ namespace Lomztein.BFA2.Enemies
         private float GetDamage (DamageInfo info)
         {
             float damage = info.Damage * (info.Color == Color ? CRITICAL_DAMAGE_MULT : 1f);
-            damage = Mathf.Min(damage - GetDamageReduction(damage), damage / Mathf.Max(GetDamageReduction(damage), 1));
+            damage = Mathf.Max(damage - GetDamageReduction(damage), damage / Mathf.Max(GetDamageReduction(damage), 1));
             return damage;
         }
 
