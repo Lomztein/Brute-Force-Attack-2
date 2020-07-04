@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.Content.References;
 using Lomztein.BFA2.Enemies.Waves.Spawners;
+using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
 using System;
 using System.Collections.Generic;
@@ -27,15 +28,18 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         public int EarnedFromKills;
         public int CompletionReward;
+        private float _damage = 100f;
 
         private IResourceContainer _rewardTarget;
+        private IHealthContainer _damageTarget;
         private float _earnings;
 
-        public void Start(IResourceContainer rewardTarget) // TODO: Delegate rewarding to a different class, like a WaveRewarder or something.
+        public void Start(IResourceContainer rewardTarget, IHealthContainer damageTarget) // TODO: Delegate rewarding to a different class, like a WaveRewarder or something.
         {
             Spawn();
             Alive = SpawnAmount;
             _rewardTarget = rewardTarget;
+            _damageTarget = damageTarget;
         }
         
         public SimpleWave (IContentPrefab prefab, GameObject spawner, int amount, float delay, int earnedFromKills, int reward)
@@ -71,6 +75,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private void OnEnemyFinished(IEnemy obj)
         {
+            _damageTarget.ChangeHealth(-_damage / SpawnAmount);
             OnEnemyFinish?.Invoke(obj);
         }
 

@@ -26,13 +26,6 @@ namespace Lomztein.BFA2.Enemies
         public float Armor;
         [ModelProperty]
         public float Shields;
-        [ModelProperty]
-        public float Damage;
-
-        [SerializeField]
-        [ModelProperty]
-        public float Value;
-
         public float Health { get; private set; }
         [ModelProperty]
         public Color Color;

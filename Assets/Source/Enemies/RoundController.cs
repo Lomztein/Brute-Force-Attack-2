@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
 using System;
 using System.Collections;
@@ -24,10 +25,12 @@ namespace Lomztein.BFA2.Enemies
         [SerializeField] private SimpleWaveGeneratorCollection _internalWaveCollection = new SimpleWaveGeneratorCollection();
         private IWaveCollection WaveCollection => _internalWaveCollection;
         private IResourceContainer _resourceContainer;
+        private IHealthContainer _healthContainer;
 
         private void Awake()
         {
             _resourceContainer = GetComponent<IResourceContainer>();
+            _healthContainer = GetComponent<IHealthContainer>();
         }
 
         public void InvokeDelayed(Action callback, float time)
@@ -68,7 +71,7 @@ namespace Lomztein.BFA2.Enemies
             IWave next = WaveCollection.GetWave(wave);
             next.OnFinished += OnWaveFinished;
             next.OnEnemySpawn += OnSpawn;
-            next.Start(_resourceContainer);
+            next.Start(_resourceContainer, _healthContainer);
         }
 
         private void OnSpawn(IEnemy obj)
