@@ -112,19 +112,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _identifier: Core.LaserCannonT1
-  _name: Laser Cannon
+  _name: Pulse Laser Cannon
   _description: Goes <i>pew pew!</ii>
   _cost:
     Elements:
     - Type: 0
       Value: 250
   _modAttributes: 0600000003000000
-  _size: 1
+  _width: 1
+  _height: 1
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
-      Value: 30
+      Value: 0.5
     - Identifier: ProjectileAmount
       Value: 1
     - Identifier: Spread
@@ -132,7 +133,7 @@ MonoBehaviour:
     - Identifier: Speed
       Value: 1337
     - Identifier: Firerate
-      Value: 1
+      Value: 30
   ExpansionCardCapacity: 2
   FireTreshold: 1
   RangeMultiplier: 1

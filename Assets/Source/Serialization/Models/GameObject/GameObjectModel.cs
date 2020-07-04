@@ -58,6 +58,7 @@ namespace Lomztein.BFA2.Serialization.Models.GameObject
         public IComponentModel[] GetComponentModels() => _componentModels.ToArray();
         public IGameObjectModel[] GetChildren() => _children.ToArray();
 
+        // TOOD: It doesn't make sense that serialization is implementation specific, split it into a seperate serializer class.
         public JToken Serialize()
         {
             return new JObject()

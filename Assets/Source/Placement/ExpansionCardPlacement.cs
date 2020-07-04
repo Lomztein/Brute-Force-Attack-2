@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Placement
     public class ExpansionCardPlacement : IPlacement
     {
         public event Action OnPlaced;
-        public event Action OnCancelled;
+        public event Action OnFinished;
 
         private GameObject _obj;
         private IExpansionCard _expansionCard;
@@ -23,13 +23,6 @@ namespace Lomztein.BFA2.Placement
         public ExpansionCardPlacement(params Func<bool>[] placeRequirements)
         {
             _placeRequirements = placeRequirements;
-        }
-
-        public bool Cancel()
-        {
-            UnityEngine.Object.Destroy(_obj);
-            OnCancelled?.Invoke();
-            return true;
         }
 
         public bool Pickup(GameObject obj)
@@ -43,11 +36,16 @@ namespace Lomztein.BFA2.Placement
         {
             if (_target != null)
             {
-                if (_placeRequirements.All(x => x() == true) && _target.InsertCard (_expansionCard))
+                if (_placeRequirements.All(x => x() == true))
                 {
-                    _expansionCard.ApplyTo(_target);
-                    OnPlaced?.Invoke();
-                    return true;
+                    GameObject cardGO = UnityEngine.Object.Instantiate(_obj);
+                    IExpansionCard card = cardGO.GetComponent<IExpansionCard>();
+                    if (_target.InsertCard(card))
+                    {
+                        _expansionCard.ApplyTo(_target);
+                        OnPlaced?.Invoke();
+                        return true;
+                    }
                 }
             }
             return false;
@@ -88,6 +86,13 @@ namespace Lomztein.BFA2.Placement
             {
                 return _expansionCard.ToString();
             }
+        }
+
+        public bool Finish()
+        {
+            UnityEngine.Object.Destroy(_obj);
+            OnFinished?.Invoke();
+            return true;
         }
     }
 }

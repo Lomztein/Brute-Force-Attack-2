@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Events.EventArgs;
 using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.Turrets.Rangers;
@@ -13,7 +14,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.TargetProviders
 {
-    public class TurretBase : TurretComponent, ITargetProvider, IRanger, ITooltip
+    public class TurretBase : TurretComponent, ITargetProvider, IRanger
     {
         public IStatReference Range;
         [ModelProperty]
@@ -24,8 +25,6 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         private ITargetFinder _targetFinder;
 
         private IEventCaller<TargetEventArgs> _onTargetAcquired;
-
-        public string Text => "Range: " + Range.GetValue();
 
         public override void End()
         {
@@ -44,12 +43,11 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
         public override void Init()
         {
             _targetFinder = GetComponent<ITargetFinder>();
+            AddAttribute(Modification.ModdableAttribute.Ranged);
             _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
             Range = Stats.AddStat("Range", "Range", "The range that this base can acquire targets at.");
-
-            AddAttribute(Modification.ModdableAttribute.Ranged);
         }
-
+            
         public override void Tick(float deltaTime)
         {
             float range = Range.GetValue();

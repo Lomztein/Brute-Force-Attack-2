@@ -20,7 +20,8 @@ namespace Lomztein.BFA2.Content
         private IRawContentLoader _contentLoader = new RawContentLoader(
                 new Texture2DRawContentLoader(),
                 new TurretAssemblyRawLoader(),
-                new PrefabRawLoader()
+                new PrefabRawLoader(),
+                new MapDataLoader()
             );
 
         public ContentPack(string path, string name, string author, string description)

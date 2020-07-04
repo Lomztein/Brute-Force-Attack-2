@@ -14,8 +14,8 @@ namespace Lomztein.BFA2.Placement
         bool Place();
         event Action OnPlaced;
 
-        bool Cancel();
-        event Action OnCancelled;
+        bool Finish();
+        event Action OnFinished;
 
         bool Pickup(GameObject obj);
     }

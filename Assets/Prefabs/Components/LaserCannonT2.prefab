@@ -81,19 +81,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _identifier: Core.LaserCannonT2
-  _name: Twin Laser Cannon
+  _name: Twin Pulse Laser Cannon
   _description: Goes pew pew even more
   _cost:
     Elements:
     - Type: 0
       Value: 750
   _modAttributes: 0600000003000000
-  _size: 1
+  _width: 1
+  _height: 1
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
-      Value: 60
+      Value: 1
     - Identifier: ProjectileAmount
       Value: 1
     - Identifier: Spread
@@ -101,7 +102,7 @@ MonoBehaviour:
     - Identifier: Speed
       Value: 1337
     - Identifier: Firerate
-      Value: 1
+      Value: 30
   ExpansionCardCapacity: 3
   FireTreshold: 1
   RangeMultiplier: 1

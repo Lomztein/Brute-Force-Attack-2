@@ -8,6 +8,8 @@ namespace Lomztein.BFA2.UI.Tooltip
 {
     public interface ITooltip
     {
-        string Text { get; }
+        string Title { get; }
+        string Description { get; }
+        string Footnote { get; }
     }
 }

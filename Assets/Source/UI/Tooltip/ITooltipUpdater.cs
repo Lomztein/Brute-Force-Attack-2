@@ -9,6 +9,6 @@ namespace Lomztein.BFA2.UI.Tooltip
 {
     public interface ITooltipUpdater
     {
-        string GetTooltip();
+        ITooltip GetTooltip();
     }
 }

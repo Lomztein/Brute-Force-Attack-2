@@ -14,11 +14,9 @@ namespace Lomztein.BFA2.Modification.Events
         {
             if (!ContainsEvent (identifier))
             {
-                IEvent<T> e = new Event<T>(identifier, name, description);
-                _events.Add (e);
-                return new EventCaller<T>(e);
+                _events.Add (new Event<T>(identifier, name, description));
             }
-            throw new InvalidOperationException($"Event with {nameof(identifier)} already exists in this container.");
+            return new EventCaller<T>(FindEvent(identifier) as IEvent<T>);
         }
 
         public IEventReference<T> GetEvent<T>(string identifier) where T : IEventArgs

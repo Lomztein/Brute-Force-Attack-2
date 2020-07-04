@@ -18,7 +18,9 @@ namespace Lomztein.BFA2.Purchasing.UI
         public Button Button;
         public Image Image;
 
-        public string Text => $"<b>{_purchasable.Name}</b> - <i>{_purchasable.Description}</i>\n\t{_purchasable.Cost.ToString()}";
+        public string Title => _purchasable.Name + " - " + _purchasable.Cost.Format();
+        public string Description => _purchasable.Description;
+        public string Footnote => string.Empty;
 
         private void Awake()
         {
