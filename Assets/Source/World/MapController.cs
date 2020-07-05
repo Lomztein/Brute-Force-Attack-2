@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.World.Tiles;
+using Lomztein.BFA2.World.Tiles.Rendering;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Lomztein.BFA2.World
         public Graph MapGraph;
         private List<GameObject> _mapObjects;
 
-        public static TileData TileData => Instance._mapData.Tiles;
+        public event Action<MapData> OnMapDataLoaded;
 
         public void Awake()
         {
@@ -32,6 +33,9 @@ namespace Lomztein.BFA2.World
             MapGraph = _mapData.GenerateGraph();
 
             ApplyMapToBackground();
+            InstantiateMapObjects();
+
+            OnMapDataLoaded?.Invoke(_mapData);
         }
 
         private void ApplyMapToBackground ()
@@ -50,6 +54,8 @@ namespace Lomztein.BFA2.World
                 _mapObjects.Add(assembler.Assemble(obj));
             }
         }
+
+
 
         public JToken SerializeMapData() => _mapData.Serialize();
     }

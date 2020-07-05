@@ -17,5 +17,14 @@ namespace Lomztein.BFA2.Utilities
             int y = Mathf.FloorToInt((float)index / width);
             return (x, y);
         }
+
+        public static bool IsInsideMap(int x, int y, int width, int height)
+        {
+            if (x < 0 || x > width - 1)
+                return false;
+            if (y < 0 || y > height - 1)
+                return false;
+            return true;
+        }
     }
 }

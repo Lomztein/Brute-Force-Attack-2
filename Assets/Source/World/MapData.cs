@@ -64,7 +64,7 @@ namespace Lomztein.BFA2.World
                         int xx = x + neighbour.x;
                         int yy = y + neighbour.y;
 
-                        if (IsInsideMap(xx, yy))
+                        if (MapUtils.IsInsideMap(xx, yy, Width, Height))
                         {
                             edges.Add(new Graph.Edge(MapUtils.CoordsToIndex(x, y, Width), MapUtils.CoordsToIndex(xx, yy, Width)));
                         }
@@ -76,14 +76,7 @@ namespace Lomztein.BFA2.World
         }
 
 
-        public bool IsInsideMap(int x, int y)
-        {
-            if (x < 0 || x > Width - 1)
-                return false;
-            if (y < 0 || y > Height - 1)
-                return false;
-            return true;
-        }
+
 
         
 

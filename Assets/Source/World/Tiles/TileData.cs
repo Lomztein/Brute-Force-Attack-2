@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
@@ -20,6 +21,59 @@ namespace Lomztein.BFA2.World.Tiles
             Width = width;
             Height = height;
             ResetTiles(TileType.Empty);
+        }
+
+        public TileTypeReference GetTile(int x, int y) => Tiles[x, y];
+
+        public void SetTile(int x, int y, TileType type) => Tiles[x, y] = new TileTypeReference(type.Name);
+
+        public TileTypeReference[,] GetTiles (Vector2Int from, Vector2Int to)
+        {
+            (from, to) = NormalizeRect(from, to);
+
+            TileTypeReference[,] tiles = new TileTypeReference[to.x - from.x, to.y - from.y];
+            int xDelta = to.x - from.x;
+            int yDelta = to.y - from.y;
+
+            for (int y = 0; y < yDelta; y++)
+            {
+                for (int x = 0; x < xDelta; x++)
+                {
+                    int xx = x + from.x;
+                    int yy = y + from.y;
+
+                    tiles[x, y] = GetTile(xx, yy);
+                }
+            }
+
+            return tiles;
+        }
+
+        public void SetTiles (Vector2Int from, Vector2Int to, TileType type)
+        {
+            (from, to) = NormalizeRect(from, to);
+            for (int y = from.y; y < to.y; y++)
+            {
+                for (int x = from.x; x < to.x; x++)
+                {
+                    SetTile(x, y, type);
+                }
+            }
+        }
+
+        private (Vector2Int from, Vector2Int to) NormalizeRect (Vector2Int from, Vector2Int to)
+        {
+            Vector2Int f = new Vector2Int(
+                Mathf.Min(from.x, to.x),
+                Mathf.Min(from.y, to.y)
+                );
+
+            Vector2Int t = new Vector2Int(
+                Mathf.Max(from.x, to.x),
+                Mathf.Max(from.y, to.y)
+                );
+
+            return (f, t);
         }
 
         private void ResetTiles (TileType type)
