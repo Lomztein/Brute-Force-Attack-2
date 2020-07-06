@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.World.Tiles.Rendering;
+﻿using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.World.Tiles.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,6 @@ namespace Lomztein.BFA2.World.Tiles
             RenderTiles();
         }
 
-        private void Update()
-        {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(GetTile(mousePos).WallType);
-        }
-
         private Vector2Int WorldToTileCoords (Vector2 position)
         {
             return new Vector2Int(
@@ -57,6 +52,12 @@ namespace Lomztein.BFA2.World.Tiles
         {
             Vector2Int pos = WorldToTileCoords(position);
             return TileData.GetTile(pos.x, pos.y);
+        }
+
+        public void SetTile (Vector2 position, TileType type)
+        {
+            Vector2Int pos = WorldToTileCoords(position);
+            TileData.SetTile(pos.x, pos.y, type);
         }
 
         public TileTypeReference[,] GetTiles (Vector2 from, Vector2 to)

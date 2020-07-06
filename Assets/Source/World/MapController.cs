@@ -27,6 +27,11 @@ namespace Lomztein.BFA2.World
             Instance = this;
         }
 
+        private void Start()
+        {
+            ApplyMapData(Content.Content.Get("Core/Maps/Stormfront.json", typeof (MapData)) as MapData);
+        }
+
         public void ApplyMapData (MapData mapData)
         {
             _mapData = mapData;

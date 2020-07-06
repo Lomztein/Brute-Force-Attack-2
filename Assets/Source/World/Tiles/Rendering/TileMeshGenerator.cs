@@ -66,24 +66,24 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
             // Generate verts
             verts[vertIndex] = new Vector3(x, y);
             verts[vertIndex + 1] = new Vector3(x + 1, y);
-            verts[vertIndex + vertWidth + 1] = new Vector3(x, y + 1);
-            verts[vertIndex + vertWidth + 2] = new Vector3(x + 1, y + 1);
+            verts[vertIndex + 2] = new Vector3(x, y + 1);
+            verts[vertIndex + 3] = new Vector3(x + 1, y + 1);
 
             // Generate UVs
             Vector2[] uv = _uvProvider.GetUVs(bitmask);
             uvs[vertIndex] = uv[0];
             uvs[vertIndex + 1] = uv[1];
-            uvs[vertIndex + vertWidth + 1] = uv[2];
-            uvs[vertIndex + vertWidth + 2] = uv[3];
+            uvs[vertIndex + 2] = uv[2];
+            uvs[vertIndex + 3] = uv[3];
 
             // Generate tris
             tris[triIndex + 2] = vertIndex;
             tris[triIndex + 1] = vertIndex + 1;
-            tris[triIndex + 0] = vertIndex + vertWidth + 1;
+            tris[triIndex + 0] = vertIndex + 2;
 
             tris[triIndex + 5] = vertIndex + 1;
-            tris[triIndex + 4] = vertIndex + vertWidth + 2;
-            tris[triIndex + 3] = vertIndex + vertWidth + 1;
+            tris[triIndex + 4] = vertIndex + 3;
+            tris[triIndex + 3] = vertIndex + 2;
         }
 
         private class Quad
