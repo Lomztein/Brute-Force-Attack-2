@@ -58,6 +58,7 @@ namespace Lomztein.BFA2.World.Tiles
         {
             Vector2Int pos = WorldToTileCoords(position);
             TileData.SetTile(pos.x, pos.y, type);
+            RenderTiles();
         }
 
         public TileTypeReference[,] GetTiles (Vector2 from, Vector2 to)
@@ -74,6 +75,7 @@ namespace Lomztein.BFA2.World.Tiles
             Vector2Int t = WorldToTileCoords(to);
 
             TileData.SetTiles(f, t, type);
+            RenderTiles();
         }
     }
 }

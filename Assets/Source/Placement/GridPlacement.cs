@@ -3,6 +3,7 @@ using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.Turrets.Highlighters;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +59,7 @@ namespace Lomztein.BFA2.Placement
 
         public bool Place()
         {
-            if (String.IsNullOrEmpty(CanPlace (_model.transform.position, _model.transform.rotation)))
+            if (string.IsNullOrEmpty(CanPlace (_model.transform.position, _model.transform.rotation)))
             {
                 UnityEngine.Object.Instantiate(_obj,_model.transform.position, _model.transform.rotation).SetActive(true);
                 OnPlaced?.Invoke();
@@ -69,7 +70,7 @@ namespace Lomztein.BFA2.Placement
 
         public bool ToPosition(Vector2 position, Quaternion rotation)
         {
-            position = Snap(position);
+            position = GridDimensions.SnapToGrid(position, _placeable.Width, _placeable.Height);
             _obj.transform.position = position;
             _obj.transform.rotation = rotation;
             _model.transform.position = position;
@@ -95,7 +96,11 @@ namespace Lomztein.BFA2.Placement
             Vector2 size = new Vector2 (GridDimensions.SizeOf (_placeable.Width), GridDimensions.SizeOf(_placeable.Height)) / 2.1f;
             if (Physics2D.OverlapBox(position, size, 0))
             {
-                reasons.AppendLine(" - Space is occupied.");
+                reasons.AppendLine(" - Space is occupied");
+            }
+            if (!MapController.Instance.InInsideMap(position))
+            {
+                reasons.AppendLine(" - Outside map area");
             }
             foreach (var requirement in _placeRequirements)
             {
@@ -107,20 +112,6 @@ namespace Lomztein.BFA2.Placement
             }
 
             return reasons.ToString().TrimEnd();
-        }
-
-        private Vector2 Snap (Vector2 position)
-        {
-            float size = GridDimensions.CELL_SIZE;
-            bool widthEven = GridDimensions.IsEven(_placeable.Width);
-            bool heightEven = GridDimensions.IsEven(_placeable.Height);
-            Vector2 woffset = !widthEven ? new Vector2(size / 2f, size / 2f) : Vector2.zero;
-            Vector2 hoffset = !heightEven ? new Vector2(size / 2f, size / 2f) : Vector2.zero;
-
-            float x = Mathf.Round((position.x - woffset.x) / size) * size + woffset.x;
-            float y = Mathf.Round((position.y - hoffset.y) / size) * size + hoffset.x;
-
-            return new Vector2(x, y);
         }
 
         public override string ToString()

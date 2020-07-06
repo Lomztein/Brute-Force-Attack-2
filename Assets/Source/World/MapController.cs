@@ -22,6 +22,9 @@ namespace Lomztein.BFA2.World
 
         public event Action<MapData> OnMapDataLoaded;
 
+        public int Width => _mapData.Width;
+        public int Height => _mapData.Height;
+
         public void Awake()
         {
             Instance = this;
@@ -60,7 +63,22 @@ namespace Lomztein.BFA2.World
             }
         }
 
+        public bool InInsideMap (Vector2 position)
+        {
+            if (position.x < -_mapData.Width / 2f || position.x > _mapData.Width / 2f)
+                return false;
+            if (position.y < -_mapData.Height / 2f || position.y > _mapData.Height / 2f)
+                return false;
+            return true;
+        }
 
+        public Vector2 ClampToMap (Vector2 position)
+        {
+            return new Vector2(
+                Mathf.Clamp(position.x, -_mapData.Width / 2f, _mapData.Width / 2f),
+                Mathf.Clamp(position.y, -_mapData.Height / 2f, _mapData.Height / 2f)
+                );
+        }
 
         public JToken SerializeMapData() => _mapData.Serialize();
     }

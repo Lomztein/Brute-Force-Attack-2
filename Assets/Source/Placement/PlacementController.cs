@@ -35,6 +35,14 @@ namespace Lomztein.BFA2.Placement
             }
         }
 
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CancelAll();
+            }
+        }
+
         private IPlacementBehaviour GetBehaviour(Type placementType) => _behaviours.First(x => x.CanHandleType(placementType));
     }
 }

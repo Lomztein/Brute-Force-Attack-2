@@ -31,13 +31,16 @@ namespace Lomztein.BFA2.World.Tiles
         {
             (from, to) = NormalizeRect(from, to);
 
-            TileTypeReference[,] tiles = new TileTypeReference[to.x - from.x, to.y - from.y];
+            from = ClampVector(from, Vector2Int.zero, new Vector2Int(Width - 1, Height - 1));
+            to = ClampVector(to, Vector2Int.zero, new Vector2Int(Width - 1, Height - 1));
+
+            TileTypeReference[,] tiles = new TileTypeReference[to.x - from.x + 1, to.y - from.y + 1];
             int xDelta = to.x - from.x;
             int yDelta = to.y - from.y;
 
-            for (int y = 0; y < yDelta; y++)
+            for (int y = 0; y <= yDelta; y++)
             {
-                for (int x = 0; x < xDelta; x++)
+                for (int x = 0; x <= xDelta; x++)
                 {
                     int xx = x + from.x;
                     int yy = y + from.y;
@@ -52,9 +55,13 @@ namespace Lomztein.BFA2.World.Tiles
         public void SetTiles (Vector2Int from, Vector2Int to, TileType type)
         {
             (from, to) = NormalizeRect(from, to);
-            for (int y = from.y; y < to.y; y++)
+
+            from = ClampVector(from, Vector2Int.zero, new Vector2Int(Width - 1, Height - 1));
+            to = ClampVector(to, Vector2Int.zero, new Vector2Int(Width - 1, Height - 1));
+
+            for (int y = from.y; y <= to.y; y++)
             {
-                for (int x = from.x; x < to.x; x++)
+                for (int x = from.x; x <= to.x; x++)
                 {
                     SetTile(x, y, type);
                 }
@@ -74,6 +81,14 @@ namespace Lomztein.BFA2.World.Tiles
                 );
 
             return (f, t);
+        }
+
+        private Vector2Int ClampVector(Vector2Int vec, Vector2Int min, Vector2Int max)
+        {
+            return new Vector2Int(
+                Mathf.Clamp(vec.x, min.x, max.x),
+                Mathf.Clamp(vec.y, min.y, max.y)
+                );
         }
 
         private void ResetTiles (TileType type)
