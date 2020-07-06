@@ -10,9 +10,9 @@ namespace Lomztein.BFA2.Purchasing.PurchaseHandlers
 {
     public class GridPlacementPurchaseHandler : PlacementPurchaseHandler
     {
-        public override IPlacement GetPlacement(IPurchasable purchasable, IResourceContainer resources)
+        public override ISimplePlacement GetPlacement(IPurchasable purchasable, IResourceContainer resources)
         {
-            return new GridPlacement(() => resources.HasEnough (purchasable.Cost));
+            return new GridPlacement(() => resources.HasEnough (purchasable.Cost) ? null : "Not enough resources");
         }
     }
 }

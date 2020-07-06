@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Grid;
 using Lomztein.BFA2.Turrets;
+using Lomztein.BFA2.Turrets.Highlighters;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Utilities;
 using System;
@@ -14,7 +15,7 @@ namespace Lomztein.BFA2.Placement
     // TODO: Create a PlacementBase that handles _placeRequirements or something.
     // TODO: Turn placement objects into monobehaviours.
     // TODO: Consider using IPrefabs for the _obj instead of instantiated objects.
-    public class GridPlacement : IPlacement
+    public class GridPlacement : ISimplePlacement
     {
         private GameObject _obj;
         private GameObject _model;
@@ -25,15 +26,19 @@ namespace Lomztein.BFA2.Placement
         public event Action OnCancelled;
         public event Action OnFinished;
 
-        private Func<bool>[] _placeRequirements;
+        private Func<string>[] _placeRequirements;
+        private HighlighterCollection _highlighters;
 
-        public GridPlacement (params Func<bool>[] placeRequirements)
+        public GridPlacement (params Func<string>[] placeRequirements)
         {
             _placeRequirements = placeRequirements;
         }
 
         public bool Pickup(GameObject obj)
         {
+            _highlighters = HighlighterCollection.Create(obj);
+            _highlighters.Highlight();
+
             _obj = obj;
             _obj.SetActive(false);
             _model = UnityUtils.InstantiateMockGO(_obj);
@@ -53,7 +58,7 @@ namespace Lomztein.BFA2.Placement
 
         public bool Place()
         {
-            if (CanPlace (_model.transform.position, _model.transform.rotation))
+            if (String.IsNullOrEmpty(CanPlace (_model.transform.position, _model.transform.rotation)))
             {
                 UnityEngine.Object.Instantiate(_obj,_model.transform.position, _model.transform.rotation).SetActive(true);
                 OnPlaced?.Invoke();
@@ -69,20 +74,39 @@ namespace Lomztein.BFA2.Placement
             _obj.transform.rotation = rotation;
             _model.transform.position = position;
             _model.transform.rotation = rotation;
-            bool canPlace = CanPlace(position, rotation);
-            if (canPlace) {
+            string canPlace = CanPlace(position, rotation);
+            if (string.IsNullOrEmpty(canPlace)) {
+                _highlighters.Tint(Color.green);
                 TintObject(_model, Color.green);
+                ForcedTooltipUpdater.ResetTooltip();
+                return true;
             }
             else {
+                _highlighters.Tint(Color.red);
                 TintObject(_model, Color.red);
+                ForcedTooltipUpdater.SetTooltip("Cannot place here", canPlace, null);
+                return false;
             }
-            return canPlace;
         }
 
-        private bool CanPlace (Vector2 position, Quaternion rotation)
+        private string CanPlace (Vector2 position, Quaternion rotation)
         {
+            StringBuilder reasons = new StringBuilder();
             Vector2 size = new Vector2 (GridDimensions.SizeOf (_placeable.Width), GridDimensions.SizeOf(_placeable.Height)) / 2.1f;
-            return !Physics2D.OverlapBox(position, size, 0) && _placeRequirements.All (x => x() == true);
+            if (Physics2D.OverlapBox(position, size, 0))
+            {
+                reasons.AppendLine(" - Space is occupied.");
+            }
+            foreach (var requirement in _placeRequirements)
+            {
+                string reason = requirement.Invoke();
+                if (!string.IsNullOrEmpty(reason))
+                {
+                    reasons.AppendLine(" - " + reason);
+                }
+            }
+
+            return reasons.ToString().TrimEnd();
         }
 
         private Vector2 Snap (Vector2 position)
@@ -109,6 +133,8 @@ namespace Lomztein.BFA2.Placement
             UnityEngine.Object.Destroy(_obj);
             UnityEngine.Object.Destroy(_model);
             OnFinished?.Invoke();
+            _highlighters.EndHighlight();
+            ForcedTooltipUpdater.ResetTooltip();
             return true;
         }
     }

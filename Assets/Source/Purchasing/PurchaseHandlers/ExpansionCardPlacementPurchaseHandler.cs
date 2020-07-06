@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Purchasing.PurchaseHandlers
 {
     public class ExpansionCardPlacementPurchaseHandler : PlacementPurchaseHandler
     {
-        public override IPlacement GetPlacement(IPurchasable purchasable, IResourceContainer resources)
+        public override ISimplePlacement GetPlacement(IPurchasable purchasable, IResourceContainer resources)
         {
             return new ExpansionCardPlacement(() => resources.HasEnough(purchasable.Cost));
         }

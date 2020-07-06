@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Placement
 {
-    public class ExpansionCardPlacement : IPlacement
+    public class ExpansionCardPlacement : ISimplePlacement
     {
         public event Action OnPlaced;
         public event Action OnFinished;

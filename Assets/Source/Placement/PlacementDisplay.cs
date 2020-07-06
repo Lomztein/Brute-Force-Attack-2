@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Placement
     public class PlacementDisplay : MonoBehaviour
     {
         public Text Text;
-        public PlacementController PlacementController;
+        public SimplePlacementBehaviour PlacementController;
 
         private void Update()
         {

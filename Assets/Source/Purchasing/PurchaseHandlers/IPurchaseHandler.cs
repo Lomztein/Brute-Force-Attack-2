@@ -9,6 +9,6 @@ namespace Lomztein.BFA2.Purchasing.PurchaseHandlers
 {
     public interface IPurchaseHandler
     {
-        bool Handle(IPurchasable purchasable, IResourceContainer resources);
+        void Handle(IPurchasable purchasable, IResourceContainer resources);
     }
 }
