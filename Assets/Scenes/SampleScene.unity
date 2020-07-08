@@ -1708,8 +1708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWave: -1
   State: 0
-  SpawnAreaSize: {x: 15, y: 1}
-  SpawnAreaCenter: {x: 0, y: 15}
   _internalWaveCollection:
     Spawner: {fileID: 1728763116868555419, guid: a6cd82beadf41274d8aab72ddc301e83,
       type: 3}
@@ -1723,6 +1721,10 @@ MonoBehaviour:
     StartingCompletionReward: 100
     CompletionRewardCoeffecient: 1.1
     MaxSpawnDelayWave: 10
+  SpawnPointPrefab: {fileID: 7066752615757910983, guid: 4ef7ecbe84f0a3f49b054e6f99d4d019,
+    type: 3}
+  EndPointPrefab: {fileID: 7066752615757910983, guid: ccdfa4b1396681442a59c621f94d207a,
+    type: 3}
 --- !u!4 &972623044
 Transform:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Enemies.Motors
             Invoke("Finish", Range / Speed);
         }
 
-        public bool HasReachedEnded()
+        public bool HasReachedEnd()
         {
             return _finished;
         }
@@ -37,6 +37,10 @@ namespace Lomztein.BFA2.Enemies.Motors
         private void Finish ()
         {
             _finished = true;
+        }
+
+        public void SetPath(Vector3[] path)
+        {
         }
     }
 }

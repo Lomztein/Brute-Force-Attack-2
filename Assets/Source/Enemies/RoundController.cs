@@ -1,6 +1,8 @@
 ﻿using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,13 +21,16 @@ namespace Lomztein.BFA2.Enemies
         public int CurrentWave;
         public RoundState State;
 
-        public Vector2 SpawnAreaSize;
-        public Vector2 SpawnAreaCenter;
-
         [SerializeField] private SimpleWaveGeneratorCollection _internalWaveCollection = new SimpleWaveGeneratorCollection();
         private IWaveCollection WaveCollection => _internalWaveCollection;
         private IResourceContainer _resourceContainer;
         private IHealthContainer _healthContainer;
+
+        private EnemySpawnPoint[] _spawnPoints;
+        private EnemyPoint[] _endPoints;
+
+        public GameObject SpawnPointPrefab;
+        public GameObject EndPointPrefab;
 
         private void Awake()
         {
@@ -33,15 +38,34 @@ namespace Lomztein.BFA2.Enemies
             _healthContainer = GetComponent<IHealthContainer>();
         }
 
-        public void InvokeDelayed(Action callback, float time)
+        private void Start()
         {
-            StartCoroutine(InvokeDelayedInternal(callback, time));
+            SpawnTempSpawnPoints();
+            SpawnTempEndPoints();
+
+            CachePoints();
         }
 
-        private IEnumerator InvokeDelayedInternal(Action callback, float time)
+        private void SpawnTempSpawnPoints()
         {
-            yield return new WaitForSeconds(time);
-            callback();
+            for (int i = 0; i < MapController.Instance.Width; i++)
+            {
+                Instantiate(SpawnPointPrefab, MapUtils.TileToWorldCoords(new Vector2Int(i, MapController.Instance.Height - 1), MapController.Instance.Width, MapController.Instance.Height), Quaternion.identity, transform);
+            }
+        }
+
+        private void SpawnTempEndPoints ()
+        {
+            for (int i = 0; i < MapController.Instance.Width; i++)
+            {
+                Instantiate(EndPointPrefab, MapUtils.TileToWorldCoords(new Vector2Int(i, 0), MapController.Instance.Width, MapController.Instance.Height), Quaternion.identity, transform);
+            }
+        }
+
+        private void CachePoints ()
+        {
+            _spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint").Select(x => x.GetComponent<EnemySpawnPoint>()).ToArray();
+            _endPoints = GameObject.FindGameObjectsWithTag("EnemyEndPoint").Select(x => x.GetComponent<EnemyPoint>()).ToArray();
         }
 
         private void Update()
@@ -54,15 +78,26 @@ namespace Lomztein.BFA2.Enemies
 
         private IEnumerator RunNextWave()
         {
-            CurrentWave++;
             yield return PrepareWave();
-            StartWave(CurrentWave);
+            if (AnyPathsAvailable())
+            {
+                CurrentWave++;
+                StartWave(CurrentWave);
+            }
+            else
+            {
+                Debug.LogWarning("No paths are available for the wave to start.");
+            }
         }
 
         private IEnumerator PrepareWave()
         {
-            State = RoundState.InProgress;
-            yield return null;
+            State = RoundState.Preparing;
+            foreach (EnemySpawnPoint point in _spawnPoints)
+            {
+                point.ComputePath(_endPoints);
+                yield return new WaitForFixedUpdate();
+            }
         }
 
         private void StartWave(int wave)
@@ -74,17 +109,17 @@ namespace Lomztein.BFA2.Enemies
             next.Start(_resourceContainer, _healthContainer);
         }
 
+        private bool AnyPathsAvailable() => _spawnPoints.Any(x => !x.PathBlocked);
+
         private void OnSpawn(IEnemy obj)
         {
-            obj.Init(GetRandomPosition());
+            obj.Init(GetSpawnPoint());
         }
 
-        private Vector2 GetRandomPosition()
+        private EnemySpawnPoint GetSpawnPoint()
         {
-            return new Vector2(
-                SpawnAreaCenter.x + Random.Range(-SpawnAreaSize.x, SpawnAreaSize.x),
-                SpawnAreaCenter.y + Random.Range(-SpawnAreaSize.y, SpawnAreaSize.y)
-                );
+            EnemySpawnPoint[] available = _spawnPoints.Where(x => !x.PathBlocked).ToArray();
+            return available[Random.Range(0, available.Length)];
         }
 
         private void OnWaveFinished()
@@ -103,7 +138,20 @@ namespace Lomztein.BFA2.Enemies
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireCube(SpawnAreaCenter, SpawnAreaSize * 2f);
+            if (_spawnPoints != null)
+            {
+                foreach (EnemySpawnPoint point in _spawnPoints)
+                {
+                    if (!point.PathBlocked)
+                    {
+                        Vector3[] path = point.GetPath();
+                        for (int i = 0; i < path.Length - 1; i++)
+                        {
+                            Gizmos.DrawLine(path[i], path[i + 1]);
+                        }
+                    }
+                }
+            }
         }
     }
 }

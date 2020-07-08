@@ -35,16 +35,10 @@ namespace Lomztein.BFA2.Enemies
         public event Action<IEnemy> OnKilled;
         public event Action<IEnemy> OnFinished;
 
-        private void Start()
-        {
-            Health = MaxHealth;
-            _motor = GetComponent<IEnemyMotor>();
-        }
-
         private void FixedUpdate()
         {
             _motor.Tick(Time.fixedDeltaTime);
-            if (_motor.HasReachedEnded ())
+            if (_motor.HasReachedEnd ())
             {
                 DoDamage();
             }
@@ -91,9 +85,13 @@ namespace Lomztein.BFA2.Enemies
             OnKilled?.Invoke(this);
         }
 
-        public void Init(Vector3 position)
+        public void Init(EnemySpawnPoint point)
         {
-            transform.position = position;
+            Health = MaxHealth;
+            _motor = GetComponent<IEnemyMotor>();
+
+            transform.position = point.transform.position;
+            _motor.SetPath(point.GetPath());
         }
     }
 }
