@@ -140,6 +140,93 @@
       ]
     },
     {
+      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "Properties": [
+        {
+          "Name": "AnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1.png",
+              "Rect": {
+                "X": 64.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1.png",
+              "Rect": {
+                "X": 96.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            }
+          ]
+        },
+        {
+          "Name": "DefaultSprite",
+          "Value": {
+            "Path": "Core/Sprites/Components/MachineGunT1.png",
+            "Rect": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        },
+        {
+          "Name": "PlaySpeedMultiplier",
+          "Value": 1.0
+        }
+      ]
+    },
+    {
       "TypeName": "UnityEngine.CircleCollider2D",
       "Properties": [
         {
@@ -169,79 +256,6 @@
         {
           "Name": "UpgradeComponentIdentifier",
           "Value": "Core.MachineGunT2"
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
-      "Properties": [
-        {
-          "Name": "AnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Rect": {
-                "X": 16.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 16.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Rect": {
-                "X": 32.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 16.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Rect": {
-                "X": 48.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 16.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            }
-          ]
-        },
-        {
-          "Name": "DefaultSprite",
-          "Value": {
-            "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-            "Rect": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        },
-        {
-          "Name": "PlaySpeedMultiplier",
-          "Value": 1.0
         }
       ]
     }
@@ -288,18 +302,18 @@
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+                "Path": "Core/Sprites/Components/MachineGunT1.png",
                 "Rect": {
                   "X": 0.0,
                   "Y": 0.0,
-                  "Width": 16.0,
-                  "Height": 16.0
+                  "Width": 32.0,
+                  "Height": 32.0
                 },
                 "Pivot": {
                   "X": 0.5,
                   "Y": 0.5
                 },
-                "PixelsPerUnit": 16.0
+                "PixelsPerUnit": 32.0
               }
             }
           ]

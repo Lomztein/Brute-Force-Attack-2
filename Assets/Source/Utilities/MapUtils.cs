@@ -26,5 +26,19 @@ namespace Lomztein.BFA2.Utilities
                 return false;
             return true;
         }
+
+        public static Vector2Int WorldToTileCoords(Vector2 position, int width, int height)
+        {
+            return new Vector2Int(
+                Mathf.RoundToInt(position.x - 0.5f + width / 2f),
+                Mathf.RoundToInt(position.y - 0.5f + height / 2f));
+        }
+
+        public static Vector3 TileToWorldCoords (Vector2Int position, int width, int height)
+        {
+            return new Vector3(
+                position.x + 0.5f - width / 2f,
+                position.y + 0.5f - height / 2f);
+        }
     }
 }

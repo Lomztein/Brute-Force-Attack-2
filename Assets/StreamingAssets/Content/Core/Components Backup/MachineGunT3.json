@@ -1,5 +1,5 @@
 {
-  "Name": "MachineGunT1",
+  "Name": "MachineGunT3",
   "Tag": "Untagged",
   "Layer": 9,
   "Static": false,
@@ -38,7 +38,7 @@
       "Properties": [
         {
           "Name": "FireTreshold",
-          "Value": 5.0
+          "Value": 30.0
         },
         {
           "Name": "RangeMultiplier",
@@ -56,15 +56,15 @@
         },
         {
           "Name": "_identifier",
-          "Value": "Core.MachineGunT1"
+          "Value": "Core.MachineGunT3"
         },
         {
           "Name": "_name",
-          "Value": "Machine Gun"
+          "Value": "Tri-Barreled Gatling Cannon"
         },
         {
           "Name": "_description",
-          "Value": "shootin doods"
+          "Value": "Shoots super fast lol"
         },
         {
           "Name": "_cost",
@@ -72,14 +72,17 @@
             "Elements": [
               {
                 "Type": 0,
-                "Value": 250
+                "Value": 2250
               }
             ]
           }
         },
         {
           "Name": "_modAttributes",
-          "Value": []
+          "Value": [
+            6,
+            3
+          ]
         },
         {
           "Name": "_width",
@@ -99,7 +102,7 @@
             "BaseValues": [
               {
                 "Identifier": "Damage",
-                "Value": 5.0
+                "Value": 30.0
               },
               {
                 "Identifier": "ProjectileAmount",
@@ -107,22 +110,22 @@
               },
               {
                 "Identifier": "Spread",
-                "Value": 1.5
+                "Value": 3.0
               },
               {
                 "Identifier": "Speed",
-                "Value": 100.0
+                "Value": 75.0
               },
               {
                 "Identifier": "Firerate",
-                "Value": 5.0
+                "Value": 15.0
               }
             ]
           }
         },
         {
           "Name": "ExpansionCardCapacity",
-          "Value": 2
+          "Value": 4
         }
       ]
     },
@@ -136,6 +139,173 @@
         {
           "Name": "_prefab",
           "Value": "Resources/Projectiles/MachineGunProjectile"
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.TileableFireAnimation",
+      "Properties": [
+        {
+          "Name": "StartAnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 64.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 96.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 128.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            }
+          ]
+        },
+        {
+          "Name": "MidAnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 160.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 64.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 96.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 128.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            }
+          ]
+        },
+        {
+          "Name": "EndAnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 160.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            }
+          ]
+        },
+        {
+          "Name": "DefaultSprite",
+          "Value": {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 32.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        },
+        {
+          "Name": "PlaySpeedMultiplier",
+          "Value": 1.0
         }
       ]
     },
@@ -160,88 +330,6 @@
         {
           "Name": "UsedByEffector",
           "Value": false
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.TurretComponentTypeUpgrader",
-      "Properties": [
-        {
-          "Name": "UpgradeComponentIdentifier",
-          "Value": "Core.MachineGunT2"
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
-      "Properties": [
-        {
-          "Name": "AnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Rect": {
-                "X": 16.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 16.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Rect": {
-                "X": 32.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 16.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Rect": {
-                "X": 48.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 16.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            }
-          ]
-        },
-        {
-          "Name": "DefaultSprite",
-          "Value": {
-            "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-            "Rect": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        },
-        {
-          "Name": "PlaySpeedMultiplier",
-          "Value": 1.0
         }
       ]
     }
@@ -288,18 +376,18 @@
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+                "Path": "Core/Sprites/Components/MachineGunT3.png",
                 "Rect": {
-                  "X": 0.0,
+                  "X": 32.0,
                   "Y": 0.0,
-                  "Width": 16.0,
-                  "Height": 16.0
+                  "Width": 32.0,
+                  "Height": 32.0
                 },
                 "Pivot": {
                   "X": 0.5,
                   "Y": 0.5
                 },
-                "PixelsPerUnit": 16.0
+                "PixelsPerUnit": 32.0
               }
             }
           ]
@@ -319,7 +407,7 @@
             {
               "Name": "Position",
               "Value": {
-                "X": 0.5,
+                "X": 0.0,
                 "Y": 0.0,
                 "Z": -1.0
               }
@@ -345,7 +433,7 @@
       ],
       "Children": [
         {
-          "Name": "Muzzles (1)",
+          "Name": "Muzzle",
           "Tag": "Untagged",
           "Layer": 9,
           "Static": false,

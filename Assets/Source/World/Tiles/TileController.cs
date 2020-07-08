@@ -16,14 +16,12 @@ namespace Lomztein.BFA2.World.Tiles
         public TileData TileData;
         public TileRenderer[] TileRenderers;
 
+        private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
+
         private void Awake()
         {
             Instance = this;
-            MapController controller = GameObject.FindGameObjectWithTag("MapController")?.GetComponent<MapController>();
-            if (controller != null)
-            {
-                controller.OnMapDataLoaded += OnMapDataLoaded;
-            }
+            _mapController.IfExists((controller) => controller.OnMapDataLoaded += OnMapDataLoaded);
         }
 
         private void OnMapDataLoaded(MapData obj)
@@ -32,12 +30,8 @@ namespace Lomztein.BFA2.World.Tiles
             RenderTiles();
         }
 
-        private Vector2Int WorldToTileCoords (Vector2 position)
-        {
-            return new Vector2Int(
-                Mathf.RoundToInt(position.x - 0.5f + TileData.Width / 2f),
-                Mathf.RoundToInt(position.y - 0.5f + TileData.Height / 2f));
-        }
+        private Vector2Int WorldToTileCoords(Vector2 position)
+            => MapUtils.WorldToTileCoords(position, TileData.Width, TileData.Height);
 
         public void RenderTiles()
         {
