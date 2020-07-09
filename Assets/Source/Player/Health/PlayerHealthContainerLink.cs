@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,26 @@ namespace Lomztein.BFA2.Player.Health
     {
         private IHealthContainer _cache;
         private const string PLAYER_HEALTH_CONTAINER_TAG = "PlayerHealthContainer";
+
+        public event Action<float, float, float> OnHealthChanged {
+            add {
+                GetPlayerHealthContainer().OnHealthChanged += value;
+            }
+
+            remove {
+                GetPlayerHealthContainer().OnHealthChanged -= value;
+            }
+        }
+
+        public event Action OnHealthExhausted {
+            add {
+                GetPlayerHealthContainer().OnHealthExhausted += value;
+            }
+
+            remove {
+                GetPlayerHealthContainer().OnHealthExhausted -= value;
+            }
+        }
 
         private IHealthContainer GetPlayerHealthContainer ()
         {

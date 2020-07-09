@@ -11,6 +11,7 @@ namespace Lomztein.BFA2.Enemies
 {
     public class EnemyPoint : MonoBehaviour
     {
+
         private LooseDependancy<TileController> _tiles = new LooseDependancy<TileController>();
         private TileType[] _blockingTiles = new TileType[]
         {

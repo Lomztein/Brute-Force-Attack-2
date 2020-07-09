@@ -30,7 +30,6 @@ namespace Lomztein.BFA2.Enemies
         private EnemyPoint[] _endPoints;
 
         public GameObject SpawnPointPrefab;
-        public GameObject EndPointPrefab;
 
         private void Awake()
         {
@@ -41,8 +40,6 @@ namespace Lomztein.BFA2.Enemies
         private void Start()
         {
             SpawnTempSpawnPoints();
-            SpawnTempEndPoints();
-
             CachePoints();
         }
 
@@ -51,14 +48,6 @@ namespace Lomztein.BFA2.Enemies
             for (int i = 0; i < MapController.Instance.Width; i++)
             {
                 Instantiate(SpawnPointPrefab, MapUtils.TileToWorldCoords(new Vector2Int(i, MapController.Instance.Height - 1), MapController.Instance.Width, MapController.Instance.Height), Quaternion.identity, transform);
-            }
-        }
-
-        private void SpawnTempEndPoints ()
-        {
-            for (int i = 0; i < MapController.Instance.Width; i++)
-            {
-                Instantiate(EndPointPrefab, MapUtils.TileToWorldCoords(new Vector2Int(i, 0), MapController.Instance.Width, MapController.Instance.Height), Quaternion.identity, transform);
             }
         }
 

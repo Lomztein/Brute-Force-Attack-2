@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.World
 
         private MapData _mapData;
         public Graph MapGraph;
-        private List<GameObject> _mapObjects;
+        public List<GameObject> _mapObjects = new List<GameObject>();
 
         public event Action<MapData> OnMapDataLoaded;
 
@@ -60,6 +60,11 @@ namespace Lomztein.BFA2.World
             foreach (var obj in _mapData.Objects)
             {
                 _mapObjects.Add(assembler.Assemble(obj));
+            }
+
+            foreach (var obj in _mapObjects)
+            {
+                obj.BroadcastMessage("OnMapObjectAssembled", SendMessageOptions.DontRequireReceiver);
             }
         }
 

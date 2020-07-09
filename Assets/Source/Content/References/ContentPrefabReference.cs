@@ -51,5 +51,10 @@ namespace Lomztein.BFA2.Content.References
         {
             return Get().Instantiate();
         }
+
+        public void Dispose()
+        {
+            Get().Dispose();
+        }
     }
 }

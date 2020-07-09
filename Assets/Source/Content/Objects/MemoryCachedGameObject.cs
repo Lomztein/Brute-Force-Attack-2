@@ -16,6 +16,11 @@ namespace Lomztein.BFA2.Content.Objects
             _object = obj;
         }
 
+        public void Dispose()
+        {
+            _object = null;
+        }
+
         public GameObject GetCache()
         {
             return _object;
