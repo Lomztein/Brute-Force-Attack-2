@@ -68,7 +68,8 @@ GameObject:
   - component: {fileID: 8910124173370384429}
   - component: {fileID: 8910124173370384434}
   - component: {fileID: 8910124173370384435}
-  - component: {fileID: 8910124173370384428}
+  - component: {fileID: 2402055048231015665}
+  - component: {fileID: 8884852955527562586}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -137,16 +138,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &8910124173370384428
-SphereCollider:
+--- !u!114 &2402055048231015665
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8910124173370384430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 028a77e5a77873645b85ad16b1e651e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Type: 0
+--- !u!114 &8884852955527562586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8910124173370384430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6522a96b64ed0ad4bb631dfbee198609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Resources/Materials/Datastream

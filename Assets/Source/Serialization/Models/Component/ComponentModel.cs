@@ -13,12 +13,7 @@ namespace Lomztein.BFA2.Serialization.Models.Component
 {
     public class ComponentModel : IComponentModel
     {
-        private static Assembly[] _typeSourceAssemblies = new Assembly[]
-        {
-            typeof (ComponentModel).Assembly,
-            typeof (UnityEngine.GameObject).Assembly,
-            typeof (Collider2D).Assembly,
-        };
+        private static List<Assembly> _typeSourceAssemblies = new List<Assembly>();
 
         public Type Type { get; private set; }
         private List<IPropertyModel> _properties = new List<IPropertyModel>();
@@ -31,22 +26,39 @@ namespace Lomztein.BFA2.Serialization.Models.Component
             _properties = properties.ToList();
         }
 
-
-        public void Deserialize(JToken data)
+        private Type GetType (string typeName)
         {
-            Type = null;
+        Type type = null;
+
             foreach (Assembly assembly in _typeSourceAssemblies)
             {
-                if (Type == null)
+                type = assembly.GetType(typeName);
+                if (type != null)
                 {
-                    Type = assembly.GetType(data["TypeName"].ToString());
-                }
-                else
-                {
-                    break;
+                    return type;
                 }
             }
 
+            if (type == null)
+            {
+                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                foreach (Assembly assembly in assemblies)
+                {
+                    type = assembly.GetType(typeName);
+                    if (type != null)
+                    {
+                        _typeSourceAssemblies.Add(assembly);
+                        return type;
+                    }
+                }
+            }
+
+            throw new InvalidOperationException("Type '" + typeName + "' not location in any currently loaded assemblies.");
+        }
+
+        public void Deserialize(JToken data)
+        {
+            Type = GetType(data["TypeName"].ToString());
             JToken properties = data["Properties"];
 
             foreach (JToken property in properties)

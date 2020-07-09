@@ -29,7 +29,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             foreach (var child in children)
             {
                 GameObject childObj = Assemble(child);
+
+                Vector3 pos = childObj.transform.position;
+                Quaternion rot = childObj.transform.rotation;
+                Vector3 scale = childObj.transform.localScale;
+
                 childObj.transform.SetParent(obj.transform);
+
+                childObj.transform.localPosition = pos;
+                childObj.transform.localRotation = rot;
+                childObj.transform.localScale = scale;
             }
 
             return obj;

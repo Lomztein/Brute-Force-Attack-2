@@ -15,6 +15,8 @@ namespace Lomztein.BFA2.Enemies.Motors
 
         [ModelProperty]
         public float Speed;
+        [ModelProperty]
+        public bool Rotate;
 
         public bool HasReachedEnd()
         {
@@ -32,7 +34,13 @@ namespace Lomztein.BFA2.Enemies.Motors
             {
                 Vector3 waypoint = _path[_pathIndex];
                 Vector3 direction = (waypoint - transform.position).normalized;
+
                 transform.position += direction * Speed * deltaTime;
+
+                if (Rotate)
+                {
+                    transform.rotation = Quaternion.RotateTowards (transform.rotation, Quaternion.Euler(0f, 0f, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x)), Speed * 60f * deltaTime);
+                }
 
                 if ((waypoint - transform.position).sqrMagnitude < 0.02f)
                 {
