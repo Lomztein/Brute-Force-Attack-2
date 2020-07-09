@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 6640471606551175162}
   - component: {fileID: 6524774030102847367}
   - component: {fileID: 9129561188470281380}
-  - component: {fileID: 3996692101551593225}
-  - component: {fileID: -2772111626603269941}
-  - component: {fileID: 7260802739043971048}
   m_Layer: 0
   m_Name: ThiccRocketProjectile
   m_TagString: Untagged
@@ -61,69 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eae0ad89f787df46aadad143261d505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3996692101551593225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180462137954481132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5baa14d2caa9c254ab860365d0e031dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotateMinMax: {x: 180, y: 720}
-  RotateCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &-2772111626603269941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180462137954481132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c4f08a83e0c16428c8071f5fe520b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7260802739043971048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180462137954481132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc9ac93a9f17eb41bcd34d079eba21e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AccelerationFactor: 1
-  MaxAccelerationMult: 1.25
 --- !u!1 &772468655111480636
 GameObject:
   m_ObjectHideFlags: 0

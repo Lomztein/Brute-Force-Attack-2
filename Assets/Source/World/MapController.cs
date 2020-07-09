@@ -15,10 +15,11 @@ namespace Lomztein.BFA2.World
     {
         public static MapController Instance;
         public Transform BackgroundQuad;
+        public Transform MapObjectParent;
 
         private MapData _mapData;
         public Graph MapGraph;
-        public List<GameObject> _mapObjects = new List<GameObject>();
+        private List<GameObject> _mapObjects = new List<GameObject>();
 
         public event Action<MapData> OnMapDataLoaded;
 
@@ -64,6 +65,7 @@ namespace Lomztein.BFA2.World
 
             foreach (var obj in _mapObjects)
             {
+                obj.transform.SetParent(MapObjectParent, true);
                 obj.BroadcastMessage("OnMapObjectAssembled", SendMessageOptions.DontRequireReceiver);
             }
         }
