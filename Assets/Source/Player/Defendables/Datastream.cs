@@ -8,17 +8,9 @@ namespace Lomztein.BFA2.Player.Defendables
     {
         private Material _backgroundMaterial;
 
-        public override void InstantiateEndPoints()
+        private void Start()
         {
             _backgroundMaterial = transform.Find("Background").GetComponent<Renderer>().material;
-
-            int from = Mathf.CeilToInt(-transform.localScale.x / 2f);
-            int to = Mathf.FloorToInt(transform.localScale.x / 2f);
-
-            for (int i = from; i < to; i++)
-            {
-                InstantiateEndPoint(transform.position + transform.rotation * new Vector3(i + 0.5f, 0f));
-            }
         }
 
         public override void OnHealthChanged(float before, float after, float total)

@@ -21,7 +21,8 @@ namespace Lomztein.BFA2.Content
                 new Texture2DRawContentLoader(),
                 new TurretAssemblyRawLoader(),
                 new PrefabRawLoader(),
-                new MapDataLoader()
+                new MapDataLoader(),
+                new UIStyleRawLoader()
             );
 
         public ContentPack(string path, string name, string author, string description)

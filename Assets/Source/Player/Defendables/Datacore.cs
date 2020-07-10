@@ -13,11 +13,6 @@ namespace Lomztein.BFA2.Player.Defendables
             _backgroundMaterial = transform.Find("Background").GetComponent<Renderer>().material;
         }
 
-        public override void InstantiateEndPoints()
-        {
-            InstantiateEndPoint(transform.position);
-        }
-
         public override void OnHealthChanged(float before, float after, float total)
         {
             _backgroundMaterial.SetFloat("_DatastreamHealth", Mathf.Clamp01(after / total));

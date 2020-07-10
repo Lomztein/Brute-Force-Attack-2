@@ -75,7 +75,7 @@ namespace Lomztein.BFA2.World.Pathfinding
         {
             foreach (Node connected in node.Connected)
             {
-                if (connected.Explored || connected.Blocking)
+                if (connected.Explored)
                 {
                     continue;
                 }
@@ -116,8 +116,7 @@ namespace Lomztein.BFA2.World.Pathfinding
             Node[] ns = nodes.Select(x => new Node()
             {
                 Position = x.Position,
-                Blocking = _blockingTypes.Any(y => tiles.GetTile(Mathf.RoundToInt(x.Position.x), Mathf.RoundToInt(x.Position.y)).WallType == y.Name),
-                Cost = 1,
+                Cost = _blockingTypes.Any(y => tiles.GetTile(Mathf.RoundToInt(x.Position.x), Mathf.RoundToInt(x.Position.y)).WallType == y.Name) ? 1000 : 1,
                 IsEnd = endNodes.Contains(x),
                 Original = x
             }).ToArray();
@@ -188,7 +187,6 @@ namespace Lomztein.BFA2.World.Pathfinding
             public IEnumerable<Node> Connected;
             public Graph.Node Original;
 
-            public bool Blocking;
             public bool Explored;
             public float Cost;
             public float GetCost() => Cost + (Parent?.GetCost()).GetValueOrDefault();
