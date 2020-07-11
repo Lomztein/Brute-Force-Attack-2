@@ -8,9 +8,9 @@ using UnityEngine;
 namespace Lomztein.BFA2.Enemies.Waves
 {
     [Serializable]
-    public class SimpleWaveCollection : IWaveCollection
+    public class WaveCollection : IWaveCollection
     {
-        public SimpleWave[] Waves;
+        public Wave[] Waves;
 
         public IWave GetWave(int index)
         {

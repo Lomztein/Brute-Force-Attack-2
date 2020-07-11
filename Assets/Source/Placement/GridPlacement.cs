@@ -13,9 +13,6 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Placement
 {
-    // TODO: Create a PlacementBase that handles _placeRequirements or something.
-    // TODO: Turn placement objects into monobehaviours.
-    // TODO: Consider using IPrefabs for the _obj instead of instantiated objects.
     public class GridPlacement : ISimplePlacement
     {
         private GameObject _obj;

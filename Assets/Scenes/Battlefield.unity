@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98480475, b: 0, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.99149597, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98480475, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.99149597, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1693,21 +1693,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095a945420958f2498d0b02f78eac535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentWave: -1
+  CurrentWave: 12
   State: 0
   _internalWaveCollection:
     Spawner: {fileID: 1728763116868555419, guid: a6cd82beadf41274d8aab72ddc301e83,
       type: 3}
-    Seed: 0
+    Seed: 8008135
     StartingCredits: 20
-    Coeffecient: 1.5
+    CreditsCoeffecient: 1.36
     StartingFrequency: 1
-    FrequencyCoeffecient: 1.45
-    StartingEarnedFromKills: 250
-    EarnedFromKillsCoeffecient: 1.25
-    StartingCompletionReward: 100
-    CompletionRewardCoeffecient: 1.1
-    MaxSpawnDelayWave: 10
+    FrequencyCoeffecient: 1.35
+    MaxSequenceDenominator: 3
+    MaxParallelDenominator: 5
+  StartingEarnedFromKills: 50
+  EarnedFromKillsPerWave: 50
+  StartingCompletionReward: 100
+  WaveFinishedRewardPerWave: 10
 --- !u!4 &972623044
 Transform:
   m_ObjectHideFlags: 0
@@ -2329,7 +2330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1205910152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2345,7 +2346,7 @@ MonoBehaviour:
   Resources:
     Elements:
     - Type: 0
-      Value: 1000
+      Value: 750
     - Type: 1
       Value: 0
 --- !u!114 &1205910153
@@ -2495,45 +2496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54382ffc7d038c544a41c30e33a68de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AvailableStyles:
-  - Name: Classic
-    Description: A moody cyan reminicient of colors similar to moody cyan colors.
-    _colors:
-    - {r: 0, g: 1, b: 1, a: 1}
-    - {r: 0, g: 0.8666663, b: 1, a: 1}
-    - {r: 0.53333336, g: 1, b: 1, a: 1}
-    - {r: 0, g: 0.5019608, b: 0.5019608, a: 1}
-    - {r: 0, g: 0.5943396, b: 0.5943396, a: 1}
-    - {r: 0, g: 1, b: 1, a: 1}
-  - Name: Warm
-    Description: Warm and red, like a nostalgic summer vacation currently flooded
-      by lava.
-    _colors:
-    - {r: 1, g: 0.26967293, b: 0, a: 1}
-    - {r: 1, g: 0.5917661, b: 0, a: 1}
-    - {r: 1, g: 0.7555321, b: 0.53333336, a: 1}
-    - {r: 0.5019608, g: 0.012555422, b: 0, a: 1}
-    - {r: 0.59607846, g: 0.028869664, b: 0, a: 1}
-    - {r: 1, g: 0.3234831, b: 0, a: 1}
-  - Name: Terminal
-    Description: As if Hackerman himself had birthed it from his tender loins.
-    _colors:
-    - {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
-    - {r: 0.21960783, g: 1, b: 0.4909445, a: 1}
-    - {r: 0.53333336, g: 1, b: 0.6123245, a: 1}
-    - {r: 0.017719464, g: 0.5019608, b: 0, a: 1}
-    - {r: 0.034125008, g: 0.59607846, b: 0, a: 1}
-    - {r: 0, g: 1, b: 0.003575325, a: 1}
-  - Name: Sunlight
-    Description: IT'S FUCKING PISS
-    _colors:
-    - {r: 1, g: 0.99149597, b: 0, a: 1}
-    - {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
-    - {r: 0.9732837, g: 1, b: 0.5254902, a: 1}
-    - {r: 0.49824965, g: 0.5019608, b: 0, a: 1}
-    - {r: 0.5916716, g: 0.59607846, b: 0, a: 1}
-    - {r: 1, g: 0.98480475, b: 0, a: 1}
-  Selection: 0
 --- !u!114 &1282759382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2771,7 +2733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1485864590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3041,7 +3003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98480475, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3606,7 +3568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.8666663, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3699,7 +3661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.99149597, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

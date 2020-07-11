@@ -12,8 +12,13 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
     public class CompositeSpawner : MonoBehaviour, ISpawner
     {
         public event Action<GameObject> OnSpawn;
+        public event Action OnFinished;
+
         public float FrequencyPerSpawner = 50;
         public GameObject NestedSpawner;
+
+        private int _totalSpawners;
+        private int _finishedSpawners;
 
         public void Spawn(int amount, float delay, IContentPrefab prefab)
         {
@@ -23,6 +28,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             int a = Mathf.RoundToInt(amount / spawners);
             int remaining = amount - (a * spawners);
 
+            _totalSpawners = spawners + 1;
             for (int i = 0; i < spawners; i++)
             {
                 InstantiateSpawner(a, d, prefab);
@@ -36,8 +42,18 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             GameObject newSpawner = Instantiate(NestedSpawner, transform);
             ISpawner spawner = newSpawner.GetComponent<ISpawner>();
             spawner.OnSpawn += OnSpawnerSpawn;
+            spawner.OnFinished += OnSpawnerFinished;
             spawner.Spawn(amount, delay, prefab);
             return spawner;
+        }
+
+        private void OnSpawnerFinished()
+        {
+            _finishedSpawners++;
+            if (_finishedSpawners == _totalSpawners)
+            {
+                OnFinished?.Invoke();
+            }
         }
 
         private void OnSpawnerSpawn(GameObject obj)

@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Serialization.Models.GameObject;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Assemblers
@@ -52,7 +53,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 children.Add(Disassemble(child.gameObject));
             }
 
-            Component[] components = gameObject.GetComponents<Component>();
+            Component[] components = gameObject.GetComponents<Component>().Where(x => !x.GetType().IsDefined(typeof (DontSerializeAttribute), false)).ToArray();
             var componentModels = new List<IComponentModel>();
             foreach (Component component in components)
             {

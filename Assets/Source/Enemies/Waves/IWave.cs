@@ -10,11 +10,15 @@ namespace Lomztein.BFA2.Enemies.Waves
 {
     public interface IWave
     {
-        void Start(IResourceContainer rewardTarget, IHealthContainer damageTarget);
+        void Start();
 
         event Action<IEnemy> OnEnemySpawn;
         event Action<IEnemy> OnEnemyKill;
         event Action<IEnemy> OnEnemyFinish;
+
+        event Action OnAllSpawned;
         event Action OnFinished;
+
+        int SpawnAmount { get; }
     }
 }

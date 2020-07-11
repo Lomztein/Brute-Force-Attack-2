@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Enemies.Motors
                     transform.rotation = Quaternion.RotateTowards (transform.rotation, Quaternion.Euler(0f, 0f, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x)), Speed * 60f * deltaTime);
                 }
 
-                if ((waypoint - transform.position).sqrMagnitude < 0.02f)
+                if ((waypoint - transform.position).sqrMagnitude <= Mathf.Pow(Speed * deltaTime, 2))
                 {
                     _pathIndex++;
                 }

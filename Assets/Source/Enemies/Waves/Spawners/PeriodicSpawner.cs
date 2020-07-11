@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
     public class PeriodicSpawner : MonoBehaviour, ISpawner
     {
         public event Action<GameObject> OnSpawn;
+        public event Action OnFinished;
 
         public void Spawn(int amount, float delay, IContentPrefab prefab)
         {
@@ -25,6 +26,8 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
                 OnSpawn?.Invoke(prefab.Instantiate());
                 yield return new WaitForSeconds(delay);
             }
+
+            OnFinished?.Invoke();
             Destroy(gameObject);
         }
     }

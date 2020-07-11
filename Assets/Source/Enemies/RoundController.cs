@@ -1,4 +1,6 @@
 ﻿using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Enemies.Waves.Punishers;
+using Lomztein.BFA2.Enemies.Waves.Rewarders;
 using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Utilities;
@@ -21,8 +23,15 @@ namespace Lomztein.BFA2.Enemies
         public int CurrentWave;
         public RoundState State;
 
-        [SerializeField] private SimpleWaveGeneratorCollection _internalWaveCollection = new SimpleWaveGeneratorCollection();
+        [SerializeField] private GeneratorWaveCollection _internalWaveCollection = new GeneratorWaveCollection();
         private IWaveCollection WaveCollection => _internalWaveCollection;
+
+        public float StartingEarnedFromKills;
+        public float EarnedFromKillsPerWave;
+
+        public float StartingCompletionReward;
+        public float WaveFinishedRewardPerWave;
+
         private IResourceContainer _resourceContainer;
         private IHealthContainer _healthContainer;
 
@@ -82,10 +91,23 @@ namespace Lomztein.BFA2.Enemies
         {
             State = RoundState.InProgress;
             IWave next = WaveCollection.GetWave(wave);
+
             next.OnFinished += OnWaveFinished;
             next.OnEnemySpawn += OnSpawn;
-            next.Start(_resourceContainer, _healthContainer);
+
+            IWaveRewarder rewarder = new FractionalWaveRewarder(next.SpawnAmount, GetCompletionReward(wave), GetEarnedFromKills(wave), _resourceContainer);
+            IWavePunisher punshier = new FractionalWavePunisher(next.SpawnAmount, _healthContainer);
+
+            next.OnEnemyKill += rewarder.OnKill;
+            next.OnFinished += rewarder.OnFinished;
+            next.OnEnemyFinish += punshier.Punish;
+
+            next.Start();
         }
+
+        private float GetEarnedFromKills(int wave) => StartingEarnedFromKills + EarnedFromKillsPerWave * (wave - 1);
+
+        private float GetCompletionReward(int wave) => StartingCompletionReward + WaveFinishedRewardPerWave * (wave - 1);
 
         private bool AnyPathsAvailable() => _spawnPoints.Any(x => !x.PathBlocked);
 
@@ -108,8 +130,6 @@ namespace Lomztein.BFA2.Enemies
         private void EndWave(int wave)
         {
             IWave ended = WaveCollection.GetWave(wave);
-            ended.OnFinished -= OnWaveFinished;
-            ended.OnEnemySpawn -= OnSpawn;
             State = RoundState.Ready;
             _resourceContainer.ChangeResource(Resource.Research, 1);
         }

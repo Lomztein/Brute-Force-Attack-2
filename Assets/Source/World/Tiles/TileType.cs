@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
-    // TODO: Rename walls to tiles and specify which tiles are walls instead.
     public class TileType
     {
         public string Name;
