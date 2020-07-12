@@ -13,19 +13,18 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private System.Random _random;
 
         private readonly GameObject _spawner;
-        private readonly int _wave;
         private readonly float _credits;
         private readonly float _frequency;
         private readonly int _maxSequence;
         private readonly int _maxParallel;
 
+        private const float MaxSpawnFrequency = 200f;
+        private const float MinSpawnFrequency = 0.5f;
 
-
-        public CompositeWaveGenerator (GameObject spawner, int seed, int wave, float credits, float frequency, int maxSequence, int maxParallel)
+        public CompositeWaveGenerator (GameObject spawner, int seed, float credits, float frequency, int maxSequence, int maxParallel)
         {
             _seed = seed;
             _spawner = spawner;
-            _wave = wave;
             _credits = credits;
             _frequency = frequency;
             _maxSequence = maxSequence;
@@ -62,9 +61,10 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private IWave GenerateParallelWave (float credits)
         {
             IWave[] waves = new IWave[GetParallelAmount()];
+            int len = waves.Length;
             for (int i = 0; i < waves.Length; i++)
             {
-                IWaveGenerator gen = new WaveGenerator(_spawner, _wave, _seed + i, credits / waves.Length, _frequency / waves.Length);
+                IWaveGenerator gen = new WaveGenerator(_spawner, _seed + i, credits / len, _frequency / len, MaxSpawnFrequency / len, MinSpawnFrequency / len);
                 waves[i] = gen.GenerateWave();
             }
 

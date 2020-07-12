@@ -6,6 +6,7 @@ using Lomztein.BFA2.Turrets.Rangers;
 using Lomztein.BFA2.Turrets.Targeters;
 using Lomztein.BFA2.Turrets.TargetProviders;
 using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.FireControl;
 using Lomztein.BFA2.Weaponary.Projectiles;
@@ -76,7 +77,6 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         public override void Init()
         {
-            Rechamber();
             _weaponFire = GetComponent<WeaponFire>();
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
@@ -88,11 +88,15 @@ namespace Lomztein.BFA2.Turrets.Weapons
             Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.");
             Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.");
 
+            _chambered = false;
+            StartCoroutine(Rechamber(Cooldown));
+
             AddAttribute(Modification.ModdableAttribute.Weapon);
         }
 
-        private void Rechamber()
+        private IEnumerator Rechamber(float cooldown)
         {
+            yield return UnityUtils.WaitForFixedSeconds(cooldown);
             _chambered = true;
         }
 
@@ -110,7 +114,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
             {
                 Fire();
                 _chambered = false;
-                Invoke("Rechamber", Cooldown);
+                StartCoroutine(Rechamber(Cooldown));
                 return true;
             }
             return false;

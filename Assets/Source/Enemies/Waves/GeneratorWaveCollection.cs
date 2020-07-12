@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             }
             else
             {
-                IWaveGenerator generator = new CompositeWaveGenerator(Spawner, Seed + index, index, GetAvailableCredits(index), GetSpawnFrequency(index), GetMaxSequence(index), GetMaxParallel(index));
+                IWaveGenerator generator = new CompositeWaveGenerator(Spawner, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), GetMaxSequence(index), GetMaxParallel(index));
                 IWave wave = generator.GenerateWave();
                 _waves.Add(index, wave);
                 return wave;

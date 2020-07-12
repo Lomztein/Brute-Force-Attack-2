@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             for (int i = 0; i < amount; i++)
             {
                 OnSpawn?.Invoke(prefab.Instantiate());
-                yield return new WaitForSeconds(delay);
+                yield return UnityUtils.WaitForFixedSeconds(delay);
             }
 
             OnFinished?.Invoke();

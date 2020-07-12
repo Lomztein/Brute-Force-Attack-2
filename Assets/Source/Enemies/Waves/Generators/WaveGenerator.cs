@@ -12,25 +12,29 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
     public class WaveGenerator : IWaveGenerator
     {
         private const string ENEMY_CONTENT_PATH = "*/Enemies";
-        private const float MaxSpawnFrequency = 100f;
 
         private IContentCachedPrefab[] _enemies;
         private System.Random _random;
 
         private GameObject _spawner;
 
-        private int _wave;
-        private int _seed;
-        private float _credits;
-        private float _frequency;
+        private readonly int _seed;
+        private readonly float _credits;
+        private readonly float _frequency;
 
-        public WaveGenerator (GameObject spawner, int wave, int seed, float credits, float frequency)
+        private readonly float _maxSpawnFrequency;
+        private readonly float _minSpawnFrequency;
+
+
+        public WaveGenerator (GameObject spawner, int seed, float credits, float frequency, float maxFreq, float minFreq)
         {
             _spawner = spawner;
-            _wave = wave;
             _seed = seed;
             _credits = credits;
             _frequency = frequency;
+
+            _maxSpawnFrequency = maxFreq;
+            _minSpawnFrequency = minFreq;
         }
 
         private IContentCachedPrefab[] GetEnemies()
@@ -51,24 +55,23 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             return _random;
         }
 
-        private (IContentCachedPrefab enemy, int amount) GetRandomEnemy(float credits, int wave)
+        private (IContentCachedPrefab enemy, int amount) GetRandomEnemy(float credits)
         {
             var enemies = GetEnemies();
-            IContentCachedPrefab[] options = enemies.Where(x => IsWithinDifficultyRange(x.GetCache().GetComponent<IEnemy>(), wave)).ToArray();
+            IContentCachedPrefab[] options = enemies.Where(x => ShouldSpawn(x.GetCache().GetComponent<IEnemy>())).ToArray();
             IContentCachedPrefab enemy = options[GetRandom().Next(0, options.Length)];
             return (enemy, Mathf.RoundToInt(credits / enemy.GetCache().GetComponent<IEnemy>().DifficultyValue));
         }
 
-        private bool IsWithinDifficultyRange(IEnemy enemy, int wave)
+        private bool ShouldSpawn(IEnemy enemy)
         {
-            return _frequency / enemy.DifficultyValue < MaxSpawnFrequency && enemy.DifficultyValue < GetMaxDifficultyValue(wave);
+            float frequency = _frequency / enemy.DifficultyValue;
+            return frequency < _maxSpawnFrequency && frequency > _minSpawnFrequency;
         }
-
-        private float GetMaxDifficultyValue(int wave) => wave;
 
         public IWave GenerateWave()
         {
-            (IContentCachedPrefab enemy, int amount) = GetRandomEnemy(_credits, _wave);
+            (IContentCachedPrefab enemy, int amount) = GetRandomEnemy(_credits);
             float frequency = _frequency / enemy.GetCache().GetComponent<IEnemy>().DifficultyValue;
 
             IWave newWave = new Wave(enemy, _spawner, amount, 1 / frequency);

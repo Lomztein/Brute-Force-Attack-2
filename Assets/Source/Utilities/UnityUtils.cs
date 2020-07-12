@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,15 @@ namespace Lomztein.BFA2.Utilities
 
             model.SetActive(true);
             return model;
+        }
+
+        public static IEnumerator WaitForFixedSeconds(float seconds)
+        {
+            int frames = Mathf.RoundToInt(seconds / Time.fixedDeltaTime);
+            for (int i = 0; i < frames; i++)
+            {
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
 }
