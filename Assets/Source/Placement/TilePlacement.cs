@@ -12,9 +12,13 @@ namespace Lomztein.BFA2.Placement
 {
     public class TilePlacement : IPlacement
     {
+        public enum Behaviour { Set, Replace }
+
         public event Action OnFinished;
 
         private TileType _type;
+        private Behaviour _behaviour;
+
         private TileType DeleteType => TileType.Empty;
 
         private GameObject _placementGraphic;
@@ -22,9 +26,10 @@ namespace Lomztein.BFA2.Placement
 
         private Vector2 _startPosition;
 
-        public void SetType (TileType type)
+        public void SetType (TileType type, Behaviour behaviour)
         {
             _type = type;
+            _behaviour = behaviour;
         }
 
         private GameObject GetPlacementGraphic ()
@@ -101,12 +106,22 @@ namespace Lomztein.BFA2.Placement
             (Vector2 from, Vector2 to) = Normalize(_startPosition, position);
             (from, to) = ExpandNormalized(from, to, 0.1f);
 
-            TileController.Instance.SetTiles(from, to, GetType(mb));
+            switch (_behaviour)
+            {
+                case Behaviour.Replace:
+                    TileController.Instance.ReplaceTiles(from, to, GetTypeReverse(mb), GetType(mb));
+                    break;
+
+                case Behaviour.Set:
+                    TileController.Instance.SetTiles(from, to, GetType(mb));
+                    break;
+            }
             GetPlacementGraphic().transform.localScale = Vector3.one;
             TintGraphic(Color.white);
         }
 
         private TileType GetType(int mb) => mb == 0 ? _type : DeleteType;
+        private TileType GetTypeReverse(int mb) => mb == 0 ? DeleteType : _type;
 
         private Vector2 ClampToMap (Vector2 position)
         {

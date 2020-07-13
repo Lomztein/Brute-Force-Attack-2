@@ -68,6 +68,25 @@ namespace Lomztein.BFA2.World.Tiles
             }
         }
 
+        public void ReplaceTiles(Vector2Int from, Vector2Int to, TileType toReplace, TileType replacer)
+        {
+            (from, to) = NormalizeRect(from, to);
+
+            from = ClampVector(from, Vector2Int.zero, new Vector2Int(Width - 1, Height - 1));
+            to = ClampVector(to, Vector2Int.zero, new Vector2Int(Width - 1, Height - 1));
+
+            for (int y = from.y; y <= to.y; y++)
+            {
+                for (int x = from.x; x <= to.x; x++)
+                {
+                    if (GetTile(x, y).IsType(toReplace))
+                    {
+                        SetTile(x, y, replacer);
+                    }
+                }
+            }
+        }
+
         private (Vector2Int from, Vector2Int to) NormalizeRect (Vector2Int from, Vector2Int to)
         {
             Vector2Int f = new Vector2Int(

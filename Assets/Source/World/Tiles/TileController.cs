@@ -71,5 +71,14 @@ namespace Lomztein.BFA2.World.Tiles
             TileData.SetTiles(f, t, type);
             RenderTiles();
         }
+
+        public void ReplaceTiles(Vector2 from, Vector2 to, TileType toReplace, TileType replacer)
+        {
+            Vector2Int f = WorldToTileCoords(from);
+            Vector2Int t = WorldToTileCoords(to);
+
+            TileData.ReplaceTiles(f, t, toReplace, replacer);
+            RenderTiles();
+        }
     }
 }
