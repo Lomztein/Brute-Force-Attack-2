@@ -52,12 +52,20 @@ namespace Lomztein.BFA2.World
 
         private void InstantiateMapObjects ()
         {
+            // Clear for previous map.
+            foreach (GameObject obj in _mapObjects)
+            {
+                Destroy(obj);
+            }
+
+            // Assembly, duh.
             IGameObjectAssembler assembler = new GameObjectAssembler();
             foreach (var obj in _mapData.Objects)
             {
                 _mapObjects.Add(assembler.Assemble(obj));
             }
 
+            // Assign to correct parent.
             foreach (var obj in _mapObjects)
             {
                 obj.transform.SetParent(MapObjectParent, true);

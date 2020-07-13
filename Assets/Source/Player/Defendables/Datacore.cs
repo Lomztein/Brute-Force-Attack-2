@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Player.Defendables
     {
         private Material _backgroundMaterial;
 
-        private void Awake()
+        private void Start()
         {
             _backgroundMaterial = transform.Find("Background").GetComponent<Renderer>().material;
         }

@@ -88,10 +88,13 @@ namespace Lomztein.BFA2.Turrets.Weapons
             Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.");
             Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.");
 
-            _chambered = false;
-            StartCoroutine(Rechamber(Cooldown));
-
             AddAttribute(Modification.ModdableAttribute.Weapon);
+
+            if (isActiveAndEnabled)
+            {
+                _chambered = false;
+                StartCoroutine(Rechamber(Cooldown));
+            }
         }
 
         private IEnumerator Rechamber(float cooldown)

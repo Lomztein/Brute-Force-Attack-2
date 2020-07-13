@@ -8,7 +8,6 @@ namespace Lomztein.BFA2.UI.Menus
 {
     public interface ITabMenuElement
     {
-        bool IsMenuEmpty { get; }
         string Name { get; }
 
         void OpenMenu();

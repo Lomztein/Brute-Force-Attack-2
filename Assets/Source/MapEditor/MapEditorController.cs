@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Assemblers;
+﻿using Lomztein.BFA2.MapEditor.Objects;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.GameObject;
 using Lomztein.BFA2.Utilities;
@@ -18,6 +19,9 @@ namespace Lomztein.BFA2.MapEditor
     {
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
 
+        public static MapEditorController Instance;
+        public MapObjectHandleProvider HandleProvider;
+
         public MapData MapData;
 
         public void OpenSaveDialog ()
@@ -29,6 +33,31 @@ namespace Lomztein.BFA2.MapEditor
         {
             FileBrowser.Create(Application.streamingAssetsPath + "/Content/Custom/Maps", ".json", LoadFile);
         }
+
+        private void Awake()
+        {
+            Instance = this;
+            CreateNewMap(30, 30);
+        }
+
+        private void Start()
+        {
+            _mapController.IfExists(x => x.OnMapDataLoaded += OnMapDataLoaded);
+        }
+
+        private void OnMapDataLoaded(MapData obj)
+        {
+            foreach (Transform child in _mapController.Dependancy.MapObjectParent)
+            {
+                MapObjectHandle handle = HandleProvider.GetHandle(child.gameObject);
+                handle.transform.position = child.position;
+                handle.transform.rotation = child.rotation;
+
+                handle.Assign(child.gameObject);
+            }
+        }
+
+        public void AddMapObject(GameObject obj) => _mapController.IfExists(x => obj.transform.SetParent(x.MapObjectParent));
 
         public void CreateNewMap (int width, int height)
         {
