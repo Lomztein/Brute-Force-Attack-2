@@ -20,6 +20,8 @@ namespace Lomztein.BFA2.World.Tiles
             WallType = source.ToObject<string>();
         }
 
+        public bool IsType(TileType type) => WallType != null && WallType == type?.Name;
+
         public JToken Serialize()
         {
             return new JValue(WallType);

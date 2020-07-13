@@ -57,6 +57,7 @@ namespace Lomztein.BFA2.World
             {
                 Destroy(obj);
             }
+            _mapObjects.Clear();
 
             // Assembly, duh.
             IGameObjectAssembler assembler = new GameObjectAssembler();

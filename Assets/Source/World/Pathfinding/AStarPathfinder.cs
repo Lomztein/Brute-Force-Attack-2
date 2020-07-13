@@ -19,7 +19,8 @@ namespace Lomztein.BFA2.World.Pathfinding
         private TileType[] _blockingTypes = new TileType[]
         {
             TileType.BlockingWall,
-            TileType.PlayerWall
+            TileType.PlayerWall,
+            TileType.PlaceableWall
         };
 
         public Vector3[] Search(Vector3 start, params Vector3[] end)

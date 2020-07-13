@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.UI.PickerMenu.PickHandlers
             IPurchasable purchasable = go.GetComponent<IPurchasable>();
             IResourceContainer resources = GetComponent<IResourceContainer>();
 
-            if (resources.TrySpend(purchasable.Cost))
+            if (resources.HasEnough(purchasable.Cost))
             {
                 GameObject instance = prefab.Instantiate();
                 ReflectionUtils.DynamicBroadcastInvoke(instance, "OnInstantiated"); // Definitively hacky, but better than immidiate alternative.

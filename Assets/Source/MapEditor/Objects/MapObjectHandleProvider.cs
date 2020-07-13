@@ -12,9 +12,21 @@ namespace Lomztein.BFA2.MapEditor.Objects
         public GameObject[] TaggedHandlers;
         public GameObject DefaultHandler;
 
+        public Transform HandleParent;
+
         public MapObjectHandle GetHandle(GameObject obj)
         {
-            return Instantiate(TaggedHandlers.FirstOrDefault(x => x.GetComponent<TaggedMapObjectHandle>().Tag == obj.tag) ?? DefaultHandler).GetComponent<MapObjectHandle>();
+            MapObjectHandle handle = Instantiate(TaggedHandlers.FirstOrDefault(x => x.GetComponent<TaggedMapObjectHandle>().Tag == obj.tag) ?? DefaultHandler).GetComponent<MapObjectHandle>();
+            handle.transform.SetParent(HandleParent);
+            return handle;
+        }
+
+        public void ClearHandles ()
+        {
+            foreach (Transform handle in HandleParent)
+            {
+                handle.GetComponent<MapObjectHandle>().Delete();
+            }
         }
     }
 }

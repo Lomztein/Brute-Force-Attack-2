@@ -4,6 +4,7 @@ using Lomztein.BFA2.Turrets.Highlighters;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
+using Lomztein.BFA2.World.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,6 +100,18 @@ namespace Lomztein.BFA2.Placement
             {
                 reasons.AppendLine(" - Outside map area");
             }
+            else
+            {
+                if (TileController.Instance.GetTile(position).WallType == "BlockingWall")
+                {
+                    reasons.AppendLine(" - Cannot build on blocking walls.");
+                }
+                if (TileController.Instance.GetTile(position).WallType == "NoBuild")
+                {
+                    reasons.AppendLine(" - Cannot build here.");
+                }
+            }
+
             foreach (var requirement in _placeRequirements)
             {
                 string reason = requirement.Invoke();

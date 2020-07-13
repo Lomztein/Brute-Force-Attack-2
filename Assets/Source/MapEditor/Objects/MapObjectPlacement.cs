@@ -21,9 +21,12 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         public void ToPosition(Vector2 position, bool snapToGrid)
         {
-            position = snapToGrid ? GridDimensions.SnapToGrid(position, Size.Small) : position;
+            position = snapToGrid ? GridDimensions.SnapToGrid(position, ComputeSize(_handle.Bounds.size.x), ComputeSize(_handle.Bounds.size.y)) : position;
             _handle.transform.position = position;
         }
+
+        private Size ComputeSize(float size)
+            => Mathf.RoundToInt(size) % 2 == 0 ? Size.Medium : Size.Small;
         
         public void Rotate (float amount, bool snap)
         {
@@ -32,7 +35,7 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         public void Delete ()
         {
-            _handle.Destroy();
+            _handle.Delete();
             Finish();
         }
 

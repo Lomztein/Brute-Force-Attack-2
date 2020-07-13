@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.UI.Tooltip;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,13 @@ namespace Lomztein.BFA2.MapEditor.Objects
     {
         private GameObject _object;
         public BoxCollider2D Collider;
+        public Bounds Bounds => Collider.bounds;
 
         public string Title => _object.name;
         public string Description => null;
         public string Footnote => null;
+
+        private bool _pickable = true;
 
         public void Assign (GameObject obj)
         {
@@ -40,10 +44,11 @@ namespace Lomztein.BFA2.MapEditor.Objects
             Collider.size = ren.bounds.size;
         }
 
-        private void OnMouseDown()
+        private void Click()
         {
             MapObjectPlacement placement = new MapObjectPlacement();
             placement.Pickup(this);
+
             PlacementController.Instance.TakePlacement(placement);
         }
 
@@ -52,9 +57,13 @@ namespace Lomztein.BFA2.MapEditor.Objects
             MapEditorController.Instance.AddMapObject(_object);
         }
 
-        public void Destroy ()
+        public void Delete ()
         {
-            Destroy(_object);
+            if (_object != null)
+            {
+                _object.transform.SetParent(null);
+                Destroy(_object);
+            }
             Destroy(gameObject);
         }
     }

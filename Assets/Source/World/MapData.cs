@@ -21,6 +21,11 @@ namespace Lomztein.BFA2.World
         public TileData Tiles;
         public IGameObjectModel[] Objects = new IGameObjectModel[0];
 
+        public MapData ()
+        {
+            Tiles = new TileData(Width, Height);
+        }
+
         public MapData (string name, string desc, int width, int height)
         {
             Name = name;
@@ -30,18 +35,17 @@ namespace Lomztein.BFA2.World
             Tiles = new TileData(Width, Height);
         }
 
-        public MapData () { }
-
         private Vector2Int[] _nodeNeighbours = new Vector2Int[]
         {
             new Vector2Int(1, 0),
-            new Vector2Int(1, 1),
             new Vector2Int(0, -1),
-            new Vector2Int(1, -1),
             new Vector2Int(-1, 0),
-            new Vector2Int(-1, 1),
             new Vector2Int(0, 1),
-            new Vector2Int(-1, -1),
+            //new Vector2Int(-1, 1),
+            //new Vector2Int(-1, -1),
+            //new Vector2Int(1, 1),
+            //new Vector2Int(1, -1),
+
         };
 
         public void ResetWalls (TileType type)

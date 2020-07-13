@@ -652,6 +652,8 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420037}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -809,7 +811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c31995d033b633439a85218a948addb, type: 3}
   m_Name: 
@@ -855,6 +857,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc60e3597bfa70248ad824311541086a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c74b3cf9c70cf4ba51aa617d993ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519420037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d3213484b04a947bad0799a25b8fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Limit: {x: 0, y: 0}
+  Margin: 10
+  Speed: 15
 --- !u!1 &705102108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,7 +1606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1205910152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,7 +1622,7 @@ MonoBehaviour:
   Resources:
     Elements:
     - Type: 0
-      Value: 750
+      Value: 1000
     - Type: 1
       Value: 0
 --- !u!114 &1205910153
@@ -1931,7 +1960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1485864590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3026,8 +3055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d20c3914dd1a044eb52bb25c9af7c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileType:
-    Name: BlockingWall
+  _type: 
 --- !u!114 &5089778608438497223
 MonoBehaviour:
   m_ObjectHideFlags: 0
