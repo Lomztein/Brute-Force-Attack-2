@@ -90,38 +90,68 @@ namespace Lomztein.BFA2.Placement
 
         private string CanPlace (Vector2 position, Quaternion rotation)
         {
-            StringBuilder reasons = new StringBuilder();
-            Vector2 size = new Vector2 (GridDimensions.SizeOf (_placeable.Width), GridDimensions.SizeOf(_placeable.Height)) / 2.1f;
-            if (Physics2D.OverlapBox(position, size, 0))
+            CannotPlaceReasons reasons = new CannotPlaceReasons();
+            Vector2 size = new Vector2 (GridDimensions.SizeOf (_placeable.Width), GridDimensions.SizeOf(_placeable.Height));
+
+
+            if (Physics2D.OverlapBox(position, size * 0.9f, 0))
             {
-                reasons.AppendLine(" - Space is occupied");
+                reasons.SpaceOccupied = true;
             }
-            if (!MapController.Instance.InInsideMap(position))
+
+            (Vector2Int from, Vector2Int to) = GetFromToChecks(position, size);
+            for (int y = from.y; y < to.y; y++)
             {
-                reasons.AppendLine(" - Outside map area");
-            }
-            else
-            {
-                if (TileController.Instance.GetTile(position).WallType == "BlockingWall")
+                for (int x = from.x; x < to.x; x++)
                 {
-                    reasons.AppendLine(" - Cannot build on blocking walls.");
-                }
-                if (TileController.Instance.GetTile(position).WallType == "NoBuild")
-                {
-                    reasons.AppendLine(" - Cannot build here.");
+                    Vector2 pos = new Vector2(x, y) + new Vector2(0.5f, 0.5f);
+                    if (!MapController.Instance.InInsideMap(pos))
+                    {
+                        reasons.OutsideMapArea = true;
+                    }
+                    else
+                    {
+                        if (TileController.Instance.GetTile(pos).WallType == "BlockingWall")
+                        {
+                            reasons.BlockingWalls = true;
+                        }
+                        if (TileController.Instance.GetTile(pos).WallType == "NoBuild")
+                        {
+                            reasons.NoBuild = true;
+                        }
+                    }
+
+                    Debug.DrawRay(pos, Vector3.right, Color.red);
                 }
             }
 
+            StringBuilder requirementReasons = new StringBuilder();
             foreach (var requirement in _placeRequirements)
             {
                 string reason = requirement.Invoke();
                 if (!string.IsNullOrEmpty(reason))
                 {
-                    reasons.AppendLine(" - " + reason);
+                    requirementReasons.AppendLine(" - " + reason);
                 }
             }
 
-            return reasons.ToString().TrimEnd();
+            return (reasons.ToString() + requirementReasons.ToString()).TrimEnd();
+        }
+
+        private (Vector2Int from, Vector2Int to) GetFromToChecks (Vector2 position, Vector2 size)
+        {
+            Vector2Int from = new Vector2Int(
+                Mathf.RoundToInt(position.x - size.x / 2f),
+                Mathf.RoundToInt(position.y - size.y / 2f)
+                );
+
+            Vector2Int to = new Vector2Int(
+                Mathf.RoundToInt(position.x + size.x / 2f),
+                Mathf.RoundToInt(position.y + size.y / 2f)
+            );
+
+
+            return (from, to);
         }
 
         public override string ToString()
@@ -137,6 +167,41 @@ namespace Lomztein.BFA2.Placement
             _highlighters.EndHighlight();
             ForcedTooltipUpdater.ResetTooltip();
             return true;
+        }
+
+        private struct CannotPlaceReasons
+        {
+            public bool SpaceOccupied;
+            public bool OutsideMapArea;
+            public bool BlockingWalls;
+            public bool NoBuild;
+
+            public override string ToString()
+            {
+                StringBuilder builder = new StringBuilder();
+
+                if (SpaceOccupied)
+                {
+                    builder.AppendLine(" - Space is occupied");
+                }
+
+                if (OutsideMapArea)
+                {
+                    builder.AppendLine(" - Outside map area");
+                }
+
+                if (BlockingWalls)
+                {
+                    builder.AppendLine(" - Cannot place on blocking walls");
+                }
+
+                if (NoBuild)
+                {
+                    builder.AppendLine(" - Cannot place here");
+                }
+
+                return builder.ToString();
+            }
         }
     }
 }
