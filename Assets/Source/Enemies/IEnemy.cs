@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Enemies
     public interface IEnemy
     {
         float DifficultyValue { get; }
-        void Init(Vector3 position);
+        void Init(EnemySpawnPoint point);
 
         event Action<IEnemy> OnKilled;
         event Action<IEnemy> OnFinished;

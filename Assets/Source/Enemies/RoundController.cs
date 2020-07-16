@@ -1,5 +1,10 @@
 ﻿using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Enemies.Waves.Punishers;
+using Lomztein.BFA2.Enemies.Waves.Rewarders;
+using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,30 +20,51 @@ namespace Lomztein.BFA2.Enemies
     {
         public enum RoundState { Ready, Preparing, InProgress }
 
-        public int CurrentWave;
+        public int CurrentWaveIndex;
+        public IWave CurrentWave { get; private set; }
+
         public RoundState State;
 
-        public Vector2 SpawnAreaSize;
-        public Vector2 SpawnAreaCenter;
-
-        [SerializeField] private SimpleWaveGeneratorCollection _internalWaveCollection = new SimpleWaveGeneratorCollection();
+        [SerializeField] private GeneratorWaveCollection _internalWaveCollection = new GeneratorWaveCollection();
         private IWaveCollection WaveCollection => _internalWaveCollection;
+
+        public float StartingEarnedFromKills;
+        public float EarnedFromKillsPerWave;
+
+        public float StartingCompletionReward;
+        public float WaveFinishedRewardPerWave;
+
         private IResourceContainer _resourceContainer;
+        private IHealthContainer _healthContainer;
+
+        private EnemySpawnPoint[] _spawnPoints;
+        private EnemyPoint[] _endPoints;
+
+        public Action<int> OnWavePreparing;
+        public Action<int, IWave> OnWaveStarted;
+        public Action<int, IWave> OnWaveFinished;
+        public Action<int, string> OnWaveCancelled;
+        public Action<int> OnWavesExhausted;
+
+        public Action<IEnemy> OnEnemySpawn;
+        public Action<IEnemy> OnEnemyKill;
+        public Action<IEnemy> OnEnemyFinish;
 
         private void Awake()
         {
             _resourceContainer = GetComponent<IResourceContainer>();
+            _healthContainer = GetComponent<IHealthContainer>();
         }
 
-        public void InvokeDelayed(Action callback, float time)
+        private void Start()
         {
-            StartCoroutine(InvokeDelayedInternal(callback, time));
+            CachePoints();
         }
 
-        private IEnumerator InvokeDelayedInternal(Action callback, float time)
+        private void CachePoints ()
         {
-            yield return new WaitForSeconds(time);
-            callback();
+            _spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint").Select(x => x.GetComponent<EnemySpawnPoint>()).ToArray();
+            _endPoints = GameObject.FindGameObjectsWithTag("EnemyEndPoint").Select(x => x.GetComponent<EnemyPoint>()).ToArray();
         }
 
         private void Update()
@@ -51,56 +77,114 @@ namespace Lomztein.BFA2.Enemies
 
         private IEnumerator RunNextWave()
         {
-            CurrentWave++;
             yield return PrepareWave();
-            StartWave(CurrentWave);
+            if (AnyPathsAvailable())
+            {
+                CurrentWaveIndex++;
+                if (!StartWave(CurrentWaveIndex))
+                {
+                    OnWavesExhausted?.Invoke(CurrentWaveIndex);
+                    CancelWave("Out of waves.");
+                }
+            }
+            else
+            {
+                CancelWave("No paths are available.");
+            }
         }
 
         private IEnumerator PrepareWave()
         {
-            State = RoundState.InProgress;
-            yield return null;
+            OnWavePreparing?.Invoke(CurrentWaveIndex + 1);
+            State = RoundState.Preparing;
+            foreach (EnemySpawnPoint point in _spawnPoints)
+            {
+                point.ComputePath(_endPoints);
+                yield return new WaitForFixedUpdate();
+            }
         }
 
-        private void StartWave(int wave)
+        private void CancelWave (string reason)
+        {
+            OnWaveCancelled?.Invoke(CurrentWaveIndex, reason);
+            CurrentWaveIndex--;
+            CurrentWave = null;
+            State = RoundState.Ready;
+        }
+
+        private bool StartWave(int wave)
         {
             State = RoundState.InProgress;
             IWave next = WaveCollection.GetWave(wave);
-            next.OnFinished += OnWaveFinished;
-            next.OnEnemySpawn += OnSpawn;
-            next.Start(_resourceContainer);
+
+            if (next != null)
+            {
+                next.OnFinished += WaveFinished;
+                next.OnEnemySpawn += OnSpawn;
+
+                IWaveRewarder rewarder = new FractionalWaveRewarder(next.SpawnAmount, GetCompletionReward(wave), GetEarnedFromKills(wave), _resourceContainer);
+                IWavePunisher punshier = new FractionalWavePunisher(next.SpawnAmount, _healthContainer);
+
+                next.OnEnemyKill += rewarder.OnKill;
+                next.OnFinished += rewarder.OnFinished;
+                next.OnEnemyFinish += punshier.Punish;
+
+                next.Start();
+                CurrentWave = next;
+
+                OnWaveStarted?.Invoke(wave, next);
+            }
+
+            return next != null;
         }
+
+        private float GetEarnedFromKills(int wave) => StartingEarnedFromKills + EarnedFromKillsPerWave * (wave - 1);
+
+        private float GetCompletionReward(int wave) => StartingCompletionReward + WaveFinishedRewardPerWave * (wave - 1);
+
+        private bool AnyPathsAvailable() => _spawnPoints.Any(x => !x.PathBlocked);
 
         private void OnSpawn(IEnemy obj)
         {
-            obj.Init(GetRandomPosition());
+            obj.Init(GetSpawnPoint());
         }
 
-        private Vector2 GetRandomPosition()
+        private EnemySpawnPoint GetSpawnPoint()
         {
-            return new Vector2(
-                SpawnAreaCenter.x + Random.Range(-SpawnAreaSize.x, SpawnAreaSize.x),
-                SpawnAreaCenter.y + Random.Range(-SpawnAreaSize.y, SpawnAreaSize.y)
-                );
+            EnemySpawnPoint[] available = _spawnPoints.Where(x => !x.PathBlocked).ToArray();
+            return available[Random.Range(0, available.Length)];
         }
 
-        private void OnWaveFinished()
+        private void WaveFinished()
         {
-            EndWave(CurrentWave);
+            EndWave(CurrentWaveIndex);
         }
 
         private void EndWave(int wave)
         {
             IWave ended = WaveCollection.GetWave(wave);
-            ended.OnFinished -= OnWaveFinished;
-            ended.OnEnemySpawn -= OnSpawn;
+            OnWaveFinished?.Invoke(wave, ended);
+
             State = RoundState.Ready;
             _resourceContainer.ChangeResource(Resource.Research, 1);
         }
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireCube(SpawnAreaCenter, SpawnAreaSize * 2f);
+            if (_spawnPoints != null)
+            {
+                foreach (EnemySpawnPoint point in _spawnPoints)
+                {
+                    if (!point.PathBlocked)
+                    {
+                        Vector3[] path = point.GetPath();
+                        for (int i = 0; i < path.Length - 1; i++)
+                        {
+                            Gizmos.DrawLine(path[i], path[i + 1]);
+                        }
+                    }
+                }
+            }
         }
     }
 }

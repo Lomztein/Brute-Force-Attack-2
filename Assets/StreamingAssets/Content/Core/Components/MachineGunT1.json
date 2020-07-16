@@ -140,93 +140,6 @@
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
-      "Properties": [
-        {
-          "Name": "AnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1.png",
-              "Rect": {
-                "X": 32.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1.png",
-              "Rect": {
-                "X": 64.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1.png",
-              "Rect": {
-                "X": 96.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT1.png",
-              "Rect": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            }
-          ]
-        },
-        {
-          "Name": "DefaultSprite",
-          "Value": {
-            "Path": "Core/Sprites/Components/MachineGunT1.png",
-            "Rect": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 32.0
-          }
-        },
-        {
-          "Name": "PlaySpeedMultiplier",
-          "Value": 1.0
-        }
-      ]
-    },
-    {
       "TypeName": "UnityEngine.CircleCollider2D",
       "Properties": [
         {
@@ -258,6 +171,79 @@
           "Value": "Core.MachineGunT2"
         }
       ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "Properties": [
+        {
+          "Name": "AnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 16.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 48.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
+          ]
+        },
+        {
+          "Name": "DefaultSprite",
+          "Value": {
+            "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+            "Rect": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Width": 16.0,
+              "Height": 16.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          }
+        },
+        {
+          "Name": "PlaySpeedMultiplier",
+          "Value": 1.0
+        }
+      ]
     }
   ],
   "Children": [
@@ -275,7 +261,7 @@
               "Value": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Z": -1.0
+                "Z": 0.0
               }
             },
             {
@@ -297,23 +283,23 @@
           ]
         },
         {
-          "TypeName": "Lomztein.BFA2.Content.References.Componentsnny.ContentSpriteRenderer",
+          "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentSpriteRenderer",
           "Properties": [
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/Components/MachineGunT1.png",
+                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
                 "Rect": {
                   "X": 0.0,
                   "Y": 0.0,
-                  "Width": 32.0,
-                  "Height": 32.0
+                  "Width": 16.0,
+                  "Height": 16.0
                 },
                 "Pivot": {
                   "X": 0.5,
                   "Y": 0.5
                 },
-                "PixelsPerUnit": 32.0
+                "PixelsPerUnit": 16.0
               }
             }
           ]
@@ -335,7 +321,7 @@
               "Value": {
                 "X": 0.5,
                 "Y": 0.0,
-                "Z": -1.0
+                "Z": 0.0
               }
             },
             {
@@ -370,9 +356,9 @@
                 {
                   "Name": "Position",
                   "Value": {
-                    "X": 0.5,
+                    "X": 0.0,
                     "Y": 0.0,
-                    "Z": -1.0
+                    "Z": 0.0
                   }
                 },
                 {

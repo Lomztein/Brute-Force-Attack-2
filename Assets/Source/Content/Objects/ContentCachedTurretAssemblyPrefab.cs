@@ -20,6 +20,11 @@ namespace Lomztein.BFA2.Content.Objects
             _cache = new SceneCachedGameObject(instance);
         }
 
+        public void Dispose()
+        {
+            ((IContentCachedPrefab)_cache).Dispose();
+        }
+
         public GameObject GetCache()
         {
             return ((IContentCachedPrefab)_cache).GetCache();

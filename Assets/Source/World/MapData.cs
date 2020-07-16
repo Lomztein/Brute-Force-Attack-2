@@ -21,6 +21,11 @@ namespace Lomztein.BFA2.World
         public TileData Tiles;
         public IGameObjectModel[] Objects = new IGameObjectModel[0];
 
+        public MapData ()
+        {
+            Tiles = new TileData(Width, Height);
+        }
+
         public MapData (string name, string desc, int width, int height)
         {
             Name = name;
@@ -30,18 +35,17 @@ namespace Lomztein.BFA2.World
             Tiles = new TileData(Width, Height);
         }
 
-        public MapData () { }
-
         private Vector2Int[] _nodeNeighbours = new Vector2Int[]
         {
             new Vector2Int(1, 0),
-            new Vector2Int(1, -1),
             new Vector2Int(0, -1),
-            new Vector2Int(-1, -1),
             new Vector2Int(-1, 0),
-            new Vector2Int(-1, 1),
             new Vector2Int(0, 1),
-            new Vector2Int(1, 1),
+            //new Vector2Int(-1, 1),
+            //new Vector2Int(-1, -1),
+            //new Vector2Int(1, 1),
+            //new Vector2Int(1, -1),
+
         };
 
         public void ResetWalls (TileType type)
@@ -53,18 +57,22 @@ namespace Lomztein.BFA2.World
         {
             List<Graph.Node> nodes = new List<Graph.Node>();
             List<Graph.Edge> edges = new List<Graph.Edge>();
+            Graph.Node[,] nodeMap = new Graph.Node[Width, Height];
 
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    nodes.Add(new Graph.Node(new Vector2Int(x, y)));
+                    Graph.Node node = new Graph.Node(new Vector3(x, y));
+                    nodes.Add(node);
+                    nodeMap[x, y] = node;
+
                     foreach (Vector2Int neighbour in _nodeNeighbours)
                     {
                         int xx = x + neighbour.x;
                         int yy = y + neighbour.y;
 
-                        if (IsInsideMap(xx, yy))
+                        if (MapUtils.IsInsideMap(xx, yy, Width, Height))
                         {
                             edges.Add(new Graph.Edge(MapUtils.CoordsToIndex(x, y, Width), MapUtils.CoordsToIndex(xx, yy, Width)));
                         }
@@ -72,18 +80,11 @@ namespace Lomztein.BFA2.World
                 }
             }
 
-            return new Graph(nodes.ToArray(), edges.ToArray());
+            return new Graph(nodes.ToArray(), edges.ToArray(), new TileGraphMap(Width, Height, nodeMap));
         }
 
 
-        public bool IsInsideMap(int x, int y)
-        {
-            if (x < 0 || x > Width - 1)
-                return false;
-            if (y < 0 || y > Height - 1)
-                return false;
-            return true;
-        }
+
 
         
 

@@ -10,13 +10,17 @@ namespace Lomztein.BFA2.Content.Objects
     {
         private SceneCachedGameObject _cache;
 
-        // TODO: Find a way to unify different cached prefab type classes.
         public ContentCachedPrefab(IGameObjectModel model)
         {
             IGameObjectAssembler assembler = new GameObjectAssembler();
             GameObject instance = assembler.Assemble(model);
 
             _cache = new SceneCachedGameObject(instance);
+        }
+
+        public void Dispose()
+        {
+            ((IContentCachedPrefab)_cache).Dispose();
         }
 
         public GameObject GetCache()

@@ -5,6 +5,7 @@ using Lomztein.BFA2.Turrets;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.Turret
 {
@@ -60,13 +61,28 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
             if (_allComponents == null)
             {
                 _allComponents = Content.Content.GetAll(COMPONENTS_CONTENT_PATH, typeof (IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
+                SceneManager.sceneUnloaded += SceneUnloaded; // Cleanup must be handled manually, as this is not a MonoBehaviour and thus will not be cleaned automnatically.
             }
             return _allComponents;
+        }
+
+        private static void SceneUnloaded(Scene arg0)
+        {
+            DisposeComponents();   
         }
 
         public static IContentCachedPrefab GetComponent (string identifier)
         {
             return GetComponents().First(x => x.GetCache().GetComponent<ITurretComponent>().UniqueIdentifier == identifier);
+        }
+        
+        private static void DisposeComponents ()
+        {
+            foreach (var component in GetComponents())
+            {
+                component.Dispose();
+            }
+            _allComponents = null;
         }
     }
 }

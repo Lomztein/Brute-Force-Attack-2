@@ -3,33 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.References.Componentsnny
+namespace Lomztein.BFA2.Content.References.ReferenceComponents
 {
-    public class ContentSpriteRenderer : MonoBehaviour
+    public class ContentSpriteRenderer : ReferenceComponentBase
     {
         [ModelProperty]
         public ContentSpriteReference Reference;
-        private bool _converted = false;
 
-        public void OnAssembled()
+        protected override void Apply()
         {
-            Convert();
-        }
-
-        private void Start()
-        {
-            Convert();
-        }
-
-        private void Convert ()
-        {
-            if (!_converted)
-            {
-                SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
-                renderer.sprite = Reference.Get();
-                _converted = true;
-                Destroy(this);
-            }
+            SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
+            renderer.sprite = Reference.Get();
         }
     }
 }

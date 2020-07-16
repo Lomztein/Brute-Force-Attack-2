@@ -1,7 +1,4 @@
-﻿using Lomztein.BFA2.Turrets.Highlighters;
-using Lomztein.BFA2.UI.Tooltip;
-using Lomztein.BFA2.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,84 +9,40 @@ namespace Lomztein.BFA2.Placement
 {
     public class PlacementController : MonoBehaviour
     {
-        private IPlacement _currentPlaceable;
-        private HighlighterCollection _highlighters;
+        public static PlacementController Instance;
 
-        public static PlacementController Instance { get; private set; }
-        public bool Busy => _currentPlaceable != null;
+        [SerializeField] private IPlacementBehaviour[] _behaviours;
 
-        private void Awake()
+        public bool Busy => _behaviours.Any(x => x.Busy);
+
+        public void Awake()
         {
             Instance = this;
+            _behaviours = GetComponents<IPlacementBehaviour>();
         }
 
-        private void Update()
+        public void TakePlacement (IPlacement placement)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            if (_currentPlaceable != null)
-            {
-                if (_currentPlaceable.ToPosition(mousePos, Quaternion.identity))
-                {
-                    ForcedTooltipUpdater.ResetTooltip();
-                    _highlighters.Tint(Color.green);
-                }
-                else
-                {
-                    ForcedTooltipUpdater.SetTooltip("Unable to Place", "Cannot place here, something is blocking.", null);
-                    _highlighters.Tint(Color.red);
-                }
-                if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
-                {
-                    PlaceCurrent();
-                }
-                if (Input.GetMouseButtonDown(1))
-                {
-                    FinishCurrent();
-                }
-            }
+            CancelAll();
+            GetBehaviour(placement.GetType()).TakePlacement(placement);
         }
 
-        private void FinishCurrent()
+        public void CancelAll ()
         {
-            if (_currentPlaceable.Finish())
+            foreach (var behaviour in _behaviours)
             {
-                _highlighters.EndHighlight();
-
-                _highlighters = null;
-                _currentPlaceable = null;
+                behaviour.Cancel();
             }
         }
 
-        public bool PickUp(IPlacement placeable, GameObject obj)
+        public void Update()
         {
-            if (_currentPlaceable != null)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                FinishCurrent();
+                CancelAll();
             }
-            if (placeable.Pickup(obj))
-            {
-                _highlighters = HighlighterCollection.Create(obj);
-                _highlighters.Highlight();
-                _currentPlaceable = placeable;
-                return true;
-            }
-            return false;
         }
 
-        public bool PlaceCurrent()
-        {
-            if (_currentPlaceable.Place())
-            {
-                if (!Input.GetKey(KeyCode.LeftShift))
-                {
-                    FinishCurrent();
-                }
-                return true;
-            }
-            return false;
-        }
-
-        public string CurrentToString() => _currentPlaceable?.ToString() ?? "No current placement.";
+        private IPlacementBehaviour GetBehaviour(Type placementType) => _behaviours.First(x => x.CanHandleType(placementType));
     }
 }

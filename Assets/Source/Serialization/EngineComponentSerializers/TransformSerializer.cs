@@ -22,8 +22,8 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
             Vector3 rotation = serializer.DeserializeValue(properties.GetProperty("Rotation").Value);
             Vector3 scale = serializer.DeserializeValue(properties.GetProperty("Scale").Value);
 
-            target.transform.position = position;
-            target.transform.rotation = Quaternion.Euler (rotation);
+            target.transform.localPosition = position;
+            target.transform.localRotation = Quaternion.Euler (rotation);
             target.transform.localScale = scale;
         }
 
@@ -32,8 +32,8 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
             Vector3Serializer serializer = new Vector3Serializer();
 
             return new ComponentModel(typeof(Transform),
-                new PropertyModel("Position", serializer.Serialize(source.position)),
-                new PropertyModel("Rotation", serializer.Serialize(source.rotation.eulerAngles)),
+                new PropertyModel("Position", serializer.Serialize(source.localPosition)),
+                new PropertyModel("Rotation", serializer.Serialize(source.localRotation.eulerAngles)),
                 new PropertyModel("Scale", serializer.Serialize(source.localScale))
                 );
         }

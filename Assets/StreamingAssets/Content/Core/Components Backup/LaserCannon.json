@@ -1,0 +1,348 @@
+{
+  "Name": "LaserCannon",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": [
+        {
+          "Name": "Position",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": -2.0
+          }
+        },
+        {
+          "Name": "Rotation",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Scale",
+          "Value": {
+            "X": 1.0,
+            "Y": 1.0,
+            "Z": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
+      "Properties": [
+        {
+          "Name": "FireTreshold",
+          "Value": 1.0
+        },
+        {
+          "Name": "RangeMultiplier",
+          "Value": 1.0
+        },
+        {
+          "Name": "HitLayer",
+          "Value": {
+            "value": 256
+          }
+        },
+        {
+          "Name": "Color",
+          "Value": 1
+        },
+        {
+          "Name": "_identifier",
+          "Value": "Core.LaserCannonT1"
+        },
+        {
+          "Name": "_name",
+          "Value": "Pulse Laser Cannon"
+        },
+        {
+          "Name": "_description",
+          "Value": "Goes <i>pew pew!</ii>"
+        },
+        {
+          "Name": "_cost",
+          "Value": {
+            "Elements": [
+              {
+                "Type": 0,
+                "Value": 250
+              }
+            ]
+          }
+        },
+        {
+          "Name": "_modAttributes",
+          "Value": [
+            6,
+            3
+          ]
+        },
+        {
+          "Name": "_width",
+          "Value": 1
+        },
+        {
+          "Name": "_height",
+          "Value": 1
+        },
+        {
+          "Name": "PassiveHeatProduction",
+          "Value": 2.5
+        },
+        {
+          "Name": "StatBaseValues",
+          "Value": {
+            "BaseValues": [
+              {
+                "Identifier": "Damage",
+                "Value": 0.5
+              },
+              {
+                "Identifier": "ProjectileAmount",
+                "Value": 1.0
+              },
+              {
+                "Identifier": "Spread",
+                "Value": 0.0
+              },
+              {
+                "Identifier": "Speed",
+                "Value": 1337.0
+              },
+              {
+                "Identifier": "Firerate",
+                "Value": 30.0
+              }
+            ]
+          }
+        },
+        {
+          "Name": "ExpansionCardCapacity",
+          "Value": 2
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Weaponary.WeaponFire",
+      "Properties": []
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileInstantiator",
+      "Properties": [
+        {
+          "Name": "_prefab",
+          "Value": "Resources/Projectiles/LaserProjectile"
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "Properties": [
+        {
+          "Name": "AnimationSprites",
+          "Value": []
+        },
+        {
+          "Name": "DefaultSprite",
+          "Value": {
+            "Path": "Core/Sprites/Components/LaserCannonT1.png",
+            "Rect": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        },
+        {
+          "Name": "PlaySpeedMultiplier",
+          "Value": 1.0
+        }
+      ]
+    },
+    {
+      "TypeName": "UnityEngine.CircleCollider2D",
+      "Properties": [
+        {
+          "Name": "Radius",
+          "Value": 0.5
+        },
+        {
+          "Name": "Offset",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0
+          }
+        },
+        {
+          "Name": "IsTrigger",
+          "Value": false
+        },
+        {
+          "Name": "UsedByEffector",
+          "Value": false
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.TurretComponentTypeUpgrader",
+      "Properties": [
+        {
+          "Name": "UpgradeComponentIdentifier",
+          "Value": "Core.LaserCannonT2"
+        }
+      ]
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -2.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Content.References.Componentsnny.ContentSpriteRenderer",
+          "Properties": [
+            {
+              "Name": "Reference",
+              "Value": {
+                "Path": "Core/Sprites/Components/LaserCannonT1.png",
+                "Rect": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Width": 32.0,
+                  "Height": 32.0
+                },
+                "Pivot": {
+                  "X": 0.5,
+                  "Y": 0.5
+                },
+                "PixelsPerUnit": 32.0
+              }
+            }
+          ]
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Muzzles",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.135880277,
+                "Y": -0.0694841743,
+                "Z": -2.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        }
+      ],
+      "Children": [
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "TypeName": "UnityEngine.Transform",
+              "Properties": [
+                {
+                  "Name": "Position",
+                  "Value": {
+                    "X": 0.5,
+                    "Y": 0.0,
+                    "Z": -2.0
+                  }
+                },
+                {
+                  "Name": "Rotation",
+                  "Value": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  }
+                },
+                {
+                  "Name": "Scale",
+                  "Value": {
+                    "X": 1.0,
+                    "Y": 1.0,
+                    "Z": 1.0
+                  }
+                }
+              ]
+            }
+          ],
+          "Children": []
+        }
+      ]
+    }
+  ]
+}

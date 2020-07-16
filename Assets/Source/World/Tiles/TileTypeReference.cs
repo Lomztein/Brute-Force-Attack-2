@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
+    [System.Serializable]
     public struct TileTypeReference : ISerializable
     {
         public string WallType;
@@ -18,6 +19,8 @@ namespace Lomztein.BFA2.World.Tiles
         {
             WallType = source.ToObject<string>();
         }
+
+        public bool IsType(TileType type) => WallType != null && WallType == type?.Name;
 
         public JToken Serialize()
         {

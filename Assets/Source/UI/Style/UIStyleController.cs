@@ -1,6 +1,9 @@
-﻿using Lomztein.BFA2.UI.Style.Stylizers;
+﻿using Lomztein.BFA2.Game;
+using Lomztein.BFA2.UI.Style.Stylizers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +14,9 @@ namespace Lomztein.BFA2.UI.Style
     [ExecuteAlways]
     public class UIStyleController : MonoBehaviour
     {
-        public UIStyle[] AvailableStyles;
-        public int Selection;
-
         public UIStyle GetCurrentStyle ()
         {
-            return AvailableStyles[Selection];
+            return PlayerProfile.CurrentProfile.Settings.UIStyle;
         }
 
         public void ApplyStyle (UIStyle style)
@@ -34,27 +34,6 @@ namespace Lomztein.BFA2.UI.Style
             {
                 ApplyStyle(GetCurrentStyle());
             }
-
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                CycleStyle(-1);
-            }else if(Input.GetKeyDown(KeyCode.E))
-            {
-                CycleStyle(1);
-            }
-        }
-
-        private void CycleStyle (int direction)
-        {
-            Selection += direction;
-            if (Selection >= AvailableStyles.Length)
-            {
-                Selection = 0;
-            }else if (Selection < 0)
-            {
-                Selection = AvailableStyles.Length - 1;
-            }
-            ApplyStyle(GetCurrentStyle());
         }
     }
 }

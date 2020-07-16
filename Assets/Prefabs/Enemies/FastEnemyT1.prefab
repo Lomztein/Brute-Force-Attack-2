@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6045342832444168123}
   - component: {fileID: 8344243011864690341}
-  - component: {fileID: 4061269102758423044}
+  - component: {fileID: 3044805278761306852}
   - component: {fileID: 901656202398654903}
   - component: {fileID: 9150559930344985836}
   m_Layer: 8
@@ -51,10 +51,8 @@ MonoBehaviour:
   MaxHealth: 10
   Armor: 0
   Shields: 0
-  Damage: 0
-  _value: 10
   Color: 1
---- !u!114 &4061269102758423044
+--- !u!114 &3044805278761306852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,11 +61,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2491341172321060995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76127db1e943db843a2adc3850cfcb75, type: 3}
+  m_Script: {fileID: 11500000, guid: 674b859f950435649b60c6e042383b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  Range: 32
+  Rotate: 1
 --- !u!50 &901656202398654903
 Rigidbody2D:
   serializedVersion: 4
@@ -158,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _applied: 0
   Reference:
     Path: Core/Sprites/Enemies/FastEnemy.png
     Rect:

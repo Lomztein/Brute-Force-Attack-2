@@ -7,11 +7,11 @@ namespace Lomztein.BFA2.Purchasing.Resources
     public class PlayerResourceContainerLink : MonoBehaviour, IResourceContainer
     {
         private IResourceContainer _internalContainer;
-        private const string PLAYER_RESOURCE_OBJECT_NAME = "PlayerResourceContainer";
+        private const string PLAYER_CONTAINER_OBJECT_TAG = "PlayerResourceContainer";
 
-        private void Awake()
+        private void Start()
         {
-            _internalContainer = GameObject.Find(PLAYER_RESOURCE_OBJECT_NAME).GetComponent<IResourceContainer>();
+            _internalContainer = GameObject.FindGameObjectWithTag(PLAYER_CONTAINER_OBJECT_TAG).GetComponent<IResourceContainer>();
         }
 
         public int GetResource(Resource resource)

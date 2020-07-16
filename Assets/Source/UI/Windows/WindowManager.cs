@@ -79,16 +79,14 @@ namespace Lomztein.BFA2.UI.Windows
 
         public static void CloseAllWindows()
         {
-            if (_instance._windows.Count > 0)
+            Queue<IWindow> toClose = new Queue<IWindow>(_instance._windows);
+            if (toClose.Count > 0)
             {
-                while (_instance._windows.Count > 0)
+                while (toClose.Count > 0)
                 {
-                    _instance._windows[0].Close();
+                    toClose.Dequeue().Close();
                 }
             }
         }
-
-        private IWindow[] GetAllWindows()
-            => _windows.ToArray();
     }
 }
