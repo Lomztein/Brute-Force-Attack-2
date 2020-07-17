@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Battlefield;
+using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,16 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.MainMenu
 {
-    public class MapSelector : MonoBehaviour
+    public class MapSelector : MonoBehaviour, ITooltip
     {
         private MapData[] _maps;
         private int _current;
 
         public Text Text;
+
+        public string Title => GetCurrent()?.Name;
+        public string Description => GetCurrent()?.Description;
+        public string Footnote => null;
 
         private void Start()
         {

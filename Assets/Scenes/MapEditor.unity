@@ -521,6 +521,7 @@ RectTransform:
   - {fileID: 231043680}
   - {fileID: 688935631}
   - {fileID: 1567547794}
+  - {fileID: 352313735}
   m_Father: {fileID: 1588003904}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -725,6 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandleProvider: {fileID: 1432551333}
+  ComponentHandleProvider: {fileID: 1432551335}
   MapResizer: {fileID: 4929885607414875833, guid: 0bb913849107d3244b202dc5aacd46c4,
     type: 3}
   DefaultWidth: 30
@@ -763,6 +765,55 @@ MonoBehaviour:
   _Title: Placeable Walls
   _Description: Walls not placeable by the player, but players can build upon them.
   _Footnote: 
+--- !u!1 &352313734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352313735}
+  - component: {fileID: 352313736}
+  m_Layer: 0
+  m_Name: ContextMenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352313735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352313734}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 199947094}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &352313736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352313734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43c0c47fb9053c4e9d17d4abce14494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuPrefab: {fileID: 3066231298972091071, guid: 766f5352148faa44b80eb1ffda8622c4,
+    type: 3}
+  MenuParent: {fileID: 352313735}
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &392922871
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandleProvider: {fileID: 1432551333}
+  ComponentHandleProvider: {fileID: 1432551335}
 --- !u!114 &399962261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,36 +1536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MeshFilter: {fileID: 875426333}
---- !u!1 &1026252556
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1026252557}
-  m_Layer: 0
-  m_Name: TransformHandle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1026252557
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026252556}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1026889408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2244,6 +2266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1432551334}
   - component: {fileID: 1432551333}
+  - component: {fileID: 1432551335}
   m_Layer: 0
   m_Name: MapHandleProvider
   m_TagString: Untagged
@@ -2283,6 +2306,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1432551335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432551332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49eb5bf2247ddba43b94880cf4a78e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Handles:
+  - {fileID: 5725012447123162507, guid: bc70c9a6938d4d54b93f003748a282d6, type: 3}
 --- !u!1 &1442331948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3807,6 +3844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03653ffc547676847b971b748959cfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HandleLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &2068120071
 MonoBehaviour:
   m_ObjectHideFlags: 0
