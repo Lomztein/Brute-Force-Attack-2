@@ -14,23 +14,10 @@ namespace Lomztein.BFA2.MapEditor.Objects
         public event Action OnFinished;
         private MapObjectHandle _handle;
 
-        public void Pickup (MapObjectHandle handle)
+        public void Select (MapObjectHandle handle)
         {
             _handle = handle;
-        }
-
-        public void ToPosition(Vector2 position, bool snapToGrid)
-        {
-            position = snapToGrid ? GridDimensions.SnapToGrid(position, ComputeSize(_handle.Bounds.size.x), ComputeSize(_handle.Bounds.size.y)) : position;
-            _handle.transform.position = position;
-        }
-
-        private Size ComputeSize(float size)
-            => Mathf.RoundToInt(size) % 2 == 0 ? Size.Medium : Size.Small;
-        
-        public void Rotate (float amount, bool snap)
-        {
-            _handle.transform.Rotate(new Vector3(0f, 0f, amount));
+            _handle.OnSelected();
         }
 
         public void Delete ()
@@ -39,14 +26,16 @@ namespace Lomztein.BFA2.MapEditor.Objects
             Finish();
         }
 
-        public void Place ()
+        public void Deselect ()
         {
-            _handle = null;
             Finish();
         }
 
         public bool Finish()
         {
+            _handle.OnDeselected();
+            _handle = null;
+
             OnFinished?.Invoke();
             return true;
         }

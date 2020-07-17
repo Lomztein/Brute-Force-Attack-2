@@ -1,4 +1,6 @@
 ﻿using Lomztein.BFA2.Placement;
+using Lomztein.BFA2.UI.ContextMenu;
+using Lomztein.BFA2.UI.ContextMenu.Providers;
 using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
@@ -10,7 +12,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.MapEditor.Objects
 {
-    public class MapObjectHandle : MonoBehaviour, ITooltip
+    public class MapObjectHandle : MonoBehaviour, ITooltip, IContextMenuOptionProvider
     {
         private GameObject _object;
         public BoxCollider2D Collider;
@@ -20,21 +22,39 @@ namespace Lomztein.BFA2.MapEditor.Objects
         public string Description => null;
         public string Footnote => null;
 
-        private bool _pickable = true;
+        private GameObject[] _handles;
 
-        public void Assign (GameObject obj)
+        public void Assign (GameObject obj, IEnumerable<GameObject> handles)
         {
             _object = obj;
+            _handles = handles.ToArray();
             UpdateCollider();
             Init();
+            OnDeselected();
         }
 
         private void Update()
         {
             if (_object)
             {
-                _object.transform.position = transform.position;
-                _object.transform.rotation = transform.rotation;
+                transform.position = _object.transform.position;
+                transform.rotation = _object.transform.rotation;
+            }
+        }
+
+        public void OnSelected ()
+        {
+            foreach (GameObject go in _handles)
+            {
+                go.SetActive(true);
+            }
+        }
+
+        public void OnDeselected ()
+        {
+            foreach (GameObject go in _handles)
+            {
+                go.SetActive(false);
             }
         }
 
@@ -44,20 +64,12 @@ namespace Lomztein.BFA2.MapEditor.Objects
             Collider.size = ren.bounds.size;
         }
 
-        private void Click()
-        {
-            MapObjectPlacement placement = new MapObjectPlacement();
-            placement.Pickup(this);
-
-            PlacementController.Instance.TakePlacement(placement);
-        }
-
         private void Init()
         {
             MapEditorController.Instance.AddMapObject(_object);
         }
 
-        public void Delete ()
+        public bool Delete ()
         {
             if (_object != null)
             {
@@ -65,6 +77,24 @@ namespace Lomztein.BFA2.MapEditor.Objects
                 Destroy(_object);
             }
             Destroy(gameObject);
+            return true;
+        }
+
+        private bool Select ()
+        {
+            MapObjectPlacement placement = new MapObjectPlacement();
+            placement.Select(this);
+            PlacementController.Instance.TakePlacement(placement);
+            return true;
+        }
+
+        public IEnumerable<IContextMenuOption> GetContextMenuOptions()
+        {
+            return new IContextMenuOption[]
+            {
+                new ContextMenuOption($"Select {gameObject.name}", "Select this object.", null, Select, () => true),
+                new ContextMenuOption($"Delete {gameObject.name}", "Delete this object.", null, Delete, () => true),
+            };
         }
     }
 }

@@ -23,7 +23,9 @@ namespace Lomztein.BFA2.MapEditor
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
 
         public static MapEditorController Instance;
+
         public MapObjectHandleProvider HandleProvider;
+        public ComponentHandleProvider ComponentHandleProvider;
         
         public GameObject MapResizer;
         public int DefaultWidth;
@@ -76,7 +78,7 @@ namespace Lomztein.BFA2.MapEditor
                 handle.transform.position = child.position;
                 handle.transform.rotation = child.rotation;
 
-                handle.Assign(child.gameObject);
+                handle.Assign(child.gameObject, ComponentHandleProvider.GetHandles(child.gameObject));
             }
         }
 

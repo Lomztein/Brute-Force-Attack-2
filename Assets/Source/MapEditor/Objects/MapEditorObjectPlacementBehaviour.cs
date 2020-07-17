@@ -14,6 +14,8 @@ namespace Lomztein.BFA2.MapEditor.Objects
         public override bool Busy => _current != null;
         private MapObjectPlacement _current;
 
+        public LayerMask HandleLayer;
+
         public override void Cancel()
         {
             if (_current != null)
@@ -30,28 +32,24 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
             if (_current != null)
             {
-                _current.ToPosition(mousePos, Input.GetKey(KeyCode.LeftControl));
-                _current.Rotate(Input.GetAxis("Mouse ScrollWheel") * 30f, false);
-
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && !HoverOverHandle())
                 {
-                    _current.Place();
+                    _current.Deselect();
                     placedThisFrame = true;
-                }
-                if (Input.GetMouseButtonDown(1))
-                {
-                    _current.Delete();
                 }
             }
 
             Collider2D collider = Physics2D.OverlapPointAll(mousePos).Where(x => x.GetComponent<MapObjectHandle>() != null).FirstOrDefault();
             if (collider && Input.GetMouseButtonDown(0) && !placedThisFrame)
             {
+
                 MapObjectPlacement placement = new MapObjectPlacement();
-                placement.Pickup(collider.GetComponent<MapObjectHandle>());
+                placement.Select(collider.GetComponent<MapObjectHandle>());
                 TakePlacement(placement);
             }
         }
+
+        private bool HoverOverHandle() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), Mathf.Infinity, HandleLayer);
 
         public override void TakePlacement(MapObjectPlacement placement)
         {
