@@ -18,5 +18,12 @@ namespace Lomztein.BFA2.UI.Tooltip
         public string Description => _Description;
 
         public string Footnote => _Footnote;
+
+        public void SetTooltip (string title, string description, string footnote)
+        {
+            _Title = title;
+            _Description = description;
+            _Footnote = footnote;
+        }
     }
 }

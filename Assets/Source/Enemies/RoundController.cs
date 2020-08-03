@@ -40,15 +40,15 @@ namespace Lomztein.BFA2.Enemies
         private EnemySpawnPoint[] _spawnPoints;
         private EnemyPoint[] _endPoints;
 
-        public Action<int> OnWavePreparing;
-        public Action<int, IWave> OnWaveStarted;
-        public Action<int, IWave> OnWaveFinished;
-        public Action<int, string> OnWaveCancelled;
-        public Action<int> OnWavesExhausted;
+        public event Action<int> OnWavePreparing;
+        public event Action<int, IWave> OnWaveStarted;
+        public event Action<int, IWave> OnWaveFinished;
+        public event Action<int, string> OnWaveCancelled;
+        public event Action<int> OnWavesExhausted;
 
-        public Action<IEnemy> OnEnemySpawn;
-        public Action<IEnemy> OnEnemyKill;
-        public Action<IEnemy> OnEnemyFinish;
+        public event Action<IEnemy> OnEnemySpawn;
+        public event Action<IEnemy> OnEnemyKill;
+        public event Action<IEnemy> OnEnemyFinish;
 
         private void Awake()
         {
@@ -126,8 +126,13 @@ namespace Lomztein.BFA2.Enemies
                 IWavePunisher punshier = new FractionalWavePunisher(next.SpawnAmount, _healthContainer);
 
                 next.OnEnemyKill += rewarder.OnKill;
+                next.OnEnemyKill += EnemyKill;
+
                 next.OnFinished += rewarder.OnFinished;
+                next.OnFinished += WaveFinished;
+
                 next.OnEnemyFinish += punshier.Punish;
+                next.OnEnemyFinish += EnemyFinished;
 
                 next.Start();
                 CurrentWave = next;
@@ -136,6 +141,16 @@ namespace Lomztein.BFA2.Enemies
             }
 
             return next != null;
+        }
+
+        private void EnemyFinished(IEnemy obj)
+        {
+            OnEnemyFinish?.Invoke(obj);
+        }
+
+        private void EnemyKill(IEnemy obj)
+        {
+            OnEnemyKill?.Invoke(obj);
         }
 
         private float GetEarnedFromKills(int wave) => StartingEarnedFromKills + EarnedFromKillsPerWave * (wave - 1);
@@ -147,6 +162,7 @@ namespace Lomztein.BFA2.Enemies
         private void OnSpawn(IEnemy obj)
         {
             obj.Init(GetSpawnPoint());
+            OnEnemySpawn?.Invoke(obj);
         }
 
         private EnemySpawnPoint GetSpawnPoint()

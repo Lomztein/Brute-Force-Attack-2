@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.UI.Style.Stylizers
 
         public abstract void ApplyStyle(UIStyle style);
 
-        private void ApplyStyle()
+        public void ApplyStyle()
             => ApplyStyle(GetController().GetCurrentStyle());
 
         public void Start()
