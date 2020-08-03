@@ -14,6 +14,8 @@ namespace Lomztein.BFA2.Research.Rewards
         public string TargetGlobalModManager;
         private IMod _mod;
 
+        public override string Description => GetMod().ToString();
+
         public override void ApplyReward()
         {
             GlobalMod gmod = new GlobalMod(x => Fits(x), TargetGlobalModManager, GetMod());

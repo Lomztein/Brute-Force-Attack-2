@@ -17,6 +17,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             new Vector3Serializer(),
             new Vector4Serializer(),
             new QuaternionSerializer(),
+            new ColorSerializer(),
         };
 
         public object Assemble(JToken model, Type type)

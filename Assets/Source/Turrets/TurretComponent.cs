@@ -71,7 +71,7 @@ namespace Lomztein.BFA2.Turrets
             Init();
             Stats.Init(StatBaseValues);
 
-            AssemblyManager.Instance.AddComponent(this);
+            SceneAssemblyManager.Instance.AddComponent(this);
         }
 
         public void FixedUpdate()
@@ -83,7 +83,7 @@ namespace Lomztein.BFA2.Turrets
         public void OnDestroy()
         {
             End();
-            AssemblyManager.Instance.RemoveComponent(this);
+            SceneAssemblyManager.Instance.RemoveComponent(this);
         }
 
         private void HeatAssembly(float amount, float dt)

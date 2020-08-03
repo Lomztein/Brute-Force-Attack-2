@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Enemies;
+﻿using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;
 using System;
@@ -18,6 +19,9 @@ namespace Lomztein.BFA2.Research.Requirements
         public Colorization.Color[] TargetColors;
 
         public override float Progress => _current / Target;
+
+        public override string Description => "Slay " + Target + " worth of " + FormatTargetColors() + " enemies.";
+        public override string Status => Mathf.Round(_current) + " / " + Target + " " + FormatTargetColors() + " worth of enemies slayn.";
 
         public override event Action<CompletionRequirement> OnCompleted;
         public override event Action<CompletionRequirement> OnProgressed;
@@ -56,5 +60,7 @@ namespace Lomztein.BFA2.Research.Requirements
             Enemy e = enemy as Enemy;
             return TargetColors.Contains(e.Color);
         }
+
+        private string FormatTargetColors() => string.Join(", ", TargetColors.Select(x => x.ToString()));
     }
 }

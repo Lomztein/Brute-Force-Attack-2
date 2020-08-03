@@ -9,7 +9,10 @@ namespace Lomztein.BFA2.Research.Requirements
 {
     public abstract class CompletionRequirement : MonoBehaviour
     {
+        public abstract string Description { get; }
+
         public abstract float Progress { get; }
+        public abstract string Status { get; }
 
         public abstract event Action<CompletionRequirement> OnCompleted;
         public abstract event Action<CompletionRequirement> OnProgressed;
@@ -17,5 +20,6 @@ namespace Lomztein.BFA2.Research.Requirements
         public abstract void Init();
 
         public abstract void Stop();
+
     }
 }

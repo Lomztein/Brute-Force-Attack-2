@@ -12,6 +12,8 @@ namespace Lomztein.BFA2.Research.Rewards
         [ModelProperty]
         public int Amount;
 
+        public override string Description => "+" + Amount + " research slots.";
+
         public override void ApplyReward()
         {
             ResearchController.Instance.SetMaxResearchSlots(ResearchController.Instance.MaxResearchSlots + Amount);

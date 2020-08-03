@@ -14,11 +14,15 @@ namespace Lomztein.BFA2.Research
     public class ResearchOption : MonoBehaviour
     {
         [ModelProperty]
-        public string Name;
+        public string Name = "Unnamed";
         [ModelProperty]
-        public string Description;
+        public string Description = "Undescd";
         [ModelProperty]
         public ContentSpriteReference Sprite;
+        [ModelProperty]
+        public Color SpriteTint = Color.white;
+        [ModelProperty]
+        public float Weight = 1;
         [ModelProperty]
         public ResourceCost InitialCost = new ResourceCost();
 
@@ -27,10 +31,10 @@ namespace Lomztein.BFA2.Research
         [ModelProperty]
         public string[] PrerequisiteIdentifiers;
 
-        public float Progress => _requirements.Sum(x => Mathf.Clamp01(x.Progress)) / _requirements.Length;
+        public float Progress => Requirements.Sum(x => Mathf.Clamp01(x.Progress)) / Requirements.Length;
 
-        private CompletionRequirement[] _requirements;
-        private CompletionReward[] _rewards;
+        private CompletionRequirement[] Requirements => GetComponents<CompletionRequirement>();
+        private CompletionReward[] Rewards => GetComponents<CompletionReward>();
 
         private int _completedRequirements;
 
@@ -39,10 +43,10 @@ namespace Lomztein.BFA2.Research
 
         public void Init()
         {
-            _requirements = GetComponents<CompletionRequirement>();
-            _rewards = GetComponents<CompletionReward>();
+            CompletionRequirement[] requirements = GetComponents<CompletionRequirement>();
+            CompletionReward[] rewards = GetComponents<CompletionReward>();
 
-            foreach (CompletionRequirement req in _requirements)
+            foreach (CompletionRequirement req in requirements)
             {
                 req.Init();
 
@@ -51,9 +55,13 @@ namespace Lomztein.BFA2.Research
             }
         }
 
+        public string[] GetRequirementStatuses() => Requirements.Select(x => x.Status).ToArray();
+        public string[] GetRequirementDescriptions() => Requirements.Select(x => x.Description).ToArray();
+        public string[] GetRewardDescriptions() => Rewards.Select(x => x.Description).ToArray();
+
         public void Stop()
         {
-            foreach (CompletionRequirement req in _requirements)
+            foreach (CompletionRequirement req in Requirements)
             {
                 req.Stop();
             }
@@ -67,7 +75,7 @@ namespace Lomztein.BFA2.Research
         private void OnRequirementCompleted(CompletionRequirement obj)
         {
             _completedRequirements++;
-            if (_completedRequirements == _requirements.Length)
+            if (_completedRequirements == Requirements.Length)
             {
                 Reward();
                 Stop();
@@ -77,7 +85,7 @@ namespace Lomztein.BFA2.Research
 
         private void Reward ()
         {
-            foreach (var reward in _rewards)
+            foreach (var reward in Rewards)
             {
                 reward.ApplyReward();
             }

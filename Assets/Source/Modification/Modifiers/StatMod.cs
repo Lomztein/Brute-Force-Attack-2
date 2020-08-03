@@ -24,6 +24,11 @@ namespace Lomztein.BFA2.Modification.Modifiers
 
             public Stat.Type Type;
             public float Value;
+
+            public override string ToString()
+            {
+                return "+" + (Type == Stat.Type.Multiplicative ? Mathf.RoundToInt(Value * 100f).ToString() + "%" : Value.ToString()) + " " + (string.IsNullOrEmpty (Name) ? Identifier : Name);
+            }
         }
 
         public override void ApplyBase(IStatContainer stats, IEventContainer events)
@@ -60,6 +65,11 @@ namespace Lomztein.BFA2.Modification.Modifiers
             {
                 stats.RemoveStatElement(element.Identifier, element, element.Type);
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Join("\n", Stats.Select(x => x.ToString()));
         }
     }
 }

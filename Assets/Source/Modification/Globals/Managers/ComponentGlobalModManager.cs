@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Modification.Globals.Managers
 
         private void Start()
         {
-            AssemblyManager.Instance.OnComponentAdded += OnComponentAdded;
+            SceneAssemblyManager.Instance.OnComponentAdded += OnComponentAdded;
         }
 
         private void OnComponentAdded(ITurretComponent obj)
@@ -35,7 +35,7 @@ namespace Lomztein.BFA2.Modification.Globals.Managers
         {
             _currentMods.Remove(mod);
 
-            foreach (ITurretComponent component in AssemblyManager.Instance.Components)
+            foreach (ITurretComponent component in SceneAssemblyManager.Instance.Components)
             {
                 if (component is TurretComponent concreteComponent)
                 {
@@ -51,7 +51,7 @@ namespace Lomztein.BFA2.Modification.Globals.Managers
         {
             _currentMods.Add(mod);
 
-            foreach (ITurretComponent component in AssemblyManager.Instance.Components)
+            foreach (ITurretComponent component in SceneAssemblyManager.Instance.Components)
             {
                 if (component is TurretComponent concreteComponent)
                 {

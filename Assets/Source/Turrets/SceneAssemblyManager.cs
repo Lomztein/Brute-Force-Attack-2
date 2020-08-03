@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public class AssemblyManager : MonoBehaviour
+    public class SceneAssemblyManager : MonoBehaviour
     {
-        public static AssemblyManager Instance;
+        public static SceneAssemblyManager Instance;
 
         public event Action<ITurretAssembly> OnAssemblyAdded;
         public event Action<ITurretAssembly> OnAssemblyRemoved;
@@ -26,7 +26,6 @@ namespace Lomztein.BFA2.Turrets
         {
             Instance = this;
         }
-
 
         public void AddAssembly (ITurretAssembly assembly)
         {

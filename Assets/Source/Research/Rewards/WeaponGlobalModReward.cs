@@ -17,6 +17,8 @@ namespace Lomztein.BFA2.Research.Rewards
         private IMod _mod;
         private const string TargetGlobalModManager = "TurretComponent";
 
+        public override string Description => GetMod() + " applied to " + Color.ToString() + " weapons.";
+
         public override void ApplyReward()
         {
             GlobalMod gmod = new GlobalMod(x => Fits(x), TargetGlobalModManager, GetMod());

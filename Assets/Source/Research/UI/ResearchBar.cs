@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Research.UI
 
         public string Title => Research.Name;
         public string Description => Research.Description;
-        public string Footnote => "Progress: " + Mathf.RoundToInt(Research.Progress * 100) + "%";
+        public string Footnote => string.Join("\n", Research.GetRequirementStatuses());
 
         public void Assign (ResearchOption option)
         {

@@ -54,13 +54,13 @@ namespace Lomztein.BFA2.Turrets
         // Start is called before the first frame update
         void Start()
         {
-            AssemblyManager.Instance.AddAssembly(this);
+            SceneAssemblyManager.Instance.AddAssembly(this);
             InitStats();
         }
 
         void OnDestroy ()
         {
-            AssemblyManager.Instance.RemoveAssembly(this);
+            SceneAssemblyManager.Instance.RemoveAssembly(this);
         }
 
         void InitStats ()

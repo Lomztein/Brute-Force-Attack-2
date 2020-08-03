@@ -13,6 +13,10 @@ namespace Lomztein.BFA2.Research.Requirements
     {
         public override float Progress => _completed / (float)Target;
 
+        public override string Description => "Finish " + Target + " waves.";
+
+        public override string Status => _completed + " / " + Target + " waves finished.";
+
         public override event Action<CompletionRequirement> OnCompleted;
         public override event Action<CompletionRequirement> OnProgressed;
 
