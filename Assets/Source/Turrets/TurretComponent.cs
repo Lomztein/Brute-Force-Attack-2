@@ -55,7 +55,6 @@ namespace Lomztein.BFA2.Turrets
 
         public void Start()
         {
-            Mods = new ModContainer(Stats, Events);
             InitComponent();
         }
 
@@ -66,30 +65,30 @@ namespace Lomztein.BFA2.Turrets
 
         private void InitComponent()
         {
+            Mods = new ModContainer(Stats, Events);
+            Assembly = GetComponentInParent<ITurretAssembly>();
+
             Init();
             Stats.Init(StatBaseValues);
+
+            AssemblyManager.Instance.AddComponent(this);
         }
 
         public void FixedUpdate()
         {
-            if (Assembly.Enabled)
-            {
-                HeatAssembly(PassiveHeatProduction, Time.fixedDeltaTime);
-                Tick(Time.fixedDeltaTime);
-            }
+            HeatAssembly(PassiveHeatProduction, Time.fixedDeltaTime);
+            Tick(Time.fixedDeltaTime);
         }
 
         public void OnDestroy()
         {
             End();
+            AssemblyManager.Instance.RemoveComponent(this);
         }
 
-        private void HeatAssembly (float amount, float dt)
+        private void HeatAssembly(float amount, float dt)
         {
-            if (Assembly != null)
-            {
-                Assembly.Heat(PassiveHeatProduction * dt);
-            }
+            Assembly.Heat(PassiveHeatProduction * dt);
         }
 
         public abstract void Init();

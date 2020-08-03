@@ -18,9 +18,13 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
             new Vector2Int(0, -1),
         };
 
-        private void Awake()
+        private ITileMeshUVProvider GetUVProvider ()
         {
-            _uvProvider = GetComponent<ITileMeshUVProvider>();
+            if (_uvProvider == null)
+            {
+                _uvProvider = GetComponent<ITileMeshUVProvider>();
+            }
+            return _uvProvider;
         }
 
         public Mesh GenerateMesh(TileData data)
@@ -70,7 +74,7 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
             verts[vertIndex + 3] = new Vector3(x + 1, y + 1);
 
             // Generate UVs
-            Vector2[] uv = _uvProvider.GetUVs(bitmask);
+            Vector2[] uv = GetUVProvider().GetUVs(bitmask);
             uvs[vertIndex] = uv[0];
             uvs[vertIndex + 1] = uv[1];
             uvs[vertIndex + 2] = uv[2];

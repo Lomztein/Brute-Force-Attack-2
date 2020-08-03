@@ -19,11 +19,9 @@ using Color = Lomztein.BFA2.Colorization.Color;
 namespace Lomztein.BFA2.Turrets.Weapons
 {
     public class TurretWeapon : TurretComponent, IColorProvider, IWeapon {
-        [TurretComponent]
+
         public ITargeter Targeter;
-        [TurretComponent]
         public ITargetProvider Provider;
-        [TurretComponent]
         public IRanger Ranger;
 
         [ModelProperty]
@@ -77,6 +75,10 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         public override void Init()
         {
+            Targeter = GetComponentInParent<ITargeter>();
+            Provider = GetComponentInParent<ITargetProvider>();
+            Ranger = GetComponentInParent<IRanger>();
+
             _weaponFire = GetComponent<WeaponFire>();
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();

@@ -8,6 +8,8 @@ namespace Lomztein.BFA2.Placement
 {
     public interface IPlacement
     {
+        void Init();
+
         bool Finish();
         event Action OnFinished;
     }

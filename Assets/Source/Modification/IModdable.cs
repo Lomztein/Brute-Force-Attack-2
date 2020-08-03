@@ -14,6 +14,7 @@ namespace Lomztein.BFA2.Modification
         Homing,
         Assembly,
         Weapon,
+        Base,
     }
 
     public interface IModdable

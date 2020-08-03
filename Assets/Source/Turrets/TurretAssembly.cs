@@ -6,7 +6,6 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Turrets.Assemblers;
 using Lomztein.BFA2.UI;
 using System;
 using System.Collections;
@@ -18,9 +17,6 @@ namespace Lomztein.BFA2.Turrets
 {
     public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridObject, IPurchasable, IModdable
     {
-        private List<ITurretComponent> _components;
-        private ITurretAssembler _assembler = new TurretAssembler();
-
         public IStatContainer Stats = new StatContainer ();
         public IEventContainer Events = new EventContainer();
         public IModContainer Mods { get; private set; }
@@ -28,7 +24,7 @@ namespace Lomztein.BFA2.Turrets
         private IStatReference _passiveCooling;
         private IStatReference _heatCapacity;
 
-        public bool Enabled { get; private set; } = true;
+        public bool Enabled { get => enabled; private set => enabled = value; }
 
         [ModelProperty]
         public StatBaseValues StatBaseValues;
@@ -56,10 +52,15 @@ namespace Lomztein.BFA2.Turrets
         public ModdableAttribute[] Attributes => _modAttributes;
 
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
-            Rebuild();
+            AssemblyManager.Instance.AddAssembly(this);
             InitStats();
+        }
+
+        void OnDestroy ()
+        {
+            AssemblyManager.Instance.RemoveAssembly(this);
         }
 
         void InitStats ()
@@ -72,36 +73,15 @@ namespace Lomztein.BFA2.Turrets
             Stats.Init(StatBaseValues);
         }
 
-        private void Rebuild ()
-        {
-            _components = GetComponentsInChildren<ITurretComponent>().ToList();
-            Reassemble();
-        }
-
-        public void AddComponent (ITurretComponent component)
-        {
-            Rebuild();
-        }
-
-        public void RemoveComponent (ITurretComponent component)
-        {
-            Rebuild();
-        }
-
         // Update is called once per frame
         void FixedUpdate()
         {
             Heat -= _passiveCooling.GetValue () * Time.fixedDeltaTime;
         }
 
-        private void Reassemble ()
-        {
-            _assembler.Assemble(this);
-        }
-
         public ITurretComponent[] GetComponents()
         {
-            return _components.ToArray();
+            return GetComponentsInChildren<ITurretComponent>();
         }
 
         void ITurretAssembly.Heat(float amount)

@@ -12,7 +12,6 @@ namespace Lomztein.BFA2.Turrets.Targeters
 {
     public class TurretRotator : TurretComponent, ITargeter
     {
-        [TurretComponent]
         public ITargetProvider TargetProvider;
         private IWeapon _weapon;
 
@@ -34,6 +33,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
 
         public override void Init()
         {
+            TargetProvider = GetComponentInParent<ITargetProvider>();
             AddAttribute(Modification.ModdableAttribute.Rotator);
             _weapon = GetComponentInChildren<IWeapon>();
             Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.");

@@ -119,7 +119,6 @@ namespace Lomztein.BFA2.Enemies
 
             if (next != null)
             {
-                next.OnFinished += WaveFinished;
                 next.OnEnemySpawn += OnSpawn;
 
                 IWaveRewarder rewarder = new FractionalWaveRewarder(next.SpawnAmount, GetCompletionReward(wave), GetEarnedFromKills(wave), _resourceContainer);

@@ -39,5 +39,9 @@ namespace Lomztein.BFA2.MapEditor.Objects
             OnFinished?.Invoke();
             return true;
         }
+
+        public void Init()
+        {
+        }
     }
 }

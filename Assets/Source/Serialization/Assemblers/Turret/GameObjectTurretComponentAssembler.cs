@@ -31,8 +31,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
             }
 
             ITurretComponent newComponent = obj.GetComponent<ITurretComponent>();
-            assembly.AddComponent(newComponent);
-
             foreach (ITurretComponentModel child in model.GetChildren())
             {
                 Assemble(child, newComponent, assembly);

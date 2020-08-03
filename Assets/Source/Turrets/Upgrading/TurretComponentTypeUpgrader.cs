@@ -23,8 +23,6 @@ namespace Lomztein.BFA2.Turrets.Upgrading
             ITurretAssembly assembly = GetComponentInParent<ITurretAssembly>();
             ITurretComponent current = GetComponent<ITurretComponent>();
 
-            assembly.RemoveComponent(current);
-
             GameObject newObj = GameObjectTurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).Instantiate();
 
             newObj.transform.position = transform.position;
@@ -32,7 +30,6 @@ namespace Lomztein.BFA2.Turrets.Upgrading
             newObj.transform.localScale = transform.localScale;
 
             newObj.transform.SetParent(transform.parent, true);
-            assembly.AddComponent(newObj.GetComponent<ITurretComponent>());
 
             Destroy(gameObject);
         }

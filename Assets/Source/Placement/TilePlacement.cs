@@ -138,5 +138,9 @@ namespace Lomztein.BFA2.Placement
             UnityEngine.Object.Destroy(GetPlacementGraphic());
             return true;
         }
+
+        public void Init()
+        {
+        }
     }
 }

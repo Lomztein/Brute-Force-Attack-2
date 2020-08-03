@@ -24,6 +24,7 @@ namespace Lomztein.BFA2.Placement
         public void TakePlacement (IPlacement placement)
         {
             CancelAll();
+            placement.Init();
             GetBehaviour(placement.GetType()).TakePlacement(placement);
         }
 

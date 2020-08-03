@@ -94,5 +94,9 @@ namespace Lomztein.BFA2.Placement
             OnFinished?.Invoke();
             return true;
         }
+
+        public void Init()
+        {
+        }
     }
 }

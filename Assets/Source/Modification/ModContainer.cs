@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Modifiers;
 using Lomztein.BFA2.Modification.Stats;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Modification
 {

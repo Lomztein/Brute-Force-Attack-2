@@ -9,14 +9,18 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
         public MeshFilter MeshFilter;
         private ITileMeshGenerator _tileMeshGenerator;
 
-        public void Awake()
+        public ITileMeshGenerator GetGenerator()
         {
-            _tileMeshGenerator = GetComponent<ITileMeshGenerator>();
+            if (_tileMeshGenerator == null)
+            {
+                _tileMeshGenerator = GetComponent<ITileMeshGenerator>();
+            }
+            return _tileMeshGenerator;
         }
 
         public void RegenerateMesh (TileData data)
         {
-            Mesh mesh = _tileMeshGenerator.GenerateMesh(data);
+            Mesh mesh = GetGenerator().GenerateMesh(data);
             MeshFilter.mesh = mesh;
         }
     }
