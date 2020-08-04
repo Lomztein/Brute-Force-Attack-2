@@ -8,6 +8,8 @@ namespace Lomztein.BFA2.Purchasing.Resources
 {
     public interface IResourceContainer
     {
+        event Action<Resource, int, int> OnResourceChanged;
+
         int GetResource(Resource resource);
 
         void ChangeResource(Resource resource, int value);

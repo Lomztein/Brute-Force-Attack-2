@@ -1,17 +1,16 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.Content.References.PrefabProviders;
-using Lomztein.BFA2.Purchasing.UI;
-using Lomztein.BFA2.UI.Menus;
-using Lomztein.BFA2.UI.PickerMenu.Buttons;
-using Lomztein.BFA2.UI.PickerMenu.PickHandlers;
+using Lomztein.BFA2.UI.Menus.PickerMenu.Buttons;
+using Lomztein.BFA2.UI.Menus.PickerMenu.PickHandlers;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2.UI.PickerMenu
+namespace Lomztein.BFA2.UI.Menus.PickerMenu
 {
     public class PickMenu : MonoBehaviour, ITabMenuElement
     {
-        private IContentCachedPrefab[] _pickables;
+        private List<IContentCachedPrefab> _pickables = new List<IContentCachedPrefab>();
         public GameObject ButtonPrefab;
         public Transform ButtonParent;
 
@@ -26,12 +25,23 @@ namespace Lomztein.BFA2.UI.PickerMenu
         {
             _prefabSource = GetComponent<ICachedPrefabProvider>();
             _pickHandler = GetComponent<IPickHandler>();
-
-            _pickables = _prefabSource.Get();
         }
 
         private void Start()
         {
+            _pickables = _prefabSource.Get().ToList();
+            CreateButtons();
+        }
+
+        public void AddPickables (IEnumerable<IContentCachedPrefab> pickables)
+        {
+            _pickables.AddRange(pickables);
+            CreateButtons();
+        }
+
+        public void SetPickables (IContentCachedPrefab[] pickables)
+        {
+            _pickables = pickables.ToList();
             CreateButtons();
         }
 

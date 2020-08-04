@@ -9,8 +9,11 @@ namespace Lomztein.BFA2.Purchasing.Resources
 {
     class InfiniteResourceContainer : MonoBehaviour, IResourceContainer
     {
+        public event Action<Resource, int, int> OnResourceChanged;
+
         public void ChangeResource(Resource resource, int value)
         {
+            SetResource(resource, value);
         }
 
         public int GetResource(Resource resource)
@@ -20,6 +23,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public void SetResource(Resource resource, int value)
         {
+            OnResourceChanged?.Invoke(resource, int.MaxValue, int.MaxValue);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Utilities;
+﻿using Lomztein.BFA2.Player.Progression;
+using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,28 @@ namespace Lomztein.BFA2.Battlefield
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
         private static string DefaultMapPath = "Core/Maps/Classic.json";
 
-        private void Start()
+        private void Start ()
         {
             InitMap();
+            InitDefaultUnlocks();
         }
 
         private void InitMap ()
         {
             MapData mapData = BattlefieldSettings.Map ?? Content.Content.Get(DefaultMapPath, typeof(MapData)) as MapData;
             _mapController.IfExists((controller) => controller.ApplyMapData(mapData));
+        }
+
+        private void InitDefaultUnlocks ()
+        {
+            foreach (string comp in BattlefieldSettings.DefaultUnlockedComponents)
+            {
+                UnlockLists.Get("Components").SetUnlocked(comp, true);
+            }
+            foreach (string structure in BattlefieldSettings.DefaultUnlockedStructures)
+            {
+                UnlockLists.Get("Structures").SetUnlocked(structure, true);
+            }
         }
     }
 }

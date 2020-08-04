@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.UI.PickerMenu.Buttons
+namespace Lomztein.BFA2.UI.Menus.PickerMenu.Buttons
 {
     public class PlaceableButton : MonoBehaviour, IPickableButton, ITooltip
     {

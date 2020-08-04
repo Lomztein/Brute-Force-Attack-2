@@ -1,7 +1,7 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.MapEditor.Objects;
 using Lomztein.BFA2.Placement;
-using Lomztein.BFA2.UI.PickerMenu.PickHandlers;
+using Lomztein.BFA2.UI.Menus.PickerMenu.PickHandlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

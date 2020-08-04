@@ -46,12 +46,19 @@ namespace Lomztein.BFA2.Research
             CompletionRequirement[] requirements = GetComponents<CompletionRequirement>();
             CompletionReward[] rewards = GetComponents<CompletionReward>();
 
-            foreach (CompletionRequirement req in requirements)
+            if (requirements.Length == 0)
             {
-                req.Init();
+                CompleteResearch();
+            }
+            else
+            {
+                foreach (CompletionRequirement req in requirements)
+                {
+                    req.Init();
 
-                req.OnCompleted += OnRequirementCompleted;
-                req.OnProgressed += OnRequirementProgressed;
+                    req.OnCompleted += OnRequirementCompleted;
+                    req.OnProgressed += OnRequirementProgressed;
+                }
             }
         }
 
@@ -77,10 +84,15 @@ namespace Lomztein.BFA2.Research
             _completedRequirements++;
             if (_completedRequirements == Requirements.Length)
             {
-                Reward();
-                Stop();
-                OnCompleted?.Invoke(this);
+                CompleteResearch();
             }
+        }
+
+        private void CompleteResearch ()
+        {
+            Reward();
+            Stop();
+            OnCompleted?.Invoke(this);
         }
 
         private void Reward ()

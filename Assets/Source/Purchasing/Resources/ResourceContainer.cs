@@ -11,6 +11,8 @@ namespace Lomztein.BFA2.Purchasing.Resources
     {
         private Dictionary<Resource, int> _resources = new Dictionary<Resource, int>();
 
+        public event Action<Resource, int, int> OnResourceChanged;
+
         private void Awake()
         {
             var values = Enum.GetNames(typeof(Resource));
@@ -22,7 +24,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public void ChangeResource(Resource resource, int value)
         {
-            _resources[resource] += value;
+            SetResource(resource, GetResource(resource) + value);
         }
 
         public int GetResource(Resource resource)
@@ -32,7 +34,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public void SetResource(Resource resource, int value)
         {
+            int before = _resources[resource];
             _resources[resource] = value;
+            OnResourceChanged?.Invoke(resource, before, _resources[resource]);
         }
     }
 }

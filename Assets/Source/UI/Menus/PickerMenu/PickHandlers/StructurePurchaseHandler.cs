@@ -7,7 +7,7 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 
-namespace Lomztein.BFA2.UI.PickerMenu.PickHandlers
+namespace Lomztein.BFA2.UI.Menus.PickerMenu.PickHandlers
 {
     public class StructurePurchaseHandler : PlacementPurchaseHandler
     {

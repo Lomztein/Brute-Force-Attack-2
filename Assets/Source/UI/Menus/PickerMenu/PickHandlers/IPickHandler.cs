@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.UI.PickerMenu.PickHandlers
+namespace Lomztein.BFA2.UI.Menus.PickerMenu.PickHandlers
 {
     public interface IPickHandler
     {

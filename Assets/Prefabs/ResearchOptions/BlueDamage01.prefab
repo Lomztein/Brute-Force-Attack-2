@@ -43,12 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequiredAttributes: 0000000007000000
-  _identifier: Global100Range
+  RequiredAttributes: 06000000
+  _identifier: Global10BlueDamage
   _name: 
   _description: 
   Stats:
-  - Identifier: Range
+  - Identifier: Damage
     Name: 
     Description: 
     Type: 1
@@ -63,10 +63,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2386139780807006068}
   - component: {fileID: 4855599938681860329}
-  - component: {fileID: 8529875556686501502}
-  - component: {fileID: -767158577469819249}
+  - component: {fileID: 5185871504093577365}
+  - component: {fileID: 5657386676990205026}
   m_Layer: 0
-  m_Name: AddResearchSlot02
+  m_Name: BlueDamage01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Add Research Slot
-  Description: Add yet another research slot for parallel research.
+  Name: +10% Blue Weapon Damage
+  Description: Increase blue weapon damage by 10%
   Sprite:
-    Path: Core/Sprites/ExpansionCards/RangeUpgrade.png
+    Path: Core/Sprites/ExpansionCards/DamageUpgrade.png
     Rect:
       serializedVersion: 2
       x: 0
@@ -111,16 +111,13 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
-  SpriteTint: {r: 0, g: 1, b: 0, a: 1}
-  Weight: 0
+  SpriteTint: {r: 0, g: 1, b: 1, a: 1}
+  Weight: 1
   InitialCost:
-    Elements:
-    - Type: 1
-      Value: 2
-  Identifier: Core.AddResearchSlot02
-  PrerequisiteIdentifiers:
-  - Core.AddResearchSlot01
---- !u!114 &8529875556686501502
+    Elements: []
+  Identifier: Core.10BlueWeaponDamage
+  PrerequisiteIdentifiers: []
+--- !u!114 &5185871504093577365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,11 +126,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7756725950622906671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6190674ecccaa41af71388830bdd03, type: 3}
+  m_Script: {fileID: 11500000, guid: eb90b4e8085d0ac4b99c3c4c1d5ffe9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: 20
---- !u!114 &-767158577469819249
+  TargetColors: 00000000
+--- !u!114 &5657386676990205026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7756725950622906671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f619ace2c4ac7b4ca66f2b7732aad3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 408c97cdad52e8a40a37d07f9a6ce0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amount: 1
+  Color: 0

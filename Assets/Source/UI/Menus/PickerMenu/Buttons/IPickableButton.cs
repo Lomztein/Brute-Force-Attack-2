@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.UI.PickerMenu.Buttons
+namespace Lomztein.BFA2.UI.Menus.PickerMenu.Buttons
 {
     public interface IPickableButton
     {

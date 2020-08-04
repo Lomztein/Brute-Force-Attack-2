@@ -10,12 +10,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.UI.PickerMenu.Buttons
+namespace Lomztein.BFA2.UI.Menus.PickerMenu.Buttons
 {
     public class PurchaseButton : MonoBehaviour, IPickableButton, ITooltip
     {
-        private IPurchasable _purchasable;
+        protected IContentCachedPrefab _prefab;
+        protected IPurchasable _purchasable;
+
         private Action _onSelected;
+        private IResourceContainer _resourceContainer;
 
         public Button Button;
         public Image Image;
@@ -27,9 +30,21 @@ namespace Lomztein.BFA2.UI.PickerMenu.Buttons
         private void Awake()
         {
             Button.onClick.AddListener(() => HandlePurchase());
+            _resourceContainer = GetComponent<IResourceContainer>();
+            _resourceContainer.OnResourceChanged += OnResourceChanged;
         }
 
-        private void UpdateGraphics ()
+        private void OnDestroy()
+        {
+            _resourceContainer.OnResourceChanged -= OnResourceChanged;
+        }
+
+        private void OnResourceChanged(Resource arg1, int arg2, int arg3)
+        {
+            UpdateInteractable();
+        }
+
+        protected void UpdateGraphics ()
         {
             if (Image)
             {
@@ -41,6 +56,18 @@ namespace Lomztein.BFA2.UI.PickerMenu.Buttons
             }
         }
 
+        protected void UpdateInteractable ()
+        {
+            bool interactable = IsInteractable();
+            Button.interactable = interactable;
+            Image.color = interactable ? Color.white : new Color(1f, 1f, 1f, 0.5f);
+        }
+
+        protected virtual bool IsInteractable ()
+        {
+            return _resourceContainer.HasEnough(_purchasable.Cost);
+        }
+
         public void HandlePurchase()
         {
             _onSelected();
@@ -48,9 +75,14 @@ namespace Lomztein.BFA2.UI.PickerMenu.Buttons
 
         public void Assign(IContentCachedPrefab prefab, Action onSelected)
         {
-            _purchasable = prefab.GetCache().GetComponent<IPurchasable>();
+            _prefab = prefab;
+            _purchasable = _prefab.GetCache().GetComponent<IPurchasable>();
             _onSelected = onSelected;
+            Init();
             UpdateGraphics();
+            UpdateInteractable();
         }
+
+        public virtual void Init() { }
     }
 }
