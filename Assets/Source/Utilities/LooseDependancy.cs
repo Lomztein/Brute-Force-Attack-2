@@ -25,7 +25,11 @@ namespace Lomztein.BFA2.Utilities
         {
             if (Dependancy == null)
             {
-                Dependancy = GameObject.FindGameObjectWithTag(_tag)?.GetComponent<T>();
+                GameObject go = GameObject.FindGameObjectWithTag(_tag);
+                if (go != null)
+                {
+                    Dependancy = go.GetComponent<T>();
+                }
             }
             return Dependancy != null;
         }

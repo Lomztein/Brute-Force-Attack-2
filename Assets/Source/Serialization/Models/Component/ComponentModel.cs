@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.EngineComponentSerializers;
 using Lomztein.BFA2.Serialization.Models.Property;
+using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -13,8 +14,6 @@ namespace Lomztein.BFA2.Serialization.Models.Component
 {
     public class ComponentModel : IComponentModel
     {
-        private static List<Assembly> _typeSourceAssemblies = new List<Assembly>();
-
         public Type Type { get; private set; }
         private List<IPropertyModel> _properties = new List<IPropertyModel>();
 
@@ -26,39 +25,9 @@ namespace Lomztein.BFA2.Serialization.Models.Component
             _properties = properties.ToList();
         }
 
-        private Type GetType (string typeName)
-        {
-        Type type = null;
-
-            foreach (Assembly assembly in _typeSourceAssemblies)
-            {
-                type = assembly.GetType(typeName);
-                if (type != null)
-                {
-                    return type;
-                }
-            }
-
-            if (type == null)
-            {
-                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-                foreach (Assembly assembly in assemblies)
-                {
-                    type = assembly.GetType(typeName);
-                    if (type != null)
-                    {
-                        _typeSourceAssemblies.Add(assembly);
-                        return type;
-                    }
-                }
-            }
-
-            throw new InvalidOperationException("Type '" + typeName + "' not location in any currently loaded assemblies.");
-        }
-
         public void Deserialize(JToken data)
         {
-            Type = GetType(data["TypeName"].ToString());
+            Type = ReflectionUtils.GetType(data["TypeName"].ToString());
             JToken properties = data["Properties"];
 
             foreach (JToken property in properties)

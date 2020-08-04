@@ -1,5 +1,5 @@
 {
-  "Name": "AutoGrenadeLauncherT3",
+  "Name": "CannonT1",
   "Tag": "Untagged",
   "Layer": 9,
   "Static": false,
@@ -56,15 +56,15 @@
         },
         {
           "Name": "_identifier",
-          "Value": "Core.AutoGrenadeLauncherT3"
+          "Value": "Core.CannonT1"
         },
         {
           "Name": "_name",
-          "Value": "Tri-Barreled Grenade Launcher"
+          "Value": "Cannon"
         },
         {
           "Name": "_description",
-          "Value": "Shoots super fast lol"
+          "Value": "Fires heavy slugs of molten metal."
         },
         {
           "Name": "_cost",
@@ -102,7 +102,7 @@
             "BaseValues": [
               {
                 "Identifier": "Damage",
-                "Value": 150.0
+                "Value": 1000.0
               },
               {
                 "Identifier": "ProjectileAmount",
@@ -110,15 +110,15 @@
               },
               {
                 "Identifier": "Spread",
-                "Value": 3.0
+                "Value": 0.0
               },
               {
                 "Identifier": "Speed",
-                "Value": 75.0
+                "Value": 100.0
               },
               {
                 "Identifier": "Firerate",
-                "Value": 5.0
+                "Value": 1.0
               }
             ]
           }
@@ -138,174 +138,7 @@
       "Properties": [
         {
           "Name": "_prefab",
-          "Value": "Resources/Projectiles/AutoGrenadeProjectile"
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.TileableFireAnimation",
-      "Properties": [
-        {
-          "Name": "StartAnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 64.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 96.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 128.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            }
-          ]
-        },
-        {
-          "Name": "MidAnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 160.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 64.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 96.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 128.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            }
-          ]
-        },
-        {
-          "Name": "EndAnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 160.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            {
-              "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-              "Rect": {
-                "X": 32.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            }
-          ]
-        },
-        {
-          "Name": "DefaultSprite",
-          "Value": {
-            "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        },
-        {
-          "Name": "PlaySpeedMultiplier",
-          "Value": 1.0
+          "Value": "Resources/Projectiles/CannonProjectile"
         }
       ]
     },
@@ -330,6 +163,93 @@
         {
           "Name": "UsedByEffector",
           "Value": false
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "Properties": [
+        {
+          "Name": "AnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/AutoCannonT1.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/AutoCannonT1.png",
+              "Rect": {
+                "X": 64.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/AutoCannonT1.png",
+              "Rect": {
+                "X": 96.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/AutoCannonT1.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
+          ]
+        },
+        {
+          "Name": "DefaultSprite",
+          "Value": {
+            "Path": "Core/Sprites/Components/AutoCannonT1.png",
+            "Rect": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          }
+        },
+        {
+          "Name": "PlaySpeedMultiplier",
+          "Value": 1.0
         }
       ]
     }
@@ -376,9 +296,9 @@
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/Components/AutoGrenadeLauncherT3.png",
+                "Path": "Core/Sprites/Components/AutoCannonT1.png",
                 "Rect": {
-                  "X": 32.0,
+                  "X": 0.0,
                   "Y": 0.0,
                   "Width": 32.0,
                   "Height": 32.0

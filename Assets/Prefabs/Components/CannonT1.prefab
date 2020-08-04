@@ -45,10 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _applied: 0
   Reference:
-    Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
+    Path: Core/Sprites/Components/AutoCannonT1.png
     Rect:
       serializedVersion: 2
-      x: 32
+      x: 0
       y: 0
       width: 32
       height: 32
@@ -96,10 +96,10 @@ GameObject:
   - component: {fileID: 1599087991926430483}
   - component: {fileID: 1599087991926430493}
   - component: {fileID: 1599087991926430492}
-  - component: {fileID: 1941552731688978448}
   - component: {fileID: -4933678295721008529}
+  - component: {fileID: 8441061706672402137}
   m_Layer: 9
-  m_Name: AutoGrenadeLauncherT3
+  m_Name: CannonT1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83ecbb5b5424c47abb848f053a0a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _identifier: Core.AutoGrenadeLauncherT3
-  _name: Tri-Barreled Grenade Launcher
-  _description: Shoots super fast lol
+  _identifier: Core.CannonT1
+  _name: Cannon
+  _description: Fires heavy slugs of molten metal.
   _cost:
     Elements:
     - Type: 0
@@ -147,15 +147,15 @@ MonoBehaviour:
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
-      Value: 150
+      Value: 1000
     - Identifier: ProjectileAmount
       Value: 1
     - Identifier: Spread
-      Value: 3
+      Value: 0
     - Identifier: Speed
-      Value: 75
+      Value: 100
     - Identifier: Firerate
-      Value: 5
+      Value: 1
   ExpansionCardCapacity: 4
   FireTreshold: 30
   RangeMultiplier: 1
@@ -188,114 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab:
-    Path: Resources/Projectiles/AutoGrenadeProjectile
---- !u!114 &1941552731688978448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599087991926430481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a1ccb4c4de8934e818714a768cc6a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultSprite:
-    Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 32
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  PlaySpeedMultiplier: 1
-  StartAnimationSprites:
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 64
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 96
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  MidAnimationSprites:
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 160
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 64
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 96
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  EndAnimationSprites:
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 160
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: Core/Sprites/Components/AutoGrenadeLauncherT3.png
-    Rect:
-      serializedVersion: 2
-      x: 32
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
+    Path: Resources/Projectiles/CannonProjectile
 --- !u!58 &-4933678295721008529
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -312,6 +205,66 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8441061706672402137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599087991926430481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultSprite:
+    Path: Core/Sprites/Components/AutoCannonT1.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  PlaySpeedMultiplier: 1
+  AnimationSprites:
+  - Path: Core/Sprites/Components/AutoCannonT1.png
+    Rect:
+      serializedVersion: 2
+      x: 32
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/AutoCannonT1.png
+    Rect:
+      serializedVersion: 2
+      x: 64
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/AutoCannonT1.png
+    Rect:
+      serializedVersion: 2
+      x: 96
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/AutoCannonT1.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
 --- !u!1 &1750615681491273965
 GameObject:
   m_ObjectHideFlags: 0

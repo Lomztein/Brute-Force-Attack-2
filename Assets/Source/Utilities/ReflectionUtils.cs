@@ -27,5 +27,36 @@ namespace Lomztein.BFA2.Utilities
             var onAssembled = obj.GetType().GetMethod(method, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
             return onAssembled?.Invoke(obj, Array.Empty<object>());
         }
+
+        private static List<Assembly> _assemblies = new List<Assembly>();
+        public static Type GetType(string typeName)
+        {
+            Type type = null;
+
+            foreach (Assembly assembly in _assemblies)
+            {
+                type = assembly.GetType(typeName);
+                if (type != null)
+                {
+                    return type;
+                }
+            }
+
+            if (type == null)
+            {
+                Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                foreach (Assembly assembly in assemblies)
+                {
+                    type = assembly.GetType(typeName);
+                    if (type != null)
+                    {
+                        _assemblies.Add(assembly);
+                        return type;
+                    }
+                }
+            }
+
+            throw new InvalidOperationException("Type '" + typeName + "' not location in any currently loaded assemblies.");
+        }
     }
 }

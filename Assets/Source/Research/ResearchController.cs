@@ -103,12 +103,7 @@ namespace Lomztein.BFA2.Research
             option.Stop();
             _inProgress.Remove(option);
             StopResearch(option);
-
-            // Refund resources.
-            foreach (var resource in option.InitialCost.Elements)
-            {
-                _resourceContainer.ChangeResource(resource.Type, resource.Value);
-            }
+            _resourceContainer.AddResources(option.InitialCost);
 
             OnResearchCancelled?.Invoke(option);
         }

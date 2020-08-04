@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Research.UI
         public ResearchOption Research { get; private set; }
         public Text NameText;
         public Slider ProgressSlider;
+        public Image ResearchImage;
 
         public bool IsCompleted { get; private set; }
 
@@ -27,6 +28,9 @@ namespace Lomztein.BFA2.Research.UI
             Research = option;
 
             NameText.text = option.Name;
+            ResearchImage.sprite = option.Sprite.Get();
+            ResearchImage.color = option.SpriteTint;
+
             Research.OnProgressed += OnProgressed;
             Research.OnCompleted += OnCompleted;
 

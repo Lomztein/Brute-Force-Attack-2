@@ -34,5 +34,13 @@ namespace Lomztein.BFA2.Purchasing.Resources
             }
             return false;
         }
+
+        public static void AddResources (this IResourceContainer container, IResourceCost resources)
+        {
+            foreach (var resource in resources.GetCost())
+            {
+                container.ChangeResource(resource.Key, resource.Value);
+            }
+        }
     }
 }
