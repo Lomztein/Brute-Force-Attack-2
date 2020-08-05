@@ -25,6 +25,21 @@ namespace Lomztein.BFA2.Serialization.EngineObjectSerializers
                 };
     }
 
+    public class Vector2IntSerializer : EngineObjectSerializerBase<Vector2Int>
+    {
+        public override Vector2Int DeserializeValue(JToken value)
+        {
+            return new Vector2Int(value["X"].ToObject<int>(), value["Y"].ToObject<int>());
+        }
+
+        public override JToken Serialize(Vector2Int value)
+            => new JObject()
+                {
+                    { "X", value.x },
+                    { "Y", value.y }
+                };
+    }
+
     public class Vector3Serializer : EngineObjectSerializerBase<Vector3>
     {
         public override Vector3 DeserializeValue(JToken value)
@@ -36,6 +51,25 @@ namespace Lomztein.BFA2.Serialization.EngineObjectSerializers
         }
 
         public override JToken Serialize(Vector3 value)
+            => new JObject()
+                {
+                    { "X", value.x },
+                    { "Y", value.y },
+                    { "Z", value.z }
+                };
+    }
+
+    public class Vector3IntSerializer : EngineObjectSerializerBase<Vector3Int>
+    {
+        public override Vector3Int DeserializeValue(JToken value)
+        {
+            return new Vector3Int(
+                value["X"].ToObject<int>(),
+                value["Y"].ToObject<int>(),
+                value["Z"].ToObject<int>());
+        }
+
+        public override JToken Serialize(Vector3Int value)
             => new JObject()
                 {
                     { "X", value.x },

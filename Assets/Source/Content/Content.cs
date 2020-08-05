@@ -21,5 +21,9 @@ namespace Lomztein.BFA2.Content
         public static object Get(string path, Type type) => _instance._manager.GetContent(path, type);
 
         public static object[] GetAll(string path, Type type) => _instance._manager.GetAllContent(path, type);
+
+        public static T Get<T>(string path) => (T)Get(path, typeof(T));
+
+        public static T[] GetAll<T>(string path) => GetAll(path, typeof(T)).Cast<T>().ToArray();
     }
 }

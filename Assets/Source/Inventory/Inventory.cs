@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Inventory.Items;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Lomztein.BFA2.Inventory
 {
     public class Inventory : MonoBehaviour, IInventory
     {
-        private List<Item> _items;
+        private List<Item> _items = new List<Item>();
 
         public event Action<Item> OnItemAdded;
         public event Action<Item> OnItemRemoved;
@@ -21,6 +22,7 @@ namespace Lomztein.BFA2.Inventory
         {
             _items.Add(item);
             OnItemAdded?.Invoke(item);
+            item.transform.SetParent(transform);
         }
         public void RemoveItem(Item item)
         {

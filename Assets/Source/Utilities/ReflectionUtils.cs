@@ -58,5 +58,23 @@ namespace Lomztein.BFA2.Utilities
 
             throw new InvalidOperationException("Type '" + typeName + "' not location in any currently loaded assemblies.");
         }
+
+        public static T[] InstantiateAllOfType<T> ()
+        {
+            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            IEnumerable<Type> types = assemblies.SelectMany(x => x.GetExportedTypes());
+            List<T> ofType = new List<T>();
+
+            foreach (Type type in types)
+            {
+                if (typeof(T).IsAssignableFrom(type))
+                {
+                    T obj = (T)Activator.CreateInstance(type);
+                    ofType.Add(obj);
+                }
+            }
+
+            return ofType.ToArray();
+        }
     }
 }

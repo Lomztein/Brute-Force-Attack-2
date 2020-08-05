@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Player.Progression;
+﻿using Lomztein.BFA2.Inventory;
+using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
 using System;
@@ -19,6 +20,11 @@ namespace Lomztein.BFA2.Battlefield
         {
             InitMap();
             InitDefaultUnlocks();
+            InitStartingItems();
+        }
+
+        private void InitStartingItems()
+        {
         }
 
         private void InitMap ()

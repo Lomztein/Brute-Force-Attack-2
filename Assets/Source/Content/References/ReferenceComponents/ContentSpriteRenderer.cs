@@ -9,11 +9,14 @@ namespace Lomztein.BFA2.Content.References.ReferenceComponents
     {
         [ModelProperty]
         public ContentSpriteReference Reference;
+        [ModelProperty]
+        public Color Color = Color.white;
 
         protected override void Apply()
         {
             SpriteRenderer renderer = gameObject.AddComponent<SpriteRenderer>();
             renderer.sprite = Reference.Get();
+            renderer.color = Color;
         }
     }
 }

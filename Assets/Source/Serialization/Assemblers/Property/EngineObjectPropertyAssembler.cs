@@ -10,14 +10,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
 {
     public class EngineObjectPropertyAssembler : IPropertyAssembler
     {
-        private IEngineObjectSerializer[] _serializers = new IEngineObjectSerializer[]
+        private IEngineObjectSerializer[] _serializers = new IEngineObjectSerializer[] // TODO: find a way to automatically get all serializers from loaded assemblies.
         {
             new RectSerializer(),
             new Vector2Serializer(),
+            new Vector2IntSerializer(),
             new Vector3Serializer(),
+            new Vector3IntSerializer(),
             new Vector4Serializer(),
             new QuaternionSerializer(),
             new ColorSerializer(),
+            new AnimationCurveSerializer(),
+            new GradientSerializer(),
         };
 
         public object Assemble(JToken model, Type type)

@@ -23,6 +23,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             new CircleCollider2DSerializer(),
             new BoxCollider2DSerializer(),
             new Rigidbody2DSerializer(),
+            new LineRendererSerializer(),
         };
 
         private IPropertyAssembler _propertyAssembler = new DefaultPropertyAssemblers();

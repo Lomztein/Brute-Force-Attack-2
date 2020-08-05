@@ -17,12 +17,33 @@ namespace Lomztein.BFA2.Content
         private const string WILDCARD = "*";
         private IContentPack[] _packs;
 
+        private Dictionary<string, object> _cache = new Dictionary<string, object>();
+
         private void Awake()
         {
             Init();
         }
 
         public IContentPack[] GetContentPacks() => _packs;
+
+        public object GetCache (string path)
+        {
+            if (_cache.ContainsKey(path))
+            {
+                return _cache[path];
+            }
+            return null;
+        }
+
+        public object SetCache (string path, object obj)
+        {
+            if (_cache.ContainsKey(path))
+            {
+                _cache[path] = obj;
+            }
+            _cache.Add(path, obj);
+            return obj;
+        }
 
         public void Init()
         {
@@ -31,7 +52,7 @@ namespace Lomztein.BFA2.Content
 
         public object GetContent(string path, Type type)
         {
-            return GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
+            return GetCache(path) ?? SetCache (path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
         }
 
         private string GetPackFolder(string path)
@@ -46,6 +67,12 @@ namespace Lomztein.BFA2.Content
 
         public object[] GetAllContent(string path, Type type)
         {
+            object cache = GetCache(path);
+            if (cache != null)
+            {
+                return cache as object[];
+            }
+
             string packFolder = GetPackFolder(path);
             bool wildcard = packFolder == WILDCARD;
 
@@ -58,11 +85,11 @@ namespace Lomztein.BFA2.Content
                 {
                     objects.AddRange(pack.GetAllContent(contentPath, type));
                 }
-                return objects.ToArray();
+                return SetCache (path, objects.ToArray()) as object[];
             }
             else
             {
-                return GetPack(packFolder).GetAllContent(contentPath, type);
+                return SetCache(path, GetPack(packFolder).GetAllContent(contentPath, type)) as object[];
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Inventory.Items;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

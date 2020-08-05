@@ -10,12 +10,18 @@ namespace Lomztein.BFA2.Turrets.ExpansionCards
 {
     public interface IExpansionCardAcceptor
     {
-        bool HasCapacity();
+        int ExpansionCardCapacity { get; }
+        IExpansionCard[] ExpansionCards { get; }
 
-        bool InsertCard(IExpansionCard card);
+        bool InsertExpansionCard(IExpansionCard card);
 
-        bool RemoveCard(IExpansionCard card);
+        bool RemoveExpansionCard(IExpansionCard card);
 
         ModdableAttribute[] Attributes { get; }
+    }
+
+    public static class ExpansionCardAcceptorExtensions
+    {
+        public static bool AtExpansionCardCapacity(this IExpansionCardAcceptor acceptor) => acceptor.ExpansionCards.Length >= acceptor.ExpansionCardCapacity;
     }
 }

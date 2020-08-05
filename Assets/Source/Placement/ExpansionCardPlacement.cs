@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Placement
                 {
                     GameObject cardGO = UnityEngine.Object.Instantiate(_obj);
                     IExpansionCard card = cardGO.GetComponent<IExpansionCard>();
-                    if (_target.InsertCard(card))
+                    if (_target.InsertExpansionCard(card))
                     {
                         _expansionCard.ApplyTo(_target);
                         OnPlaced?.Invoke();
@@ -73,7 +73,7 @@ namespace Lomztein.BFA2.Placement
         {
             if (_target != null)
             {
-                if (!_target.HasCapacity ())
+                if (!_target.AtExpansionCardCapacity())
                 {
                     return $"{_target} is at max expansion card capacity.";
                 }

@@ -28,6 +28,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders
         [SerializeField] [ModelProperty] private ContentSpriteReference _sprite;
         public Sprite Sprite => _sprite.Get();
 
+        [SerializeField] [ModelProperty] private string _uniqueIdentifier;
+        public string UniqueIdentifier => _uniqueIdentifier;
+
         private void Awake()
         {
             _mod = GetComponent<IMod>();

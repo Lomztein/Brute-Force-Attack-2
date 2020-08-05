@@ -1,7 +1,7 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.MapEditor.Objects;
 using Lomztein.BFA2.Placement;
-using Lomztein.BFA2.UI.Menus.PickerMenu.PickHandlers;
+using Lomztein.BFA2.UI.Menus.PickerMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.MapEditor
 {
-    public class MapEditorPlaceablePickHandler : MonoBehaviour, IPickHandler
+    public class MapEditorPlaceablePickHandler : MonoBehaviour, IPickHandler<IContentCachedPrefab>
     {
         public MapObjectHandleProvider HandleProvider;
         public ComponentHandleProvider ComponentHandleProvider;

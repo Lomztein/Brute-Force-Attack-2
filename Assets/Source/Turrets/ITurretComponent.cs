@@ -1,15 +1,12 @@
-﻿using System.Collections;
+﻿using Lomztein.BFA2.Misc;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public interface ITurretComponent
+    public interface ITurretComponent : IIdentifiable
     {  
-        ITurretAssembly Assembly { get; set; }
-
-        string UniqueIdentifier { get; }
-
         Grid.Size Width { get; }
         Grid.Size Height { get; }
     }

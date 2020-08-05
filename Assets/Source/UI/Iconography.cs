@@ -27,6 +27,13 @@ namespace Lomztein.BFA2.UI
             return UnityUtils.InstantiateMockGO(source);
         }
 
+        public static Sprite GenerateSprite (GameObject obj)
+        {
+            Texture2D tex = GenerateIcon(obj);
+            Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), Vector2.one / 2f);
+            return sprite;
+        }
+
         public static Texture2D GenerateIcon(GameObject obj)
         {
             _instance.gameObject.SetActive(true);

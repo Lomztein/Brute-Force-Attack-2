@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Collectables
     {
         [ModelProperty]
         [SerializeField]
-        private float _collectionTime;
+        public float _collectionTime;
         public float CollectionTime => _collectionTime;
 
         public abstract void Collect();

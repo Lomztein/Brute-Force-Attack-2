@@ -1,62 +1,85 @@
-﻿using Lomztein.BFA2.Content.Objects;
-using Lomztein.BFA2.Content.References.PrefabProviders;
-using Lomztein.BFA2.UI.Menus.PickerMenu.Buttons;
-using Lomztein.BFA2.UI.Menus.PickerMenu.PickHandlers;
+﻿using Lomztein.BFA2.Misc;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.UI.Menus.PickerMenu
 {
-    public class PickMenu : MonoBehaviour, ITabMenuElement
+    public abstract class PickMenu<T> : MonoBehaviour, ITabMenuElement
     {
-        private List<IContentCachedPrefab> _pickables = new List<IContentCachedPrefab>();
+        private List<T> _pickables = new List<T>();
         public GameObject ButtonPrefab;
         public Transform ButtonParent;
 
-        private IPickHandler _pickHandler;
-        private ICachedPrefabProvider _prefabSource;
+        private IPickHandler<T> _pickHandler;
+        private IProvider<T> _provider;
 
-        public bool IsMenuEmpty => false;
+        public bool IsMenuEmpty => _pickables.Any();
         [SerializeField] private string _name;
         public string Name => _name;
 
         private void Awake()
         {
-            _prefabSource = GetComponent<ICachedPrefabProvider>();
-            _pickHandler = GetComponent<IPickHandler>();
+            _provider = GetComponent<IProvider<T>>();
+            _pickHandler = GetComponent<IPickHandler<T>>();
+
+            RegisterDynamicProvider();
+        }
+
+        private void RegisterDynamicProvider ()
+        {
+            if (_provider is IDynamicProvider<T> dyn)
+            {
+                dyn.OnAdded += OnAdded;
+                dyn.OnRemoved += OnRemoved;
+            }
+        }
+
+        private void OnAdded(T obj)
+        {
+            AddPickables(new[] { obj });
+        }
+
+        private void OnRemoved(T obj)
+        {
+            RemovePickables(new[] { obj });
         }
 
         private void Start()
         {
-            _pickables = _prefabSource.Get().ToList();
-            CreateButtons();
+            SetPickables(_provider.Get());
         }
 
-        public void AddPickables (IEnumerable<IContentCachedPrefab> pickables)
+        public virtual void AddPickables (IEnumerable<T> pickables)
         {
             _pickables.AddRange(pickables);
-            CreateButtons();
+            UpdateButtons();
         }
 
-        public void SetPickables (IContentCachedPrefab[] pickables)
+        public virtual void RemovePickables (IEnumerable<T> pickables)
+        {
+            _pickables.RemoveAll(x => pickables.Contains(x));
+            UpdateButtons();
+        }
+
+        public virtual void SetPickables (IEnumerable<T> pickables)
         {
             _pickables = pickables.ToList();
-            CreateButtons();
+            UpdateButtons();
         }
 
-        public void CreateButtons ()
+        protected void UpdateButtons ()
         {
             ClearButtons();
             foreach (var pickable in _pickables)
             {
                 GameObject newButton = Instantiate(ButtonPrefab, ButtonParent);
-                IPickableButton button = newButton.GetComponent<IPickableButton>();
+                IPickableButton<T> button = newButton.GetComponent<IPickableButton<T>>();
                 button.Assign(pickable, () => HandlePurchase(pickable));
             }
         }
 
-        private void HandlePurchase(IContentCachedPrefab prefab)
+        private void HandlePurchase(T prefab)
         {
             _pickHandler.Handle(prefab);
         }

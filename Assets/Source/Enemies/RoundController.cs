@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Enemies.Waves.Punishers;
 using Lomztein.BFA2.Enemies.Waves.Rewarders;
+using Lomztein.BFA2.Loot;
 using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Utilities;
@@ -34,6 +35,9 @@ namespace Lomztein.BFA2.Enemies
         public float StartingCompletionReward;
         public float WaveFinishedRewardPerWave;
 
+        private ILootTable _commonLootTable;
+        public float LootAmountGrowthMult;
+
         private IResourceContainer _resourceContainer;
         private IHealthContainer _healthContainer;
 
@@ -54,6 +58,7 @@ namespace Lomztein.BFA2.Enemies
         {
             _resourceContainer = GetComponent<IResourceContainer>();
             _healthContainer = GetComponent<IHealthContainer>();
+            _commonLootTable = GetComponent<LootTableProvider>().GetLootTable();
         }
 
         private void Start()
@@ -150,6 +155,14 @@ namespace Lomztein.BFA2.Enemies
         private void EnemyKill(IEnemy obj)
         {
             OnEnemyKill?.Invoke(obj);
+            RandomizedLoot loot = _commonLootTable.GetRandomLoot(100f / CurrentWave.SpawnAmount, 1f + (CurrentWaveIndex / LootAmountGrowthMult));
+            if (!loot.Empty)
+            {
+                if (obj is Component comp)
+                {
+                    loot.InstantiateLoot(comp.transform.position, 3f);
+                }
+            }
         }
 
         private float GetEarnedFromKills(int wave) => StartingEarnedFromKills + EarnedFromKillsPerWave * (wave - 1);

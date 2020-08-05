@@ -1,0 +1,165 @@
+{
+  "Name": "FirerateExpansionCollectable",
+  "Tag": "Untagged",
+  "Layer": 12,
+  "Static": false,
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": [
+        {
+          "Name": "Position",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Rotation",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Scale",
+          "Value": {
+            "X": 1.0,
+            "Y": 1.0,
+            "Z": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Loot.LootInfo",
+      "Properties": [
+        {
+          "Name": "Amount",
+          "Value": {
+            "X": 1,
+            "Y": 1
+          }
+        },
+        {
+          "Name": "Chance",
+          "Value": 0.01
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Collectables.CollectableItem",
+      "Properties": [
+        {
+          "Name": "Reference",
+          "Value": "Core/Items/DamageExpansionItem.json"
+        },
+        {
+          "Name": "_collectionTime",
+          "Value": 2.0
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Inventory.PlayerInventoryLink",
+      "Properties": []
+    },
+    {
+      "TypeName": "UnityEngine.CircleCollider2D",
+      "Properties": [
+        {
+          "Name": "Radius",
+          "Value": 0.5
+        },
+        {
+          "Name": "Offset",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0
+          }
+        },
+        {
+          "Name": "IsTrigger",
+          "Value": false
+        },
+        {
+          "Name": "UsedByEffector",
+          "Value": false
+        }
+      ]
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 12,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentSpriteRenderer",
+          "Properties": [
+            {
+              "Name": "Reference",
+              "Value": {
+                "Path": "Core/Sprites/UI/DamageUpgrade.png",
+                "Rect": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Width": 0.0,
+                  "Height": 0.0
+                },
+                "Pivot": {
+                  "X": 0.5,
+                  "Y": 0.5
+                },
+                "PixelsPerUnit": 32.0
+              }
+            },
+            {
+              "Name": "Color",
+              "Value": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
+              }
+            }
+          ]
+        }
+      ],
+      "Children": []
+    }
+  ]
+}
