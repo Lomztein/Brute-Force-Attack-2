@@ -1,5 +1,5 @@
 {
-  "Name": "MachineGunT3",
+  "Name": "CannonT3",
   "Tag": "Untagged",
   "Layer": 9,
   "Static": false,
@@ -38,7 +38,7 @@
       "Properties": [
         {
           "Name": "FireTreshold",
-          "Value": 30.0
+          "Value": 3.0
         },
         {
           "Name": "HitLayer",
@@ -48,19 +48,19 @@
         },
         {
           "Name": "Color",
-          "Value": 0
+          "Value": 2
         },
         {
           "Name": "_identifier",
-          "Value": "Core.MachineGunT3"
+          "Value": "Core.CannonT3"
         },
         {
           "Name": "_name",
-          "Value": "Tri-Barreled Gatling Cannon"
+          "Value": "Auto Cannon"
         },
         {
           "Name": "_description",
-          "Value": "Shoots super fast lol"
+          "Value": "Rapidly fires heavy slugs of molten metals."
         },
         {
           "Name": "_cost",
@@ -68,7 +68,7 @@
             "Elements": [
               {
                 "Type": 0,
-                "Value": 2250
+                "Value": 8000
               }
             ]
           }
@@ -82,11 +82,11 @@
         },
         {
           "Name": "_width",
-          "Value": 1
+          "Value": 2
         },
         {
           "Name": "_height",
-          "Value": 1
+          "Value": 2
         },
         {
           "Name": "PassiveHeatProduction",
@@ -98,7 +98,7 @@
             "BaseValues": [
               {
                 "Identifier": "Damage",
-                "Value": 30.0
+                "Value": 1500.0
               },
               {
                 "Identifier": "ProjectileAmount",
@@ -106,15 +106,15 @@
               },
               {
                 "Identifier": "Spread",
-                "Value": 3.0
+                "Value": 0.0
               },
               {
                 "Identifier": "Speed",
-                "Value": 75.0
+                "Value": 100.0
               },
               {
                 "Identifier": "Firerate",
-                "Value": 15.0
+                "Value": 2.25
               }
             ]
           }
@@ -134,174 +134,7 @@
       "Properties": [
         {
           "Name": "_prefab",
-          "Value": "Resources/Projectiles/MachineGunProjectile"
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.TileableFireAnimation",
-      "Properties": [
-        {
-          "Name": "StartAnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 64.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 96.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 128.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            }
-          ]
-        },
-        {
-          "Name": "MidAnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 160.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 64.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 96.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 128.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            }
-          ]
-        },
-        {
-          "Name": "EndAnimationSprites",
-          "Value": [
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 160.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            {
-              "Path": "Core/Sprites/Components/MachineGunT3.png",
-              "Rect": {
-                "X": 32.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            }
-          ]
-        },
-        {
-          "Name": "DefaultSprite",
-          "Value": {
-            "Path": "Core/Sprites/Components/MachineGunT3.png",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 32.0
-          }
-        },
-        {
-          "Name": "PlaySpeedMultiplier",
-          "Value": 1.0
+          "Value": "Resources/Projectiles/CannonProjectile"
         }
       ]
     },
@@ -326,6 +159,173 @@
         {
           "Name": "UsedByEffector",
           "Value": false
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.TileableFireAnimation",
+      "Properties": [
+        {
+          "Name": "StartAnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 64.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 96.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 128.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
+          ]
+        },
+        {
+          "Name": "MidAnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 160.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 64.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 96.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 128.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
+          ]
+        },
+        {
+          "Name": "EndAnimationSprites",
+          "Value": [
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 160.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            {
+              "Path": "Core/Sprites/Components/CannonT3.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
+          ]
+        },
+        {
+          "Name": "DefaultSprite",
+          "Value": {
+            "Path": "Core/Sprites/Components/CannonT3.png",
+            "Rect": {
+              "X": 32.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          }
+        },
+        {
+          "Name": "PlaySpeedMultiplier",
+          "Value": 1.0
         }
       ]
     }
@@ -372,7 +372,7 @@
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/Components/MachineGunT3.png",
+                "Path": "Core/Sprites/Components/CannonT3.png",
                 "Rect": {
                   "X": 32.0,
                   "Y": 0.0,
@@ -383,7 +383,7 @@
                   "X": 0.5,
                   "Y": 0.5
                 },
-                "PixelsPerUnit": 32.0
+                "PixelsPerUnit": 16.0
               }
             },
             {
@@ -477,7 +477,7 @@
             {
               "Name": "FireParticle",
               "Tag": "Untagged",
-              "Layer": 9,
+              "Layer": 0,
               "Static": false,
               "Components": [
                 {
@@ -486,7 +486,7 @@
                     {
                       "Name": "Position",
                       "Value": {
-                        "X": 0.0,
+                        "X": 0.25,
                         "Y": 0.0,
                         "Z": 0.0
                       }
@@ -514,7 +514,7 @@
                   "Properties": [
                     {
                       "Name": "Reference",
-                      "Value": "Resources/Particles/FireEffects/MachineGunFireEffect"
+                      "Value": "Resources/Particles/FireEffects/CannonFireEffect"
                     },
                     {
                       "Name": "NameOverride",

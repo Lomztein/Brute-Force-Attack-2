@@ -10,6 +10,7 @@ using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.FireControl;
 using Lomztein.BFA2.Weaponary.Projectiles;
+using Lomztein.BFA2.World;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,6 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         [ModelProperty]
         public float FireTreshold;
-        [ModelProperty]
-        public float RangeMultiplier = 1f;
         [ModelProperty]
         public LayerMask HitLayer;
 
@@ -47,6 +46,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
         [ModelProperty]
         public Color Color;
         private bool _chambered;
+
+        private ParticleSystem[] _fireParticles;
 
         public override void End()
         {
@@ -73,6 +74,20 @@ namespace Lomztein.BFA2.Turrets.Weapons
             return muzzles.ToArray();
         }
 
+        private ParticleSystem[] GetFireParticles (Transform[] muzzles)
+        {
+            ParticleSystem[] particles = new ParticleSystem[muzzles.Length];
+            for (int i = 0; i < muzzles.Length; i++)
+            {
+                Transform child = muzzles[i].Find("FireParticle");
+                if (child)
+                {
+                    particles[i] = child.GetComponent<ParticleSystem>();
+                }
+            }
+            return particles;
+        }
+
         public override void Init()
         {
             Targeter = GetComponentInParent<ITargeter>();
@@ -83,6 +98,7 @@ namespace Lomztein.BFA2.Turrets.Weapons
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
             _muzzles = GetMuzzles();
+            _fireParticles = GetFireParticles(_muzzles);
 
             Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.");
             ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.");
@@ -133,24 +149,37 @@ namespace Lomztein.BFA2.Turrets.Weapons
                 Damage = Damage.GetValue(),
                 Layer = HitLayer,
                 Target = Provider?.GetTarget(),
-                Range = Ranger == null ? 50f : Ranger.GetRange() * RangeMultiplier
+                Range = GetRange()
             };
 
             _fireAnimation.Play(Cooldown);
-
             _fireControl.Fire(_muzzles.Length, Cooldown, (i) =>
-               _weaponFire.Fire(_muzzles[i].position, _muzzles[i].rotation, info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue())
-            );
+            {
+                _weaponFire.Fire(_muzzles[i].position, _muzzles[i].rotation, info, Speed.GetValue(), Spread.GetValue(), (int)ProjectileAmount.GetValue());
+                EmitFireParticle(i);
+            });
+        }
+
+        private void EmitFireParticle (int index)
+        {
+            if (_fireParticles[index])
+            {
+                _fireParticles[index].Play();
+            }
         }
 
         public Color GetColor()
         {
             return Color;
         }
-
         public float GetRange()
         {
-            return Ranger.GetRange();
+            MapController controller = MapController.Instance;
+            if (controller != null)
+            {
+                return Mathf.Max(controller.Width, controller.Height) * 2f;
+            }
+            return 50f;
         }
     }
 }

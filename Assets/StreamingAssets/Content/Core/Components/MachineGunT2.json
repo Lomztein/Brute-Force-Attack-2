@@ -41,10 +41,6 @@
           "Value": 5.0
         },
         {
-          "Name": "RangeMultiplier",
-          "Value": 1.0
-        },
-        {
           "Name": "HitLayer",
           "Value": {
             "value": 256
@@ -421,6 +417,15 @@
                 },
                 "PixelsPerUnit": 32.0
               }
+            },
+            {
+              "Name": "Color",
+              "Value": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
+              }
             }
           ]
         }
@@ -500,7 +505,59 @@
               ]
             }
           ],
-          "Children": []
+          "Children": [
+            {
+              "Name": "FireParticle",
+              "Tag": "Untagged",
+              "Layer": 9,
+              "Static": false,
+              "Components": [
+                {
+                  "TypeName": "UnityEngine.Transform",
+                  "Properties": [
+                    {
+                      "Name": "Position",
+                      "Value": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Rotation",
+                      "Value": {
+                        "X": 0.0,
+                        "Y": 90.0,
+                        "Z": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Scale",
+                      "Value": {
+                        "X": 1.0,
+                        "Y": 1.0,
+                        "Z": 1.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.GameObjectReferenceComponent",
+                  "Properties": [
+                    {
+                      "Name": "Reference",
+                      "Value": "Resources/Particles/FireEffects/MachineGunFireEffect"
+                    },
+                    {
+                      "Name": "NameOverride",
+                      "Value": ""
+                    }
+                  ]
+                }
+              ],
+              "Children": []
+            }
+          ]
         },
         {
           "Name": "Muzzle (1)",
@@ -538,7 +595,59 @@
               ]
             }
           ],
-          "Children": []
+          "Children": [
+            {
+              "Name": "FireParticle",
+              "Tag": "Untagged",
+              "Layer": 9,
+              "Static": false,
+              "Components": [
+                {
+                  "TypeName": "UnityEngine.Transform",
+                  "Properties": [
+                    {
+                      "Name": "Position",
+                      "Value": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Rotation",
+                      "Value": {
+                        "X": 0.0,
+                        "Y": 90.0,
+                        "Z": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Scale",
+                      "Value": {
+                        "X": 1.0,
+                        "Y": 1.0,
+                        "Z": 1.0
+                      }
+                    }
+                  ]
+                },
+                {
+                  "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.GameObjectReferenceComponent",
+                  "Properties": [
+                    {
+                      "Name": "Reference",
+                      "Value": "Resources/Particles/FireEffects/MachineGunFireEffect"
+                    },
+                    {
+                      "Name": "NameOverride",
+                      "Value": ""
+                    }
+                  ]
+                }
+              ],
+              "Children": []
+            }
+          ]
         }
       ]
     }

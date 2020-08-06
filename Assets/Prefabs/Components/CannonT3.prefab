@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _applied: 0
   Reference:
-    Path: Core/Sprites/Components/MachineGunT3.png
+    Path: Core/Sprites/Components/CannonT3.png
     Rect:
       serializedVersion: 2
       x: 32
@@ -53,7 +53,7 @@ MonoBehaviour:
       width: 32
       height: 32
     Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
+    PixelsPerUnit: 16
   Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1599087991583226260
 GameObject:
@@ -82,7 +82,7 @@ Transform:
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4850249247440377657}
+  - {fileID: 292358184125278825}
   m_Father: {fileID: 4486793738625452215}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,10 +98,10 @@ GameObject:
   - component: {fileID: 1599087991926430483}
   - component: {fileID: 1599087991926430493}
   - component: {fileID: 1599087991926430492}
-  - component: {fileID: 1941552731688978448}
   - component: {fileID: -4933678295721008529}
+  - component: {fileID: -5492100926222517933}
   m_Layer: 9
-  m_Name: MachineGunT3
+  m_Name: CannonT3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,35 +135,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83ecbb5b5424c47abb848f053a0a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _identifier: Core.MachineGunT3
-  _name: Tri-Barreled Gatling Cannon
-  _description: Shoots super fast lol
+  _identifier: Core.CannonT3
+  _name: Auto Cannon
+  _description: Rapidly fires heavy slugs of molten metals.
   _cost:
     Elements:
     - Type: 0
-      Value: 2250
+      Value: 8000
   _modAttributes: 0600000003000000
-  _width: 1
-  _height: 1
+  _width: 2
+  _height: 2
   PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
-      Value: 30
+      Value: 1500
     - Identifier: ProjectileAmount
       Value: 1
     - Identifier: Spread
-      Value: 3
+      Value: 0
     - Identifier: Speed
-      Value: 75
+      Value: 100
     - Identifier: Firerate
-      Value: 15
+      Value: 2.25
   ExpansionCardCapacity: 4
-  FireTreshold: 30
+  FireTreshold: 3
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  Color: 0
+  Color: 2
 --- !u!114 &1599087991926430493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,114 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab:
-    Path: Resources/Projectiles/MachineGunProjectile
---- !u!114 &1941552731688978448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599087991926430481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28a1ccb4c4de8934e818714a768cc6a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultSprite:
-    Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 32
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  PlaySpeedMultiplier: 1
-  StartAnimationSprites:
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 64
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 96
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  MidAnimationSprites:
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 160
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 64
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 96
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  EndAnimationSprites:
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 160
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
-  - Path: Core/Sprites/Components/MachineGunT3.png
-    Rect:
-      serializedVersion: 2
-      x: 32
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 32
+    Path: Resources/Projectiles/CannonProjectile
 --- !u!58 &-4933678295721008529
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -313,6 +206,113 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-5492100926222517933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599087991926430481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a1ccb4c4de8934e818714a768cc6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultSprite:
+    Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 32
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  PlaySpeedMultiplier: 1
+  StartAnimationSprites:
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 64
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 96
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 128
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  MidAnimationSprites:
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 160
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 64
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 96
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 128
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  EndAnimationSprites:
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 160
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  - Path: Core/Sprites/Components/CannonT3.png
+    Rect:
+      serializedVersion: 2
+      x: 32
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
 --- !u!1 &1750615681491273965
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ Transform:
   m_Father: {fileID: 1599087991926430482}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7457814667957746947
+--- !u!1 &4696149145625022267
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,36 +352,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4850249247440377657}
-  - component: {fileID: 3854704147939898102}
-  m_Layer: 9
+  - component: {fileID: 292358184125278825}
+  - component: {fileID: 680260777884384550}
+  m_Layer: 0
   m_Name: FireParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4850249247440377657
+--- !u!4 &292358184125278825
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7457814667957746947}
+  m_GameObject: {fileID: 4696149145625022267}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1599087991583226261}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!114 &3854704147939898102
+--- !u!114 &680260777884384550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7457814667957746947}
+  m_GameObject: {fileID: 4696149145625022267}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69f373f6aff46ae45bed0cef674da042, type: 3}
@@ -389,5 +389,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _applied: 0
   Reference:
-    Path: Resources/Particles/FireEffects/MachineGunFireEffect
+    Path: Resources/Particles/FireEffects/CannonFireEffect
   NameOverride: 

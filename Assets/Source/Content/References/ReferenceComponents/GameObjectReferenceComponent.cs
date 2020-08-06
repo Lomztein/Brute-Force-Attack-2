@@ -7,11 +7,13 @@ namespace Lomztein.BFA2.Content.References.ReferenceComponents
     {
         [ModelProperty]
         public ContentPrefabReference Reference;
+        [ModelProperty]
+        public string NameOverride;
 
         protected override void Apply()
         {
             GameObject go = Reference.Instantiate();
-            go.name = gameObject.name;
+            go.name = string.IsNullOrEmpty(NameOverride) ? gameObject.name : NameOverride;
             go.tag = gameObject.tag;
             go.layer = gameObject.layer;
 

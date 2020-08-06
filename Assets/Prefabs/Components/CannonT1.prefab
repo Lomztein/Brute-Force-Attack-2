@@ -54,6 +54,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1599087991583226260
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +81,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 292358184125278825}
   m_Father: {fileID: 4486793738625452215}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,6 +100,7 @@ GameObject:
   - component: {fileID: 1599087991926430492}
   - component: {fileID: -4933678295721008529}
   - component: {fileID: 8441061706672402137}
+  - component: {fileID: -4567696068428593523}
   m_Layer: 9
   m_Name: CannonT1
   m_TagString: Untagged
@@ -147,7 +150,7 @@ MonoBehaviour:
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
-      Value: 1000
+      Value: 1500
     - Identifier: ProjectileAmount
       Value: 1
     - Identifier: Spread
@@ -155,10 +158,9 @@ MonoBehaviour:
     - Identifier: Speed
       Value: 100
     - Identifier: Firerate
-      Value: 1
+      Value: 0.75
   ExpansionCardCapacity: 4
-  FireTreshold: 30
-  RangeMultiplier: 1
+  FireTreshold: 1
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -265,6 +267,19 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+--- !u!114 &-4567696068428593523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599087991926430481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c534066ffecbbf48a2bf5d08fc5af0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgradeComponentIdentifier: Core.CannonT2
 --- !u!1 &1750615681491273965
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,3 +311,50 @@ Transform:
   m_Father: {fileID: 1599087991926430482}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4696149145625022267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292358184125278825}
+  - component: {fileID: 680260777884384550}
+  m_Layer: 0
+  m_Name: FireParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &292358184125278825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4696149145625022267}
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1599087991583226261}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+--- !u!114 &680260777884384550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4696149145625022267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f373f6aff46ae45bed0cef674da042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Resources/Particles/FireEffects/CannonFireEffect
+  NameOverride: 

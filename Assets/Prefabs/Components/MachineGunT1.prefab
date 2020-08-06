@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 777524971168772053}
   m_Layer: 9
-  m_Name: Muzzles (1)
+  m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,10 +26,58 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8381948901707335765}
   m_Father: {fileID: 8306588520399912658}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &422181847927416870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8381948901707335765}
+  - component: {fileID: 8369365125294467171}
+  m_Layer: 9
+  m_Name: FireParticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8381948901707335765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422181847927416870}
+  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 777524971168772053}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+--- !u!114 &8369365125294467171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422181847927416870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f373f6aff46ae45bed0cef674da042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Resources/Particles/FireEffects/MachineGunFireEffect
+  NameOverride: 
 --- !u!1 &8306588519832492536
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _applied: 0
   Reference:
     Path: Core/Sprites/Components/MachineGunT1_16PPU.png
     Rect:
@@ -83,6 +132,7 @@ MonoBehaviour:
       height: 16
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8306588520399912659
 GameObject:
   m_ObjectHideFlags: 0
