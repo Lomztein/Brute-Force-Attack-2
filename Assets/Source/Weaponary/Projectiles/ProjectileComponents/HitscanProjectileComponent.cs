@@ -12,7 +12,6 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
     public class HitscanProjectileComponent : MonoBehaviour, IProjectileComponent
     {
         private IHitscanRenderer _renderer;
-        private IWeaponFire _weapon;
         private IProjectile _parent;
         [ModelProperty]
         public float Life;
@@ -26,7 +25,6 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
         {
         }
 
-
         public void Init(IProjectile parent)
         {
             _parent = parent;
@@ -37,7 +35,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
                 IDamagable damagable = parent.CheckHit(hit.collider);
                 if (damagable != null)
                 {
-                    DamageInfo damageInfo = parent.Hit(damagable, new HitInfo(hit.collider, hit.point, _parent, _weapon));
+                    DamageInfo damageInfo = parent.Hit(damagable, hit.collider, hit.point, hit.normal);
                     _parent.Info.Damage -= damageInfo.DamageDealt;
                     if (parent.Info.Damage <= 0f)
                     {
@@ -57,11 +55,6 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
         private void FuckingDie ()
         {
             _parent.End();
-        }
-
-        public void Link(IWeaponFire weapon)
-        {
-            _weapon = weapon;
         }
 
         public void Tick(float deltaTime)

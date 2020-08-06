@@ -28,6 +28,10 @@ namespace Lomztein.BFA2.Placement
         private Func<string>[] _placeRequirements;
         private HighlighterCollection _highlighters;
 
+        private const string SpawnPointTag = "EnemySpawnPoint";
+        private Transform[] _enemySpawnPoints;
+        private bool _manualRotationOverride;
+
         public StructurePlacement (params Func<string>[] placeRequirements)
         {
             _placeRequirements = placeRequirements;
@@ -75,6 +79,7 @@ namespace Lomztein.BFA2.Placement
         public bool ToPosition(Vector2 position, Quaternion rotation)
         {
             position = GridDimensions.SnapToGrid(position, _placeable.Width, _placeable.Height);
+            rotation = _manualRotationOverride ? rotation : Quaternion.Euler(0f, 0f, GetAngleToNearestSpawnPoint(position, 90));
             _obj.transform.position = position;
             _obj.transform.rotation = rotation;
             _model.transform.position = position;
@@ -158,6 +163,40 @@ namespace Lomztein.BFA2.Placement
 
 
             return (from, to);
+        }
+
+        private float GetAngleToNearestSpawnPoint (Vector3 position, float rounding = 90)
+        {
+            Vector3 pos = GetNearest(position, GetSpawnPoints()).position;
+            float angle = Mathf.Atan2(pos.y - position.y, pos.x - position.x) * Mathf.Rad2Deg;
+            return Mathf.Round(angle / rounding) * rounding;
+        }
+
+        private Transform GetNearest(Vector3 position, Transform[] transforms)
+        {
+            float dist = float.MaxValue;
+            Transform nearest = null;
+
+            foreach (Transform trans in transforms)
+            {
+                float curDist = Vector3.SqrMagnitude(trans.position - position);
+                if (curDist < dist)
+                {
+                    dist = curDist;
+                    nearest = trans;
+                }
+            }
+
+            return nearest;
+        }
+
+        private Transform[] GetSpawnPoints ()
+        {
+            if (_enemySpawnPoints == null)
+            {
+                _enemySpawnPoints = GameObject.FindGameObjectsWithTag(SpawnPointTag).Select(x => x.transform).ToArray();
+            }
+            return _enemySpawnPoints;
         }
 
         public override string ToString()

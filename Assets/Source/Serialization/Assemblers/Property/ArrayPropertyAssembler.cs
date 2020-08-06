@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
 {
     public class ArrayPropertyAssembler : IPropertyAssembler
     {
-        private IPropertyAssembler _elementAssembler = new DefaultPropertyAssemblers();
+        private IPropertyAssembler _elementAssembler = new AllPropertyAssemblers();
 
         public object Assemble(JToken model, Type type)
         {

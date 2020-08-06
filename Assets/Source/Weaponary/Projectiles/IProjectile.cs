@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         IDamagable CheckHit(Collider2D hit);
 
-        DamageInfo Hit(IDamagable damagable, HitInfo info);
+        DamageInfo Hit(IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal);
 
         event Action<HitInfo> OnHit;
         event Action<HitInfo> OnKill;

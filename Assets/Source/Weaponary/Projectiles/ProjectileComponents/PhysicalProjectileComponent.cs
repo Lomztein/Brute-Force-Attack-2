@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
                 IDamagable damagable = _parent.CheckHit(hit.collider);
                 if (damagable != null)
                 {
-                    DamageInfo damageInfo = _parent.Hit(damagable, new HitInfo(hit.collider, hit.point, _parent, _weapon));
+                    DamageInfo damageInfo = _parent.Hit(damagable, hit.collider, hit.point, hit.normal);
                     _parent.Info.Damage -= damageInfo.DamageDealt;
                     if (_parent.Info.Damage <= 0f)
                     {

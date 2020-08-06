@@ -32,6 +32,10 @@ namespace Lomztein.BFA2.Enemies
 
         private IEnemyMotor _motor;
 
+        [ModelProperty]
+        public float DeathParticleLife;
+        private ParticleSystem _deathParticle;
+
         public event Action<IEnemy> OnKilled;
         public event Action<IEnemy> OnFinished;
 
@@ -83,12 +87,18 @@ namespace Lomztein.BFA2.Enemies
         {
             Destroy(gameObject);
             OnKilled?.Invoke(this);
+
+            _deathParticle.transform.parent = null;
+            _deathParticle.Play();
+
+            Destroy(_deathParticle.gameObject, DeathParticleLife);
         }
 
         public void Init(EnemySpawnPoint point)
         {
             Health = MaxHealth;
             _motor = GetComponent<IEnemyMotor>();
+            _deathParticle = transform.Find("DeathParticle").GetComponent<ParticleSystem>();
 
             transform.position = point.transform.position;
             _motor.SetPath(point.GetPath());

@@ -38,11 +38,11 @@
       "Properties": [
         {
           "Name": "_difficultyValue",
-          "Value": 7.5
+          "Value": 10.0
         },
         {
           "Name": "MaxHealth",
-          "Value": 25.0
+          "Value": 50.0
         },
         {
           "Name": "Armor",
@@ -55,6 +55,10 @@
         {
           "Name": "Color",
           "Value": 1
+        },
+        {
+          "Name": "DeathParticleLife",
+          "Value": 1.0
         }
       ]
     },
@@ -63,7 +67,7 @@
       "Properties": [
         {
           "Name": "Speed",
-          "Value": 15.0
+          "Value": 10.0
         },
         {
           "Name": "Rotate",
@@ -155,6 +159,62 @@
                 },
                 "PixelsPerUnit": 16.0
               }
+            },
+            {
+              "Name": "Color",
+              "Value": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
+              }
+            }
+          ]
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "DeathParticle",
+      "Tag": "Untagged",
+      "Layer": 8,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.GameObjectReferenceComponent",
+          "Properties": [
+            {
+              "Name": "Reference",
+              "Value": "Resources/Particles/MediumYellowDeathParticle"
             }
           ]
         }

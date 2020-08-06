@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Serialization.Models.Component;
 using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,13 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         private ComponentAssembler _componentAssembler = new ComponentAssembler();
 
         public GameObject Assemble(IGameObjectModel model)
+        {
+            GameObject obj = RecursiveAssemble(model);
+            ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled");
+            return obj;
+        }
+
+        private GameObject RecursiveAssemble (IGameObjectModel model)
         {
             GameObject obj = new GameObject(model.Name)
             {
@@ -29,7 +37,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             var children = model.GetChildren();
             foreach (var child in children)
             {
-                GameObject childObj = Assemble(child);
+                GameObject childObj = RecursiveAssemble(child);
 
                 Vector3 pos = childObj.transform.position;
                 Quaternion rot = childObj.transform.rotation;

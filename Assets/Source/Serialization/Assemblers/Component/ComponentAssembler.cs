@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Serialization.EngineComponentSerializers;
 using Lomztein.BFA2.Serialization.Models.Component;
 using Lomztein.BFA2.Serialization.Models.Property;
+using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -17,16 +18,17 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     public class ComponentAssembler
     {
 
-        private IEngineComponentSerializer[] _engineSerializers = new IEngineComponentSerializer[]
-        {
-            new TransformSerializer (),
-            new CircleCollider2DSerializer(),
-            new BoxCollider2DSerializer(),
-            new Rigidbody2DSerializer(),
-            new LineRendererSerializer(),
-        };
+        private static IEnumerable<IEngineComponentSerializer> _engineSerializers;
 
-        private IPropertyAssembler _propertyAssembler = new DefaultPropertyAssemblers();
+        public ComponentAssembler ()
+        {
+            if (_engineSerializers == null)
+            {
+                _engineSerializers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IEngineComponentSerializer>();
+            }
+        }
+
+        private IPropertyAssembler _propertyAssembler = new AllPropertyAssemblers();
 
         private IEngineComponentSerializer GetEngineComponentSerializer(Type type) => _engineSerializers.FirstOrDefault(x => x.Type == type);
 
@@ -58,9 +60,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                     Debug.LogWarning($"Could not find property for field {field.Name} in {modelType.Name}. Value is defualt.");
                 }
             }
-
-            var onAssembled = modelType.GetMethod("OnAssembled", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-            onAssembled?.Invoke(component, Array.Empty<object>());
         }
         
         public IComponentModel Dissasemble(Component component)

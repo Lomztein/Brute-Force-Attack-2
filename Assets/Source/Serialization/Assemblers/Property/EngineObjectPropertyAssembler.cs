@@ -4,25 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.EngineObjectSerializers;
+using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.Property
 {
     public class EngineObjectPropertyAssembler : IPropertyAssembler
     {
-        private IEngineObjectSerializer[] _serializers = new IEngineObjectSerializer[] // TODO: find a way to automatically get all serializers from loaded assemblies.
+        private static IEnumerable<IEngineObjectSerializer> _serializers;
+
+        public EngineObjectPropertyAssembler ()
         {
-            new RectSerializer(),
-            new Vector2Serializer(),
-            new Vector2IntSerializer(),
-            new Vector3Serializer(),
-            new Vector3IntSerializer(),
-            new Vector4Serializer(),
-            new QuaternionSerializer(),
-            new ColorSerializer(),
-            new AnimationCurveSerializer(),
-            new GradientSerializer(),
-        };
+            if (_serializers == null)
+            {
+                _serializers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IEngineObjectSerializer>();
+            }
+        }
 
         public object Assemble(JToken model, Type type)
         {

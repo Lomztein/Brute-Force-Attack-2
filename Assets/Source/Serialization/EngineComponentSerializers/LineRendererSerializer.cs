@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
     {
         public override void Deserialize(IComponentModel model, GameObject target)
         {
-            DefaultPropertyAssemblers assembler = new DefaultPropertyAssemblers();
+            AllPropertyAssemblers assembler = new AllPropertyAssemblers();
 
             LineRenderer renderer = target.AddComponent<LineRenderer>();
             IPropertyModel[] properties = model.GetProperties();
@@ -45,7 +45,7 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
 
         public override IComponentModel Serialize(LineRenderer source)
         {
-            DefaultPropertyAssemblers assembler = new DefaultPropertyAssemblers();
+            AllPropertyAssemblers assembler = new AllPropertyAssemblers();
 
             return new ComponentModel(typeof(LineRenderer),
                 new PropertyModel("PositionCount", new JValue(source.positionCount)),

@@ -7,6 +7,8 @@ using System.Linq;
 using Lomztein.BFA2.Turrets.Weapons;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Utilities;
 
 namespace Lomztein.BFA2.Turrets.Targeters
 {
@@ -14,6 +16,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
     {
         public ITargetProvider TargetProvider;
         private IWeapon _weapon;
+        private float _startingAngle;
 
         public IStatReference Turnrate;
 
@@ -21,6 +24,8 @@ namespace Lomztein.BFA2.Turrets.Targeters
         private Vector3? _prevPos;
         private Vector3 _tpos;
         public string Text => "Turnrate: " + Turnrate.GetValue();
+
+        LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
         public override void End()
         {
@@ -37,6 +42,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
             AddAttribute(Modification.ModdableAttribute.Rotator);
             _weapon = GetComponentInChildren<IWeapon>();
             Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.");
+            _startingAngle = transform.eulerAngles.z;
         }
 
         public override void Tick(float deltaTime)
@@ -65,13 +71,14 @@ namespace Lomztein.BFA2.Turrets.Targeters
                     tpos += delta * time;
                     float angle = Mathf.Rad2Deg * Mathf.Atan2(tpos.y - spos.y, tpos.x - spos.x);
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, angle), Turnrate.GetValue() * deltaTime);
-                    _angleToTarget = Mathf.Abs (Mathf.DeltaAngle(angle, transform.eulerAngles.z));
+                    _angleToTarget = Mathf.Abs(Mathf.DeltaAngle(angle, transform.eulerAngles.z));
 
                     _prevPos = target.position;
                     _tpos = tpos;
                 }
                 else
                 {
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, _startingAngle), Turnrate.GetValue() * deltaTime);
                     _angleToTarget = 180f;
                     _prevPos = null;
                 }

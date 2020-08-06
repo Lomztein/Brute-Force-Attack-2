@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Models.Property;
+using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,17 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.Property
 {
-    public class DefaultPropertyAssemblers : IPropertyAssembler
+    public class AllPropertyAssemblers : IPropertyAssembler
     {
-        private IPropertyAssembler[] Assemblers => new IPropertyAssembler[]
+        private static IEnumerable<IPropertyAssembler> _assemblers;
+
+        public AllPropertyAssemblers ()
         {
-            new ArrayPropertyAssembler (),
-            new SerializablePropertyAssembler(),
-            new EngineObjectPropertyAssembler(),
-            new SimplePropertyAssembler(),
-        };
+            if (_assemblers == null)
+            {
+                _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IPropertyAssembler>(GetType());
+            }
+        }
 
         public object Assemble(JToken model, Type type)
         {
@@ -35,6 +38,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
         }
 
         private IPropertyAssembler GetAssembler(Type type)
-            => Assemblers.First(x => x.Fits(type));
+            => _assemblers.First(x => x.Fits(type));
     }
 }

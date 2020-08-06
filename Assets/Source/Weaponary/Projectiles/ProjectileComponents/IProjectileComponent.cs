@@ -13,7 +13,5 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
         void Tick(float deltaTime);
 
         void End();
-
-        void Link(IWeaponFire weapon);
     }
 }

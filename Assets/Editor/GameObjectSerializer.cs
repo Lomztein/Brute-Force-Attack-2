@@ -22,9 +22,6 @@ public class GameObjectSerializer : EditorWindow
     public string Path;
     public TargetType Type;
 
-    private IGameObjectAssembler _assembler = new GameObjectAssembler();
-    private GameObjectTurretAssemblyAssembler _assemblyAssembler = new GameObjectTurretAssemblyAssembler();
-    
     [MenuItem("BFA2/GameObject Serializer")]
     public static void ShowWindow ()
     {
@@ -44,6 +41,9 @@ public class GameObjectSerializer : EditorWindow
 
     private void Dissasemble()
     {
+        IGameObjectAssembler _assembler = new GameObjectAssembler();
+        GameObjectTurretAssemblyAssembler _assemblyAssembler = new GameObjectTurretAssemblyAssembler();
+
         string path = Paths.StreamingAssets;
         string data = string.Empty;
 
