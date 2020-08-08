@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
 {
     public class TransformSerializer : EngineComponentSerializerBase<Transform>
     {
-        public override void Deserialize(IComponentModel model, GameObject target)
+        public override void Deserialize(IComponentModel model, Transform target)
         {
             var properties = model.GetProperties();
             Vector3Serializer serializer = new Vector3Serializer();
@@ -22,9 +22,9 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
             Vector3 rotation = serializer.DeserializeValue(properties.GetProperty("Rotation").Value);
             Vector3 scale = serializer.DeserializeValue(properties.GetProperty("Scale").Value);
 
-            target.transform.localPosition = position;
-            target.transform.localRotation = Quaternion.Euler (rotation);
-            target.transform.localScale = scale;
+            target.localPosition = position;
+            target.localRotation = Quaternion.Euler (rotation);
+            target.localScale = scale;
         }
 
         public override IComponentModel Serialize(Transform source)

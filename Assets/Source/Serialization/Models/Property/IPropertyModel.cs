@@ -16,5 +16,7 @@ namespace Lomztein.BFA2.Serialization.Models.Property
     public static class PropertyModelExtensions
     {
         public static IPropertyModel GetProperty(this IEnumerable<IPropertyModel> list, string name) => list.FirstOrDefault(x => x.Name == name);
+
+        public static T ToObject<T>(this IPropertyModel model) => model.Value.ToObject<T>();
     }
 }

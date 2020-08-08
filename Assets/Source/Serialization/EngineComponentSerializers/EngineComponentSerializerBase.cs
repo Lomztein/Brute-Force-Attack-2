@@ -12,13 +12,14 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
     {
         public Type Type => typeof(T);
 
-        public abstract void Deserialize(IComponentModel model, GameObject target);
+        public abstract void Deserialize(IComponentModel model, T target);
 
-        public IComponentModel Serialize(Component source)
-        {
-            return Serialize(source as T);
-        }
+        public void Deserialize(IComponentModel model, Component target)
+            => Deserialize(model, target as T);
 
         public abstract IComponentModel Serialize(T source);
+
+        public IComponentModel Serialize(Component source)
+            => Serialize(source as T);
     }
 }

@@ -14,6 +14,6 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
 
         IComponentModel Serialize(Component source);
 
-        void Deserialize(IComponentModel model, GameObject target);
+        void Deserialize(IComponentModel model, Component target);
     }
 }

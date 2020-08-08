@@ -37,7 +37,13 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             var serializer = GetEngineComponentSerializer(model.Type);
             if (serializer != null)
             {
-                serializer.Deserialize(model, target);
+                Component comp = target.GetComponent(model.Type);
+                if (comp == null)
+                {
+                     comp = target.AddComponent(model.Type);
+                }
+
+                serializer.Deserialize(model, comp);
                 return;
             }
 

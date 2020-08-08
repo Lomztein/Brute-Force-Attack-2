@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5209376479324394007}
+  - {fileID: 5532747535309276806}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f6959bbb747a043acc304f41777ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitEffectLife: 0.1
+  TrailEffectLife: 0
 --- !u!114 &9129561188470281380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +60,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eae0ad89f787df46aadad143261d505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2063499918410931920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5532747535309276806}
+  - component: {fileID: 8541354459516992865}
+  m_Layer: 0
+  m_Name: HitEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5532747535309276806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063499918410931920}
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6640471606551175162}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!114 &8541354459516992865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063499918410931920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f373f6aff46ae45bed0cef674da042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Resources/Particles/HitEffects/MachineGunHitEffect
+  NameOverride: 
 --- !u!1 &8574454690789390627
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5209376479324394007}
   - component: {fileID: 3869691122875951078}
+  - component: {fileID: 5246361534334773701}
   m_Layer: 0
   m_Name: Render
   m_TagString: Untagged
@@ -214,3 +265,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
+--- !u!114 &5246361534334773701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8574454690789390627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6522a96b64ed0ad4bb631dfbee198609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Resources/Materials/BrightBlue

@@ -12,11 +12,10 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
 {
     public class Rigidbody2DSerializer : EngineComponentSerializerBase<Rigidbody2D>
     {
-        public override void Deserialize(IComponentModel model, GameObject target)
+        public override void Deserialize(IComponentModel model, Rigidbody2D target)
         {
-            Rigidbody2D body = target.AddComponent<Rigidbody2D>();
             var properties = model.GetProperties();
-            body.bodyType = properties.GetProperty("BodyType").Value.ToObject<RigidbodyType2D>();
+            target.bodyType = properties.GetProperty("BodyType").Value.ToObject<RigidbodyType2D>();
         }
 
         public override IComponentModel Serialize(Rigidbody2D source)

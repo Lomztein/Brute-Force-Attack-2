@@ -13,16 +13,15 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
 {
     public class CircleCollider2DSerializer : EngineComponentSerializerBase<CircleCollider2D>
     {
-        public override void Deserialize(IComponentModel model, GameObject target)
+        public override void Deserialize(IComponentModel model, CircleCollider2D target)
         {
             IPropertyModel[] properties = model.GetProperties();
-            CircleCollider2D collider = target.AddComponent<CircleCollider2D>();
             Vector2Serializer vs = new Vector2Serializer();
 
-            collider.radius = properties.GetProperty("Radius").Value.ToObject<float>();
-            collider.offset = vs.DeserializeValue(properties.GetProperty("Offset").Value);
-            collider.isTrigger = properties.GetProperty("IsTrigger").Value.ToObject<bool>();
-            collider.usedByEffector = properties.GetProperty("UsedByEffector").Value.ToObject<bool>();
+            target.radius = properties.GetProperty("Radius").Value.ToObject<float>();
+            target.offset = vs.DeserializeValue(properties.GetProperty("Offset").Value);
+            target.isTrigger = properties.GetProperty("IsTrigger").Value.ToObject<bool>();
+            target.usedByEffector = properties.GetProperty("UsedByEffector").Value.ToObject<bool>();
         }
 
         public override IComponentModel Serialize(CircleCollider2D source)

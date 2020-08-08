@@ -25,6 +25,11 @@ namespace Lomztein.BFA2.Serialization.Models.Component
             _properties = properties.ToList();
         }
 
+        public ComponentModel(Type type, IComponentModel baseModel, params IPropertyModel[] properties) : this(type, properties)
+        {
+            _properties.AddRange(baseModel.GetProperties());
+        }
+
         public void Deserialize(JToken data)
         {
             Type = ReflectionUtils.GetType(data["TypeName"].ToString());

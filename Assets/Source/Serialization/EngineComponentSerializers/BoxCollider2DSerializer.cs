@@ -12,14 +12,13 @@ namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
 {
     public class BoxCollider2DSerializer : EngineComponentSerializerBase<BoxCollider2D>
     {
-        public override void Deserialize(IComponentModel model, GameObject target)
+        public override void Deserialize(IComponentModel model, BoxCollider2D target)
         {
             Vector2Serializer serializer = new Vector2Serializer();
             var properties = model.GetProperties();
 
-            BoxCollider2D collider = target.AddComponent<BoxCollider2D>();
-            collider.offset = serializer.DeserializeValue(properties.GetProperty("Offset").Value);
-            collider.size = serializer.DeserializeValue(properties.GetProperty("Size").Value);
+            target.offset = serializer.DeserializeValue(properties.GetProperty("Offset").Value);
+            target.size = serializer.DeserializeValue(properties.GetProperty("Size").Value);
         }
 
         public override IComponentModel Serialize(BoxCollider2D source)
