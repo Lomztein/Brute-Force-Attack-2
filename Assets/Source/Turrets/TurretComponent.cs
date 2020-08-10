@@ -2,12 +2,12 @@
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
+using Lomztein.BFA2.Modification.Modifiers;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Turrets.ExpansionCards;
 using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IExpansionCardAcceptor, IPurchasable, IGridObject
+    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IPurchasable, IGridObject
     {
         [ModelProperty] [SerializeField] protected string _identifier;
         public string UniqueIdentifier => _identifier;
@@ -30,7 +30,6 @@ namespace Lomztein.BFA2.Turrets
         public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
         [ModelProperty] [SerializeField] protected List<ModdableAttribute> _modAttributes;
-        public ModdableAttribute[] Attributes => _modAttributes.ToArray();
 
         public IStatContainer Stats { get; private set; } = new StatContainer();
         public IEventContainer Events { get; private set; } = new EventContainer();
@@ -44,16 +43,10 @@ namespace Lomztein.BFA2.Turrets
         public Size Width => _width;
         public Size Height => _height;
 
-        int IExpansionCardAcceptor.ExpansionCardCapacity => ExpansionCardCapacity;
-        public IExpansionCard[] ExpansionCards => _expansionCards.ToArray();
-
         [ModelProperty]
         public float PassiveHeatProduction;
         [ModelProperty]
         public StatBaseValues StatBaseValues;
-        [ModelProperty]
-        public int ExpansionCardCapacity;
-        private List<IExpansionCard> _expansionCards = new List<IExpansionCard>();
 
         public void Start()
         {
@@ -90,21 +83,6 @@ namespace Lomztein.BFA2.Turrets
         public abstract void Tick(float deltaTime);
         public abstract void End();
 
-        public bool InsertExpansionCard(IExpansionCard card)
-        {
-            if (HasCapacity ())
-            {
-                _expansionCards.Add(card);
-                return true;
-            }
-            return false;
-        }
-
-        public bool RemoveExpansionCard(IExpansionCard card)
-        {
-            return _expansionCards.Remove(card);
-        }
-
         public override string ToString()
         {
             return Name;
@@ -118,11 +96,6 @@ namespace Lomztein.BFA2.Turrets
             }
         }
 
-        public bool HasCapacity()
-        {
-            return _expansionCards.Count <= ExpansionCardCapacity - 1;
-        }
-
         public void Place()
         {
         }
@@ -130,5 +103,8 @@ namespace Lomztein.BFA2.Turrets
         public void Pickup()
         {
         }
+
+        public bool IsCompatableWith(IMod mod)
+            => mod.ContainsRequiredAttributes(_modAttributes);
     }
 }

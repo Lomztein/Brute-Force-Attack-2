@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Animation.FireAnimations;
 using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets.Rangers;

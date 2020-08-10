@@ -1,5 +1,5 @@
 {
-  "Name": "FirerateExpansionCollectable",
+  "Name": "50LoC",
   "Tag": "Untagged",
   "Layer": 12,
   "Static": false,
@@ -10,8 +10,8 @@
         {
           "Name": "Position",
           "Value": {
-            "X": 0.0,
-            "Y": 0.0,
+            "X": -4.77,
+            "Y": 3.6,
             "Z": 0.0
           }
         },
@@ -40,30 +40,41 @@
           "Name": "Amount",
           "Value": {
             "X": 1,
-            "Y": 1
+            "Y": 3
           }
         },
         {
           "Name": "Chance",
-          "Value": 0.05
+          "Value": 1.0
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Collectables.CollectableItem",
+      "TypeName": "Lomztein.BFA2.Collectables.CollectableResource",
       "Properties": [
         {
-          "Name": "Reference",
-          "Value": "Core/Items/DamageExpansionItem.json"
+          "Name": "Resources",
+          "Value": {
+            "Elements": [
+              {
+                "Type": 0,
+                "Value": 50
+              }
+            ]
+          }
         },
         {
           "Name": "_collectionTime",
-          "Value": 2.0
+          "Value": 1.0
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Inventory.PlayerInventoryLink",
+      "TypeName": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
+      "Properties": []
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Misc.RandomRotation",
       "Properties": []
     },
     {
@@ -133,7 +144,7 @@
             {
               "Name": "Reference",
               "Value": {
-                "Path": "Core/Sprites/UI/DamageUpgrade.png",
+                "Path": "Core/Sprites/UI/HollaHollaGetDolla.png",
                 "Rect": {
                   "X": 0.0,
                   "Y": 0.0,
@@ -150,9 +161,9 @@
             {
               "Name": "Color",
               "Value": {
-                "Red": 1.0,
-                "Green": 1.0,
-                "Blue": 1.0,
+                "Red": 0.804,
+                "Green": 0.458,
+                "Blue": 0.196,
                 "Alpha": 1.0
               }
             }

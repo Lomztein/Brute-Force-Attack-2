@@ -22,6 +22,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
             {
                 upgrader.Upgrade();
             }
+            SendMessage("OnAssemblyUpdated");
         }
 
         private bool TryUpgrade ()

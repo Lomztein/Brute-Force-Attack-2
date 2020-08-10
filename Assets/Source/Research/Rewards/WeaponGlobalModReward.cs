@@ -35,6 +35,6 @@ namespace Lomztein.BFA2.Research.Rewards
         }
 
         private bool Fits (IModdable moddable)
-            => GetMod().CompatableWith(moddable.Attributes) && (moddable as TurretWeapon)?.Color == Color;
+            => moddable.IsCompatableWith(GetMod()) && (moddable as TurretWeapon)?.Color == Color;
     }
 }

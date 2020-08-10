@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Research.Rewards
 
         private bool Fits (IModdable moddable)
         {
-            bool fits = GetMod().CompatableWith(moddable.Attributes);
+            bool fits = moddable.IsCompatableWith(GetMod());
             return fits;
         }
     }

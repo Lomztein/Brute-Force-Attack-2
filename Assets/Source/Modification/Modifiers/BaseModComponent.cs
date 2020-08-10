@@ -12,8 +12,6 @@ namespace Lomztein.BFA2.Modification.Modifiers
 {
     public abstract class BaseModComponent : MonoBehaviour, IMod
     {
-        [ModelProperty] public ModdableAttribute[] RequiredAttributes;
-
         [ModelProperty] [SerializeField] protected string _identifier;
         public string Identifier => _identifier;
 
@@ -23,13 +21,14 @@ namespace Lomztein.BFA2.Modification.Modifiers
         [ModelProperty] [SerializeField] protected string _description;
         public string Description => _description;
 
+        [ModelProperty]
+        [SerializeField]
+        protected ModdableAttribute[] _requiredAttributes;
+        public ModdableAttribute[] RequiredAttributes => _requiredAttributes;
+
         public abstract void ApplyBase(IStatContainer stats, IEventContainer events);
         public abstract void ApplyStack(IStatContainer stats, IEventContainer events);
         public abstract void RemoveBase(IStatContainer stats, IEventContainer events);
         public abstract void RemoveStack(IStatContainer stats, IEventContainer events);
-        public virtual bool CompatableWith(ModdableAttribute[] attributes)
-        {
-            return RequiredAttributes.All(x => attributes.Contains(x));
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Collectables;
+using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.Turrets.Targeters;

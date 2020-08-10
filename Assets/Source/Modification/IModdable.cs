@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Modification.Modifiers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,6 @@ namespace Lomztein.BFA2.Modification
     {
         IModContainer Mods { get; }
 
-        ModdableAttribute[] Attributes { get; }
+        bool IsCompatableWith(IMod mod);
     }
 }

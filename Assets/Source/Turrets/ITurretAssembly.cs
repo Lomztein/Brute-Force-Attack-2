@@ -8,11 +8,8 @@ namespace Lomztein.BFA2.Turrets
     {
         string Name { get; set; }
         string Description { get; set; }
-        bool Enabled { get; }
 
         ITurretComponent[] GetComponents();
         ITurretComponent GetRootComponent();
-
-        void Heat(float amount);
     }
 }

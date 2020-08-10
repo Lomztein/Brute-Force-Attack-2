@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Content.References;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Turrets.ExpansionCards;
 using Lomztein.BFA2.UI;
 using Newtonsoft.Json.Linq;
 using System;

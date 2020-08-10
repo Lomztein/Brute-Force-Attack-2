@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Enemies
         public float WaveFinishedRewardPerWave;
 
         private ILootTable _commonLootTable;
-        public float LootAmountGrowthMult;
+        public float LootChanceGrowthDenominator;
 
         private IResourceContainer _resourceContainer;
         private IHealthContainer _healthContainer;
@@ -155,7 +155,7 @@ namespace Lomztein.BFA2.Enemies
         private void EnemyKill(IEnemy obj)
         {
             OnEnemyKill?.Invoke(obj);
-            RandomizedLoot loot = _commonLootTable.GetRandomLoot(100f / CurrentWave.SpawnAmount, 1f + (CurrentWaveIndex / LootAmountGrowthMult));
+            RandomizedLoot loot = _commonLootTable.GetRandomLoot((100f / CurrentWave.SpawnAmount) * CurrentWaveIndex / LootChanceGrowthDenominator, 1);
             if (!loot.Empty)
             {
                 if (obj is Component comp)

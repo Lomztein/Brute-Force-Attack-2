@@ -17,13 +17,7 @@ namespace Lomztein.BFA2.Content
         public string Author { get; private set; }
         public string Description { get; private set; }
 
-        private IRawContentLoader _contentLoader = new RawContentLoader(
-                new Texture2DRawContentLoader(),
-                new TurretAssemblyRawLoader(),
-                new PrefabRawLoader(),
-                new MapDataLoader(),
-                new UIStyleRawLoader()
-            );
+        private IRawContentLoader _contentLoader = new RawContentLoader();
 
         public ContentPack(string path, string name, string author, string description)
         {

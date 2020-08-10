@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -7532642262125420409}
   - component: {fileID: 4521667712478599596}
   - component: {fileID: 4421234629336450257}
+  - component: {fileID: -1109665557147856863}
   m_Layer: 10
   m_Name: AssemblyPrefab
   m_TagString: Untagged
@@ -53,7 +54,8 @@ MonoBehaviour:
       Value: 10
     - Identifier: HeatCapacity
       Value: 100
-  Heat: 0
+    - Identifier: ExpansionCardCapacity
+      Value: 2
   _name: 
   _description: 
   _modAttributes: 
@@ -111,3 +113,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SellSprite: {fileID: 21300000, guid: 102fb0c1c65da6841afa74ce37e112f8, type: 3}
+--- !u!114 &-1109665557147856863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7641300259387924724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3e5fc58a85d3ac49b7edb0e6fea36be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

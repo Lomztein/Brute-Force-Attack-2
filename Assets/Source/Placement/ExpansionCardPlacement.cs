@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Modification.Modifiers.ModProviders;
-using Lomztein.BFA2.Turrets.ExpansionCards;
+﻿using Lomztein.BFA2.Modification.ModProviders.ExpansionCards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,12 +39,9 @@ namespace Lomztein.BFA2.Placement
                 {
                     GameObject cardGO = UnityEngine.Object.Instantiate(_obj);
                     IExpansionCard card = cardGO.GetComponent<IExpansionCard>();
-                    if (_target.InsertExpansionCard(card))
-                    {
-                        _expansionCard.ApplyTo(_target);
-                        OnPlaced?.Invoke();
-                        return true;
-                    }
+                    _target.ExpansionCards.AddCard(card);
+                    OnPlaced?.Invoke();
+                    return true;
                 }
             }
             return false;
@@ -55,7 +51,7 @@ namespace Lomztein.BFA2.Placement
         {
             IExpansionCardAcceptor[] options = Physics2D.OverlapPointAll(position)
                 .Select(x => x.GetComponent<IExpansionCardAcceptor>())
-                .Where(x => x != null && _expansionCard.CompatableWith(x.Attributes))
+                .Where(x => x != null && x.IsCompatableWith(_expansionCard))
                 .ToArray();
 
             if (options.Length == 1)

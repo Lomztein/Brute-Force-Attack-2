@@ -20,9 +20,6 @@ namespace Lomztein.BFA2.Turrets.Upgrading
 
         private void Upgrade()
         {
-            ITurretAssembly assembly = GetComponentInParent<ITurretAssembly>();
-            ITurretComponent current = GetComponent<ITurretComponent>();
-
             GameObject newObj = GameObjectTurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).Instantiate();
 
             newObj.transform.position = transform.position;

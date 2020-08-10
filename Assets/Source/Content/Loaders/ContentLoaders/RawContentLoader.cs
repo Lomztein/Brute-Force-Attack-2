@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Utilities;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,15 +8,18 @@ namespace Lomztein.BFA2.Content.Loaders.ContentLoaders
 {
     public class RawContentLoader : IRawContentLoader
     {
-        public RawContentLoader (params IRawContentTypeLoader[] loaders)
-        {
-            _loaders = loaders;
-        }
-
-        private IRawContentTypeLoader[] _loaders;
+        private static IRawContentTypeLoader[] _loaders;
         private static List<IRawContentTypeLoader> _customLoaders = new List<IRawContentTypeLoader>(); // Not currently used, perhaps split into different loader inside ContentPack.
 
         public static void AddCustomLoader(IRawContentTypeLoader loader) => _customLoaders.Add(loader);
+
+        public RawContentLoader()
+        {
+            if (_loaders == null)
+            {
+                _loaders = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IRawContentTypeLoader>().ToArray();
+            }
+        }
 
         public object LoadContent(string path, Type type)
         {
