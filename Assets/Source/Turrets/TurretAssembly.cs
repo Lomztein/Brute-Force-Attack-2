@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Grid;
 using Lomztein.BFA2.Inventory;
 using Lomztein.BFA2.Inventory.Items;
+using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Modifiers;
@@ -22,7 +23,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public class TurretAssembly : MonoBehaviour, ITurretAssembly, IGridObject, IPurchasable, IModdable, IExpansionCardAcceptor, IContextMenuOptionProvider
+    public class TurretAssembly : MonoBehaviour, ITurretAssembly, INamed, IGridObject, IPurchasable, IModdable, IExpansionCardAcceptor, IContextMenuOptionProvider
     {
         public IStatContainer Stats = new StatContainer ();
         public IEventContainer Events = new EventContainer();
@@ -46,7 +47,7 @@ namespace Lomztein.BFA2.Turrets
             return children.Select(x => x.Cost).Sum();
         }
 
-        public Sprite Sprite => Sprite.Create (Iconography.GenerateIcon (gameObject), new Rect (0f, 0f, Iconography.RENDER_SIZE, Iconography.RENDER_SIZE), Vector2.one / 2f);
+        public Sprite Sprite => Iconography.GenerateSprite(gameObject);
 
         public Size Width => GetRootComponent().Width;
         public Size Height => GetRootComponent().Height;

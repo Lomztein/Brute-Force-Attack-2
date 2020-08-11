@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Content.Objects;
+using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.UI.Tooltip;
@@ -33,8 +34,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         {
             if (Image)
             {
-                Texture2D tex = Iconography.GenerateIcon(_prefab.GetCache());
-                Image.sprite = Sprite.Create (tex, new Rect(0f, 0f, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                Image.sprite = Iconography.GenerateSprite(_prefab.GetCache());
             }
         }
 
@@ -47,8 +47,21 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         {
             _prefab = prefab;
             _onSelected = onSelected;
-            Title = prefab.GetCache().name;
+            Title = GetName(_prefab);
             UpdateGraphics();
+        }
+
+        private string GetName (IContentCachedPrefab prefab)
+        {
+            var named = prefab.GetCache().GetComponent<INamed>();
+            if (named != null)
+            {
+                return named.Name;
+            }
+            else
+            {
+                return prefab.GetCache().name;
+            }
         }
     }
 }

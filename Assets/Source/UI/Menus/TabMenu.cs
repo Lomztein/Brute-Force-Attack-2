@@ -18,8 +18,18 @@ namespace Lomztein.BFA2.UI.Menus
 
         private void Awake()
         {
-            _subMenus = Submenus.Select(x => x.GetComponent<ITabMenuElement>()).ToArray();
+            SetSubmenus(Submenus.Select(x => x.GetComponent<ITabMenuElement>()).ToArray());
+;        }
+
+        public void SetSubmenus (ITabMenuElement[] submenus)
+        {
+            _subMenus = submenus;
             BuildButtons();
+
+            if (_subMenus.Length > 0)
+            {
+                Open(0);
+            }
         }
 
         private void BuildButtons ()
@@ -38,8 +48,6 @@ namespace Lomztein.BFA2.UI.Menus
                 newButton.GetComponentInChildren<Text>().text = _subMenus[i].Name;
                 _tabButtons[i] = button;
             }
-
-            Open(_currentOpen);
         }
 
         private void AddButtonListener (Button button, int index)

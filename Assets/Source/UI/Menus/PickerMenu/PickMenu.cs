@@ -15,8 +15,8 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu
         private IProvider<T> _provider;
 
         public bool IsMenuEmpty => _pickables.Any();
-        [SerializeField] private string _name;
-        public string Name => _name;
+        public string _Name;
+        public string Name => _Name;
 
         private void Awake()
         {
@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu
 
         private void RegisterDynamicProvider ()
         {
-            if (_provider is IDynamicProvider<T> dyn)
+            if (_provider != null && _provider is IDynamicProvider<T> dyn)
             {
                 dyn.OnAdded += OnAdded;
                 dyn.OnRemoved += OnRemoved;
@@ -47,7 +47,10 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu
 
         private void Start()
         {
-            SetPickables(_provider.Get());
+            if (_provider != null)
+            {
+                SetPickables(_provider.Get());
+            }
         }
 
         public virtual void AddPickables (IEnumerable<T> pickables)

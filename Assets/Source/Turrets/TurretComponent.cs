@@ -8,6 +8,7 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Turrets.Attachment;
 using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets
 {
-    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, IModdable, IPurchasable, IGridObject
+    public abstract class TurretComponent : MonoBehaviour, ITurretComponent, INamed, IModdable, IPurchasable, IGridObject
     {
         [ModelProperty] [SerializeField] protected string _identifier;
         public string UniqueIdentifier => _identifier;
@@ -43,8 +44,11 @@ namespace Lomztein.BFA2.Turrets
         public Size Width => _width;
         public Size Height => _height;
 
-        [ModelProperty]
-        public float PassiveHeatProduction;
+        public abstract TurretComponentCategory Category { get; }
+
+        protected IAttachmentPointSet _upperAttachmentPoints;
+        protected IAttachmentPointSet _lowerAttachmentPoints;
+
         [ModelProperty]
         public StatBaseValues StatBaseValues;
 
@@ -62,6 +66,10 @@ namespace Lomztein.BFA2.Turrets
         {
             Mods = new ModContainer(Stats, Events);
 
+            _upperAttachmentPoints = new SquareAttachmentPointSet(Width, Height);
+            _lowerAttachmentPoints = new SquareAttachmentPointSet(Width, Height);
+            AttachToParent();
+
             Init();
             Stats.Init(StatBaseValues);
 
@@ -76,6 +84,7 @@ namespace Lomztein.BFA2.Turrets
         public void OnDestroy()
         {
             End();
+            DetachAttachmentPoints();
             SceneAssemblyManager.Instance.RemoveComponent(this);
         }
 
@@ -95,16 +104,61 @@ namespace Lomztein.BFA2.Turrets
                 _modAttributes.Add(attribute);
             }
         }
-
-        public void Place()
+        
+        private void AttachToParent ()
         {
+            if (transform.parent != null)
+            {
+                ITurretComponent parent = transform.parent.GetComponent<ITurretComponent>();
+                if (parent != null)
+                {
+                    foreach (AttachmentPoint point in GetLowerAttachmentPoints())
+                    {
+                        AttachmentPoint pPoint = parent.GetUpperAttachmentPoints().GetPoint(transform.parent.position, point.LocalToWorldPosition(transform.position));
+                        if (pPoint != null)
+                        {
+                            point.AttachTo(pPoint);
+                            pPoint.AttachTo(point);
+                        }
+                    }
+                }
+            }
         }
 
-        public void Pickup()
+        private void DetachAttachmentPoints ()
         {
+            foreach (AttachmentPoint point in GetLowerAttachmentPoints())
+            {
+                point.AttachedPoint?.Detach();
+                point.Detach();
+            }
+
+            foreach (AttachmentPoint point in GetUpperAttachmentPoints())
+            {
+                point.AttachedPoint?.Detach();
+                point.Detach();
+            }
         }
 
         public bool IsCompatableWith(IMod mod)
             => mod.ContainsRequiredAttributes(_modAttributes);
+
+        public AttachmentPoint[] GetUpperAttachmentPoints()
+            => _upperAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
+
+        public AttachmentPoint[] GetLowerAttachmentPoints()
+            => _lowerAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
+
+        public void OnDrawGizmosSelected()
+        {
+            foreach (var point in GetUpperAttachmentPoints().LocalToWorldPosition(transform.position))
+            {
+                Gizmos.DrawWireSphere(point, 0.25f);
+            }
+            foreach (var point in GetLowerAttachmentPoints().LocalToWorldPosition(transform.position))
+            {
+                Gizmos.DrawSphere(point, 0.2f);
+            }
+        }
     }
 }

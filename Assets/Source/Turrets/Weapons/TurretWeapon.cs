@@ -3,6 +3,7 @@ using Lomztein.BFA2.Colorization;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Turrets.Attachment;
 using Lomztein.BFA2.Turrets.Rangers;
 using Lomztein.BFA2.Turrets.Targeters;
 using Lomztein.BFA2.Turrets.TargetProviders;
@@ -39,6 +40,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
         public IStatReference Speed;
         public IStatReference Firerate;
         public float Cooldown => 1f / Firerate.GetValue();
+
+        public override TurretComponentCategory Category => TurretComponentCategories.Weapon;
 
         private IWeaponFire _weaponFire;
         private IFireAnimation _fireAnimation;
@@ -91,6 +94,8 @@ namespace Lomztein.BFA2.Turrets.Weapons
 
         public override void Init()
         {
+            _upperAttachmentPoints = new EmptyAttachmentPointSet();
+
             Targeter = GetComponentInParent<ITargeter>();
             Provider = GetComponentInParent<ITargetProvider>();
             Ranger = GetComponentInParent<IRanger>();

@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Turrets.Targeters
         private Vector3 _tpos;
         public string Text => "Turnrate: " + Turnrate.GetValue();
 
-        LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
+        public override TurretComponentCategory Category => TurretComponentCategories.Targeter;
 
         public override void End()
         {

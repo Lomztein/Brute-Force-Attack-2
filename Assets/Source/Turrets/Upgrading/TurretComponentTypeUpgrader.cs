@@ -4,6 +4,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Assemblers.Turret;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
             newObj.transform.localScale = transform.localScale;
 
             newObj.transform.SetParent(transform.parent, true);
+            ReflectionUtils.DynamicInvoke(newObj.GetComponent<ITurretComponent>(), "OnInstantiated");
 
             Destroy(gameObject);
         }

@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.UI
         public static Sprite GenerateSprite (GameObject obj)
         {
             Texture2D tex = GenerateIcon(obj);
-            Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, tex.width, tex.height), Vector2.one / 2f);
+            Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, RENDER_SIZE, RENDER_SIZE), Vector2.one / 2f);
             return sprite;
         }
 
@@ -54,7 +54,8 @@ namespace Lomztein.BFA2.UI
             Camera.orthographicSize = camSize;
 
             Camera.targetTexture = renderTexture;
-            Camera.transform.position = _instance.transform.position + bounds.center + Camera.transform.forward * bounds.extents.z * -2f;
+            Camera.transform.position = _instance.transform.position + bounds.center + Camera.transform.forward * -2f;
+            Camera.transform.LookAt(_instance.transform);
             Camera.Render();
 
             RenderTexture.active = renderTexture;

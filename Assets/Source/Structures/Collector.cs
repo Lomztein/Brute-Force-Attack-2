@@ -28,6 +28,8 @@ namespace Lomztein.BFA2.Structures
         private ICollectable _collectable;
         private float _currentProgress;
 
+        public override TurretComponentCategory Category => TurretComponentCategories.Misc;
+
         public override void End()
         {
         }

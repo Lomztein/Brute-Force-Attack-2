@@ -155,7 +155,7 @@ namespace Lomztein.BFA2.Enemies
         private void EnemyKill(IEnemy obj)
         {
             OnEnemyKill?.Invoke(obj);
-            RandomizedLoot loot = _commonLootTable.GetRandomLoot((100f / CurrentWave.SpawnAmount) * CurrentWaveIndex / LootChanceGrowthDenominator, 1);
+            RandomizedLoot loot = _commonLootTable.GetRandomLoot((100f / CurrentWave.SpawnAmount) * (CurrentWaveIndex / LootChanceGrowthDenominator + 1), 1);
             if (!loot.Empty)
             {
                 if (obj is Component comp)

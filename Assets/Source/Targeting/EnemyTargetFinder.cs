@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Targeting
     {
         private void Start()
         {
-            SetEvaluator(new EnemyTargetEvaluator(GetComponentInChildren<IColorProvider>().GetColor(), new TargetEvaluator<Enemy>(x => -Vector3.SqrMagnitude(x.transform.position - transform.position))));
+            SetEvaluator(new EnemyTargetEvaluator(GetComponentInChildren<IColorProvider>() != null ? GetComponentInChildren<IColorProvider>().GetColor() : Colorization.Color.Blue, new TargetEvaluator<Enemy>(x => -Vector3.SqrMagnitude(x.transform.position - transform.position))));
         }
     }
 }

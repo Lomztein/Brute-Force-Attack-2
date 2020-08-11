@@ -58,12 +58,10 @@ MonoBehaviour:
   _modAttributes: 0000000007000000
   _width: 2
   _height: 2
-  PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Range
       Value: 15
-  ExpansionCardCapacity: 2
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -94,7 +92,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &3611657151604057726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +166,7 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7589574359406796267
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,10 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequiredAttributes: 00000000
   _identifier: UpgradeModIncreaseRange+20
   _name: Range +20%
   _description: Increase range by +20%
+  _requiredAttributes: 
   Stats:
   - Identifier: Range
     Name: 
