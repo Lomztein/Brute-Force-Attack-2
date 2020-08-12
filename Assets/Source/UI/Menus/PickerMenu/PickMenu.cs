@@ -35,14 +35,14 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu
             }
         }
 
-        private void OnAdded(T obj)
+        private void OnAdded(IEnumerable<T> objs)
         {
-            AddPickables(new[] { obj });
+            AddPickables(objs);
         }
 
-        private void OnRemoved(T obj)
+        private void OnRemoved(IEnumerable<T> objs)
         {
-            RemovePickables(new[] { obj });
+            RemovePickables(objs);
         }
 
         private void Start()

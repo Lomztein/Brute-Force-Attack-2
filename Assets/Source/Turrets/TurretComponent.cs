@@ -73,7 +73,7 @@ namespace Lomztein.BFA2.Turrets
             Init();
             Stats.Init(StatBaseValues);
 
-            SceneAssemblyManager.Instance.AddComponent(this);
+            SceneAssemblyManager.Instance?.AddComponent(this);
         }
 
         public void FixedUpdate()
@@ -85,7 +85,7 @@ namespace Lomztein.BFA2.Turrets
         {
             End();
             DetachAttachmentPoints();
-            SceneAssemblyManager.Instance.RemoveComponent(this);
+            SceneAssemblyManager.Instance?.RemoveComponent(this);
         }
 
         public abstract void Init();

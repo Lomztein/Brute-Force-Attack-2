@@ -60,7 +60,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             var enemies = GetEnemies();
             IContentCachedPrefab[] options = enemies.Where(x => ShouldSpawn(x.GetCache().GetComponent<IEnemy>())).ToArray();
             IContentCachedPrefab enemy = options[GetRandom().Next(0, options.Length)];
-            return (enemy, Mathf.RoundToInt(credits / enemy.GetCache().GetComponent<IEnemy>().DifficultyValue));
+            return (enemy, Mathf.Max(Mathf.RoundToInt(credits / enemy.GetCache().GetComponent<IEnemy>().DifficultyValue), 1));
         }
 
         private bool ShouldSpawn(IEnemy enemy)

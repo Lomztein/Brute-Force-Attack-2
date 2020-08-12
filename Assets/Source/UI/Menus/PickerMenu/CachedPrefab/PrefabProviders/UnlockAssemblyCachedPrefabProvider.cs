@@ -21,8 +21,8 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
 
         private IContentCachedPrefab[] _allPrefabs;
 
-        public event Action<IContentCachedPrefab> OnAdded;
-        public event Action<IContentCachedPrefab> OnRemoved;
+        public event Action<IEnumerable<IContentCachedPrefab>> OnAdded;
+        public event Action<IEnumerable<IContentCachedPrefab>> OnRemoved;
 
         private void Awake()
         {
@@ -42,10 +42,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
                     .Where(x => ContainsComponent(x.GetCache().GetComponent<ITurretAssembly>(), identifier))
                     .Where(x => IsUnlocked(x.GetCache().GetComponent<ITurretAssembly>()));
 
-                foreach (var unlocked in newlyUnlocked)
-                {
-                    OnAdded?.Invoke(unlocked);
-                }
+                OnAdded?.Invoke(newlyUnlocked);
             }
         }
 

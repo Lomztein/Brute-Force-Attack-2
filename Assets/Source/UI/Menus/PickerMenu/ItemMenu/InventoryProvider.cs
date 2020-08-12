@@ -12,8 +12,8 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
 {
     public class InventoryProvider : MonoBehaviour, IDynamicProvider<Item>
     {
-        public event Action<Item> OnAdded;
-        public event Action<Item> OnRemoved;
+        public event Action<IEnumerable<Item>> OnAdded;
+        public event Action<IEnumerable<Item>> OnRemoved;
 
         private IInventory _inventory;
 
@@ -43,12 +43,12 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
 
         private void OnItemAdded(Item obj)
         {
-            OnAdded?.Invoke(obj);
+            OnAdded?.Invoke(new[] { obj });
         }
 
         private void OnItemRemoved(Item obj)
         {
-            OnRemoved?.Invoke(obj);
+            OnRemoved?.Invoke(new[] { obj });
         }
 
         public Item[] Get() => GetInventory().GetItems();

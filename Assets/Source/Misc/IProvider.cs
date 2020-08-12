@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Misc
 
     public interface IDynamicProvider<T> : IProvider<T>
     {
-        event Action<T> OnAdded;
-        event Action<T> OnRemoved;
+        event Action<IEnumerable<T>> OnAdded;
+        event Action<IEnumerable<T>> OnRemoved;
     }
 }
