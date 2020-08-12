@@ -19,6 +19,7 @@ namespace Lomztein.BFA2.Enemies
 {
     public class RoundController : MonoBehaviour, IRoundController
     {
+        public static RoundController Instance;
         public enum RoundState { Ready, Preparing, InProgress }
 
         public int CurrentWaveIndex;
@@ -63,6 +64,7 @@ namespace Lomztein.BFA2.Enemies
 
         private void Start()
         {
+            Instance = this;
             CachePoints();
         }
 
@@ -74,9 +76,17 @@ namespace Lomztein.BFA2.Enemies
 
         private void Update()
         {
-            if (State == RoundState.Ready && Input.GetButtonDown("StartWave"))
+            if (Input.GetButtonDown("StartWave"))
             {
-                StartCoroutine (RunNextWave());
+                BeginNextWave();
+            }
+        }
+
+        public void BeginNextWave ()
+        {
+            if (State == RoundState.Ready)
+            {
+                StartCoroutine(RunNextWave());
             }
         }
 
