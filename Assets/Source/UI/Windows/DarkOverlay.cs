@@ -48,7 +48,7 @@ namespace Lomztein.BFA2.UI.Windows
             for (int i = 0; i < fadeIters; i++)
             {
                 Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, Mathf.Lerp(original, targetAlpha, (float)i / fadeIters));
-                yield return new WaitForFixedUpdate();
+                yield return new WaitForSecondsRealtime(Time.fixedUnscaledDeltaTime);
             }
             Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, targetAlpha);
         }

@@ -74,23 +74,27 @@ namespace Lomztein.BFA2.UI.ContextMenu
         {
             if (!HasActiveWindow(obj))
             {
-                HighlighterCollection highlighter = HighlighterCollection.Create(obj.transform.root.gameObject);
-
-                highlighter.Highlight();
-                highlighter.Tint(Color.green);
-
-                GameObject menuObj = WindowManager.OpenWindow (MenuPrefab);
-                menuObj.transform.position = position;
-
-                IContextMenu menu = menuObj.GetComponent<IContextMenu>();
-                menu.Open(options);
-                AddActiveWindow(obj, menu);
-
-                menu.OnClosed += () =>
+                GameObject menuObj = WindowManager.OpenWindow(MenuPrefab);
+                if (menuObj)
                 {
-                    RemoveActiveWindow(obj);
-                    highlighter.EndHighlight();
-                };
+                    HighlighterCollection highlighter = HighlighterCollection.Create(obj.transform.root.gameObject);
+
+                    highlighter.Highlight();
+                    highlighter.Tint(Color.green);
+
+                    menuObj.transform.position = position;
+
+                    IContextMenu menu = menuObj.GetComponent<IContextMenu>();
+                    menu.Open(options);
+                    menu.StickTo(obj.transform);
+                    AddActiveWindow(obj, menu);
+
+                    menu.OnClosed += () =>
+                    {
+                        RemoveActiveWindow(obj);
+                        highlighter.EndHighlight();
+                    };
+                }
             }
         }
     }

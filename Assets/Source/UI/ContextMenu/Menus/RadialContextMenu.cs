@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
 
         private List<Button> _buttons = new List<Button>();
         private List<IContextMenuOption> _options = new List<IContextMenuOption>();
+        private Transform _stickTo;
 
         public event Action OnClosed;
 
@@ -24,6 +25,11 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
             ClearButtons();
             Destroy(gameObject);
             OnClosed?.Invoke();
+        }
+
+        public void StickTo (Transform transform)
+        {
+            _stickTo = transform;
         }
 
         public void Open(IEnumerable<IContextMenuOption> options)
@@ -79,6 +85,10 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
             {
                 LerpButton(_buttons[i].transform, i);
                 _buttons[i].interactable = _options[i].Interactable();
+            }
+            if (_stickTo)
+            {
+                transform.position = Camera.main.WorldToScreenPoint(_stickTo.position);
             }
         }
 

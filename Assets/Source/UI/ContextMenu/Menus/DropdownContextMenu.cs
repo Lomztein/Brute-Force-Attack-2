@@ -22,5 +22,9 @@ namespace Lomztein.BFA2.UI.ContextMenu.Menus
         public void Open(IEnumerable<IContextMenuOption> options)
         {
         }
+
+        public void StickTo(Transform transform)
+        {
+        }
     }
 }
