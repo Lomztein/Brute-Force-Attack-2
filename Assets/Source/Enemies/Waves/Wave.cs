@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Enemies.Waves
     public class Wave : IWave
     {
         public float SpawnDelay;
-        public IContentPrefab Prefab;
+        public IContentCachedPrefab Prefab;
         public GameObject SpawnerPrefab;
 
         public int SpawnAmount { get; private set;  }
@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             Alive = SpawnAmount;
         }
         
-        public Wave (IContentPrefab prefab, GameObject spawner, int amount, float delay)
+        public Wave (IContentCachedPrefab prefab, GameObject spawner, int amount, float delay)
         {
             Prefab = prefab;
             SpawnerPrefab = spawner;

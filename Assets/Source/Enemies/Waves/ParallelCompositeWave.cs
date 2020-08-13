@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 {
     public class ParallelCompositeWave : IWave
     {
-        public int SpawnAmount => _waves.Sum(x => x.SpawnAmount);
+        public int SpawnAmount => Waves.Sum(x => x.SpawnAmount);
 
         public event Action<IEnemy> OnEnemySpawn;
         public event Action<IEnemy> OnEnemyKill;
@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         public event Action OnFinished;
         public event Action OnAllSpawned;
 
-        private readonly IWave[] _waves;
+        public readonly IWave[] Waves;
 
         private int _finished;
         private int _allSpawned;
@@ -26,9 +26,9 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         public void Start()
         {
-            for (int i = 0; i < _waves.Length; i++)
+            for (int i = 0; i < Waves.Length; i++)
             {
-                IWave wave = _waves[i];
+                IWave wave = Waves[i];
 
                 wave.OnEnemySpawn += (enemy) => OnEnemySpawn?.Invoke(enemy);
                 wave.OnEnemyKill += (enemy) => OnEnemyKill?.Invoke(enemy);
@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         private void OnWaveAllSpawned()
         {
             _allSpawned++;
-            if (_allSpawned == _waves.Length)
+            if (_allSpawned == Waves.Length)
             {
                 OnAllSpawned?.Invoke();
             }
@@ -53,7 +53,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         private void OnWaveFinished()
         {
             _finished++;
-            if (_finished == _waves.Length)
+            if (_finished == Waves.Length)
             {
                 OnFinished?.Invoke();
             }
@@ -61,7 +61,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         public ParallelCompositeWave (IWave[] waves)
         {
-            _waves = waves;
+            Waves = waves;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public int GetResource(Resource resource)
         {
-            return _resources[resource];
+            return _resources.ContainsKey(resource) ? _resources[resource] : 0;
         }
 
         public void SetResource(Resource resource, int value)

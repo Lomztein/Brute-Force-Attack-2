@@ -23,6 +23,8 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         public float MaxSequenceDenominator;
         public float MaxParallelDenominator;
+        public int MaxSequence = 5;
+        public float MaxParallel = 3;
 
         private readonly Dictionary<int, IWave> _waves = new Dictionary<int, IWave>();
 
@@ -34,6 +36,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             }
             else
             {
+                //IWaveGenerator generator = new WaveGenerator(Spawner, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), 200, 0.5f);
                 IWaveGenerator generator = new CompositeWaveGenerator(Spawner, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), GetMaxSequence(index), GetMaxParallel(index));
                 IWave wave = generator.GenerateWave();
                 _waves.Add(index, wave);
@@ -45,7 +48,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private float GetAvailableCredits(int wave) => StartingCredits * Mathf.Pow(CreditsCoeffecient, wave - 1);
 
-        private int GetMaxSequence(int wave) => (int)Mathf.Max(1, Mathf.Round(wave / MaxSequenceDenominator));
-        private int GetMaxParallel(int wave) => (int)Mathf.Max(1, Mathf.Round(wave / MaxParallelDenominator));
+        private int GetMaxSequence(int wave) => (int)Mathf.Min (Mathf.Max(1, Mathf.Round(wave / MaxSequenceDenominator)), MaxSequence);
+        private int GetMaxParallel(int wave) => (int)Mathf.Min (Mathf.Max(1, Mathf.Round(wave / MaxParallelDenominator)), MaxParallel);
     }
 }

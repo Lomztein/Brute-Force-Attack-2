@@ -17,13 +17,13 @@ namespace Lomztein.BFA2.Enemies.Waves
         public event Action OnFinished;
         public event Action OnAllSpawned;
 
-        public int SpawnAmount => _waves.Sum(x => x.SpawnAmount);
+        public int SpawnAmount => Waves.Sum(x => x.SpawnAmount);
 
-        private readonly IWave[] _waves;
+        public readonly IWave[] Waves;
 
         public void Start()
         {
-            foreach (IWave wave in _waves)
+            foreach (IWave wave in Waves)
             {
                 wave.OnEnemySpawn += (enemy) => OnEnemySpawn?.Invoke(enemy);
                 wave.OnEnemyKill += (enemy) => OnEnemyKill?.Invoke(enemy);
@@ -31,10 +31,10 @@ namespace Lomztein.BFA2.Enemies.Waves
                 wave.OnAllSpawned += () => Wave_OnAllSpawned(wave);
             }
 
-            _waves.Last().OnFinished += SequentialCompositeWave_OnFinished;
-            _waves.Last().OnAllSpawned += SequentialCompositeWave_OnAllSpawned;
+            Waves.Last().OnFinished += SequentialCompositeWave_OnFinished;
+            Waves.Last().OnAllSpawned += SequentialCompositeWave_OnAllSpawned;
 
-            _waves.First().Start();
+            Waves.First().Start();
         }
 
         private void SequentialCompositeWave_OnAllSpawned()
@@ -50,16 +50,16 @@ namespace Lomztein.BFA2.Enemies.Waves
         // Stuff gets wierd when you work with anonymous methods.
         private void Wave_OnAllSpawned(IWave wave)
         {
-            int index = Array.IndexOf(_waves, wave);
-            if (index != _waves.Length - 1)
+            int index = Array.IndexOf(Waves, wave);
+            if (index != Waves.Length - 1)
             {
-                _waves[index + 1].Start();
+                Waves[index + 1].Start();
             }
         }
 
         public SequentialCompositeWave (IWave[] waves)
         {
-            _waves = waves;
+            Waves = waves;
         }
     }
 }

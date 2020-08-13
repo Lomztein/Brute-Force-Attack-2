@@ -127,10 +127,12 @@ namespace Lomztein.BFA2.Enemies
             State = RoundState.Ready;
         }
 
+        public IWave GetWave(int index) => WaveCollection.GetWave(index);
+
         private bool StartWave(int wave)
         {
             State = RoundState.InProgress;
-            IWave next = WaveCollection.GetWave(wave);
+            IWave next = GetWave(wave);
 
             if (next != null)
             {

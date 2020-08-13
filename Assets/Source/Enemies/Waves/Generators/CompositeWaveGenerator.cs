@@ -53,18 +53,18 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             IWave[] waves = new IWave[GetSequenceAmount()];
             for (int i = 0; i < waves.Length; i++)
             {
-                waves[i] = GenerateParallelWave(_credits / waves.Length);
+                waves[i] = GenerateParallelWave(_credits / waves.Length, waves.Length * i);
             }
             return new SequentialCompositeWave(waves);
         }
 
-        private IWave GenerateParallelWave (float credits)
+        private IWave GenerateParallelWave (float credits, int offset)
         {
             IWave[] waves = new IWave[GetParallelAmount()];
             int len = waves.Length;
             for (int i = 0; i < waves.Length; i++)
             {
-                IWaveGenerator gen = new WaveGenerator(_spawner, _seed + i, credits / len, _frequency / len, MaxSpawnFrequency / len, MinSpawnFrequency / len);
+                IWaveGenerator gen = new WaveGenerator(_spawner, _seed + waves.Length * i + offset, credits / len, _frequency / len, MaxSpawnFrequency / len, MinSpawnFrequency / len);
                 waves[i] = gen.GenerateWave();
             }
 
