@@ -2163,6 +2163,7 @@ GameObject:
   - component: {fileID: 972623045}
   - component: {fileID: 972623046}
   - component: {fileID: 972623047}
+  - component: {fileID: 972623048}
   m_Layer: 0
   m_Name: RoundController
   m_TagString: RoundController
@@ -2196,6 +2197,8 @@ MonoBehaviour:
     MaxParallelDenominator: 3
     MaxSequence: 5
     MaxParallel: 3
+  EnemyAmountMultiplier: 2
+  SpawnFrequencyMultiplier: 2
   StartingEarnedFromKills: 50
   EarnedFromKillsPerWave: 50
   StartingCompletionReward: 250
@@ -2252,6 +2255,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: '*/Loot/Common/'
+--- !u!114 &972623048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972623042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885b6e44b45492441a463714a627751f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996337147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,7 +2860,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205910154}
-  - component: {fileID: 1205910152}
   - component: {fileID: 1205910153}
   m_Layer: 0
   m_Name: PlayerResourceContainer
@@ -2854,24 +2868,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1205910152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205910151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d22364ba87e4e144b2afe6d59a112f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Resources:
-    Elements:
-    - Type: 0
-      Value: 1000
-    - Type: 1
-      Value: 0
 --- !u!114 &1205910153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4032,6 +4028,8 @@ GameObject:
   - component: {fileID: 1609145682}
   - component: {fileID: 1609145683}
   - component: {fileID: 1609145684}
+  - component: {fileID: 1609145686}
+  - component: {fileID: 1609145685}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -4101,7 +4099,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1609145685}
   m_FillRect: {fileID: 685809350}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
@@ -4139,6 +4137,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc60e3597bfa70248ad824311541086a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1609145685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609145680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1609145686
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609145680}
+  m_CullTransparentMesh: 0
 --- !u!1 &1656532996
 GameObject:
   m_ObjectHideFlags: 0

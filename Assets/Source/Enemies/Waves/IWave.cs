@@ -11,6 +11,7 @@ namespace Lomztein.BFA2.Enemies.Waves
     public interface IWave
     {
         void Start();
+        void SetScale(float amount, float frequency);
 
         event Action<IEnemy> OnEnemySpawn;
         event Action<IEnemy> OnEnemyKill;
@@ -18,7 +19,6 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         event Action OnAllSpawned;
         event Action OnFinished;
-
         int SpawnAmount { get; }
     }
 }

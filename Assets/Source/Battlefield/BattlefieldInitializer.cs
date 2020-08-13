@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Inventory;
+﻿using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Inventory;
 using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -21,6 +22,12 @@ namespace Lomztein.BFA2.Battlefield
             InitMap();
             InitDefaultUnlocks();
             InitStartingItems();
+            InitDifficulty();
+        }
+
+        private void InitDifficulty()
+        {
+            BattlefieldSettings.Difficulty.Apply();
         }
 
         private void InitStartingItems()

@@ -37,6 +37,14 @@ namespace Lomztein.BFA2.Enemies.Waves
             Waves.First().Start();
         }
 
+        public void SetScale(float amount, float frequency)
+        {
+            foreach (IWave wave in Waves)
+            {
+                wave.SetScale(amount, frequency);
+            }
+        }
+
         private void SequentialCompositeWave_OnAllSpawned()
         {
             OnAllSpawned?.Invoke();

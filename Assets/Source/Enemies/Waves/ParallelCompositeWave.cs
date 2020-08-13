@@ -41,6 +41,14 @@ namespace Lomztein.BFA2.Enemies.Waves
             }
         }
 
+        public void SetScale(float amount, float frequency)
+        {
+            foreach (IWave wave in Waves)
+            {
+                wave.SetScale(amount, frequency);
+            }
+        }
+
         private void OnWaveAllSpawned()
         {
             _allSpawned++;
@@ -58,6 +66,8 @@ namespace Lomztein.BFA2.Enemies.Waves
                 OnFinished?.Invoke();
             }
         }
+
+
 
         public ParallelCompositeWave (IWave[] waves)
         {

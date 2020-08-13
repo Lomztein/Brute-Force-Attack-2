@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Enemies
         public float Armor;
         [ModelProperty]
         public float Shields;
-        public float Health { get; private set; }
+        public float Health;
 
         [ModelProperty]
         public string _UniqueIdentifier;

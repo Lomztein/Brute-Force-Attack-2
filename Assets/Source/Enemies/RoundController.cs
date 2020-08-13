@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Enemies.Waves;
+﻿using Lomztein.BFA2.Enemies.Scalers;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Enemies.Waves.Punishers;
 using Lomztein.BFA2.Enemies.Waves.Rewarders;
 using Lomztein.BFA2.Loot;
@@ -30,11 +31,15 @@ namespace Lomztein.BFA2.Enemies
         [SerializeField] private GeneratorWaveCollection _internalWaveCollection = new GeneratorWaveCollection();
         private IWaveCollection WaveCollection => _internalWaveCollection;
 
+        public float EnemyAmountMultiplier;
+        public float SpawnFrequencyMultiplier;
+
         public float StartingEarnedFromKills;
         public float EarnedFromKillsPerWave;
 
         public float StartingCompletionReward;
         public float WaveFinishedRewardPerWave;
+
 
         private ILootTable _commonLootTable;
         public float LootChanceGrowthDenominator;
@@ -57,6 +62,7 @@ namespace Lomztein.BFA2.Enemies
 
         private void Awake()
         {
+            Instance = this;
             _resourceContainer = GetComponent<IResourceContainer>();
             _healthContainer = GetComponent<IHealthContainer>();
             _commonLootTable = GetComponent<LootTableProvider>().GetLootTable();
@@ -64,7 +70,6 @@ namespace Lomztein.BFA2.Enemies
 
         private void Start()
         {
-            Instance = this;
             _internalWaveCollection.Seed = Random.Range(int.MinValue / 2, int.MaxValue / 2);
             CachePoints();
         }
@@ -128,7 +133,12 @@ namespace Lomztein.BFA2.Enemies
             State = RoundState.Ready;
         }
 
-        public IWave GetWave(int index) => WaveCollection.GetWave(index);
+        public IWave GetWave(int index)
+        {
+            IWave wave = WaveCollection.GetWave(index);
+            wave.SetScale(EnemyAmountMultiplier, SpawnFrequencyMultiplier);
+            return wave;
+        }
 
         private bool StartWave(int wave)
         {
