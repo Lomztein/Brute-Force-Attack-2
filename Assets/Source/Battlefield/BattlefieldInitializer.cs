@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Battlefield
     public class BattlefieldInitializer : MonoBehaviour
     {
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
-        private static string DefaultMapPath = "Core/Maps/Hypnosis.json";
+        private static string DefaultMapPath = "Core/Maps/Classic.json";
 
         private void Start ()
         {

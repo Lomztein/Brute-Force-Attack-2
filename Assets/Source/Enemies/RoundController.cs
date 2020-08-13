@@ -65,6 +65,7 @@ namespace Lomztein.BFA2.Enemies
         private void Start()
         {
             Instance = this;
+            _internalWaveCollection.Seed = Random.Range(int.MinValue / 2, int.MaxValue / 2);
             CachePoints();
         }
 
