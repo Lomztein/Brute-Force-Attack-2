@@ -58,11 +58,13 @@ namespace Lomztein.BFA2.Turrets
         // Start is called before the first frame update
         void Start()
         {
-            SceneAssemblyManager.Instance.AddAssembly(this);
             InitStats();
 
             ExpansionCards.OnCardAdded += ExpansionCards_OnCardAdded;
             ExpansionCards.OnCardRemoved += ExpansionCards_OnCardRemoved;
+
+            SceneAssemblyManager.Instance.AddAssembly(this);
+            GlobalUpdate.BroadcastUpdate(new ModdableAddedMessage(this));
         }
 
         private void ExpansionCards_OnCardRemoved(IExpansionCard obj)

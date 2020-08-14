@@ -85,6 +85,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8983164369808527842
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,11 +142,10 @@ MonoBehaviour:
   _cost:
     Elements:
     - Type: 0
-      Value: 500
+      Value: 250
   _modAttributes: 0400000006000000
   _width: 1
   _height: 1
-  PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
@@ -158,9 +158,7 @@ MonoBehaviour:
       Value: 20
     - Identifier: Firerate
       Value: 0.5
-  ExpansionCardCapacity: 2
   FireTreshold: 1
-  RangeMultiplier: 2.5
   HitLayer:
     serializedVersion: 2
     m_Bits: 256

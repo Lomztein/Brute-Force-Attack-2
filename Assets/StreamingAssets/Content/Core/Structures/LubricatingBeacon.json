@@ -1,0 +1,198 @@
+{
+  "Name": "LubricatingBeacon",
+  "Tag": "Untagged",
+  "Layer": 10,
+  "Static": false,
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": [
+        {
+          "Name": "Position",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Rotation",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Scale",
+          "Value": {
+            "X": 1.0,
+            "Y": 1.0,
+            "Z": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Structures.Structure",
+      "Properties": [
+        {
+          "Name": "_name",
+          "Value": "Lubricating Beacon"
+        },
+        {
+          "Name": "_description",
+          "Value": "Increases nearby rotators rotate speed."
+        },
+        {
+          "Name": "_cost",
+          "Value": {
+            "Elements": [
+              {
+                "Type": 0,
+                "Value": 500
+              },
+              {
+                "Type": 1,
+                "Value": 1
+              }
+            ]
+          }
+        },
+        {
+          "Name": "_width",
+          "Value": 2
+        },
+        {
+          "Name": "_height",
+          "Value": 2
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.CircleAreaModProvider",
+      "Properties": [
+        {
+          "Name": "TargetLayer",
+          "Value": {
+            "value": 512
+          }
+        },
+        {
+          "Name": "Range",
+          "Value": 2.5
+        },
+        {
+          "Name": "IncludeSelf",
+          "Value": false
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+      "Properties": [
+        {
+          "Name": "Stats",
+          "Value": [
+            {
+              "Identifier": "Turnrate",
+              "Name": "Turnrate",
+              "Description": "Rotation Speed",
+              "Type": 1,
+              "Value": 1.0
+            }
+          ]
+        },
+        {
+          "Name": "_identifier",
+          "Value": "Core.LubeBeacon"
+        },
+        {
+          "Name": "_name",
+          "Value": "Lubricant"
+        },
+        {
+          "Name": "_description",
+          "Value": "Lubricates rotators"
+        },
+        {
+          "Name": "_requiredAttributes",
+          "Value": [
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentSpriteRenderer",
+          "Properties": [
+            {
+              "Name": "Reference",
+              "Value": {
+                "Path": "Core/Sprites\\Structures\\Modem.png",
+                "Rect": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Width": 16.0,
+                  "Height": 16.0
+                },
+                "Pivot": {
+                  "X": 0.5,
+                  "Y": 0.5
+                },
+                "PixelsPerUnit": 8.0
+              }
+            },
+            {
+              "Name": "Color",
+              "Value": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
+              }
+            }
+          ]
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

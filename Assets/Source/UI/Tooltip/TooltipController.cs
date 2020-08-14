@@ -42,9 +42,7 @@ namespace Lomztein.BFA2.UI.Tooltip
                 }
             }
 
-
             TooltipTransform.gameObject.SetActive(!string.IsNullOrEmpty(TooltipTitle.text));
-
             TooltipDescription.gameObject.SetActive(!string.IsNullOrEmpty(TooltipDescription.text));
             TooltipFooter.gameObject.SetActive(!string.IsNullOrEmpty(TooltipFooter.text));
 

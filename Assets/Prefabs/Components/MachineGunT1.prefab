@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 3347518590941506566}
   - component: {fileID: 5288324816723693852}
   - component: {fileID: 6588776079876450199}
+  - component: {fileID: -8936326620768244}
+  - component: {fileID: -6642758758693490019}
   m_Layer: 9
   m_Name: MachineGunT1
   m_TagString: Untagged
@@ -224,7 +226,6 @@ MonoBehaviour:
   _modAttributes: 
   _width: 1
   _height: 1
-  PassiveHeatProduction: 2.5
   StatBaseValues:
     BaseValues:
     - Identifier: Damage
@@ -237,7 +238,6 @@ MonoBehaviour:
       Value: 100
     - Identifier: Firerate
       Value: 5
-  ExpansionCardCapacity: 2
   FireTreshold: 5
   HitLayer:
     serializedVersion: 2
@@ -349,3 +349,39 @@ MonoBehaviour:
       height: 16
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+--- !u!114 &-8936326620768244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306588521249971286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df63a959acd74dc4f8c978406d142de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BehavioursToDisable:
+  - TurretWeapon
+--- !u!114 &-6642758758693490019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8306588521249971286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _identifier: Core.MachineGunT1
+  _name: Firerate +50
+  _description: 
+  _requiredAttributes: 06000000
+  Stats:
+  - Identifier: Firerate
+    Name: Firerate
+    Description: Weapon firerate
+    Type: 1
+    Value: 0.5

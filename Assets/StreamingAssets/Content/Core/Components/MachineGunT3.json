@@ -89,10 +89,6 @@
           "Value": 1
         },
         {
-          "Name": "PassiveHeatProduction",
-          "Value": 2.5
-        },
-        {
           "Name": "StatBaseValues",
           "Value": {
             "BaseValues": [
@@ -118,10 +114,6 @@
               }
             ]
           }
-        },
-        {
-          "Name": "ExpansionCardCapacity",
-          "Value": 4
         }
       ]
     },
@@ -326,6 +318,52 @@
         {
           "Name": "UsedByEffector",
           "Value": false
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.ConnectorModProvider",
+      "Properties": [
+        {
+          "Name": "BehavioursToDisable",
+          "Value": [
+            "TurretWeapon"
+          ]
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+      "Properties": [
+        {
+          "Name": "Stats",
+          "Value": [
+            {
+              "Identifier": "Firerate",
+              "Name": "Firerate",
+              "Description": "Weapon firerate",
+              "Type": 1,
+              "Value": 2.0
+            }
+          ]
+        },
+        {
+          "Name": "_identifier",
+          "Value": "Core.MachineGunT1"
+        },
+        {
+          "Name": "_name",
+          "Value": "Firerate +50"
+        },
+        {
+          "Name": "_description",
+          "Value": ""
+        },
+        {
+          "Name": "_requiredAttributes",
+          "Value": [
+            6
+          ]
         }
       ]
     }

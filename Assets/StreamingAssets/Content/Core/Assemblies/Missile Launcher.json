@@ -1,0 +1,43 @@
+{
+  "Name": "Missile Launcher",
+  "Description": "",
+  "RootComponent": {
+    "ComponentIdentifier": "Core.SmallBase",
+    "RelativePosition": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Children": [
+      {
+        "ComponentIdentifier": "Core.AuxilleryProcessor",
+        "RelativePosition": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Children": [
+          {
+            "ComponentIdentifier": "Core.SmallRotator",
+            "RelativePosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": -1.0
+            },
+            "Children": [
+              {
+                "ComponentIdentifier": "Core.RocketLauncherT1",
+                "RelativePosition": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": -1.0
+                },
+                "Children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -73,10 +73,10 @@ namespace Lomztein.BFA2.AssemblyEditor
                 AttachmentPoint[] points = component.GetUpperAttachmentPoints();
                 foreach (var point in points)
                 {
-                    Vector3 offset = point.LocalPosition - checkPoint.LocalPosition;
+                    Vector2 offset = point.LocalPosition - checkPoint.LocalPosition;
                     if (Matches(points, _component.GetLowerAttachmentPoints(), Vector3.zero, offset))
                     {
-                        matches.Add(new Tuple<ITurretComponent, Vector3>(component, (_component as Component).transform.position + (component as Component).transform.position + offset));
+                        matches.Add(new Tuple<ITurretComponent, Vector3>(component, (component as Component).transform.position + (Vector3)offset + Vector3.back));
                     }
                 }
             }

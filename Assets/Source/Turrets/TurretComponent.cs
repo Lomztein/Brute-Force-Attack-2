@@ -52,6 +52,11 @@ namespace Lomztein.BFA2.Turrets
         [ModelProperty]
         public StatBaseValues StatBaseValues;
 
+        private void Awake()
+        {
+            InitSelf();
+        }
+
         public void Start()
         {
             InitComponent();
@@ -62,18 +67,23 @@ namespace Lomztein.BFA2.Turrets
             InitComponent();
         }
 
-        private void InitComponent()
+        private void InitSelf ()
         {
             Mods = new ModContainer(Stats, Events);
+        }
 
+        private void InitComponent()
+        {
             _upperAttachmentPoints = new SquareAttachmentPointSet(Width, Height);
             _lowerAttachmentPoints = new SquareAttachmentPointSet(Width, Height);
+
             AttachToParent();
 
             Init();
             Stats.Init(StatBaseValues);
 
             SceneAssemblyManager.Instance?.AddComponent(this);
+            GlobalUpdate.BroadcastUpdate(new ModdableAddedMessage(this));
         }
 
         public void FixedUpdate()

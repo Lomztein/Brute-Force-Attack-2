@@ -40,5 +40,15 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders.ModProviders
         {
             return Name;
         }
+
+        public void ApplyMod()
+        {
+            Debug.LogWarning("ExpansionCards does not provide mods on their own.");
+        }
+
+        public void RemoveMod()
+        {
+            Debug.LogWarning("ExpansionCards does not provide mods on their own.");
+        }
     }
 }

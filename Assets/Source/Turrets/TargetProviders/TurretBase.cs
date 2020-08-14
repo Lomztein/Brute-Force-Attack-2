@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
             
         public override void Tick(float deltaTime)
         {
-            float range = Range.GetValue();
+            float range = GetRange();
             if (_target == null)
             {
                 _target = _targetFinder.FindTarget (Physics2D.OverlapCircleAll(transform.position, range, TargetLayer));
