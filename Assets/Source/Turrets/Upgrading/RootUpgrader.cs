@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.Upgrading
 {
-    public class TurretAssemblyUpgrader : MonoBehaviour, IUpgrader, IContextMenuOptionProvider
+    public class RootUpgrader : MonoBehaviour, IUpgrader, IContextMenuOptionProvider
     {
         public Sprite UpgradeSprite;
         public IResourceCost Cost => GetUpgradersInComponents().Select(x => x.Cost).Sum();
@@ -48,7 +48,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption ("Upgrade Assembly - " + Cost.Format(), Description, UpgradeSprite, () => TryUpgrade(), () => CanUpgrade())
+                new ContextMenuOption ("Upgrade - " + Cost.Format(), Description, UpgradeSprite, () => TryUpgrade(), () => CanUpgrade())
             };
         }
     }

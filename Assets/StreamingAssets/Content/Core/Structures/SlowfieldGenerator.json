@@ -1,7 +1,7 @@
 {
   "Name": "SlowfieldGenerator",
   "Tag": "Untagged",
-  "Layer": 0,
+  "Layer": 10,
   "Static": false,
   "Components": [
     {
@@ -34,10 +34,14 @@
       ]
     },
     {
+      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.RootUpgrader",
+      "Properties": []
+    },
+    {
       "TypeName": "Lomztein.BFA2.Structures.SlowfieldGenerator",
       "Properties": [
         {
-          "Name": "Range",
+          "Name": "BaseRange",
           "Value": 2.5
         },
         {
@@ -82,9 +86,104 @@
           "Value": 2
         }
       ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
+      "Properties": [
+        {
+          "Name": "_cost",
+          "Value": {
+            "Cost": {
+              "Elements": [
+                {
+                  "Type": 0,
+                  "Value": 1000
+                }
+              ]
+            },
+            "Coeffecient": 2.0,
+            "X": 0
+          }
+        },
+        {
+          "Name": "MaxUpgrades",
+          "Value": 10
+        }
+      ]
     }
   ],
   "Children": [
+    {
+      "Name": "UpgradeMod",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "Properties": [
+            {
+              "Name": "Stats",
+              "Value": [
+                {
+                  "Identifier": "Range",
+                  "Name": "",
+                  "Description": "",
+                  "Type": 1,
+                  "Value": 0.1
+                }
+              ]
+            },
+            {
+              "Name": "_identifier",
+              "Value": "UpgradeModIncreaseTurnrate20Percent"
+            },
+            {
+              "Name": "_name",
+              "Value": "Range +10%"
+            },
+            {
+              "Name": "_description",
+              "Value": "Increase range by +10%"
+            },
+            {
+              "Name": "_requiredAttributes",
+              "Value": []
+            }
+          ]
+        }
+      ],
+      "Children": []
+    },
     {
       "Name": "Sprite",
       "Tag": "Untagged",

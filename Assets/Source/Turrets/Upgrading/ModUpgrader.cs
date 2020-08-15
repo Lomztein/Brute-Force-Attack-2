@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Turrets.Upgrading
 {
-    public class TurretComponentModUpgrader : MonoBehaviour, IUpgrader
+    public class ModUpgrader : MonoBehaviour, IUpgrader
     {
         private const string MOD_CHILD_NAME = "UpgradeMod";
 

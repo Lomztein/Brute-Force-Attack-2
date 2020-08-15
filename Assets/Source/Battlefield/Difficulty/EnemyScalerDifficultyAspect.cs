@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Battlefield.Difficulty
         public DifficultyAspectCategory Category => DifficultyAspectCategory.Enemies;
 
         [DifficultyAspectElement("Health multiplier", null)]
-        public float HealthMult = 1f;
+        public float HealthMult = 1.5f;
         [DifficultyAspectElement("Armor multiplier", null)]
         public float ArmorMult = 1f;
         [DifficultyAspectElement("Shield multiplier", null)]

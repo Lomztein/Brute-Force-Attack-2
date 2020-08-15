@@ -72,10 +72,6 @@
           "Value": 1
         },
         {
-          "Name": "PassiveHeatProduction",
-          "Value": 2.5
-        },
-        {
           "Name": "StatBaseValues",
           "Value": {
             "BaseValues": [
@@ -85,10 +81,6 @@
               }
             ]
           }
-        },
-        {
-          "Name": "ExpansionCardCapacity",
-          "Value": 2
         }
       ]
     },
@@ -117,7 +109,7 @@
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.TurretComponentModUpgrader",
+      "TypeName": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
       "Properties": [
         {
           "Name": "_cost",
@@ -196,6 +188,15 @@
                 },
                 "PixelsPerUnit": 16.0
               }
+            },
+            {
+              "Name": "Color",
+              "Value": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
+              }
             }
           ]
         }
@@ -253,12 +254,6 @@
               ]
             },
             {
-              "Name": "RequiredAttributes",
-              "Value": [
-                1
-              ]
-            },
-            {
               "Name": "_identifier",
               "Value": "UpgradeModIncreaseTurnrate20Percent"
             },
@@ -269,6 +264,10 @@
             {
               "Name": "_description",
               "Value": "Increase turnrate by +20%"
+            },
+            {
+              "Name": "_requiredAttributes",
+              "Value": []
             }
           ]
         }

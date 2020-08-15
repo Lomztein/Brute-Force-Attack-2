@@ -27,9 +27,15 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         public string Description => _purchasable.Description;
         public string Footnote => string.Empty;
 
-        private void Awake()
+        private void Start()
         {
             Button.onClick.AddListener(() => HandlePurchase());
+
+            _resourceContainer = GetComponent<IResourceContainer>();
+            _resourceContainer.OnResourceChanged += OnResourceChanged;
+
+            UpdateGraphics();
+            UpdateInteractable();
         }
 
         private void OnDestroy()
@@ -75,14 +81,8 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         {
             _prefab = prefab;
             _purchasable = _prefab.GetCache().GetComponent<IPurchasable>();
-
-            _resourceContainer = GetComponent<IResourceContainer>();
-            _resourceContainer.OnResourceChanged += OnResourceChanged;
-
             _onSelected = onSelected;
             Init();
-            UpdateGraphics();
-            UpdateInteractable();
         }
 
         public virtual void Init() { }
