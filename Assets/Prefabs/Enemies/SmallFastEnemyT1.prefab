@@ -52,6 +52,9 @@ MonoBehaviour:
   MaxHealth: 2
   Armor: 0
   Shields: 0
+  MaxSpeed: 15
+  Health: 2
+  _UniqueIdentifier: Core.SmallFastEnemyT1
   Color: 1
   DeathParticleLife: 1
 --- !u!114 &3044805278761306852
@@ -66,7 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674b859f950435649b60c6e042383b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 15
   Rotate: 1
 --- !u!50 &901656202398654903
 Rigidbody2D:
@@ -216,3 +218,4 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/SmallYellowDeathParticle
+  NameOverride: 

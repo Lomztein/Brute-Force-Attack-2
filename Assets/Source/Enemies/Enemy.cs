@@ -26,6 +26,10 @@ namespace Lomztein.BFA2.Enemies
         public float Armor;
         [ModelProperty]
         public float Shields;
+        [ModelProperty]
+        public float MaxSpeed;
+        [ModelProperty]
+        public float Speed { get => _motor.Speed; set => _motor.Speed = value; }
         public float Health;
 
         [ModelProperty]
@@ -35,7 +39,7 @@ namespace Lomztein.BFA2.Enemies
         [ModelProperty]
         public Color Color;
 
-        private IEnemyMotor _motor;
+        public IEnemyMotor _motor;
 
         [ModelProperty]
         public float DeathParticleLife;
@@ -50,6 +54,22 @@ namespace Lomztein.BFA2.Enemies
             if (_motor.HasReachedEnd ())
             {
                 DoDamage();
+            }
+            else
+            {
+                Accelerate(Time.fixedDeltaTime);
+            }
+        }
+
+        private void Accelerate(float deltaTime)
+        {
+            if (Speed < MaxSpeed)
+            {
+                Speed += 1f / (MaxSpeed * deltaTime);
+            }
+            else
+            {
+                Speed = MaxSpeed;
             }
         }
 
@@ -104,6 +124,7 @@ namespace Lomztein.BFA2.Enemies
             Health = MaxHealth;
             _motor = GetComponent<IEnemyMotor>();
             _deathParticle = transform.Find("DeathParticle").GetComponent<ParticleSystem>();
+            Speed = MaxSpeed;
 
             transform.position = point.transform.position;
             _motor.SetPath(point.GetPath());

@@ -46,6 +46,7 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/YellowDeathParticle
+  NameOverride: 
 --- !u!1 &2491341172321060995
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +99,9 @@ MonoBehaviour:
   MaxHealth: 10
   Armor: 0
   Shields: 0
+  MaxSpeed: 10
+  Health: 10
+  _UniqueIdentifier: Core.FastEnemyT1
   Color: 1
   DeathParticleLife: 1
 --- !u!114 &3044805278761306852
@@ -112,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674b859f950435649b60c6e042383b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
   Rotate: 1
 --- !u!50 &901656202398654903
 Rigidbody2D:

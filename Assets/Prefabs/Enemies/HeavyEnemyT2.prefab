@@ -52,6 +52,9 @@ MonoBehaviour:
   MaxHealth: 200
   Armor: 5
   Shields: 0
+  MaxSpeed: 2.5
+  Health: 200
+  _UniqueIdentifier: Core.HeavyEnemyT2
   Color: 2
   DeathParticleLife: 1
 --- !u!114 &4599756384497556836
@@ -66,7 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674b859f950435649b60c6e042383b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2.5
   Rotate: 0
 --- !u!50 &901656202398654903
 Rigidbody2D:
@@ -206,3 +208,4 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/RedDeathParticle
+  NameOverride: 

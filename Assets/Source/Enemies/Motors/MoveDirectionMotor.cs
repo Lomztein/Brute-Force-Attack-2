@@ -12,8 +12,7 @@ namespace Lomztein.BFA2.Enemies.Motors
 {
     public class MoveDirectionMotor : MonoBehaviour, IEnemyMotor
     {
-        [ModelProperty]
-        public float Speed;
+        public float Speed { get; set; }
         [ModelProperty]
         public float Range;
 

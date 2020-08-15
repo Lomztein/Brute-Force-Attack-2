@@ -38,16 +38,16 @@
       "Properties": [
         {
           "Name": "Name",
-          "Value": "Unlock Medium Base"
+          "Value": "Unlock 1x3 Connector"
         },
         {
           "Name": "Description",
-          "Value": "Unlock the Medium Base, on which heavier weapons can be placed upon."
+          "Value": "Unlock the 1x3 Connector, which allows turret component to support each other."
         },
         {
           "Name": "Sprite",
           "Value": {
-            "Path": "Core/Sprites/Components/Base.png",
+            "Path": "Core/Sprites/Components/1x3Connector.png",
             "Rect": {
               "X": 0.0,
               "Y": 0.0,
@@ -78,12 +78,16 @@
           "Name": "InitialCost",
           "Value": {
             "Elements": [
+              {
+                "Type": 1,
+                "Value": 2
+              }
             ]
           }
         },
         {
           "Name": "Identifier",
-          "Value": "Core.UnlockMediumBase"
+          "Value": "Core.Unlock1x3Connector"
         },
         {
           "Name": "PrerequisiteIdentifiers",
@@ -96,7 +100,7 @@
       "Properties": [
         {
           "Name": "Target",
-          "Value": 20.0
+          "Value": 50.0
         },
         {
           "Name": "TargetColors",
@@ -109,7 +113,7 @@
       "Properties": [
         {
           "Name": "Identifier",
-          "Value": "Core.MediumBase"
+          "Value": "Core.1x3Connector"
         },
         {
           "Name": "UnlockList",
@@ -117,7 +121,7 @@
         },
         {
           "Name": "_description",
-          "Value": "Unlock the Medium Base"
+          "Value": "Unlock the 1x3 Connector"
         }
       ]
     }

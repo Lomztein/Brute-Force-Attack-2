@@ -23,13 +23,11 @@ namespace Lomztein.BFA2.Battlefield
             "Core.LaserCannonT1",
             "Core.MachineGunT1",
             "Core.RocketLauncherT1",
-            "Core.1x3Connector",
             "Core.AuxilleryProcessor"
         };
         public static string[] DefaultUnlockedStructures =
         {
             "Core.Collector",
-            "Core.LubricatingBeacon"
         };
     }
 }

@@ -40,5 +40,10 @@ namespace Lomztein.BFA2.Structures
         [ModelProperty]
         public Size _height;
         public Size Height => _height;
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

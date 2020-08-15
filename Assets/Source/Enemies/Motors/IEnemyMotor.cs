@@ -9,6 +9,8 @@ namespace Lomztein.BFA2.Enemies.Motors
 {
     public interface IEnemyMotor
     {
+        float Speed { get; set; }
+
         void SetPath(Vector3[] path);
 
         void Tick(float deltaTime);

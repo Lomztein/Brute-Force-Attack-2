@@ -13,8 +13,7 @@ namespace Lomztein.BFA2.Enemies.Motors
         private Vector3[] _path;
         private int _pathIndex;
 
-        [ModelProperty]
-        public float Speed;
+        public float Speed { get; set; }
         [ModelProperty]
         public bool Rotate;
 

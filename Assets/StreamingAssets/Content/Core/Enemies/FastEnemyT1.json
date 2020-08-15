@@ -53,6 +53,14 @@
           "Value": 0.0
         },
         {
+          "Name": "MaxSpeed",
+          "Value": 10.0
+        },
+        {
+          "Name": "_UniqueIdentifier",
+          "Value": "Core.FastEnemyT1"
+        },
+        {
           "Name": "Color",
           "Value": 1
         },
@@ -65,10 +73,6 @@
     {
       "TypeName": "Lomztein.BFA2.Enemies.Motors.FollowPathMotor",
       "Properties": [
-        {
-          "Name": "Speed",
-          "Value": 10.0
-        },
         {
           "Name": "Rotate",
           "Value": true
@@ -215,6 +219,10 @@
             {
               "Name": "Reference",
               "Value": "Resources/Particles/YellowDeathParticle"
+            },
+            {
+              "Name": "NameOverride",
+              "Value": ""
             }
           ]
         }

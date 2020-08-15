@@ -51,6 +51,9 @@ MonoBehaviour:
   MaxHealth: 6250
   Armor: 0
   Shields: 0
+  MaxSpeed: 5
+  Health: 6250
+  _UniqueIdentifier: Core.BasicEnemyT5
   Color: 0
   DeathParticleLife: 1
 --- !u!114 &2600524195010270986
@@ -65,7 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674b859f950435649b60c6e042383b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
   Rotate: 0
 --- !u!61 &910914268291734314
 BoxCollider2D:
@@ -194,3 +196,4 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/LargeBlueDeathParticle
+  NameOverride: 
