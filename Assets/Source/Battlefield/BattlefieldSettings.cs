@@ -28,6 +28,7 @@ namespace Lomztein.BFA2.Battlefield
         public static string[] DefaultUnlockedStructures =
         {
             "Core.Collector",
+            "Core.Lubricator"
         };
     }
 }

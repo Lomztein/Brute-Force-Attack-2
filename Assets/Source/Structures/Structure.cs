@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures
 {
-    public class Structure : MonoBehaviour, IPurchasable, IGridObject
+    public class Structure : MonoBehaviour, IPurchasable, IGridObject, IIdentifiable
     {
         [SerializeField]
         [ModelProperty]
@@ -23,6 +23,11 @@ namespace Lomztein.BFA2.Structures
         [SerializeField]
         [ModelProperty]
         public string _description;
+
+        [SerializeField]
+        [ModelProperty]
+        public string _uniqueIdentifier;
+        public string UniqueIdentifier => _uniqueIdentifier;
 
         public string Description { get => _description; set => _description = value; }
         public IResourceCost Cost => _cost;

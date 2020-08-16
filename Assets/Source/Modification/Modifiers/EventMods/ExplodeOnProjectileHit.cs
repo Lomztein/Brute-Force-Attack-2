@@ -54,8 +54,8 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         private void Explode(HitEventArgs args)
         {
-            float damage = args.Info.DamageInfo.Damage;
-            float range = ComputeDiameter(args.Info.DamageInfo.Damage, 1f) / 2f;
+            float damage = args.Info.DamageInfo.Damage * DamageBase;
+            float range = ComputeDiameter(args.Info.DamageInfo.Damage, RangeBase) / 2f;
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();
             explosion.transform.position = args.Info.Point;

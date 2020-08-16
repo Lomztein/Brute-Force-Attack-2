@@ -126,8 +126,12 @@
       ]
     },
     {
-      "TypeName": "UnityEngine.BoxCollider2D",
+      "TypeName": "UnityEngine.CircleCollider2D",
       "Properties": [
+        {
+          "Name": "Radius",
+          "Value": 0.5
+        },
         {
           "Name": "Offset",
           "Value": {
@@ -136,11 +140,12 @@
           }
         },
         {
-          "Name": "Size",
-          "Value": {
-            "X": 2.0,
-            "Y": 2.0
-          }
+          "Name": "IsTrigger",
+          "Value": false
+        },
+        {
+          "Name": "UsedByEffector",
+          "Value": false
         }
       ]
     }

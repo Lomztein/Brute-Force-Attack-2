@@ -55,10 +55,7 @@ MonoBehaviour:
   _modAttributes: 
   _width: 2
   _height: 2
-  StatBaseValues:
-    BaseValues:
-    - Identifier: Range
-      Value: 666
+  BaseRange: 0
   TargetLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -199,8 +196,6 @@ MonoBehaviour:
   _modAttributes: 
   _width: 2
   _height: 2
-  StatBaseValues:
-    BaseValues: []
   AngleTreshold: 1
   _beamStart: {fileID: 0}
   _beam: {fileID: 0}
@@ -253,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Collector
   _description: '"I am Dehaka, one who collects."'
+  _uniqueIdentifier: Core.Collector
   _cost:
     Elements:
     - Type: 0
@@ -410,10 +406,7 @@ MonoBehaviour:
   _modAttributes: 
   _width: 2
   _height: 2
-  StatBaseValues:
-    BaseValues:
-    - Identifier: Turnrate
-      Value: 100
+  BaseTurnrate: 0
 --- !u!58 &6147988017373487014
 CircleCollider2D:
   m_ObjectHideFlags: 0

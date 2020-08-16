@@ -45,6 +45,10 @@
           "Value": "\"I am Dehaka, one who collects.\""
         },
         {
+          "Name": "_uniqueIdentifier",
+          "Value": "Core.Collector"
+        },
+        {
           "Name": "_cost",
           "Value": {
             "Elements": [
@@ -138,6 +142,10 @@
           "TypeName": "Lomztein.BFA2.Turrets.TargetProviders.TurretBase",
           "Properties": [
             {
+              "Name": "BaseRange",
+              "Value": 0.0
+            },
+            {
               "Name": "TargetLayer",
               "Value": {
                 "value": 4096
@@ -172,17 +180,6 @@
             {
               "Name": "_height",
               "Value": 2
-            },
-            {
-              "Name": "StatBaseValues",
-              "Value": {
-                "BaseValues": [
-                  {
-                    "Identifier": "Range",
-                    "Value": 666.0
-                  }
-                ]
-              }
             }
           ]
         },
@@ -324,6 +321,10 @@
               "TypeName": "Lomztein.BFA2.Turrets.Targeters.TurretRotator",
               "Properties": [
                 {
+                  "Name": "BaseTurnrate",
+                  "Value": 0.0
+                },
+                {
                   "Name": "_identifier",
                   "Value": "Core.CollectorRotator"
                 },
@@ -352,17 +353,6 @@
                 {
                   "Name": "_height",
                   "Value": 2
-                },
-                {
-                  "Name": "StatBaseValues",
-                  "Value": {
-                    "BaseValues": [
-                      {
-                        "Identifier": "Turnrate",
-                        "Value": 100.0
-                      }
-                    ]
-                  }
                 }
               ]
             },
@@ -387,6 +377,30 @@
                 {
                   "Name": "UsedByEffector",
                   "Value": false
+                }
+              ]
+            },
+            {
+              "TypeName": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
+              "Properties": [
+                {
+                  "Name": "_cost",
+                  "Value": {
+                    "Cost": {
+                      "Elements": [
+                        {
+                          "Type": 0,
+                          "Value": 250
+                        }
+                      ]
+                    },
+                    "Coeffecient": 2.0,
+                    "X": 0
+                  }
+                },
+                {
+                  "Name": "MaxUpgrades",
+                  "Value": 10
                 }
               ]
             }
@@ -532,12 +546,6 @@
                     {
                       "Name": "_height",
                       "Value": 2
-                    },
-                    {
-                      "Name": "StatBaseValues",
-                      "Value": {
-                        "BaseValues": []
-                      }
                     }
                   ]
                 }
