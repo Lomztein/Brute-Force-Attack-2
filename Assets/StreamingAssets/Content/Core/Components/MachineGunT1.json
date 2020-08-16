@@ -37,6 +37,10 @@
       "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
       "Properties": [
         {
+          "Name": "ProjectilePrefab",
+          "Value": "Core/Projectiles/MachineGunProjectile.json"
+        },
+        {
           "Name": "FireTreshold",
           "Value": 5.0
         },
@@ -45,6 +49,26 @@
           "Value": {
             "value": 256
           }
+        },
+        {
+          "Name": "BaseDamage",
+          "Value": 5.0
+        },
+        {
+          "Name": "BaseProjectileAmount",
+          "Value": 1
+        },
+        {
+          "Name": "BaseSpread",
+          "Value": 1.5
+        },
+        {
+          "Name": "BaseSpeed",
+          "Value": 75.0
+        },
+        {
+          "Name": "BaseFirerate",
+          "Value": 5.0
         },
         {
           "Name": "Color",
@@ -84,46 +108,6 @@
         {
           "Name": "_height",
           "Value": 1
-        },
-        {
-          "Name": "StatBaseValues",
-          "Value": {
-            "BaseValues": [
-              {
-                "Identifier": "Damage",
-                "Value": 5.0
-              },
-              {
-                "Identifier": "ProjectileAmount",
-                "Value": 1.0
-              },
-              {
-                "Identifier": "Spread",
-                "Value": 1.5
-              },
-              {
-                "Identifier": "Speed",
-                "Value": 100.0
-              },
-              {
-                "Identifier": "Firerate",
-                "Value": 5.0
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Weaponary.WeaponFire",
-      "Properties": []
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileInstantiator",
-      "Properties": [
-        {
-          "Name": "_prefab",
-          "Value": "Core/Projectiles/MachineGunProjectile.json"
         }
       ]
     },

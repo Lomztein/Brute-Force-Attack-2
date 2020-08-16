@@ -37,6 +37,10 @@
       "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
       "Properties": [
         {
+          "Name": "ProjectilePrefab",
+          "Value": "Resources/Projectiles/ThiccRocketProjectile"
+        },
+        {
           "Name": "FireTreshold",
           "Value": 1.0
         },
@@ -45,6 +49,26 @@
           "Value": {
             "value": 256
           }
+        },
+        {
+          "Name": "BaseDamage",
+          "Value": 600.0
+        },
+        {
+          "Name": "BaseProjectileAmount",
+          "Value": 1
+        },
+        {
+          "Name": "BaseSpread",
+          "Value": 0.0
+        },
+        {
+          "Name": "BaseSpeed",
+          "Value": 20.0
+        },
+        {
+          "Name": "BaseFirerate",
+          "Value": 0.5
         },
         {
           "Name": "Color",
@@ -87,46 +111,6 @@
         {
           "Name": "_height",
           "Value": 1
-        },
-        {
-          "Name": "StatBaseValues",
-          "Value": {
-            "BaseValues": [
-              {
-                "Identifier": "Damage",
-                "Value": 600.0
-              },
-              {
-                "Identifier": "ProjectileAmount",
-                "Value": 1.0
-              },
-              {
-                "Identifier": "Spread",
-                "Value": 0.0
-              },
-              {
-                "Identifier": "Speed",
-                "Value": 20.0
-              },
-              {
-                "Identifier": "Firerate",
-                "Value": 0.5
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Weaponary.WeaponFire",
-      "Properties": []
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileInstantiator",
-      "Properties": [
-        {
-          "Name": "_prefab",
-          "Value": "Resources/Projectiles/ThiccRocketProjectile"
         }
       ]
     },
@@ -192,6 +176,57 @@
           "Value": false
         }
       ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+      "Properties": [
+        {
+          "Name": "DamageBase",
+          "Value": 1.0
+        },
+        {
+          "Name": "RangeBase",
+          "Value": 1.5
+        },
+        {
+          "Name": "DamageStack",
+          "Value": 0.25
+        },
+        {
+          "Name": "RangeStack",
+          "Value": 0.25
+        },
+        {
+          "Name": "ExplosionPrefab",
+          "Value": "Core/Projectiles/Explosion.json"
+        },
+        {
+          "Name": "DestroyProjectile",
+          "Value": true
+        },
+        {
+          "Name": "_identifier",
+          "Value": "Core.ExplodeOnHit"
+        },
+        {
+          "Name": "_name",
+          "Value": "Explode On Hit"
+        },
+        {
+          "Name": "_description",
+          "Value": "Cause an explosion when the weapon hits something."
+        },
+        {
+          "Name": "_requiredAttributes",
+          "Value": [
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.SelfModProvider",
+      "Properties": []
     }
   ],
   "Children": [

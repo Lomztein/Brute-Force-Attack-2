@@ -13,19 +13,19 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
         public float MaxAccelerationMult;
 
         private float _initialSpeed;
-        private IProjectile _parent;
+        private Projectile _parent;
 
         public void End()
         {
         }
 
-        public void Init(IProjectile parent)
+        public void Init(Projectile parent)
         {
-            _initialSpeed = parent.Info.Speed;
+            _initialSpeed = parent.Speed;
             _parent = parent;
         }
 
-        public void Link(IWeaponFire weapon)
+        public void Link(IProjectilePool weapon)
         {
         }
 
@@ -33,13 +33,13 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
         {
             float max = _initialSpeed * MaxAccelerationMult;
 
-            if (_parent.Info.Speed < max)
+            if (_parent.Speed < max)
             {
-                _parent.Info.Speed += _initialSpeed * AccelerationFactor * deltaTime;
+                _parent.Speed += _initialSpeed * AccelerationFactor * deltaTime;
             }
             else
             {
-                _parent.Info.Speed = max;
+                _parent.Speed = max;
             }
         }
     }

@@ -35,10 +35,6 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                if (!stats.HasStat (element.Identifier))
-                {
-                    stats.AddStat(element.Identifier, element.Name, element.Description);
-                }
                 stats.AddStatElement(element.Identifier, new StatElement(element, element.Value), element.Type);
             }
         }

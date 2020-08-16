@@ -108,7 +108,7 @@ namespace Lomztein.BFA2.Turrets.Connectors
                 {
                     if (provider != null)
                     {
-                        _target.Mods?.RemoveMod(provider.Mod);
+                        _target.Mods?.RemoveMod(provider.Mod.Identifier);
                         provider.EnableComponents();
                     }
                 }

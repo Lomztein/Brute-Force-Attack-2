@@ -37,11 +37,11 @@
       "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
       "Properties": [
         {
-          "Name": "FireTreshold",
-          "Value": 1.0
+          "Name": "ProjectilePrefab",
+          "Value": "Resources/Projectiles/LaserProjectile"
         },
         {
-          "Name": "RangeMultiplier",
+          "Name": "FireTreshold",
           "Value": 1.0
         },
         {
@@ -49,6 +49,26 @@
           "Value": {
             "value": 256
           }
+        },
+        {
+          "Name": "BaseDamage",
+          "Value": 1.0
+        },
+        {
+          "Name": "BaseProjectileAmount",
+          "Value": 1
+        },
+        {
+          "Name": "BaseSpread",
+          "Value": 0.0
+        },
+        {
+          "Name": "BaseSpeed",
+          "Value": 1337.0
+        },
+        {
+          "Name": "BaseFirerate",
+          "Value": 15.0
         },
         {
           "Name": "Color",
@@ -91,54 +111,6 @@
         {
           "Name": "_height",
           "Value": 1
-        },
-        {
-          "Name": "PassiveHeatProduction",
-          "Value": 2.5
-        },
-        {
-          "Name": "StatBaseValues",
-          "Value": {
-            "BaseValues": [
-              {
-                "Identifier": "Damage",
-                "Value": 0.5
-              },
-              {
-                "Identifier": "ProjectileAmount",
-                "Value": 1.0
-              },
-              {
-                "Identifier": "Spread",
-                "Value": 0.0
-              },
-              {
-                "Identifier": "Speed",
-                "Value": 1337.0
-              },
-              {
-                "Identifier": "Firerate",
-                "Value": 30.0
-              }
-            ]
-          }
-        },
-        {
-          "Name": "ExpansionCardCapacity",
-          "Value": 2
-        }
-      ]
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Weaponary.WeaponFire",
-      "Properties": []
-    },
-    {
-      "TypeName": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileInstantiator",
-      "Properties": [
-        {
-          "Name": "_prefab",
-          "Value": "Resources/Projectiles/LaserProjectile"
         }
       ]
     },
@@ -260,6 +232,15 @@
                   "Y": 0.5
                 },
                 "PixelsPerUnit": 32.0
+              }
+            },
+            {
+              "Name": "Color",
+              "Value": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
               }
             }
           ]

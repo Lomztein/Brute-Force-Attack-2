@@ -18,6 +18,8 @@ namespace Lomztein.BFA2.Turrets.Targeters
         private IWeapon _weapon;
         private float _startingAngle;
 
+        [ModelProperty]
+        public float BaseTurnrate;
         public IStatReference Turnrate;
 
         private float _angleToTarget = 180;
@@ -36,12 +38,16 @@ namespace Lomztein.BFA2.Turrets.Targeters
             return _angleToTarget;
         }
 
+        public override void PreInit()
+        {
+            _weapon = GetComponentInChildren<IWeapon>();
+            Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.", BaseTurnrate);
+        }
+
         public override void Init()
         {
             TargetProvider = GetComponentInParent<ITargetProvider>();
             AddAttribute(Modification.ModdableAttribute.Rotator);
-            _weapon = GetComponentInChildren<IWeapon>();
-            Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.");
             _startingAngle = transform.eulerAngles.z;
         }
 

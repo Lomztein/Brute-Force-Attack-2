@@ -9,6 +9,6 @@ namespace Lomztein.BFA2.Modification
     {
         void AddMod(IMod mod);
 
-        void RemoveMod(IMod mod);
+        void RemoveMod(string identifier);
     }
 }

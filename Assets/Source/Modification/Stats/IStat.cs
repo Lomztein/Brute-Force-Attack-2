@@ -15,7 +15,5 @@ namespace Lomztein.BFA2.Modification.Stats
         void RemoveElement(object owner, Stat.Type type);
         
         float GetValue();
-
-        void Init(float baseValue);
     }
 }

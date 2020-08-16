@@ -53,7 +53,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders
         {
             foreach (var moddable in _lastModified)
             {
-                moddable.Mods.RemoveMod(Mod);
+                moddable.Mods.RemoveMod(Mod.Identifier);
             }
             _lastModified.Clear();
         }

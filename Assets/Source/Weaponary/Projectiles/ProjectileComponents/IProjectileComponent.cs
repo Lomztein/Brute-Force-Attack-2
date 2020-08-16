@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 {
-    interface IProjectileComponent
+    public interface IProjectileComponent
     {
-        void Init(IProjectile parent);
+        void Init(Projectile parent);
 
         void Tick(float deltaTime);
 

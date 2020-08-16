@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModProviders
 
         public override void RemoveMod ()
         {
-            _moddable.Mods.RemoveMod(Mod);
+            _moddable.Mods.RemoveMod(Mod.Identifier);
         }
     }
 }

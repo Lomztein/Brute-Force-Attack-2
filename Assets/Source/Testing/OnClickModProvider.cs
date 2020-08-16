@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Testing
 
         private void RemoveFrom (GameObject go)
         {
-            TestObject.GetComponent<IModdable>()?.Mods?.RemoveMod(_mod);
+            TestObject.GetComponent<IModdable>()?.Mods?.RemoveMod(_mod.Identifier);
         }
     }
 }

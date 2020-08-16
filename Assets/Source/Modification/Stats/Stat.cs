@@ -23,11 +23,12 @@ namespace Lomztein.BFA2.Modification.Stats
             _additive, _multiplicative
         };
 
-        public Stat (string identifier, string name, string description)
+        public Stat (string identifier, string name, string description, float baseValue)
         {
             Identifier = identifier;
             Name = name;
             Description = description;
+            _baseValue = baseValue;
         }
 
         public float GetValue()
@@ -48,11 +49,6 @@ namespace Lomztein.BFA2.Modification.Stats
         public void RemoveElement (object owner, Type type)
         {
             GetAggregate(type).RemoveElement(owner);
-        }
-
-        public void Init(float baseValue)
-        {
-            _baseValue = baseValue;
         }
     }
 }

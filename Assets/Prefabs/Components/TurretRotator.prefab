@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RequiredAttributes: 01000000
   _identifier: UpgradeModIncreaseTurnrate20Percent
   _name: Turnrate +20%
   _description: Increase turnrate by +20%
+  _requiredAttributes: 
   Stats:
   - Identifier: Turnrate
     Name: 
@@ -110,12 +110,7 @@ MonoBehaviour:
   _modAttributes: 
   _width: 1
   _height: 1
-  PassiveHeatProduction: 2.5
-  StatBaseValues:
-    BaseValues:
-    - Identifier: Turnrate
-      Value: 180
-  ExpansionCardCapacity: 2
+  BaseTurnrate: 180
 --- !u!58 &-678891761187152143
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -205,3 +200,4 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+  Color: {r: 1, g: 1, b: 1, a: 1}

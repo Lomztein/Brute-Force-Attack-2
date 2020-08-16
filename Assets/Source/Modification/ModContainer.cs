@@ -36,11 +36,12 @@ namespace Lomztein.BFA2.Modification
             _mods.Add(mod);
         }
 
-        public void RemoveMod(IMod mod)
+        public void RemoveMod(string identifier)
         {
-            if (GetAmount(mod.Identifier) != 0)
+            if (GetAmount(identifier) != 0)
             {
-                if (GetAmount(mod.Identifier) == 1)
+                IMod mod = GetMod(identifier);
+                if (GetAmount(identifier) == 1)
                 {
                     mod.RemoveBase(_stats, _events);
                 }
@@ -48,9 +49,11 @@ namespace Lomztein.BFA2.Modification
                 {
                     mod.RemoveStack(_stats, _events);
                 }
-                _mods.Remove(_mods.FirstOrDefault(x => x.Identifier == mod.Identifier));
+                _mods.Remove(mod);
             }
         }
+
+        private IMod GetMod(string identifier) => _mods.FirstOrDefault(x => x.Identifier == identifier);
 
         private int GetAmount (string identifier)
         {

@@ -1,0 +1,109 @@
+{
+  "Name": "Explosion",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Components": [
+    {
+      "TypeName": "UnityEngine.Transform",
+      "Properties": [
+        {
+          "Name": "Position",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Rotation",
+          "Value": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
+          }
+        },
+        {
+          "Name": "Scale",
+          "Value": {
+            "X": 1.0,
+            "Y": 1.0,
+            "Z": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Weaponary.Misc.Explosion",
+      "Properties": [
+        {
+          "Name": "Layer",
+          "Value": {
+            "value": 256
+          }
+        },
+        {
+          "Name": "ParticleBaseRange",
+          "Value": 1.0
+        },
+        {
+          "Name": "Life",
+          "Value": 1.0
+        }
+      ]
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Effect",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Components": [
+        {
+          "TypeName": "UnityEngine.Transform",
+          "Properties": [
+            {
+              "Name": "Position",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Rotation",
+              "Value": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Name": "Scale",
+              "Value": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.GameObjectReferenceComponent",
+          "Properties": [
+            {
+              "Name": "Reference",
+              "Value": "Resources/Particles/ExplosionParticle"
+            },
+            {
+              "Name": "NameOverride",
+              "Value": ""
+            }
+          ]
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

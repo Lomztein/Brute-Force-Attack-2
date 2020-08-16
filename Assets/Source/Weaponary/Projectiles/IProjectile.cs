@@ -8,15 +8,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 {
     public interface IProjectile : IPoolObject
     {
-        IProjectileInfo Info { get; set; }
-
         void Init();
         void End();
 
-        void Link(IWeaponFire weapon);
+        void Link(IProjectilePool weapon);
 
         IDamagable CheckHit(Collider2D hit);
-
         DamageInfo Hit(IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal);
 
         event Action<HitInfo> OnHit;

@@ -11,11 +11,11 @@ namespace Lomztein.BFA2.Modification.Stats
     {
         private List<IStat> _stats = new List<IStat>();
 
-        public IStatReference AddStat(string identifier, string name, string description)
+        public IStatReference AddStat(string identifier, string name, string description, float baseValue)
         {
             if (!HasStat(identifier))
             {
-                _stats.Add(new Stat(identifier, name, description));
+                _stats.Add(new Stat(identifier, name, description, baseValue));
             }
             return new StatReference(GetStatInternal(identifier));
         }
@@ -26,6 +26,10 @@ namespace Lomztein.BFA2.Modification.Stats
             if (stat != null)
             {
                 stat.AddElement(element, type);
+            }
+            else
+            {
+                Debug.LogWarning("Tried to add stat element to non-existing stat: " + identifier);
             }
         }
 
@@ -56,13 +60,9 @@ namespace Lomztein.BFA2.Modification.Stats
             {
                 stat.RemoveElement(owner, type);
             }
-        }
-
-        public void Init(IStatBaseValues baseValues)
-        {
-            foreach (IStat stat in _stats)
+            else
             {
-                stat.Init(baseValues.GetBaseValue(stat.Identifier));
+                Debug.LogWarning("Tried to remove stat element to non-existing stat: " + identifier);
             }
         }
     }

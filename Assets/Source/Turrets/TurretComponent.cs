@@ -49,9 +49,6 @@ namespace Lomztein.BFA2.Turrets
         protected IAttachmentPointSet _upperAttachmentPoints;
         protected IAttachmentPointSet _lowerAttachmentPoints;
 
-        [ModelProperty]
-        public StatBaseValues StatBaseValues;
-
         private void Awake()
         {
             InitSelf();
@@ -70,6 +67,7 @@ namespace Lomztein.BFA2.Turrets
         private void InitSelf ()
         {
             Mods = new ModContainer(Stats, Events);
+            PreInit();
         }
 
         private void InitComponent()
@@ -80,10 +78,17 @@ namespace Lomztein.BFA2.Turrets
             AttachToParent();
 
             Init();
-            Stats.Init(StatBaseValues);
 
             SceneAssemblyManager.Instance?.AddComponent(this);
             GlobalUpdate.BroadcastUpdate(new ModdableAddedMessage(this));
+
+            StartCoroutine(DelayedPostInit());
+        }
+
+        private IEnumerator DelayedPostInit ()
+        {
+            yield return new WaitForEndOfFrame();
+            PostInit();
         }
 
         public void FixedUpdate()
@@ -98,7 +103,10 @@ namespace Lomztein.BFA2.Turrets
             SceneAssemblyManager.Instance?.RemoveComponent(this);
         }
 
+        public virtual void PreInit() { }
         public abstract void Init();
+        public virtual void PostInit () { }
+
         public abstract void Tick(float deltaTime);
         public abstract void End();
 

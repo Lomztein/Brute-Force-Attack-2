@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 {
     public class HomingProjectileComponent : MonoBehaviour, IProjectileComponent
     {
-        IProjectile _parent;
+        Projectile _parent;
         float _baseSpeed;
 
         [ModelProperty]
@@ -30,29 +30,28 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
             _retargeter = GetComponent<ITargetFinder>();
         }
 
-        public void Init(IProjectile parent)
+        public void Init(Projectile parent)
         {
             _parent = parent;
-            _baseSpeed = parent.Info.Speed;
+            _baseSpeed = parent.Speed;
         }
 
-        public void Link(IWeaponFire weapon)
+        public void Link(IProjectilePool weapon)
         {
         }
 
         public void Tick(float deltaTime)
         {
-            if (_parent?.Info?.Target != null)
+            if (_parent != null && _parent.Target != null)
             {
-                float angle = Mathf.Atan2(_parent.Info.Target.position.y - transform.position.y, _parent.Info.Target.position.x - transform.position.x) * Mathf.Rad2Deg;
-                float dot = Vector3.Dot(transform.right, Vector3.Normalize(_parent.Info.Target.position - transform.position));
+                float angle = Mathf.Atan2(_parent.Target.position.y - transform.position.y, _parent.Target.position.x - transform.position.x) * Mathf.Rad2Deg;
+                float dot = Vector3.Dot(transform.right, Vector3.Normalize(_parent.Target.position - transform.position));
 
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, angle), GetRotSpeed(dot) * deltaTime);
-                _parent.Info.Direction = transform.right;
             }
-            if (Retarget && _parent?.Info?.Target == null)
+            if (Retarget && _parent != null && _parent.Target == null)
             {
-                _parent.Info.Target = _retargeter.FindTarget(Physics2D.OverlapCircleAll(transform.position, _parent.Info.Range, _parent.Info.Layer));
+                _parent.Target = _retargeter.FindTarget(Physics2D.OverlapCircleAll(transform.position, _parent.Range, _parent.Layer));
             }
         }
 

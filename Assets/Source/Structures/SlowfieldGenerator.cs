@@ -34,8 +34,7 @@ namespace Lomztein.BFA2.Structures
         private void Awake()
         {
             Mods = new ModContainer(Stats, Events);
-            _range = Stats.AddStat("Range", "Range", "The range of which this slowfield generator generates slowfields.");
-            Stats.Init(new StatBaseValues() { BaseValues = new [] { new StatBaseValues.IdentifierValuePair { Identifier = "Range", Value = BaseRange } } });
+            _range = Stats.AddStat("Range", "Range", "The range of which this slowfield generator generates slowfields.", BaseRange);
         }
 
         public bool IsCompatableWith(IMod mod)

@@ -54,7 +54,7 @@ namespace Lomztein.BFA2.UI
             Camera.orthographicSize = camSize;
 
             Camera.targetTexture = renderTexture;
-            Camera.transform.position = _instance.transform.position + bounds.center + Camera.transform.forward * -2f;
+            Camera.transform.position = _instance.transform.position + bounds.center + Camera.transform.forward * -100f;
             Camera.transform.LookAt(_instance.transform);
             Camera.Render();
 

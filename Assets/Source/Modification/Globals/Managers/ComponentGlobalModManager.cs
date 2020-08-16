@@ -68,7 +68,7 @@ namespace Lomztein.BFA2.Modification.Globals.Managers
 
         private void RemoveFrom(GlobalMod mod, TurretComponent component)
         {
-            component.Mods.RemoveMod(mod.Mod);
+            component.Mods.RemoveMod(mod.Mod.Identifier);
         }
 
         private void ApplyTo (GlobalMod mod, TurretComponent component)

@@ -16,6 +16,8 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
 {
     public class TurretBase : TurretComponent, ITargetProvider, IRanger
     {
+        [ModelProperty]
+        public float BaseRange;
         public IStatReference Range;
         [ModelProperty]
         public LayerMask TargetLayer;
@@ -42,12 +44,16 @@ namespace Lomztein.BFA2.Turrets.TargetProviders
             return _target;
         }
 
+        public override void PreInit()
+        {
+            _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
+            Range = Stats.AddStat("Range", "Range", "The range that this base can acquire targets at.", BaseRange);
+        }
+
         public override void Init()
         {
-            _targetFinder = GetComponent<ITargetFinder>();
             AddAttribute(Modification.ModdableAttribute.Ranged);
-            _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
-            Range = Stats.AddStat("Range", "Range", "The range that this base can acquire targets at.");
+            _targetFinder = GetComponent<ITargetFinder>();
         }
             
         public override void Tick(float deltaTime)

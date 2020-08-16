@@ -31,9 +31,6 @@ namespace Lomztein.BFA2.Turrets
 
         public IModContainer Mods { get; private set; }
 
-        [ModelProperty]
-        public StatBaseValues StatBaseValues;
-
         [ModelProperty][SerializeField] private string _name;
         public string Name { get => _name; set => _name = value; }
         [ModelProperty][SerializeField] private string _description;
@@ -73,7 +70,7 @@ namespace Lomztein.BFA2.Turrets
             {
                 if (component.IsCompatableWith(obj.Mod))
                 {
-                    component.Mods.RemoveMod(obj.Mod);
+                    component.Mods.RemoveMod(obj.Mod.Identifier);
                 }
             }
         }
@@ -108,7 +105,7 @@ namespace Lomztein.BFA2.Turrets
                 {
                     if (component.IsCompatableWith(card.Mod))
                     {
-                        component.Mods.RemoveMod(card.Mod);
+                        component.Mods.RemoveMod(card.Mod.Identifier);
                     }
                 }
             }
@@ -138,7 +135,6 @@ namespace Lomztein.BFA2.Turrets
         void InitStats ()
         {
             Mods = new ModContainer(Stats, Events);
-            Stats.Init(StatBaseValues);
         }
 
         public ITurretComponent[] GetComponents()

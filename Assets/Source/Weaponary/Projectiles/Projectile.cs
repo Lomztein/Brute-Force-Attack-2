@@ -12,14 +12,25 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles
 {
-    class Projectile : MonoBehaviour, IProjectile, IColorProvider
+    public class Projectile : MonoBehaviour, IProjectile, IColorProvider
     {
-        public IProjectileInfo Info { get; set; }
-
         public bool Ready => !gameObject.activeSelf && !AreEffectsActive();
 
+        [ModelProperty]
+        public float Speed;
+        [ModelProperty]
+        public float Damage;
+        [ModelProperty]
+        public float Range;
+        [ModelProperty]
+        public LayerMask Layer;
+        [ModelProperty]
+        public Colorization.Color Color;
+        public Transform Target;
+        public IObjectPool<IProjectile> Pool;
+
         private List<IProjectileComponent> _projectileComponents = new List<IProjectileComponent>();
-        private IWeaponFire _weapon;
+        private IProjectilePool _weapon;
 
         private GameObjectActiveToggle _hitEffectObj;
         private GameObjectActiveToggle _trailEffectObj;
@@ -40,7 +51,6 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public void Init()
         {
-            transform.position = Info.Position;
             _projectileComponents.ForEach(x => x.Init(this));
 
             if (_hitEffectObj)
@@ -82,22 +92,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             }
         }
 
-        public void AddProjectileComponent (IProjectileComponent component)
-        {
-            _projectileComponents.Add(component);
-        }
-
-        public void RemoveProjectileComponent (IProjectileComponent component)
-        {
-            _projectileComponents.Remove(component);
-        }
-
         public void FixedUpdate()
         {
             _projectileComponents.ForEach(x => x.Tick(Time.fixedDeltaTime));
         }
 
-        public void Link(IWeaponFire weapon)
+        public void Link(IProjectilePool weapon)
         {
             _weapon = weapon;
         }
@@ -114,12 +114,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public DamageInfo Hit (IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal)
         {
-            DamageInfo damage = new DamageInfo(Info.Damage, Info.Color);
+            DamageInfo damage = new DamageInfo(Damage, Color);
             float life = damagable.TakeDamage(damage);
 
-            HitInfo info = new HitInfo(damage, col, position, normal, this, _weapon, Info.Damage <= 0f);
+            HitInfo info = new HitInfo(damage, col, position, normal, this, _weapon, Damage <= 0f);
 
-            if (Info.Damage - damage.DamageDealt <= 0f)
+            if (Damage - damage.DamageDealt <= 0f)
             {
                 EmitHitEffect(position, normal);
             }
@@ -145,7 +145,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public void End ()
         {
-            Info.Pool.Insert(this);
+            Pool.Insert(this);
             _projectileComponents.ForEach(x => x?.End());
 
             if (_hitEffectObj)
@@ -206,7 +206,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public Colorization.Color GetColor()
         {
-            return Info?.Color ?? Colorization.Color.Blue;
+            return Color;
         }
     }
 }
