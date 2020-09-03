@@ -9,7 +9,7 @@ At the very core of the game lies a custom serialization/content system, that al
 The content system allows for any part of the game to request content from any content pack, or all if a '\*' wildcard is used. Example:
  * `Content.Get("Core/Structures/Collector.json")` - Specifically loads the Collector
  * `Content.GetAll("Core/Components/")` - Loads all objects in the Core/Components folder.
- * `Content.GetAll("\*/Enemies/")` - Loads all objects in the Enemies folder of all content packs.
+ * `Content.GetAll("*/Enemies/")` - Loads all objects in the Enemies folder of all content packs.
  
 The game makes heavy use of this, for instance the wave generator uses the last example, in order to generate waves with enemies from all available content packs.
 
