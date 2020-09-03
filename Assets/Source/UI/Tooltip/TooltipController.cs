@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.UI.Tooltip
 {
     public class TooltipController : MonoBehaviour
     {
-        public Transform TooltipTransform;
+        public RectTransform TooltipTransform;
         public Text TooltipTitle;
         public Text TooltipDescription;
         public Text TooltipFooter;
@@ -46,8 +46,20 @@ namespace Lomztein.BFA2.UI.Tooltip
             TooltipDescription.gameObject.SetActive(!string.IsNullOrEmpty(TooltipDescription.text));
             TooltipFooter.gameObject.SetActive(!string.IsNullOrEmpty(TooltipFooter.text));
 
-            Vector2 mousePos = Input.mousePosition;
-            TooltipTransform.position = mousePos + Offset;
+            Vector2 flip = new Vector2();
+            Vector2 pos = Input.mousePosition;
+            Rect rect = TooltipTransform.rect;
+
+            if (pos.x + rect.width > Screen.width)
+            {
+                flip.x = -rect.width + Offset.x * -2;
+            }
+            if (pos.y - rect.height < 0f)
+            {
+                flip.y = rect.height + Offset.y * 2;
+            }
+
+            TooltipTransform.position = pos + Offset + flip;
         }
     }
 }
