@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: -697877236653810948}
   - component: {fileID: 6849266377266188966}
   - component: {fileID: -6701017862181069233}
+  - component: {fileID: 3369109493839017157}
   m_Layer: 9
   m_Name: MissleLauncher
   m_TagString: Untagged
@@ -227,9 +228,9 @@ MonoBehaviour:
   _name: Explode On Hit
   _description: Cause an explosion when the weapon hits something.
   _requiredAttributes: 06000000
-  DamageBase: 0.2
-  RangeBase: 1
-  DamageStack: 0.25
+  DamageMultBase: 0.25
+  RangeBase: 1.5
+  DamageMultStack: 0
   RangeStack: 0.25
   ExplosionPrefab:
     Path: Core/Projectiles/Explosion.json
@@ -246,6 +247,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9eba5717c09c44a94caa3ea86f0005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3369109493839017157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983164369808527842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df63a959acd74dc4f8c978406d142de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BehavioursToDisable:
+  - TurretWeapon
 --- !u!1 &8983164370671711079
 GameObject:
   m_ObjectHideFlags: 0

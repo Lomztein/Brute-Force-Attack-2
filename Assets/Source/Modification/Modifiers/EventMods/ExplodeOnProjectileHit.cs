@@ -15,11 +15,11 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
     public class ExplodeOnProjectileHit : BaseModComponent
     {
         [ModelProperty]
-        public float DamageBase;
+        public float DamageMultBase;
         [ModelProperty]
         public float RangeBase;
         [ModelProperty]
-        public float DamageStack;
+        public float DamageMultStack;
         [ModelProperty]
         public float RangeStack;
         [ModelProperty]
@@ -29,16 +29,11 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void ApplyBase(IStatContainer stats, IEventContainer events)
         {
-            stats.AddStat("ExplodeDamageFactor", "Explosion Damage Factor", "How much damage the explosion does.", DamageBase);
-            stats.AddStat("ExplodeRangeFactor", "Explosion Range Factor", "How far the explosion reaches.", RangeBase);
-
             events.GetEvent<HitEventArgs>("OnHit").Event.OnExecute += Explode;
         }
 
         public override void ApplyStack(IStatContainer stats, IEventContainer events)
         {
-            stats.AddStatElement("ExplodeDamageFactor", new StatElement(this, DamageStack), Stat.Type.Multiplicative);
-            stats.AddStatElement("ExplodeRangeFactor", new StatElement(this, RangeStack), Stat.Type.Multiplicative);
         }
 
         public override void RemoveBase(IStatContainer stats, IEventContainer events)
@@ -48,14 +43,12 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void RemoveStack(IStatContainer stats, IEventContainer events)
         {
-            stats.RemoveStatElement("ExplodeDamageFactor", this, Stat.Type.Multiplicative);
-            stats.RemoveStatElement("ExplodeRangeFactor", this, Stat.Type.Multiplicative);
         }
 
         private void Explode(HitEventArgs args)
         {
-            float damage = args.Info.DamageInfo.Damage * DamageBase;
-            float range = ComputeDiameter(args.Info.DamageInfo.Damage, RangeBase) / 2f;
+            float damage = args.Info.DamageInfo.Damage * DamageMultBase;
+            float range = RangeBase / 2f;
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();
             explosion.transform.position = args.Info.Point;

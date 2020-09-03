@@ -13,10 +13,11 @@ namespace Lomztein.BFA2.Modification.Stats
 
         public IStatReference AddStat(string identifier, string name, string description, float baseValue)
         {
-            if (!HasStat(identifier))
+            if (HasStat(identifier))
             {
-                _stats.Add(new Stat(identifier, name, description, baseValue));
+                RemoveStat(identifier);
             }
+            _stats.Add(new Stat(identifier, name, description, baseValue));
             return new StatReference(GetStatInternal(identifier));
         }
 

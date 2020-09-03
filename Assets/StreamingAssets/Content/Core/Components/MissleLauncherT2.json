@@ -181,16 +181,16 @@
       "TypeName": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
       "Properties": [
         {
-          "Name": "DamageBase",
+          "Name": "DamageMultBase",
           "Value": 0.3
         },
         {
           "Name": "RangeBase",
-          "Value": 1.0
+          "Value": 1.75
         },
         {
-          "Name": "DamageStack",
-          "Value": 0.25
+          "Name": "DamageMultStack",
+          "Value": 0.0
         },
         {
           "Name": "RangeStack",
@@ -227,6 +227,17 @@
     {
       "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.SelfModProvider",
       "Properties": []
+    },
+    {
+      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.ConnectorModProvider",
+      "Properties": [
+        {
+          "Name": "BehavioursToDisable",
+          "Value": [
+            "TurretWeapon"
+          ]
+        }
+      ]
     }
   ],
   "Children": [

@@ -54,6 +54,11 @@ namespace Lomztein.BFA2.Turrets
             InitSelf();
         }
 
+        public void OnAssembled ()
+        {
+            InitSelf();
+        }
+
         public void Start()
         {
             InitComponent();

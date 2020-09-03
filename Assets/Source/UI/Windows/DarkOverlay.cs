@@ -11,6 +11,8 @@ namespace Lomztein.BFA2.UI.Windows
 {
     public class DarkOverlay : MonoBehaviour
     {
+        private static readonly float _deltaTime = 0.02f;
+
         public Image Image;
         public float FadeTime;
 
@@ -48,7 +50,7 @@ namespace Lomztein.BFA2.UI.Windows
             for (int i = 0; i < fadeIters; i++)
             {
                 Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, Mathf.Lerp(original, targetAlpha, (float)i / fadeIters));
-                yield return new WaitForSecondsRealtime(Time.fixedUnscaledDeltaTime);
+                yield return new WaitForSecondsRealtime(_deltaTime);
             }
             Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, targetAlpha);
         }
