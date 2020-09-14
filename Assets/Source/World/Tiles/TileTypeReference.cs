@@ -1,30 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
-    [System.Serializable]
-    public struct TileTypeReference : ISerializable
+    public struct TileTypeReference : IAssemblable
     {
-        public string WallType;
+        public string TileType;
 
         public TileTypeReference(string type)
         {
-            WallType = type;
+            TileType = type;
         }
 
-        public void Deserialize(JToken source)
+        public void Assemble(IObjectModel source)
         {
-            WallType = source.ToObject<string>();
+            TileType = source.GetValue<string>("WallType");
         }
 
-        public bool IsType(TileType type) => WallType != null && WallType == type?.Name;
-
-        public JToken Serialize()
+        public IObjectModel Disassemble()
         {
-            return new JValue(WallType);
+            return new ObjectModel(typeof(TileTypeReference), new ObjectField("WallType", new ValuePropertyModel(TileType)));
         }
+
+        public bool IsType(TileType type) => TileType != null && TileType == type?.Name;
     }
 }

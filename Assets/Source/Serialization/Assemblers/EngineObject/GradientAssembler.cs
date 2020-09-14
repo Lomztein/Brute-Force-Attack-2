@@ -24,22 +24,22 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return gradient;
         }
 
-        public override IObjectModel DissasembleValue(Gradient value)
+        public override IObjectModel DisassembleValue(Gradient value)
         {
             ColorAssembler assembler = new ColorAssembler();
 
             return new ObjectModel(typeof(Gradient),
-                new ArrayPropertyModel(typeof(GradientColorKey[]), "ColorKeys",
+                new ObjectField("ColorKeys", new ArrayPropertyModel(typeof(GradientColorKey[]),
                     value.colorKeys.Select(x => new ObjectPropertyModel(new ObjectModel(typeof(GradientColorKey),
-                        new ValuePropertyModel("Time", x.time),
-                        new ObjectPropertyModel("Color", assembler.DissasembleValue (x.color)))))),
+                        new ObjectField("Time",  new ValuePropertyModel(x.time)),
+                        new ObjectField ("Color", new ObjectPropertyModel(assembler.DisassembleValue (x.color)))))))),
 
-                new ArrayPropertyModel(typeof(GradientAlphaKey[]), "AlphaKeys", 
-                    value.colorKeys.Select(x => new ObjectPropertyModel(new ObjectModel(typeof(GradientColorKey), 
-                        new ValuePropertyModel("Time", x.time), 
-                        new ValuePropertyModel("Alpha", x.color))))),
+                new ObjectField ("AlphaKeys", new ArrayPropertyModel(typeof(GradientAlphaKey[]), 
+                    value.alphaKeys.Select(x => new ObjectPropertyModel(new ObjectModel(typeof(GradientColorKey), 
+                        new ObjectField ("Time", new ValuePropertyModel(x.time)), 
+                        new ObjectField ("Alpha", new ValuePropertyModel(x.alpha))))))),
 
-                new ValuePropertyModel("Mode", (int)value.mode)
+                new ObjectField ("Mode", new ValuePropertyModel((int)value.mode))
             );
         }
     }

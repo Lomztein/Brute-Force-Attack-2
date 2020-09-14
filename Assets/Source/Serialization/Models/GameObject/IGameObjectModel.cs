@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Serialization.Models.Component;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

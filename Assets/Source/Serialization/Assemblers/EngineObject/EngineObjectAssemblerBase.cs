@@ -18,11 +18,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 
         public abstract T AssembleValue(IObjectModel value);
 
-        public IObjectModel Dissasemble(object value)
+        public IObjectModel Disassemble(object value)
         {
-            return DissasembleValue((T)value);
+            return DisassembleValue((T)value);
         }
 
-        public abstract IObjectModel DissasembleValue(T value);
+        public abstract IObjectModel DisassembleValue(T value);
     }
 }

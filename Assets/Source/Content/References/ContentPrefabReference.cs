@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Content.Objects;
+using Lomztein.BFA2.Serialization;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,9 @@ using UnityEngine;
 namespace Lomztein.BFA2.Content.References
 {
     [Serializable]
-    public class ContentPrefabReference : IContentCachedPrefab, ISerializable
+    public class ContentPrefabReference : IContentCachedPrefab
     {
+        [ModelProperty]
         public string Path;
 
         private IContentCachedPrefab _cachedPrefab;
@@ -30,16 +32,6 @@ namespace Lomztein.BFA2.Content.References
                 _cachedPrefab = Content.Get(Path, typeof(IContentCachedPrefab)) as IContentCachedPrefab;
             }
             return _cachedPrefab;
-        }
-
-        public JToken Serialize()
-        {
-            return new JValue(Path);
-        }
-
-        public void Deserialize(JToken source)
-        {
-            Path = source.ToString();
         }
 
         public GameObject GetCache()

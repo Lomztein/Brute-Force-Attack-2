@@ -3,28 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lomztein.BFA2.Serialization;
 using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Content
 {
-    public class ContentPackInfo : ISerializable
+    public class ContentPackInfo
     {
+        [ModelProperty]
         public string Name;
+        [ModelProperty]
         public string Description;
+        [ModelProperty]
         public string Author;
+        [ModelProperty]
         public string Version;
-
-        public void Deserialize(JToken data)
-        {
-            Name = data["Name"].ToString();
-            Description = data["Description"].ToString();
-            Author = data["Author"].ToString();
-            Version = data["Version"].ToString();
-        }
-
-        public JToken Serialize()
-        {
-            return JToken.FromObject(this);
-        }
     }
 }

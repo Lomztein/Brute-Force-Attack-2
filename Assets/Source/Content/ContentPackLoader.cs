@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.Serialization.IO;
+﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.IO;
+using Lomztein.BFA2.Serialization.Serializers;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,11 @@ namespace Lomztein.BFA2.Content
         public IContentPack Load(string path)
         {
             ContentPackInfo info = new ContentPackInfo();
+
             try
             {
                 JToken data = DataSerialization.FromFile(Path.Combine(path, ABOUT_FILE));
-                info.Deserialize(data);
+                info = ObjectPipeline.BuildObject<ContentPackInfo>(data);
             }
             catch (FileNotFoundException)
             {
@@ -27,7 +30,7 @@ namespace Lomztein.BFA2.Content
                 info.Author = "Unknown Author";
                 info.Version = "Unknown Version";
 
-                File.WriteAllText(Path.Combine(path, ABOUT_FILE), info.Serialize().ToString());
+                File.WriteAllText(Path.Combine(path, ABOUT_FILE), ObjectPipeline.UnbuildObject(info).ToString());
             }
 
             return new ContentPack(path + "/", info.Name, info.Author, info.Description);

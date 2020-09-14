@@ -39,7 +39,7 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
             {
                 for (int x = 0; x < data.Width; x++)
                 {
-                    if (data.Tiles[x,y].WallType == GenerateType.WallType)
+                    if (data.Tiles[x,y].TileType == GenerateType.TileType)
                     {
                         GenerateQuad(x, y, verts, uvs, tris, data.Width, CalculateBitmask(data, x, y));
                     }
@@ -115,7 +115,7 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
 
                 if (MapUtils.IsInsideMap(xx, yy, data.Width, data.Height))
                 {
-                    if (data.Tiles[xx, yy].WallType == GenerateType.WallType)
+                    if (data.Tiles[xx, yy].TileType == GenerateType.TileType)
                     {
                         bitmask += Mathf.RoundToInt(Mathf.Pow(2, i));
                     }

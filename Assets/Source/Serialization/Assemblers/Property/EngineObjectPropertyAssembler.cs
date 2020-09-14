@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.Assemblers.EngineObject;
 using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 
@@ -22,14 +23,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             }
         }
 
-        public object Assemble(IObjectModel model, Type type)
+        public object Assemble(IPropertyModel model, Type type)
         {
-            return GetAssembler(type).Assemble(model);
+            return GetAssembler(type).Assemble((model as ObjectPropertyModel).Model);
         }
 
-        public IObjectModel Dissassemble(object value, Type type)
+        public IPropertyModel Disassemble(object value, Type type)
         {
-            return GetAssembler(type).Dissasemble(value);
+            return new ObjectPropertyModel (GetAssembler(type).Disassemble(value));
         }
 
         private IEngineObjectAssembler GetAssembler (Type type)

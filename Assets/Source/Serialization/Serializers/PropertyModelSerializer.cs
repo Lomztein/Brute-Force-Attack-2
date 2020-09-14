@@ -28,6 +28,6 @@ namespace Lomztein.BFA2.Serialization.Serializers
         }
 
         public JToken Serialize(IPropertyModel value)
-            => GetStrategy(value.GetType()).Serialize(value);
+            => GetStrategy(value.Type).Serialize(value);
     }
 }

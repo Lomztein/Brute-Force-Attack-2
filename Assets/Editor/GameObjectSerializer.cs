@@ -2,6 +2,8 @@
 using Lomztein.BFA2.Serialization.Assemblers.Turret;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Serialization.Serializers.GameObject;
+using Lomztein.BFA2.Serialization.Serializers.Turret;
 using Lomztein.BFA2.Turrets;
 using Newtonsoft.Json.Linq;
 using System;
@@ -42,7 +44,10 @@ public class GameObjectSerializer : EditorWindow
     private void Dissasemble()
     {
         IGameObjectAssembler _assembler = new GameObjectAssembler();
+        GameObjectModelSerializer goSerializer = new GameObjectModelSerializer();
+
         GameObjectTurretAssemblyAssembler _assemblyAssembler = new GameObjectTurretAssemblyAssembler();
+        TurretAssemblyModelSerializer tSerializer = new TurretAssemblyModelSerializer();
 
         string path = Paths.StreamingAssets;
         string data = string.Empty;
@@ -50,11 +55,11 @@ public class GameObjectSerializer : EditorWindow
         switch (Type)
         {
             case TargetType.Assembly:
-                data = _assemblyAssembler.Dissasemble(Object.GetComponent<ITurretAssembly>()).Serialize().ToString();
+                data = tSerializer.Serialize (_assemblyAssembler.Disassemble(Object.GetComponent<ITurretAssembly>())).ToString();
                 break;
 
             case TargetType.GameObject:
-                data = _assembler.Disassemble(Object).Serialize().ToString();
+                data = goSerializer.Serialize(_assembler.Disassemble(Object)).ToString();
                 break;
         }
 

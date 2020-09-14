@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Game;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.UI.Style;
 using Lomztein.BFA2.UI.Windows;
 using Newtonsoft.Json.Linq;
@@ -45,8 +46,6 @@ namespace Lomztein.BFA2.MainMenu
         private void CreateNew (string name)
         {
             PlayerProfile newProfile = new PlayerProfile(name);
-            newProfile.Save();
-
             SetProfile(newProfile);
         }
 
@@ -60,7 +59,6 @@ namespace Lomztein.BFA2.MainMenu
                 {
                     PlayerProfile newProfile = new PlayerProfile(style.Name);
                     newProfile.Settings.UIStyle = style;
-                    newProfile.Save();
                 }
             }
         }
@@ -100,9 +98,7 @@ namespace Lomztein.BFA2.MainMenu
                 for (int i = 0; i < files.Length; i++)
                 {
                     JObject obj = JObject.Parse(File.ReadAllText(files[i]));
-                    
-                    profiles[i] = new PlayerProfile();
-                    profiles[i].Deserialize(obj);
+                    profiles[i] = ObjectPipeline.BuildObject<PlayerProfile>(obj);
                 }
 
                 return profiles;

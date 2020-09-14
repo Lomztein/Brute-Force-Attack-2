@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Content.Objects;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.Turret;
+using Lomztein.BFA2.Serialization.Serializers.Turret;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,8 +17,9 @@ namespace Lomztein.BFA2.Content.Loaders.ContentLoaders
 
         public object Load(string path)
         {
-            TurretAssemblyModel model = new TurretAssemblyModel();
-            model.Deserialize(DataSerialization.FromFile(path));
+            var data = DataSerialization.FromFile(path);
+            TurretAssemblyModelSerializer serializer = new TurretAssemblyModelSerializer();
+            ITurretAssemblyModel model = serializer.Deserialize(data);
             return new ContentCachedTurretAssemblyPrefab (model);
         }
     }

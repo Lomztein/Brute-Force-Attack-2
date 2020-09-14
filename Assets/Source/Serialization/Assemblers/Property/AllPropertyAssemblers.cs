@@ -12,13 +12,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
 {
     public class AllPropertyAssemblers : IPropertyAssembler
     {
-        private static IEnumerable<IPropertyAssembler> _assemblers;
+        private static List<IPropertyAssembler> _assemblers;
 
         public AllPropertyAssemblers ()
         {
             if (_assemblers == null)
             {
-                _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IPropertyAssembler>(GetType());
+                _assemblers = new List<IPropertyAssembler>();
+                _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IPropertyAssembler>(typeof(AllPropertyAssemblers), typeof (ObjectPropertyAssembler), typeof (ValuePropertyAssembler)).ToList();
+                _assemblers.Add(new ObjectPropertyAssembler());
+                _assemblers.Add(new ValuePropertyAssembler());
             }
         }
 

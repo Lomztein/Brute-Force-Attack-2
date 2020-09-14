@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.Models.Property;
-using Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrategies.EngineObjectSerializers;
 using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 
@@ -12,13 +11,13 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
 {
     public class ObjectPropertyModelSerializerStrategy : IPropertyModelSerializerStrategy
     {
-        public bool CanSerialize(Type type) => !type.IsValueType;
+        public bool CanSerialize(Type type) => !type.IsPrimitive && type != typeof (string);
+
         private ObjectModelSerializer _internalSerializer = new ObjectModelSerializer();
 
         public IPropertyModel Deserialize(JToken token, Type type)
         {
             return new ObjectPropertyModel(
-                token["Name"].ToString(),
                 _internalSerializer.Deserialize(token["Object"])
                 );
         }
@@ -30,7 +29,6 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
             return new JObject()
             {
                 {"Type", model.Type.FullName },
-                { "Name", model.Name },
                 {"Object", _internalSerializer.Serialize (objectModel.Model) }
             };
         }

@@ -19,8 +19,10 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return new Vector2(value.GetValue<float>("X"), value.GetValue<float>("Y"));
         }
 
-        public override IObjectModel DissasembleValue(Vector2 value)
-            => new ObjectModel(typeof(Vector2), new ValuePropertyModel("X", value.x), new ValuePropertyModel("Y", value.y));
+        public override IObjectModel DisassembleValue(Vector2 value)
+            => new ObjectModel(typeof(Vector2),
+                new ObjectField("X", new ValuePropertyModel(value.x)), 
+                new ObjectField("Y", new ValuePropertyModel(value.y)));
     }
 
     public class Vector2IntAssembler : EngineObjectAssemblerBase<Vector2Int>
@@ -30,8 +32,10 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return new Vector2Int(value.GetValue<int>("X"), value.GetValue<int>("Y"));
         }
 
-        public override IObjectModel DissasembleValue(Vector2Int value)
-            => new ObjectModel(typeof(Vector2), new ValuePropertyModel("X", value.x), new ValuePropertyModel("Y", value.y));
+        public override IObjectModel DisassembleValue(Vector2Int value)
+            => new ObjectModel(typeof(Vector2), 
+                new ObjectField ("X", new ValuePropertyModel(value.x)), 
+                new ObjectField ("Y", new ValuePropertyModel(value.y)));
     }
 
     public class Vector3Assembler : EngineObjectAssemblerBase<Vector3>
@@ -41,8 +45,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return new Vector3(value.GetValue<float>("X"), value.GetValue<float>("Y"), value.GetValue<float>("Z"));
         }
 
-        public override IObjectModel DissasembleValue(Vector3 value)
-            => new ObjectModel(typeof(Vector3), new ValuePropertyModel("X", value.x), new ValuePropertyModel("Y", value.y), new ValuePropertyModel("Z", value.z));
+        public override IObjectModel DisassembleValue(Vector3 value)
+            => new ObjectModel(typeof(Vector3),
+                new ObjectField("X", new ValuePropertyModel(value.x)),
+                new ObjectField("Y", new ValuePropertyModel(value.y)),
+                new ObjectField("Z", new ValuePropertyModel(value.z)));
     }
 
     public class Vector3IntAssembler : EngineObjectAssemblerBase<Vector3Int>
@@ -52,8 +59,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return new Vector3Int(value.GetValue<int>("X"), value.GetValue<int>("Y"), value.GetValue<int>("Z"));
         }
 
-        public override IObjectModel DissasembleValue(Vector3Int value)
-            => new ObjectModel(typeof(Vector3Int), new ValuePropertyModel("X", value.x), new ValuePropertyModel("Y", value.y), new ValuePropertyModel("Z", value.z));
+        public override IObjectModel DisassembleValue(Vector3Int value)
+            => new ObjectModel(typeof(Vector3Int),
+                new ObjectField("X", new ValuePropertyModel(value.x)), 
+                new ObjectField("Y", new ValuePropertyModel(value.y)),
+                new ObjectField("Z", new ValuePropertyModel(value.z)));
     }
 
     public class Vector4Assembler : EngineObjectAssemblerBase<Vector4>
@@ -67,12 +77,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                 value.GetValue<float>("W"));
         }
 
-        public override IObjectModel DissasembleValue(Vector4 value)
+        public override IObjectModel DisassembleValue(Vector4 value)
             => new ObjectModel(typeof(Vector4),
-                new ValuePropertyModel("X", value.x), 
-                new ValuePropertyModel("Y", value.y), 
-                new ValuePropertyModel("Z", value.z),
-                new ValuePropertyModel("W", value.w));
+                new ObjectField ("X", new ValuePropertyModel(value.x)), 
+                new ObjectField ("Y", new ValuePropertyModel(value.y)), 
+                new ObjectField ("Z", new ValuePropertyModel(value.z)),
+                new ObjectField ("W", new ValuePropertyModel(value.w)));
     }
 
     public class QuaternionAssembler : EngineObjectAssemblerBase<Quaternion>
@@ -86,11 +96,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                 value.GetValue<float>("W"));
         }
 
-        public override IObjectModel DissasembleValue(Quaternion value)
+        public override IObjectModel DisassembleValue(Quaternion value)
             => new ObjectModel(typeof(Quaternion),
-                new ValuePropertyModel("X", value.x),
-                new ValuePropertyModel("Y", value.y),
-                new ValuePropertyModel("Z", value.z),
-                new ValuePropertyModel("W", value.w));
+                new ObjectField("X", new ValuePropertyModel(value.x)),
+                new ObjectField("Y", new ValuePropertyModel(value.y)),
+                new ObjectField("Z", new ValuePropertyModel(value.z)),
+                new ObjectField("W", new ValuePropertyModel(value.w)));
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.EngineObjectSerializers;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;

@@ -4,6 +4,7 @@ using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Serialization.Serializers.GameObject;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -18,10 +19,9 @@ namespace Lomztein.BFA2.Content.Loaders.ContentLoaders
 
         public object Load(string path)
         {
-            GameObjectModel model = new GameObjectModel();
             JToken data = DataSerialization.FromFile(path);
-            model.Deserialize(data);
-            return new ContentCachedPrefab (model);
+            GameObjectModelSerializer serializer = new GameObjectModelSerializer();
+            return new ContentCachedPrefab (serializer.Deserialize(data));
         }
     }
 }

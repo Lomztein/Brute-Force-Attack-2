@@ -117,7 +117,7 @@ namespace Lomztein.BFA2.World.Pathfinding
             Node[] ns = nodes.Select(x => new Node()
             {
                 Position = x.Position,
-                Cost = _blockingTypes.Any(y => tiles.GetTile(Mathf.RoundToInt(x.Position.x), Mathf.RoundToInt(x.Position.y)).WallType == y.Name) ? 1000000 : 1,
+                Cost = _blockingTypes.Any(y => tiles.GetTile(Mathf.RoundToInt(x.Position.x), Mathf.RoundToInt(x.Position.y)).TileType == y.Name) ? 1000000 : 1,
                 IsEnd = endNodes.Contains(x),
                 Original = x
             }).ToArray();

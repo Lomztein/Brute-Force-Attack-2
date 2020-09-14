@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.EngineObjectSerializers;
+using Lomztein.BFA2.Serialization;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.UI.Style
 {
     [Serializable]
-    public class UIStyle : ISerializable
+    public class UIStyle
     {
+        [ModelProperty]
         public string Name;
         [TextArea]
+        [ModelProperty]
         public string Description;
 
         public static UIStyle Default = new UIStyle()
@@ -32,6 +34,7 @@ namespace Lomztein.BFA2.UI.Style
         };
 
         public enum Slot { Primary, Secondary, Highlight, Pressed, Disabled, Text }
+        [ModelProperty]
         [SerializeField] private Color[] _colors;
 
         public Color GetColor(Slot slot)
@@ -44,26 +47,6 @@ namespace Lomztein.BFA2.UI.Style
             {
                 return _colors[(int)slot];
             }
-        }
-
-        public JToken Serialize()
-        {
-            ColorSerializer serializer = new ColorSerializer();
-            return new JObject()
-            {
-                { "Name", Name },
-                { "Description", Description },
-                { "Colors", new JArray(_colors.Select(x => serializer.Serialize(x))) }
-            };
-        }
-
-        public void Deserialize(JToken source)
-        {
-            ColorSerializer serializer = new ColorSerializer();
-
-            Name = source["Name"].ToString();
-            Description = source["Description"].ToString();
-            _colors = source["Colors"].Select(x => serializer.DeserializeValue(x)).ToArray();
         }
     }
 }

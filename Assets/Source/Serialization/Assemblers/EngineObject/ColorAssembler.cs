@@ -17,13 +17,13 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return new Color(value.GetValue<float>("Red"), value.GetValue<float>("Green"), value.GetValue<float>("Blue"), value.GetValue<float>("Alpha"));
         }
 
-        public override IObjectModel DissasembleValue(Color value)
+        public override IObjectModel DisassembleValue(Color value)
         {
             return new ObjectModel(typeof(Color),
-                new ValuePropertyModel("Red", value.r),
-                new ValuePropertyModel("Green", value.g),
-                new ValuePropertyModel("Blue", value.b),
-                new ValuePropertyModel("Alpha", value.a)
+                new ObjectField ("Red", new ValuePropertyModel(value.r)),
+                new ObjectField ("Green", new ValuePropertyModel(value.g)),
+                new ObjectField ("Blue", new ValuePropertyModel(value.b)),
+                new ObjectField ("Alpha", new ValuePropertyModel(value.a))
                 );
         }
     }

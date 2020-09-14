@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Component;
 using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
@@ -18,11 +17,11 @@ namespace Lomztein.BFA2.Serialization.Serializers
         public IObjectModel Deserialize(JToken value)
         {
             Type type = ReflectionUtils.GetType(value["Type"].ToString());
-            List<IPropertyModel> properties = new List<IPropertyModel>();
+            List<ObjectField> properties = new List<ObjectField>();
 
             foreach (JToken property in value["Properties"])
             {
-                properties.Add(_internalSerializer.Deserialize(property));
+                properties.Add(new ObjectField (property["Name"].ToString(), _internalSerializer.Deserialize(property["Model"])));
             }
 
             return new ObjectModel(type, properties.ToArray());
@@ -33,7 +32,13 @@ namespace Lomztein.BFA2.Serialization.Serializers
             return new JObject()
             {
                 { "Type", new JValue (value.Type.FullName) },
-                { "Properties", new JArray (value.GetProperties().Select(x => _internalSerializer.Serialize(x).ToArray ())) }
+                { "Properties", new JArray (value.GetProperties().Select(x =>
+                    new JObject ()
+                    {
+                        {"Name", x.Name },
+                        {"Model", _internalSerializer.Serialize(x.Model) }
+                    }).ToArray())
+                }
             };
         }
     }

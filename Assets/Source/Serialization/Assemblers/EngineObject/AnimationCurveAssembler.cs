@@ -31,21 +31,22 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                     );
         }
 
-        public override IObjectModel DissasembleValue(AnimationCurve value)
+        public override IObjectModel DisassembleValue(AnimationCurve value)
         {
             IEnumerable<IObjectModel> frames = value.keys.Select(x => DissasembleKeyframe(x));
-            return new ObjectModel(typeof(AnimationCurve), new ArrayPropertyModel(typeof(AnimationCurve[]), "Keyframes", frames.Select(x => new ObjectPropertyModel(null, x)).ToArray()));
+            return new ObjectModel(typeof(AnimationCurve),
+                new ObjectField("Keyframes", new ArrayPropertyModel(typeof(AnimationCurve[]), frames.Select(x => new ObjectPropertyModel(x)).ToArray())));
         }
 
         private IObjectModel DissasembleKeyframe (Keyframe frame)
         {
             return new ObjectModel(typeof(Keyframe),
-                new ValuePropertyModel("Time", frame.time),
-                new ValuePropertyModel("Value", frame.value),
-                new ValuePropertyModel("InTangent", frame.inTangent),
-                new ValuePropertyModel("OutTangent", frame.outTangent),
-                new ValuePropertyModel("InWeight", frame.inWeight),
-                new ValuePropertyModel("OutWeight", frame.outWeight));
+                new ObjectField ("Time", new ValuePropertyModel(frame.time)),
+                new ObjectField ("Value", new ValuePropertyModel(frame.value)),
+                new ObjectField ("InTangent", new ValuePropertyModel(frame.inTangent)),
+                new ObjectField ("OutTangent", new ValuePropertyModel(frame.outTangent)),
+                new ObjectField ("InWeight", new ValuePropertyModel(frame.inWeight)),
+                new ObjectField ("OutWeight", new ValuePropertyModel(frame.outWeight)));
         }
     }
 }

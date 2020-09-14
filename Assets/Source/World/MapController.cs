@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.World.Tiles;
 using Lomztein.BFA2.World.Tiles.Rendering;
 using Newtonsoft.Json.Linq;
@@ -90,7 +91,5 @@ namespace Lomztein.BFA2.World
                 Mathf.Clamp(position.y, -_mapData.Height / 2f, _mapData.Height / 2f)
                 );
         }
-
-        public JToken SerializeMapData() => _mapData.Serialize();
     }
 }

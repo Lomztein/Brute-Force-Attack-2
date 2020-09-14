@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
             {
                 values.Add(_internalSerializer.Deserialize(value));
             }
-            return new ArrayPropertyModel(type, token["Name"].ToString(), values.ToArray());
+            return new ArrayPropertyModel(type, values.ToArray());
         }
 
         public JToken Serialize(IPropertyModel model)
@@ -32,7 +32,6 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
             return new JObject()
             {
                 { "Type", model.Type.FullName },
-                { "Name", model.Name },
                 { "Array", array }
             };
         }

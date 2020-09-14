@@ -8,6 +8,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
     {
         bool CanConvert(Type objectType);
         object Assemble(IObjectModel value);
-        IObjectModel Dissasemble(object value);
+        IObjectModel Disassemble(object value);
     }
 }

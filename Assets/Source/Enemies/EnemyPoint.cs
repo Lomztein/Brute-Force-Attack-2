@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Enemies
         {
             if (_tiles.Exists)
             {
-                return _blockingTiles.Any(x => _tiles.Dependancy.GetTile(transform.position).WallType == x.Name);
+                return _blockingTiles.Any(x => _tiles.Dependancy.GetTile(transform.position).TileType == x.Name);
             }
             return false;
         }

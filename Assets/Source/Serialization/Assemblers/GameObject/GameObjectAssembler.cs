@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Serialization.Models.Component;
+﻿using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Models.GameObject;
 using Lomztein.BFA2.Utilities;
 using System.Collections;

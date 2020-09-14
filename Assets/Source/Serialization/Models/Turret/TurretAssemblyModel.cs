@@ -21,23 +21,5 @@ namespace Lomztein.BFA2.Serialization.Models.Turret
             Description = description;
             RootComponent = root;
         }
-
-        public void Deserialize(JToken source)
-        {
-            Name = source["Name"].ToString();
-            Description = source["Description"].ToString();
-            RootComponent = new TurretComponentModel();
-            RootComponent.Deserialize(source["RootComponent"]);
-        }
-
-        public JToken Serialize()
-        {
-            return new JObject()
-            {
-                {"Name", Name },
-                {"Description", Description },
-                {"RootComponent", RootComponent.Serialize() }
-            };
-        }
     }
 }

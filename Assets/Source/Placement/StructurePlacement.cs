@@ -122,11 +122,11 @@ namespace Lomztein.BFA2.Placement
                     }
                     else
                     {
-                        if (TileController.Instance.GetTile(pos).WallType == "BlockingWall")
+                        if (TileController.Instance.GetTile(pos).TileType == "BlockingWall")
                         {
                             reasons.BlockingWalls = true;
                         }
-                        if (TileController.Instance.GetTile(pos).WallType == "NoBuild")
+                        if (TileController.Instance.GetTile(pos).TileType == "NoBuild")
                         {
                             reasons.NoBuild = true;
                         }

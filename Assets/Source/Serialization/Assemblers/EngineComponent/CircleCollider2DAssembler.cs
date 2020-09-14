@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             return new ObjectModel(
                 typeof (CircleCollider2D),
                 new ObjectField ("Radius", new ValuePropertyModel(source.radius)),
-                new ObjectField("Offset", new ObjectPropertyModel(vs.DissasembleValue(source.offset))),
+                new ObjectField("Offset", new ObjectPropertyModel(vs.DisassembleValue(source.offset))),
                 new ObjectField("IsTrigger", new ValuePropertyModel(source.isTrigger)),
                 new ObjectField("UsedByEffector", new ValuePropertyModel(source.usedByEffector)));
         }

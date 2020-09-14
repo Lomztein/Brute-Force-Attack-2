@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lomztein.BFA2.Serialization;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Content.References
 {
     [Serializable]
-    public class ContentMaterialReference : ISerializable
+    public class ContentMaterialReference
     {
+        [ModelProperty]
         public string Path;
         private Material _cache;
 
@@ -22,16 +24,6 @@ namespace Lomztein.BFA2.Content.References
             }
 
             return _cache;
-        }
-
-        public void Deserialize(JToken source)
-        {
-            Path = source.ToString();
-        }
-
-        public JToken Serialize()
-        {
-            return new JValue(Path);
         }
     }
 }

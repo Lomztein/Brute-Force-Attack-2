@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.MapEditor.Objects;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.GameObject;
@@ -107,7 +108,7 @@ namespace Lomztein.BFA2.MapEditor
 
                     if (MapUtils.IsInsideMap(xx, yy, width, height) && MapUtils.IsInsideMap(x, y, ow, oh))
                     {
-                        MapData.Tiles.SetTile(xx, yy, new TileType(old[x, y].WallType));
+                        MapData.Tiles.SetTile(xx, yy, new TileType(old[x, y].TileType));
                     }
                 }
             }
@@ -133,8 +134,7 @@ namespace Lomztein.BFA2.MapEditor
         private void LoadFile (string file)
         {
             JObject obj = JObject.Parse(File.ReadAllText(file));
-            MapData = new MapData();
-            MapData.Deserialize(obj);
+            MapData = ObjectPipeline.BuildObject<MapData>(obj);
 
             _mapController.IfExists(x => x.ApplyMapData(MapData));
         }
@@ -143,7 +143,7 @@ namespace Lomztein.BFA2.MapEditor
         {
             MapData.Name = name;
             MapData.Objects = AssembleMapObjects();
-            JToken token = MapData.Serialize();
+            JToken token = ObjectPipeline.UnbuildObject(MapData);
             File.WriteAllText(path, token.ToString());
         }
 

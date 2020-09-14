@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
             return assembly;
         }
 
-        public ITurretAssemblyModel Dissasemble (ITurretAssembly assembly)
+        public ITurretAssemblyModel Disassemble (ITurretAssembly assembly)
         {
             return new TurretAssemblyModel(assembly.Name, assembly.Description, _assembler.Dissassemble(assembly.GetRootComponent()));
         }

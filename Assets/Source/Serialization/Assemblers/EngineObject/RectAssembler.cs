@@ -24,13 +24,13 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                 );
         }
 
-        public override IObjectModel DissasembleValue(Rect value)
+        public override IObjectModel DisassembleValue(Rect value)
         {
             return new ObjectModel(typeof(Rect),
-                new ValuePropertyModel("X", value.x),
-                new ValuePropertyModel("Y", value.y),
-                new ValuePropertyModel("Width", value.width),
-                new ValuePropertyModel("Height", value.height)
+                new ObjectField ("X", new ValuePropertyModel(value.x)),
+                new ObjectField ("Y", new ValuePropertyModel(value.y)),
+                new ObjectField ("Width", new ValuePropertyModel(value.width)),
+                new ObjectField ("Height", new ValuePropertyModel(value.height))
                 );
         }
     }

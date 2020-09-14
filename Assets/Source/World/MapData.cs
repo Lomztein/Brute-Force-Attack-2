@@ -1,4 +1,8 @@
-﻿using Lomztein.BFA2.Serialization.Models.GameObject;
+﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World.Tiles;
 using Newtonsoft.Json.Linq;
@@ -10,7 +14,7 @@ using UnityEngine;
 namespace Lomztein.BFA2.World
 {
     [System.Serializable]
-    public class MapData : ISerializable
+    public class MapData : IAssemblable
     {
         public string Name;
         public string Description;
@@ -83,45 +87,42 @@ namespace Lomztein.BFA2.World
             return new Graph(nodes.ToArray(), edges.ToArray(), new TileGraphMap(Width, Height, nodeMap));
         }
 
-
-
-
-        
-
-        public JToken Serialize()
+        public IObjectModel Disassemble()
         {
-            return new JObject()
-            {
-                {"Name", Name },
-                {"Description", Description },
-                {"Width", Width },
-                {"Height", Height },
-                {"Tiles", Tiles.Serialize() },
-                {"Objects", new JArray(Objects.Select(x => x.Serialize()).ToArray()) }
-            };
+            GameObjectAssembler assembler = new GameObjectAssembler();
+            ObjectAssembler objectAssembler = new ObjectAssembler();
+
+            return new ObjectModel(typeof(MapData),
+                new ObjectField("Name", new ValuePropertyModel(Name)),
+                new ObjectField("Description", new ValuePropertyModel(Description)),
+                new ObjectField("Width", new ValuePropertyModel(Width)),
+                new ObjectField("Height", new ValuePropertyModel(Height)),
+                new ObjectField("Tiles", new ObjectPropertyModel(Tiles.Disassemble())),
+                new ObjectField("Objects", new ArrayPropertyModel(typeof (GameObjectModel[]), Objects.Select(x => new ObjectPropertyModel (objectAssembler.Disassemble(x))).ToArray()))
+                );
         }
 
-        public void Deserialize(JToken source)
+        public void Assemble(IObjectModel source)
         {
-            Name = source["Name"].ToObject<string>();
-            Description = source["Description"].ToObject<string>();
-            Width = source["Width"].ToObject<int>();
-            Height = source["Height"].ToObject<int>();
-            Tiles = DeserializeTileData(source["Tiles"]);
-            Objects = (source["Objects"] as JArray).Select(x => DeserializeGameObjectModel(x)).ToArray();
+            Name = source.GetValue<string>("Name");
+            Description = source.GetValue<string>("Description");
+            Width = source.GetValue<int>("Width");
+            Height = source.GetValue<int>("Height");
+            Tiles = AssembleTileData(source.GetObject("Tiles"));
+            Objects = source.GetArray("Objects").Select(x => AssembleGameObject((x as ObjectPropertyModel).Model)).ToArray();
         }
 
-        private TileData DeserializeTileData (JToken token)
+        private TileData AssembleTileData (IObjectModel model)
         {
-            TileData data = new TileData(Width, Height);
-            data.Deserialize(token);
+            ObjectAssembler assembler = new ObjectAssembler();
+            TileData data = (TileData)assembler.Assemble(model);
             return data;
         }
 
-        private IGameObjectModel DeserializeGameObjectModel (JToken token)
+        private IGameObjectModel AssembleGameObject(IObjectModel token)
         {
-            GameObjectModel model = new GameObjectModel();
-            model.Deserialize(token);
+            ObjectAssembler objectAssembler = new ObjectAssembler();
+            IGameObjectModel model = (IGameObjectModel)objectAssembler.Assemble(token);
             return model;
         }
     }

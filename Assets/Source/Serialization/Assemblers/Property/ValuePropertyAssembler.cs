@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
 {
     public class ValuePropertyAssembler : IPropertyAssembler
     {
-        public bool CanAssemble(Type obj) => obj.IsValueType;
+        public bool CanAssemble(Type type) => type.IsPrimitive || type == typeof(string);
 
         public object Assemble(IPropertyModel model, Type obj)
         {

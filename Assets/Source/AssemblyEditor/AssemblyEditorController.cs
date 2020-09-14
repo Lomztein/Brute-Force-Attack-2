@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers.Turret;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.Turret;
+using Lomztein.BFA2.Serialization.Serializers.Turret;
 using Lomztein.BFA2.Turrets;
 using Newtonsoft.Json.Linq;
 using System;
@@ -52,8 +53,10 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             GameObjectTurretAssemblyAssembler assembler = new GameObjectTurretAssemblyAssembler();
             CurrentAsssembly.Name = name;
-            var model = assembler.Dissasemble(CurrentAsssembly);
-            var json = model.Serialize();
+            var model = assembler.Disassemble(CurrentAsssembly);
+
+            TurretAssemblyModelSerializer turretSerializer = new TurretAssemblyModelSerializer();
+            var json = turretSerializer.Serialize(model);
             File.WriteAllText(path, json.ToString());
         }
 
@@ -61,8 +64,10 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             GameObjectTurretAssemblyAssembler assembler = new GameObjectTurretAssemblyAssembler();
             var json = JObject.Parse(File.ReadAllText(path));
-            TurretAssemblyModel model = new TurretAssemblyModel();
-            model.Deserialize(json);
+
+            TurretAssemblyModelSerializer turretSerializer = new TurretAssemblyModelSerializer();
+            ITurretAssemblyModel model = turretSerializer.Deserialize(json);
+
             CurrentAsssembly = assembler.Assemble(model);
 
             if (CurrentAsssembly is Component comp)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.EngineObjectSerializers;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -24,34 +23,6 @@ namespace Lomztein.BFA2.Serialization.Models.Turret
             ComponentIdentifier = identifier;
             RelativePosition = relativePosition;
             _children = children;
-        }
-
-        public JToken Serialize()
-        {
-            Vector3Serializer serializer = new Vector3Serializer();
-
-            return new JObject()
-            {
-                {"ComponentIdentifier", ComponentIdentifier },
-                {"RelativePosition", serializer.Serialize(RelativePosition) },
-                {"Children", new JArray(GetChildren().Select(x => x.Serialize()).ToArray()) }
-            };
-        }
-
-        public void Deserialize(JToken source)
-        {
-            Vector3Serializer serializer = new Vector3Serializer();
-            ComponentIdentifier = source["ComponentIdentifier"].ToString();
-            RelativePosition = serializer.DeserializeValue(source["RelativePosition"]);
-
-            List<ITurretComponentModel> children = new List<ITurretComponentModel>();
-            foreach (JToken token in source["Children"] as JArray)
-            {
-                TurretComponentModel child = new TurretComponentModel();
-                child.Deserialize(token);
-                children.Add(child);
-            }
-            _children = children.ToArray();
         }
     }
 }

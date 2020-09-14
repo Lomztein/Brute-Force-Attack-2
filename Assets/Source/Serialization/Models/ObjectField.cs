@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Serialization.Models
         public ObjectField(string name, IPropertyModel model)
         {
             Name = name;
-            Model = Model;
+            Model = model;
             Type = Model.Type;
         }
     }

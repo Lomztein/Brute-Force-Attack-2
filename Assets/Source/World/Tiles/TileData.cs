@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.Utilities;
+﻿using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Serialization.Models.Property;
+using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
-    public class TileData : ISerializable
+    public class TileData : IAssemblable
     {
         public int Width;
         public int Height;
@@ -139,20 +141,20 @@ namespace Lomztein.BFA2.World.Tiles
             return twodi;
         }
 
-        public JToken Serialize()
+        public IObjectModel Disassemble()
         {
-            return new JArray(EnflattenTiles(Tiles).Select(x => x.Serialize()).ToArray());
+            return new ObjectModel (typeof (TileData), new ObjectField ("Tiles", new ArrayPropertyModel (typeof (TileTypeReference[]), EnflattenTiles(Tiles).Select(x => new ObjectPropertyModel(x.Disassemble())))));
         }
 
-        public void Deserialize(JToken source)
+        public void Assemble(IObjectModel source)
         {
-            Tiles = TwodifyTiles((source as JArray).Select(x => DeserializeTileTypeReference(x)).ToArray());
+            Tiles = TwodifyTiles((source as ArrayPropertyModel).Select(x => DeserializeTileTypeReference((x as ObjectPropertyModel).Model)).ToArray());
         }
 
-        private TileTypeReference DeserializeTileTypeReference (JToken token)
+        private TileTypeReference DeserializeTileTypeReference (IObjectModel model)
         {
             TileTypeReference reference = new TileTypeReference();
-            reference.Deserialize(token);
+            reference.Assemble(model);
             return reference;
         }
     }

@@ -4,56 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.Assemblers.Property;
-using Lomztein.BFA2.Serialization.Models.Component;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Serialization.EngineComponentSerializers
+namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
-    public class TrailRendererSerializer : EngineComponentSerializerBase<TrailRenderer>
+    public class TrailRendererSerializer : EngineComponentAssembler<TrailRenderer>
     {
-        public override void Deserialize(IObjectModel model, TrailRenderer target)
+        public override void Assemble(IObjectModel model, TrailRenderer target)
         {
             AllPropertyAssemblers assembler = new AllPropertyAssemblers();
-            RendererAssembler baseSerializer = new RendererAssembler();
+            RendererAssembler baseAssembler = new RendererAssembler();
 
-            IPropertyModel[] properties = model.GetProperties();
+            target.widthCurve = (AnimationCurve)assembler.Assemble(model.GetProperty("Curve"), typeof(AnimationCurve));
+            target.time = model.GetValue<float>("Time");
+            target.minVertexDistance = model.GetValue<float>("MinVertexDistance");
+            target.autodestruct = model.GetValue<bool>("Autodestruct");
+            target.emitting = model.GetValue<bool>("Emitting");
+            target.colorGradient = (Gradient)assembler.Assemble(model.GetProperty("Color"), typeof(Gradient));
+            target.numCornerVertices = model.GetValue<int>("CornerVertices");
+            target.numCapVertices = model.GetValue<int>("CapVertices");
+            target.alignment = model.GetValue<LineAlignment>("Alignment");
+            target.textureMode = model.GetValue<LineTextureMode>("TextureMode");
+            target.generateLightingData = model.GetValue<bool>("GenerateLigtingData");
+            target.shadowBias = model.GetValue<float>("ShadowBias");
 
-            target.widthCurve = (AnimationCurve)assembler.Assemble(properties.GetProperty("Curve").Value, typeof(AnimationCurve));
-            target.time = properties.GetProperty("Time").ToObject<float>();
-            target.minVertexDistance = properties.GetProperty("MinVertexDistance").ToObject<float>();
-            target.autodestruct = properties.GetProperty("Autodestruct").ToObject<bool>();
-            target.emitting = properties.GetProperty("Emitting").ToObject<bool>();
-            target.colorGradient = (Gradient)assembler.Assemble(properties.GetProperty("Color").Value, typeof(Gradient));
-            target.numCornerVertices = properties.GetProperty("CornerVertices").ToObject<int>();
-            target.numCapVertices = properties.GetProperty("CapVertices").ToObject<int>();
-            target.alignment = properties.GetProperty("Alignment").ToObject<LineAlignment>();
-            target.textureMode = properties.GetProperty("TextureMode").ToObject<LineTextureMode>();
-            target.generateLightingData = properties.GetProperty("GenerateLigtingData").ToObject<bool>();
-            target.shadowBias = properties.GetProperty("ShadowBias").ToObject<float>();
-
-            baseSerializer.Deserialize(model, target);
+            baseAssembler.Assemble(model, target);
         }
 
-        public override IObjectModel Serialize(TrailRenderer source)
+        public override IObjectModel Disassemble(TrailRenderer source)
         {
             AllPropertyAssemblers assembler = new AllPropertyAssemblers();
-            RendererAssembler baseSerializer = new RendererAssembler();
+            RendererAssembler baseAssembler = new RendererAssembler();
 
-            return new ObjectModel(typeof(TrailRenderer), baseSerializer.Serialize(source),
-                new ValuePropertyModel("Curve", assembler.Disassemble(source.widthCurve, typeof(AnimationCurve))),
-                new ValuePropertyModel("Time", new JValue(source.time)),
-                new ValuePropertyModel("MinVertexDistance", new JValue(source.minVertexDistance)),
-                new ValuePropertyModel("Autodestruct", new JValue(source.autodestruct)),
-                new ValuePropertyModel("Emitting", new JValue(source.emitting)),
-                new ValuePropertyModel("Color", assembler.Disassemble(source.colorGradient, typeof (Gradient))),
-                new ValuePropertyModel("CornerVertices", new JValue(source.numCornerVertices)),
-                new ValuePropertyModel("CapVertices", new JValue(source.numCapVertices)),
-                new ValuePropertyModel("Alignment", new JValue(source.alignment)),
-                new ValuePropertyModel("TextureMode", new JValue(source.textureMode)),
-                new ValuePropertyModel("GenerateLigtingData", new JValue(source.generateLightingData)),
-                new ValuePropertyModel("ShadowBias", new JValue(source.shadowBias))
+            return new ObjectModel(typeof(TrailRenderer), baseAssembler.Disassemble(source),
+                new ObjectField("Curve", assembler.Disassemble(source.widthCurve, typeof(AnimationCurve))),
+                new ObjectField("Time", new ValuePropertyModel(source.time)),
+                new ObjectField("MinVertexDistance", new ValuePropertyModel(source.minVertexDistance)),
+                new ObjectField("Autodestruct", new ValuePropertyModel(source.autodestruct)),
+                new ObjectField("Emitting", new ValuePropertyModel(source.emitting)),
+                new ObjectField("Color", assembler.Disassemble(source.colorGradient, typeof (Gradient))),
+                new ObjectField("CornerVertices", new ValuePropertyModel(source.numCornerVertices)),
+                new ObjectField("CapVertices", new ValuePropertyModel(source.numCapVertices)),
+                new ObjectField("Alignment", new ValuePropertyModel(source.alignment)),
+                new ObjectField("TextureMode", new ValuePropertyModel(source.textureMode)),
+                new ObjectField("GenerateLigtingData", new ValuePropertyModel(source.generateLightingData)),
+                new ObjectField("ShadowBias", new ValuePropertyModel(source.shadowBias))
                 );
         }
     }
