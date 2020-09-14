@@ -18,21 +18,21 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     public class ComponentAssembler
     {
 
-        private static IEnumerable<IEngineComponentSerializer> _engineSerializers;
+        private static IEnumerable<IEngineComponentAssembler> _engineSerializers;
 
         public ComponentAssembler ()
         {
             if (_engineSerializers == null)
             {
-                _engineSerializers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IEngineComponentSerializer>();
+                _engineSerializers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IEngineComponentAssembler>();
             }
         }
 
         private IPropertyAssembler _propertyAssembler = new AllPropertyAssemblers();
 
-        private IEngineComponentSerializer GetEngineComponentSerializer(Type type) => _engineSerializers.FirstOrDefault(x => x.Type == type);
+        private IEngineComponentAssembler GetEngineComponentSerializer(Type type) => _engineSerializers.FirstOrDefault(x => x.Type == type);
 
-        public void Assemble (IComponentModel model, GameObject target)
+        public void Assemble (IObjectModel model, GameObject target)
         {
             var serializer = GetEngineComponentSerializer(model.Type);
             if (serializer != null)
@@ -68,7 +68,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
         
-        public IComponentModel Dissasemble(Component component)
+        public IObjectModel Dissasemble(Component component)
         {
             var serializer = GetEngineComponentSerializer(component.GetType());
             if (serializer != null)
@@ -86,9 +86,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 try
                 {
                     object componentValue = info.GetValue(component);
-                    JToken value = _propertyAssembler.Dissassemble(componentValue, info.FieldType);
+                    JToken value = _propertyAssembler.Disassemble(componentValue, info.FieldType);
 
-                    properties.Add(new PropertyModel(info.Name, value));
+                    properties.Add(new ValuePropertyModel(info.Name, value));
                 }
                 catch (Exception e)
                 {
@@ -97,7 +97,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             }
 
-            return new ComponentModel(componentType, properties.ToArray());
+            return new ObjectModel(componentType, properties.ToArray());
         }
 
         private IEnumerable<FieldInfo> GetModelFields (Type type)

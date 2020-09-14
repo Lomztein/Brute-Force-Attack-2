@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Serialization.EngineObjectSerializers;
+﻿using Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrategies.EngineObjectSerializers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;

@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
         public JToken Dissassemble(object value, Type type)
             => (value as ISerializable).Serialize();
 
-        public bool Fits(Type type)
+        public bool CanAssemble(Type type)
             => type.GetInterfaces().Contains(typeof(ISerializable));
     }
 }

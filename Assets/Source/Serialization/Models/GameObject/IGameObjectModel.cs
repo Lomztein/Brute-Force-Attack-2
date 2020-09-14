@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Models.GameObject
 {
-    public interface IGameObjectModel : ISerializable
+    public interface IGameObjectModel
     {
         string Name { get; }
         string Tag { get; }
         int Layer { get; }
         bool Static { get; }
 
-        IComponentModel[] GetComponentModels();
+        IObjectModel[] GetComponentModels();
         IGameObjectModel[] GetChildren();
     }
 }

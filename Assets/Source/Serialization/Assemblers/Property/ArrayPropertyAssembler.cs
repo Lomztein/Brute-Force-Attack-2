@@ -14,9 +14,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
     {
         private IPropertyAssembler _elementAssembler = new AllPropertyAssemblers();
 
-        public object Assemble(JToken model, Type type)
+        public object Assemble(IPropertyModel model, Type type)
         {
-            JArray array = model as JArray;
+            ArrayPropertyModel array = model as ArrayPropertyModel;
             Type elementType = type.GetElementType();
 
             object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
@@ -24,27 +24,27 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             MethodInfo toArray = list.GetType().GetMethod("ToArray");
             // I barfed a little writing that. Blame Unity for being outdated.
 
-            for (int i = 0; i < array.Count; i++) 
+            for (int i = 0; i < array.Length; i++) 
             {
                 add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], elementType) });
             }
             return toArray.Invoke(list, new object[] { });
         }
 
-        public JToken Dissassemble(object obj, Type type)
+        public IPropertyModel Disassemble(object obj, Type type)
         {
-            List<JToken> tokens = new List<JToken>();
+            List<IPropertyModel> models = new List<IPropertyModel>();
             Type elementType = type.GetElementType();
             IEnumerable enumerable = obj as IEnumerable;
 
             foreach (object element in enumerable)
             {
-                tokens.Add(_elementAssembler.Dissassemble(element, elementType));
+                models.Add(_elementAssembler.Disassemble(element, elementType));
             }
-            return new JArray(tokens.ToArray());
+            return new ArrayPropertyModel(type, models.ToArray());
         }
 
-        public bool Fits(Type type)
+        public bool CanAssemble(Type type)
             => type.IsArray;
     }
 }

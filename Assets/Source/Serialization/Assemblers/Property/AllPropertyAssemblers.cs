@@ -22,22 +22,22 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             }
         }
 
-        public object Assemble(JToken model, Type type)
+        public object Assemble(IPropertyModel model, Type type)
         {
             return GetAssembler(type).Assemble(model, type);
         }
 
-        public JToken Dissassemble(object obj, Type type)
+        public IPropertyModel Disassemble(object obj, Type type)
         {
-            return GetAssembler(type).Dissassemble(obj, type);
+            return GetAssembler(type).Disassemble(obj, type);
         }
 
-        public bool Fits(Type type)
+        public bool CanAssemble(Type type)
         {
             return GetAssembler(type) != null;
         }
 
         private IPropertyAssembler GetAssembler(Type type)
-            => _assemblers.First(x => x.Fits(type));
+            => _assemblers.First(x => x.CanAssemble(type));
     }
 }
