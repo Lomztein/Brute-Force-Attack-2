@@ -41,17 +41,17 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             RendererAssembler baseSerializer = new RendererAssembler(); // Base serialization could potentially be automated using reflection.
 
             return new ObjectModel(typeof(LineRenderer), baseSerializer.Disassemble(source),
-                new ObjectField("PositionCount", new ValuePropertyModel(source.positionCount)),
-                new ObjectField("Positions", new ArrayPropertyModel(typeof (Vector3[]), GetPositions(source).Select(x => assembler.Disassemble(x, typeof(Vector3))))),
-                new ObjectField("Curve", assembler.Disassemble(source.widthCurve, typeof(AnimationCurve))),
-                new ObjectField("Colors", assembler.Disassemble(source.colorGradient, typeof(Gradient))),
-                new ObjectField("CornerVerticies", new ValuePropertyModel(source.numCornerVertices)),
-                new ObjectField("CapVerticies", new ValuePropertyModel(source.numCapVertices)),
-                new ObjectField("Alignment", new ValuePropertyModel(source.alignment)),
-                new ObjectField("TextureMode", new ValuePropertyModel(source.textureMode)),
-                new ObjectField("ShadowBias", new ValuePropertyModel(source.shadowBias)),
-                new ObjectField("GenerateLighingData", new ValuePropertyModel(source.generateLightingData)),
-                new ObjectField("UseWorldSpace", new ValuePropertyModel(source.useWorldSpace)));
+                new ObjectField("PositionCount", new PrimitivePropertyModel(source.positionCount)),
+                new ObjectField("Positions", new ArrayPropertyModel(typeof (Vector3[]), GetPositions(source).Select(x => assembler.Disassemble(x)))),
+                new ObjectField("Curve", assembler.Disassemble(source.widthCurve)),
+                new ObjectField("Colors", assembler.Disassemble(source.colorGradient)),
+                new ObjectField("CornerVerticies", new PrimitivePropertyModel(source.numCornerVertices)),
+                new ObjectField("CapVerticies", new PrimitivePropertyModel(source.numCapVertices)),
+                new ObjectField("Alignment", new PrimitivePropertyModel(source.alignment)),
+                new ObjectField("TextureMode", new PrimitivePropertyModel(source.textureMode)),
+                new ObjectField("ShadowBias", new PrimitivePropertyModel(source.shadowBias)),
+                new ObjectField("GenerateLighingData", new PrimitivePropertyModel(source.generateLightingData)),
+                new ObjectField("UseWorldSpace", new PrimitivePropertyModel(source.useWorldSpace)));
         }
 
         private Vector3[] GetPositions (LineRenderer source)

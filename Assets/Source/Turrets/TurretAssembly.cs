@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Grid;
 using Lomztein.BFA2.Inventory;
 using Lomztein.BFA2.Inventory.Items;
@@ -160,7 +160,7 @@ namespace Lomztein.BFA2.Turrets
         // Should perhaps be unneccesary if items were not dependant on GameObjects.
         private bool ReturnCardToInventory (IExpansionCard card)
         {
-            IContentCachedPrefab item = Content.Content.GetAll<IContentCachedPrefab>("*/Items/")
+            IContentCachedPrefab item = ContentSystem.Content.GetAll<IContentCachedPrefab>("*/Items/")
                 .Where(x => x.GetCache().GetComponent<ExpansionCardItem>() != null)
                 .FirstOrDefault(x => x.GetCache().GetComponent<ExpansionCardItem>().GetPrefab().GetComponent<IExpansionCard>().UniqueIdentifier == card.UniqueIdentifier);
             if (item != null)

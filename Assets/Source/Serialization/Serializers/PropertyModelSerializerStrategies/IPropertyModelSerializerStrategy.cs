@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
     {
         bool CanSerialize(Type type);
 
-        IPropertyModel Deserialize(JToken token, Type type);
+        IPropertyModel Deserialize(JToken token);
 
         JToken Serialize(IPropertyModel model);
     }

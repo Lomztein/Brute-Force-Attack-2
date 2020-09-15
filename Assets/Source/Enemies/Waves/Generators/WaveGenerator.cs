@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         {
             if (_enemies == null)
             {
-                _enemies = Content.Content.GetAll(ENEMY_CONTENT_PATH, typeof(IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
+                _enemies = ContentSystem.Content.GetAll(ENEMY_CONTENT_PATH, typeof(IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
             }
             return _enemies;
         }

@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content;
+﻿using Lomztein.BFA2.ContentSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

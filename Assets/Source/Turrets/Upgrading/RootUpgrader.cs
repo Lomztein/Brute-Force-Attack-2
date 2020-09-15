@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;

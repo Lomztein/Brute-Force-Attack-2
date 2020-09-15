@@ -30,7 +30,8 @@ namespace Lomztein.BFA2.Turrets
         public IResourceCost Cost => _cost;
         public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
-        [ModelProperty] [SerializeField] protected List<ModdableAttribute> _modAttributes;
+        [ModelProperty] public ModdableAttribute[] BaseAttributes;
+        protected List<ModdableAttribute> _modAttributes;
 
         public IStatContainer Stats { get; private set; } = new StatContainer();
         public IEventContainer Events { get; private set; } = new EventContainer();
@@ -84,7 +85,7 @@ namespace Lomztein.BFA2.Turrets
 
             Init();
 
-            SceneAssemblyManager.Instance?.AddComponent(this);
+            SceneAssemblyManager.Instance?.AddComponent(this); // These two lines should be handled elsewhere, this strongly ties components to scene environment.
             GlobalUpdate.BroadcastUpdate(new ModdableAddedMessage(this));
 
             StartCoroutine(DelayedPostInit());

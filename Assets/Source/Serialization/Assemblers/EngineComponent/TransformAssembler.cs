@@ -31,9 +31,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             Vector3Assembler assembler = new Vector3Assembler();
 
             return new ObjectModel(typeof(Transform),
-                new ObjectField("Position", new ObjectPropertyModel(assembler.DisassembleValue(source.localPosition))),
-                new ObjectField("Rotation", new ObjectPropertyModel(assembler.DisassembleValue(source.localRotation.eulerAngles))),
-                new ObjectField("Scale", new ObjectPropertyModel(assembler.DisassembleValue(source.localScale)))
+                new ObjectField("Position", new ComplexPropertyModel(assembler.DisassembleValue(source.localPosition))),
+                new ObjectField("Rotation", new ComplexPropertyModel(assembler.DisassembleValue(source.localRotation.eulerAngles))),
+                new ObjectField("Scale", new ComplexPropertyModel(assembler.DisassembleValue(source.localScale)))
                 );
         }
     }

@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.Animation.FireAnimations;
 using Lomztein.BFA2.Colorization;
-using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Events.EventArgs;

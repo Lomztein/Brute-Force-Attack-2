@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.World.Tiles
 
         public IObjectModel Disassemble()
         {
-            return new ObjectModel(typeof(TileTypeReference), new ObjectField("WallType", new ValuePropertyModel(TileType)));
+            return new ObjectModel(typeof(TileTypeReference), new ObjectField("WallType", new PrimitivePropertyModel(TileType)));
         }
 
         public bool IsType(TileType type) => TileType != null && TileType == type?.Name;

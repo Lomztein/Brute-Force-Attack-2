@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         public override AnimationCurve AssembleValue(IObjectModel value)
         {
             ArrayPropertyModel array = value.GetProperty<ArrayPropertyModel>("Keyframes");
-            AnimationCurve curve = new AnimationCurve(array.Select(x => AssembleKeyframe((x as ObjectPropertyModel).Model)).ToArray());
+            AnimationCurve curve = new AnimationCurve(array.Select(x => AssembleKeyframe((x as ComplexPropertyModel).Model)).ToArray());
             return curve;
         }
 
@@ -35,18 +35,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         {
             IEnumerable<IObjectModel> frames = value.keys.Select(x => DissasembleKeyframe(x));
             return new ObjectModel(typeof(AnimationCurve),
-                new ObjectField("Keyframes", new ArrayPropertyModel(typeof(AnimationCurve[]), frames.Select(x => new ObjectPropertyModel(x)).ToArray())));
+                new ObjectField("Keyframes", new ArrayPropertyModel(typeof(Keyframe[]), frames.Select(x => new ComplexPropertyModel(x)).ToArray())));
         }
 
         private IObjectModel DissasembleKeyframe (Keyframe frame)
         {
             return new ObjectModel(typeof(Keyframe),
-                new ObjectField ("Time", new ValuePropertyModel(frame.time)),
-                new ObjectField ("Value", new ValuePropertyModel(frame.value)),
-                new ObjectField ("InTangent", new ValuePropertyModel(frame.inTangent)),
-                new ObjectField ("OutTangent", new ValuePropertyModel(frame.outTangent)),
-                new ObjectField ("InWeight", new ValuePropertyModel(frame.inWeight)),
-                new ObjectField ("OutWeight", new ValuePropertyModel(frame.outWeight)));
+                new ObjectField ("Time", new PrimitivePropertyModel(frame.time)),
+                new ObjectField ("Value", new PrimitivePropertyModel(frame.value)),
+                new ObjectField ("InTangent", new PrimitivePropertyModel(frame.inTangent)),
+                new ObjectField ("OutTangent", new PrimitivePropertyModel(frame.outTangent)),
+                new ObjectField ("InWeight", new PrimitivePropertyModel(frame.inWeight)),
+                new ObjectField ("OutWeight", new PrimitivePropertyModel(frame.outWeight)));
         }
     }
 }

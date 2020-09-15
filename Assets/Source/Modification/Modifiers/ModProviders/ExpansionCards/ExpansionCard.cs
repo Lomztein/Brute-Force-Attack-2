@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.References;
+﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Modification.ModProviders.ExpansionCards;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;

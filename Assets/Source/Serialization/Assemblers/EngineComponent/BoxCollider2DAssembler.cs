@@ -25,8 +25,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             Vector2Assembler assembler = new Vector2Assembler();
 
             return new ObjectModel(typeof(BoxCollider2D),
-                new ObjectField("Offset", new ObjectPropertyModel(assembler.DisassembleValue(source.offset))),
-                new ObjectField("Size", new ObjectPropertyModel (assembler.DisassembleValue(source.size)))
+                new ObjectField("Offset", new ComplexPropertyModel(assembler.DisassembleValue(source.offset))),
+                new ObjectField("Size", new ComplexPropertyModel (assembler.DisassembleValue(source.size)))
                 );
         }
     }

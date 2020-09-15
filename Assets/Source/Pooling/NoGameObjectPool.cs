@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using System;
 using UnityEngine;
 

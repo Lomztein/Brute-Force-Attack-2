@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Loot
 
         public ILootTable GetLootTable ()
         {
-            IContentCachedPrefab[] prefabs = Content.Content.GetAll<IContentCachedPrefab>(Path);
+            IContentCachedPrefab[] prefabs = ContentSystem.Content.GetAll<IContentCachedPrefab>(Path);
             List<LootElement> elements = new List<LootElement>();
 
             foreach (var prefab in prefabs)

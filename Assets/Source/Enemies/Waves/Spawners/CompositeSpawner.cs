@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Content.Objects;
-using Lomztein.BFA2.Content.References;
+using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.ContentSystem.References;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Enemies.Waves.Spawners

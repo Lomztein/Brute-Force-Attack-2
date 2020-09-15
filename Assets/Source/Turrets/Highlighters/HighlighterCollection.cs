@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.Turrets.Highlighters
         {
             if (_highlighterPrefabs == null)
             {
-                _highlighterPrefabs = Content.Content.GetAll(PREFAB_PATH, typeof(IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
+                _highlighterPrefabs = ContentSystem.Content.GetAll(PREFAB_PATH, typeof(IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
             }
             return _highlighterPrefabs;
         }

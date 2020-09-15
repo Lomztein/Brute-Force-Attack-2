@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
     [Serializable]
     public class ExponentialResourceCost : IResourceCost
     {
+        [ModelProperty]
         public ResourceCost Cost;
+        [ModelProperty]
         public float Coeffecient;
         public int X { get; set; }
 

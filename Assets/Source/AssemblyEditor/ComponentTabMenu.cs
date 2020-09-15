@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI.Menus;
 using Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab;
@@ -37,6 +37,6 @@ namespace Lomztein.BFA2.AssemblyEditor
         }
 
         private IContentCachedPrefab[] LoadComponents()
-            => Content.Content.GetAll<IContentCachedPrefab>("*/Components/");
+            => ContentSystem.Content.GetAll<IContentCachedPrefab>("*/Components/");
     }
 }

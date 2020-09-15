@@ -30,14 +30,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
         public override IObjectModel Disassemble(Renderer source)
         {
             return new ObjectModel(typeof(Renderer),
-                new ObjectField("ShadowCastingMode", new ValuePropertyModel(source.shadowCastingMode)),
-                new ObjectField("RecieveShadows", new ValuePropertyModel(source.receiveShadows)),
-                new ObjectField("LightProbeUsage", new ValuePropertyModel(source.lightProbeUsage)),
-                new ObjectField("ReflectionProbeUsage", new ValuePropertyModel(source.reflectionProbeUsage)),
-                new ObjectField("MotionVectorGenerationMode", new ValuePropertyModel(source.motionVectorGenerationMode)),
-                new ObjectField("AllowOcclusionWhenDynamic", new ValuePropertyModel(source.allowOcclusionWhenDynamic)),
-                new ObjectField("SortingLayer", new ValuePropertyModel(source.sortingLayerID)),
-                new ObjectField("OrderInLayer", new ValuePropertyModel(source.sortingOrder))
+                new ObjectField("ShadowCastingMode", new PrimitivePropertyModel(source.shadowCastingMode)),
+                new ObjectField("RecieveShadows", new PrimitivePropertyModel(source.receiveShadows)),
+                new ObjectField("LightProbeUsage", new PrimitivePropertyModel(source.lightProbeUsage)),
+                new ObjectField("ReflectionProbeUsage", new PrimitivePropertyModel(source.reflectionProbeUsage)),
+                new ObjectField("MotionVectorGenerationMode", new PrimitivePropertyModel(source.motionVectorGenerationMode)),
+                new ObjectField("AllowOcclusionWhenDynamic", new PrimitivePropertyModel(source.allowOcclusionWhenDynamic)),
+                new ObjectField("SortingLayer", new PrimitivePropertyModel(source.sortingLayerID)),
+                new ObjectField("OrderInLayer", new PrimitivePropertyModel(source.sortingOrder))
             );
         }
     }

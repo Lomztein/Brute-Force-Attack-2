@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.References;
+﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Events.EventArgs;
 using Lomztein.BFA2.Modification.Modifiers;

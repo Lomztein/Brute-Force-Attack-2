@@ -1,5 +1,5 @@
-﻿using Lomztein.BFA2.Content.Objects;
-using Lomztein.BFA2.Content.References.PrefabProviders;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Player.Progression;
 using System;
@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
 
         private void Awake()
         {
-            _prefabs.AddRange(Content.Content.GetAll<IContentCachedPrefab>(ContentPath));
+            _prefabs.AddRange(ContentSystem.Content.GetAll<IContentCachedPrefab>(ContentPath));
         }
 
         private void Start()

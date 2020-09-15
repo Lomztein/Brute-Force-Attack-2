@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.Turret
         public ITurretComponentModel Deserialize(JToken value)
         {
             Vector3Assembler assembler = new Vector3Assembler();
-            ObjectModelSerializer serializer = new ObjectModelSerializer();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
 
             var identifier = value["ComponentIdentifier"].ToString();
             var position = assembler.AssembleValue(serializer.Deserialize(value["RelativePosition"]));
@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.Turret
         public JToken Serialize(ITurretComponentModel value)
         {
             Vector3Assembler assembler = new Vector3Assembler();
-            ObjectModelSerializer serializer = new ObjectModelSerializer();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
 
             return new JObject()
             {

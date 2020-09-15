@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Turrets.Highlighters;
 using Lomztein.BFA2.UI.ContextMenu.Menus;
 using Lomztein.BFA2.UI.ContextMenu.Providers;

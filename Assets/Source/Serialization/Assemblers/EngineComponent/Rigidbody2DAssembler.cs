@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
         public override IObjectModel Disassemble(Rigidbody2D source)
         {
             return new ObjectModel(typeof(Rigidbody2D),
-                new ObjectField ("BodyType", new ValuePropertyModel(source.bodyType))
+                new ObjectField ("BodyType", new PrimitivePropertyModel(source.bodyType))
                 );
         }
     }

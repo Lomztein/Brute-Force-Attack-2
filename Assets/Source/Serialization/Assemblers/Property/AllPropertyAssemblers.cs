@@ -19,9 +19,10 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             if (_assemblers == null)
             {
                 _assemblers = new List<IPropertyAssembler>();
-                _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IPropertyAssembler>(typeof(AllPropertyAssemblers), typeof (ObjectPropertyAssembler), typeof (ValuePropertyAssembler)).ToList();
-                _assemblers.Add(new ObjectPropertyAssembler());
-                _assemblers.Add(new ValuePropertyAssembler());
+                _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IPropertyAssembler>(typeof(AllPropertyAssemblers), typeof (ArrayPropertyAssembler), typeof (ComplexPropertyAssembler), typeof (PrimitivePropertyAssembler)).ToList();
+                _assemblers.Add(new ArrayPropertyAssembler());
+                _assemblers.Add(new ComplexPropertyAssembler());
+                _assemblers.Add(new PrimitivePropertyAssembler());
             }
         }
 
@@ -30,9 +31,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             return GetAssembler(type).Assemble(model, type);
         }
 
-        public IPropertyModel Disassemble(object obj, Type type)
+        public IPropertyModel Disassemble(object obj)
         {
-            return GetAssembler(type).Disassemble(obj, type);
+            return GetAssembler(obj.GetType()).Disassemble(obj);
         }
 
         public bool CanAssemble(Type type)

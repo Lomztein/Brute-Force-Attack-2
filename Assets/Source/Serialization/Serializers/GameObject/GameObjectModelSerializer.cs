@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.GameObject
                 children.Add(model);
             }
 
-            ObjectModelSerializer serializer = new ObjectModelSerializer();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
             JArray jComponents = value["Components"] as JArray;
             foreach (JToken component in jComponents)
             {
@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.GameObject
 
         public JToken Serialize(IGameObjectModel value)
         {
-            ObjectModelSerializer serializer = new ObjectModelSerializer();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
 
             return new JObject()
             {

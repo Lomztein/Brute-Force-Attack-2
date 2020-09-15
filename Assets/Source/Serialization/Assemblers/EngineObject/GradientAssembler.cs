@@ -18,8 +18,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             Gradient gradient = new Gradient();
 
             gradient.mode = value.GetValue<GradientMode>("Mode");
-            gradient.colorKeys = value.GetArray("ColorKeys").Select(x => new GradientColorKey((Color)assembler.Assemble((x as ObjectPropertyModel).Model.GetObject("Color")), (x as ObjectPropertyModel).Model.GetValue<float>("Time"))).ToArray();
-            gradient.alphaKeys = value.GetArray("AlphaKeys").Select(x => new GradientAlphaKey((x as ObjectPropertyModel).Model.GetValue<float>("Alpha"), (x as ObjectPropertyModel).Model.GetValue<float>("Time"))).ToArray();
+            gradient.colorKeys = value.GetArray("ColorKeys").Select(x => new GradientColorKey((Color)assembler.Assemble((x as ComplexPropertyModel).Model.GetObject("Color")), (x as ComplexPropertyModel).Model.GetValue<float>("Time"))).ToArray();
+            gradient.alphaKeys = value.GetArray("AlphaKeys").Select(x => new GradientAlphaKey((x as ComplexPropertyModel).Model.GetValue<float>("Alpha"), (x as ComplexPropertyModel).Model.GetValue<float>("Time"))).ToArray();
 
             return gradient;
         }
@@ -30,16 +30,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 
             return new ObjectModel(typeof(Gradient),
                 new ObjectField("ColorKeys", new ArrayPropertyModel(typeof(GradientColorKey[]),
-                    value.colorKeys.Select(x => new ObjectPropertyModel(new ObjectModel(typeof(GradientColorKey),
-                        new ObjectField("Time",  new ValuePropertyModel(x.time)),
-                        new ObjectField ("Color", new ObjectPropertyModel(assembler.DisassembleValue (x.color)))))))),
+                    value.colorKeys.Select(x => new ComplexPropertyModel(new ObjectModel(typeof(GradientColorKey),
+                        new ObjectField("Time",  new PrimitivePropertyModel(x.time)),
+                        new ObjectField ("Color", new ComplexPropertyModel(assembler.DisassembleValue (x.color)))))))),
 
                 new ObjectField ("AlphaKeys", new ArrayPropertyModel(typeof(GradientAlphaKey[]), 
-                    value.alphaKeys.Select(x => new ObjectPropertyModel(new ObjectModel(typeof(GradientColorKey), 
-                        new ObjectField ("Time", new ValuePropertyModel(x.time)), 
-                        new ObjectField ("Alpha", new ValuePropertyModel(x.alpha))))))),
+                    value.alphaKeys.Select(x => new ComplexPropertyModel(new ObjectModel(typeof(GradientAlphaKey), 
+                        new ObjectField ("Time", new PrimitivePropertyModel(x.time)), 
+                        new ObjectField ("Alpha", new PrimitivePropertyModel(x.alpha))))))),
 
-                new ObjectField ("Mode", new ValuePropertyModel((int)value.mode))
+                new ObjectField ("Mode", new PrimitivePropertyModel((int)value.mode))
             );
         }
     }

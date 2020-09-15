@@ -143,12 +143,12 @@ namespace Lomztein.BFA2.World.Tiles
 
         public IObjectModel Disassemble()
         {
-            return new ObjectModel (typeof (TileData), new ObjectField ("Tiles", new ArrayPropertyModel (typeof (TileTypeReference[]), EnflattenTiles(Tiles).Select(x => new ObjectPropertyModel(x.Disassemble())))));
+            return new ObjectModel (typeof (TileData), new ObjectField ("Tiles", new ArrayPropertyModel (typeof (TileTypeReference[]), EnflattenTiles(Tiles).Select(x => new ComplexPropertyModel(x.Disassemble())))));
         }
 
         public void Assemble(IObjectModel source)
         {
-            Tiles = TwodifyTiles((source as ArrayPropertyModel).Select(x => DeserializeTileTypeReference((x as ObjectPropertyModel).Model)).ToArray());
+            Tiles = TwodifyTiles((source as ArrayPropertyModel).Select(x => DeserializeTileTypeReference((x as ComplexPropertyModel).Model)).ToArray());
         }
 
         private TileTypeReference DeserializeTileTypeReference (IObjectModel model)

@@ -20,10 +20,10 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         public override IObjectModel DisassembleValue(Color value)
         {
             return new ObjectModel(typeof(Color),
-                new ObjectField ("Red", new ValuePropertyModel(value.r)),
-                new ObjectField ("Green", new ValuePropertyModel(value.g)),
-                new ObjectField ("Blue", new ValuePropertyModel(value.b)),
-                new ObjectField ("Alpha", new ValuePropertyModel(value.a))
+                new ObjectField ("Red", new PrimitivePropertyModel(value.r)),
+                new ObjectField ("Green", new PrimitivePropertyModel(value.g)),
+                new ObjectField ("Blue", new PrimitivePropertyModel(value.b)),
+                new ObjectField ("Alpha", new PrimitivePropertyModel(value.a))
                 );
         }
     }

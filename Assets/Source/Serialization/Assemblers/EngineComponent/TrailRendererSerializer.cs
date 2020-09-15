@@ -40,18 +40,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             RendererAssembler baseAssembler = new RendererAssembler();
 
             return new ObjectModel(typeof(TrailRenderer), baseAssembler.Disassemble(source),
-                new ObjectField("Curve", assembler.Disassemble(source.widthCurve, typeof(AnimationCurve))),
-                new ObjectField("Time", new ValuePropertyModel(source.time)),
-                new ObjectField("MinVertexDistance", new ValuePropertyModel(source.minVertexDistance)),
-                new ObjectField("Autodestruct", new ValuePropertyModel(source.autodestruct)),
-                new ObjectField("Emitting", new ValuePropertyModel(source.emitting)),
-                new ObjectField("Color", assembler.Disassemble(source.colorGradient, typeof (Gradient))),
-                new ObjectField("CornerVertices", new ValuePropertyModel(source.numCornerVertices)),
-                new ObjectField("CapVertices", new ValuePropertyModel(source.numCapVertices)),
-                new ObjectField("Alignment", new ValuePropertyModel(source.alignment)),
-                new ObjectField("TextureMode", new ValuePropertyModel(source.textureMode)),
-                new ObjectField("GenerateLigtingData", new ValuePropertyModel(source.generateLightingData)),
-                new ObjectField("ShadowBias", new ValuePropertyModel(source.shadowBias))
+                new ObjectField("Curve", assembler.Disassemble(source.widthCurve)),
+                new ObjectField("Time", new PrimitivePropertyModel(source.time)),
+                new ObjectField("MinVertexDistance", new PrimitivePropertyModel(source.minVertexDistance)),
+                new ObjectField("Autodestruct", new PrimitivePropertyModel(source.autodestruct)),
+                new ObjectField("Emitting", new PrimitivePropertyModel(source.emitting)),
+                new ObjectField("Color", assembler.Disassemble(source.colorGradient)),
+                new ObjectField("CornerVertices", new PrimitivePropertyModel(source.numCornerVertices)),
+                new ObjectField("CapVertices", new PrimitivePropertyModel(source.numCapVertices)),
+                new ObjectField("Alignment", new PrimitivePropertyModel(source.alignment)),
+                new ObjectField("TextureMode", new PrimitivePropertyModel(source.textureMode)),
+                new ObjectField("GenerateLigtingData", new PrimitivePropertyModel(source.generateLightingData)),
+                new ObjectField("ShadowBias", new PrimitivePropertyModel(source.shadowBias))
                 );
         }
     }

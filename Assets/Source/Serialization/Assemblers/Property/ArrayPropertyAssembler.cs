@@ -31,20 +31,20 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             return toArray.Invoke(list, new object[] { });
         }
 
-        public IPropertyModel Disassemble(object obj, Type type)
+        public IPropertyModel Disassemble(object obj)
         {
             List<IPropertyModel> models = new List<IPropertyModel>();
-            Type elementType = type.GetElementType();
             IEnumerable enumerable = obj as IEnumerable;
 
             foreach (object element in enumerable)
             {
-                models.Add(_elementAssembler.Disassemble(element, elementType));
+                models.Add(_elementAssembler.Disassemble(element));
             }
-            return new ArrayPropertyModel(type, models.ToArray());
+            return new ArrayPropertyModel(obj.GetType(), models.ToArray());
         }
 
-        public bool CanAssemble(Type type)
-            => type.IsArray;
+        public bool CanAssemble(Type type) => IsArray(type);
+
+        public static bool IsArray(Type type) => type.IsArray;
     }
 }

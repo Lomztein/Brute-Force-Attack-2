@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitMap ()
         {
-            MapData mapData = BattlefieldSettings.Map ?? Content.Content.Get(DefaultMapPath, typeof(MapData)) as MapData;
+            MapData mapData = BattlefieldSettings.Map ?? ContentSystem.Content.Get(DefaultMapPath, typeof(MapData)) as MapData;
             _mapController.IfExists((controller) => controller.ApplyMapData(mapData));
         }
 

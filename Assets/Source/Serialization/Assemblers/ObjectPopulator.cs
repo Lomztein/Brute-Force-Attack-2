@@ -56,7 +56,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 try
                 {
                     object componentValue = info.GetValue(obj);
-                    var model = _propertyAssembler.Disassemble(componentValue, info.FieldType);
+                    var model = _propertyAssembler.Disassemble(componentValue);
 
                     properties.Add(new ObjectField(info.Name, model));
                 }

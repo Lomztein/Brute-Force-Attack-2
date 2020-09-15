@@ -93,12 +93,12 @@ namespace Lomztein.BFA2.World
             ObjectAssembler objectAssembler = new ObjectAssembler();
 
             return new ObjectModel(typeof(MapData),
-                new ObjectField("Name", new ValuePropertyModel(Name)),
-                new ObjectField("Description", new ValuePropertyModel(Description)),
-                new ObjectField("Width", new ValuePropertyModel(Width)),
-                new ObjectField("Height", new ValuePropertyModel(Height)),
-                new ObjectField("Tiles", new ObjectPropertyModel(Tiles.Disassemble())),
-                new ObjectField("Objects", new ArrayPropertyModel(typeof (GameObjectModel[]), Objects.Select(x => new ObjectPropertyModel (objectAssembler.Disassemble(x))).ToArray()))
+                new ObjectField("Name", new PrimitivePropertyModel(Name)),
+                new ObjectField("Description", new PrimitivePropertyModel(Description)),
+                new ObjectField("Width", new PrimitivePropertyModel(Width)),
+                new ObjectField("Height", new PrimitivePropertyModel(Height)),
+                new ObjectField("Tiles", new ComplexPropertyModel(Tiles.Disassemble())),
+                new ObjectField("Objects", new ArrayPropertyModel(typeof (GameObjectModel[]), Objects.Select(x => new ComplexPropertyModel (objectAssembler.Disassemble(x))).ToArray()))
                 );
         }
 
@@ -109,7 +109,7 @@ namespace Lomztein.BFA2.World
             Width = source.GetValue<int>("Width");
             Height = source.GetValue<int>("Height");
             Tiles = AssembleTileData(source.GetObject("Tiles"));
-            Objects = source.GetArray("Objects").Select(x => AssembleGameObject((x as ObjectPropertyModel).Model)).ToArray();
+            Objects = source.GetArray("Objects").Select(x => AssembleGameObject((x as ComplexPropertyModel).Model)).ToArray();
         }
 
         private TileData AssembleTileData (IObjectModel model)

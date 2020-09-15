@@ -35,13 +35,17 @@ public class GameObjectSerializer : EditorWindow
         Object = EditorGUILayout.ObjectField("Object", Object, typeof(GameObject), true) as GameObject;
         Path = EditorGUILayout.TextField("Path", Path);
         Type = (TargetType)EditorGUILayout.EnumPopup("Type", Type);
-        if (GUILayout.Button ("Dissasemble!"))
+        if (GUILayout.Button ("Disasemble!"))
         {
-            Dissasemble();
+            Disassemble();
+        }
+        if (GUILayout.Button("Assemble!"))
+        {
+            Assemble();
         }
     }
 
-    private void Dissasemble()
+    private void Disassemble()
     {
         IGameObjectAssembler _assembler = new GameObjectAssembler();
         GameObjectModelSerializer goSerializer = new GameObjectModelSerializer();
@@ -66,5 +70,25 @@ public class GameObjectSerializer : EditorWindow
         path = path + Path + Object.name + ".json";
         Debug.Log(path);
         File.WriteAllText(path, data);
+    }
+
+    private void Assemble()
+    {
+        IGameObjectAssembler _assembler = new GameObjectAssembler();
+        GameObjectModelSerializer goSerializer = new GameObjectModelSerializer();
+
+        string path = Paths.StreamingAssets;
+        path += Path;
+
+        JToken data = JToken.Parse(File.ReadAllText(path));
+
+        switch (Type)
+        {
+            case TargetType.GameObject:
+                _assembler.Assemble(goSerializer.Deserialize(data)).SetActive(true);
+                break;
+        }
+
+        Debug.Log(path);
     }
 }

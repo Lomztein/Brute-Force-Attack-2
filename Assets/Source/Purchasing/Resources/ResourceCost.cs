@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,15 @@ namespace Lomztein.BFA2.Purchasing.Resources
     [Serializable]
     public class ResourceCost : IResourceCost
     {
+        [ModelProperty]
         public Element[] Elements;
 
         [Serializable]
         public class Element
         {
+            [ModelProperty]
             public Resource Type;
+            [ModelProperty]
             public int Value;
         }
 

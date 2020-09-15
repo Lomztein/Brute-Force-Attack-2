@@ -15,19 +15,38 @@ namespace Lomztein.BFA2.Serialization.Serializers
         private static IPropertyModelSerializerStrategy[] _strategies = new IPropertyModelSerializerStrategy[]
         {
             new ArrayPropertyModelSerializerStrategy(),
-            new ObjectPropertyModelSerializerStrategy(),
-            new ValuePropertyModelSerializerStrategy(),
+            new ComplexPropertyModelSerializerStrategy(),
+            new PrimitivePropertyModelSerializerStrategy(),
         };
 
         private IPropertyModelSerializerStrategy GetStrategy(Type type) => _strategies.FirstOrDefault(x => x.CanSerialize(type));
 
         public IPropertyModel Deserialize(JToken value)
         {
-            Type type = ReflectionUtils.GetType(value["Type"].ToString());
-            return GetStrategy(type)?.Deserialize(value, type);
+            return GetStrategy(JTokenToPropertyType(value)).Deserialize(value);
         }
 
         public JToken Serialize(IPropertyModel value)
-            => GetStrategy(value.Type).Serialize(value);
+            => GetStrategy(value.GetType()).Serialize(value);
+
+        private Type JTokenToPropertyType (JToken token)
+        {
+            if (token is JValue value)
+                return typeof(PrimitivePropertyModel);
+
+            if (token is JObject obj)
+            {
+                if (obj.ContainsKey("Array"))
+                {
+                    return typeof(ArrayPropertyModel);
+                }
+                else
+                {
+                    return typeof(ComplexPropertyModel);
+                }
+            }
+
+            return null;
+        }
     }
 }

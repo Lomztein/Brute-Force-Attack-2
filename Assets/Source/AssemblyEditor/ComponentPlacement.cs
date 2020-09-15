@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.Turrets.Attachment;

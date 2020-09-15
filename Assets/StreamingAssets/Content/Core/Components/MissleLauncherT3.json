@@ -5,237 +5,535 @@
   "Static": false,
   "Components": [
     {
-      "TypeName": "UnityEngine.Transform",
+      "Type": "UnityEngine.Transform",
       "Properties": [
         {
           "Name": "Position",
-          "Value": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": -1.0
+          "Model": {
+            "Type": "UnityEngine.Vector3",
+            "Object": {
+              "Type": "UnityEngine.Vector3",
+              "Properties": [
+                {
+                  "Name": "X",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                },
+                {
+                  "Name": "Y",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                },
+                {
+                  "Name": "Z",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": -1.0
+                  }
+                }
+              ]
+            }
           }
         },
         {
           "Name": "Rotation",
-          "Value": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
+          "Model": {
+            "Type": "UnityEngine.Vector3",
+            "Object": {
+              "Type": "UnityEngine.Vector3",
+              "Properties": [
+                {
+                  "Name": "X",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                },
+                {
+                  "Name": "Y",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                },
+                {
+                  "Name": "Z",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                }
+              ]
+            }
           }
         },
         {
           "Name": "Scale",
-          "Value": {
-            "X": 1.0,
-            "Y": 1.0,
-            "Z": 1.0
+          "Model": {
+            "Type": "UnityEngine.Vector3",
+            "Object": {
+              "Type": "UnityEngine.Vector3",
+              "Properties": [
+                {
+                  "Name": "X",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 1.0
+                  }
+                },
+                {
+                  "Name": "Y",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 1.0
+                  }
+                },
+                {
+                  "Name": "Z",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 1.0
+                  }
+                }
+              ]
+            }
           }
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
+      "Type": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
       "Properties": [
         {
           "Name": "ProjectilePrefab",
-          "Value": "Resources/Projectiles/ThiccRocketProjectile"
+          "Model": {
+            "Type": "Lomztein.BFA2.Content.References.ContentPrefabReference",
+            "Object": {
+              "Type": "Lomztein.BFA2.Content.References.ContentPrefabReference",
+              "Properties": [
+                {
+                  "Name": "Path",
+                  "Model": {
+                    "Type": "System.String",
+                    "Value": "Resources/Projectiles/ThiccRocketProjectile"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "Name": "FireTreshold",
-          "Value": 1.0
+          "Model": {
+            "Type": "System.Single",
+            "Value": 1.0
+          }
         },
         {
           "Name": "HitLayer",
-          "Value": {
-            "value": 256
+          "Model": {
+            "Type": "UnityEngine.LayerMask",
+            "Object": {
+              "Type": "UnityEngine.LayerMask",
+              "Properties": []
+            }
           }
         },
         {
           "Name": "BaseDamage",
-          "Value": 600.0
+          "Model": {
+            "Type": "System.Single",
+            "Value": 600.0
+          }
         },
         {
           "Name": "BaseProjectileAmount",
-          "Value": 1
+          "Model": {
+            "Type": "System.Int32",
+            "Value": 1
+          }
         },
         {
           "Name": "BaseSpread",
-          "Value": 0.0
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.0
+          }
         },
         {
           "Name": "BaseSpeed",
-          "Value": 20.0
+          "Model": {
+            "Type": "System.Single",
+            "Value": 20.0
+          }
         },
         {
           "Name": "BaseFirerate",
-          "Value": 0.5
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.5
+          }
         },
         {
           "Name": "Color",
-          "Value": 2
+          "Model": {
+            "Type": "Lomztein.BFA2.Colorization.Color",
+            "Object": {
+              "Type": "Lomztein.BFA2.Colorization.Color",
+              "Properties": []
+            }
+          }
         },
         {
           "Name": "_identifier",
-          "Value": "Core.RocketLauncherT3"
+          "Model": {
+            "Type": "System.String",
+            "Value": "Core.RocketLauncherT3"
+          }
         },
         {
           "Name": "_name",
-          "Value": "Dual Heavy Rocket Launcher"
+          "Model": {
+            "Type": "System.String",
+            "Value": "Dual Heavy Rocket Launcher"
+          }
         },
         {
           "Name": "_description",
-          "Value": "FWO-FWOOOOOMPF"
+          "Model": {
+            "Type": "System.String",
+            "Value": "FWO-FWOOOOOMPF"
+          }
         },
         {
           "Name": "_cost",
-          "Value": {
-            "Elements": [
-              {
-                "Type": 0,
-                "Value": 2250
-              }
-            ]
+          "Model": {
+            "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
+            "Object": {
+              "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
+              "Properties": []
+            }
           }
         },
         {
           "Name": "_modAttributes",
-          "Value": [
-            4,
-            6
-          ]
+          "Model": {
+            "Type": "System.Collections.Generic.List`1[[Lomztein.BFA2.Modification.ModdableAttribute, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+            "Object": {
+              "Type": "System.Collections.Generic.List`1[[Lomztein.BFA2.Modification.ModdableAttribute, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+              "Properties": []
+            }
+          }
         },
         {
           "Name": "_width",
-          "Value": 1
+          "Model": {
+            "Type": "Lomztein.BFA2.Grid.Size",
+            "Object": {
+              "Type": "Lomztein.BFA2.Grid.Size",
+              "Properties": []
+            }
+          }
         },
         {
           "Name": "_height",
-          "Value": 1
+          "Model": {
+            "Type": "Lomztein.BFA2.Grid.Size",
+            "Object": {
+              "Type": "Lomztein.BFA2.Grid.Size",
+              "Properties": []
+            }
+          }
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "Type": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
       "Properties": [
         {
           "Name": "AnimationSprites",
-          "Value": []
+          "Model": {
+            "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference[]",
+            "Array": []
+          }
         },
         {
           "Name": "DefaultSprite",
-          "Value": {
-            "Path": "Core/Sprites/Components/RocketLauncherT3.png",
-            "Rect": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Width": 0.0,
-              "Height": 0.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 32.0
+          "Model": {
+            "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference",
+            "Object": {
+              "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference",
+              "Properties": [
+                {
+                  "Name": "Path",
+                  "Model": {
+                    "Type": "System.String",
+                    "Value": "Core/Sprites/Components/RocketLauncherT3.png"
+                  }
+                },
+                {
+                  "Name": "Rect",
+                  "Model": {
+                    "Type": "UnityEngine.Rect",
+                    "Object": {
+                      "Type": "UnityEngine.Rect",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Width",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Height",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "Name": "Pivot",
+                  "Model": {
+                    "Type": "UnityEngine.Vector2",
+                    "Object": {
+                      "Type": "UnityEngine.Vector2",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.5
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.5
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "Name": "PixelsPerUnit",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 32.0
+                  }
+                }
+              ]
+            }
           }
         },
         {
           "Name": "PlaySpeedMultiplier",
-          "Value": 1.0
+          "Model": {
+            "Type": "System.Single",
+            "Value": 1.0
+          }
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Weaponary.FireControl.SequenceFireControl",
+      "Type": "Lomztein.BFA2.Weaponary.FireControl.SequenceFireControl",
       "Properties": [
         {
           "Name": "DelayDenominator",
-          "Value": 0.1
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.1
+          }
         }
       ]
     },
     {
-      "TypeName": "UnityEngine.CircleCollider2D",
+      "Type": "UnityEngine.CircleCollider2D",
       "Properties": [
         {
           "Name": "Radius",
-          "Value": 0.5
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.5
+          }
         },
         {
           "Name": "Offset",
-          "Value": {
-            "X": 0.0,
-            "Y": 0.0
+          "Model": {
+            "Type": "UnityEngine.Vector2",
+            "Object": {
+              "Type": "UnityEngine.Vector2",
+              "Properties": [
+                {
+                  "Name": "X",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                },
+                {
+                  "Name": "Y",
+                  "Model": {
+                    "Type": "System.Single",
+                    "Value": 0.0
+                  }
+                }
+              ]
+            }
           }
         },
         {
           "Name": "IsTrigger",
-          "Value": false
+          "Model": {
+            "Type": "System.Boolean",
+            "Value": false
+          }
         },
         {
           "Name": "UsedByEffector",
-          "Value": false
+          "Model": {
+            "Type": "System.Boolean",
+            "Value": false
+          }
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+      "Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
       "Properties": [
         {
           "Name": "DamageMultBase",
-          "Value": 0.5
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.5
+          }
         },
         {
           "Name": "RangeBase",
-          "Value": 1.75
+          "Model": {
+            "Type": "System.Single",
+            "Value": 1.75
+          }
         },
         {
           "Name": "DamageMultStack",
-          "Value": 0.0
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.0
+          }
         },
         {
           "Name": "RangeStack",
-          "Value": 0.25
+          "Model": {
+            "Type": "System.Single",
+            "Value": 0.25
+          }
         },
         {
           "Name": "ExplosionPrefab",
-          "Value": "Core/Projectiles/Explosion.json"
+          "Model": {
+            "Type": "Lomztein.BFA2.Content.References.ContentPrefabReference",
+            "Object": {
+              "Type": "Lomztein.BFA2.Content.References.ContentPrefabReference",
+              "Properties": [
+                {
+                  "Name": "Path",
+                  "Model": {
+                    "Type": "System.String",
+                    "Value": "Core/Projectiles/Explosion.json"
+                  }
+                }
+              ]
+            }
+          }
         },
         {
           "Name": "DestroyProjectile",
-          "Value": true
+          "Model": {
+            "Type": "System.Boolean",
+            "Value": true
+          }
         },
         {
           "Name": "_identifier",
-          "Value": "Core.ExplodeOnHit"
+          "Model": {
+            "Type": "System.String",
+            "Value": "Core.ExplodeOnHit"
+          }
         },
         {
           "Name": "_name",
-          "Value": "Explode On Hit"
+          "Model": {
+            "Type": "System.String",
+            "Value": "Explode On Hit"
+          }
         },
         {
           "Name": "_description",
-          "Value": "Cause an explosion when the weapon hits something."
+          "Model": {
+            "Type": "System.String",
+            "Value": "Cause an explosion when the weapon hits something."
+          }
         },
         {
           "Name": "_requiredAttributes",
-          "Value": [
-            6
-          ]
+          "Model": {
+            "Type": "Lomztein.BFA2.Modification.ModdableAttribute[]",
+            "Array": [
+              {
+                "Type": "Lomztein.BFA2.Modification.ModdableAttribute",
+                "Object": {
+                  "Type": "Lomztein.BFA2.Modification.ModdableAttribute",
+                  "Properties": []
+                }
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.SelfModProvider",
+      "Type": "Lomztein.BFA2.Modification.Modifiers.ModProviders.SelfModProvider",
       "Properties": []
     },
     {
-      "TypeName": "Lomztein.BFA2.Modification.Modifiers.ModProviders.ConnectorModProvider",
+      "Type": "Lomztein.BFA2.Modification.Modifiers.ModProviders.ConnectorModProvider",
       "Properties": [
         {
           "Name": "BehavioursToDisable",
-          "Value": [
-            "TurretWeapon"
-          ]
+          "Model": {
+            "Type": "System.String[]",
+            "Array": [
+              {
+                "Type": "System.String",
+                "Value": "TurretWeapon"
+              }
+            ]
+          }
         }
       ]
     }
@@ -248,61 +546,235 @@
       "Static": false,
       "Components": [
         {
-          "TypeName": "UnityEngine.Transform",
+          "Type": "UnityEngine.Transform",
           "Properties": [
             {
               "Name": "Position",
-              "Value": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
+              "Model": {
+                "Type": "UnityEngine.Vector3",
+                "Object": {
+                  "Type": "UnityEngine.Vector3",
+                  "Properties": [
+                    {
+                      "Name": "X",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Y",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Z",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    }
+                  ]
+                }
               }
             },
             {
               "Name": "Rotation",
-              "Value": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
+              "Model": {
+                "Type": "UnityEngine.Vector3",
+                "Object": {
+                  "Type": "UnityEngine.Vector3",
+                  "Properties": [
+                    {
+                      "Name": "X",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Y",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Z",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    }
+                  ]
+                }
               }
             },
             {
               "Name": "Scale",
-              "Value": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
+              "Model": {
+                "Type": "UnityEngine.Vector3",
+                "Object": {
+                  "Type": "UnityEngine.Vector3",
+                  "Properties": [
+                    {
+                      "Name": "X",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Y",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Z",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    }
+                  ]
+                }
               }
             }
           ]
         },
         {
-          "TypeName": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentSpriteRenderer",
+          "Type": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentSpriteRenderer",
           "Properties": [
             {
               "Name": "Reference",
-              "Value": {
-                "Path": "Core/Sprites/Components/RocketLauncherT3.png",
-                "Rect": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Width": 0.0,
-                  "Height": 0.0
-                },
-                "Pivot": {
-                  "X": 0.5,
-                  "Y": 0.5
-                },
-                "PixelsPerUnit": 32.0
+              "Model": {
+                "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference",
+                "Object": {
+                  "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference",
+                  "Properties": [
+                    {
+                      "Name": "Path",
+                      "Model": {
+                        "Type": "System.String",
+                        "Value": "Core/Sprites/Components/RocketLauncherT3.png"
+                      }
+                    },
+                    {
+                      "Name": "Rect",
+                      "Model": {
+                        "Type": "UnityEngine.Rect",
+                        "Object": {
+                          "Type": "UnityEngine.Rect",
+                          "Properties": [
+                            {
+                              "Name": "X",
+                              "Model": {
+                                "Type": "System.Single",
+                                "Value": 0.0
+                              }
+                            },
+                            {
+                              "Name": "Y",
+                              "Model": {
+                                "Type": "System.Single",
+                                "Value": 0.0
+                              }
+                            },
+                            {
+                              "Name": "Width",
+                              "Model": {
+                                "Type": "System.Single",
+                                "Value": 0.0
+                              }
+                            },
+                            {
+                              "Name": "Height",
+                              "Model": {
+                                "Type": "System.Single",
+                                "Value": 0.0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "Name": "Pivot",
+                      "Model": {
+                        "Type": "UnityEngine.Vector2",
+                        "Object": {
+                          "Type": "UnityEngine.Vector2",
+                          "Properties": [
+                            {
+                              "Name": "X",
+                              "Model": {
+                                "Type": "System.Single",
+                                "Value": 0.5
+                              }
+                            },
+                            {
+                              "Name": "Y",
+                              "Model": {
+                                "Type": "System.Single",
+                                "Value": 0.5
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "Name": "PixelsPerUnit",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 32.0
+                      }
+                    }
+                  ]
+                }
               }
             },
             {
               "Name": "Color",
-              "Value": {
-                "Red": 1.0,
-                "Green": 1.0,
-                "Blue": 1.0,
-                "Alpha": 1.0
+              "Model": {
+                "Type": "UnityEngine.Color",
+                "Object": {
+                  "Type": "UnityEngine.Color",
+                  "Properties": [
+                    {
+                      "Name": "Red",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Green",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Blue",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Alpha",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    }
+                  ]
+                }
               }
             }
           ]
@@ -317,30 +789,102 @@
       "Static": false,
       "Components": [
         {
-          "TypeName": "UnityEngine.Transform",
+          "Type": "UnityEngine.Transform",
           "Properties": [
             {
               "Name": "Position",
-              "Value": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
+              "Model": {
+                "Type": "UnityEngine.Vector3",
+                "Object": {
+                  "Type": "UnityEngine.Vector3",
+                  "Properties": [
+                    {
+                      "Name": "X",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Y",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Z",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    }
+                  ]
+                }
               }
             },
             {
               "Name": "Rotation",
-              "Value": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
+              "Model": {
+                "Type": "UnityEngine.Vector3",
+                "Object": {
+                  "Type": "UnityEngine.Vector3",
+                  "Properties": [
+                    {
+                      "Name": "X",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Y",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    },
+                    {
+                      "Name": "Z",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 0.0
+                      }
+                    }
+                  ]
+                }
               }
             },
             {
               "Name": "Scale",
-              "Value": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
+              "Model": {
+                "Type": "UnityEngine.Vector3",
+                "Object": {
+                  "Type": "UnityEngine.Vector3",
+                  "Properties": [
+                    {
+                      "Name": "X",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Y",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    },
+                    {
+                      "Name": "Z",
+                      "Model": {
+                        "Type": "System.Single",
+                        "Value": 1.0
+                      }
+                    }
+                  ]
+                }
               }
             }
           ]
@@ -354,30 +898,102 @@
           "Static": false,
           "Components": [
             {
-              "TypeName": "UnityEngine.Transform",
+              "Type": "UnityEngine.Transform",
               "Properties": [
                 {
                   "Name": "Position",
-                  "Value": {
-                    "X": 0.282,
-                    "Y": 0.22,
-                    "Z": 0.0
+                  "Model": {
+                    "Type": "UnityEngine.Vector3",
+                    "Object": {
+                      "Type": "UnityEngine.Vector3",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.282
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.22
+                          }
+                        },
+                        {
+                          "Name": "Z",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 {
                   "Name": "Rotation",
-                  "Value": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": 0.0
+                  "Model": {
+                    "Type": "UnityEngine.Vector3",
+                    "Object": {
+                      "Type": "UnityEngine.Vector3",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Z",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 {
                   "Name": "Scale",
-                  "Value": {
-                    "X": 1.0,
-                    "Y": 1.0,
-                    "Z": 1.0
+                  "Model": {
+                    "Type": "UnityEngine.Vector3",
+                    "Object": {
+                      "Type": "UnityEngine.Vector3",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 1.0
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 1.0
+                          }
+                        },
+                        {
+                          "Name": "Z",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 1.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
               ]
@@ -392,30 +1008,102 @@
           "Static": false,
           "Components": [
             {
-              "TypeName": "UnityEngine.Transform",
+              "Type": "UnityEngine.Transform",
               "Properties": [
                 {
                   "Name": "Position",
-                  "Value": {
-                    "X": 0.282,
-                    "Y": -0.22,
-                    "Z": 0.0
+                  "Model": {
+                    "Type": "UnityEngine.Vector3",
+                    "Object": {
+                      "Type": "UnityEngine.Vector3",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.282
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": -0.22
+                          }
+                        },
+                        {
+                          "Name": "Z",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 {
                   "Name": "Rotation",
-                  "Value": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": 0.0
+                  "Model": {
+                    "Type": "UnityEngine.Vector3",
+                    "Object": {
+                      "Type": "UnityEngine.Vector3",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        },
+                        {
+                          "Name": "Z",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 0.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 {
                   "Name": "Scale",
-                  "Value": {
-                    "X": 1.0,
-                    "Y": 1.0,
-                    "Z": 1.0
+                  "Model": {
+                    "Type": "UnityEngine.Vector3",
+                    "Object": {
+                      "Type": "UnityEngine.Vector3",
+                      "Properties": [
+                        {
+                          "Name": "X",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 1.0
+                          }
+                        },
+                        {
+                          "Name": "Y",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 1.0
+                          }
+                        },
+                        {
+                          "Name": "Z",
+                          "Model": {
+                            "Type": "System.Single",
+                            "Value": 1.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
               ]

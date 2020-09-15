@@ -9,7 +9,6 @@ namespace Lomztein.BFA2.Serialization.Models
 {
     public class ObjectField
     {
-        public Type Type { get; private set; }
         public string Name { get; private set; }
         public IPropertyModel Model { get; private set; }
 
@@ -17,7 +16,6 @@ namespace Lomztein.BFA2.Serialization.Models
         {
             Name = name;
             Model = model;
-            Type = Model.Type;
         }
     }
 }

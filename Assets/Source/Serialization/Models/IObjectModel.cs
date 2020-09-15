@@ -27,14 +27,14 @@ namespace Lomztein.BFA2.Serialization.Models
 
         public static T GetValue<T>(this IObjectModel model, string name)
         {
-            ValuePropertyModel property = GetField(model, name).Model as ValuePropertyModel;
-            return property.GetValue<T>();
+            PrimitivePropertyModel property = GetField(model, name).Model as PrimitivePropertyModel;
+            return property.ToObject<T>();
         }
 
         public static ArrayPropertyModel GetArray(this IObjectModel model, string name)
-            => GetField(model, name).Model as ArrayPropertyModel;
+            => GetProperty<ArrayPropertyModel>(model, name);
 
         public static IObjectModel GetObject(this IObjectModel model, string name)
-            => GetField(model, name).Model as IObjectModel;
+            => GetProperty<ComplexPropertyModel>(model, name).Model as IObjectModel;
     }
 }

@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization
     {
         public static T BuildObject<T>(JToken json)
         {
-            ObjectModelSerializer serializer = new ObjectModelSerializer();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
             ObjectAssembler assembler = new ObjectAssembler();
 
             return (T)assembler.Assemble(serializer.Deserialize(json));
@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Serialization
 
         public static JToken UnbuildObject (object obj)
         {
-            ObjectModelSerializer serializer = new ObjectModelSerializer();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
             ObjectAssembler assembler = new ObjectAssembler();
 
             return serializer.Serialize(assembler.Disassemble(obj));

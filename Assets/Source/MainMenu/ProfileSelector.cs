@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.MainMenu
         private void GenerateColorProfiles ()
         {
             PlayerProfile[] profiles = LoadProfiles();
-            UIStyle[] styles = Content.Content.GetAll("*/UIStyles", typeof(UIStyle)).Cast<UIStyle>().ToArray();
+            UIStyle[] styles = ContentSystem.Content.GetAll("*/UIStyles", typeof(UIStyle)).Cast<UIStyle>().ToArray();
             foreach (UIStyle style in styles)
             {
                 if (!profiles.Any(x => x.Name == style.Name))

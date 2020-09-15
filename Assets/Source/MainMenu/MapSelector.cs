@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.MainMenu
 
         private MapData[] LoadMaps ()
         {
-            return Content.Content.GetAll("*/Maps", typeof(MapData)).Cast<MapData>().ToArray();
+            return ContentSystem.Content.GetAll("*/Maps", typeof(MapData)).Cast<MapData>().ToArray();
         }
 
         private MapData GetCurrent() => _maps[_current];

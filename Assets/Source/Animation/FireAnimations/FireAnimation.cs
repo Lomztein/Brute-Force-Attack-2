@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.References;
+﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Serialization;
 using System.Collections;
 using UnityEngine;

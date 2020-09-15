@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Enemies.Waves.Generators;
 using Lomztein.BFA2.Serialization.Models.GameObject;
 using System;

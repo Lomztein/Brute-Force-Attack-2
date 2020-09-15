@@ -1,5 +1,5 @@
-﻿using Lomztein.BFA2.Content.Objects;
-using Lomztein.BFA2.Content.References;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections;

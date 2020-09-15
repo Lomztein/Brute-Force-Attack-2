@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Objects;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Serialization.Models.GameObject;
 using Lomztein.BFA2.Serialization.Models.Turret;
 using Lomztein.BFA2.Turrets;
@@ -57,7 +57,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Turret
         {
             if (_allComponents == null)
             {
-                _allComponents = Content.Content.GetAll(COMPONENTS_CONTENT_PATH, typeof (IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
+                _allComponents = ContentSystem.Content.GetAll(COMPONENTS_CONTENT_PATH, typeof (IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
                 SceneManager.sceneUnloaded += SceneUnloaded; // Cleanup must be handled manually, as this is not a MonoBehaviour and thus will not be cleaned automnatically.
             }
             return _allComponents;
