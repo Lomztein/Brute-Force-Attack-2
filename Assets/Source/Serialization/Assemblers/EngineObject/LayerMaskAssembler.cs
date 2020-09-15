@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 
         public override IObjectModel DisassembleValue(LayerMask value)
         {
-            return new ObjectModel()
+            return new ObjectModel(typeof (LayerMask))
             {
                 { "Mask", value.value }
             };

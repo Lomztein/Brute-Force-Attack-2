@@ -15,7 +15,6 @@ namespace Lomztein.BFA2.Serialization.Models
     public class ObjectModel : IObjectModel, IEnumerable<ObjectField>
     {
         public Type Type { get; private set; }
-        public bool IsTypeImplicit => Type == null;
 
         private List<ObjectField> _properties = new List<ObjectField>();
 
@@ -30,11 +29,6 @@ namespace Lomztein.BFA2.Serialization.Models
             _properties = properties.ToList();
         }
 
-        public ObjectModel(params ObjectField[] properties)
-        {
-            _properties = properties.ToList();
-        }
-
         public void Add (string name, object value)
         {
             _properties.Add(new ObjectField(name, PropertyModelFactory.Create(value)));
@@ -43,10 +37,6 @@ namespace Lomztein.BFA2.Serialization.Models
         public ObjectModel(Type type, IObjectModel baseModel, params ObjectField[] properties) : this(type, properties)
         {
             _properties.AddRange(baseModel.GetProperties());
-        }
-
-        public ObjectModel(IObjectModel baseModel, params ObjectField[] properties) : this(null, baseModel, properties)
-        {
         }
 
         public ObjectField[] GetProperties() => _properties.ToArray();

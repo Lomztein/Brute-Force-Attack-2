@@ -20,9 +20,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector2 value)
-            => new ObjectModel(
-                new ObjectField("X", new PrimitivePropertyModel(value.x)), 
-                new ObjectField("Y", new PrimitivePropertyModel(value.y)));
+            => new ObjectModel(typeof(Vector2))
+            {
+                { "X", value.x },
+                { "Y", value.y },
+            };
     }
 
     public class Vector2IntAssembler : EngineObjectAssemblerBase<Vector2Int>
@@ -33,9 +35,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector2Int value)
-            => new ObjectModel( 
-                new ObjectField ("X", new PrimitivePropertyModel(value.x)), 
-                new ObjectField ("Y", new PrimitivePropertyModel(value.y)));
+            => new ObjectModel(typeof(Vector2Int))
+            {
+                { "X", value.x },
+                { "Y", value.y },
+            };
     }
 
     public class Vector3Assembler : EngineObjectAssemblerBase<Vector3>
@@ -46,10 +50,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector3 value)
-            => new ObjectModel(
-                new ObjectField("X", new PrimitivePropertyModel(value.x)),
-                new ObjectField("Y", new PrimitivePropertyModel(value.y)),
-                new ObjectField("Z", new PrimitivePropertyModel(value.z)));
+            => new ObjectModel(typeof(Vector3))
+            {
+                { "X", value.x },
+                { "Y", value.y },
+                { "Z", value.z },
+            };
     }
 
     public class Vector3IntAssembler : EngineObjectAssemblerBase<Vector3Int>
@@ -60,10 +66,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector3Int value)
-            => new ObjectModel(
-                new ObjectField("X", new PrimitivePropertyModel(value.x)), 
-                new ObjectField("Y", new PrimitivePropertyModel(value.y)),
-                new ObjectField("Z", new PrimitivePropertyModel(value.z)));
+            => new ObjectModel(typeof(Vector3Int))
+            {
+                { "X", value.x },
+                { "Y", value.y },
+                { "Z", value.z },
+            };
     }
 
     public class Vector4Assembler : EngineObjectAssemblerBase<Vector4>
@@ -78,11 +86,13 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector4 value)
-            => new ObjectModel(
-                new ObjectField ("X", new PrimitivePropertyModel(value.x)), 
-                new ObjectField ("Y", new PrimitivePropertyModel(value.y)), 
-                new ObjectField ("Z", new PrimitivePropertyModel(value.z)),
-                new ObjectField ("W", new PrimitivePropertyModel(value.w)));
+            => new ObjectModel(typeof(Vector4))
+            {
+                { "X", value.x },
+                { "Y", value.y },
+                { "Z", value.z },
+                { "W", value.w },
+            };
     }
 
     public class QuaternionAssembler : EngineObjectAssemblerBase<Quaternion>
@@ -97,10 +107,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Quaternion value)
-            => new ObjectModel(
-                new ObjectField("X", new PrimitivePropertyModel(value.x)),
-                new ObjectField("Y", new PrimitivePropertyModel(value.y)),
-                new ObjectField("Z", new PrimitivePropertyModel(value.z)),
-                new ObjectField("W", new PrimitivePropertyModel(value.w)));
+            => new ObjectModel(typeof (Quaternion))
+            {
+                { "X", value.x },
+                { "Y", value.y },
+                { "Z", value.z },
+                { "W", value.w },
+            };
     }
 }
