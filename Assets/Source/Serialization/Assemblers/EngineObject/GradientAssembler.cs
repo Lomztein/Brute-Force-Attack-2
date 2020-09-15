@@ -30,12 +30,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 
             return new ObjectModel(typeof(Gradient),
                 new ObjectField("ColorKeys", new ArrayPropertyModel(typeof(GradientColorKey[]),
-                    value.colorKeys.Select(x => new ComplexPropertyModel(new ObjectModel(typeof(GradientColorKey),
+                    value.colorKeys.Select(x => new ComplexPropertyModel(new ObjectModel(
                         new ObjectField("Time",  new PrimitivePropertyModel(x.time)),
                         new ObjectField ("Color", new ComplexPropertyModel(assembler.DisassembleValue (x.color)))))))),
 
                 new ObjectField ("AlphaKeys", new ArrayPropertyModel(typeof(GradientAlphaKey[]), 
-                    value.alphaKeys.Select(x => new ComplexPropertyModel(new ObjectModel(typeof(GradientAlphaKey), 
+                    value.alphaKeys.Select(x => new ComplexPropertyModel(new ObjectModel( 
                         new ObjectField ("Time", new PrimitivePropertyModel(x.time)), 
                         new ObjectField ("Alpha", new PrimitivePropertyModel(x.alpha))))))),
 

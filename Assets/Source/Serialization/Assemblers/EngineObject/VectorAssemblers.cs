@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector2 value)
-            => new ObjectModel(typeof(Vector2),
+            => new ObjectModel(
                 new ObjectField("X", new PrimitivePropertyModel(value.x)), 
                 new ObjectField("Y", new PrimitivePropertyModel(value.y)));
     }
@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector2Int value)
-            => new ObjectModel(typeof(Vector2), 
+            => new ObjectModel( 
                 new ObjectField ("X", new PrimitivePropertyModel(value.x)), 
                 new ObjectField ("Y", new PrimitivePropertyModel(value.y)));
     }
@@ -46,7 +46,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector3 value)
-            => new ObjectModel(typeof(Vector3),
+            => new ObjectModel(
                 new ObjectField("X", new PrimitivePropertyModel(value.x)),
                 new ObjectField("Y", new PrimitivePropertyModel(value.y)),
                 new ObjectField("Z", new PrimitivePropertyModel(value.z)));
@@ -60,7 +60,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector3Int value)
-            => new ObjectModel(typeof(Vector3Int),
+            => new ObjectModel(
                 new ObjectField("X", new PrimitivePropertyModel(value.x)), 
                 new ObjectField("Y", new PrimitivePropertyModel(value.y)),
                 new ObjectField("Z", new PrimitivePropertyModel(value.z)));
@@ -78,7 +78,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Vector4 value)
-            => new ObjectModel(typeof(Vector4),
+            => new ObjectModel(
                 new ObjectField ("X", new PrimitivePropertyModel(value.x)), 
                 new ObjectField ("Y", new PrimitivePropertyModel(value.y)), 
                 new ObjectField ("Z", new PrimitivePropertyModel(value.z)),
@@ -97,7 +97,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         }
 
         public override IObjectModel DisassembleValue(Quaternion value)
-            => new ObjectModel(typeof(Quaternion),
+            => new ObjectModel(
                 new ObjectField("X", new PrimitivePropertyModel(value.x)),
                 new ObjectField("Y", new PrimitivePropertyModel(value.y)),
                 new ObjectField("Z", new PrimitivePropertyModel(value.z)),

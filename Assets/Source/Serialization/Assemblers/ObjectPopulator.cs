@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public void Populate (object obj, IObjectModel model)
         {
-            Type modelType = model.Type;
+            Type modelType = model.Type ?? obj.GetType();
             IEnumerable<FieldInfo> fields = GetModelFields(modelType);
 
             foreach (var field in fields)
@@ -46,10 +46,10 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public IObjectModel Extract (object obj)
         {
-            Type componentType = obj.GetType();
+            Type objectType = obj.GetType();
             var properties = new List<ObjectField>();
 
-            IEnumerable<FieldInfo> fields = GetModelFields(componentType);
+            IEnumerable<FieldInfo> fields = GetModelFields(objectType);
 
             foreach (FieldInfo info in fields)
             {
@@ -58,16 +58,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                     object componentValue = info.GetValue(obj);
                     var model = _propertyAssembler.Disassemble(componentValue);
 
+
+
                     properties.Add(new ObjectField(info.Name, model));
                 }
                 catch (Exception e)
                 {
-                    Debug.Log(componentType.Name + ": " + info.Name);
+                    Debug.Log(objectType.Name + ": " + info.Name);
                 }
 
             }
 
-            return new ObjectModel(componentType, properties.ToArray());
+            return new ObjectModel(objectType, properties.ToArray());
         }
 
         private IEnumerable<FieldInfo> GetModelFields(Type type)

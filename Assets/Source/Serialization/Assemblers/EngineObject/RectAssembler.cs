@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 
         public override IObjectModel DisassembleValue(Rect value)
         {
-            return new ObjectModel(typeof(Rect),
+            return new ObjectModel(
                 new ObjectField ("X", new PrimitivePropertyModel(value.x)),
                 new ObjectField ("Y", new PrimitivePropertyModel(value.y)),
                 new ObjectField ("Width", new PrimitivePropertyModel(value.width)),

@@ -10,6 +10,8 @@ namespace Lomztein.BFA2.Serialization.Models.Property
     public class ArrayPropertyModel : IPropertyModel, IEnumerable<IPropertyModel>
     {
         public Type Type { get; private set; }
+        public Type ElementType => Type.GetElementType();
+
         public IPropertyModel[] Elements { get; private set; }
         public IPropertyModel this[int i] => Elements[i];
         public int Length => Elements.Length;

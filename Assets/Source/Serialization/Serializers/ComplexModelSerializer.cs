@@ -16,10 +16,14 @@ namespace Lomztein.BFA2.Serialization.Serializers
 
         public IObjectModel Deserialize(JToken value)
         {
-            Type type = ReflectionUtils.GetType(value["Type"].ToString());
+            JObject obj = value as JObject;
+            Type type = obj.ContainsKey("Type") ? ReflectionUtils.GetType(value["Type"].ToString()) : null;
+            bool implicitType = type == null; // Shortcuts! :D
+
             List<ObjectField> properties = new List<ObjectField>();
 
-            foreach (JProperty property in value["Properties"])
+            JToken jProps = implicitType ? value : value["Properties"];
+            foreach (JProperty property in jProps)
             {
                 properties.Add(new ObjectField (property.Name, _internalSerializer.Deserialize(property.Value)));
             }
@@ -29,13 +33,21 @@ namespace Lomztein.BFA2.Serialization.Serializers
 
         public JToken Serialize(IObjectModel value)
         {
-            return new JObject()
+            bool implicitType = value.Type == null;
+            IEnumerable<JProperty> properties = value.GetProperties().Select(x => new JProperty(x.Name, _internalSerializer.Serialize(x.Model)));
+
+            if (implicitType)
             {
-                { "Type", new JValue (value.Type.FullName) },
-                { "Properties", new JObject (value.GetProperties().Select(x =>
-                    new JProperty (x.Name, _internalSerializer.Serialize(x.Model))))
-                }
-            };
+                return new JObject(properties);
+            }
+            else
+            {
+                return new JObject()
+                {
+                    { "Type", new JValue (value.Type.FullName) },
+                    { "Properties", new JObject (properties) }
+                };
+            }
         }
     }
 }
