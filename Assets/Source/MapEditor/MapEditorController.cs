@@ -3,6 +3,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Serialization.Serializers;
 using Lomztein.BFA2.UI.Windows;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -143,8 +144,10 @@ namespace Lomztein.BFA2.MapEditor
         {
             MapData.Name = name;
             MapData.Objects = AssembleMapObjects();
-            JToken token = ObjectPipeline.UnbuildObject(MapData);
-            File.WriteAllText(path, token.ToString());
+            var model = MapData.Disassemble();
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
+
+            File.WriteAllText(path, serializer.Serialize(model).ToString());
         }
 
         private IGameObjectModel[] AssembleMapObjects ()

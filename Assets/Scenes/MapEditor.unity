@@ -791,7 +791,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 468362690}
-  - component: {fileID: 468362689}
   - component: {fileID: 468362688}
   m_Layer: 0
   m_Name: ContentManager
@@ -810,18 +809,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 259de25850b6d79409f5c7133d212138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &468362689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468362687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c705df6dc979b4aa53db2abb617420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &468362690
@@ -1184,7 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GenerateType:
-    WallType: NoBuild
+    TileType: NoBuild
 --- !u!114 &875426336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1305,6 +1292,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3679626081854532036, guid: 56d4025410dcd9a4299425a9153ace8c,
+        type: 3}
+      propertyPath: GenerateType.TileType
+      value: PlaceableWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241610220544179937, guid: 56d4025410dcd9a4299425a9153ace8c,
+        type: 3}
+      propertyPath: GenerateType.TileType
+      value: BlockingWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241610220653533012, guid: 56d4025410dcd9a4299425a9153ace8c,
+        type: 3}
+      propertyPath: GenerateType.TileType
+      value: PlayerWall
+      objectReference: {fileID: 0}
     - target: {fileID: 7241610221097344680, guid: 56d4025410dcd9a4299425a9153ace8c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2305,7 +2307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.99149597, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2696,6 +2698,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 199947094}
     m_Modifications:
+    - target: {fileID: 2879201828843589809, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201828843589809, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201828843589809, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201828843589809, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201828843589809, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201828843589809, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2879201828843589811, guid: f18515cff2651e0418a3909a6e3260dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2706,11 +2738,101 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 307971361}
+    - target: {fileID: 2879201829266731356, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829266731356, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829266731356, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829266731356, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829266731356, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829266731356, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2879201829298626824, guid: f18515cff2651e0418a3909a6e3260dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 307971361}
+    - target: {fileID: 2879201829298626830, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829298626830, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829298626830, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829298626830, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829298626830, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829298626830, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829925008776, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829925008776, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829925008776, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829925008776, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829925008776, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879201829925008776, guid: f18515cff2651e0418a3909a6e3260dc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2879201829925008820, guid: f18515cff2651e0418a3909a6e3260dc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2841,7 +2963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2983,7 +3105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3206,7 +3328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3348,7 +3470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8020024, b: 0.21960783, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

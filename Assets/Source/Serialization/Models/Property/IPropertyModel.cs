@@ -9,5 +9,6 @@ namespace Lomztein.BFA2.Serialization.Models.Property
 {
     public interface IPropertyModel
     {
+        Type Type { get; }
     }
 }

@@ -8,8 +8,10 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.World.Tiles
 {
+    [System.Serializable]
     public struct TileTypeReference : IAssemblable
     {
+        [ModelProperty]
         public string TileType;
 
         public TileTypeReference(string type)

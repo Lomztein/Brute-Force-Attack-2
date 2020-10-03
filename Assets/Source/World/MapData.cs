@@ -94,7 +94,7 @@ namespace Lomztein.BFA2.World
 
             return new ObjectModel(typeof(MapData),
                 new ObjectField("Name", new PrimitivePropertyModel(Name)),
-                new ObjectField("Description", new PrimitivePropertyModel(Description)),
+                new ObjectField("Description", new PrimitivePropertyModel("Junk")),
                 new ObjectField("Width", new PrimitivePropertyModel(Width)),
                 new ObjectField("Height", new PrimitivePropertyModel(Height)),
                 new ObjectField("Tiles", new ComplexPropertyModel(Tiles.Disassemble())),

@@ -6,270 +6,91 @@
   "Components": [
     {
       "Type": "UnityEngine.Transform",
-      "Properties": [
-        {
-          "Name": "Position",
-          "Model": {
-            "Type": "UnityEngine.Vector3",
-            "Object": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": [
-                {
-                  "Name": "X",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                },
-                {
-                  "Name": "Y",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                },
-                {
-                  "Name": "Z",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": -1.0
-                  }
-                }
-              ]
-            }
+      "Properties": {
+        "Position": {
+          "Type": "UnityEngine.Vector3",
+          "Properties": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": -1.0
           }
         },
-        {
-          "Name": "Rotation",
-          "Model": {
-            "Type": "UnityEngine.Vector3",
-            "Object": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": [
-                {
-                  "Name": "X",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                },
-                {
-                  "Name": "Y",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                },
-                {
-                  "Name": "Z",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                }
-              ]
-            }
+        "Rotation": {
+          "Type": "UnityEngine.Vector3",
+          "Properties": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Z": 0.0
           }
         },
-        {
-          "Name": "Scale",
-          "Model": {
-            "Type": "UnityEngine.Vector3",
-            "Object": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": [
-                {
-                  "Name": "X",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 1.0
-                  }
-                },
-                {
-                  "Name": "Y",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 1.0
-                  }
-                },
-                {
-                  "Name": "Z",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 1.0
-                  }
-                }
-              ]
-            }
+        "Scale": {
+          "Type": "UnityEngine.Vector3",
+          "Properties": {
+            "X": 1.0,
+            "Y": 1.0,
+            "Z": 1.0
           }
         }
-      ]
+      }
     },
     {
       "Type": "Lomztein.BFA2.Turrets.Connectors.Connector",
-      "Properties": [
-        {
-          "Name": "LocalTargetPosition",
-          "Model": {
-            "Type": "UnityEngine.Vector2",
-            "Object": {
-              "Type": "UnityEngine.Vector2",
-              "Properties": [
+      "Properties": {
+        "LocalTargetPosition": {
+          "Type": "UnityEngine.Vector2",
+          "Properties": {
+            "X": 0.0,
+            "Y": 0.0
+          }
+        },
+        "UpperAttachmentPointWidth": 1,
+        "UpperAttachmentPointHeight": 3,
+        "_identifier": "Core.1x3Connector",
+        "_name": "1x3 Connector",
+        "_description": "Connects the two outer components to the middle.",
+        "_cost": {
+          "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
+          "Properties": {
+            "Elements": {
+              "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element[]",
+              "Array": [
                 {
-                  "Name": "X",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                },
-                {
-                  "Name": "Y",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
+                  "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
+                  "Properties": {
+                    "Type": 0,
+                    "Value": 350
                   }
                 }
               ]
             }
           }
         },
-        {
-          "Name": "UpperAttachmentPointWidth",
-          "Model": {
-            "Type": "Lomztein.BFA2.Grid.Size",
-            "Object": {
-              "Type": "Lomztein.BFA2.Grid.Size",
-              "Properties": []
-            }
-          }
+        "BaseAttributes": {
+          "Type": "Lomztein.BFA2.Modification.ModdableAttribute[]",
+          "Array": []
         },
-        {
-          "Name": "UpperAttachmentPointHeight",
-          "Model": {
-            "Type": "Lomztein.BFA2.Grid.Size",
-            "Object": {
-              "Type": "Lomztein.BFA2.Grid.Size",
-              "Properties": []
-            }
-          }
-        },
-        {
-          "Name": "_identifier",
-          "Model": {
-            "Type": "System.String",
-            "Value": "Core.1x3Connector"
-          }
-        },
-        {
-          "Name": "_name",
-          "Model": {
-            "Type": "System.String",
-            "Value": "1x3 Connector"
-          }
-        },
-        {
-          "Name": "_description",
-          "Model": {
-            "Type": "System.String",
-            "Value": "Connects the two outer components to the middle."
-          }
-        },
-        {
-          "Name": "_cost",
-          "Model": {
-            "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
-            "Object": {
-              "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
-              "Properties": []
-            }
-          }
-        },
-        {
-          "Name": "_modAttributes",
-          "Model": {
-            "Type": "System.Collections.Generic.List`1[[Lomztein.BFA2.Modification.ModdableAttribute, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-            "Object": {
-              "Type": "System.Collections.Generic.List`1[[Lomztein.BFA2.Modification.ModdableAttribute, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-              "Properties": []
-            }
-          }
-        },
-        {
-          "Name": "_width",
-          "Model": {
-            "Type": "Lomztein.BFA2.Grid.Size",
-            "Object": {
-              "Type": "Lomztein.BFA2.Grid.Size",
-              "Properties": []
-            }
-          }
-        },
-        {
-          "Name": "_height",
-          "Model": {
-            "Type": "Lomztein.BFA2.Grid.Size",
-            "Object": {
-              "Type": "Lomztein.BFA2.Grid.Size",
-              "Properties": []
-            }
-          }
-        }
-      ]
+        "_width": 1,
+        "_height": 1
+      }
     },
     {
       "Type": "UnityEngine.BoxCollider2D",
-      "Properties": [
-        {
-          "Name": "Offset",
-          "Model": {
-            "Type": "UnityEngine.Vector2",
-            "Object": {
-              "Type": "UnityEngine.Vector2",
-              "Properties": [
-                {
-                  "Name": "X",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                },
-                {
-                  "Name": "Y",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 0.0
-                  }
-                }
-              ]
-            }
+      "Properties": {
+        "Offset": {
+          "Type": "UnityEngine.Vector2",
+          "Properties": {
+            "X": 0.0,
+            "Y": 0.0
           }
         },
-        {
-          "Name": "Size",
-          "Model": {
-            "Type": "UnityEngine.Vector2",
-            "Object": {
-              "Type": "UnityEngine.Vector2",
-              "Properties": [
-                {
-                  "Name": "X",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 1.0
-                  }
-                },
-                {
-                  "Name": "Y",
-                  "Model": {
-                    "Type": "System.Single",
-                    "Value": 3.0
-                  }
-                }
-              ]
-            }
+        "Size": {
+          "Type": "UnityEngine.Vector2",
+          "Properties": {
+            "X": 1.0,
+            "Y": 3.0
           }
         }
-      ]
+      }
     }
   ],
   "Children": [
@@ -281,237 +102,69 @@
       "Components": [
         {
           "Type": "UnityEngine.Transform",
-          "Properties": [
-            {
-              "Name": "Position",
-              "Model": {
-                "Type": "UnityEngine.Vector3",
-                "Object": {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": [
-                    {
-                      "Name": "X",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 0.0
-                      }
-                    },
-                    {
-                      "Name": "Y",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 0.0
-                      }
-                    },
-                    {
-                      "Name": "Z",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 0.0
-                      }
-                    }
-                  ]
-                }
+          "Properties": {
+            "Position": {
+              "Type": "UnityEngine.Vector3",
+              "Properties": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
               }
             },
-            {
-              "Name": "Rotation",
-              "Model": {
-                "Type": "UnityEngine.Vector3",
-                "Object": {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": [
-                    {
-                      "Name": "X",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 0.0
-                      }
-                    },
-                    {
-                      "Name": "Y",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 0.0
-                      }
-                    },
-                    {
-                      "Name": "Z",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 0.0
-                      }
-                    }
-                  ]
-                }
+            "Rotation": {
+              "Type": "UnityEngine.Vector3",
+              "Properties": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
               }
             },
-            {
-              "Name": "Scale",
-              "Model": {
-                "Type": "UnityEngine.Vector3",
-                "Object": {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": [
-                    {
-                      "Name": "X",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    },
-                    {
-                      "Name": "Y",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    },
-                    {
-                      "Name": "Z",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    }
-                  ]
-                }
+            "Scale": {
+              "Type": "UnityEngine.Vector3",
+              "Properties": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
               }
             }
-          ]
+          }
         },
         {
-          "Type": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentSpriteRenderer",
-          "Properties": [
-            {
-              "Name": "Reference",
-              "Model": {
-                "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference",
-                "Object": {
-                  "Type": "Lomztein.BFA2.Content.References.ContentSpriteReference",
-                  "Properties": [
-                    {
-                      "Name": "Path",
-                      "Model": {
-                        "Type": "System.String",
-                        "Value": "Core/Sprites/Components/1x3Connector.png"
-                      }
-                    },
-                    {
-                      "Name": "Rect",
-                      "Model": {
-                        "Type": "UnityEngine.Rect",
-                        "Object": {
-                          "Type": "UnityEngine.Rect",
-                          "Properties": [
-                            {
-                              "Name": "X",
-                              "Model": {
-                                "Type": "System.Single",
-                                "Value": 0.0
-                              }
-                            },
-                            {
-                              "Name": "Y",
-                              "Model": {
-                                "Type": "System.Single",
-                                "Value": 0.0
-                              }
-                            },
-                            {
-                              "Name": "Width",
-                              "Model": {
-                                "Type": "System.Single",
-                                "Value": 16.0
-                              }
-                            },
-                            {
-                              "Name": "Height",
-                              "Model": {
-                                "Type": "System.Single",
-                                "Value": 48.0
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    {
-                      "Name": "Pivot",
-                      "Model": {
-                        "Type": "UnityEngine.Vector2",
-                        "Object": {
-                          "Type": "UnityEngine.Vector2",
-                          "Properties": [
-                            {
-                              "Name": "X",
-                              "Model": {
-                                "Type": "System.Single",
-                                "Value": 0.5
-                              }
-                            },
-                            {
-                              "Name": "Y",
-                              "Model": {
-                                "Type": "System.Single",
-                                "Value": 0.5
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    {
-                      "Name": "PixelsPerUnit",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 16.0
-                      }
-                    }
-                  ]
-                }
+          "Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "Properties": {
+            "Reference": {
+              "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
+              "Properties": {
+                "Path": "Core/Sprites/Components/1x3Connector.png",
+                "Rect": {
+                  "Type": "UnityEngine.Rect",
+                  "Properties": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": 16.0,
+                    "Height": 48.0
+                  }
+                },
+                "Pivot": {
+                  "Type": "UnityEngine.Vector2",
+                  "Properties": {
+                    "X": 0.5,
+                    "Y": 0.5
+                  }
+                },
+                "PixelsPerUnit": 16.0
               }
             },
-            {
-              "Name": "Color",
-              "Model": {
-                "Type": "UnityEngine.Color",
-                "Object": {
-                  "Type": "UnityEngine.Color",
-                  "Properties": [
-                    {
-                      "Name": "Red",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    },
-                    {
-                      "Name": "Green",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    },
-                    {
-                      "Name": "Blue",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    },
-                    {
-                      "Name": "Alpha",
-                      "Model": {
-                        "Type": "System.Single",
-                        "Value": 1.0
-                      }
-                    }
-                  ]
-                }
+            "Color": {
+              "Type": "UnityEngine.Color",
+              "Properties": {
+                "Red": 1.0,
+                "Green": 1.0,
+                "Blue": 1.0,
+                "Alpha": 1.0
               }
             }
-          ]
+          }
         }
       ],
       "Children": []

@@ -43,7 +43,13 @@ namespace Lomztein.BFA2.ContentSystem
                 string[] files = Directory.GetFiles(spath, "*.json");
                 foreach (string file in files)
                 {
-                    content.Add(_contentLoader.LoadContent(file, type));
+                    try
+                    {
+                        content.Add(_contentLoader.LoadContent(file, type));
+                    }catch (Exception exc)
+                    {
+                        Debug.LogError($"Failed to load file '{file}': {exc.Message}");
+                    }
                 }
             }
 
