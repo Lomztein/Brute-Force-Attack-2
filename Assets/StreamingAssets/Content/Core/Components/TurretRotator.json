@@ -5,106 +5,76 @@
   "Static": false,
   "Components": [
     {
-      "Type": "UnityEngine.Transform",
+      "-CSTypeFullName": "UnityEngine.Transform",
       "Properties": {
         "Position": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": -1.0
-          }
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
         },
         "Rotation": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
-          }
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Scale": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 1.0,
-            "Y": 1.0,
-            "Z": 1.0
-          }
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
         }
       }
     },
     {
-      "Type": "Lomztein.BFA2.Turrets.Targeters.TurretRotator",
+      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Targeters.TurretRotator",
       "Properties": {
         "BaseTurnrate": 180.0,
         "_identifier": "Core.SmallRotator",
         "_name": "Small Rotator",
         "_description": "",
         "_cost": {
-          "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
-          "Properties": {
-            "Elements": {
-              "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element[]",
-              "Array": [
-                {
-                  "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-                  "Properties": {
-                    "Type": 0,
-                    "Value": 50
-                  }
-                }
-              ]
+          "Elements": [
+            {
+              "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
+              "Value": {
+                "Type": 0,
+                "Value": 50
+              }
             }
-          }
+          ]
         },
-        "BaseAttributes": {
-          "Type": "Lomztein.BFA2.Modification.ModdableAttribute[]",
-          "Array": []
-        },
+        "BaseAttributes": [],
         "_width": 1,
         "_height": 1
       }
     },
     {
-      "Type": "UnityEngine.CircleCollider2D",
+      "-CSTypeFullName": "UnityEngine.CircleCollider2D",
       "Properties": {
         "Radius": 0.5,
         "Offset": {
-          "Type": "UnityEngine.Vector2",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0
-          }
+          "X": 0.0,
+          "Y": 0.0
         },
         "IsTrigger": false,
         "UsedByEffector": false
       }
     },
     {
-      "Type": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
+      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
       "Properties": {
         "_cost": {
-          "Type": "Lomztein.BFA2.Purchasing.Resources.ExponentialResourceCost",
-          "Properties": {
-            "Cost": {
-              "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
-              "Properties": {
-                "Elements": {
-                  "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element[]",
-                  "Array": [
-                    {
-                      "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-                      "Properties": {
-                        "Type": 0,
-                        "Value": 100
-                      }
-                    }
-                  ]
+          "Cost": {
+            "Elements": [
+              {
+                "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
+                "Value": {
+                  "Type": 0,
+                  "Value": 100
                 }
               }
-            },
-            "Coeffecient": 2.0
-          }
+            ]
+          },
+          "Coeffecient": 2.0
         },
         "MaxUpgrades": 10
       }
@@ -118,68 +88,47 @@
       "Static": false,
       "Components": [
         {
-          "Type": "UnityEngine.Transform",
+          "-CSTypeFullName": "UnityEngine.Transform",
           "Properties": {
             "Position": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "Properties": {
             "Reference": {
-              "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
-              "Properties": {
-                "Path": "Core/Sprites/Components/SmallRotator.png",
-                "Rect": {
-                  "Type": "UnityEngine.Rect",
-                  "Properties": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Width": 0.0,
-                    "Height": 0.0
-                  }
-                },
-                "Pivot": {
-                  "Type": "UnityEngine.Vector2",
-                  "Properties": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  }
-                },
-                "PixelsPerUnit": 16.0
-              }
+              "Path": "Core/Sprites/Components/SmallRotator.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
             "Color": {
-              "Type": "UnityEngine.Color",
-              "Properties": {
-                "Red": 1.0,
-                "Green": 1.0,
-                "Blue": 1.0,
-                "Alpha": 1.0
-              }
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
@@ -193,53 +142,38 @@
       "Static": false,
       "Components": [
         {
-          "Type": "UnityEngine.Transform",
+          "-CSTypeFullName": "UnityEngine.Transform",
           "Properties": {
             "Position": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "-CSTypeFullName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
           "Properties": {
-            "Stats": {
-              "Type": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element[]",
-              "Array": [
-                {
-                  "Type": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element",
-                  "Properties": {}
-                }
-              ]
-            },
+            "Stats": [
+              {
+                "-CSTypeFullName": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element",
+                "Value": {}
+              }
+            ],
             "_identifier": "UpgradeModIncreaseTurnrate20Percent",
             "_name": "Turnrate +20%",
             "_description": "Increase turnrate by +20%",
-            "_requiredAttributes": {
-              "Type": "Lomztein.BFA2.Modification.ModdableAttribute[]",
-              "Array": []
-            }
+            "_requiredAttributes": []
           }
         }
       ],

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Models.Property
 {
-    public class ComplexPropertyModel : IPropertyModel
+    public class ComplexPropertyModel : PropertyModel
     {
-        public Type Type => Model.Type;
-        public IObjectModel Model { get; private set; }
+        public ObjectModel Model { get; private set; }
 
-        public ComplexPropertyModel (IObjectModel model)
+        public ComplexPropertyModel (ObjectModel model)
         {
             Model = model;
+            PropertyType = model.Type;
         }
     }
 }

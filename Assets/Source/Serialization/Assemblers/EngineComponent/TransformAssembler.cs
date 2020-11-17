@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class TransformAssembler : EngineComponentAssembler<Transform>
     {
-        public override void Assemble(IObjectModel model, Transform target)
+        public override void Assemble(ObjectModel model, Transform target)
         {
             Vector3Assembler assembler = new Vector3Assembler();
 
@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             target.localScale = scale;
         }
 
-        public override IObjectModel Disassemble(Transform source)
+        public override ObjectModel Disassemble(Transform source)
         {
             Vector3Assembler assembler = new Vector3Assembler();
 

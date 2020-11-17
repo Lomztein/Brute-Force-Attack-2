@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Models.GameObject
         int Layer { get; }
         bool Static { get; }
 
-        IObjectModel[] GetComponentModels();
+        ObjectModel[] GetComponentModels();
         IGameObjectModel[] GetChildren();
     }
 }

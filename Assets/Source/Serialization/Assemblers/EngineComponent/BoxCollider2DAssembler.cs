@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class BoxCollider2DAssembler : EngineComponentAssembler<BoxCollider2D>
     {
-        public override void Assemble(IObjectModel model, BoxCollider2D target)
+        public override void Assemble(ObjectModel model, BoxCollider2D target)
         {
             Vector2Assembler assembler = new Vector2Assembler();
 
@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             target.size = assembler.AssembleValue(model.GetObject("Size"));
         }
 
-        public override IObjectModel Disassemble(BoxCollider2D source)
+        public override ObjectModel Disassemble(BoxCollider2D source)
         {
             Vector2Assembler assembler = new Vector2Assembler();
 

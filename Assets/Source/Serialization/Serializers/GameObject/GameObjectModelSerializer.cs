@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Serializers.GameObject
 {
-    public class GameObjectModelSerializer : ISerializer<IGameObjectModel>
+    public class GameObjectModelSerializer
     {
         public IGameObjectModel Deserialize(JToken value)
         {
@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.GameObject
             int layer = value["Layer"].ToObject<int>();
             bool isStatic = value["Static"].ToObject<bool>();
             List<IGameObjectModel> children = new List<IGameObjectModel>();
-            List<IObjectModel> components = new List<IObjectModel>();
+            List<ObjectModel> components = new List<ObjectModel>();
 
             JArray jChildren = value["Children"] as JArray;
             foreach (JToken child in jChildren)
@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.GameObject
             JArray jComponents = value["Components"] as JArray;
             foreach (JToken component in jComponents)
             {
-                IObjectModel model = serializer.Deserialize(component);
+                ObjectModel model = serializer.Deserialize(component);
                 components.Add(model);
             }
 

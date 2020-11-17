@@ -26,14 +26,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             }
         }
 
-        public object Assemble(IPropertyModel model, Type type)
+        public object Assemble(PropertyModel model, Type implicitType)
         {
-            return GetAssembler(type).Assemble(model, type);
+            return GetAssembler(implicitType).Assemble(model, implicitType);
         }
 
-        public IPropertyModel Disassemble(object obj)
+        public PropertyModel Disassemble(object obj, Type implicitType)
         {
-            return GetAssembler(obj.GetType()).Disassemble(obj);
+            return GetAssembler(obj != null ? obj.GetType() : implicitType).Disassemble(obj, implicitType);
         }
 
         public bool CanAssemble(Type type)

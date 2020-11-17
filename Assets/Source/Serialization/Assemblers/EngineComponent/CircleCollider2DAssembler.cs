@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class CircleCollider2DAssembler : EngineComponentAssembler<CircleCollider2D>
     {
-        public override void Assemble(IObjectModel model, CircleCollider2D target)
+        public override void Assemble(ObjectModel model, CircleCollider2D target)
         {
             Vector2Assembler vs = new Vector2Assembler();
 
@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             target.usedByEffector = model.GetValue<bool>("UsedByEffector");
         }
 
-        public override IObjectModel Disassemble(CircleCollider2D source)
+        public override ObjectModel Disassemble(CircleCollider2D source)
         {
             Vector2Assembler vs = new Vector2Assembler();
 

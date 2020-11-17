@@ -14,31 +14,41 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
     {
         private IPropertyAssembler _elementAssembler = new AllPropertyAssemblers();
 
-        public object Assemble(IPropertyModel model, Type type)
+        public object Assemble(PropertyModel model, Type implicitType)
         {
             ArrayPropertyModel array = model as ArrayPropertyModel;
-            Type elementType = type.GetElementType();
+            Type elementType = implicitType.GetElementType();
 
             object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
             MethodInfo add = list.GetType().GetMethod("Add");
             MethodInfo toArray = list.GetType().GetMethod("ToArray");
             // I barfed a little writing that. Blame Unity for being outdated.
 
+            if (array == null)
+            {
+
+            }
+
             for (int i = 0; i < array.Length; i++) 
             {
-                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], elementType) });
+                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], array.ImplicitType ? elementType : array[i].PropertyType) });
             }
             return toArray.Invoke(list, new object[] { });
         }
 
-        public IPropertyModel Disassemble(object obj)
+        public PropertyModel Disassemble(object obj, Type implicitType)
         {
-            List<IPropertyModel> models = new List<IPropertyModel>();
+            List<PropertyModel> models = new List<PropertyModel>();
             IEnumerable enumerable = obj as IEnumerable;
 
             foreach (object element in enumerable)
             {
-                models.Add(_elementAssembler.Disassemble(element));
+                PropertyModel model = _elementAssembler.Disassemble(element, implicitType);
+                if (element.GetType () != obj.GetType())
+                {
+                    model.MakeExplicit();
+                }
+                models.Add(model);
             }
             return new ArrayPropertyModel(obj.GetType(), models.ToArray());
         }

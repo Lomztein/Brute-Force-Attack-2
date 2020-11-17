@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             _propertyAssembler = new AllPropertyAssemblers();
         }
 
-        public void Populate (object obj, IObjectModel model)
+        public void Populate (object obj, ObjectModel model)
         {
             Type modelType = model.Type ?? obj.GetType();
             IEnumerable<FieldInfo> fields = GetModelFields(modelType);
@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
 
-        public IObjectModel Extract (object obj)
+        public ObjectModel Extract (object obj)
         {
             Type objectType = obj.GetType();
             var properties = new List<ObjectField>();
@@ -56,15 +56,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 try
                 {
                     object componentValue = info.GetValue(obj);
-                    var model = _propertyAssembler.Disassemble(componentValue);
-
-
+                    var model = _propertyAssembler.Disassemble(componentValue, info.FieldType);
+                    if (componentValue != null && componentValue.GetType() != info.FieldType)
+                    {
+                        model.MakeExplicit();
+                    }
 
                     properties.Add(new ObjectField(info.Name, model));
                 }
                 catch (Exception e)
                 {
                     Debug.Log(objectType.Name + ": " + info.Name);
+                    Debug.LogException(e);
                 }
 
             }

@@ -7,10 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Serialization.Models.Property
 {
-    public class PrimitivePropertyModel : IPropertyModel
+    public class PrimitivePropertyModel : PropertyModel
     {
         public JToken Value { get; private set; } // Consider replacing with considered DataStruct common data library interface.
-        public Type Type { get; private set; }
 
         public PrimitivePropertyModel () { }
 
@@ -24,7 +23,18 @@ namespace Lomztein.BFA2.Serialization.Models.Property
             {
                 Value = JToken.FromObject(value);
             }
-            Type = Value?.GetType();
+            PropertyType = Value?.GetType();
+        }
+
+        public PrimitivePropertyModel(JToken value)
+        {
+            Value = value;
+        }
+
+        public PrimitivePropertyModel(JToken value, Type explicitType)
+        {
+            Value = value;
+            PropertyType = explicitType;
         }
 
         public object ToObject(Type type) => Value.ToObject(type);

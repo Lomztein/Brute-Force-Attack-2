@@ -7,35 +7,32 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Models.Property
 {
-    public class ArrayPropertyModel : IPropertyModel, IEnumerable<IPropertyModel>
+    public class ArrayPropertyModel : PropertyModel, IEnumerable<PropertyModel>
     {
-        public Type Type { get; private set; }
-        public Type ElementType => Type.GetElementType();
+        public Type ElementType => PropertyType.GetElementType();
 
-        public IPropertyModel[] Elements { get; private set; }
-        public IPropertyModel this[int i] => Elements[i];
+        public PropertyModel[] Elements { get; private set; }
+        public PropertyModel this[int i] => Elements[i];
         public int Length => Elements.Length;
 
-        public ArrayPropertyModel (Type type, params IPropertyModel[] elements)
+        public ArrayPropertyModel (Type type, params PropertyModel[] elements) : this(type, (IEnumerable<PropertyModel>) elements)
         {
-            Type = type;
-            Elements = elements;
         }
 
-        public ArrayPropertyModel (Type type, IEnumerable<IPropertyModel> elements)
+        public ArrayPropertyModel (Type type, IEnumerable<PropertyModel> elements)
         {
-            Type = type;
+            PropertyType = type;
             Elements = elements.ToArray();
         }
 
-        public IEnumerator<IPropertyModel> GetEnumerator()
+        public IEnumerator<PropertyModel> GetEnumerator()
         {
-            return ((IEnumerable<IPropertyModel>)Elements).GetEnumerator();
+            return ((IEnumerable<PropertyModel>)Elements).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<IPropertyModel>)Elements).GetEnumerator();
+            return ((IEnumerable<PropertyModel>)Elements).GetEnumerator();
         }
     }
 }

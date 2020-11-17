@@ -12,12 +12,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class Rigidbody2DAssembler : EngineComponentAssembler<Rigidbody2D>
     {
-        public override void Assemble(IObjectModel model, Rigidbody2D target)
+        public override void Assemble(ObjectModel model, Rigidbody2D target)
         {
             target.bodyType = model.GetValue<RigidbodyType2D>("BodyType");
         }
 
-        public override IObjectModel Disassemble(Rigidbody2D source)
+        public override ObjectModel Disassemble(Rigidbody2D source)
         {
             return new ObjectModel(typeof(Rigidbody2D),
                 new ObjectField ("BodyType", new PrimitivePropertyModel(source.bodyType))

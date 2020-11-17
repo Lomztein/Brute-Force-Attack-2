@@ -9,20 +9,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrategies
 {
-    public class ComplexPropertyModelSerializerStrategy : IPropertyModelSerializerStrategy
+    public class ComplexPropertyModelSerializerStrategy : PropertyModelSerializerStrategy
     {
-        public bool CanSerialize(Type type) => type == typeof(ComplexPropertyModel);
-
+        public override bool CanSerialize(Type type) => type == typeof(ComplexPropertyModel);
         private ComplexModelSerializer _internalSerializer = new ComplexModelSerializer();
 
-        public IPropertyModel Deserialize(JToken token)
+        protected override PropertyModel DeserializeImplicit(JToken token)
         {
             return new ComplexPropertyModel(
                 _internalSerializer.Deserialize(token)
                 );
         }
 
-        public JToken Serialize(IPropertyModel model)
+        protected override JToken SerializeImplicit(PropertyModel model)
         {
             ComplexPropertyModel objectModel = model as ComplexPropertyModel;
             return _internalSerializer.Serialize(objectModel.Model);

@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 {
     public class GradientAssembler : EngineObjectAssemblerBase<Gradient>
     {
-        public override Gradient AssembleValue(IObjectModel value)
+        public override Gradient AssembleValue(ObjectModel value)
         {
             ColorAssembler assembler = new ColorAssembler();
             Gradient gradient = new Gradient();
@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
             return gradient;
         }
 
-        public override IObjectModel DisassembleValue(Gradient value)
+        public override ObjectModel DisassembleValue(Gradient value)
         {
             ColorAssembler assembler = new ColorAssembler();
 

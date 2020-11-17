@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class TrailRendererSerializer : EngineComponentAssembler<TrailRenderer>
     {
-        public override void Assemble(IObjectModel model, TrailRenderer target)
+        public override void Assemble(ObjectModel model, TrailRenderer target)
         {
             AllPropertyAssemblers assembler = new AllPropertyAssemblers();
             RendererAssembler baseAssembler = new RendererAssembler();
@@ -34,18 +34,17 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             baseAssembler.Assemble(model, target);
         }
 
-        public override IObjectModel Disassemble(TrailRenderer source)
+        public override ObjectModel Disassemble(TrailRenderer source)
         {
-            AllPropertyAssemblers assembler = new AllPropertyAssemblers();
             RendererAssembler baseAssembler = new RendererAssembler();
 
             return new ObjectModel(typeof(TrailRenderer), baseAssembler.Disassemble(source),
-                new ObjectField("Curve", assembler.Disassemble(source.widthCurve)),
+                new ObjectField("Curve", PropertyModelFactory.Create (source.widthCurve)),
                 new ObjectField("Time", new PrimitivePropertyModel(source.time)),
                 new ObjectField("MinVertexDistance", new PrimitivePropertyModel(source.minVertexDistance)),
                 new ObjectField("Autodestruct", new PrimitivePropertyModel(source.autodestruct)),
                 new ObjectField("Emitting", new PrimitivePropertyModel(source.emitting)),
-                new ObjectField("Color", assembler.Disassemble(source.colorGradient)),
+                new ObjectField("Color", PropertyModelFactory.Create(source.colorGradient)),
                 new ObjectField("CornerVertices", new PrimitivePropertyModel(source.numCornerVertices)),
                 new ObjectField("CapVertices", new PrimitivePropertyModel(source.numCapVertices)),
                 new ObjectField("Alignment", new PrimitivePropertyModel(source.alignment)),

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public interface IAssemblable
 {
-    IObjectModel Disassemble();
+    ObjectModel Disassemble();
 
-    void Assemble(IObjectModel source);
+    void Assemble(ObjectModel source);
 }

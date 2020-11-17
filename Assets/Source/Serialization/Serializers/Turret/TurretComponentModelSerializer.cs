@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Serializers.Turret
 {
-    public class TurretComponentModelSerializer : ISerializer<ITurretComponentModel>
+    public class TurretComponentModelSerializer
     {
         public ITurretComponentModel Deserialize(JToken value)
         {

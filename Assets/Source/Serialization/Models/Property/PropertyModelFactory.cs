@@ -10,10 +10,10 @@ namespace Lomztein.BFA2.Serialization.Models.Property
 {
     public static class PropertyModelFactory
     {
-        public static IPropertyModel Create (object value)
+        public static PropertyModel Create (object value)
         {
             AllPropertyAssemblers assemblers = new AllPropertyAssemblers();
-            return assemblers.Disassemble(value);
+            return assemblers.Disassemble(value, value.GetType());
         }
     }
 }

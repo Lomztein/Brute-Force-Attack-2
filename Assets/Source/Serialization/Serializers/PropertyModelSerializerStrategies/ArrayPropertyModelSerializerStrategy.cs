@@ -9,35 +9,29 @@ using Newtonsoft.Json.Linq;
 
 namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrategies
 {
-    public class ArrayPropertyModelSerializerStrategy : IPropertyModelSerializerStrategy
+    public class ArrayPropertyModelSerializerStrategy : PropertyModelSerializerStrategy
     {
+        public override bool CanSerialize(Type type) => type == typeof(ArrayPropertyModel);
+
         private PropertyModelSerializer _internalSerializer = new PropertyModelSerializer();
 
-        public bool CanSerialize(Type type) => type == typeof(ArrayPropertyModel);
-
-        public IPropertyModel Deserialize(JToken token)
+        protected override PropertyModel DeserializeImplicit(JToken token)
         {
-            JArray array = token["Array"] as JArray;
-            Type type = ReflectionUtils.GetType(token["Type"].ToString());
-            List<IPropertyModel> values = new List<IPropertyModel>();
+            JArray array = token as JArray;
+            List<PropertyModel> values = new List<PropertyModel>();
 
             foreach (var value in array)
             {
                 values.Add(_internalSerializer.Deserialize(value));
             }
-            return new ArrayPropertyModel(type, values.ToArray());
+
+            return new ArrayPropertyModel(null, values.ToArray());
         }
 
-        public JToken Serialize(IPropertyModel model)
+        protected override JToken SerializeImplicit(PropertyModel model)
         {
             ArrayPropertyModel arrayModel = model as ArrayPropertyModel;
-
-            JArray array = new JArray(arrayModel.Elements.Select(x => _internalSerializer.Serialize(x)));
-            return new JObject()
-            {
-                { "Type", arrayModel.Type.FullName },
-                { "Array", array }
-            };
+            return new JArray(arrayModel.Elements.Select(x => _internalSerializer.Serialize(x)));
         }
     }
 }

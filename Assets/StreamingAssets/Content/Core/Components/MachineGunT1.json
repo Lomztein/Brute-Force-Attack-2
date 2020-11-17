@@ -5,49 +5,34 @@
   "Static": false,
   "Components": [
     {
-      "Type": "UnityEngine.Transform",
+      "-CSTypeFullName": "UnityEngine.Transform",
       "Properties": {
         "Position": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": -1.0
-          }
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
         },
         "Rotation": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
-          }
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Scale": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 1.0,
-            "Y": 1.0,
-            "Z": 1.0
-          }
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
         }
       }
     },
     {
-      "Type": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
+      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Weapons.TurretWeapon",
       "Properties": {
         "ProjectilePrefab": {
-          "Type": "Lomztein.BFA2.ContentSystem.References.ContentPrefabReference",
-          "Properties": {
-            "Path": "Core/Projectiles/MachineGunProjectile.json"
-          }
+          "Path": "Core/Projectiles/MachineGunProjectile.json"
         },
         "FireTreshold": 5.0,
         "HitLayer": {
-          "Type": "UnityEngine.LayerMask",
-          "Properties": {
-            "Mask": 256
-          }
+          "Mask": 256
         },
         "BaseDamage": 5.0,
         "BaseProjectileAmount": 1,
@@ -59,186 +44,110 @@
         "_name": "Machine Gun",
         "_description": "shootin doods",
         "_cost": {
-          "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost",
-          "Properties": {
-            "Elements": {
-              "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element[]",
-              "Array": [
-                {
-                  "Type": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-                  "Properties": {
-                    "Type": 0,
-                    "Value": 250
-                  }
-                }
-              ]
+          "Elements": [
+            {
+              "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
+              "Value": {
+                "Type": 0,
+                "Value": 250
+              }
             }
-          }
+          ]
         },
-        "BaseAttributes": {
-          "Type": "Lomztein.BFA2.Modification.ModdableAttribute[]",
-          "Array": []
-        },
+        "BaseAttributes": [],
         "_width": 1,
         "_height": 1
       }
     },
     {
-      "Type": "UnityEngine.CircleCollider2D",
+      "-CSTypeFullName": "UnityEngine.CircleCollider2D",
       "Properties": {
         "Radius": 0.5,
         "Offset": {
-          "Type": "UnityEngine.Vector2",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0
-          }
+          "X": 0.0,
+          "Y": 0.0
         },
         "IsTrigger": false,
         "UsedByEffector": false
       }
     },
     {
-      "Type": "Lomztein.BFA2.Turrets.Upgrading.TurretComponentTypeUpgrader",
+      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Upgrading.TurretComponentTypeUpgrader",
       "Properties": {
         "UpgradeComponentIdentifier": "Core.MachineGunT2"
       }
     },
     {
-      "Type": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "-CSTypeFullName": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
       "Properties": {
-        "AnimationSprites": {
-          "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference[]",
-          "Array": [
-            {
-              "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
-              "Properties": {
-                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-                "Rect": {
-                  "Type": "UnityEngine.Rect",
-                  "Properties": {
-                    "X": 16.0,
-                    "Y": 0.0,
-                    "Width": 16.0,
-                    "Height": 16.0
-                  }
-                },
-                "Pivot": {
-                  "Type": "UnityEngine.Vector2",
-                  "Properties": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  }
-                },
-                "PixelsPerUnit": 16.0
-              }
-            },
-            {
-              "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
-              "Properties": {
-                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-                "Rect": {
-                  "Type": "UnityEngine.Rect",
-                  "Properties": {
-                    "X": 32.0,
-                    "Y": 0.0,
-                    "Width": 16.0,
-                    "Height": 16.0
-                  }
-                },
-                "Pivot": {
-                  "Type": "UnityEngine.Vector2",
-                  "Properties": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  }
-                },
-                "PixelsPerUnit": 16.0
-              }
-            },
-            {
-              "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
-              "Properties": {
-                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-                "Rect": {
-                  "Type": "UnityEngine.Rect",
-                  "Properties": {
-                    "X": 48.0,
-                    "Y": 0.0,
-                    "Width": 16.0,
-                    "Height": 16.0
-                  }
-                },
-                "Pivot": {
-                  "Type": "UnityEngine.Vector2",
-                  "Properties": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  }
-                },
-                "PixelsPerUnit": 16.0
-              }
-            }
-          ]
-        },
-        "DefaultSprite": {
-          "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
-          "Properties": {
-            "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-            "Rect": {
-              "Type": "UnityEngine.Rect",
-              "Properties": {
-                "X": 0.0,
+        "AnimationSprites": [
+          {
+            "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
+            "Value": {
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 16.0,
                 "Y": 0.0,
                 "Width": 16.0,
                 "Height": 16.0
-              }
-            },
-            "Pivot": {
-              "Type": "UnityEngine.Vector2",
-              "Properties": {
+              },
+              "Pivot": {
                 "X": 0.5,
                 "Y": 0.5
-              }
-            },
-            "PixelsPerUnit": 16.0
+              },
+              "PixelsPerUnit": 16.0
+            }
+          },
+          {
+            "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
+            "Value": {
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
+          },
+          {
+            "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
+            "Value": {
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 48.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            }
           }
+        ],
+        "DefaultSprite": {
+          "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 16.0,
+            "Height": 16.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
         },
         "PlaySpeedMultiplier": 1.0
-      }
-    },
-    {
-      "Type": "Lomztein.BFA2.Modification.Modifiers.ModProviders.ConnectorModProvider",
-      "Properties": {
-        "BehavioursToDisable": {
-          "Type": "System.String[]",
-          "Array": [
-            "TurretWeapon"
-          ]
-        }
-      }
-    },
-    {
-      "Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-      "Properties": {
-        "Stats": {
-          "Type": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element[]",
-          "Array": [
-            {
-              "Type": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element",
-              "Properties": {}
-            }
-          ]
-        },
-        "_identifier": "Core.MachineGunT1",
-        "_name": "Firerate +50",
-        "_description": "",
-        "_requiredAttributes": {
-          "Type": "Lomztein.BFA2.Modification.ModdableAttribute[]",
-          "Array": [
-            6
-          ]
-        }
       }
     }
   ],
@@ -250,68 +159,47 @@
       "Static": false,
       "Components": [
         {
-          "Type": "UnityEngine.Transform",
+          "-CSTypeFullName": "UnityEngine.Transform",
           "Properties": {
             "Position": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "Properties": {
             "Reference": {
-              "Type": "Lomztein.BFA2.ContentSystem.References.ContentSpriteReference",
-              "Properties": {
-                "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-                "Rect": {
-                  "Type": "UnityEngine.Rect",
-                  "Properties": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Width": 16.0,
-                    "Height": 16.0
-                  }
-                },
-                "Pivot": {
-                  "Type": "UnityEngine.Vector2",
-                  "Properties": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  }
-                },
-                "PixelsPerUnit": 16.0
-              }
+              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
             "Color": {
-              "Type": "UnityEngine.Color",
-              "Properties": {
-                "Red": 1.0,
-                "Green": 1.0,
-                "Blue": 1.0,
-                "Alpha": 1.0
-              }
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
@@ -325,31 +213,22 @@
       "Static": false,
       "Components": [
         {
-          "Type": "UnityEngine.Transform",
+          "-CSTypeFullName": "UnityEngine.Transform",
           "Properties": {
             "Position": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.5,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.5,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         }
@@ -362,31 +241,22 @@
           "Static": false,
           "Components": [
             {
-              "Type": "UnityEngine.Transform",
+              "-CSTypeFullName": "UnityEngine.Transform",
               "Properties": {
                 "Position": {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": 0.0
-                  }
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
                 },
                 "Rotation": {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": 0.0
-                  }
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
                 },
                 "Scale": {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 1.0,
-                    "Y": 1.0,
-                    "Z": 1.0
-                  }
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
                 }
               }
             }
@@ -399,42 +269,30 @@
               "Static": false,
               "Components": [
                 {
-                  "Type": "UnityEngine.Transform",
+                  "-CSTypeFullName": "UnityEngine.Transform",
                   "Properties": {
                     "Position": {
-                      "Type": "UnityEngine.Vector3",
-                      "Properties": {
-                        "X": 0.0,
-                        "Y": 0.0,
-                        "Z": 0.0
-                      }
+                      "X": 0.0,
+                      "Y": 0.0,
+                      "Z": 0.0
                     },
                     "Rotation": {
-                      "Type": "UnityEngine.Vector3",
-                      "Properties": {
-                        "X": 0.0,
-                        "Y": 90.0,
-                        "Z": 0.0
-                      }
+                      "X": 0.0,
+                      "Y": 90.0,
+                      "Z": 0.0
                     },
                     "Scale": {
-                      "Type": "UnityEngine.Vector3",
-                      "Properties": {
-                        "X": 1.0,
-                        "Y": 1.0,
-                        "Z": 1.0
-                      }
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 1.0
                     }
                   }
                 },
                 {
-                  "Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                  "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
                   "Properties": {
                     "Reference": {
-                      "Type": "Lomztein.BFA2.ContentSystem.References.ContentPrefabReference",
-                      "Properties": {
-                        "Path": "Resources/Particles/FireEffects/MachineGunFireEffect"
-                      }
+                      "Path": "Resources/Particles/FireEffects/MachineGunFireEffect"
                     },
                     "NameOverride": ""
                   }

@@ -62,7 +62,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
 
             Component[] components = gameObject.GetComponents<Component>().Where(x => !x.GetType().IsDefined(typeof (DontSerializeAttribute), false)).ToArray();
-            var componentModels = new List<IObjectModel>();
+            var componentModels = new List<ObjectModel>();
             foreach (Component component in components)
             {
                 componentModels.Add(_componentAssembler.Dissasemble(component));

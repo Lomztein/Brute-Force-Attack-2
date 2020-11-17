@@ -12,8 +12,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
     {
         Type Type { get; }
 
-        IObjectModel Disassemble(Component source);
+        ObjectModel Disassemble(Component source);
 
-        void Assemble(IObjectModel model, Component target);
+        void Assemble(ObjectModel model, Component target);
     }
 }

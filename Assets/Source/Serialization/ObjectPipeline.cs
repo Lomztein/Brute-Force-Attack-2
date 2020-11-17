@@ -6,17 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization
 {
     public static class ObjectPipeline
     {
-        public static T BuildObject<T>(JToken json)
+        public static T BuildObject<T>(JToken token)
+            => (T)BuildObject(token, typeof(T));
+
+        public static object BuildObject (JToken token, Type type)
         {
             ComplexModelSerializer serializer = new ComplexModelSerializer();
             ObjectAssembler assembler = new ObjectAssembler();
 
-            return (T)assembler.Assemble(serializer.Deserialize(json));
+            var model = serializer.Deserialize(token);
+            return assembler.Assemble(model, type);
         }
 
         public static JToken UnbuildObject (object obj)

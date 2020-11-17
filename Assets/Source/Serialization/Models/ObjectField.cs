@@ -10,9 +10,9 @@ namespace Lomztein.BFA2.Serialization.Models
     public class ObjectField
     {
         public string Name { get; private set; }
-        public IPropertyModel Model { get; private set; }
+        public PropertyModel Model { get; private set; }
 
-        public ObjectField(string name, IPropertyModel model)
+        public ObjectField(string name, PropertyModel model)
         {
             Name = name;
             Model = model;

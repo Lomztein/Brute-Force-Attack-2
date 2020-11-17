@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class LineRendererAssembler : EngineComponentAssembler<LineRenderer>
     {
-        public override void Assemble(IObjectModel model, LineRenderer target)
+        public override void Assemble(ObjectModel model, LineRenderer target)
         {
             AllPropertyAssemblers assembler = new AllPropertyAssemblers();
             RendererAssembler baseSerializer = new RendererAssembler();
@@ -35,16 +35,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             baseSerializer.Assemble(model, target);
         }
 
-        public override IObjectModel Disassemble(LineRenderer source)
+        public override ObjectModel Disassemble(LineRenderer source)
         {
             AllPropertyAssemblers assembler = new AllPropertyAssemblers();
             RendererAssembler baseSerializer = new RendererAssembler(); // Base serialization could potentially be automated using reflection.
 
             return new ObjectModel(typeof(LineRenderer), baseSerializer.Disassemble(source),
                 new ObjectField("PositionCount", new PrimitivePropertyModel(source.positionCount)),
-                new ObjectField("Positions", new ArrayPropertyModel(typeof (Vector3[]), GetPositions(source).Select(x => assembler.Disassemble(x)))),
-                new ObjectField("Curve", assembler.Disassemble(source.widthCurve)),
-                new ObjectField("Colors", assembler.Disassemble(source.colorGradient)),
+                new ObjectField("Positions", new ArrayPropertyModel(typeof (Vector3[]), GetPositions(source).Select(x => PropertyModelFactory.Create(x)))),
+                new ObjectField("Curve", PropertyModelFactory.Create(source.widthCurve)),
+                new ObjectField("Colors", PropertyModelFactory.Create(source.colorGradient)),
                 new ObjectField("CornerVerticies", new PrimitivePropertyModel(source.numCornerVertices)),
                 new ObjectField("CapVerticies", new PrimitivePropertyModel(source.numCapVertices)),
                 new ObjectField("Alignment", new PrimitivePropertyModel(source.alignment)),

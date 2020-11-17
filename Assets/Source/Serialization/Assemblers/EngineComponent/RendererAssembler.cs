@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
 {
     public class RendererAssembler : EngineComponentAssembler<Renderer>
     {
-        public override void Assemble(IObjectModel model, Renderer target)
+        public override void Assemble(ObjectModel model, Renderer target)
         {
             var properties = model.GetProperties();
 
@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
             target.sortingOrder = model.GetValue<int>("OrderInLayer");
         }
 
-        public override IObjectModel Disassemble(Renderer source)
+        public override ObjectModel Disassemble(Renderer source)
         {
             return new ObjectModel(typeof(Renderer),
                 new ObjectField("ShadowCastingMode", new PrimitivePropertyModel(source.shadowCastingMode)),

@@ -19,12 +19,12 @@ namespace Lomztein.BFA2.World.Tiles
             TileType = type;
         }
 
-        public void Assemble(IObjectModel source)
+        public void Assemble(ObjectModel source)
         {
             TileType = source.GetValue<string>("WallType");
         }
 
-        public IObjectModel Disassemble()
+        public ObjectModel Disassemble()
         {
             return new ObjectModel(typeof(TileTypeReference), new ObjectField("WallType", new PrimitivePropertyModel(TileType)));
         }

@@ -57,7 +57,15 @@ namespace Lomztein.BFA2.ContentSystem
         public object GetContent(string path, Type type)
         {
             TryInit();
-            return GetCache(path) ?? SetCache (path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
+            object cache = GetCache(path);
+            if (cache == null)
+            {
+                return SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
+            }
+            else
+            {
+                return cache;
+            }
         }
 
         private string GetPackFolder(string path)
@@ -100,7 +108,5 @@ namespace Lomztein.BFA2.ContentSystem
         }
 
         private IContentPack GetPack(string name) => _packs.FirstOrDefault(x => x.Name == name);
-
-
     }
 }

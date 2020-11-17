@@ -16,8 +16,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
         public static bool IsComplex(Type type)
             => !type.IsPrimitive && type != typeof(string) && !type.IsEnum;
 
-        public object Assemble(IPropertyModel model, Type type) => _internalAssembler.Assemble((model as ComplexPropertyModel).Model);
+        public object Assemble(PropertyModel model, Type type) => _internalAssembler.Assemble((model as ComplexPropertyModel).Model, type);
 
-        public IPropertyModel Disassemble(object value) => new ComplexPropertyModel(_internalAssembler.Disassemble(value));
+        public PropertyModel Disassemble(object value, Type type) => new ComplexPropertyModel(_internalAssembler.Disassemble(value));
     }
 }

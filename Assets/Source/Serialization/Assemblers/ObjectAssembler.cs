@@ -11,13 +11,13 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     {
         private ObjectPopulator _populator = new ObjectPopulator();
 
-        public object Assemble (IObjectModel model)
+        public object Assemble (ObjectModel model, Type implicitType)
         {
-            object obj = Activator.CreateInstance(model.Type);
+            object obj = Activator.CreateInstance(model.ImplicitType ? implicitType : model.Type);
             _populator.Populate(obj, model);
             return obj;
         }
 
-        public IObjectModel Disassemble(object obj) => _populator.Extract(obj);
+        public ObjectModel Disassemble(object obj) => _populator.Extract(obj);
     }
 }

@@ -12,14 +12,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineComponent
     {
         public Type Type => typeof(T);
 
-        public abstract void Assemble(IObjectModel model, T target);
+        public abstract void Assemble(ObjectModel model, T target);
 
-        public void Assemble(IObjectModel model, Component target)
+        public void Assemble(ObjectModel model, Component target)
             => Assemble(model, target as T);
 
-        public abstract IObjectModel Disassemble(T source);
+        public abstract ObjectModel Disassemble(T source);
 
-        public IObjectModel Disassemble(Component source)
+        public ObjectModel Disassemble(Component source)
             => Disassemble(source as T);
     }
 }

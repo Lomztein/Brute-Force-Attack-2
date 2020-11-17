@@ -14,15 +14,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
     {
         public bool CanAssemble(Type type) => IsPrimitive(type);
 
-        public object Assemble(IPropertyModel model, Type obj)
+        public object Assemble(PropertyModel model, Type obj)
         {
             return (model as PrimitivePropertyModel).ToObject(obj);
         }
 
-        public IPropertyModel Disassemble(object value)
+        public PropertyModel Disassemble(object value, Type type)
         {
-            return new PrimitivePropertyModel(JToken.FromObject(value));
+            return new PrimitivePropertyModel(value != null ? JToken.FromObject(value) : JValue.CreateNull());
         }
+
         private static bool IsPrimitive(Type type)
             => type.IsPrimitive || type == typeof(string) || type.IsEnum;
     }

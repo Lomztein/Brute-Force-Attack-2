@@ -87,7 +87,7 @@ namespace Lomztein.BFA2.World
             return new Graph(nodes.ToArray(), edges.ToArray(), new TileGraphMap(Width, Height, nodeMap));
         }
 
-        public IObjectModel Disassemble()
+        public ObjectModel Disassemble()
         {
             GameObjectAssembler assembler = new GameObjectAssembler();
             ObjectAssembler objectAssembler = new ObjectAssembler();
@@ -102,7 +102,7 @@ namespace Lomztein.BFA2.World
                 );
         }
 
-        public void Assemble(IObjectModel source)
+        public void Assemble(ObjectModel source)
         {
             Name = source.GetValue<string>("Name");
             Description = source.GetValue<string>("Description");
@@ -112,17 +112,17 @@ namespace Lomztein.BFA2.World
             Objects = source.GetArray("Objects").Select(x => AssembleGameObject((x as ComplexPropertyModel).Model)).ToArray();
         }
 
-        private TileData AssembleTileData (IObjectModel model)
+        private TileData AssembleTileData (ObjectModel model)
         {
             ObjectAssembler assembler = new ObjectAssembler();
-            TileData data = (TileData)assembler.Assemble(model);
+            TileData data = (TileData)assembler.Assemble(model, typeof (TileData));
             return data;
         }
 
-        private IGameObjectModel AssembleGameObject(IObjectModel token)
+        private IGameObjectModel AssembleGameObject(ObjectModel token)
         {
             ObjectAssembler objectAssembler = new ObjectAssembler();
-            IGameObjectModel model = (IGameObjectModel)objectAssembler.Assemble(token);
+            IGameObjectModel model = (IGameObjectModel)objectAssembler.Assemble(token, typeof (GameObjectModel));
             return model;
         }
     }

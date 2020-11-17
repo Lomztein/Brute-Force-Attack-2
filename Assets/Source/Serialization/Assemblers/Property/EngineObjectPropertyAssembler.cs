@@ -23,12 +23,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             }
         }
 
-        public object Assemble(IPropertyModel model, Type type)
+        public object Assemble(PropertyModel model, Type type)
         {
             return GetAssembler(type).Assemble((model as ComplexPropertyModel).Model);
         }
 
-        public IPropertyModel Disassemble(object value)
+        public PropertyModel Disassemble(object value, Type implicitType)
         {
             return new ComplexPropertyModel (GetAssembler(value.GetType()).Disassemble(value));
         }

@@ -8,28 +8,19 @@
       "Type": "UnityEngine.Transform",
       "Properties": {
         "Position": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 2.75,
-            "Y": 0.0,
-            "Z": 0.0
-          }
+          "X": 2.75,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Rotation": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Z": 0.0
-          }
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Scale": {
-          "Type": "UnityEngine.Vector3",
-          "Properties": {
-            "X": 1.0,
-            "Y": 1.0,
-            "Z": 1.0
-          }
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
         }
       }
     },
@@ -40,17 +31,18 @@
         "Damage": 0.0,
         "Range": 0.0,
         "Layer": {
-          "Type": "UnityEngine.LayerMask",
-          "Properties": {}
+          "Mask": 0
         },
         "Color": 0,
         "HitEffectLife": 0.1,
-        "TrailEffectLife": 0.0
+        "TrailEffectLife": 0.0,
+        "DumpObject": {
+          "Text": ""
+        }
       }
     },
     {
-      "Type": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.PhysicalProjectileComponent",
-      "Properties": {}
+      "Type": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.PhysicalProjectileComponent"
     }
   ],
   "Children": [
@@ -64,28 +56,19 @@
           "Type": "UnityEngine.Transform",
           "Properties": {
             "Position": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
@@ -93,156 +76,96 @@
           "Type": "UnityEngine.LineRenderer",
           "Properties": {
             "PositionCount": 4,
-            "Positions": {
-              "Type": "UnityEngine.Vector3[]",
-              "Array": [
+            "Positions": [
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              {
+                "X": 0.2,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              {
+                "X": 0.7,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              {
+                "X": 0.75,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            ],
+            "Curve": {
+              "Keyframes": [
                 {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Z": 0.0
-                  }
+                  "Time": 0.0,
+                  "Value": 0.0763797,
+                  "InTangent": 0.0,
+                  "OutTangent": 0.0,
+                  "InWeight": 0.333333343,
+                  "OutWeight": 0.333333343
                 },
                 {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 0.2,
-                    "Y": 0.0,
-                    "Z": 0.0
-                  }
+                  "Time": 0.114237547,
+                  "Value": 0.160359234,
+                  "InTangent": 0.0,
+                  "OutTangent": 0.0,
+                  "InWeight": 0.0,
+                  "OutWeight": 0.0
                 },
                 {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 0.7,
-                    "Y": 0.0,
-                    "Z": 0.0
-                  }
+                  "Time": 0.8664467,
+                  "Value": 0.302425832,
+                  "InTangent": 0.00258881133,
+                  "OutTangent": 0.00258881133,
+                  "InWeight": 0.333333343,
+                  "OutWeight": 0.333333343
                 },
                 {
-                  "Type": "UnityEngine.Vector3",
-                  "Properties": {
-                    "X": 0.75,
-                    "Y": 0.0,
-                    "Z": 0.0
-                  }
+                  "Time": 1.0,
+                  "Value": 0.0896243751,
+                  "InTangent": -0.321864545,
+                  "OutTangent": -0.321864545,
+                  "InWeight": 0.207952008,
+                  "OutWeight": 0.0
                 }
               ]
             },
-            "Curve": {
-              "Type": "UnityEngine.AnimationCurve",
-              "Properties": {
-                "Keyframes": {
-                  "Type": "UnityEngine.Keyframe[]",
-                  "Array": [
-                    {
-                      "Type": "UnityEngine.Keyframe",
-                      "Properties": {
-                        "Time": 0.0,
-                        "Value": 0.0763797,
-                        "InTangent": 0.0,
-                        "OutTangent": 0.0,
-                        "InWeight": 0.333333343,
-                        "OutWeight": 0.333333343
-                      }
-                    },
-                    {
-                      "Type": "UnityEngine.Keyframe",
-                      "Properties": {
-                        "Time": 0.114237547,
-                        "Value": 0.160359234,
-                        "InTangent": 0.0,
-                        "OutTangent": 0.0,
-                        "InWeight": 0.0,
-                        "OutWeight": 0.0
-                      }
-                    },
-                    {
-                      "Type": "UnityEngine.Keyframe",
-                      "Properties": {
-                        "Time": 0.8664467,
-                        "Value": 0.302425832,
-                        "InTangent": 0.00258881133,
-                        "OutTangent": 0.00258881133,
-                        "InWeight": 0.333333343,
-                        "OutWeight": 0.333333343
-                      }
-                    },
-                    {
-                      "Type": "UnityEngine.Keyframe",
-                      "Properties": {
-                        "Time": 1.0,
-                        "Value": 0.0896243751,
-                        "InTangent": -0.321864545,
-                        "OutTangent": -0.321864545,
-                        "InWeight": 0.207952008,
-                        "OutWeight": 0.0
-                      }
-                    }
-                  ]
-                }
-              }
-            },
             "Colors": {
-              "Type": "UnityEngine.Gradient",
-              "Properties": {
-                "ColorKeys": {
-                  "Type": "UnityEngine.GradientColorKey[]",
-                  "Array": [
-                    {
-                      "Type": "UnityEngine.GradientColorKey",
-                      "Properties": {
-                        "Time": 0.0,
-                        "Color": {
-                          "Type": "UnityEngine.Color",
-                          "Properties": {
-                            "Red": 1.0,
-                            "Green": 1.0,
-                            "Blue": 1.0,
-                            "Alpha": 1.0
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "Type": "UnityEngine.GradientColorKey",
-                      "Properties": {
-                        "Time": 1.0,
-                        "Color": {
-                          "Type": "UnityEngine.Color",
-                          "Properties": {
-                            "Red": 1.0,
-                            "Green": 1.0,
-                            "Blue": 1.0,
-                            "Alpha": 1.0
-                          }
-                        }
-                      }
-                    }
-                  ]
+              "ColorKeys": [
+                {
+                  "Time": 0.0,
+                  "Color": {
+                    "Red": 1.0,
+                    "Green": 1.0,
+                    "Blue": 1.0,
+                    "Alpha": 1.0
+                  }
                 },
-                "AlphaKeys": {
-                  "Type": "UnityEngine.GradientAlphaKey[]",
-                  "Array": [
-                    {
-                      "Type": "UnityEngine.GradientAlphaKey",
-                      "Properties": {
-                        "Time": 0.0,
-                        "Alpha": 1.0
-                      }
-                    },
-                    {
-                      "Type": "UnityEngine.GradientAlphaKey",
-                      "Properties": {
-                        "Time": 1.0,
-                        "Alpha": 1.0
-                      }
-                    }
-                  ]
+                {
+                  "Time": 1.0,
+                  "Color": {
+                    "Red": 1.0,
+                    "Green": 1.0,
+                    "Blue": 1.0,
+                    "Alpha": 1.0
+                  }
+                }
+              ],
+              "AlphaKeys": [
+                {
+                  "Time": 0.0,
+                  "Alpha": 1.0
                 },
-                "Mode": 0
-              }
+                {
+                  "Time": 1.0,
+                  "Alpha": 1.0
+                }
+              ],
+              "Mode": 0
             },
             "CornerVerticies": 0,
             "CapVerticies": 0,
@@ -260,17 +183,6 @@
             "SortingLayer": 0,
             "OrderInLayer": 0
           }
-        },
-        {
-          "Type": "Lomztein.BFA2.Content.References.ReferenceComponents.ContentMaterial",
-          "Properties": {
-            "Reference": {
-              "Type": "Lomztein.BFA2.Content.References.ContentMaterialReference",
-              "Properties": {
-                "Path": "Resources/Materials/BrightBlue"
-              }
-            }
-          }
         }
       ],
       "Children": []
@@ -285,42 +197,30 @@
           "Type": "UnityEngine.Transform",
           "Properties": {
             "Position": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 0.0,
-                "Y": 270.000183,
-                "Z": 0.0
-              }
+              "X": 0.0,
+              "Y": 270.000183,
+              "Z": 0.0
             },
             "Scale": {
-              "Type": "UnityEngine.Vector3",
-              "Properties": {
-                "X": 1.0,
-                "Y": 1.0,
-                "Z": 1.0
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "Type": "Lomztein.BFA2.Content.References.ReferenceComponents.GameObjectReferenceComponent",
-          "Properties": {
-            "Reference": {
-              "Type": "Lomztein.BFA2.Content.References.ContentPrefabReference",
-              "Properties": {
-                "Path": "Resources/Particles/HitEffects/MachineGunHitEffect"
-              }
-            },
-            "NameOverride": ""
-          }
+          "Type": "UnityEngine.ParticleSystem"
+        },
+        {
+          "Type": "UnityEngine.ParticleSystemRenderer"
+        },
+        {
+          "Type": "Lomztein.BFA2.Misc.GameObjectActiveToggle"
         }
       ],
       "Children": []

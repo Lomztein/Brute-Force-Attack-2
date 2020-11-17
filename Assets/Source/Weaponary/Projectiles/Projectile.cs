@@ -49,6 +49,21 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public event Action<HitInfo> OnHit;
         public event Action<HitInfo> OnKill;
 
+        [ModelProperty]
+        public Dump DumpObject;
+
+        [System.Serializable]
+        public class Dump
+        {
+            [ModelProperty]
+            public string Text;
+
+            public void Scream ()
+            {
+                Debug.Log(Text);
+            }
+        }
+
         public void Init()
         {
             _projectileComponents.ForEach(x => x.Init(this));
@@ -70,6 +85,8 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public void Awake()
         {
+            DumpObject.Scream();
+
             _projectileComponents.AddRange(GetComponents<IProjectileComponent>());
 
             Transform hitEffect = transform.Find("HitEffect");

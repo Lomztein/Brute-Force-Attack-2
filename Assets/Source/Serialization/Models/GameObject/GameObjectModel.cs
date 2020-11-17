@@ -16,11 +16,11 @@ namespace Lomztein.BFA2.Serialization.Models.GameObject
         public bool Static { get; private set; }
 
         private List<IGameObjectModel> _children = new List<IGameObjectModel>();
-        private List<IObjectModel> _componentModels = new List<IObjectModel>();
+        private List<ObjectModel> _componentModels = new List<ObjectModel>();
 
         public GameObjectModel() { }
 
-        public GameObjectModel(string name, string tag, int layer, bool @static, IEnumerable<IGameObjectModel> children, IEnumerable<IObjectModel> componentModels)
+        public GameObjectModel(string name, string tag, int layer, bool @static, IEnumerable<IGameObjectModel> children, IEnumerable<ObjectModel> componentModels)
         {
             Name = name;
             Tag = tag;
@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.Serialization.Models.GameObject
             _componentModels = componentModels.ToList();
         }
 
-        public IObjectModel[] GetComponentModels() => _componentModels.ToArray();
+        public ObjectModel[] GetComponentModels() => _componentModels.ToArray();
         public IGameObjectModel[] GetChildren() => _children.ToArray();
 
         public override string ToString()

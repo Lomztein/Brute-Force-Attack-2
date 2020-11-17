@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.ContentSystem
         public string Author { get; private set; }
         public string Description { get; private set; }
 
-        private IRawContentLoader _contentLoader = new RawContentLoader();
+        private IContentLoader _contentLoader = new ContentLoader();
 
         public ContentPack(string path, string name, string author, string description)
         {
@@ -43,13 +43,7 @@ namespace Lomztein.BFA2.ContentSystem
                 string[] files = Directory.GetFiles(spath, "*.json");
                 foreach (string file in files)
                 {
-                    try
-                    {
-                        content.Add(_contentLoader.LoadContent(file, type));
-                    }catch (Exception exc)
-                    {
-                        Debug.LogError($"Failed to load file '{file}': {exc.Message}");
-                    }
+                    content.Add(_contentLoader.LoadContent(file, type));
                 }
             }
 
