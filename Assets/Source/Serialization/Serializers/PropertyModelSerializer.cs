@@ -12,7 +12,8 @@ namespace Lomztein.BFA2.Serialization.Serializers
 {
     public class PropertyModelSerializer
     {
-        public const string CS_TYPE_JSON_NAME = "-CSTypeFullName";
+        public const string CS_PROPERTY_TYPE_JSON_NAME = "CS_PROPERTY_TYPE_FULL_NAME";
+        public const string CS_OBJECT_JSON_NAME = "CS_OBJECT_FULL_NAME";
 
         private static PropertyModelSerializerStrategy[] _strategies = new PropertyModelSerializerStrategy[]
         {
@@ -33,7 +34,7 @@ namespace Lomztein.BFA2.Serialization.Serializers
 
         private Type JTokenToPropertyType (JToken token)
         {
-            if (token is JObject obj && obj.ContainsKey(CS_TYPE_JSON_NAME))
+            if (token is JObject obj && obj.ContainsKey(CS_PROPERTY_TYPE_JSON_NAME))
                 token = obj["Value"];
 
             if (token is JValue)

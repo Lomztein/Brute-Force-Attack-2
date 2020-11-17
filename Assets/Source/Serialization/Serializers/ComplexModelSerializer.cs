@@ -17,9 +17,9 @@ namespace Lomztein.BFA2.Serialization.Serializers
         public ObjectModel Deserialize(JToken value)
         {
             JObject obj = value as JObject;
-            bool isImplicit = !obj.ContainsKey(PropertyModelSerializer.CS_TYPE_JSON_NAME);
+            bool isImplicit = !obj.ContainsKey(PropertyModelSerializer.CS_OBJECT_JSON_NAME);
 
-            Type type = isImplicit ? null : ReflectionUtils.GetType(value[PropertyModelSerializer.CS_TYPE_JSON_NAME].ToString());
+            Type type = isImplicit ? null : ReflectionUtils.GetType(value[PropertyModelSerializer.CS_OBJECT_JSON_NAME].ToString());
             List<ObjectField> properties = new List<ObjectField>();
 
             JToken jProps = isImplicit ? value : (obj.ContainsKey("Properties") ? obj["Properties"] : new JObject());
@@ -46,7 +46,7 @@ namespace Lomztein.BFA2.Serialization.Serializers
                 {
                     return new JObject()
                     {
-                        { PropertyModelSerializer.CS_TYPE_JSON_NAME, new JValue (value.Type.FullName) },
+                        { PropertyModelSerializer.CS_OBJECT_JSON_NAME, new JValue (value.Type.FullName) },
                         { "Properties", new JObject (properties) }
                     };
                 }
@@ -54,7 +54,7 @@ namespace Lomztein.BFA2.Serialization.Serializers
                 {
                     return new JObject()
                     {
-                        { PropertyModelSerializer.CS_TYPE_JSON_NAME, new JValue (value.Type.FullName) },
+                        { PropertyModelSerializer.CS_OBJECT_JSON_NAME, new JValue (value.Type.FullName) },
                     };
                 }
 

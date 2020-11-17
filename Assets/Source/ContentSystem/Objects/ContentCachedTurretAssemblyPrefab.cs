@@ -1,9 +1,6 @@
 ﻿using System;
-using Lomztein.BFA2.Serialization.Assemblers;
-using Lomztein.BFA2.Serialization.Assemblers.Turret;
-using Lomztein.BFA2.Serialization.Models.GameObject;
-using Lomztein.BFA2.Serialization.Models.Turret;
-using Lomztein.BFA2.Turrets;
+using Lomztein.BFA2.Content.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem.Objects
@@ -12,10 +9,10 @@ namespace Lomztein.BFA2.ContentSystem.Objects
     {
         private SceneCachedGameObject _cache;
 
-        public ContentCachedTurretAssemblyPrefab(ITurretAssemblyModel model)
+        public ContentCachedTurretAssemblyPrefab(ObjectModel model)
         {
-            GameObjectTurretAssemblyAssembler assembler = new GameObjectTurretAssemblyAssembler();
-            GameObject instance = (assembler.Assemble(model) as Component).gameObject;
+            TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
+            GameObject instance = (assembler.Assemble(model)).gameObject;
 
             _cache = new SceneCachedGameObject(instance);
         }

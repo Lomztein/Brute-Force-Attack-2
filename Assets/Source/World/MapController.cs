@@ -1,8 +1,4 @@
-﻿using Lomztein.BFA2.Serialization.Assemblers;
-using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.World.Tiles;
-using Lomztein.BFA2.World.Tiles.Rendering;
-using Newtonsoft.Json.Linq;
+﻿using Lomztein.BFA2.Content.Assemblers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +57,7 @@ namespace Lomztein.BFA2.World
             _mapObjects.Clear();
 
             // Assembly, duh.
-            IGameObjectAssembler assembler = new GameObjectAssembler();
+            GameObjectAssembler assembler = new GameObjectAssembler();
             foreach (var obj in _mapData.Objects)
             {
                 _mapObjects.Add(assembler.Assemble(obj));

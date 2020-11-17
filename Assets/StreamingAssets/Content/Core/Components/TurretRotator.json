@@ -5,7 +5,7 @@
   "Static": false,
   "Components": [
     {
-      "-CSTypeFullName": "UnityEngine.Transform",
+      "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
       "Properties": {
         "Position": {
           "X": 0.0,
@@ -25,7 +25,7 @@
       }
     },
     {
-      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Targeters.TurretRotator",
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Turrets.Targeters.TurretRotator",
       "Properties": {
         "BaseTurnrate": 180.0,
         "_identifier": "Core.SmallRotator",
@@ -34,11 +34,8 @@
         "_cost": {
           "Elements": [
             {
-              "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-              "Value": {
-                "Type": 0,
-                "Value": 50
-              }
+              "Type": 0,
+              "Value": 50
             }
           ]
         },
@@ -48,7 +45,7 @@
       }
     },
     {
-      "-CSTypeFullName": "UnityEngine.CircleCollider2D",
+      "CS_OBJECT_FULL_NAME": "UnityEngine.CircleCollider2D",
       "Properties": {
         "Radius": 0.5,
         "Offset": {
@@ -60,17 +57,14 @@
       }
     },
     {
-      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
       "Properties": {
         "_cost": {
           "Cost": {
             "Elements": [
               {
-                "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-                "Value": {
-                  "Type": 0,
-                  "Value": 100
-                }
+                "Type": 0,
+                "Value": 100
               }
             ]
           },
@@ -88,7 +82,7 @@
       "Static": false,
       "Components": [
         {
-          "-CSTypeFullName": "UnityEngine.Transform",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
           "Properties": {
             "Position": {
               "X": 0.0,
@@ -108,7 +102,7 @@
           }
         },
         {
-          "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "Properties": {
             "Reference": {
               "Path": "Core/Sprites/Components/SmallRotator.png",
@@ -142,7 +136,7 @@
       "Static": false,
       "Components": [
         {
-          "-CSTypeFullName": "UnityEngine.Transform",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
           "Properties": {
             "Position": {
               "X": 0.0,
@@ -162,13 +156,10 @@
           }
         },
         {
-          "-CSTypeFullName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Modification.Modifiers.StatMod",
           "Properties": {
             "Stats": [
-              {
-                "-CSTypeFullName": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element",
-                "Value": {}
-              }
+              {}
             ],
             "_identifier": "UpgradeModIncreaseTurnrate20Percent",
             "_name": "Turnrate +20%",

@@ -22,12 +22,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
             MethodInfo add = list.GetType().GetMethod("Add");
             MethodInfo toArray = list.GetType().GetMethod("ToArray");
-            // I barfed a little writing that. Blame Unity for being outdated.
-
-            if (array == null)
-            {
-
-            }
+            // I barfed a little writing that.
 
             for (int i = 0; i < array.Length; i++) 
             {
@@ -44,7 +39,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
             foreach (object element in enumerable)
             {
                 PropertyModel model = _elementAssembler.Disassemble(element, implicitType);
-                if (element.GetType () != obj.GetType())
+                if (element.GetType () != obj.GetType().GetElementType())
                 {
                     model.MakeExplicit();
                 }

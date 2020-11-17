@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
-using Lomztein.BFA2.Serialization.Models.Turret;
 using Lomztein.BFA2.Turrets;
 using System;
 using System.Collections.Generic;

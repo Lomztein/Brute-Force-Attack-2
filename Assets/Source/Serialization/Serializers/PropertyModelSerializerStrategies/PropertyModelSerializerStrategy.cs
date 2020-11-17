@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
     {
         public abstract bool CanSerialize(Type type);
 
-        private bool IsImplicit(JToken token) => !(token is JObject obj && obj.ContainsKey(PropertyModelSerializer.CS_TYPE_JSON_NAME));
+        private bool IsImplicit(JToken token) => !(token is JObject obj && obj.ContainsKey(PropertyModelSerializer.CS_PROPERTY_TYPE_JSON_NAME));
         private bool IsImplicit(PropertyModel model) => model.ImplicitType;
 
         private JToken SerializeExplicit(PropertyModel model)
@@ -32,14 +32,14 @@ namespace Lomztein.BFA2.Serialization.Serializers.PropertyModelSerializerStrateg
         {
             return new JObject()
             {
-                { PropertyModelSerializer.CS_TYPE_JSON_NAME, type.FullName },
+                { PropertyModelSerializer.CS_PROPERTY_TYPE_JSON_NAME, type.FullName },
                 { "Value", value }
             };
         }
 
         private (Type, JToken value) GetDataFromExplicitContainer(JToken container)
         {
-            return (ReflectionUtils.GetType(container[PropertyModelSerializer.CS_TYPE_JSON_NAME].ToString()), container["Value"]);
+            return (ReflectionUtils.GetType(container[PropertyModelSerializer.CS_PROPERTY_TYPE_JSON_NAME].ToString()), container["Value"]);
         }
 
         protected abstract JToken SerializeImplicit(PropertyModel model);

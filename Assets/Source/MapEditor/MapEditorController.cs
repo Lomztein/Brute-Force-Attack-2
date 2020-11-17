@@ -1,8 +1,8 @@
-﻿using Lomztein.BFA2.MapEditor.Objects;
+﻿using Lomztein.BFA2.Content.Assemblers;
+using Lomztein.BFA2.MapEditor.Objects;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
-using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Serializers;
 using Lomztein.BFA2.UI.Windows;
 using Lomztein.BFA2.Utilities;
@@ -145,14 +145,15 @@ namespace Lomztein.BFA2.MapEditor
             MapData.Name = name;
             MapData.Objects = AssembleMapObjects();
             var model = MapData.Disassemble();
-            ComplexModelSerializer serializer = new ComplexModelSerializer();
+
+            PropertyModelSerializer serializer = new PropertyModelSerializer();
 
             File.WriteAllText(path, serializer.Serialize(model).ToString());
         }
 
-        private IGameObjectModel[] AssembleMapObjects ()
+        private ObjectModel[] AssembleMapObjects ()
         {
-            List<IGameObjectModel> models = new List<IGameObjectModel>();
+            List<ObjectModel> models = new List<ObjectModel>();
             GameObjectAssembler assembler = new GameObjectAssembler();
 
             foreach (Transform child in _mapController.Dependancy.MapObjectParent)

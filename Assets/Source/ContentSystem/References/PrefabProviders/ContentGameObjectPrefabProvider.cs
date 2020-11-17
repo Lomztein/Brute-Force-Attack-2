@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
-using Lomztein.BFA2.Serialization.Models.GameObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;

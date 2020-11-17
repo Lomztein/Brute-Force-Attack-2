@@ -14,12 +14,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.Property
         public object Assemble(PropertyModel model, Type type)
         {
             IAssemblable serializable = Activator.CreateInstance(type) as IAssemblable;
-            serializable.Assemble((model as ComplexPropertyModel).Model);
+            serializable.Assemble(model);
             return serializable;
         }
 
         public PropertyModel Disassemble(object value, Type implicitType)
-            => new ComplexPropertyModel((value as IAssemblable).Disassemble());
+            => (value as IAssemblable).Disassemble();
 
         public bool CanAssemble(Type type)
             => type.GetInterfaces().Contains(typeof(IAssemblable));

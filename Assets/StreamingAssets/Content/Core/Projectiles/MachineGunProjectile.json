@@ -5,7 +5,7 @@
   "Static": false,
   "Components": [
     {
-      "Type": "UnityEngine.Transform",
+      "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
       "Properties": {
         "Position": {
           "X": 2.75,
@@ -25,7 +25,7 @@
       }
     },
     {
-      "Type": "Lomztein.BFA2.Weaponary.Projectiles.Projectile",
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Weaponary.Projectiles.Projectile",
       "Properties": {
         "Speed": 0.0,
         "Damage": 0.0,
@@ -35,14 +35,11 @@
         },
         "Color": 0,
         "HitEffectLife": 0.1,
-        "TrailEffectLife": 0.0,
-        "DumpObject": {
-          "Text": ""
-        }
+        "TrailEffectLife": 0.0
       }
     },
     {
-      "Type": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.PhysicalProjectileComponent"
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.PhysicalProjectileComponent"
     }
   ],
   "Children": [
@@ -53,7 +50,7 @@
       "Static": false,
       "Components": [
         {
-          "Type": "UnityEngine.Transform",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
           "Properties": {
             "Position": {
               "X": 0.0,
@@ -73,7 +70,7 @@
           }
         },
         {
-          "Type": "UnityEngine.LineRenderer",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.LineRenderer",
           "Properties": {
             "PositionCount": 4,
             "Positions": [
@@ -183,6 +180,14 @@
             "SortingLayer": 0,
             "OrderInLayer": 0
           }
+        },
+        {
+          "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentMaterial",
+          "Properties": {
+            "Reference": {
+              "Path": "Resources/Materials/BrightBlue"
+            }
+          }
         }
       ],
       "Children": []
@@ -194,7 +199,7 @@
       "Static": false,
       "Components": [
         {
-          "Type": "UnityEngine.Transform",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
           "Properties": {
             "Position": {
               "X": 0.0,
@@ -214,13 +219,13 @@
           }
         },
         {
-          "Type": "UnityEngine.ParticleSystem"
-        },
-        {
-          "Type": "UnityEngine.ParticleSystemRenderer"
-        },
-        {
-          "Type": "Lomztein.BFA2.Misc.GameObjectActiveToggle"
+          "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+          "Properties": {
+            "Reference": {
+              "Path": "Resources/Particles/HitEffects/MachineGunHitEffect"
+            },
+            "NameOverride": ""
+          }
         }
       ],
       "Children": []

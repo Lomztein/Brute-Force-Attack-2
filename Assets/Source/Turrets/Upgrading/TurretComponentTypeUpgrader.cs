@@ -1,7 +1,7 @@
-﻿using Lomztein.BFA2.Purchasing;
+﻿using Lomztein.BFA2.Content.Assemblers;
+using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.Assemblers.Turret;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Utilities;
@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
 
         private void Upgrade()
         {
-            GameObject newObj = GameObjectTurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).Instantiate();
+            GameObject newObj = TurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).Instantiate();
 
             newObj.transform.position = transform.position;
             newObj.transform.rotation = transform.rotation;
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Turrets.Upgrading
 
         private IPurchasable GetUpgrade()
         {
-            return GameObjectTurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).GetCache().GetComponent<IPurchasable>();
+            return TurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).GetCache().GetComponent<IPurchasable>();
         }
 
         void IUpgrader.Upgrade()

@@ -5,7 +5,7 @@
   "Static": false,
   "Components": [
     {
-      "-CSTypeFullName": "UnityEngine.Transform",
+      "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
       "Properties": {
         "Position": {
           "X": 0.0,
@@ -25,7 +25,7 @@
       }
     },
     {
-      "-CSTypeFullName": "Lomztein.BFA2.Turrets.TargetProviders.TurretBase",
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Turrets.TargetProviders.TurretBase",
       "Properties": {
         "BaseRange": 10.0,
         "TargetLayer": {
@@ -37,11 +37,8 @@
         "_cost": {
           "Elements": [
             {
-              "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-              "Value": {
-                "Type": 0,
-                "Value": 200
-              }
+              "Type": 0,
+              "Value": 200
             }
           ]
         },
@@ -51,10 +48,10 @@
       }
     },
     {
-      "-CSTypeFullName": "Lomztein.BFA2.Targeting.EnemyTargetFinder"
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Targeting.EnemyTargetFinder"
     },
     {
-      "-CSTypeFullName": "UnityEngine.CircleCollider2D",
+      "CS_OBJECT_FULL_NAME": "UnityEngine.CircleCollider2D",
       "Properties": {
         "Radius": 0.5,
         "Offset": {
@@ -66,17 +63,14 @@
       }
     },
     {
-      "-CSTypeFullName": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
+      "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Turrets.Upgrading.ModUpgrader",
       "Properties": {
         "_cost": {
           "Cost": {
             "Elements": [
               {
-                "-CSTypeFullName": "Lomztein.BFA2.Purchasing.Resources.ResourceCost+Element",
-                "Value": {
-                  "Type": 0,
-                  "Value": 250
-                }
+                "Type": 0,
+                "Value": 250
               }
             ]
           },
@@ -94,7 +88,7 @@
       "Static": false,
       "Components": [
         {
-          "-CSTypeFullName": "UnityEngine.Transform",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
           "Properties": {
             "Position": {
               "X": 0.0,
@@ -114,7 +108,7 @@
           }
         },
         {
-          "-CSTypeFullName": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "Properties": {
             "Reference": {
               "Path": "Core/Sprites/Components/SmallBase.png",
@@ -148,7 +142,7 @@
       "Static": false,
       "Components": [
         {
-          "-CSTypeFullName": "UnityEngine.Transform",
+          "CS_OBJECT_FULL_NAME": "UnityEngine.Transform",
           "Properties": {
             "Position": {
               "X": 0.0,
@@ -168,13 +162,10 @@
           }
         },
         {
-          "-CSTypeFullName": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "CS_OBJECT_FULL_NAME": "Lomztein.BFA2.Modification.Modifiers.StatMod",
           "Properties": {
             "Stats": [
-              {
-                "-CSTypeFullName": "Lomztein.BFA2.Modification.Modifiers.StatMod+Element",
-                "Value": {}
-              }
+              {}
             ],
             "_identifier": "UpgradeModIncreaseRange+20",
             "_name": "Range +20%",

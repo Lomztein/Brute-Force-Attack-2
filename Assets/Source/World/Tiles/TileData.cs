@@ -114,7 +114,14 @@ namespace Lomztein.BFA2.World.Tiles
 
         private void ResetTiles (TileType type)
         {
-            Tiles = TwodifyTiles(new TileTypeReference[Width * Height].Select(x => new TileTypeReference(type.Name)).ToArray());
+            Tiles = new TileTypeReference[Width, Height];
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Tiles[x, y] = new TileTypeReference(TileType.Empty.Name);
+                }
+            }
         }
 
         private TileTypeReference[] EnflattenTiles(TileTypeReference[,] walls)
@@ -141,17 +148,17 @@ namespace Lomztein.BFA2.World.Tiles
             return twodi;
         }
 
-        public ObjectModel Disassemble()
+        public PropertyModel Disassemble()
         {
-            return new ObjectModel (typeof (TileData), new ObjectField ("Tiles", new ArrayPropertyModel (typeof (TileTypeReference[]), EnflattenTiles(Tiles).Select(x => new ComplexPropertyModel(x.Disassemble())))));
+            return new ArrayPropertyModel (typeof (TileData[]), EnflattenTiles(Tiles).Select(x => x.Disassemble()));
         }
 
-        public void Assemble(ObjectModel source)
+        public void Assemble(PropertyModel source)
         {
-            Tiles = TwodifyTiles(source.GetArray("Tiles").Select(x => DeserializeTileTypeReference((x as ComplexPropertyModel).Model)).ToArray());
+            Tiles = TwodifyTiles((source as ArrayPropertyModel).Select(x => DeserializeTileTypeReference(x)).ToArray());
         }
 
-        private TileTypeReference DeserializeTileTypeReference (ObjectModel model)
+        private TileTypeReference DeserializeTileTypeReference (PropertyModel model)
         {
             TileTypeReference reference = new TileTypeReference();
             reference.Assemble(model);

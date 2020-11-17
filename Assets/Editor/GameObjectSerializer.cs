@@ -1,9 +1,8 @@
-﻿using Lomztein.BFA2.Serialization.Assemblers;
-using Lomztein.BFA2.Serialization.Assemblers.Turret;
+﻿using Lomztein.BFA2.Content.Assemblers;
+using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
-using Lomztein.BFA2.Serialization.Models.GameObject;
-using Lomztein.BFA2.Serialization.Serializers.GameObject;
-using Lomztein.BFA2.Serialization.Serializers.Turret;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Turrets;
 using Newtonsoft.Json.Linq;
 using System;
@@ -47,35 +46,32 @@ public class GameObjectSerializer : EditorWindow
 
     private void Disassemble()
     {
-        IGameObjectAssembler _assembler = new GameObjectAssembler();
-        GameObjectModelSerializer goSerializer = new GameObjectModelSerializer();
-
-        GameObjectTurretAssemblyAssembler _assemblyAssembler = new GameObjectTurretAssemblyAssembler();
-        TurretAssemblyModelSerializer tSerializer = new TurretAssemblyModelSerializer();
+        GameObjectAssembler _assembler = new GameObjectAssembler();
+        TurretAssemblyAssembler _assemblyAssembler = new TurretAssemblyAssembler();
 
         string path = Paths.StreamingAssets;
-        string data = string.Empty;
+        string data = "";
 
         switch (Type)
         {
             case TargetType.Assembly:
-                data = tSerializer.Serialize (_assemblyAssembler.Disassemble(Object.GetComponent<ITurretAssembly>())).ToString();
+                data = ObjectPipeline.SerializeObject(_assemblyAssembler.Disassemble(Object.GetComponent<ITurretAssembly>())).ToString();
                 break;
 
             case TargetType.GameObject:
-                data = goSerializer.Serialize(_assembler.Disassemble(Object)).ToString();
+                data = ObjectPipeline.SerializeObject(_assembler.Disassemble(Object)).ToString();
                 break;
         }
 
         path = path + Path + Object.name + ".json";
-        Debug.Log(path);
+
+
         File.WriteAllText(path, data);
     }
 
     private void Assemble()
     {
-        IGameObjectAssembler _assembler = new GameObjectAssembler();
-        GameObjectModelSerializer goSerializer = new GameObjectModelSerializer();
+        GameObjectAssembler _assembler = new GameObjectAssembler();
 
         string path = Paths.StreamingAssets;
         path += Path;
@@ -85,7 +81,7 @@ public class GameObjectSerializer : EditorWindow
         switch (Type)
         {
             case TargetType.GameObject:
-                _assembler.Assemble(goSerializer.Deserialize(data)).SetActive(true);
+                _assembler.Assemble(ObjectPipeline.DeserializeObject(data)).SetActive(true);
                 break;
         }
 

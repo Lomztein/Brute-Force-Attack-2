@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Serializers;
 using Newtonsoft.Json.Linq;
 using System;
@@ -17,11 +18,15 @@ namespace Lomztein.BFA2.Serialization
 
         public static object BuildObject (JToken token, Type type)
         {
-            ComplexModelSerializer serializer = new ComplexModelSerializer();
             ObjectAssembler assembler = new ObjectAssembler();
+            return assembler.Assemble(DeserializeObject(token), type);
+        }
 
+        public static ObjectModel DeserializeObject (JToken token)
+        {
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
             var model = serializer.Deserialize(token);
-            return assembler.Assemble(model, type);
+            return model;
         }
 
         public static JToken UnbuildObject (object obj)
@@ -30,6 +35,13 @@ namespace Lomztein.BFA2.Serialization
             ObjectAssembler assembler = new ObjectAssembler();
 
             return serializer.Serialize(assembler.Disassemble(obj));
+        }
+
+        public static JToken SerializeObject (ObjectModel model)
+        {
+            ComplexModelSerializer serializer = new ComplexModelSerializer();
+            var token = serializer.Serialize(model);
+            return token;
         }
     }
 }

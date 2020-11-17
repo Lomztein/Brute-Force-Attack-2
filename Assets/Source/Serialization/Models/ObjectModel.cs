@@ -25,6 +25,10 @@ namespace Lomztein.BFA2.Serialization.Models
 
         private List<ObjectField> _properties = new List<ObjectField>();
 
+        public ObjectModel()
+        {
+        }
+
         public ObjectModel(Type type) 
         {
             Type = type;
@@ -79,10 +83,6 @@ namespace Lomztein.BFA2.Serialization.Models
         public PropertyModel GetProperty(string name)
         {
             var field = GetField(name);
-            if (field == null)
-            {
-
-            }
             return GetField(name).Model;
         }
 
@@ -91,7 +91,14 @@ namespace Lomztein.BFA2.Serialization.Models
 
         public T GetValue<T>(string name)
         {
-            PrimitivePropertyModel property = GetField(name).Model as PrimitivePropertyModel;
+            var field = GetField(name);
+
+            if (field == null)
+            {
+
+            }
+
+            PrimitivePropertyModel property = field.Model as PrimitivePropertyModel;
             return property.ToObject<T>();
         }
 

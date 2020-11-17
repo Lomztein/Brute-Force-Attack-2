@@ -1,6 +1,6 @@
 ﻿using System;
-using Lomztein.BFA2.Serialization.Assemblers;
-using Lomztein.BFA2.Serialization.Models.GameObject;
+using Lomztein.BFA2.Content.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem.Objects
@@ -10,9 +10,9 @@ namespace Lomztein.BFA2.ContentSystem.Objects
     {
         private SceneCachedGameObject _cache;
 
-        public ContentCachedPrefab(IGameObjectModel model)
+        public ContentCachedPrefab(ObjectModel model)
         {
-            IGameObjectAssembler assembler = new GameObjectAssembler();
+            GameObjectAssembler assembler = new GameObjectAssembler();
             GameObject instance = assembler.Assemble(model);
 
             _cache = new SceneCachedGameObject(instance);

@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Turrets
         public Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
         [ModelProperty] public ModdableAttribute[] BaseAttributes;
-        protected List<ModdableAttribute> _modAttributes;
+        protected List<ModdableAttribute> _modAttributes = new List<ModdableAttribute>();
 
         public IStatContainer Stats { get; private set; } = new StatContainer();
         public IEventContainer Events { get; private set; } = new EventContainer();
