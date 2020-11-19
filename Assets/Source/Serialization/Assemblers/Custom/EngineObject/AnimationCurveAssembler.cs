@@ -46,7 +46,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                 new ObjectField ("InTangent", new PrimitivePropertyModel(frame.inTangent)),
                 new ObjectField ("OutTangent", new PrimitivePropertyModel(frame.outTangent)),
                 new ObjectField ("InWeight", new PrimitivePropertyModel(frame.inWeight)),
-                new ObjectField ("OutWeight", new PrimitivePropertyModel(frame.outWeight))).MakeImplicit();
+                new ObjectField ("OutWeight", new PrimitivePropertyModel(frame.outWeight)));
         }
     }
 }

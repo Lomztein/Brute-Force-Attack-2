@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public object Assemble (ObjectModel model, Type implicitType)
         {
-            Type type = model.ImplicitType ? implicitType : model.Type;
+            Type type = model.Type ?? implicitType;
             ICustomObjectAssembler custom = GetCustomAssembler(type);
             if (custom != null)
             {
@@ -35,7 +35,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
             else
             {
-                object obj = Activator.CreateInstance(model.ImplicitType ? implicitType : model.Type);
+                object obj = Activator.CreateInstance(type);
                 _populator.Populate(obj, model);
                 return obj;
             }

@@ -74,8 +74,8 @@ namespace Lomztein.BFA2.Content.Assemblers
                 new ObjectField("Tag", PropertyModelFactory.Create(gameObject.tag)),
                 new ObjectField("Layer", PropertyModelFactory.Create(gameObject.layer)),
                 new ObjectField("Static", PropertyModelFactory.Create(gameObject.isStatic)),
-                new ObjectField("Components", new ArrayPropertyModel(typeof(ObjectModel[]), componentModels.Select(x => new ComplexPropertyModel(x)))),
-                new ObjectField("Children", new ArrayPropertyModel(typeof(ObjectModel[]), GetChildren(gameObject).Select(x => new ComplexPropertyModel(Disassemble(x)))))
+                new ObjectField("Components", new ArrayPropertyModel(null, componentModels.Select(x => new ComplexPropertyModel(x).MakeExplicit()))),
+                new ObjectField("Children", new ArrayPropertyModel(null, GetChildren(gameObject).Select(x => new ComplexPropertyModel(Disassemble(x)))))
             );
         }
 

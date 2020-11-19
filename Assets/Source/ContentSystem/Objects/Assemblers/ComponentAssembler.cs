@@ -54,11 +54,11 @@ namespace Lomztein.BFA2.Content.Assemblers
             var assembler = GetEngineComponentAssembler(component.GetType());
             if (assembler != null)
             {
-                return assembler.Disassemble(component).MakeExplicit(); // Components are always explicit.
+                return assembler.Disassemble(component); // Components are always explicit.
             }
 
             ObjectPopulator populator = new ObjectPopulator();
-            return populator.Extract(component).MakeExplicit();
+            return populator.Extract(component);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace Lomztein.BFA2.Serialization.Models
         /// A property type is considered implicit if the type can be fetched from somewhere else, such as a field or array during assembly.
         /// If it cannot be fetched from somewhere else, for instance if it is a subtype, then it must be explicit.
         /// </summary>
-        public bool ImplicitType { get; private set; } = true;
         public virtual bool IsNull { get; private set; }
 
         private List<ObjectField> _properties = new List<ObjectField>();
@@ -32,18 +31,6 @@ namespace Lomztein.BFA2.Serialization.Models
         public ObjectModel(Type type) 
         {
             Type = type;
-        }
-
-        public ObjectModel MakeImplicit ()
-        {
-            ImplicitType = true;
-            return this;
-        }
-
-        public ObjectModel MakeExplicit()
-        {
-            ImplicitType = false;
-            return this;
         }
 
         public ObjectModel(Type type, params ObjectField[] properties)
@@ -92,12 +79,6 @@ namespace Lomztein.BFA2.Serialization.Models
         public T GetValue<T>(string name)
         {
             var field = GetField(name);
-
-            if (field == null)
-            {
-
-            }
-
             PrimitivePropertyModel property = field.Model as PrimitivePropertyModel;
             return property.ToObject<T>();
         }
