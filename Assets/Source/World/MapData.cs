@@ -1,7 +1,6 @@
 ﻿using Lomztein.BFA2.Content.Assemblers;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World.Tiles;
 using Newtonsoft.Json.Linq;
@@ -86,36 +85,36 @@ namespace Lomztein.BFA2.World
             return new Graph(nodes.ToArray(), edges.ToArray(), new TileGraphMap(Width, Height, nodeMap));
         }
 
-        public PropertyModel Disassemble()
+        public ValueModel Disassemble()
         {
             GameObjectAssembler assembler = new GameObjectAssembler();
             ObjectAssembler objectAssembler = new ObjectAssembler();
 
-            ObjectModel obj = new ObjectModel(typeof(MapData),
-                new ObjectField("Name", new PrimitivePropertyModel(Name)),
-                new ObjectField("Description", new PrimitivePropertyModel("Junk")),
-                new ObjectField("Width", new PrimitivePropertyModel(Width)),
-                new ObjectField("Height", new PrimitivePropertyModel(Height)),
+            ObjectModel obj = new ObjectModel(
+                new ObjectField("Name", new PrimitiveModel(Name)),
+                new ObjectField("Description", new PrimitiveModel("Junk")),
+                new ObjectField("Width", new PrimitiveModel(Width)),
+                new ObjectField("Height", new PrimitiveModel(Height)),
                 new ObjectField("Tiles", Tiles.Disassemble()),
-                new ObjectField("Objects", new ArrayPropertyModel(null, Objects.Select(x => new ComplexPropertyModel (x)).ToArray()))
+                new ObjectField("Objects", new ArrayModel(Objects))
                 );
 
-            return new ComplexPropertyModel(obj);
+            return obj;
         }
 
-        public void Assemble(PropertyModel source)
+        public void Assemble(ValueModel source)
         {
-            ObjectModel obj = (source as ComplexPropertyModel).Model;
+            ObjectModel obj = (source as ObjectModel);
 
             Name = obj.GetValue<string>("Name");
             Description = obj.GetValue<string>("Description");
             Width = obj.GetValue<int>("Width");
             Height = obj.GetValue<int>("Height");
             Tiles = AssembleTileData(obj.GetArray("Tiles"));
-            Objects = obj.GetArray("Objects").Select(x => (x as ComplexPropertyModel).Model).ToArray();
+            Objects = obj.GetArray("Objects").Elements.Cast<ObjectModel>().ToArray();
         }
 
-        private TileData AssembleTileData (ArrayPropertyModel array)
+        private TileData AssembleTileData (ArrayModel array)
         {
             TileData data = new TileData(Width, Height);
             data.Assemble(array);

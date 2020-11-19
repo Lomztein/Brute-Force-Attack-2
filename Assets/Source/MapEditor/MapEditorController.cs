@@ -146,7 +146,7 @@ namespace Lomztein.BFA2.MapEditor
             MapData.Objects = AssembleMapObjects();
             var model = MapData.Disassemble();
 
-            PropertyModelSerializer serializer = new PropertyModelSerializer();
+            ValueModelSerializer serializer = new ValueModelSerializer();
 
             File.WriteAllText(path, serializer.Serialize(model).ToString());
         }

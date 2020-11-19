@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.Assemblers.EngineObject;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
@@ -24,9 +23,9 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
         {
             Vector2Assembler assembler = new Vector2Assembler();
 
-            return new ObjectModel(typeof(BoxCollider2D),
-                new ObjectField("Offset", new ComplexPropertyModel(assembler.DisassembleValue(source.offset))),
-                new ObjectField("Size", new ComplexPropertyModel (assembler.DisassembleValue(source.size)))
+            return new ObjectModel(
+                new ObjectField("Offset", assembler.DisassembleValue(source.offset)),
+                new ObjectField("Size", assembler.DisassembleValue(source.size))
                 );
         }
     }

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.Assemblers.Property;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -16,7 +15,7 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
     {
         public override void Assemble(ObjectModel model, LineRenderer target)
         {
-            AllPropertyAssemblers assembler = new AllPropertyAssemblers();
+            ValueAssembler assembler = new ValueAssembler();
             RendererAssembler baseSerializer = new RendererAssembler();
 
             target.positionCount = model.GetValue<int>("PositionCount");
@@ -37,21 +36,21 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
 
         public override ObjectModel Disassemble(LineRenderer source)
         {
-            AllPropertyAssemblers assembler = new AllPropertyAssemblers();
+            ValueAssembler assembler = new ValueAssembler();
             RendererAssembler baseSerializer = new RendererAssembler(); // Base serialization could potentially be automated using reflection.
 
-            return new ObjectModel(typeof(LineRenderer), baseSerializer.Disassemble(source),
-                new ObjectField("PositionCount", new PrimitivePropertyModel(source.positionCount)),
-                new ObjectField("Positions", new ArrayPropertyModel(typeof (Vector3[]), GetPositions(source).Select(x => PropertyModelFactory.Create(x)))),
-                new ObjectField("Curve", PropertyModelFactory.Create(source.widthCurve)),
-                new ObjectField("Colors", PropertyModelFactory.Create(source.colorGradient)),
-                new ObjectField("CornerVerticies", new PrimitivePropertyModel(source.numCornerVertices)),
-                new ObjectField("CapVerticies", new PrimitivePropertyModel(source.numCapVertices)),
-                new ObjectField("Alignment", new PrimitivePropertyModel(source.alignment)),
-                new ObjectField("TextureMode", new PrimitivePropertyModel(source.textureMode)),
-                new ObjectField("ShadowBias", new PrimitivePropertyModel(source.shadowBias)),
-                new ObjectField("GenerateLighingData", new PrimitivePropertyModel(source.generateLightingData)),
-                new ObjectField("UseWorldSpace", new PrimitivePropertyModel(source.useWorldSpace)));
+            return new ObjectModel(baseSerializer.Disassemble(source),
+                new ObjectField("PositionCount", new PrimitiveModel(source.positionCount)),
+                new ObjectField("Positions", new ArrayModel(GetPositions(source).Select(x => ValueModelFactory.Create(x)))),
+                new ObjectField("Curve", ValueModelFactory.Create(source.widthCurve)),
+                new ObjectField("Colors", ValueModelFactory.Create(source.colorGradient)),
+                new ObjectField("CornerVerticies", new PrimitiveModel(source.numCornerVertices)),
+                new ObjectField("CapVerticies", new PrimitiveModel(source.numCapVertices)),
+                new ObjectField("Alignment", new PrimitiveModel(source.alignment)),
+                new ObjectField("TextureMode", new PrimitiveModel(source.textureMode)),
+                new ObjectField("ShadowBias", new PrimitiveModel(source.shadowBias)),
+                new ObjectField("GenerateLighingData", new PrimitiveModel(source.generateLightingData)),
+                new ObjectField("UseWorldSpace", new PrimitiveModel(source.useWorldSpace)));
         }
 
         private Vector3[] GetPositions (LineRenderer source)

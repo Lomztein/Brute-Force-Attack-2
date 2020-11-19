@@ -5,49 +5,31 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Models
 {
-    public class ObjectModel : IEnumerable<ObjectField>
+    public class ObjectModel : ValueModel, IEnumerable<ObjectField>
     {
-        public Type Type { get; private set; }
-
-        /// <summary>
-        /// A property type is considered implicit if the type can be fetched from somewhere else, such as a field or array during assembly.
-        /// If it cannot be fetched from somewhere else, for instance if it is a subtype, then it must be explicit.
-        /// </summary>
-        public virtual bool IsNull { get; private set; }
-
         private List<ObjectField> _properties = new List<ObjectField>();
 
         public ObjectModel()
         {
         }
 
-        public ObjectModel(Type type) 
+        public ObjectModel(params ObjectField[] properties)
         {
-            Type = type;
-        }
-
-        public ObjectModel(Type type, params ObjectField[] properties)
-        {
-            Type = type;
             _properties = properties.ToList();
         }
 
-        public static ObjectModel NullObject() =>
-            new ObjectModel(null) { IsNull = true };
-
         public void Add (string name, object value)
         {
-            _properties.Add(new ObjectField(name, PropertyModelFactory.Create(value)));
+            _properties.Add(new ObjectField(name, ValueModelFactory.Create(value)));
         }
 
-        public ObjectModel(Type type, ObjectModel baseModel, params ObjectField[] properties) : this(type, properties)
+        public ObjectModel(ObjectModel baseModel, params ObjectField[] properties) : this(properties)
         {
             _properties.AddRange(baseModel.GetProperties());
         }
@@ -64,29 +46,45 @@ namespace Lomztein.BFA2.Serialization.Models
             return ((IEnumerable<ObjectField>)_properties).GetEnumerator();
         }
 
-        public ObjectField GetField(string name)
+        private ObjectField GetField(string name)
             => GetProperties().FirstOrDefault(x => x.Name == name);
 
-        public PropertyModel GetProperty(string name)
+        public ValueModel GetProperty(string name)
         {
             var field = GetField(name);
             return GetField(name).Model;
         }
 
-        public T GetProperty<T>(string name) where T : PropertyModel
+        public T GetProperty<T>(string name) where T : ValueModel
             => (T)GetProperty(name);
 
         public T GetValue<T>(string name)
         {
             var field = GetField(name);
-            PrimitivePropertyModel property = field.Model as PrimitivePropertyModel;
+            PrimitiveModel property = field.Model as PrimitiveModel;
             return property.ToObject<T>();
         }
 
-        public ArrayPropertyModel GetArray(string name)
-            => GetProperty<ArrayPropertyModel>(name);
+        public ArrayModel GetArray(string name)
+            => GetProperty<ArrayModel>(name);
 
         public ObjectModel GetObject(string name)
-            => GetProperty<ComplexPropertyModel>(name).Model as ObjectModel;
+            => GetProperty<ObjectModel>(name);
+    }
+    public class ObjectField
+    {
+        public string Name { get; private set; }
+        public ValueModel Model { get; private set; }
+
+        public ObjectField(string name, ValueModel model)
+        {
+            Name = name;
+            Model = model;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}: {Model}";
+        }
     }
 }

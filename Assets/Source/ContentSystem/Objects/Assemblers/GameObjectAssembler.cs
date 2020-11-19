@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Utilities;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,13 +31,13 @@ namespace Lomztein.BFA2.Content.Assemblers
             var components = model.GetArray("Components");
             foreach (var component in components)
             {
-                _componentAssembler.Assemble((component as ComplexPropertyModel).Model, obj);
+                _componentAssembler.Assemble(component as ObjectModel, obj);
             }
 
             var children = model.GetArray("Children");
             foreach (var child in children)
             {
-                GameObject childObj = RecursiveAssemble((child as ComplexPropertyModel).Model);
+                GameObject childObj = RecursiveAssemble(child as ObjectModel);
 
                 Vector3 pos = childObj.transform.position;
                 Quaternion rot = childObj.transform.rotation;
@@ -66,16 +65,16 @@ namespace Lomztein.BFA2.Content.Assemblers
             var componentModels = new List<ObjectModel>();
             foreach (Component component in components)
             {
-                componentModels.Add(_componentAssembler.Disassemble(component));
+                componentModels.Add(_componentAssembler.Disassemble(component).MakeExplicit(component.GetType()) as ObjectModel);
             }
 
-            return new ObjectModel(typeof(ObjectModel),
-                new ObjectField("Name", PropertyModelFactory.Create(gameObject.name)),
-                new ObjectField("Tag", PropertyModelFactory.Create(gameObject.tag)),
-                new ObjectField("Layer", PropertyModelFactory.Create(gameObject.layer)),
-                new ObjectField("Static", PropertyModelFactory.Create(gameObject.isStatic)),
-                new ObjectField("Components", new ArrayPropertyModel(null, componentModels.Select(x => new ComplexPropertyModel(x).MakeExplicit()))),
-                new ObjectField("Children", new ArrayPropertyModel(null, GetChildren(gameObject).Select(x => new ComplexPropertyModel(Disassemble(x)))))
+            return new ObjectModel(
+                new ObjectField("Name", ValueModelFactory.Create(gameObject.name)),
+                new ObjectField("Tag", ValueModelFactory.Create(gameObject.tag)),
+                new ObjectField("Layer", ValueModelFactory.Create(gameObject.layer)),
+                new ObjectField("Static", ValueModelFactory.Create(gameObject.isStatic)),
+                new ObjectField("Components", new ArrayModel(componentModels)),
+                new ObjectField("Children", new ArrayModel(GetChildren(gameObject).Select(x => Disassemble(x))))
             );
         }
 

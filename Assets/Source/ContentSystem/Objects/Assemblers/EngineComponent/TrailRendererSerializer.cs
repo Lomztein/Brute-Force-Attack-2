@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lomztein.BFA2.Serialization.Assemblers.Property;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
     {
         public override void Assemble(ObjectModel model, TrailRenderer target)
         {
-            AllPropertyAssemblers assembler = new AllPropertyAssemblers();
+            ValueAssembler assembler = new ValueAssembler();
             RendererAssembler baseAssembler = new RendererAssembler();
 
             target.widthCurve = (AnimationCurve)assembler.Assemble(model.GetProperty("Curve"), typeof(AnimationCurve));
@@ -38,19 +37,19 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
         {
             RendererAssembler baseAssembler = new RendererAssembler();
 
-            return new ObjectModel(typeof(TrailRenderer), baseAssembler.Disassemble(source),
-                new ObjectField("Curve", PropertyModelFactory.Create (source.widthCurve)),
-                new ObjectField("Time", new PrimitivePropertyModel(source.time)),
-                new ObjectField("MinVertexDistance", new PrimitivePropertyModel(source.minVertexDistance)),
-                new ObjectField("Autodestruct", new PrimitivePropertyModel(source.autodestruct)),
-                new ObjectField("Emitting", new PrimitivePropertyModel(source.emitting)),
-                new ObjectField("Color", PropertyModelFactory.Create(source.colorGradient)),
-                new ObjectField("CornerVertices", new PrimitivePropertyModel(source.numCornerVertices)),
-                new ObjectField("CapVertices", new PrimitivePropertyModel(source.numCapVertices)),
-                new ObjectField("Alignment", new PrimitivePropertyModel(source.alignment)),
-                new ObjectField("TextureMode", new PrimitivePropertyModel(source.textureMode)),
-                new ObjectField("GenerateLigtingData", new PrimitivePropertyModel(source.generateLightingData)),
-                new ObjectField("ShadowBias", new PrimitivePropertyModel(source.shadowBias))
+            return new ObjectModel(baseAssembler.Disassemble(source),
+                new ObjectField("Curve", ValueModelFactory.Create (source.widthCurve)),
+                new ObjectField("Time", new PrimitiveModel(source.time)),
+                new ObjectField("MinVertexDistance", new PrimitiveModel(source.minVertexDistance)),
+                new ObjectField("Autodestruct", new PrimitiveModel(source.autodestruct)),
+                new ObjectField("Emitting", new PrimitiveModel(source.emitting)),
+                new ObjectField("Color", ValueModelFactory.Create(source.colorGradient)),
+                new ObjectField("CornerVertices", new PrimitiveModel(source.numCornerVertices)),
+                new ObjectField("CapVertices", new PrimitiveModel(source.numCapVertices)),
+                new ObjectField("Alignment", new PrimitiveModel(source.alignment)),
+                new ObjectField("TextureMode", new PrimitiveModel(source.textureMode)),
+                new ObjectField("GenerateLigtingData", new PrimitiveModel(source.generateLightingData)),
+                new ObjectField("ShadowBias", new PrimitiveModel(source.shadowBias))
                 );
         }
     }

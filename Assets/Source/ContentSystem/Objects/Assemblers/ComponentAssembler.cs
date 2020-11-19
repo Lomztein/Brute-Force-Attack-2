@@ -31,20 +31,20 @@ namespace Lomztein.BFA2.Content.Assemblers
 
         public void Assemble (ObjectModel model, GameObject target)
         {
-            var serializer = GetEngineComponentAssembler(model.Type);
+            var serializer = GetEngineComponentAssembler(model.ValueType);
             if (serializer != null)
             {
-                Component comp = target.GetComponent(model.Type);
+                Component comp = target.GetComponent(model.ValueType);
                 if (comp == null)
                 {
-                     comp = target.AddComponent(model.Type);
+                     comp = target.AddComponent(model.ValueType);
                 }
 
                 serializer.Assemble(model, comp);
                 return;
             }
 
-            Component component = target.AddComponent(model.Type);
+            Component component = target.AddComponent(model.ValueType);
             ObjectPopulator populator = new ObjectPopulator();
             populator.Populate(component, model);
         }

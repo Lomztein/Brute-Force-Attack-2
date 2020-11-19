@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers.EngineObject;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -30,10 +29,10 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
         {
             Vector3Assembler assembler = new Vector3Assembler();
 
-            return new ObjectModel(typeof(Transform),
-                new ObjectField("Position", new ComplexPropertyModel(assembler.DisassembleValue(source.localPosition))),
-                new ObjectField("Rotation", new ComplexPropertyModel(assembler.DisassembleValue(source.localRotation.eulerAngles))),
-                new ObjectField("Scale", new ComplexPropertyModel(assembler.DisassembleValue(source.localScale)))
+            return new ObjectModel(
+                new ObjectField("Position", assembler.DisassembleValue(source.localPosition)),
+                new ObjectField("Rotation", assembler.DisassembleValue(source.localRotation.eulerAngles)),
+                new ObjectField("Scale", assembler.DisassembleValue(source.localScale))
                 );
         }
     }

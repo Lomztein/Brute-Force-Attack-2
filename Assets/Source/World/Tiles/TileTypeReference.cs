@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -19,14 +18,14 @@ namespace Lomztein.BFA2.World.Tiles
             TileType = type;
         }
 
-        public void Assemble(PropertyModel source)
+        public void Assemble(ValueModel source)
         {
-            TileType = (source as PrimitivePropertyModel).ToObject<string>();
+            TileType = (source as PrimitiveModel).ToObject<string>();
         }
 
-        public PropertyModel Disassemble()
+        public ValueModel Disassemble()
         {
-            return new PrimitivePropertyModel(TileType);
+            return new PrimitiveModel(TileType);
         }
 
         public bool IsType(TileType type) => TileType != null && TileType == type?.Name;

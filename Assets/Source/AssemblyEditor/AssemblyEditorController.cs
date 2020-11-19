@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Turrets;
 using Newtonsoft.Json.Linq;
 using System;
@@ -63,7 +64,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             var model = ObjectPipeline.DeserializeObject(json);
 
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
-            CurrentAsssembly = assembler.Assemble(model);
+            CurrentAsssembly = assembler.Assemble(model as ObjectModel);
 
             if (CurrentAsssembly is Component comp)
             {

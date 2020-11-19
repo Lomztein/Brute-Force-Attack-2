@@ -22,24 +22,28 @@ namespace Lomztein.BFA2.Serialization
             return assembler.Assemble(DeserializeObject(token), type);
         }
 
-        public static ObjectModel DeserializeObject (JToken token)
+        public static ValueModel DeserializeObject (JToken token)
         {
-            ComplexModelSerializer serializer = new ComplexModelSerializer();
+            ValueModelSerializer serializer = new ValueModelSerializer();
             var model = serializer.Deserialize(token);
             return model;
         }
 
-        public static JToken UnbuildObject (object obj)
+        public static JToken UnbuildObject (object obj, bool implicitType = false)
         {
-            ComplexModelSerializer serializer = new ComplexModelSerializer();
-            ObjectAssembler assembler = new ObjectAssembler();
+            ValueModelSerializer serializer = new ValueModelSerializer();
+            ValueAssembler assembler = new ValueAssembler();
 
-            return serializer.Serialize(assembler.Disassemble(obj));
+            var model = assembler.Disassemble(obj, typeof(object));
+            if (implicitType)
+                model.MakeImplicit();
+
+            return serializer.Serialize(model);
         }
 
         public static JToken SerializeObject (ObjectModel model)
         {
-            ComplexModelSerializer serializer = new ComplexModelSerializer();
+            ValueModelSerializer serializer = new ValueModelSerializer();
             var token = serializer.Serialize(model);
             return token;
         }

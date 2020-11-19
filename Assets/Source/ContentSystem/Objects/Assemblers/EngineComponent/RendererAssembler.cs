@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -29,15 +28,15 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
 
         public override ObjectModel Disassemble(Renderer source)
         {
-            return new ObjectModel(typeof(Renderer),
-                new ObjectField("ShadowCastingMode", new PrimitivePropertyModel(source.shadowCastingMode)),
-                new ObjectField("RecieveShadows", new PrimitivePropertyModel(source.receiveShadows)),
-                new ObjectField("LightProbeUsage", new PrimitivePropertyModel(source.lightProbeUsage)),
-                new ObjectField("ReflectionProbeUsage", new PrimitivePropertyModel(source.reflectionProbeUsage)),
-                new ObjectField("MotionVectorGenerationMode", new PrimitivePropertyModel(source.motionVectorGenerationMode)),
-                new ObjectField("AllowOcclusionWhenDynamic", new PrimitivePropertyModel(source.allowOcclusionWhenDynamic)),
-                new ObjectField("SortingLayer", new PrimitivePropertyModel(source.sortingLayerID)),
-                new ObjectField("OrderInLayer", new PrimitivePropertyModel(source.sortingOrder))
+            return new ObjectModel(
+                new ObjectField("ShadowCastingMode", new PrimitiveModel(source.shadowCastingMode)),
+                new ObjectField("RecieveShadows", new PrimitiveModel(source.receiveShadows)),
+                new ObjectField("LightProbeUsage", new PrimitiveModel(source.lightProbeUsage)),
+                new ObjectField("ReflectionProbeUsage", new PrimitiveModel(source.reflectionProbeUsage)),
+                new ObjectField("MotionVectorGenerationMode", new PrimitiveModel(source.motionVectorGenerationMode)),
+                new ObjectField("AllowOcclusionWhenDynamic", new PrimitiveModel(source.allowOcclusionWhenDynamic)),
+                new ObjectField("SortingLayer", new PrimitiveModel(source.sortingLayerID)),
+                new ObjectField("OrderInLayer", new PrimitiveModel(source.sortingOrder))
             );
         }
     }

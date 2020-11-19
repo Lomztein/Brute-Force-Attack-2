@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers.EngineObject;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -28,11 +27,10 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
             Vector2Assembler vs = new Vector2Assembler();
 
             return new ObjectModel(
-                typeof (CircleCollider2D),
-                new ObjectField ("Radius", new PrimitivePropertyModel(source.radius)),
-                new ObjectField("Offset", new ComplexPropertyModel(vs.DisassembleValue(source.offset))),
-                new ObjectField("IsTrigger", new PrimitivePropertyModel(source.isTrigger)),
-                new ObjectField("UsedByEffector", new PrimitivePropertyModel(source.usedByEffector)));
+                new ObjectField ("Radius", new PrimitiveModel(source.radius)),
+                new ObjectField("Offset", vs.DisassembleValue(source.offset)),
+                new ObjectField("IsTrigger", new PrimitiveModel(source.isTrigger)),
+                new ObjectField("UsedByEffector", new PrimitiveModel(source.usedByEffector)));
         }
     }
 }

@@ -1,32 +1,49 @@
 {
-  "One": {
-    "CS_PROPERTY_TYPE_FULL_NAME": "PolymorphicSerializationTest+Orange",
-    "Value": {
-      "Peeled": false,
-      "Eatability": 0.0
-    }
-  },
-  "Two": {
-    "CS_PROPERTY_TYPE_FULL_NAME": "PolymorphicSerializationTest+Pear",
-    "Value": {
-      "Sweetness": 0.0,
-      "Eatability": 0.0
-    }
-  },
-  "Fruits": [
-    {
-      "CS_PROPERTY_TYPE_FULL_NAME": "PolymorphicSerializationTest+Orange",
-      "Value": {
+  "ValueType": "PolymorphicSerializationTest+FruitContainer",
+  "ValueData": {
+    "Two": {
+      "ValueType": "PolymorphicSerializationTest+Orange",
+      "ValueData": {
         "Peeled": false,
         "Eatability": 0.0
       }
     },
-    {
-      "CS_PROPERTY_TYPE_FULL_NAME": "PolymorphicSerializationTest+Pear",
-      "Value": {
+    "One": {
+      "ValueType": "PolymorphicSerializationTest+Pear",
+      "ValueData": {
         "Sweetness": 0.0,
         "Eatability": 0.0
       }
-    }
-  ]
+    },
+    "Fruits": [
+        {
+            "ValueType": "PolymorphicSerializationTest+Orange",
+            "ValueData": {
+                "Peeled": true,
+                "Eatability": 2.4
+            }
+        },
+        {
+            "ValueType": "PolymorphicSerializationTest+Pear",
+            "ValueData": {
+                "Sweetness": 5.5,
+                "Eatability": 55555.0
+            }
+        },
+        {
+            "ValueType": "PolymorphicSerializationTest+Pear",
+            "ValueData": {
+                "Sweetness": 0.0,
+                "Eatability": 0.0
+            }
+        },
+        {
+            "ValueType": "PolymorphicSerializationTest+Orange",
+            "ValueData": {
+                "Peeled": false,
+                "Eatability": 8008135.0
+            }
+        }
+    ]
+  }
 }

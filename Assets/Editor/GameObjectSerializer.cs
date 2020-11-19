@@ -81,7 +81,7 @@ public class GameObjectSerializer : EditorWindow
         switch (Type)
         {
             case TargetType.GameObject:
-                _assembler.Assemble(ObjectPipeline.DeserializeObject(data)).SetActive(true);
+                _assembler.Assemble(ObjectPipeline.DeserializeObject(data) as ObjectModel).SetActive(true);
                 break;
         }
 

@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Serialization.Assemblers.Property;
-using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +11,21 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 {
     public class ObjectPopulator
     {
-        private IPropertyAssembler _propertyAssembler;
+        private IValueAssembler _propertyAssembler;
 
-        public ObjectPopulator (IPropertyAssembler assembler)
+        public ObjectPopulator (IValueAssembler assembler)
         {
             _propertyAssembler = assembler;
         }
 
         public ObjectPopulator()
         {
-            _propertyAssembler = new AllPropertyAssemblers();
+            _propertyAssembler = new ValueAssembler();
         }
 
         public void Populate (object obj, ObjectModel model)
         {
-            Type modelType = model.Type ?? obj.GetType();
+            Type modelType = model.ValueType ?? obj.GetType();
             IEnumerable<FieldInfo> fields = GetModelFields(modelType);
 
             foreach (var field in fields)
@@ -59,7 +58,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                     var model = _propertyAssembler.Disassemble(componentValue, info.FieldType);
                     if (componentValue != null && componentValue.GetType() != info.FieldType)
                     {
-                        model.MakeExplicit();
+                        model.MakeExplicit(componentValue.GetType());
                     }
 
                     properties.Add(new ObjectField(info.Name, model));
@@ -72,7 +71,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             }
 
-            return new ObjectModel(objectType, properties.ToArray());
+            return new ObjectModel(properties.ToArray());
         }
 
         private IEnumerable<FieldInfo> GetModelFields(Type type)

@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.ContentSystem
                 info.Version = "Unknown Version";
                 info.Description = "Unknown Description";
 
-                File.WriteAllText(Path.Combine(path, ABOUT_FILE), ObjectPipeline.UnbuildObject(info).ToString());
+                File.WriteAllText(Path.Combine(path, ABOUT_FILE), ObjectPipeline.UnbuildObject(info, true).ToString());
             }
 
             return new ContentPack(path + "/", info.Name, info.Author, info.Description);

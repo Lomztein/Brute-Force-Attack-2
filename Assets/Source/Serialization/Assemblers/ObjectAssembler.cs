@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Serialization.Assemblers.Custom;
-using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -9,50 +8,26 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization.Assemblers
 {
-    public class ObjectAssembler
+    public class ObjectAssembler : IValueAssembler
     {
         private ObjectPopulator _populator = new ObjectPopulator();
-        private ICustomObjectAssembler[] _customAssemblers;
 
-        private ICustomObjectAssembler[] GetCustomAssemblers ()
+        public object Assemble (ValueModel model, Type implicitType)
         {
-            if (_customAssemblers == null)
-            {
-                _customAssemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<ICustomObjectAssembler>().ToArray();
-            }
-            return _customAssemblers;
+            Type type = model.ValueType ?? implicitType;
+            object obj = Activator.CreateInstance(type);
+            _populator.Populate(obj, model as ObjectModel);
+            return obj;
         }
 
-        private ICustomObjectAssembler GetCustomAssembler(Type type) => GetCustomAssemblers().FirstOrDefault(x => x.CanAssemble(type));
+        public bool CanAssemble(Type type) => IsComplex(type);
 
-        public object Assemble (ObjectModel model, Type implicitType)
-        {
-            Type type = model.Type ?? implicitType;
-            ICustomObjectAssembler custom = GetCustomAssembler(type);
-            if (custom != null)
-            {
-                return custom.Assemble(model, implicitType);
-            }
-            else
-            {
-                object obj = Activator.CreateInstance(type);
-                _populator.Populate(obj, model);
-                return obj;
-            }
-        }
+        public static bool IsComplex(Type type)
+            => !type.IsPrimitive && type != typeof(string) && !type.IsEnum;
 
-        public ObjectModel Disassemble(object obj)
+        public ValueModel Disassemble(object obj, Type type)
         {
-            Type type = obj.GetType();
-            ICustomObjectAssembler custom = GetCustomAssembler(type);
-            if (custom != null)
-            {
-                return custom.Disassemble(obj);
-            }
-            else
-            {
-                return _populator.Extract(obj);
-            }
+            return _populator.Extract(obj);
         }
     }
 }

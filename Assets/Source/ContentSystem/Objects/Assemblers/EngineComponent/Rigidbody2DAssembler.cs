@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
@@ -19,8 +18,8 @@ namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
 
         public override ObjectModel Disassemble(Rigidbody2D source)
         {
-            return new ObjectModel(typeof(Rigidbody2D),
-                new ObjectField ("BodyType", new PrimitivePropertyModel(source.bodyType))
+            return new ObjectModel(
+                new ObjectField ("BodyType", new PrimitiveModel(source.bodyType))
                 );
         }
     }

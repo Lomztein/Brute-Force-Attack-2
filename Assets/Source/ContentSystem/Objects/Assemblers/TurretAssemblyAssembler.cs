@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Turrets;
 using System;
 using System.Collections.Generic;
@@ -27,11 +26,11 @@ namespace Lomztein.BFA2.Content.Assemblers
 
         public ObjectModel Disassemble (ITurretAssembly assembly)
         {
-            return new ObjectModel(null,
-                new ObjectField("Name", PropertyModelFactory.Create(assembly.Name)),
-                new ObjectField("Description", PropertyModelFactory.Create(assembly.Description)),
-                new ObjectField("RootComponent", new ComplexPropertyModel (_assembler.Dissassemble(assembly.GetRootComponent())
-                )));
+            return new ObjectModel(
+                new ObjectField("Name", ValueModelFactory.Create(assembly.Name)),
+                new ObjectField("Description", ValueModelFactory.Create(assembly.Description)),
+                new ObjectField("RootComponent", _assembler.Dissassemble(assembly.GetRootComponent())
+                ));
         }
     }
 }

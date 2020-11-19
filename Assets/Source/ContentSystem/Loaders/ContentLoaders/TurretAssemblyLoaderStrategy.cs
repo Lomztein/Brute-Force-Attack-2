@@ -18,8 +18,8 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         public object Load(string path, Type type)
         {
             var data = DataSerialization.FromFile(path);
-            ObjectModel model = ObjectPipeline.DeserializeObject(data);
-            return new ContentCachedTurretAssemblyPrefab (model);
+            var model = ObjectPipeline.DeserializeObject(data);
+            return new ContentCachedTurretAssemblyPrefab (model as ObjectModel);
         }
     }
 }

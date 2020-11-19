@@ -1,7 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Serialization.Models.Property;
 using Lomztein.BFA2.Turrets;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +32,9 @@ namespace Lomztein.BFA2.Content.Assemblers
             }
 
             ITurretComponent newComponent = obj.GetComponent<ITurretComponent>();
-            foreach (PropertyModel child in model.GetArray("Children"))
+            foreach (ValueModel child in model.GetArray("Children"))
             {
-                Assemble((child as ComplexPropertyModel).Model, newComponent, assembly);
+                Assemble(child as ObjectModel, newComponent, assembly);
             }
         }
 
@@ -52,10 +51,10 @@ namespace Lomztein.BFA2.Content.Assemblers
                 }
             }
 
-            return new ObjectModel(null,
-                new ObjectField("UniqueIdentifier", PropertyModelFactory.Create(component.UniqueIdentifier)),
-                new ObjectField("LocalPosition", PropertyModelFactory.Create(obj.transform.localPosition)),
-                new ObjectField("Children", new ArrayPropertyModel(null, children.Select(x => new ComplexPropertyModel(x))))
+            return new ObjectModel(
+                new ObjectField("UniqueIdentifier", ValueModelFactory.Create(component.UniqueIdentifier)),
+                new ObjectField("LocalPosition", ValueModelFactory.Create(obj.transform.localPosition)),
+                new ObjectField("Children", new ArrayModel(children))
                 );
         }
 
