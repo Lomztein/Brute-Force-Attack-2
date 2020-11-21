@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     {
         private IModdable _moddable;
 
-        protected void Awake()
+        protected void Start()
         {
             _moddable = GetComponent<IModdable>();
             DelayedBroadcast();

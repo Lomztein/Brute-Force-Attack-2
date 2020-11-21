@@ -18,17 +18,17 @@ namespace Lomztein.BFA2.Content.Assemblers
         public void Assemble (ObjectModel model, TurretComponent parent, TurretAssembly assembly)
         {
             IContentCachedPrefab component = GetComponent(model.GetValue<string>("UniqueIdentifier"));
-            ObjectAssembler assembler = new ObjectAssembler();
+            ValueAssembler assembler = new ValueAssembler();
             GameObject obj = component.Instantiate();
 
             if (parent != null)
             {
-                obj.transform.SetParent((parent as Component).transform);
+                obj.transform.SetParent(parent.transform);
                 obj.transform.localPosition = (Vector3)assembler.Assemble (model.GetObject("LocalPosition"), typeof (Vector3));
             }
             else
             {
-                obj.transform.SetParent((assembly as Component).transform);
+                obj.transform.SetParent(assembly.transform);
                 obj.transform.localPosition = Vector3.zero;
             }
 

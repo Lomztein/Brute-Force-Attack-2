@@ -1,0 +1,236 @@
+{
+  "Name": "RocketLauncherT1",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "ValueType": "UnityEngine.Transform",
+      "ValueData": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+      "ValueData": {
+        "ProjectilePrefab": {
+          "Path": "Resources/Projectiles/RocketProjectile"
+        },
+        "FireTreshold": 1.0,
+        "HitLayer": {
+          "Mask": 256
+        },
+        "BaseDamage": 75.0,
+        "BaseProjectileAmount": 1,
+        "BaseSpread": 0.0,
+        "BaseSpeed": 20.0,
+        "BaseFirerate": 0.5,
+        "Color": "Red",
+        "_name": "Rocket Launcher",
+        "_description": "Fwooompff -BOOOOOM",
+        "_uniqueIdentifier": "Core.RocketLauncherT1",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 250
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Small",
+        "_height": "Small"
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "ValueData": {
+        "AnimationSprites": [],
+        "DefaultSprite": {
+          "Path": "Core/Sprites/Components/RocketLauncherT1.png",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 32.0
+        },
+        "PlaySpeedMultiplier": 1.0
+      }
+    },
+    {
+      "ValueType": "UnityEngine.CircleCollider2D",
+      "ValueData": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Structures.Upgrading.TurretComponentTypeUpgrader",
+      "ValueData": {
+        "UpgradeComponentIdentifier": "Core.RocketLauncherT2"
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
+        "ValueData": {
+            "Mod": {
+                "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+                "ValueData": {
+                    "DamageMultBase": 0.2,
+                    "RangeBase": 0.5,
+                    "DamageMultStack": 1.5,
+                    "RangeStack": 1.2,
+                    "ExplosionPrefab": {
+                        "Path": "Core/Projectiles/Explosion.json"
+                    },
+                    "DestroyProjectile": true,
+                    "_identifier": "Core.ExplodeOnProjectileHit",
+                    "_name": "Explode on Hit",
+                    "_description": "Volatile energies cause the projectile to explode when it hits something.",
+                    "RequiredAttributes": [ "Weapon" ]
+                }
+            }
+        }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites/Components/RocketLauncherT1.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Muzzles",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "ValueType": "UnityEngine.Transform",
+              "ValueData": {
+                "Position": {
+                  "X": 0.5,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            }
+          ],
+          "Children": []
+        }
+      ]
+    }
+  ]
+}

@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Battlefield
         {
             "Core.SmallBase",
             "Core.SmallRotator",
-            "Core.LaserCannonT1",
+            "Core.PulseLaserT1",
             "Core.MachineGunT1",
             "Core.RocketLauncherT1",
             "Core.AuxilleryProcessor"
