@@ -1,9 +1,7 @@
-﻿using Lomztein.BFA2.ContentSystem.Objects;
-using Lomztein.BFA2.Turrets.Highlighters;
+﻿using Lomztein.BFA2.Structures.Highlighters;
 using Lomztein.BFA2.UI.ContextMenu.Menus;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
 using Lomztein.BFA2.UI.Windows;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

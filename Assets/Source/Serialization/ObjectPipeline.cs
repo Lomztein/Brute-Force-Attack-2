@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Serialization
 
         public static object BuildObject (JToken token, Type type)
         {
-            ObjectAssembler assembler = new ObjectAssembler();
+            ValueAssembler assembler = new ValueAssembler();
             return assembler.Assemble(DeserializeObject(token), type);
         }
 

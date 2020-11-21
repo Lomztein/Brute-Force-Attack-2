@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
         public override ObjectModel DisassembleValue(Color value)
         {
             return new ObjectModel(
-                new ObjectField ("Red", new PrimitiveModel(value.r)),
+                new ObjectField("Red", new PrimitiveModel(value.r)),
                 new ObjectField("Green", new PrimitiveModel(value.g)),
                 new ObjectField("Blue", new PrimitiveModel(value.b)),
                 new ObjectField("Alpha", new PrimitiveModel(value.a))

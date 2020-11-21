@@ -7,10 +7,9 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Research.Requirements
 {
-    public abstract class CompletionRequirement : MonoBehaviour
+    public abstract class CompletionRequirement 
     {
         public abstract string Description { get; }
-
         public abstract float Progress { get; }
         public abstract string Status { get; }
 

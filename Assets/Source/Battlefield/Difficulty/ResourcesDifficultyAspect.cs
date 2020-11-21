@@ -17,8 +17,8 @@ namespace Lomztein.BFA2.Battlefield.Difficulty
         public DifficultyAspectCategory Category => DifficultyAspectCategory.Resources;
 
 
-        public int StartingCredits = 1000000;
-        public int StartingResearch = 0;
+        public int StartingCredits = 1000;
+        public int StartingResearch = 2;
 
         public void Apply()
         {

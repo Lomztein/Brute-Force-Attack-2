@@ -1,0 +1,78 @@
+{
+  "Name": "Explosion",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Components": [
+    {
+      "ValueType": "UnityEngine.Transform",
+      "ValueData": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Weaponary.Misc.Explosion",
+      "ValueData": {
+        "Layer": {
+          "Mask": 256
+        },
+        "ParticleBaseRange": 1.0,
+        "Life": 1.0
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Effect",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+          "ValueData": {
+            "Reference": {
+              "Path": "Resources/Particles/ExplosionParticle"
+            },
+            "NameOverride": ""
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

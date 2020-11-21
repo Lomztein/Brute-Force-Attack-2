@@ -1,9 +1,7 @@
 ﻿using Lomztein.BFA2.Content.Assemblers;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.Assemblers;
-using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Turrets;
+using Lomztein.BFA2.Structures.Turrets;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
@@ -55,7 +53,7 @@ public class GameObjectSerializer : EditorWindow
         switch (Type)
         {
             case TargetType.Assembly:
-                data = ObjectPipeline.SerializeObject(_assemblyAssembler.Disassemble(Object.GetComponent<ITurretAssembly>())).ToString();
+                data = ObjectPipeline.SerializeObject(_assemblyAssembler.Disassemble(Object.GetComponent<TurretAssembly>())).ToString();
                 break;
 
             case TargetType.GameObject:

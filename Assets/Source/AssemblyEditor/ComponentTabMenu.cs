@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI.Menus;
 using Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab;
@@ -22,7 +23,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             List<CachedPrefabPickMenu> menus = new List<CachedPrefabPickMenu>();
 
             IContentCachedPrefab[] prefabs = LoadComponents();
-            var groups = prefabs.GroupBy(x => x.GetCache().GetComponent<ITurretComponent>().Category);
+            var groups = prefabs.GroupBy(x => x.GetCache().GetComponent<TurretComponent>().Category);
             foreach (var group in groups)
             {
                 var menuObj = Instantiate(ComponentMenuPrefab, ComponentMenuParent);

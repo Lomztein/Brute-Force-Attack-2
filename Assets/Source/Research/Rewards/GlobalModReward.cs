@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Modification;
-using Lomztein.BFA2.Modification.Globals;
 using Lomztein.BFA2.Modification.Modifiers;
 using Lomztein.BFA2.Serialization;
 using System.Collections;
@@ -12,29 +11,13 @@ namespace Lomztein.BFA2.Research.Rewards
     {
         [ModelProperty]
         public string TargetGlobalModManager;
-        private IMod _mod;
+        [ModelProperty]
+        public IMod Mod;
 
-        public override string Description => GetMod().ToString();
+        public override string Description => Mod.ToString();
 
         public override void ApplyReward()
         {
-            GlobalMod gmod = new GlobalMod(x => Fits(x), TargetGlobalModManager, GetMod());
-            GlobalMods.Instance.TakeMod(gmod);
-        }
-
-        private IMod GetMod ()
-        {
-            if (_mod == null)
-            {
-                _mod = transform.Find("Mod").GetComponent<IMod>();
-            }
-            return _mod;
-        }
-
-        private bool Fits (IModdable moddable)
-        {
-            bool fits = moddable.IsCompatableWith(GetMod());
-            return fits;
         }
     }
 }

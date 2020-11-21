@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public object Assemble (ValueModel model, Type implicitType)
         {
-            Type type = model.ValueType ?? implicitType;
+            Type type = model.IsTypeImplicit ? implicitType : model.GetModelType();
             object obj = Activator.CreateInstance(type);
             _populator.Populate(obj, model as ObjectModel);
             return obj;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.ContentSystem.References;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private readonly int _seed;
         private System.Random _random;
 
-        private readonly GameObject _spawner;
+        private readonly ContentPrefabReference _spawner;
         private readonly float _credits;
         private readonly float _frequency;
         private readonly int _maxSequence;
@@ -21,7 +22,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private const float MaxSpawnFrequency = 200f;
         private const float MinSpawnFrequency = 0.5f;
 
-        public CompositeWaveGenerator (GameObject spawner, int seed, float credits, float frequency, int maxSequence, int maxParallel)
+        public CompositeWaveGenerator (ContentPrefabReference spawner, int seed, float credits, float frequency, int maxSequence, int maxParallel)
         {
             _seed = seed;
             _spawner = spawner;

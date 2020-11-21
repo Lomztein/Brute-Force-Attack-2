@@ -1,7 +1,6 @@
-﻿using Lomztein.BFA2.ContentSystem.Objects;
-using Lomztein.BFA2.Placement;
-using Lomztein.BFA2.Turrets;
-using Lomztein.BFA2.Turrets.Attachment;
+﻿using Lomztein.BFA2.Placement;
+using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.Structures.Turrets.Attachment;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -19,8 +18,8 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         private GameObject _obj;
         private GameObject _model;
-        private ITurretComponent _component;
-        private Tuple<ITurretComponent, Vector3> _target;
+        private TurretComponent _component;
+        private Tuple<TurretComponent, Vector3> _target;
 
         public bool Finish()
         {
@@ -38,7 +37,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             _obj = obj;
             _model = UnityUtils.InstantiateMockGO(_obj);
-            _component = _obj.GetComponent<ITurretComponent>();
+            _component = _obj.GetComponent<TurretComponent>();
             _obj.SetActive(false);
             return _component != null;
         }
@@ -57,18 +56,18 @@ namespace Lomztein.BFA2.AssemblyEditor
             return false;
         }
 
-        private IEnumerable<Tuple<ITurretComponent, Vector3>> GetMatches(Vector3 position)
+        private IEnumerable<Tuple<TurretComponent, Vector3>> GetMatches(Vector3 position)
         {
-            ITurretComponent[] components = Physics2D.OverlapPointAll(position).Select(x => x.GetComponent<ITurretComponent>()).Where(x => x != null).ToArray();
+            TurretComponent[] components = Physics2D.OverlapPointAll(position).Select(x => x.GetComponent<TurretComponent>()).Where(x => x != null).ToArray();
             AttachmentPoint checkPoint = _component.GetLowerAttachmentPoints().FirstOrDefault();
 
             if (checkPoint == null)
             {
-                return new Tuple<ITurretComponent, Vector3>[0];
+                return new Tuple<TurretComponent, Vector3>[0];
             }
 
-            var matches = new List<Tuple<ITurretComponent, Vector3>>();
-            foreach (ITurretComponent component in components)
+            var matches = new List<Tuple<TurretComponent, Vector3>>();
+            foreach (TurretComponent component in components)
             {
                 AttachmentPoint[] points = component.GetUpperAttachmentPoints();
                 foreach (var point in points)
@@ -76,7 +75,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                     Vector2 offset = point.LocalPosition - checkPoint.LocalPosition;
                     if (Matches(points, _component.GetLowerAttachmentPoints(), Vector3.zero, offset))
                     {
-                        matches.Add(new Tuple<ITurretComponent, Vector3>(component, (component as Component).transform.position + (Vector3)offset + Vector3.back));
+                        matches.Add(new Tuple<TurretComponent, Vector3>(component, (component as Component).transform.position + (Vector3)offset + Vector3.back));
                     }
                 }
             }
@@ -84,10 +83,10 @@ namespace Lomztein.BFA2.AssemblyEditor
             return matches;
         }
 
-        private Tuple<ITurretComponent, Vector3> GetClosestMatch(IEnumerable<Tuple<ITurretComponent, Vector3>> matches, Vector3 position)
+        private Tuple<TurretComponent, Vector3> GetClosestMatch(IEnumerable<Tuple<TurretComponent, Vector3>> matches, Vector3 position)
         {
             float max = float.MaxValue;
-            Tuple<ITurretComponent, Vector3> curr = null;
+            Tuple<TurretComponent, Vector3> curr = null;
 
             foreach (var match in matches)
             {

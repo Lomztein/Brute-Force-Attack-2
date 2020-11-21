@@ -12,7 +12,6 @@ namespace Lomztein.BFA2.Game
 {
     public class PlayerProfile
     {
-        public static string ProfileFolder = Application.persistentDataPath + "/Profiles";
         public static PlayerProfile CurrentProfile = new PlayerProfile(PlayerPrefs.GetString("PlayerProfile", "Default"));
 
         [ModelProperty]
@@ -27,8 +26,5 @@ namespace Lomztein.BFA2.Game
             Name = name;
             Settings = new ProfileSettings();
         }
-
-        private static string GetPath(string profileName)
-            => ProfileFolder + "/" + profileName + ".json";
     }
 }

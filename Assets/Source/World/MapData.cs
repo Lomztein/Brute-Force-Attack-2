@@ -87,9 +87,6 @@ namespace Lomztein.BFA2.World
 
         public ValueModel Disassemble()
         {
-            GameObjectAssembler assembler = new GameObjectAssembler();
-            ObjectAssembler objectAssembler = new ObjectAssembler();
-
             ObjectModel obj = new ObjectModel(
                 new ObjectField("Name", new PrimitiveModel(Name)),
                 new ObjectField("Description", new PrimitiveModel("Junk")),

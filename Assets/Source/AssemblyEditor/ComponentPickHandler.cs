@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Placement;
+using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI.Menus.PickerMenu;
 using Lomztein.BFA2.Utilities;
@@ -34,7 +35,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 baseComponent.transform.rotation = newAssembly.transform.rotation;
                 baseComponent.transform.parent = newAssembly.transform;
 
-                AssemblyEditorController.Instance.SetAssembly(newAssembly.GetComponent<ITurretAssembly>());
+                AssemblyEditorController.Instance.SetAssembly(newAssembly.GetComponent<TurretAssembly>());
             }
         }
     }

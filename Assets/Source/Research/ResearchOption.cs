@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Research
 {
-    public class ResearchOption : MonoBehaviour
+    public class ResearchOption
     {
         [ModelProperty]
         public string Name = "Unnamed";
@@ -33,8 +33,8 @@ namespace Lomztein.BFA2.Research
 
         public float Progress => Requirements.Sum(x => Mathf.Clamp01(x.Progress)) / Requirements.Length;
 
-        private CompletionRequirement[] Requirements => GetComponents<CompletionRequirement>();
-        private CompletionReward[] Rewards => GetComponents<CompletionReward>();
+        private CompletionRequirement[] Requirements;
+        private CompletionReward[] Rewards;
 
         private int _completedRequirements;
 
@@ -43,16 +43,13 @@ namespace Lomztein.BFA2.Research
 
         public void Init()
         {
-            CompletionRequirement[] requirements = GetComponents<CompletionRequirement>();
-            CompletionReward[] rewards = GetComponents<CompletionReward>();
-
-            if (requirements.Length == 0)
+            if (Requirements.Length == 0)
             {
                 CompleteResearch();
             }
             else
             {
-                foreach (CompletionRequirement req in requirements)
+                foreach (CompletionRequirement req in Requirements)
                 {
                     req.Init();
 

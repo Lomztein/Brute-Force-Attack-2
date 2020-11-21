@@ -1,6 +1,4 @@
-﻿using Lomztein.BFA2.Turrets.Highlighters;
-using Lomztein.BFA2.UI.Tooltip;
-using Lomztein.BFA2.Utilities;
+﻿using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

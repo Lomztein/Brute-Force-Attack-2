@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Models
 {
+    [Serializable]
     public class ArrayModel : ValueModel, IEnumerable<ValueModel>
     {
-        public Type ElementType => ValueType.GetElementType();
-
-        public ValueModel[] Elements { get; private set; }
+        public Type ElementType => GetModelType().GetElementType();
+        [SerializeReference]
+        public ValueModel[] Elements;
         public ValueModel this[int i] => Elements[i];
         public int Length => Elements.Length;
 

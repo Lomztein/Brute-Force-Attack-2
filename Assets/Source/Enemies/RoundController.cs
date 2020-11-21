@@ -5,11 +5,13 @@ using Lomztein.BFA2.Enemies.Waves.Rewarders;
 using Lomztein.BFA2.Loot;
 using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +31,7 @@ namespace Lomztein.BFA2.Enemies
         public RoundState State;
 
         [SerializeField] private GeneratorWaveCollection _internalWaveCollection = new GeneratorWaveCollection();
-        private IWaveCollection WaveCollection => _internalWaveCollection;
+        private IWaveCollection _waveCollection;
 
         public float EnemyAmountMultiplier;
         public float SpawnFrequencyMultiplier;
@@ -66,6 +68,12 @@ namespace Lomztein.BFA2.Enemies
             _resourceContainer = GetComponent<IResourceContainer>();
             _healthContainer = GetComponent<IHealthContainer>();
             _commonLootTable = GetComponent<LootTableProvider>().GetLootTable();
+            SetWaveCollection(_internalWaveCollection);
+        }
+
+        public void SetWaveCollection (IWaveCollection collection)
+        {
+            _waveCollection = collection;
         }
 
         private void Start()
@@ -135,7 +143,7 @@ namespace Lomztein.BFA2.Enemies
 
         public IWave GetWave(int index)
         {
-            IWave wave = WaveCollection.GetWave(index);
+            IWave wave = _waveCollection.GetWave(index);
             wave.SetScale(EnemyAmountMultiplier, SpawnFrequencyMultiplier);
             return wave;
         }
@@ -213,7 +221,7 @@ namespace Lomztein.BFA2.Enemies
 
         private void EndWave(int wave)
         {
-            IWave ended = WaveCollection.GetWave(wave);
+            IWave ended = _waveCollection.GetWave(wave);
             OnWaveFinished?.Invoke(wave, ended);
 
             State = RoundState.Ready;

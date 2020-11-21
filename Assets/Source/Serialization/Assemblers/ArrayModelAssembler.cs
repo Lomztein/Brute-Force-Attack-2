@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             for (int i = 0; i < array.Length; i++) 
             {
-                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], array.IsTypeImplicit ? elementType : array[i].ValueType) });
+                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], array.IsTypeImplicit ? elementType : array[i].GetModelType()) });
             }
             return toArray.Invoke(list, new object[] { });
         }
@@ -36,14 +36,17 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             List<ValueModel> models = new List<ValueModel>();
             IEnumerable enumerable = obj as IEnumerable;
 
-            foreach (object element in enumerable)
+            if (obj != null)
             {
-                ValueModel model = _elementAssembler.Disassemble(element, implicitType);
-                if (element.GetType () != obj.GetType().GetElementType())
+                foreach (object element in enumerable)
                 {
-                    model.MakeExplicit(element.GetType());
+                    ValueModel model = _elementAssembler.Disassemble(element, element.GetType());
+                    if (element.GetType() != obj.GetType().GetElementType())
+                    {
+                        model.MakeExplicit(element.GetType());
+                    }
+                    models.Add(model);
                 }
-                models.Add(model);
             }
             return new ArrayModel(models.ToArray());
         }

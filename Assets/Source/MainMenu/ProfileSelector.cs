@@ -16,6 +16,8 @@ namespace Lomztein.BFA2.MainMenu
 {
     public class ProfileSelector : MonoBehaviour, IWindow
     {
+        public static string ProfileFolder => Application.persistentDataPath + "/Profiles";
+
         public event Action OnClosed;
 
         public GameObject ProfileButtonPrefab;
@@ -47,6 +49,7 @@ namespace Lomztein.BFA2.MainMenu
         {
             PlayerProfile newProfile = new PlayerProfile(name);
             SetProfile(newProfile);
+            Save(newProfile);
         }
 
         private void GenerateColorProfiles ()
@@ -62,6 +65,16 @@ namespace Lomztein.BFA2.MainMenu
                 }
             }
         }
+
+        public void Save(PlayerProfile profile)
+        {
+            JToken json = ObjectPipeline.UnbuildObject(profile, true);
+            Directory.CreateDirectory(ProfileFolder);
+            File.WriteAllText(GetPath(profile.Name), json.ToString());
+        }
+
+        private static string GetPath(string profileName)
+            => ProfileFolder + "/" + profileName + ".json";
 
         public void CreateNew ()
         {
@@ -88,23 +101,23 @@ namespace Lomztein.BFA2.MainMenu
             }
         }
 
-        public PlayerProfile[] LoadProfiles ()
+        public PlayerProfile[] LoadProfiles()
         {
-            if (Directory.Exists(PlayerProfile.ProfileFolder))
+            if (!Directory.Exists(ProfileFolder))
             {
-                string[] files = Directory.GetFiles(PlayerProfile.ProfileFolder);
-                PlayerProfile[] profiles = new PlayerProfile[files.Length];
-
-                for (int i = 0; i < files.Length; i++)
-                {
-                    JObject obj = JObject.Parse(File.ReadAllText(files[i]));
-                    profiles[i] = ObjectPipeline.BuildObject<PlayerProfile>(obj);
-                }
-
-                return profiles;
+                Directory.CreateDirectory(ProfileFolder);
             }
 
-            return new PlayerProfile[0];
+            string[] files = Directory.GetFiles(ProfileFolder);
+            PlayerProfile[] profiles = new PlayerProfile[files.Length];
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                JObject obj = JObject.Parse(File.ReadAllText(files[i]));
+                profiles[i] = ObjectPipeline.BuildObject<PlayerProfile>(obj);
+            }
+
+            return profiles;
         }
     }
 }

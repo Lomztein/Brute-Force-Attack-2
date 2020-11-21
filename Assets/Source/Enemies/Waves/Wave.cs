@@ -15,15 +15,15 @@ namespace Lomztein.BFA2.Enemies.Waves
     public class Wave : IWave
     {
         public IContentCachedPrefab Prefab;
-        public GameObject SpawnerPrefab;
+        public ContentPrefabReference SpawnerPrefab;
 
         public int SpawnAmount => Mathf.RoundToInt(_baseAmount * _amountScale);
         public float SpawnDelay => 1f / (1f / _baseDelay * _frequencyScale);
 
         public int Alive;
 
-        private float _baseAmount;
-        private float _baseDelay;
+        private readonly float _baseAmount;
+        private readonly float _baseDelay;
 
         private float _amountScale = 1f;
         private float _frequencyScale = 1f;
@@ -46,7 +46,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             _frequencyScale = frequency;
         }
         
-        public Wave (IContentCachedPrefab prefab, GameObject spawner, int amount, float delay)
+        public Wave (IContentCachedPrefab prefab, ContentPrefabReference spawner, int amount, float delay)
         {
             Prefab = prefab;
             SpawnerPrefab = spawner;
@@ -56,7 +56,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private void Spawn()
         {
-            ISpawner spawner = UnityEngine.Object.Instantiate(SpawnerPrefab).GetComponent<ISpawner>();
+            ISpawner spawner = SpawnerPrefab.Instantiate().GetComponent<ISpawner>();
 
             spawner.OnSpawn += Spawner_OnSpawn;
             spawner.OnFinished += () => OnAllSpawned?.Invoke();

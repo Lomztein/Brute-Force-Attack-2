@@ -14,6 +14,7 @@ namespace Lomztein.BFA2.Research.Rewards
         public string UnlockList;
         [ModelProperty][SerializeField]
         private string _description;
+
         public override string Description => _description;
 
         public override void ApplyReward()

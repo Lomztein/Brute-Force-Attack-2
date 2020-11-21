@@ -14,8 +14,8 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         {
             if (_loaders == null)
             {
-                _loaders = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IContentLoaderStrategy>(typeof (ObjectLoaderStrategy)).ToList();
-                _loaders.Add(new ObjectLoaderStrategy());
+                _loaders = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IContentLoaderStrategy>(typeof (FallbackLoaderStrategy)).ToList();
+                _loaders.Add(new FallbackLoaderStrategy());
             }
         }
 

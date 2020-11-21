@@ -22,6 +22,6 @@ namespace Lomztein.BFA2.Modification
     {
         IModContainer Mods { get; }
 
-        bool IsCompatableWith(IMod mod);
+        ModdableAttribute[] GetModdableAttributes();
     }
 }

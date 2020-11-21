@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.ContentSystem.References;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private IContentCachedPrefab[] _enemies;
         private System.Random _random;
 
-        private GameObject _spawner;
+        private ContentPrefabReference _spawner;
 
         private readonly int _seed;
         private readonly float _credits;
@@ -26,7 +27,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private readonly float _minSpawnFrequency;
 
 
-        public WaveGenerator (GameObject spawner, int seed, float credits, float frequency, float maxFreq, float minFreq)
+        public WaveGenerator (ContentPrefabReference spawner, int seed, float credits, float frequency, float maxFreq, float minFreq)
         {
             _spawner = spawner;
             _seed = seed;

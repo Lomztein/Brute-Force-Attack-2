@@ -1,9 +1,10 @@
 ﻿using Lomztein.BFA2.Collectables;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.Structures.Turrets.Targeters;
+using Lomztein.BFA2.Structures.Turrets.TargetProviders;
 using Lomztein.BFA2.Turrets;
-using Lomztein.BFA2.Turrets.Targeters;
-using Lomztein.BFA2.Turrets.TargetProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Battlefield.Difficulty;
 using Lomztein.BFA2.Enemies.Scalers;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory.Items;
 using Lomztein.BFA2.World;
 using System;
@@ -15,6 +16,7 @@ namespace Lomztein.BFA2.Battlefield
     {
         public static MapData Map;
         public static DifficultySettings Difficulty = new DifficultySettings();
+        public static IWaveCollection WaveCollection;
 
         public static string[] DefaultUnlockedComponents =
         {

@@ -2,6 +2,7 @@
 using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Player.Progression;
+using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using System;
 using System.Collections.Generic;
@@ -39,20 +40,20 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
             if (value == true)
             {
                 IEnumerable<IContentCachedPrefab> newlyUnlocked = _allPrefabs
-                    .Where(x => ContainsComponent(x.GetCache().GetComponent<ITurretAssembly>(), identifier))
-                    .Where(x => IsUnlocked(x.GetCache().GetComponent<ITurretAssembly>()));
+                    .Where(x => ContainsComponent(x.GetCache().GetComponent<TurretAssembly>(), identifier))
+                    .Where(x => IsUnlocked(x.GetCache().GetComponent<TurretAssembly>()));
 
                 OnAdded?.Invoke(newlyUnlocked);
             }
         }
 
-        private bool ContainsComponent(ITurretAssembly assembly, string identifier) => assembly.GetComponents().Any(x => x.UniqueIdentifier == identifier);
+        private bool ContainsComponent(TurretAssembly assembly, string identifier) => assembly.GetComponents().Any(x => x.UniqueIdentifier == identifier);
 
-        private bool IsUnlocked(ITurretAssembly assembly) => assembly.GetComponents().All(x => UnlockList.IsUnlocked(x.UniqueIdentifier));
+        private bool IsUnlocked(TurretAssembly assembly) => assembly.GetComponents().All(x => UnlockList.IsUnlocked(x.UniqueIdentifier));
 
         private IContentCachedPrefab[] GetUnlocked ()
         {
-            return _allPrefabs.Where(x => IsUnlocked(x.GetCache().GetComponent<ITurretAssembly>())).ToArray();
+            return _allPrefabs.Where(x => IsUnlocked(x.GetCache().GetComponent<TurretAssembly>())).ToArray();
         }
 
         public IContentCachedPrefab[] Get()

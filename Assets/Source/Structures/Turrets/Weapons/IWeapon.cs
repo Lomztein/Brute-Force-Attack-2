@@ -1,0 +1,13 @@
+﻿namespace Lomztein.BFA2.Structures.Turrets.Weapons
+{
+    public interface IWeapon
+    {
+        float GetDamage();
+        float GetFirerate();
+        int GetProjectileAmount();
+        float GetSpeed();
+        float GetSpread();
+        float GetRange();
+        bool TryFire();
+    }
+}

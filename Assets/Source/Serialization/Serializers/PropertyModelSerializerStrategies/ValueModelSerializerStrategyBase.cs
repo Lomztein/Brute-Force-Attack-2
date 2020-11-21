@@ -17,14 +17,14 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
         private bool IsImplicit(ValueModel model) => model.IsTypeImplicit;
 
         private JToken SerializeExplicit(ValueModel model)
-            => CreateExplicitContainer(model.ValueType, SerializeImplicit(model));
+            => CreateExplicitContainer(model.GetModelType(), SerializeImplicit(model));
 
 
         private ValueModel DeserializeExplicit(JToken token)
         {
             (Type type, JToken value) = GetDataFromExplicitContainer(token);
             ValueModel model = DeserializeImplicit(value);
-            model.ValueType = type;
+            model.MakeExplicit(type);
             return model;
         }
 

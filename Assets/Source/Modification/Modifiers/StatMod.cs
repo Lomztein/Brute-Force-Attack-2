@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers
 {
-    public class StatMod : BaseModComponent, IMod
+    public class StatMod : ModBase, IMod
     {
         [ModelProperty]
         public Element[] Stats;

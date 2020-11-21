@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.Enemies.Waves.Generators;
+﻿using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Enemies.Waves.Generators;
+using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +12,28 @@ namespace Lomztein.BFA2.Enemies.Waves
     [Serializable]
     public class GeneratorWaveCollection : IWaveCollection
     {
-        public GameObject Spawner;
+        [ModelProperty]
+        public ContentPrefabReference Spawner;
 
+        [ModelProperty]
         public int Seed;
+        [ModelProperty]
         public float StartingCredits;
+        [ModelProperty]
         public float CreditsCoeffecient;
 
+        [ModelProperty]
         public float StartingFrequency;
+        [ModelProperty]
         public float FrequencyCoeffecient;
 
+        [ModelProperty]
         public float MaxSequenceDenominator;
+        [ModelProperty]
         public float MaxParallelDenominator;
+        [ModelProperty]
         public int MaxSequence = 5;
+        [ModelProperty]
         public float MaxParallel = 3;
 
         private readonly Dictionary<int, IWave> _waves = new Dictionary<int, IWave>();

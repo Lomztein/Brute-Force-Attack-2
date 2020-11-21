@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public ValueModel Disassemble(object obj, Type implicitType)
         {
             var model = GetAssembler(obj != null ? obj.GetType() : implicitType).Disassemble(obj, implicitType);
-            if (obj.GetType() != implicitType)
+            if (obj != null && obj.GetType() != implicitType)
                 model.MakeExplicit(obj.GetType());
             return model;
         }

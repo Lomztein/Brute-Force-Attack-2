@@ -99,9 +99,6 @@ GameObject:
   - component: {fileID: 8139534575009318368}
   - component: {fileID: 5813048448918230106}
   - component: {fileID: -6559678726320766276}
-  - component: {fileID: 9130725656228459034}
-  - component: {fileID: 1016812771650017423}
-  - component: {fileID: 5690991386577247278}
   m_Layer: 9
   m_Name: MissleLauncherT2
   m_TagString: Untagged
@@ -144,7 +141,7 @@ MonoBehaviour:
     Elements:
     - Type: 0
       Value: 750
-  _modAttributes: 0400000006000000
+  BaseAttributes: 
   _width: 1
   _height: 1
   ProjectilePrefab:
@@ -212,55 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeComponentIdentifier: Core.RocketLauncherT3
---- !u!114 &9130725656228459034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983164369808527842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec08cbde5b4ade4698ad456da3f5bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _identifier: Core.ExplodeOnHit
-  _name: Explode On Hit
-  _description: Cause an explosion when the weapon hits something.
-  _requiredAttributes: 06000000
-  DamageMultBase: 0.3
-  RangeBase: 1.75
-  DamageMultStack: 0
-  RangeStack: 0.25
-  ExplosionPrefab:
-    Path: Core/Projectiles/Explosion.json
-  DestroyProjectile: 1
---- !u!114 &1016812771650017423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983164369808527842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9eba5717c09c44a94caa3ea86f0005, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5690991386577247278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983164369808527842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df63a959acd74dc4f8c978406d142de7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BehavioursToDisable:
-  - TurretWeapon
 --- !u!1 &8983164370671711079
 GameObject:
   m_ObjectHideFlags: 0

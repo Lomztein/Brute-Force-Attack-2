@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Turrets;
+﻿using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.Turrets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Lomztein.BFA2.AssemblyEditor
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var cols = Physics2D.OverlapPointAll(mousePos);
-                var components = cols.Select(x => x.GetComponent<ITurretComponent>()).Where(x => x != null);
+                var components = cols.Select(x => x.GetComponent<TurretComponent>()).Where(x => x != null);
 
-                ITurretComponent highest = null;
+                TurretComponent highest = null;
                 float highestNum = float.MinValue;
 
                 foreach (var component in components)

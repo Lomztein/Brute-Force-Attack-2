@@ -10,13 +10,8 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers
 {
-    public class CompositeMod : MonoBehaviour, IMod
+    public class CompositeMod : IMod
     {
-        private static string _childName = "Modifiers";
-        private IMod[] _internalMods;
-
-        public ModdableAttribute[] RequiredAttributes => _internalMods.SelectMany(x => x.RequiredAttributes).ToArray();
-
         [ModelProperty]
         [SerializeField]
         protected string _identifier;
@@ -32,14 +27,12 @@ namespace Lomztein.BFA2.Modification.Modifiers
         protected string _description;
         public string Description => _description;
 
-        private void Awake()
-        {
-            _internalMods = transform.Find(_childName).GetComponents<IMod>();
-        }
+        [ModelProperty]
+        public IMod[] InternalMods;
 
         public void ApplyBase(IStatContainer stats, IEventContainer events)
         {
-            foreach (IMod mod in _internalMods)
+            foreach (IMod mod in InternalMods)
             {
                 mod.ApplyBase(stats, events);
             }
@@ -47,7 +40,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
 
         public void ApplyStack(IStatContainer stats, IEventContainer events)
         {
-            foreach (IMod mod in _internalMods)
+            foreach (IMod mod in InternalMods)
             {
                 mod.ApplyStack(stats, events);
             }
@@ -55,7 +48,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
 
         public void RemoveBase(IStatContainer stats, IEventContainer events)
         {
-            foreach (IMod mod in _internalMods)
+            foreach (IMod mod in InternalMods)
             {
                 mod.RemoveBase(stats, events);
             }
@@ -63,10 +56,15 @@ namespace Lomztein.BFA2.Modification.Modifiers
 
         public void RemoveStack(IStatContainer stats, IEventContainer events)
         {
-            foreach (IMod mod in _internalMods)
+            foreach (IMod mod in InternalMods)
             {
                 mod.RemoveStack(stats, events);
             }
+        }
+
+        public bool IsCompatableWith(IModdable moddable)
+        {
+            return InternalMods.All(x => x.IsCompatableWith(moddable));
         }
     }
 }

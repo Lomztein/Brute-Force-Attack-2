@@ -11,8 +11,10 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Models
 {
+    [Serializable]
     public class ObjectModel : ValueModel, IEnumerable<ObjectField>
     {
+        [SerializeField]
         private List<ObjectField> _properties = new List<ObjectField>();
 
         public ObjectModel()
@@ -71,10 +73,12 @@ namespace Lomztein.BFA2.Serialization.Models
         public ObjectModel GetObject(string name)
             => GetProperty<ObjectModel>(name);
     }
+
+    [Serializable]
     public class ObjectField
     {
-        public string Name { get; private set; }
-        public ValueModel Model { get; private set; }
+        public string Name;
+        [SerializeReference] public ValueModel Model;
 
         public ObjectField(string name, ValueModel model)
         {

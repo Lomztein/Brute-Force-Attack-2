@@ -4,7 +4,7 @@ using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Modifiers;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Turrets.Rangers;
+using Lomztein.BFA2.Structures.Turrets.Rangers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,22 +24,12 @@ namespace Lomztein.BFA2.Structures
         [ModelProperty]
         public LayerMask Mask;
 
-        public IStatContainer Stats = new StatContainer();
-        public IEventContainer Events = new EventContainer();
-
-        public IModContainer Mods { get; private set; }
-
         public float GetRange() => _range.GetValue();
 
-        private void Awake()
+        protected override void Awake()
         {
-            Mods = new ModContainer(Stats, Events);
+            base.Awake();
             _range = Stats.AddStat("Range", "Range", "The range of which this slowfield generator generates slowfields.", BaseRange);
-        }
-
-        public bool IsCompatableWith(IMod mod)
-        {
-            return mod.ContainsRequiredAttributes(new[] { ModdableAttribute.Ranged });
         }
 
         private void FixedUpdate()

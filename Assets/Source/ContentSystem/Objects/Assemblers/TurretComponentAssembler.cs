@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace Lomztein.BFA2.Content.Assemblers
 {
     public class TurretComponentAssembler
     {
-        private static string COMPONENTS_CONTENT_PATH = "*/Components";
+        private static readonly string COMPONENTS_CONTENT_PATH = "*/Components";
         private static IContentCachedPrefab[] _allComponents;
 
-        public void Assemble (ObjectModel model, ITurretComponent parent, ITurretAssembly assembly)
+        public void Assemble (ObjectModel model, TurretComponent parent, TurretAssembly assembly)
         {
             IContentCachedPrefab component = GetComponent(model.GetValue<string>("UniqueIdentifier"));
             ObjectAssembler assembler = new ObjectAssembler();
@@ -31,14 +32,14 @@ namespace Lomztein.BFA2.Content.Assemblers
                 obj.transform.localPosition = Vector3.zero;
             }
 
-            ITurretComponent newComponent = obj.GetComponent<ITurretComponent>();
+            TurretComponent newComponent = obj.GetComponent<TurretComponent>();
             foreach (ValueModel child in model.GetArray("Children"))
             {
                 Assemble(child as ObjectModel, newComponent, assembly);
             }
         }
 
-        public ObjectModel Dissassemble (ITurretComponent component)
+        public ObjectModel Dissassemble (TurretComponent component)
         {
             GameObject obj = (component as Component).gameObject;
             List<ObjectModel> children = new List<ObjectModel>();
@@ -75,7 +76,7 @@ namespace Lomztein.BFA2.Content.Assemblers
 
         public static IContentCachedPrefab GetComponent (string identifier)
         {
-            return GetComponents().First(x => x.GetCache().GetComponent<ITurretComponent>().UniqueIdentifier == identifier);
+            return GetComponents().First(x => x.GetCache().GetComponent<TurretComponent>().UniqueIdentifier == identifier);
         }
         
         private static void DisposeComponents ()

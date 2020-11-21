@@ -15,12 +15,17 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
 
         protected override ValueModel DeserializeImplicit(JToken token)
         {
-            return PrimitiveModel.FromToken(token);
+            return PrimitiveModel.FromToken(token as JValue);
         }
 
         protected override JToken SerializeImplicit(ValueModel model)
         {
-            return (model as PrimitiveModel).Value;
+            PrimitiveModel prim = model as PrimitiveModel;
+            if (prim.Value == null)
+            {
+                return JValue.CreateNull();
+            }
+            return new JValue (Convert.ChangeType(prim.Value, prim.StoreAs));
         }
     }
 }

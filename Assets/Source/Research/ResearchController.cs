@@ -13,7 +13,6 @@ namespace Lomztein.BFA2.Research
     {
         public static ResearchController Instance;
 
-        private ICachedPrefabProvider _provider;
         private IResourceContainer _resourceContainer;
 
         private List<ResearchOption> _all;
@@ -49,14 +48,8 @@ namespace Lomztein.BFA2.Research
         private void Awake()
         {
             Instance = this;
-            _provider = GetComponent<ICachedPrefabProvider>();
             _resourceContainer = GetComponent<IResourceContainer>();
             SetMaxResearchSlots(MaxResearchSlots);
-        }
-
-        private void Start()
-        {
-            _all = LoadResearchOptions();
         }
 
         private bool PrerequisitesCompleted (ResearchOption option)
@@ -66,35 +59,20 @@ namespace Lomztein.BFA2.Research
 
         public void AddResearchOption (ResearchOption option)
         {
-            SceneCachedGameObject _ = new SceneCachedGameObject(option.gameObject);
             _all.Add(option);
-        }
-
-        private List<ResearchOption> LoadResearchOptions()
-        {
-            return _provider.Get().Select(x => x.GetCache().GetComponent<ResearchOption>()).ToList();
-        }
-
-        private ResearchOption InstantiateOption(ResearchOption option)
-        {
-            ResearchOption opt = Instantiate(option.gameObject).GetComponent<ResearchOption>();
-            opt.gameObject.SetActive(true);
-            return opt;
         }
 
         public void BeginResearch(ResearchOption option)
         {
             if (_inProgress.Count < MaxResearchSlots && _resourceContainer.TrySpend(option.InitialCost))
             {
-                ResearchOption copy = InstantiateOption(option);
+                option.OnCompleted += ResearchCompleted;
+                option.OnProgressed += ResearchProgressed;
+                option.Init();
 
-                copy.OnCompleted += ResearchCompleted;
-                copy.OnProgressed += ResearchProgressed;
-                copy.Init();
+                _inProgress.Add(option);
 
-                _inProgress.Add(copy);
-
-                OnResearchBegun?.Invoke(copy);
+                OnResearchBegun?.Invoke(option);
             }
         }
 
@@ -103,8 +81,8 @@ namespace Lomztein.BFA2.Research
             option.Stop();
             _inProgress.Remove(option);
             StopResearch(option);
-            _resourceContainer.AddResources(option.InitialCost);
 
+            _resourceContainer.AddResources(option.InitialCost);
             OnResearchCancelled?.Invoke(option);
         }
 

@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6273890081359197296}
   - component: {fileID: 9217758775699311776}
-  - component: {fileID: 1670473917229379788}
-  - component: {fileID: 4937791576270512762}
   - component: {fileID: 6922383497514813741}
   m_Layer: 9
   m_Name: AuxilleryProcessor
@@ -54,46 +52,9 @@ MonoBehaviour:
     Elements:
     - Type: 0
       Value: 250
-  _modAttributes: 
+  BaseAttributes: 
   _width: 1
   _height: 1
---- !u!114 &1670473917229379788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4509039148037148673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de35c8b8a8e790849a8f182eba3fdf92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProvideUpwards: 1
-  ProvideDownwards: 0
-  ProvideSelf: 0
---- !u!114 &4937791576270512762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4509039148037148673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _identifier: Core.AuxProc
-  _name: Auxillery Processor
-  _description: Increases range of underlying bases.
-  _requiredAttributes: 00000000
-  Stats:
-  - Identifier: Range
-    Name: Range
-    Description: Range of this unit.
-    Type: 0
-    Value: 5
 --- !u!58 &6922383497514813741
 CircleCollider2D:
   m_ObjectHideFlags: 0

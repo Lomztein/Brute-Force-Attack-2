@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Grid;
-using Lomztein.BFA2.Turrets;
-using Lomztein.BFA2.Turrets.Highlighters;
+using Lomztein.BFA2.Structures.Highlighters;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;

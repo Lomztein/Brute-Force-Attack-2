@@ -1,0 +1,287 @@
+{
+  "Name": "LubricatingBeacon",
+  "Tag": "Untagged",
+  "Layer": "10",
+  "Static": "False",
+  "Components": [
+    {
+      "ValueType": "UnityEngine.Transform",
+      "ValueData": {
+        "Position": {
+          "X": "0",
+          "Y": "0",
+          "Z": "0"
+        },
+        "Rotation": {
+          "X": "0",
+          "Y": "0",
+          "Z": "0"
+        },
+        "Scale": {
+          "X": "1",
+          "Y": "1",
+          "Z": "1"
+        }
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Structures.Structure",
+      "ValueData": {
+        "_name": "Lubricator",
+        "_description": "Increases nearby rotators rotate speed by violently spraying lubricant everywhere.",
+        "_uniqueIdentifier": "Core.Lubricator",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": "500"
+            },
+            {
+              "Type": "Research",
+              "Value": "1"
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Medium",
+        "_height": "Medium"
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
+        "ValueData": {
+            "TargetLayer": {
+                "Mask": "512"
+            },
+            "Range": "2,5",
+            "IncludeSelf": "False",
+            "Mod": {
+                "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+                "ValueData": {
+                    "DamageMultBase": 0.2,
+                    "RangeBase": 0.5,
+                    "DamageMultStack": 1.5,
+                    "RangeStack": 1.2,
+                    "ExplosionPrefab": {
+                        "Path": "Core/Projectiles/Explosion.json"
+                    },
+                    "DestroyProjectile": true,
+                    "_identifier": "Core.ExplodeOnProjectileHit",
+                    "_name": "Explode on Hit",
+                    "_description": "Volatile energies cause the projectile to explode when it hits something.",
+                    "RequiredAttributes": ["Weapon"]
+                }
+            }
+        }
+    },
+    {
+      "ValueType": "UnityEngine.CircleCollider2D",
+      "ValueData": {
+        "Radius": "1",
+        "Offset": {
+          "X": "0",
+          "Y": "0"
+        },
+        "IsTrigger": "False",
+        "UsedByEffector": "False"
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": "10",
+      "Static": "False",
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": "0",
+              "Y": "0",
+              "Z": "0"
+            },
+            "Rotation": {
+              "X": "0",
+              "Y": "0",
+              "Z": "0"
+            },
+            "Scale": {
+              "X": "1",
+              "Y": "1",
+              "Z": "1"
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites\\Structures\\LubeSprayer.png",
+              "Rect": {
+                "X": "0",
+                "Y": "0",
+                "Width": "32",
+                "Height": "32"
+              },
+              "Pivot": {
+                "X": "0,5",
+                "Y": "0,5"
+              },
+              "PixelsPerUnit": "16"
+            },
+            "Color": {
+              "Red": "1",
+              "Green": "1",
+              "Blue": "1",
+              "Alpha": "1"
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.Misc.Rotator",
+          "ValueData": {
+            "Rotation": {
+              "X": "0",
+              "Y": "0",
+              "Z": "135"
+            }
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "RightLubeParticle",
+          "Tag": "Untagged",
+          "Layer": "10",
+          "Static": "False",
+          "Components": [
+            {
+              "ValueType": "UnityEngine.Transform",
+              "ValueData": {
+                "Position": {
+                  "X": "1",
+                  "Y": "0",
+                  "Z": "0"
+                },
+                "Rotation": {
+                  "X": "5,433382E-05",
+                  "Y": "90",
+                  "Z": "180"
+                },
+                "Scale": {
+                  "X": "1",
+                  "Y": "1",
+                  "Z": "1"
+                }
+              }
+            },
+            {
+              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+              "ValueData": {
+                "Reference": {
+                  "Path": "Resources/Particles/LubeParticles"
+                },
+                "NameOverride": ""
+              }
+            }
+          ],
+          "Children": []
+        },
+        {
+          "Name": "LeftLubeParticle",
+          "Tag": "Untagged",
+          "Layer": "10",
+          "Static": "False",
+          "Components": [
+            {
+              "ValueType": "UnityEngine.Transform",
+              "ValueData": {
+                "Position": {
+                  "X": "-1",
+                  "Y": "0",
+                  "Z": "0"
+                },
+                "Rotation": {
+                  "X": "-6,097462E-05",
+                  "Y": "270",
+                  "Z": "-7,508434E-06"
+                },
+                "Scale": {
+                  "X": "1",
+                  "Y": "1",
+                  "Z": "1"
+                }
+              }
+            },
+            {
+              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+              "ValueData": {
+                "Reference": {
+                  "Path": "Resources/Particles/LubeParticles"
+                },
+                "NameOverride": ""
+              }
+            }
+          ],
+          "Children": []
+        }
+      ]
+    },
+    {
+      "Name": "Feet",
+      "Tag": "Untagged",
+      "Layer": "10",
+      "Static": "False",
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": "0",
+              "Y": "0",
+              "Z": "0,1"
+            },
+            "Rotation": {
+              "X": "0",
+              "Y": "0",
+              "Z": "0"
+            },
+            "Scale": {
+              "X": "1",
+              "Y": "1",
+              "Z": "1"
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites\\Structures\\ResearchCollectorBase.png",
+              "Rect": {
+                "X": "0",
+                "Y": "0",
+                "Width": "32",
+                "Height": "32"
+              },
+              "Pivot": {
+                "X": "0,5",
+                "Y": "0,5"
+              },
+              "PixelsPerUnit": "16"
+            },
+            "Color": {
+              "Red": "1",
+              "Green": "1",
+              "Blue": "1",
+              "Alpha": "1"
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

@@ -21,7 +21,11 @@ namespace Lomztein.BFA2.Modification.Events
 
         public IEventReference<T> GetEvent<T>(string identifier) where T : IEventArgs
         {
-            return new EventReference<T>(FindEvent(identifier) as IEvent<T>);
+            if (ContainsEvent(identifier))
+            {
+                return new EventReference<T>(FindEvent(identifier) as IEvent<T>);
+            }
+            return null;
         }
 
         private IEvent FindEvent (string identifier)

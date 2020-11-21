@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public void Populate (object obj, ObjectModel model)
         {
-            Type modelType = model.ValueType ?? obj.GetType();
+            Type modelType = obj.GetType();
             IEnumerable<FieldInfo> fields = GetModelFields(modelType);
 
             foreach (var field in fields)
@@ -65,7 +65,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 }
                 catch (Exception e)
                 {
-                    Debug.Log(objectType.Name + ": " + info.Name);
+                    if (obj is UnityEngine.Object unityObj)
+                    {
+                        Debug.Log(objectType.Name + ": " + info.Name, unityObj);
+                    }
+                    else
+                    {
+                        Debug.Log(objectType.Name + ": " + info.Name);
+                    }
                     Debug.LogException(e);
                 }
 

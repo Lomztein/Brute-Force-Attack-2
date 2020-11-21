@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory;
 using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Utilities;
@@ -15,11 +16,15 @@ namespace Lomztein.BFA2.Battlefield
     public class BattlefieldInitializer : MonoBehaviour
     {
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
+        private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
+
         private static string DefaultMapPath = "Core/Maps/Classic.json";
+        private static string DefaultWaveCollection = "Core/WaveCollections/DefaultGenerator.json";
 
         private void Start ()
         {
             InitMap();
+            InitWaves();
             InitDefaultUnlocks();
             InitStartingItems();
             InitDifficulty();
@@ -38,6 +43,12 @@ namespace Lomztein.BFA2.Battlefield
         {
             MapData mapData = BattlefieldSettings.Map ?? ContentSystem.Content.Get(DefaultMapPath, typeof(MapData)) as MapData;
             _mapController.IfExists((controller) => controller.ApplyMapData(mapData));
+        }
+
+        private void InitWaves ()
+        {
+            IWaveCollection waves = BattlefieldSettings.WaveCollection ?? ContentSystem.Content.Get<IWaveCollection>(DefaultWaveCollection);
+            _roundController.IfExists(x => x.SetWaveCollection(waves));
         }
 
         private void InitDefaultUnlocks ()

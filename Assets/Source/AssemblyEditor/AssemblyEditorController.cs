@@ -1,9 +1,8 @@
 ﻿using Lomztein.BFA2.Content.Assemblers;
 using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
-using Lomztein.BFA2.Turrets;
+using Lomztein.BFA2.Structures.Turrets;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,7 @@ namespace Lomztein.BFA2.AssemblyEditor
     {
         public static AssemblyEditorController Instance;
 
-        public ITurretAssembly CurrentAsssembly;
+        public TurretAssembly CurrentAsssembly;
 
         public void Awake()
         {
@@ -32,7 +31,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             CurrentAsssembly = null;
         }
 
-        public void SetAssembly (ITurretAssembly assembly)
+        public void SetAssembly (TurretAssembly assembly)
         {
             CurrentAsssembly = assembly;
         }

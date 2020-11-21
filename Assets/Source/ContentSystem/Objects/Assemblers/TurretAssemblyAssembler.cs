@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Lomztein.BFA2.Content.Assemblers
             return assembly;
         }
 
-        public ObjectModel Disassemble (ITurretAssembly assembly)
+        public ObjectModel Disassemble (TurretAssembly assembly)
         {
             return new ObjectModel(
                 new ObjectField("Name", ValueModelFactory.Create(assembly.Name)),
