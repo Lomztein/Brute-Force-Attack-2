@@ -32,6 +32,7 @@ namespace Lomztein.BFA2.Research.UI
 
         private void OnCompleted(ResearchOption obj)
         {
+            Debug.Log("Research completed?");
             Message.Send($"Research '{obj.Name}' has completed.", Message.Type.Minor);
         }
 

@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.ContentSystem
                             content.Add(loaded);
                         }catch (Exception exc)
                         {
-                            Log.Error(exc);
+                            Debug.LogError(exc);
                         }
                     }
                 }

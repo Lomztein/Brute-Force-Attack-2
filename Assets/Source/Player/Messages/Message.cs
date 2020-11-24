@@ -56,12 +56,20 @@ namespace Lomztein.BFA2.Player.Messages
 
         private static void SendMajor (Message message)
         {
-            MajorMessageController.Instance.Enqueue(message);
+            // Perhaps this check should be on a static function on the controller.
+            // I do not feel that checking an manually adding the message should be this classes responsibility.
+            if (MajorMessageController.Instance)
+            {
+                MajorMessageController.Instance.Enqueue(message);
+            }
         }
 
         private static void SendMinor (Message message)
         {
-            MinorMessageController.Instance.AddMessage(message);
+            if (MinorMessageController.Instance)
+            {
+                MinorMessageController.Instance.AddMessage(message);
+            }
         }
     }
 }

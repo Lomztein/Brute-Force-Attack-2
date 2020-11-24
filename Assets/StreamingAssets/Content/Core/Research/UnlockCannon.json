@@ -1,10 +1,10 @@
 {
   "ValueType": "Lomztein.BFA2.Research.ResearchOption",
     "ValueData": {
-        "Name": "Unlock Medium Base",
-        "Description": "Unlock the medium base turret component.",
+        "Name": "Unlock Heavy Cannon",
+        "Description": "Unlock the heavy cannon turret component.",
         "Sprite": {
-            "Path": "Core/Sprites/Components/Base.png",
+            "Path": "Core/Sprites/Components/CannonT1.png",
             "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
@@ -27,13 +27,13 @@
             "Elements": [
                 {
                     "Type": "Research",
-                    "Value": 2
+                    "Value": 6
                 }
             ]
         },
-        "TimeCost": 2,
-        "Identifier": "Core.UnlockMediumBase",
-        "PrerequisiteIdentifiers": [],
+        "TimeCost": 3,
+        "Identifier": "Core.UnlockCannon",
+        "PrerequisiteIdentifiers": ["Core.UnlockMediumBase"],
         "PinIdentifier": null,
         "UniquePrerequisites": [],
         "Rewards": [
@@ -42,7 +42,7 @@
                 "ValueData": {
                     "Identifier": "Core.MediumBase",
                     "UnlockList": "Components",
-                    "_description": "Unlock the medium base, on which more powerful weapons can be placed."
+                    "_description": "Unlock the heavy cannon, a large powerful gun that fires huge slugs of molten code."
                 }
             }
         ]

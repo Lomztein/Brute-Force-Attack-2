@@ -42,7 +42,12 @@ namespace Lomztein.BFA2.Research.UI
         // Feels a bit strange to bring the container here, but it's easy to implement and change.
         public void UpdateAffordability (IResourceContainer container)
         {
-            Button.interactable = container.HasEnough(_research.ResourceCost);
+            bool enough = container.HasEnough(_research.ResourceCost);
+
+            Button.interactable = enough;
+            Color c = _research.SpriteTint;
+            float alpha = enough ? 1 : 0.5f;
+            Image.color = new Color(c.r, c.g, c.b, c.a * alpha);
         }
     }
 }

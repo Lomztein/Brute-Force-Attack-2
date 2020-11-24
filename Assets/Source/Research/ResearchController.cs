@@ -2,6 +2,7 @@
 using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
 using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Player.Messages;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Utilities;
 using System;
@@ -28,6 +29,7 @@ namespace Lomztein.BFA2.Research
         public event Action<ResearchOption> OnResearchCompleted;
         public event Action<ResearchOption> OnResearchProgressed;
         public event Action<ResearchOption> OnResearchCancelled;
+        public event Action<ResearchOption> OnResearchAdded;
 
         private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
@@ -89,6 +91,8 @@ namespace Lomztein.BFA2.Research
             _all.Add(option);
             option.OnProgressed += ResearchProgressed;
             option.Init();
+            OnResearchAdded?.Invoke(option);
+            Message.Send("New research option available.", Message.Type.Minor);
         }
 
         public void BeginResearch(ResearchOption option)

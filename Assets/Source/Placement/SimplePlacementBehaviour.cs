@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Utilities;
+﻿using Lomztein.BFA2.Player.Messages;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,10 @@ namespace Lomztein.BFA2.Placement
                 _currentPlaceable.ToPosition(mousePos, Quaternion.identity);
                 if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
                 {
-                    PlaceCurrent();
+                    if (!PlaceCurrent())
+                    {
+                        Message.Send("Cannot place here.", Message.Type.Minor);
+                    }
                 }
                 if (Input.GetMouseButtonDown(1))
                 {

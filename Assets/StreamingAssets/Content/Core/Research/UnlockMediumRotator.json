@@ -1,10 +1,10 @@
 {
   "ValueType": "Lomztein.BFA2.Research.ResearchOption",
     "ValueData": {
-        "Name": "Unlock Medium Base",
-        "Description": "Unlock the medium base turret component.",
+        "Name": "Unlock Medium Rotator",
+        "Description": "Unlock the medium rotator turret component.",
         "Sprite": {
-            "Path": "Core/Sprites/Components/Base.png",
+            "Path": "Core/Sprites/Components/Rotator.png",
             "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
@@ -31,18 +31,18 @@
                 }
             ]
         },
-        "TimeCost": 2,
-        "Identifier": "Core.UnlockMediumBase",
-        "PrerequisiteIdentifiers": [],
+        "TimeCost": 0,
+        "Identifier": "Core.UnlockMediumRotator",
+        "PrerequisiteIdentifiers": ["Core.UnlockMediumBase"],
         "PinIdentifier": null,
         "UniquePrerequisites": [],
         "Rewards": [
             {
                 "ValueType": "Lomztein.BFA2.Research.Rewards.UnlockReward",
                 "ValueData": {
-                    "Identifier": "Core.MediumBase",
+                    "Identifier": "Core.MediumRotator",
                     "UnlockList": "Components",
-                    "_description": "Unlock the medium base, on which more powerful weapons can be placed."
+                    "_description": "Unlock the medium rotator, on which more powerful weapons can be placed."
                 }
             }
         ]

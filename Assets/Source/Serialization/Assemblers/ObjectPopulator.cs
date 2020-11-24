@@ -65,7 +65,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 }
                 catch (Exception e)
                 {
-                    Log.Exception(e);
+                    Debug.LogException(e);
                 }
 
             }

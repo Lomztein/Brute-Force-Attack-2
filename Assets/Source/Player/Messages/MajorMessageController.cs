@@ -71,7 +71,7 @@ namespace Lomztein.BFA2.Player.Messages
 
         public void PopUp ()
         {
-            Animator.SetTrigger("PopUp");
+            Animator.SetTrigger("PopIn");
         }
 
         public void PopOut ()

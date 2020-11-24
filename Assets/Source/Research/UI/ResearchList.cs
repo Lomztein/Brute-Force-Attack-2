@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Research.UI
 {
+    //TODO: Sequencing of this class is a bit all over the place, perhaps redo it sometime.
     public class ResearchList : MonoBehaviour
     {
         public ResearchController Controller;
@@ -40,30 +41,39 @@ namespace Lomztein.BFA2.Research.UI
 
         private void OnResourceChanged(Resource arg1, int arg2, int arg3)
         {
-            UpdateAvailableCount();
-            UpdateButtonAvailability();
+            UpdateMenu();
         }
 
         private void OnResearchProgressed(ResearchOption obj)
         {
-            UpdateAvailableCount();
+            UpdateMenu();
+            RegenerateButtons();
         }
 
         private void OnResearchCompleted(ResearchOption obj)
         {
-            UpdateAvailableCount();
+            UpdateMenu();
+            RegenerateButtons();
         }
 
         private void OnReseachCancelled(ResearchOption obj)
         {
-            UpdateAvailableCount();
+            UpdateMenu();
+            RegenerateButtons();
         }
 
         private void OnResearchBegun(ResearchOption obj)
         {
-            UpdateAvailableCount();
+            UpdateMenu();
+            RegenerateButtons();
         }
 
+        private void UpdateMenu ()
+        {
+            UpdateAvailableCount();
+            UpdateButtonAvailability();
+        }
+        
         private void UpdateAvailableCount ()
         {
             int amount = Controller.GetAvailable().Where(x => _resourceContainer.HasEnough(x.ResourceCost)).Count();
@@ -78,15 +88,12 @@ namespace Lomztein.BFA2.Research.UI
             }
 
             ResearchOptionParent.gameObject.SetActive(true);
-            GenerateResearchButtons();
-            UpdateButtonAvailability();
+            RegenerateButtons();
         }
 
         public void Close()
         {
             ResearchOptionParent.gameObject.SetActive(false);
-
-            GenerateTrackerButtons();
         }
 
         private void UpdateButtonAvailability ()
@@ -106,7 +113,9 @@ namespace Lomztein.BFA2.Research.UI
             }
 
             ResearchOption[] available = Controller.GetAvailable();
-            Array.Sort(available, new Comparison<ResearchOption>((x, y) => _resourceContainer.HasEnough(x.ResourceCost) ? 1 : -1));
+            ResourceComparer resourceComparer = new ResourceComparer();
+
+            Array.Sort(available, new Comparison<ResearchOption>((x, y) => _resourceContainer.HasEnough(x.ResourceCost) ? -1 : resourceComparer.Compare(x.ResourceCost, y.ResourceCost)));
 
             foreach (var option in available)
             {
@@ -117,12 +126,20 @@ namespace Lomztein.BFA2.Research.UI
                 Button actualButton = butt.GetComponent<Button>();
                 actualButton.onClick.AddListener(() => OnReseachButtonClick(option));
             }
+
+            UpdateButtonAvailability();
         }
 
         private void OnReseachButtonClick(ResearchOption option)
         {
             Controller.BeginResearch(option);
-            Refresh();
+            RegenerateButtons();
+        }
+
+        private void RegenerateButtons ()
+        {
+            GenerateTrackerButtons();
+            GenerateResearchButtons();
         }
 
         private void GenerateTrackerButtons ()
@@ -147,12 +164,6 @@ namespace Lomztein.BFA2.Research.UI
             {
                 Close();
             }
-        }
-
-        public void Refresh()
-        {
-            Close();
-            Open();
         }
     }
 }

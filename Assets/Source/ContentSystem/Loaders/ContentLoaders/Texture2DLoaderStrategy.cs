@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
                 texture.LoadImage(File.ReadAllBytes(path));
             }catch (Exception exc)
             {
-                Log.Error(exc);
+                Debug.LogError(exc);
             }
             return texture;
         }

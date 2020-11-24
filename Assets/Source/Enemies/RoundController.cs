@@ -126,6 +126,9 @@ namespace Lomztein.BFA2.Enemies
         {
             OnWavePreparing?.Invoke(CurrentWaveIndex + 1);
             State = RoundState.Preparing;
+
+            Debug.Log("Preparing next wave.");
+
             foreach (EnemySpawnPoint point in _spawnPoints)
             {
                 point.ComputePath(_endPoints);
@@ -139,6 +142,8 @@ namespace Lomztein.BFA2.Enemies
             CurrentWaveIndex--;
             CurrentWave = null;
             State = RoundState.Ready;
+
+            Debug.Log("Wave cancelled. Reason: " + reason);
         }
 
         public IWave GetWave(int index)
@@ -152,6 +157,8 @@ namespace Lomztein.BFA2.Enemies
         {
             State = RoundState.InProgress;
             IWave next = GetWave(wave);
+
+            Debug.Log("Starting next wave!");
 
             if (next != null)
             {
@@ -221,11 +228,15 @@ namespace Lomztein.BFA2.Enemies
 
         private void EndWave(int wave)
         {
-            IWave ended = _waveCollection.GetWave(wave);
-            OnWaveFinished?.Invoke(wave, ended);
+            if (State == RoundState.InProgress)
+            {
+                IWave ended = _waveCollection.GetWave(wave);
+                OnWaveFinished?.Invoke(wave, ended);
+                Debug.Log("Wave finished.");
 
-            State = RoundState.Ready;
-            _resourceContainer.ChangeResource(Resource.Research, 1);
+                State = RoundState.Ready;
+                _resourceContainer.ChangeResource(Resource.Research, 1);
+            }
         }
 
         private void OnDrawGizmos()

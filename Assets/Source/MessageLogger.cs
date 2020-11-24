@@ -8,38 +8,31 @@ using UnityEngine;
 
 namespace Lomztein.BFA2
 {
-    public static class Log
+    public class MessageLogger
     {
         public static void Write(object content)
         {
-            SendMessage(content);
-            Debug.Log(content);
+            SendMessage(content.ToString());
         }
 
         public static void Error (object content)
         {
-            Debug.LogWarning(content);
             SendMessage($"<color=red>{content}</color>");
         }
 
         public static void Warning (object content)
         {
-            Debug.LogWarning(content);
-            SendMessage($"<color=yellow>{content}</yellow>");
+            SendMessage($"<color=yellow>{content}</color>");
         }
 
         public static void Exception (Exception exc)
         {
-            Log.Error(exc);
             SendMessage($"<color=red>{exc.Message} - {exc.StackTrace}</color>");
         }
 
-        private static void SendMessage (object content)
+        private static void SendMessage (string content)
         {
-            if (Application.isEditor || Debug.isDebugBuild)
-            {
-                Message.Send(content.ToString(), Message.Type.Minor);
-            }
+            Message.Send(content, Message.Type.Minor);
         }
     }
 }
