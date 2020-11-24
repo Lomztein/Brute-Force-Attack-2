@@ -28,13 +28,19 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public object Assemble(ValueModel model, Type implicitType)
         {
+            if (model is NullModel)
+                return null;
+
             return GetAssembler(implicitType).Assemble(model, implicitType);
         }
 
         public ValueModel Disassemble(object obj, Type implicitType)
         {
-            var model = GetAssembler(obj != null ? obj.GetType() : implicitType).Disassemble(obj, implicitType);
-            if (obj != null && obj.GetType() != implicitType)
+            if (obj == null)
+                return new NullModel();
+
+            var model = GetAssembler(obj.GetType()).Disassemble(obj, implicitType);
+            if (obj.GetType() != implicitType)
                 model.MakeExplicit(obj.GetType());
             return model;
         }

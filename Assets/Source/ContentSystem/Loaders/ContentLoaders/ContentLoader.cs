@@ -21,19 +21,12 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
 
         public object LoadContent(string path, Type type)
         {
-            if (File.Exists(path))
+            var loader = _loaders.FirstOrDefault(x => x.CanLoad(type));
+            if (loader != null)
             {
-                var loader = _loaders.FirstOrDefault(x => x.CanLoad (type));
-                if (loader != null)
-                {
-                    return loader.Load(path, type);
-                }
-                throw new NotImplementedException($"Failed to load object of {nameof(type)} {type.FullName}, no fitting RawContentTypeLoader available.");
+                return loader.Load(path, type);
             }
-            else
-            {
-                throw new FileNotFoundException($"Could not load content file {path}, file not found.");
-            }
+            throw new NotImplementedException($"Failed to load object of {nameof(type)} {type.FullName}, no fitting RawContentTypeLoader available.");
         }
     }
 }

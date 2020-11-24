@@ -65,15 +65,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 }
                 catch (Exception e)
                 {
-                    if (obj is UnityEngine.Object unityObj)
-                    {
-                        Debug.Log(objectType.Name + ": " + info.Name, unityObj);
-                    }
-                    else
-                    {
-                        Debug.Log(objectType.Name + ": " + info.Name);
-                    }
-                    Debug.LogException(e);
+                    Log.Exception(e);
                 }
 
             }

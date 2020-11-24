@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Assemblers;
+﻿using Lomztein.BFA2.ContentSystem.Assemblers;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;

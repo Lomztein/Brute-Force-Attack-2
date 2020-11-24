@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Purchasing.Resources;
-using Lomztein.BFA2.Research.Requirements;
+using Lomztein.BFA2.Research.UniquePrerequisites;
 using Lomztein.BFA2.Research.Rewards;
 using Lomztein.BFA2.Serialization;
 using System;
@@ -18,23 +18,30 @@ namespace Lomztein.BFA2.Research
         [ModelProperty]
         public string Description = "Undescd";
         [ModelProperty]
-        public ContentSpriteReference Sprite;
+        public ContentSpriteReference Sprite = new ContentSpriteReference();
         [ModelProperty]
         public Color SpriteTint = Color.white;
         [ModelProperty]
-        public float Weight = 1;
+        public ResourceCost ResourceCost = new ResourceCost();
         [ModelProperty]
-        public ResourceCost InitialCost = new ResourceCost();
+        public int TimeCost;
+        public int TimePayed { get; private set; }
+
+        private bool _isCompleted = false;
 
         [ModelProperty]
         public string Identifier;
         [ModelProperty]
-        public string[] PrerequisiteIdentifiers;
+        public string[] PrerequisiteIdentifiers = Array.Empty<string>();
+        [ModelProperty]
+        public string PinIdentifier;
 
-        public float Progress => Requirements.Sum(x => Mathf.Clamp01(x.Progress)) / Requirements.Length;
+        public float Progress => UniquePrerequisites.Sum(x => Mathf.Clamp01(x.Progress)) / UniquePrerequisites.Length;
 
-        private CompletionRequirement[] Requirements;
-        private CompletionReward[] Rewards;
+        [ModelProperty]
+        public UniquePrerequisite[] UniquePrerequisites = Array.Empty<UniquePrerequisite>();
+        [ModelProperty]
+        public CompletionReward[] Rewards = Array.Empty<CompletionReward>();
 
         private int _completedRequirements;
 
@@ -43,43 +50,55 @@ namespace Lomztein.BFA2.Research
 
         public void Init()
         {
-            if (Requirements.Length == 0)
+            foreach (UniquePrerequisite req in UniquePrerequisites)
             {
-                CompleteResearch();
-            }
-            else
-            {
-                foreach (CompletionRequirement req in Requirements)
-                {
-                    req.Init();
+                req.Init();
 
-                    req.OnCompleted += OnRequirementCompleted;
-                    req.OnProgressed += OnRequirementProgressed;
-                }
+                req.OnCompleted += OnRequirementCompleted;
+                req.OnProgressed += OnRequirementProgressed;
             }
         }
 
-        public string[] GetRequirementStatuses() => Requirements.Select(x => x.Status).ToArray();
-        public string[] GetRequirementDescriptions() => Requirements.Select(x => x.Description).ToArray();
-        public string[] GetRewardDescriptions() => Rewards.Select(x => x.Description).ToArray();
-
-        public void Stop()
+        private void Stop()
         {
-            foreach (CompletionRequirement req in Requirements)
+            foreach (UniquePrerequisite req in UniquePrerequisites)
             {
                 req.Stop();
             }
         }
 
-        private void OnRequirementProgressed(CompletionRequirement obj)
+        public string[] GetUniqueRequirementsStatuses() => UniquePrerequisites.Select(x => x.Status).ToArray();
+        public string[] GetUniqueRequirementsDescriptions() => UniquePrerequisites.Select(x => x.Description).ToArray();
+        public string[] GetRewardDescriptions() => Rewards.Select(x => x.Description).ToArray();
+
+        private void OnRequirementProgressed(UniquePrerequisite obj)
         {
             OnProgressed?.Invoke(this);
         }
 
-        private void OnRequirementCompleted(CompletionRequirement obj)
+        private void OnRequirementCompleted(UniquePrerequisite obj)
         {
             _completedRequirements++;
-            if (_completedRequirements == Requirements.Length)
+            if (_completedRequirements == UniquePrerequisites.Length)
+            {
+                CompleteResearch();
+            }
+        }
+
+        public void BeginResearch ()
+        {
+            TimePayed = 0;
+            if (TimePayed == TimeCost && !_isCompleted)
+            {
+                CompleteResearch();
+            }
+        }
+
+        public void Tick ()
+        {
+            TimePayed++;
+            OnProgressed?.Invoke(this);
+            if (TimePayed == TimeCost && !_isCompleted)
             {
                 CompleteResearch();
             }
@@ -89,6 +108,7 @@ namespace Lomztein.BFA2.Research
         {
             Reward();
             Stop();
+            _isCompleted = true;
             OnCompleted?.Invoke(this);
         }
 

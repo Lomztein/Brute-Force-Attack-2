@@ -8,7 +8,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Lomztein.BFA2.Content.Assemblers
+namespace Lomztein.BFA2.ContentSystem.Assemblers
 {
     public class TurretComponentAssembler
     {

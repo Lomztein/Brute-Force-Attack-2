@@ -1,0 +1,66 @@
+{
+  "ValueType": "Lomztein.BFA2.Research.ResearchOption",
+    "ValueData": {
+        "Name": "Be Insulted",
+        "Description": "Unlock a single insult thrown your way.",
+        "Sprite": {
+            "Path": "Core/Sprites/UI/TrashCan.png",
+            "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+            },
+            "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+        },
+        "SpriteTint": {
+            "Red": 1.0,
+            "Green": 1.0,
+            "Blue": 1.0,
+            "Alpha": 1.0
+        },
+        "ResourceCost": {
+            "Elements": [
+                {
+                    "Type": "Credits",
+                    "Value": 500
+                }
+            ]
+        },
+        "TimeCost": 0,
+        "Identifier": "Core.BeInsulted",
+        "PrerequisiteIdentifiers": [],
+        "PinIdentifier": null,
+        "UniquePrerequisites": [],
+        "Rewards": [
+            {
+                "ValueType": "Lomztein.BFA2.Research.Rewards.MessageReward",
+                "ValueData": {
+                    "Content": "haha you suck lol",
+                    "Time": 2.0,
+                    "Type": "Major"
+                }
+            },
+            {
+                "ValueType": "Lomztein.BFA2.Research.Rewards.MessageReward",
+                "ValueData": {
+                    "Content": "bitch",
+                    "Time": 1.0,
+                    "Type": "Major"
+                }
+            },
+            {
+                "ValueType": "Lomztein.BFA2.Research.Rewards.MessageReward",
+                "ValueData": {
+                    "Content": "fite me",
+                    "Time": 2.0,
+                    "Type": "Major"
+                }
+            }
+        ]
+    }
+}

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
+namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
 {
     public abstract class EngineComponentAssembler<T> : IEngineComponentAssembler where T : Component
     {

@@ -17,9 +17,10 @@ namespace Lomztein.BFA2.Serialization.Serializers
 
         private static ValueModelSerializerStrategyBase[] _strategies = new ValueModelSerializerStrategyBase[]
         {
-            new ArrayModelSerializerStrategy(),
-            new ObjectModelSerializerStrategy(),
+            new NullModelSerializerStrategy(),
             new PrimitiveModelSerializerStrategy(),
+            new ObjectModelSerializerStrategy(),
+            new ArrayModelSerializerStrategy(),
         };
 
         private ValueModelSerializerStrategyBase GetStrategy(Type type) => _strategies.FirstOrDefault(x => x.CanSerialize(type));
@@ -30,14 +31,20 @@ namespace Lomztein.BFA2.Serialization.Serializers
         }
 
         public JToken Serialize(ValueModel value)
-            => GetStrategy(value.GetType()).Serialize(value);
+        {
+            var strat = GetStrategy(value?.GetType());
+            return strat == null ? JValue.CreateNull() : strat.Serialize(value);
+        }
 
         private Type JTokenToPropertyType (JToken token)
         {
             IsExplicit(token, out JToken data);
 
-            if (data is JValue)
-                return typeof(PrimitiveModel);
+            if (token == null)
+                return typeof(NullModel);
+
+            if (data is JValue value)
+                return value.Type == JTokenType.Null ? typeof(NullModel) : typeof(PrimitiveModel);
 
             if (data is JObject)
                 return typeof(ObjectModel);
@@ -52,7 +59,7 @@ namespace Lomztein.BFA2.Serialization.Serializers
         {
             if (token is JObject obj &&
                 obj.ContainsKey(VALUE_MODEL_TYPE_PROPERTY_NAME) && 
-                obj.ContainsKey(VALUE_MODEL_TYPE_PROPERTY_NAME) && 
+                obj.ContainsKey(VALUE_MODEL_VALUE_PROPERTY_NAME) && 
                 obj.Count == 2)
             {
                 valueData = obj[VALUE_MODEL_VALUE_PROPERTY_NAME];

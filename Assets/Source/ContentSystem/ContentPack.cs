@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentPack : IContentPack
     {
+        private const string IGNORE_PREFIX = "IGNORE_"; // Any files prefixed with this will be ignored.
         private readonly string _path;
 
         public string Name { get; private set; }
@@ -43,7 +44,17 @@ namespace Lomztein.BFA2.ContentSystem
                 string[] files = Directory.GetFiles(spath, "*.json");
                 foreach (string file in files)
                 {
-                    content.Add(_contentLoader.LoadContent(file, type));
+                    if (!Path.GetFileName(file).StartsWith(IGNORE_PREFIX))
+                    {
+                        try
+                        {
+                            var loaded = _contentLoader.LoadContent(file, type);
+                            content.Add(loaded);
+                        }catch (Exception exc)
+                        {
+                            Log.Error(exc);
+                        }
+                    }
                 }
             }
 

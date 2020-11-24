@@ -7,7 +7,7 @@ using Lomztein.BFA2.Serialization.Models;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
+namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
 {
     public class Rigidbody2DAssembler : EngineComponentAssembler<Rigidbody2D>
     {

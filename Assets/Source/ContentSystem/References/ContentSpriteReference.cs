@@ -28,6 +28,14 @@ namespace Lomztein.BFA2.ContentSystem.References
                 texture.filterMode = FilterMode.Point;
                 Rect rect = Rect.size.magnitude > 0.1f ? Rect : new Rect(0f, 0f, texture.width, texture.height);
 
+                if (
+                    rect.x + rect.width > texture.width ||
+                    rect.y + rect.height > texture.height
+                    )
+                {
+                    rect = new Rect(0, 0, texture.width, texture.height);
+                }
+
                 _cache = Sprite.Create(texture, rect, Pivot, PixelsPerUnit, 0, SpriteMeshType.FullRect);
             }
             return _cache;

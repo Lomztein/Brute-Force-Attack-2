@@ -1,6 +1,9 @@
-﻿using Lomztein.BFA2.ContentSystem.Objects;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
+using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +14,8 @@ namespace Lomztein.BFA2.Research
 {
     public class ResearchController : MonoBehaviour
     {
+        private const string RESEARCH_PATH = "*/Research/";
+
         public static ResearchController Instance;
 
         private IResourceContainer _resourceContainer;
@@ -23,15 +28,8 @@ namespace Lomztein.BFA2.Research
         public event Action<ResearchOption> OnResearchCompleted;
         public event Action<ResearchOption> OnResearchProgressed;
         public event Action<ResearchOption> OnResearchCancelled;
-        public event Action<int> OnMaxResearchSlotsSet;
 
-        public int MaxResearchSlots = 1;
-
-        public void SetMaxResearchSlots(int amount)
-        {
-            MaxResearchSlots = amount;
-            OnMaxResearchSlotsSet?.Invoke(amount);
-        }
+        private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
         public ResearchOption[] GetInProgress() => _inProgress.ToArray();
         public ResearchOption[] GetCompleted() => _completed.ToArray();
@@ -49,7 +47,36 @@ namespace Lomztein.BFA2.Research
         {
             Instance = this;
             _resourceContainer = GetComponent<IResourceContainer>();
-            SetMaxResearchSlots(MaxResearchSlots);
+
+            _all = LoadResearch().ToList();
+            InitResearch(_all);
+        }
+
+        private void Start()
+        {
+            _roundController.IfExists((x) => x.OnWaveFinished += OnWaveFinished);
+        }
+
+        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
+        {
+            List<ResearchOption> toTick = new List<ResearchOption>(_inProgress);
+
+            foreach (ResearchOption option in toTick)
+            {
+                option.Tick();
+            }
+        }
+
+        private IEnumerable<ResearchOption> LoadResearch()
+            => Content.GetAll<ResearchOption>(RESEARCH_PATH);
+
+        private void InitResearch (IEnumerable<ResearchOption> research) 
+        {
+            foreach (var option in research)
+            {
+                option.OnProgressed += ResearchProgressed;
+                option.Init();
+            }
         }
 
         private bool PrerequisitesCompleted (ResearchOption option)
@@ -60,29 +87,28 @@ namespace Lomztein.BFA2.Research
         public void AddResearchOption (ResearchOption option)
         {
             _all.Add(option);
+            option.OnProgressed += ResearchProgressed;
+            option.Init();
         }
 
         public void BeginResearch(ResearchOption option)
         {
-            if (_inProgress.Count < MaxResearchSlots && _resourceContainer.TrySpend(option.InitialCost))
+            if (_resourceContainer.TrySpend(option.ResourceCost))
             {
                 option.OnCompleted += ResearchCompleted;
-                option.OnProgressed += ResearchProgressed;
-                option.Init();
-
                 _inProgress.Add(option);
 
+                option.BeginResearch();
                 OnResearchBegun?.Invoke(option);
             }
         }
 
         public void CancelResearch (ResearchOption option)
         {
-            option.Stop();
             _inProgress.Remove(option);
-            StopResearch(option);
+            option.OnCompleted -= ResearchCompleted;
 
-            _resourceContainer.AddResources(option.InitialCost);
+            _resourceContainer.AddResources(option.ResourceCost);
             OnResearchCancelled?.Invoke(option);
         }
 
@@ -90,7 +116,9 @@ namespace Lomztein.BFA2.Research
         {
             _completed.Add(option);
             _inProgress.Remove(option);
-            StopResearch(option);
+
+            option.OnCompleted -= ResearchCompleted;
+            StopTrackingResearch(option);
 
             OnResearchCompleted?.Invoke(option);
         }
@@ -100,9 +128,8 @@ namespace Lomztein.BFA2.Research
             OnResearchProgressed?.Invoke(option);
         }
 
-        private void StopResearch (ResearchOption option)
+        private void StopTrackingResearch (ResearchOption option)
         {
-            option.OnCompleted -= ResearchCompleted;
             option.OnProgressed -= ResearchProgressed;
         }
     }

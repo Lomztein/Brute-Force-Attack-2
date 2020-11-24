@@ -19,12 +19,12 @@ namespace Lomztein.BFA2.UI.Menus
 
         public void Init()
         {
-            Time.timeScale = 1f;
+            Time.timeScale = 0f;
         }
 
         public void Resume()
         {
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
             Close();
         }
 

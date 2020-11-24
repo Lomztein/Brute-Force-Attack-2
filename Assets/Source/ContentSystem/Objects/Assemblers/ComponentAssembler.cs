@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Content.Assemblers.EngineComponent;
+﻿using Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Utilities;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Assemblers
+namespace Lomztein.BFA2.ContentSystem.Assemblers
 {
     public class ComponentAssembler
     {

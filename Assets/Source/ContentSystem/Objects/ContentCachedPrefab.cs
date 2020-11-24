@@ -1,5 +1,5 @@
 ﻿using System;
-using Lomztein.BFA2.Content.Assemblers;
+using Lomztein.BFA2.ContentSystem.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using UnityEngine;
 

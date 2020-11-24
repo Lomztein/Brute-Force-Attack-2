@@ -1,0 +1,50 @@
+{
+  "ValueType": "Lomztein.BFA2.Research.ResearchOption",
+    "ValueData": {
+        "Name": "Unlock Medium Base",
+        "Description": "Unlock the medium base turret component.",
+        "Sprite": {
+            "Path": "Core/Sprites/Components/Base.png",
+            "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+            },
+            "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+        },
+        "SpriteTint": {
+            "Red": 1.0,
+            "Green": 1.0,
+            "Blue": 1.0,
+            "Alpha": 1.0
+        },
+        "ResourceCost": {
+            "Elements": [
+                {
+                    "Type": "Research",
+                    "Value": 2
+                }
+            ]
+        },
+        "TimeCost": 0,
+        "Identifier": "Core.UnlockMediumBase",
+        "PrerequisiteIdentifiers": [],
+        "PinIdentifier": null,
+        "UniquePrerequisites": [],
+        "Rewards": [
+            {
+                "ValueType": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+                "ValueData": {
+                    "Identifier": "Core.MediumBase",
+                    "UnlockList": "Components",
+                    "_description": "Unlock the medium base, on which more powerful weapons can be placed."
+                }
+            }
+        ]
+    }
+}

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Assemblers
+namespace Lomztein.BFA2.ContentSystem.Assemblers
 {
     public class GameObjectAssembler
     {

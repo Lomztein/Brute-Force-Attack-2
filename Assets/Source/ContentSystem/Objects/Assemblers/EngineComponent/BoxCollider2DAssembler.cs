@@ -7,7 +7,7 @@ using Lomztein.BFA2.Serialization.Assemblers.EngineObject;
 using Lomztein.BFA2.Serialization.Models;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
+namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
 {
     public class BoxCollider2DAssembler : EngineComponentAssembler<BoxCollider2D>
     {

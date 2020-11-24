@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Lomztein.BFA2.Content.Assemblers.EngineComponent
+namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
 {
     public class LineRendererAssembler : EngineComponentAssembler<LineRenderer>
     {

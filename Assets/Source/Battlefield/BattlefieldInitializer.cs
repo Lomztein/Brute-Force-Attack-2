@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory;
+using Lomztein.BFA2.Player.Messages;
 using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -28,6 +29,8 @@ namespace Lomztein.BFA2.Battlefield
             InitDefaultUnlocks();
             InitStartingItems();
             InitDifficulty();
+
+            Invoke(nameof(SendStartingMessage), 2f);
         }
 
         private void InitDifficulty()
@@ -37,6 +40,11 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitStartingItems()
         {
+        }
+
+        private void SendStartingMessage ()
+        {
+            Message.Send("Defend the green shit.", 5, Message.Type.Major);
         }
 
         private void InitMap ()

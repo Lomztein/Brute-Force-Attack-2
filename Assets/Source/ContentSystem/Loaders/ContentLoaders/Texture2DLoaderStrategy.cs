@@ -13,7 +13,13 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         public object Load(string path, Type type)
         {
             Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(File.ReadAllBytes(path));
+            try
+            {
+                texture.LoadImage(File.ReadAllBytes(path));
+            }catch (Exception exc)
+            {
+                Log.Error(exc);
+            }
             return texture;
         }
     }

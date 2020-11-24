@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Content.Assemblers
+namespace Lomztein.BFA2.ContentSystem.Assemblers
 {
     public class TurretAssemblyAssembler
     {
