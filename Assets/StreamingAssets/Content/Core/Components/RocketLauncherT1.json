@@ -96,9 +96,9 @@
       }
     },
     {
-      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
+        "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
         "ValueData": {
-            "Mod": {
+            "_mod": {
                 "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
                 "ValueData": {
                     "DamageMultBase": 0.2,
@@ -115,6 +115,29 @@
                     "RequiredAttributes": [ "Weapon" ]
                 }
             }
+        }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
+        "ValueData": {
+            "_mod": {
+                "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+                "ValueData": {
+                    "DamageMultBase": 0.2,
+                    "RangeBase": 0.5,
+                    "DamageMultStack": 1.5,
+                    "RangeStack": 1.2,
+                    "ExplosionPrefab": {
+                        "Path": "Core/Projectiles/Explosion.json"
+                    },
+                    "DestroyProjectile": true,
+                    "_identifier": "Core.ExplodeOnProjectileHit",
+                    "_name": "Explode on Hit",
+                    "_description": "Volatile energies cause the projectile to explode when it hits something.",
+                    "RequiredAttributes": [ "Weapon" ]
+                }
+            },
+            "_behavioursToDisable": [ "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon" ]
         }
     }
   ],

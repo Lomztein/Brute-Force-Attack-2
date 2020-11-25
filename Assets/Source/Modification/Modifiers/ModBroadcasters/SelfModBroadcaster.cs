@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     {
         private IModdable _moddable;
 
-        protected void Start()
+        protected override void Start()
         {
             _moddable = GetComponent<IModdable>();
             DelayedBroadcast();
@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             return new IModdable[] { _moddable };
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             ClearMod();
         }

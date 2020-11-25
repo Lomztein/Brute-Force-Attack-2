@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Modification.Modifiers.EventMods;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,21 +15,24 @@ namespace Lomztein.BFA2.ContentSystem.References
     [Serializable]
     public class EmbeddedValueModel : IAssemblable
     {
-        [SerializeReference] private ValueModel _model;
+        [SerializeReference] public ValueModel Model;
         private object _cache;
 
         public void Assemble(ValueModel source)
         {
-            _model = source;
+            ObjectModel model = source as ObjectModel;
+            Model = model.GetProperty("EmbeddedModel");
         }
 
         public ValueModel Disassemble()
         {
-            if (_model == null)
+            if (Model == null)
             {
-                _model = new ObjectModel();
+                Model = new ObjectModel();
             }
-            return _model;
+
+            return new ObjectModel(
+                new ObjectField("EmbeddedModel", Model));
         }
 
         public T GetCache<T> ()
@@ -44,7 +48,7 @@ namespace Lomztein.BFA2.ContentSystem.References
         public T GetNew<T> ()
         {
             ValueAssembler assembler = new ValueAssembler();
-            T value = (T)assembler.Assemble(_model, typeof(T));
+            T value = (T)assembler.Assemble(Model, typeof(T));
             return value;
         }
     }

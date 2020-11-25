@@ -53,7 +53,6 @@ namespace Lomztein.BFA2.Serialization.Models
 
         public ValueModel GetProperty(string name)
         {
-            var field = GetField(name);
             return GetField(name).Model;
         }
 

@@ -59,7 +59,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         public float Cooldown => 1f / Firerate.GetValue();
 
-        public override TurretComponentCategory Category => TurretComponentCategories.Weapon;
+        public override StructureCategory Category => StructureCategories.Weapon;
 
         private IObjectPool<IProjectile> _pool;
         private IProjectilePool _projectilePool;

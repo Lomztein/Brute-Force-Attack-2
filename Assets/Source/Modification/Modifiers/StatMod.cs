@@ -13,21 +13,26 @@ namespace Lomztein.BFA2.Modification.Modifiers
     public class StatMod : ModBase, IMod
     {
         [ModelProperty]
-        public Element[] Stats;
+        public Element[] Stats = new Element[0];
 
         [Serializable]
         public class Element
         {
-            public string Identifier;
-            public string Name;
-            public string Description;
+            [ModelProperty]
+            public string Identifier = "StatIdentifier";
+            [ModelProperty]
+            public string Name = "StatName";
+            [ModelProperty]
+            public string Description = "StatDescription";
 
-            public Stat.Type Type;
-            public float Value;
+            [ModelProperty]
+            public Stat.Type Type = Stat.Type.Multiplicative;
+            [ModelProperty]
+            public float Value = 0;
 
             public override string ToString()
             {
-                return "+" + (Type == Stat.Type.Multiplicative ? Mathf.RoundToInt(Value * 100f).ToString() + "%" : Value.ToString()) + " " + (string.IsNullOrEmpty (Name) ? Identifier : Name);
+                return "+" + (Type == Stat.Type.Multiplicative ? Mathf.RoundToInt(Value * 100f).ToString() + "%" : Value.ToString()) + " " + (string.IsNullOrEmpty(Name) ? Identifier : Name);
             }
         }
 

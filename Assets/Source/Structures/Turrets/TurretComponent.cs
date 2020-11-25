@@ -20,10 +20,10 @@ namespace Lomztein.BFA2.Structures.Turrets
     {
         public override Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
 
-        public abstract TurretComponentCategory Category { get; }
-
         protected IAttachmentPointSet _upperAttachmentPoints;
         protected IAttachmentPointSet _lowerAttachmentPoints;
+
+        protected TurretAssembly _assembly;
 
         protected override void Awake()
         {
@@ -43,6 +43,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         private void InitSelf ()
         {
+            _assembly = GetComponentInParent<TurretAssembly>();
             PreInit();
         }
 
@@ -69,8 +70,9 @@ namespace Lomztein.BFA2.Structures.Turrets
             Tick(Time.fixedDeltaTime);
         }
 
-        public void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             End();
             DetachAttachmentPoints();
         }

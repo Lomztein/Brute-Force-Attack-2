@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 {
     public class ComponentPlacement : ISimplePlacement
     {
-        public event Action OnPlaced;
+        public event Action<GameObject> OnPlaced;
         public event Action OnFinished;
 
         private GameObject _obj;
@@ -50,7 +50,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 placed.SetActive(true);
                 placed.transform.position = _target.Item2;
                 placed.transform.parent = (_target.Item1 as Component).transform;
-                OnPlaced?.Invoke();
+                OnPlaced?.Invoke(placed);
                 return true;
             }
             return false;

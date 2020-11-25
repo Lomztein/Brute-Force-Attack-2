@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         private IEventCaller<TargetEventArgs> _onTargetAcquired;
 
-        public override TurretComponentCategory Category => TurretComponentCategories.TargetFinder;
+        public override StructureCategory Category => StructureCategories.TargetFinder;
 
         public override void End()
         {
@@ -46,13 +46,13 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void PreInit()
         {
+            AddModdableAttribute(Modification.ModdableAttribute.Ranged);
             _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
             Range = Stats.AddStat("Range", "Range", "The range that this base can acquire targets at.", BaseRange);
         }
 
         public override void Init()
         {
-            AddModdableAttribute(Modification.ModdableAttribute.Ranged);
             _targetFinder = GetComponent<ITargetFinder>();
         }
             

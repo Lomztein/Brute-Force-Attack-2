@@ -27,7 +27,7 @@ namespace Lomztein.BFA2
 
         public static void Exception (Exception exc)
         {
-            SendMessage($"<color=red>{exc.Message} - {exc.StackTrace}</color>");
+            SendMessage($"<color=red>{exc.Message} at {exc.Source}</color>");
         }
 
         private static void SendMessage (string content)

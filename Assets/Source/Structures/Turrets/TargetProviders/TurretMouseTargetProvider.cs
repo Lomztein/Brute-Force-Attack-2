@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public IEventCaller<TargetEventArgs> OnTargetAcquired { get; private set; }
 
-        public override TurretComponentCategory Category => TurretComponentCategories.TargetFinder;
+        public override StructureCategory Category => StructureCategories.TargetFinder;
 
         public override void End()
         {

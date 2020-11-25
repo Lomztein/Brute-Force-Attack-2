@@ -1,5 +1,8 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Structures;
+using Lomztein.BFA2.Structures.StructureManagement;
+using Lomztein.BFA2.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +11,11 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public abstract class ModBroadcaster : MonoBehaviour
     {
-        [ModelProperty] public EmbeddedValueModel Mod = new EmbeddedValueModel();
-        public IMod CachedMod => Mod.GetCache<IMod>();
+        [ModelProperty]
+        [SerializeReference]
+        protected IMod _mod;
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
+        private ObjectCloner _cloner = new ObjectCloner();
 
         protected void BroadcastMod()
         {
@@ -33,6 +38,25 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             }
         }
 
+        protected virtual void Start()
+        {
+            StructureManager.OnStructureAdded += OnStructureChange;
+            StructureManager.OnStructureChanged += OnStructureChange;
+            StructureManager.OnStructureRemoved += OnStructureChange;
+        }
+
+        protected virtual void OnDestroy ()
+        {
+            StructureManager.OnStructureAdded -= OnStructureChange;
+            StructureManager.OnStructureChanged -= OnStructureChange;
+            StructureManager.OnStructureRemoved -= OnStructureChange;
+        }
+
+        private void OnStructureChange(Structure obj)
+        {
+            BroadcastMod();
+        }
+
         protected void ClearMod()
         {
             foreach (var target in _currentBroadcastTargets)
@@ -44,9 +68,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private bool AddMod(IModdable moddable)
         {
-            if (CachedMod.IsCompatableWith(moddable))
+            if (_mod.IsCompatableWith(moddable))
             {
-                moddable.Mods.AddMod(Mod.GetNew<IMod>());
+                moddable.Mods.AddMod(_cloner.Clone(_mod));
                 return true;
             }
             return false;
@@ -54,7 +78,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private void RemoveMod (IModdable moddable)
         {
-            moddable.Mods.RemoveMod(CachedMod.Identifier);
+            moddable.Mods.RemoveMod(_mod.Identifier);
         }
 
         protected abstract IEnumerable<IModdable> GetBroadcastTargets();

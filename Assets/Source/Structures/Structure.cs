@@ -7,6 +7,7 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI;
 using System;
@@ -56,6 +57,10 @@ namespace Lomztein.BFA2.Structures
         [ModelProperty]
         public Size _height;
         public virtual Size Height => _height;
+        public virtual StructureCategory Category { get; } = StructureCategories.Misc;
+
+        public event Action<Structure> Changed;
+        public event Action<Structure> Destroyed;
 
         public override string ToString()
         {
@@ -65,6 +70,13 @@ namespace Lomztein.BFA2.Structures
         protected virtual void Awake()
         {
             Mods = new ModContainer(Stats, Events);
+        }
+
+        public void InvokeChanged() => Changed?.Invoke(this);
+
+        protected virtual void OnDestroy ()
+        {
+            Destroyed?.Invoke(this);
         }
 
         public void OnAssembled() => Awake();

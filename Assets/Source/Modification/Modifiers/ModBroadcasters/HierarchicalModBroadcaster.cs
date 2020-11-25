@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private readonly List<IModdable> _lastModified = new List<IModdable>();
 
-        private void Start()
+        protected override void Start()
         {
             DelayedBroadcast();
         }
@@ -48,7 +48,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             return moddables;
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             ClearMod();
         }

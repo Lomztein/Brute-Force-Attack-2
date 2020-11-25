@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Battlefield
             "Core.PulseLaserT1",
             "Core.MachineGunT1",
             "Core.RocketLauncherT1",
-            "Core.AuxilleryProcessor"
+            "Core.AuxProcessor",
         };
         public static string[] DefaultUnlockedStructures =
         {

@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
             {
                 upgrader.Upgrade();
             }
-            SendMessage("OnAssemblyUpdated");
+            GetComponent<Structure>().InvokeChanged();
         }
 
         private bool TryUpgrade ()

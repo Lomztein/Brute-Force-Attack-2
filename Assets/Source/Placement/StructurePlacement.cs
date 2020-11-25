@@ -1,5 +1,7 @@
 ﻿using Lomztein.BFA2.Grid;
+using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.Highlighters;
+using Lomztein.BFA2.Structures.StructureManagement;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -20,8 +22,7 @@ namespace Lomztein.BFA2.Placement
         private IGridObject _placeable;
         private LayerMask _blockingLayer;
 
-        public event Action OnPlaced;
-        public event Action OnCancelled;
+        public event Action<GameObject> OnPlaced;
         public event Action OnFinished;
 
         private Func<string>[] _placeRequirements;
@@ -38,6 +39,12 @@ namespace Lomztein.BFA2.Placement
 
         public bool Pickup(GameObject obj)
         {
+            Structure objStructure = obj.GetComponent<Structure>();
+            if (objStructure)
+            {
+                GlobalStructureModManager.Instance.ApplyMods(objStructure);
+            }
+
             _highlighters = HighlighterCollection.Create(obj);
             _highlighters.Highlight();
 
@@ -68,8 +75,9 @@ namespace Lomztein.BFA2.Placement
         {
             if (string.IsNullOrEmpty(CanPlace (_model.transform.position, _model.transform.rotation)))
             {
-                UnityEngine.Object.Instantiate(_obj,_model.transform.position, _model.transform.rotation).SetActive(true);
-                OnPlaced?.Invoke();
+                GameObject go = UnityEngine.Object.Instantiate(_obj,_model.transform.position, _model.transform.rotation);
+                go.SetActive(true);
+                OnPlaced?.Invoke(go);
                 return true;
             }
             return false;

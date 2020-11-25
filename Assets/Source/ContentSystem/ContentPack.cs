@@ -52,7 +52,8 @@ namespace Lomztein.BFA2.ContentSystem
                             content.Add(loaded);
                         }catch (Exception exc)
                         {
-                            Debug.LogError(exc);
+                            Debug.LogException(exc);
+                            Debug.LogWarning($"File '{file}' could not be loaded. See preceeding callstack for more info.");
                         }
                     }
                 }

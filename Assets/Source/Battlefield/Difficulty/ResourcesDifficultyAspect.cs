@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Battlefield.Difficulty
 
 
         public int StartingCredits = 1000;
-        public int StartingResearch = 2;
+        public int StartingResearch = 0;
 
         public void Apply()
         {

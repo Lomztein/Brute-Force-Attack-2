@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
         private Vector3 _tpos;
         public string Text => "Turnrate: " + Turnrate.GetValue();
 
-        public override TurretComponentCategory Category => TurretComponentCategories.Targeter;
+        public override StructureCategory Category => StructureCategories.Targeter;
 
         public override void End()
         {
@@ -38,13 +38,13 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
         public override void PreInit()
         {
             _weapon = GetComponentInChildren<IWeapon>();
+            AddModdableAttribute(Modification.ModdableAttribute.Rotator);
             Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.", BaseTurnrate);
         }
 
         public override void Init()
         {
             TargetProvider = GetComponentInParent<ITargetProvider>();
-            AddModdableAttribute(Modification.ModdableAttribute.Rotator);
             _startingAngle = transform.eulerAngles.z;
         }
 

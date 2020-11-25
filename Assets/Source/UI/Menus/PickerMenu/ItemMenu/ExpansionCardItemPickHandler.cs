@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
         {
             ExpansionCardItem expItem = pick as ExpansionCardItem;
             ExpansionCardPlacement placement = new ExpansionCardPlacement();
-            placement.OnPlaced += () => OnPlaced(expItem);
+            placement.OnPlaced += (go) => OnPlaced(expItem);
             placement.Pickup(expItem.Prefab.Instantiate());
             PlacementController.Instance.TakePlacement(placement);
         }

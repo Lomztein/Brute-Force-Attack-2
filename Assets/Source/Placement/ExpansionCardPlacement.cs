@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.Placement
 {
     public class ExpansionCardPlacement : ISimplePlacement
     {
-        public event Action OnPlaced;
+        public event Action<GameObject> OnPlaced;
         public event Action OnFinished;
 
         private GameObject _obj;
@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Placement
                     GameObject cardGO = UnityEngine.Object.Instantiate(_obj);
                     IExpansionCard card = cardGO.GetComponent<IExpansionCard>();
                     _target.ExpansionCards.AddCard(card);
-                    OnPlaced?.Invoke();
+                    OnPlaced?.Invoke(cardGO);
                     return true;
                 }
             }

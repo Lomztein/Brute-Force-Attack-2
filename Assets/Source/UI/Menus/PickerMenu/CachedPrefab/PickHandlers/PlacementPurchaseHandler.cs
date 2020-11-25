@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PickHandlers
                 ISimplePlacement placement = GetPlacement(purchasable, resources);
                 placement.Pickup(instance);
 
-                placement.OnPlaced += () => resources.TrySpend(purchasable.Cost);
+                placement.OnPlaced += (obj) => resources.TrySpend(purchasable.Cost);
                 PlacementController.Instance.TakePlacement(placement);
             }
         }

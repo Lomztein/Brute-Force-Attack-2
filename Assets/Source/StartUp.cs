@@ -44,7 +44,7 @@ namespace Lomztein.BFA2
                     break;
 
                 default:
-                    MessageLogger.Write($"{type}: {condition} -> {stackTrace}");
+                    MessageLogger.Write($"{type}: {condition}");
                     break;
             }
         }

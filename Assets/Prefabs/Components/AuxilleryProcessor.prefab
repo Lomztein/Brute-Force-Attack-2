@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6273890081359197296}
   - component: {fileID: 9217758775699311776}
   - component: {fileID: 6922383497514813741}
+  - component: {fileID: -3247806973474601846}
   m_Layer: 9
   m_Name: AuxilleryProcessor
   m_TagString: Untagged
@@ -45,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae329eec4ab409749878d756ff73e01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _identifier: Core.AuxilleryProcessor
   _name: Auxillery Processor
   _description: Noticably improves range of underlying target finders.
+  _uniqueIdentifier: Core.AuxProcessor
   _cost:
     Elements:
     - Type: 0
@@ -71,6 +72,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-3247806973474601846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4509039148037148673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de35c8b8a8e790849a8f182eba3fdf92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mod:
+    id: 0
+  ProvideUpwards: 0
+  ProvideDownwards: 1
+  ProvideSelf: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &7967930661676496849
 GameObject:
   m_ObjectHideFlags: 0

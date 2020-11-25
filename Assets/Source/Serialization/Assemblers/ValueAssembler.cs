@@ -18,7 +18,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         {
             if (_assemblers == null)
             {
-                _assemblers = new List<IValueAssembler>();
                 _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IValueAssembler>(typeof(ValueAssembler), typeof (ArrayModelAssembler), typeof (ObjectAssembler), typeof (PrimitiveModelAssembler)).ToList();
                 _assemblers.Add(new ArrayModelAssembler());
                 _assemblers.Add(new ObjectAssembler());
@@ -31,7 +30,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             if (model is NullModel)
                 return null;
 
-            return GetAssembler(implicitType).Assemble(model, implicitType);
+            Type type = model.IsTypeImplicit ? implicitType : model.GetModelType();
+            return GetAssembler(type).Assemble(model, implicitType);
         }
 
         public ValueModel Disassemble(object obj, Type implicitType)

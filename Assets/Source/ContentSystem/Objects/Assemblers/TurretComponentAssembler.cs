@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
         public ObjectModel Dissassemble (TurretComponent component)
         {
-            GameObject obj = (component as Component).gameObject;
+            GameObject obj = component.gameObject;
             List<ObjectModel> children = new List<ObjectModel>();
             foreach (Transform child in obj.transform)
             {

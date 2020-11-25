@@ -19,13 +19,15 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         [ModelProperty]
         public bool IncludeSelf;
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             DelayedBroadcast();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             ClearMod();
         }
 

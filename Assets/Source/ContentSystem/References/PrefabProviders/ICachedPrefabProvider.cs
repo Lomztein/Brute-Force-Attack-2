@@ -10,6 +10,6 @@ namespace Lomztein.BFA2.ContentSystem.References.PrefabProviders
 {
     public interface ICachedPrefabProvider : IProvider<IContentCachedPrefab>
     {
-        IContentCachedPrefab[] Get();
+        new IContentCachedPrefab[] Get();
     }
 }
