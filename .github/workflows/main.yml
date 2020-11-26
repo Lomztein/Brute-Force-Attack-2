@@ -36,7 +36,8 @@ jobs:
           unityVersion: 2019.4.12f1
           buildMethod: Builder.BuildGame
       
-  publish:
+  publish-win32:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
@@ -48,6 +49,11 @@ jobs:
           PACKAGE: ./build/StandaloneWindows
           VERSION_FILE: ./build/version.txt
           
+  publish-win64:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+          
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -57,6 +63,10 @@ jobs:
           PACKAGE: ./build/StandaloneWindows64
           VERSION_FILE: ./build/version.txt
           
+  publish-linux:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -66,6 +76,10 @@ jobs:
           PACKAGE: ./build/StandaloneLinux64
           VERSION_FILE: ./build/version.txt
           
+  publish-osx:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
