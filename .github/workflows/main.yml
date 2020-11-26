@@ -16,76 +16,46 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        
       - uses: webbertakken/unity-builder@v1.5
-        env:
-          UNITY_EMAIL: ${{ secrets.UNITY_USERNAME }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_AUTHENTICATOR_KEY }}
         with:
-          unityVersion: 2019.4.12f1
           buildMethod: Builder.CDBuildGame
+          unityVersion: 2019.4.12f1
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: BFA2-Build
+          path: ./build/
       
-  publish-win32:
+  publish:
     needs: build
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        target: [./build/Win32, ./build/Win64, ./build/Linux, ./build/OSX]
+    
     steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: BFA2-Build
+          path: ./build/
+      
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: windows
           ITCH_GAME: Brute-Force-Attack-2
           ITCH_USER: Lomztein
-          PACKAGE: ./build/StandaloneWindows
+          PACKAGE: ${{ matrix.target }}
           VERSION_FILE: ./build/version.txt
-          
-  publish-win64:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-          
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: windows
-          ITCH_GAME: Brute-Force-Attack-2
-          ITCH_USER: Lomztein
-          PACKAGE: ./build/StandaloneWindows64
-          VERSION_FILE: ./build/version.txt
-          
-  publish-linux:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: linux
-          ITCH_GAME: Brute-Force-Attack-2
-          ITCH_USER: Lomztein
-          PACKAGE: ./build/StandaloneLinux64
-          VERSION_FILE: ./build/version.txt
-          
-  publish-osx:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: mac
-          ITCH_GAME: Brute-Force-Attack-2
-          ITCH_USER: Lomztein
-          PACKAGE: ./build/StandaloneOSX
-          VERSION_FILE: ./build/version.txt
-
-
