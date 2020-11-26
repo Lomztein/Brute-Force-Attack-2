@@ -26,14 +26,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public void Populate (object obj, ObjectModel model)
         {
             Type modelType = obj.GetType();
-            IEnumerable<FieldInfo> fields = GetModelFields(modelType);
+            IEnumerable<IAssignableMemberInfo> fields = GetModelFields(modelType);
 
-            foreach (var field in fields)
+            foreach (IAssignableMemberInfo field in fields)
             {
                 var property = model.GetProperty(field.Name);
                 if (property != null)
                 {
-                    var value = _propertyAssembler.Assemble(property, field.FieldType);
+                    var value = _propertyAssembler.Assemble(property, field.ValueType);
                     field.SetValue(obj, value);
                 }
                 else
@@ -48,15 +48,15 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             Type objectType = obj.GetType();
             var properties = new List<ObjectField>();
 
-            IEnumerable<FieldInfo> fields = GetModelFields(objectType);
+            IEnumerable<IAssignableMemberInfo> fields = GetModelFields(objectType);
 
-            foreach (FieldInfo info in fields)
+            foreach (IAssignableMemberInfo info in fields)
             {
                 try
                 {
                     object componentValue = info.GetValue(obj);
-                    var model = _propertyAssembler.Disassemble(componentValue, info.FieldType);
-                    if (componentValue != null && componentValue.GetType() != info.FieldType)
+                    var model = _propertyAssembler.Disassemble(componentValue, info.ValueType);
+                    if (componentValue != null && componentValue.GetType() != info.ValueType)
                     {
                         model.MakeExplicit(componentValue.GetType());
                     }
@@ -73,10 +73,88 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             return new ObjectModel(properties.ToArray());
         }
 
-        private IEnumerable<FieldInfo> GetModelFields(Type type)
+        private IEnumerable<IAssignableMemberInfo> GetModelFields(Type type)
         {
-            BindingFlags _bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
-            return type.GetFields(_bindingFlags).Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true));
+            BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+            var fields = type.GetFields(bindingFlags).Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true));
+            var properties = type.GetProperties(bindingFlags).Where(x => x.IsDefined(typeof(ModelPropertyAttribute), true));
+            
+            foreach (var field in fields)
+            {
+                yield return CreateMemberInfo(field);
+            }
+
+            foreach (var property in properties)
+            {
+                yield return CreateMemberInfo(property);
+            }
+
+            // That CreateMemberInfo factory method didn't really end up neccesary.
+        }
+
+        private interface IAssignableMemberInfo
+        {
+            string Name { get; }
+            Type ValueType { get; }
+
+            object GetValue(object obj);
+
+            void SetValue(object obj, object value);
+        }
+
+        private class FieldAssignableMemberInfo : IAssignableMemberInfo
+        {
+            private readonly FieldInfo _info;
+
+            public FieldAssignableMemberInfo (FieldInfo info)
+            {
+                _info = info;
+            }
+
+            public string Name => _info.Name;
+            public Type ValueType => _info.FieldType;
+
+            public object GetValue(object obj)
+            {
+                return _info.GetValue(obj);
+            }
+
+            public void SetValue(object obj, object value)
+            {
+                _info.SetValue(obj, value);
+            }
+        }
+
+        private class PropertyAssignableMemberInfo : IAssignableMemberInfo
+        {
+            private readonly PropertyInfo _info;
+
+            public PropertyAssignableMemberInfo(PropertyInfo info)
+            {
+                _info = info;
+            }
+
+            public string Name => _info.Name;
+            public Type ValueType => _info.PropertyType;
+
+            public object GetValue(object obj)
+            {
+                return _info.GetValue(obj);
+            }
+
+            public void SetValue(object obj, object value)
+            {
+                _info.SetValue(obj, value);
+            }
+        }
+
+        private static IAssignableMemberInfo CreateMemberInfo (MemberInfo info)
+        {
+            if (info is FieldInfo field)
+                return new FieldAssignableMemberInfo(field);
+            if (info is PropertyInfo property)
+                return new PropertyAssignableMemberInfo(property);
+            return null;
         }
     }
 }

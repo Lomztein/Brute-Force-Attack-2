@@ -48,5 +48,10 @@ namespace Lomztein.BFA2.ContentSystem.References
         {
             Get().Dispose();
         }
+
+        public bool IsDisposed()
+        {
+            return _cachedPrefab.IsDisposed();
+        }
     }
 }

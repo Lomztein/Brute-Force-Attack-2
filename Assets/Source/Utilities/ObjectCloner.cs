@@ -26,4 +26,19 @@ namespace Lomztein.BFA2.Utilities
             return (T)_assembler.Assemble(_modelCache, typeof(T));
         }
     }
+
+    public static class CloneExtensions
+    {
+        /// <summary>
+        /// Deeply clones an object using the polymorphic deep object serialization system. Probably quite slow. For repeated clones, use an ObjectCloner instead.
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="original">Original</param>
+        /// <returns>Clone</returns>
+        public static T DeepClone<T>(this T original)
+        {
+            ObjectCloner cloner = new ObjectCloner();
+            return cloner.Clone(original);
+        }
+    }
 }

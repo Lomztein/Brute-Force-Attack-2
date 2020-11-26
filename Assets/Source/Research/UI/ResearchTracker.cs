@@ -23,17 +23,9 @@ namespace Lomztein.BFA2.Research.UI
         {
             SpriteImage.sprite = option.Sprite.Get();
             SpriteImage.color = option.SpriteTint;
-            option.OnProgressed += OnProgressed;
-            option.OnCompleted += OnCompleted;
 
             _option = option;
             UpdateText();
-        }
-
-        private void OnCompleted(ResearchOption obj)
-        {
-            Debug.Log("Research completed?");
-            Message.Send($"Research '{obj.Name}' has completed.", Message.Type.Minor);
         }
 
         private void OnProgressed(ResearchOption obj)
@@ -49,7 +41,6 @@ namespace Lomztein.BFA2.Research.UI
             if (_option != null)
             {
                 _option.OnProgressed -= OnProgressed; // Gotta clean up when dealing with events.
-                _option.OnCompleted -= OnCompleted;
             }
         }
     }

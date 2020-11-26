@@ -31,5 +31,10 @@ namespace Lomztein.BFA2.ContentSystem.Objects
         {
             return ((IContentCachedPrefab)_cache).Instantiate();
         }
+
+        public bool IsDisposed()
+        {
+            return ((IDisposableContent)_cache).IsDisposed();
+        }
     }
 }

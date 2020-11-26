@@ -115,7 +115,7 @@ namespace Lomztein.BFA2.Research.UI
             ResearchOption[] available = Controller.GetAvailable();
             ResourceComparer resourceComparer = new ResourceComparer();
 
-            Array.Sort(available, new Comparison<ResearchOption>((x, y) => _resourceContainer.HasEnough(x.ResourceCost) ? -1 : resourceComparer.Compare(x.ResourceCost, y.ResourceCost)));
+            Array.Sort(available, new Comparison<ResearchOption>((x, y) => resourceComparer.Compare(x.ResourceCost, y.ResourceCost)));
 
             foreach (var option in available)
             {

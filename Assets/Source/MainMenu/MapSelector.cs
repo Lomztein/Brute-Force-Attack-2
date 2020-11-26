@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Battlefield;
+using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.World;
 using System;
@@ -30,7 +31,7 @@ namespace Lomztein.BFA2.MainMenu
 
         private MapData[] LoadMaps ()
         {
-            return ContentSystem.Content.GetAll("*/Maps", typeof(MapData)).Cast<MapData>().ToArray();
+            return Content.GetAll("*/Maps", typeof(MapData)).Cast<MapData>().ToArray();
         }
 
         private MapData GetCurrent() => _maps[_current];
@@ -48,7 +49,7 @@ namespace Lomztein.BFA2.MainMenu
             }
 
             Text.text = "Map: " + GetCurrent().Name;
-            BattlefieldSettings.Map = GetCurrent();
+            BattlefieldSettings.MapIdentifier = GetCurrent().Identifier;
         }
     }
 }

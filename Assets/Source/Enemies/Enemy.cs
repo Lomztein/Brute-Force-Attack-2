@@ -28,7 +28,6 @@ namespace Lomztein.BFA2.Enemies
         public float Shields;
         [ModelProperty]
         public float MaxSpeed;
-        [ModelProperty]
         public float Speed { get => _motor.Speed; set => _motor.Speed = value; }
         public float Health;
 

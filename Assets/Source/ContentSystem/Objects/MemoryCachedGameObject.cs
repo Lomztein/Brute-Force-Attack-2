@@ -32,5 +32,10 @@ namespace Lomztein.BFA2.ContentSystem.Objects
             obj.SetActive(true);
             return obj;
         }
+
+        public bool IsDisposed()
+        {
+            return _object == null;
+        }
     }
 }

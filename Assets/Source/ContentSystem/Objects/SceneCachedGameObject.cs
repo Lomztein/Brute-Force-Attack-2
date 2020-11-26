@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem.Objects
 {
-    public class SceneCachedGameObject : IContentCachedPrefab, IDisposable
+    public class SceneCachedGameObject : IContentCachedPrefab, IDisposableContent
     {
         private const string CACHE_OBJ_NAME = "_GO_CACHE";
         private static GameObject _cacheObj;
 
-        private GameObject _cache;
+        private readonly GameObject _cache;
 
         public SceneCachedGameObject(GameObject cache)
         {
@@ -60,5 +60,8 @@ namespace Lomztein.BFA2.ContentSystem.Objects
             newObj.SetActive(true);
             return newObj;
         }
+
+        public bool IsDisposed()
+            => _cache == null;
     }
 }

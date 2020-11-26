@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.World
     {
         public string Name;
         public string Description;
+        public string Identifier;
 
         public int Width;
         public int Height;
@@ -90,6 +91,7 @@ namespace Lomztein.BFA2.World
             ObjectModel obj = new ObjectModel(
                 new ObjectField("Name", new PrimitiveModel(Name)),
                 new ObjectField("Description", new PrimitiveModel("Junk")),
+                new ObjectField("Identifier", new PrimitiveModel(Identifier)),
                 new ObjectField("Width", new PrimitiveModel(Width)),
                 new ObjectField("Height", new PrimitiveModel(Height)),
                 new ObjectField("Tiles", Tiles.Disassemble()),
@@ -105,6 +107,7 @@ namespace Lomztein.BFA2.World
 
             Name = obj.GetValue<string>("Name");
             Description = obj.GetValue<string>("Description");
+            Identifier = obj.GetValue<string>("Identifier");
             Width = obj.GetValue<int>("Width");
             Height = obj.GetValue<int>("Height");
             Tiles = AssembleTileData(obj.GetArray("Tiles"));

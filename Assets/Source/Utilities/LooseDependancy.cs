@@ -34,9 +34,40 @@ namespace Lomztein.BFA2.Utilities
             return Dependancy != null;
         }
 
+        /// <summary>
+        /// Hack that uses a try-catch to check if an object technically exists, but has been destroyed. Gauranteed to slay performance
+        /// if used anywhere not absolutely neccesary.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsDestroyed ()
+        {
+            TryCache();
+            if (Dependancy == null)
+            {
+                try
+                {
+                    Dependancy.GetInstanceID();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         public void IfExists (Action<T> action)
         {
             if (TryCache())
+            {
+                action(Dependancy);
+            }
+        }
+
+        public void IfExistsOrDestroyed (Action<T> action)
+        {
+            if (Exists || IsDestroyed())
             {
                 action(Dependancy);
             }

@@ -1,33 +1,33 @@
 {
   "Name": "TurretRotator",
   "Tag": "Untagged",
-  "Layer": "9",
-  "Static": "False",
+  "Layer": 9,
+  "Static": false,
   "Components": [
     {
       "ValueType": "UnityEngine.Transform",
       "ValueData": {
         "Position": {
-          "X": "0",
-          "Y": "0",
-          "Z": "-1"
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
         },
         "Rotation": {
-          "X": "0",
-          "Y": "0",
-          "Z": "0"
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Scale": {
-          "X": "1",
-          "Y": "1",
-          "Z": "1"
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
         }
       }
     },
     {
       "ValueType": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
       "ValueData": {
-        "BaseTurnrate": "360",
+        "BaseTurnrate": 360.0,
         "_name": "Small Rotator",
         "_description": "",
         "_uniqueIdentifier": "Core.SmallRotator",
@@ -35,7 +35,7 @@
           "Elements": [
             {
               "Type": "Credits",
-              "Value": "50"
+              "Value": 50
             }
           ]
         },
@@ -47,13 +47,13 @@
     {
       "ValueType": "UnityEngine.CircleCollider2D",
       "ValueData": {
-        "Radius": "0,5",
+        "Radius": 0.5,
         "Offset": {
-          "X": "0",
-          "Y": "0"
+          "X": 0.0,
+          "Y": 0.0
         },
-        "IsTrigger": "False",
-        "UsedByEffector": "False"
+        "IsTrigger": false,
+        "UsedByEffector": false
       }
     }
   ],
@@ -61,26 +61,26 @@
     {
       "Name": "Rotator",
       "Tag": "Untagged",
-      "Layer": "9",
-      "Static": "False",
+      "Layer": 9,
+      "Static": false,
       "Components": [
         {
           "ValueType": "UnityEngine.Transform",
           "ValueData": {
             "Position": {
-              "X": "0",
-              "Y": "0",
-              "Z": "0"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "X": "0",
-              "Y": "0",
-              "Z": "0"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "X": "1",
-              "Y": "1",
-              "Z": "1"
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
@@ -90,22 +90,22 @@
             "Reference": {
               "Path": "Core/Sprites/Components/SmallRotator.png",
               "Rect": {
-                "X": "0",
-                "Y": "0",
-                "Width": "0",
-                "Height": "0"
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
               },
               "Pivot": {
-                "X": "0,5",
-                "Y": "0,5"
+                "X": 0.5,
+                "Y": 0.5
               },
-              "PixelsPerUnit": "16"
+              "PixelsPerUnit": 16.0
             },
             "Color": {
-              "Red": "1",
-              "Green": "1",
-              "Blue": "1",
-              "Alpha": "1"
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }

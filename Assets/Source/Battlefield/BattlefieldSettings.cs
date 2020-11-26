@@ -14,9 +14,9 @@ namespace Lomztein.BFA2.Battlefield
     // This needs to be an object, perhaps with a CurrentSettings static field. Must be an object that may be serialized.
     public static class BattlefieldSettings
     {
-        public static MapData Map;
+        public static string MapIdentifier = "Core.SnakinAbout";
+        public static string WaveCollectionIdentifier = "Core.DefaultGenerator";
         public static DifficultySettings Difficulty = new DifficultySettings();
-        public static IWaveCollection WaveCollection;
 
         public static string[] DefaultUnlockedComponents =
         {

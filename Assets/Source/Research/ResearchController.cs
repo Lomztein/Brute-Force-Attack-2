@@ -70,7 +70,7 @@ namespace Lomztein.BFA2.Research
         }
 
         private IEnumerable<ResearchOption> LoadResearch()
-            => Content.GetAll<ResearchOption>(RESEARCH_PATH);
+            => Content.GetAll<ResearchOption>(RESEARCH_PATH).Select(x => x.DeepClone());
 
         private void InitResearch (IEnumerable<ResearchOption> research) 
         {
@@ -122,6 +122,7 @@ namespace Lomztein.BFA2.Research
             _inProgress.Remove(option);
 
             option.OnCompleted -= ResearchCompleted;
+            Message.Send($"Research '{option.Name}' completed.", Message.Type.Minor);
             StopTrackingResearch(option);
 
             OnResearchCompleted?.Invoke(option);

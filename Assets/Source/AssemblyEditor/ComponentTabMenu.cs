@@ -18,12 +18,14 @@ namespace Lomztein.BFA2.AssemblyEditor
         public GameObject ComponentMenuPrefab;
         public Transform ComponentMenuParent;
 
+        private IContentCachedPrefab[] _prefabs;
+
         public void Start()
         {
             List<CachedPrefabPickMenu> menus = new List<CachedPrefabPickMenu>();
 
-            IContentCachedPrefab[] prefabs = LoadComponents();
-            var groups = prefabs.GroupBy(x => x.GetCache().GetComponent<TurretComponent>().Category);
+            _prefabs = LoadComponents();
+            var groups = _prefabs.GroupBy(x => x.GetCache().GetComponent<TurretComponent>().Category);
             foreach (var group in groups)
             {
                 var menuObj = Instantiate(ComponentMenuPrefab, ComponentMenuParent);
@@ -39,5 +41,16 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         private IContentCachedPrefab[] LoadComponents()
             => ContentSystem.Content.GetAll<IContentCachedPrefab>("*/Components/");
+
+        private void OnDestroy()
+        {
+            if (_prefabs != null)
+            {
+                foreach (var prefab in _prefabs)
+                {
+                    prefab.Dispose();
+                }
+            }
+        }
     }
 }

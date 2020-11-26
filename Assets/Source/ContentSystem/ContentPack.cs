@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.ContentSystem
     public class ContentPack : IContentPack
     {
         private const string IGNORE_PREFIX = "IGNORE_"; // Any files prefixed with this will be ignored.
+        private const string JSON_FILE_EXTENSION = ".json"; // Any files prefixed with this will be ignored.
         private readonly string _path;
 
         public string Name { get; private set; }
@@ -31,17 +32,24 @@ namespace Lomztein.BFA2.ContentSystem
 
         public object GetContent(string path, Type type)
         {
-            return _contentLoader.LoadContent(_path + path, type);
+            return _contentLoader.LoadContent(OSAgnosticPath(_path + path), type);
+        }
+
+        private string OSAgnosticPath (string path)
+        {
+            return 
+                path.Replace('/', Path.DirectorySeparatorChar)
+                .Replace('\\', Path.DirectorySeparatorChar);
         }
 
         public object[] GetAllContent(string path, Type type)
         {
             List<object> content = new List<object>();
-            string spath = _path + path;
+            string spath = OSAgnosticPath (_path + path);
 
             if (Directory.Exists(spath))
             {
-                string[] files = Directory.GetFiles(spath, "*.json");
+                string[] files = Directory.GetFiles(spath, $"*{JSON_FILE_EXTENSION}");
                 foreach (string file in files)
                 {
                     if (!Path.GetFileName(file).StartsWith(IGNORE_PREFIX))

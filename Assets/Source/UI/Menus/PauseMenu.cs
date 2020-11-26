@@ -30,13 +30,13 @@ namespace Lomztein.BFA2.UI.Menus
 
         public void Restart ()
         {
-            Close();
+            Resume();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void Quit ()
         {
-            Close();
+            Resume();
             SceneManager.LoadScene(0);
         }
     }

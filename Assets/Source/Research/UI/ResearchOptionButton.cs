@@ -37,6 +37,10 @@ namespace Lomztein.BFA2.Research.UI
             {
                 Cost.text += ", Waves: " + option.TimeCost;
             }
+            else
+            {
+                Cost.text += ", Waves: Instant";
+            }
         }
 
         // Feels a bit strange to bring the container here, but it's easy to implement and change.

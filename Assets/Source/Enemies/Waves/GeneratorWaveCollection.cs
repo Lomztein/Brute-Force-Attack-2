@@ -38,6 +38,9 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private readonly Dictionary<int, IWave> _waves = new Dictionary<int, IWave>();
 
+        [ModelProperty]
+        public string Identifier { get; set; }
+
         public IWave GetWave(int index)
         {
             if (_waves.ContainsKey(index))

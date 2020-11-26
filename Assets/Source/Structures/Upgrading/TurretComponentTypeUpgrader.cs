@@ -16,13 +16,14 @@ namespace Lomztein.BFA2.Structures.Upgrading
     {
         [ModelProperty]
         public string UpgradeComponentIdentifier;
+        private TurretComponentAssembler _assembler = new TurretComponentAssembler();
 
         public string Description => $"{GetThis().Name} -> {GetUpgrade().Name}";
         public IResourceCost Cost => GetUpgrade().Cost;
 
         private void Upgrade()
         {
-            GameObject newObj = TurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).Instantiate();
+            GameObject newObj = _assembler.GetComponent(UpgradeComponentIdentifier).Instantiate();
 
             newObj.transform.position = transform.position;
             newObj.transform.rotation = transform.rotation;
@@ -38,7 +39,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
         private IPurchasable GetUpgrade()
         {
-            return TurretComponentAssembler.GetComponent(UpgradeComponentIdentifier).GetCache().GetComponent<IPurchasable>();
+            return _assembler.GetComponent(UpgradeComponentIdentifier).GetCache().GetComponent<IPurchasable>();
         }
 
         void IUpgrader.Upgrade()

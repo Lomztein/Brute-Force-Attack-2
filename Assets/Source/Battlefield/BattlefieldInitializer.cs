@@ -49,14 +49,14 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitMap ()
         {
-            MapData mapData = BattlefieldSettings.Map ?? ContentSystem.Content.Get(DefaultMapPath, typeof(MapData)) as MapData;
-            _mapController.IfExists((controller) => controller.ApplyMapData(mapData));
+            MapData mapData = ContentSystem.Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == BattlefieldSettings.MapIdentifier);
+            _mapController.IfExists((controller) => controller.ApplyMapData(mapData.DeepClone()));
         }
 
         private void InitWaves ()
         {
-            IWaveCollection waves = BattlefieldSettings.WaveCollection ?? ContentSystem.Content.Get<IWaveCollection>(DefaultWaveCollection);
-            _roundController.IfExists(x => x.SetWaveCollection(waves));
+            IWaveCollection waves = ContentSystem.Content.GetAll<IWaveCollection>("*/WaveCollections").First(x => x.Identifier == BattlefieldSettings.WaveCollectionIdentifier);
+            _roundController.IfExists(x => x.SetWaveCollection(waves.DeepClone()));
         }
 
         private void InitDefaultUnlocks ()

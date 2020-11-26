@@ -49,11 +49,14 @@ namespace Lomztein.BFA2.Serialization.Models
         }
 
         private ObjectField GetField(string name)
-            => GetProperties().FirstOrDefault(x => x.Name == name);
+        {
+            var property = GetProperties().FirstOrDefault(x => x.Name == name);
+            return property;
+        }
 
         public ValueModel GetProperty(string name)
         {
-            return GetField(name).Model;
+            return GetField(name)?.Model;
         }
 
         public T GetProperty<T>(string name) where T : ValueModel

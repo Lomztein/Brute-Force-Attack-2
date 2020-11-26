@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
     public class TurretComponentAssembler
     {
         private static readonly string COMPONENTS_CONTENT_PATH = "*/Components";
-        private static IContentCachedPrefab[] _allComponents;
+        private IContentCachedPrefab[] _allComponents;
 
         public void Assemble (ObjectModel model, TurretComponent parent, TurretAssembly assembly)
         {
@@ -59,33 +59,18 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 );
         }
 
-        public static IContentCachedPrefab[] GetComponents ()
+        public IContentCachedPrefab[] GetComponents ()
         {
             if (_allComponents == null)
             {
-                _allComponents = ContentSystem.Content.GetAll(COMPONENTS_CONTENT_PATH, typeof (IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
-                SceneManager.sceneUnloaded += SceneUnloaded; // Cleanup must be handled manually, as this is not a MonoBehaviour and thus will not be cleaned automnatically.
+                _allComponents = Content.GetAll(COMPONENTS_CONTENT_PATH, typeof (IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
             }
             return _allComponents;
         }
 
-        private static void SceneUnloaded(Scene arg0)
-        {
-            DisposeComponents();   
-        }
-
-        public static IContentCachedPrefab GetComponent (string identifier)
+        public IContentCachedPrefab GetComponent (string identifier)
         {
             return GetComponents().First(x => x.GetCache().GetComponent<TurretComponent>().UniqueIdentifier == identifier);
-        }
-        
-        private static void DisposeComponents ()
-        {
-            foreach (var component in GetComponents())
-            {
-                component.Dispose();
-            }
-            _allComponents = null;
         }
     }
 }

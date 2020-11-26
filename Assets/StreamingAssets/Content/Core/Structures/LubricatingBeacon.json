@@ -1,26 +1,26 @@
 {
   "Name": "LubricatingBeacon",
   "Tag": "Untagged",
-  "Layer": "10",
-  "Static": "False",
+  "Layer": 10,
+  "Static": false,
   "Components": [
     {
       "ValueType": "UnityEngine.Transform",
       "ValueData": {
         "Position": {
-          "X": "0",
-          "Y": "0",
-          "Z": "0"
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Rotation": {
-          "X": "0",
-          "Y": "0",
-          "Z": "0"
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
         },
         "Scale": {
-          "X": "1",
-          "Y": "1",
-          "Z": "1"
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
         }
       }
     },
@@ -34,11 +34,11 @@
           "Elements": [
             {
               "Type": "Credits",
-              "Value": "500"
+              "Value": 500
             },
             {
               "Type": "Research",
-              "Value": "1"
+              "Value": 1
             }
           ]
         },
@@ -48,89 +48,91 @@
       }
     },
     {
-        "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
-        "ValueData": {
-            "TargetLayer": {
-                "Mask": "512"
-            },
-            "Range": "2,5",
-            "IncludeSelf": "False",
-            "_mod": {
-                "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-                "ValueData": {
-                    "Stats": [
-                        {
-                            "Identifier": "Turnrate",
-                            "Name": "Turnrate",
-                            "Description": "The rotation speed of this unit.",
-                            "Type": "Multiplicative",
-                            "Value": 1.0
-                        }
-                    ],
-                    "_identifier": "Core.LubricatorRotationSpeed",
-                    "_name": "Lubricated Machinery",
-                    "_description": "The machinery of this units rotators has been lubed up, and rotates much more freely.",
-                    "RequiredAttributes": [ "Rotator" ]
-                }
-            }
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
+      "ValueData": {
+        "TargetLayer": {
+          "Mask": 512
+        },
+        "Range": 2.5,
+        "IncludeSelf": false,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Turnrate",
+                "Name": "Turnrate",
+                "Description": "The rotation speed of this unit.",
+                "Type": "Multiplicative",
+                "Value": 1.0
+              }
+            ],
+            "_identifier": "Core.LubricatorRotationSpeed",
+            "_name": "Lubricated Machinery",
+            "_description": "The machinery of this units rotators has been lubed up, and rotates much more freely.",
+            "RequiredAttributes": [
+              "Rotator"
+            ]
+          }
         }
+      }
     },
     {
-        "ValueType": "UnityEngine.CircleCollider2D",
-        "ValueData": {
-            "Radius": "1",
-            "Offset": {
-                "X": "0",
-                "Y": "0"
-            },
-            "IsTrigger": "False",
-            "UsedByEffector": "False"
-        }
+      "ValueType": "UnityEngine.CircleCollider2D",
+      "ValueData": {
+        "Radius": 1.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
     },
     {
-        "ValueType": "Lomztein.BFA2.Turrets.TurretSeller",
-        "ValueData": {
-            "SellSprite": {
-                "Path": "Core/Sprites/UI/TrashCan.png",
-                "Rect": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Width": 0.0,
-                    "Height": 0.0
-                },
-                "Pivot": {
-                    "X": 0.5,
-                    "Y": 0.5
-                },
-                "PixelsPerUnit": 32.0
-            }
+      "ValueType": "Lomztein.BFA2.Turrets.TurretSeller",
+      "ValueData": {
+        "SellSprite": {
+          "Path": "Core/Sprites/UI/TrashCan.png",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 32.0
         }
+      }
     }
   ],
   "Children": [
     {
       "Name": "Sprite",
       "Tag": "Untagged",
-      "Layer": "10",
-      "Static": "False",
+      "Layer": 10,
+      "Static": false,
       "Components": [
         {
           "ValueType": "UnityEngine.Transform",
           "ValueData": {
             "Position": {
-              "X": "0",
-              "Y": "0",
-              "Z": "0"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "X": "0",
-              "Y": "0",
-              "Z": "0"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "X": "1",
-              "Y": "1",
-              "Z": "1"
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
@@ -140,22 +142,22 @@
             "Reference": {
               "Path": "Core/Sprites\\Structures\\LubeSprayer.png",
               "Rect": {
-                "X": "0",
-                "Y": "0",
-                "Width": "32",
-                "Height": "32"
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
               },
               "Pivot": {
-                "X": "0,5",
-                "Y": "0,5"
+                "X": 0.5,
+                "Y": 0.5
               },
-              "PixelsPerUnit": "16"
+              "PixelsPerUnit": 16.0
             },
             "Color": {
-              "Red": "1",
-              "Green": "1",
-              "Blue": "1",
-              "Alpha": "1"
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         },
@@ -163,115 +165,115 @@
           "ValueType": "Lomztein.BFA2.Misc.Rotator",
           "ValueData": {
             "Rotation": {
-              "X": "0",
-              "Y": "0",
-              "Z": "135"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 135.0
             }
           }
         }
       ],
-      "Children": [
-        {
-          "Name": "RightLubeParticle",
-          "Tag": "Untagged",
-          "Layer": "10",
-          "Static": "False",
-          "Components": [
+        "Children": [
             {
-              "ValueType": "UnityEngine.Transform",
-              "ValueData": {
-                "Position": {
-                  "X": "1",
-                  "Y": "0",
-                  "Z": "0"
-                },
-                "Rotation": {
-                  "X": "5,433382E-05",
-                  "Y": "90",
-                  "Z": "180"
-                },
-                "Scale": {
-                  "X": "1",
-                  "Y": "1",
-                  "Z": "1"
-                }
-              }
+                "Name": "RightLubeParticle",
+                "Tag": "Untagged",
+                "Layer": "10",
+                "Static": "False",
+                "Components": [
+                    {
+                        "ValueType": "UnityEngine.Transform",
+                        "ValueData": {
+                            "Position": {
+                                "X": "1",
+                                "Y": "0",
+                                "Z": "0"
+                            },
+                            "Rotation": {
+                                "X": "5,433382E-05",
+                                "Y": "90",
+                                "Z": "180"
+                            },
+                            "Scale": {
+                                "X": "1",
+                                "Y": "1",
+                                "Z": "1"
+                            }
+                        }
+                    },
+                    {
+                        "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                        "ValueData": {
+                            "Reference": {
+                                "Path": "Resources/Particles/LubeParticles"
+                            },
+                            "NameOverride": ""
+                        }
+                    }
+                ],
+                "Children": []
             },
             {
-              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-              "ValueData": {
-                "Reference": {
-                  "Path": "Resources/Particles/LubeParticles"
-                },
-                "NameOverride": ""
-              }
+                "Name": "LeftLubeParticle",
+                "Tag": "Untagged",
+                "Layer": "10",
+                "Static": "False",
+                "Components": [
+                    {
+                        "ValueType": "UnityEngine.Transform",
+                        "ValueData": {
+                            "Position": {
+                                "X": "-1",
+                                "Y": "0",
+                                "Z": "0"
+                            },
+                            "Rotation": {
+                                "X": "-6,097462E-05",
+                                "Y": "270",
+                                "Z": "-7,508434E-06"
+                            },
+                            "Scale": {
+                                "X": "1",
+                                "Y": "1",
+                                "Z": "1"
+                            }
+                        }
+                    },
+                    {
+                        "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                        "ValueData": {
+                            "Reference": {
+                                "Path": "Resources/Particles/LubeParticles"
+                            },
+                            "NameOverride": ""
+                        }
+                    }
+                ],
+                "Children": []
             }
-          ],
-          "Children": []
-        },
-        {
-          "Name": "LeftLubeParticle",
-          "Tag": "Untagged",
-          "Layer": "10",
-          "Static": "False",
-          "Components": [
-            {
-              "ValueType": "UnityEngine.Transform",
-              "ValueData": {
-                "Position": {
-                  "X": "-1",
-                  "Y": "0",
-                  "Z": "0"
-                },
-                "Rotation": {
-                  "X": "-6,097462E-05",
-                  "Y": "270",
-                  "Z": "-7,508434E-06"
-                },
-                "Scale": {
-                  "X": "1",
-                  "Y": "1",
-                  "Z": "1"
-                }
-              }
-            },
-            {
-              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-              "ValueData": {
-                "Reference": {
-                  "Path": "Resources/Particles/LubeParticles"
-                },
-                "NameOverride": ""
-              }
-            }
-          ],
-          "Children": []
-        }
-      ]
+        ]
     },
     {
       "Name": "Feet",
       "Tag": "Untagged",
-      "Layer": "10",
-      "Static": "False",
+      "Layer": 10,
+      "Static": false,
       "Components": [
         {
           "ValueType": "UnityEngine.Transform",
           "ValueData": {
             "Position": {
-              "X": "0",
-              "Y": "0",
-              "Z": "0,1"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.1
             },
             "Rotation": {
-              "X": "0",
-              "Y": "0",
-              "Z": "0"
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "X": "1",
-              "Y": "1",
-              "Z": "1"
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
@@ -281,22 +283,22 @@
             "Reference": {
               "Path": "Core/Sprites\\Structures\\ResearchCollectorBase.png",
               "Rect": {
-                "X": "0",
-                "Y": "0",
-                "Width": "32",
-                "Height": "32"
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
               },
               "Pivot": {
-                "X": "0,5",
-                "Y": "0,5"
+                "X": 0.5,
+                "Y": 0.5
               },
-              "PixelsPerUnit": "16"
+              "PixelsPerUnit": 16.0
             },
             "Color": {
-              "Red": "1",
-              "Green": "1",
-              "Blue": "1",
-              "Alpha": "1"
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }

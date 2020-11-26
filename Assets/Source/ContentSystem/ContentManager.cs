@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization;
+﻿using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,10 @@ namespace Lomztein.BFA2.ContentSystem
             {
                 _cache[path] = obj;
             }
-            _cache.Add(path, obj);
+            else
+            {
+                _cache.Add(path, obj);
+            }
             return obj;
         }
 
@@ -58,7 +62,7 @@ namespace Lomztein.BFA2.ContentSystem
         {
             TryInit();
             object cache = GetCache(path);
-            if (cache == null)
+            if (!IsCacheValid(cache))
             {
                 return SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
             }
@@ -66,6 +70,23 @@ namespace Lomztein.BFA2.ContentSystem
             {
                 return cache;
             }
+        }
+
+        private bool IsCacheValid (object cacheObj)
+        {
+            if (cacheObj == null)
+            {
+                return false;
+            }
+            if (cacheObj is IDisposableContent disposable)
+            {
+                return !disposable.IsDisposed();
+            }
+            if (cacheObj is object[] array)
+            {
+                return array.All(x => IsCacheValid(x));
+            }
+            return true;
         }
 
         private string GetPackFolder(string path)
@@ -82,7 +103,7 @@ namespace Lomztein.BFA2.ContentSystem
         {
             TryInit();
             object cache = GetCache(path);
-            if (cache != null)
+            if (IsCacheValid(cache))
             {
                 return cache as object[];
             }
