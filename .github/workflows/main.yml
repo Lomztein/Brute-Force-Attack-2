@@ -28,11 +28,10 @@ jobs:
         
       - uses: webbertakken/unity-builder@v2.0-aplha-5
         env:
-          UNITY_EMAIL: ${{ secrets.UNITY_USERNAME }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_AUTHENTICATOR_KEY }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
-          unityVersion: 2019.4.12f1
           buildMethod: Builder.CDBuildGame
       
   publish-win32:
