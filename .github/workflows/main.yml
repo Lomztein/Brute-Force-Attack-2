@@ -26,7 +26,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         
-      - uses: webbertakken/unity-builder@v1.5
+      - uses: webbertakken/unity-builder@v2.0-aplha-5
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_USERNAME }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
