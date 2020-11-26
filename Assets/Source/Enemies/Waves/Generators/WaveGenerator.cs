@@ -67,7 +67,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private bool ShouldSpawn(IEnemy enemy)
         {
             float frequency = _frequency / enemy.DifficultyValue;
-            return frequency < _maxSpawnFrequency && frequency > _minSpawnFrequency;
+            return frequency <= _maxSpawnFrequency && frequency >= _minSpawnFrequency;
         }
 
         public IWave GenerateWave()

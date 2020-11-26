@@ -1,5 +1,5 @@
 {
-  "Name": "HeavyEnemyT1",
+  "Name": "BasicEnemyT3",
   "Tag": "Untagged",
   "Layer": 8,
   "Static": false,
@@ -27,13 +27,13 @@
     {
       "ValueType": "Lomztein.BFA2.Enemies.Enemy",
       "ValueData": {
-        "_difficultyValue": 3.0,
-        "MaxHealth": 60.0,
+        "_difficultyValue": 100.0,
+        "MaxHealth": 1000.0,
         "Armor": 0.0,
         "Shields": 0.0,
-        "MaxSpeed": 2.5,
-        "_UniqueIdentifier": "Core.HeavyEnemyT1",
-        "Color": 2,
+        "MaxSpeed": 5.0,
+        "_UniqueIdentifier": "Core.BasicEnemyT3",
+        "Color": 0,
         "DeathParticleLife": 1.0
       }
     },
@@ -44,21 +44,16 @@
       }
     },
     {
-      "ValueType": "UnityEngine.Rigidbody2D",
+      "ValueType": "UnityEngine.BoxCollider2D",
       "ValueData": {
-        "BodyType": 1
-      }
-    },
-    {
-      "ValueType": "UnityEngine.CircleCollider2D",
-      "ValueData": {
-        "Radius": 0.66,
         "Offset": {
           "X": 0.0,
           "Y": 0.0
         },
-        "IsTrigger": false,
-        "UsedByEffector": false
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
+        }
       }
     }
   ],
@@ -93,7 +88,7 @@
           "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "ValueData": {
             "Reference": {
-              "Path": "Core/Sprites/Enemies/HeavyEnemyT1.png",
+              "Path": "Core/Sprites/Enemies/BasicEnemyT3.png",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
@@ -147,7 +142,7 @@
           "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
           "ValueData": {
             "Reference": {
-              "Path": "Resources/Particles/RedDeathParticle"
+              "Path": "Resources/Particles/BlueDeathParticle"
             },
             "NameOverride": ""
           }

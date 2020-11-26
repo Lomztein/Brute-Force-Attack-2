@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private readonly int _maxParallel;
 
         private const float MaxSpawnFrequency = 200f;
-        private const float MinSpawnFrequency = 0.5f;
+        private const float MinSpawnFrequency = 2f;
 
         public CompositeWaveGenerator (ContentPrefabReference spawner, int seed, float credits, float frequency, int maxSequence, int maxParallel)
         {
