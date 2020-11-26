@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: BFA2-Build
+          name: ${{ matrix.targetPlatform }}
           path: ./build/
       
   publish:
@@ -62,12 +62,16 @@ jobs:
     
     strategy:
       matrix:
-        target: [./build/Win32, ./build/Win64, ./build/Linux, ./build/OSX]
+        projectPath:
+          - StandaloneWindows
+          - StandaloneWindows64 
+          - StandaloneLinux64
+          - StandaloneOSX
     
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: BFA2-Build
+          name: $ {{ target.projectPath }}
           path: ./build/
       
       - uses: josephbmanley/butler-publish-itchio-action@master
@@ -76,5 +80,5 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: Brute-Force-Attack-2
           ITCH_USER: Lomztein
-          PACKAGE: ${{ matrix.target }}
+          PACKAGE: ./build/${{ target.projectPath }}
           VERSION_FILE: ./build/version.txt
