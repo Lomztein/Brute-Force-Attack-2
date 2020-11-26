@@ -32,6 +32,12 @@ jobs:
           buildMethod: Builder.CDBuildGame
           unityVersion: 2019.4.12f1
       
+      - uses: actions/upload-artifact@v2
+        with:
+          name: BFA2-Build
+          path: ./build/
+
+      
   publish:
     needs: build
     runs-on: ubuntu-latest
@@ -41,6 +47,11 @@ jobs:
         target: [./build/Win32, ./build/Win64, ./build/Linux, ./build/OSX]
     
     steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: BFA2-Build
+          path: ./build/
+      
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
