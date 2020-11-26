@@ -14,6 +14,11 @@ public class Builder : MonoBehaviour
         BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows", "StandaloneWindows64", "StandaloneLinux64", "StandaloneOSX");
     }
 
+    public static void CDBuildGame ()
+    {
+        BuildGame("./build/", "StandaloneWindows", "StandaloneWindows64", "StandaloneLinux64", "StandaloneOSX");
+    }
+
     public static void BuildGame(params string[] args)
     {
         string buildPrefix = "BFA2";
