@@ -71,7 +71,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: $ {{ target.projectPath }}
+          name: $ {{ matrix.projectPath }}
           path: ./build/
       
       - uses: josephbmanley/butler-publish-itchio-action@master
@@ -80,5 +80,5 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: Brute-Force-Attack-2
           ITCH_USER: Lomztein
-          PACKAGE: ./build/${{ target.projectPath }}
+          PACKAGE: ./build/${{ matrix.projectPath }}
           VERSION_FILE: ./build/version.txt
