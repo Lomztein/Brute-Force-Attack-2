@@ -1,6 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build and Publish All
+# Can perhaps be split into seperate build and publish workflows.
 
 # Controls when the action will run. 
 on:
@@ -25,27 +26,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         
-      - name: Setup Unity
-  # You may pin to the exact commit or the version.
-  # uses: kuler90/setup-unity@b88bc2f8c9e0981089e09c8c6d8b0bea169b1b30
-        uses: kuler90/setup-unity@v1.0.6
+      - uses: webbertakken/unity-builder@v1.5
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_USERNAME }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_AUTHENTICATOR_KEY }}
         with:
-          unity-modules: '[windows-mono, linux-mono, mac-il2cpp]'
-          # Automatically installs all child modules of selected modules. For example, android-open-jdk and android-sdk-ndk-tools for android
-
-      - name: Activate Unity
-        uses: kuler90/activate-unity@v1
-        with:
-          unity-username: ${{ secrets.UNITY_USERNAME }}
-          unity-password: ${{ secrets.UNITY_PASSWORD }}
-          unity-authenticator-key: ${{ secrets.UNITY_AUTHENTICATOR_KEY }}
-          
-      - name: Build Unity
-        uses: kuler90/build-unity@v1
-        with:
-          build-method: Builder.BuildGame
-          build-method-args: '["./build", "StandaloneWindows", "StandaloneWindows", "StandaloneWindows", "StandaloneWindows"]'
-          
+          unityVersion: 2019.4.12f1
+          buildMethod: Builder.CDBuildGame
+      
+  publish-win32:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -54,6 +47,11 @@ jobs:
           ITCH_USER: Lomztein
           PACKAGE: ./build/StandaloneWindows
           VERSION_FILE: ./build/version.txt
+          
+  publish-win64:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
           
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
@@ -64,6 +62,10 @@ jobs:
           PACKAGE: ./build/StandaloneWindows64
           VERSION_FILE: ./build/version.txt
           
+  publish-linux:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -73,6 +75,10 @@ jobs:
           PACKAGE: ./build/StandaloneLinux64
           VERSION_FILE: ./build/version.txt
           
+  publish-osx:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
