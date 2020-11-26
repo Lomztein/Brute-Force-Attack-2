@@ -30,7 +30,7 @@ jobs:
   # uses: kuler90/setup-unity@b88bc2f8c9e0981089e09c8c6d8b0bea169b1b30
         uses: kuler90/setup-unity@v1.0.6
         with:
-          unity-modules: [windows-mono, linux-mono, mac-il2cpp]
+          unity-modules: '[windows-mono, linux-mono, mac-il2cpp]'
           # Automatically installs all child modules of selected modules. For example, android-open-jdk and android-sdk-ndk-tools for android
 
       - name: Activate Unity
@@ -44,7 +44,7 @@ jobs:
         uses: kuler90/build-unity@v1
         with:
           build-method: Builder.BuildGame
-          build-method-args: ["./build", "StandaloneWindows", "StandaloneWindows", "StandaloneWindows", "StandaloneWindows"]
+          build-method-args: '["./build", "StandaloneWindows", "StandaloneWindows", "StandaloneWindows", "StandaloneWindows"]'
           
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
