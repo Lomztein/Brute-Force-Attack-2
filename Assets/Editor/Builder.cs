@@ -11,7 +11,7 @@ public class Builder : MonoBehaviour
     [MenuItem("BFA2/Build")]
     public static void BuildGame ()
     {
-        BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows", "StandaloneLinux64");
+        BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows", "StandaloneWindows64", "StandaloneLinux64", "StandaloneOSX");
     }
 
     public static void BuildGame(params string[] args)
