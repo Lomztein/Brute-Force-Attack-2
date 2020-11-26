@@ -31,9 +31,7 @@ jobs:
         with:
           buildMethod: Builder.CDBuildGame
           unityVersion: 2019.4.12f1
-          
-      - run: ls -R
-      
+
       - uses: actions/upload-artifact@v2
         with:
           name: BFA2-Build
