@@ -38,7 +38,7 @@ jobs:
     
     strategy:
       matrix:
-        target: [./build/StandaloneWindows, ./build/StandaloneWindows64, ./build/StandaloneLinux64, ./build/StandaloneOSX]
+        target: [./build/Win32, ./build/Win64, ./build/Linux, ./build/OSX]
     
     steps:
       - uses: josephbmanley/butler-publish-itchio-action@master
