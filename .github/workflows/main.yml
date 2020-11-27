@@ -81,7 +81,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: ${{ steps.channel.outputs.content }}
-          ITCH_GAME: Brute Force Attack 2
+          ITCH_GAME: brute-force-attack-2
           ITCH_USER: Lomztein
           PACKAGE: ./build/${{ matrix.buildTarget }}
           VERSION_FILE: ./build/${{ matrix.buildTarget }}/version.txt
