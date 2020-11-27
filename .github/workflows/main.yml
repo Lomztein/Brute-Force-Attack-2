@@ -25,7 +25,7 @@ jobs:
       
     strategy:
       matrix: 
-        projectPath:
+        targetPlatform:
           - StandaloneWindows
           - StandaloneWindows64 
           - StandaloneLinux64
@@ -44,12 +44,10 @@ jobs:
             Library-
       
       - uses: webbertakken/unity-builder@v2.0-aplha-5
-        env:
-          BFA2_BUILD_TARGET: ${{ matrix.targetPlatform }}
-          
         with:
           buildMethod: Builder.CDBuildGame
           unityVersion: 2019.4.12f1
+          targetPlatform: ${{ matrix.targetPlatform }}
 
       - uses: actions/upload-artifact@v2
         with:
@@ -62,7 +60,7 @@ jobs:
     
     strategy:
       matrix:
-        projectPath:
+        buildTarget:
           - StandaloneWindows
           - StandaloneWindows64 
           - StandaloneLinux64
@@ -71,7 +69,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: $ {{ matrix.projectPath }}
+          name: ${{ matrix.buildTarget }}
           path: ./build/
       
       - uses: josephbmanley/butler-publish-itchio-action@master
@@ -80,5 +78,5 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: Brute-Force-Attack-2
           ITCH_USER: Lomztein
-          PACKAGE: ./build/${{ matrix.projectPath }}
+          PACKAGE: ./build/${{ matrix.buildTarget }}
           VERSION_FILE: ./build/version.txt
