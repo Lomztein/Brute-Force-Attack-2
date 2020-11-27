@@ -44,12 +44,10 @@ jobs:
             Library-
       
       - uses: webbertakken/unity-builder@v2.0-aplha-5
-        env:
-          BFA2_BUILD_TARGET: ${{ matrix.targetPlatform }}
-          
         with:
           buildMethod: Builder.CDBuildGame
           unityVersion: 2019.4.12f1
+          targetPlatform: ${{ matrix.projectPath }}
 
       - uses: actions/upload-artifact@v2
         with:
