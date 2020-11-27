@@ -8,10 +8,43 @@ using UnityEngine;
 
 public class Builder : MonoBehaviour
 {
+    private static readonly string buildPrefix = "BFA2";
+
+    private static readonly Dictionary<BuildTarget, string> buildSuffixes = new Dictionary<BuildTarget, string>()
+        {
+            { BuildTarget.StandaloneWindows, "Win32" },
+            { BuildTarget.StandaloneWindows64, "Win64" },
+            { BuildTarget.StandaloneLinux64, "Linux" },
+            { BuildTarget.StandaloneOSX, "OSX" },
+        };
+    private static readonly Dictionary<BuildTarget, string> buildExtensions = new Dictionary<BuildTarget, string>()
+        {
+            { BuildTarget.StandaloneWindows, ".exe" },
+            { BuildTarget.StandaloneWindows64, ".exe" },
+            { BuildTarget.StandaloneLinux64, ".x86" },
+            { BuildTarget.StandaloneOSX, ".app" },
+        };
+    private static readonly Dictionary<BuildTarget, string> buildChannels = new Dictionary<BuildTarget, string>()
+        {
+            { BuildTarget.StandaloneWindows, "windows" },
+            { BuildTarget.StandaloneWindows64, "windows" },
+            { BuildTarget.StandaloneLinux64, "linux" },
+            { BuildTarget.StandaloneOSX, "osx" },
+        };
+
+
+    private static readonly string[] buildScenes =
+        {
+            "Assets/Scenes/MainMenu.unity",
+            "Assets/Scenes/Battlefield.unity",
+            "Assets/Scenes/AssemblyEditor.unity",
+            "Assets/Scenes/MapEditor.unity"
+    };
+
     [MenuItem("BFA2/Build")]
     public static void BuildGame ()
     {
-        BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows", "StandaloneWindows64", "StandaloneLinux64", "StandaloneOSX");
+        BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows");
     }
 
     public static void CDBuildGame ()
@@ -19,33 +52,12 @@ public class Builder : MonoBehaviour
         BuildGame("./build/", Environment.GetEnvironmentVariable("BUILD_TARGET"));
     }
 
+
+
     public static void BuildGame(params string[] args)
     {
-        string buildPrefix = "BFA2";
-        BuildTarget[] targets = args.Skip(1).Select(x => (BuildTarget)Enum.Parse(typeof(BuildTarget), x)).ToArray();
+    BuildTarget[] targets = args.Skip(1).Select(x => (BuildTarget)Enum.Parse(typeof(BuildTarget), x)).ToArray();
 
-        Dictionary<BuildTarget, string> buildSuffixes = new Dictionary<BuildTarget, string>()
-        {
-            { BuildTarget.StandaloneWindows, "Win32" },
-            { BuildTarget.StandaloneWindows64, "Win64" },
-            { BuildTarget.StandaloneLinux64, "Linux" },
-            { BuildTarget.StandaloneOSX, "OSX" },
-        };
-        Dictionary<BuildTarget, string> buildExtensions = new Dictionary<BuildTarget, string>()
-        {
-            { BuildTarget.StandaloneWindows, ".exe" },
-            { BuildTarget.StandaloneWindows64, ".exe" },
-            { BuildTarget.StandaloneLinux64, ".x86" },
-            { BuildTarget.StandaloneOSX, ".app" },
-        };
-
-        string[] buildScenes =
-        {
-            "Assets/Scenes/MainMenu.unity",
-            "Assets/Scenes/Battlefield.unity",
-            "Assets/Scenes/AssemblyEditor.unity",
-            "Assets/Scenes/MapEditor.unity"
-        };
 
         string buildDir = args[0];
 
@@ -62,13 +74,12 @@ public class Builder : MonoBehaviour
         }
 
         Directory.CreateDirectory(buildDir);
-        File.WriteAllText(Path.Combine(buildDir, "version.txt"), PlayerSettings.bundleVersion);
 
         foreach (var target in targets) {
-            string dir = Path.Combine(buildDir, buildSuffixes[target]);
+            string dir = Path.Combine(buildDir, target.ToString());
             Directory.CreateDirectory(dir);
 
-            BuildPlayerOptions options = new BuildPlayerOptions()
+                BuildPlayerOptions options = new BuildPlayerOptions()
             {
                 targetGroup = BuildTargetGroup.Standalone,
                 target = target,
@@ -78,6 +89,8 @@ public class Builder : MonoBehaviour
             };
 
             BuildPipeline.BuildPlayer(options);
+            File.WriteAllText(Path.Combine(dir, "version.txt"), PlayerSettings.bundleVersion);
+            File.WriteAllText(Path.Combine(dir, "channel.txt"), buildChannels[target]);
         }
     }   
 }
