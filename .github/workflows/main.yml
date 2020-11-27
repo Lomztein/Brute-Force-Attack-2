@@ -71,12 +71,17 @@ jobs:
         with:
           name: ${{ matrix.buildTarget }}
           path: ./build/
-      
+
+      - uses: juliangruber/read-file-action@v1
+        id: channel
+        with:
+          path: ./build/${{ matrix.buildTarget }}/channel.txt
+                
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: windows
-          ITCH_GAME: Brute-Force-Attack-2
+          CHANNEL: ${{ steps.channel.outputs.content }}
+          ITCH_GAME: Brute Force Attack 2
           ITCH_USER: Lomztein
           PACKAGE: ./build/${{ matrix.buildTarget }}
-          VERSION_FILE: ./build/version.txt
+          VERSION_FILE: ./build/${{ matrix.buildTarget }}/version.txt
