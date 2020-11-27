@@ -25,7 +25,7 @@ jobs:
       
     strategy:
       matrix: 
-        projectPath:
+        targetPlatform:
           - StandaloneWindows
           - StandaloneWindows64 
           - StandaloneLinux64
@@ -47,7 +47,7 @@ jobs:
         with:
           buildMethod: Builder.CDBuildGame
           unityVersion: 2019.4.12f1
-          targetPlatform: ${{ matrix.projectPath }}
+          targetPlatform: ${{ matrix.targetPlatform }}
 
       - uses: actions/upload-artifact@v2
         with:
