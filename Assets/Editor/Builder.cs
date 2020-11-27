@@ -39,7 +39,7 @@ public class Builder : MonoBehaviour
             "Assets/Scenes/Battlefield.unity",
             "Assets/Scenes/AssemblyEditor.unity",
             "Assets/Scenes/MapEditor.unity"
-    };
+        };
 
     [MenuItem("BFA2/Build")]
     public static void BuildGame ()
@@ -56,11 +56,9 @@ public class Builder : MonoBehaviour
 
     public static void BuildGame(params string[] args)
     {
-    BuildTarget[] targets = args.Skip(1).Select(x => (BuildTarget)Enum.Parse(typeof(BuildTarget), x)).ToArray();
-
+        BuildTarget[] targets = args.Skip(1).Select(x => (BuildTarget)Enum.Parse(typeof(BuildTarget), x)).ToArray();
 
         string buildDir = args[0];
-
         DateTime lastMinorRelease = new DateTime(2020, 7, 16);
 
         string patch = (DateTime.Now - lastMinorRelease).Days.ToString();
