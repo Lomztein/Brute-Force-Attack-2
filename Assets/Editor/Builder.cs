@@ -16,7 +16,7 @@ public class Builder : MonoBehaviour
 
     public static void CDBuildGame ()
     {
-        BuildGame("./build/", System.Environment.GetEnvironmentVariable("BFA2_BUILD_TARGET"));
+        BuildGame("./build/", Environment.GetEnvironmentVariable("BUILD_TARGET"));
     }
 
     public static void BuildGame(params string[] args)
