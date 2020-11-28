@@ -50,5 +50,7 @@ namespace Lomztein.BFA2.Modification.Stats
         {
             GetAggregate(type).RemoveElement(owner);
         }
+
+        public override string ToString() => $"{Name}: {GetValue()}";
     }
 }

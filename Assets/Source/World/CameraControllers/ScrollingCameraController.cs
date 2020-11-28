@@ -10,8 +10,12 @@ namespace Lomztein.BFA2.World.CameraControllers
     public class ScrollingCameraController : MonoBehaviour
     {
         public Vector2 Limit;
+        public Vector2 SizeLimit;
         public float Margin;
         public float Speed;
+        public float ZoomSensitivity;
+
+        public Camera Camera;
 
         public void Update()
         {
@@ -40,8 +44,16 @@ namespace Lomztein.BFA2.World.CameraControllers
                 y = 1f;
             }
 
-            transform.Translate(new Vector3(x, y) * Speed * Time.deltaTime);
-            transform.position = Clamp(transform.position);
+            float zoom = Input.GetAxis("Mouse ScrollWheel");
+
+            if (Application.isFocused)
+            {
+                transform.Translate(new Vector3(x, y) * Speed * Time.deltaTime);
+                transform.position = Clamp(transform.position);
+
+                Camera.orthographicSize += zoom * ZoomSensitivity * Camera.orthographicSize;
+                Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, SizeLimit.x, SizeLimit.y);
+            }
         }
 
         private Vector3 Clamp (Vector3 position)

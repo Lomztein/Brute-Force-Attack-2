@@ -23,6 +23,13 @@ namespace Lomztein.BFA2.ContentSystem
 
         public IContentPack[] GetContentPacks() => _packs;
 
+        private string OSAgnosticPath(string path)
+        {
+            return
+                path.Replace('/', Path.DirectorySeparatorChar)
+                .Replace('\\', Path.DirectorySeparatorChar);
+        }
+
         private object GetCache (string path)
         {
             if (_cache.ContainsKey(path))
@@ -60,6 +67,8 @@ namespace Lomztein.BFA2.ContentSystem
 
         public object GetContent(string path, Type type)
         {
+            path = OSAgnosticPath(path);
+            
             TryInit();
             object cache = GetCache(path);
             if (!IsCacheValid(cache))
@@ -91,16 +100,18 @@ namespace Lomztein.BFA2.ContentSystem
 
         private string GetPackFolder(string path)
         {
-            return path.Split('/').First();
+            return path.Split(Path.DirectorySeparatorChar).First();
         }
 
         private string GetContentPath(string path)
         {
-            return path.Substring(path.IndexOf('/')+1);
+            return path.Substring(path.IndexOf(Path.DirectorySeparatorChar) +1);
         }
 
         public object[] GetAllContent(string path, Type type)
         {
+            path = OSAgnosticPath(path);
+
             TryInit();
             object cache = GetCache(path);
             if (IsCacheValid(cache))
@@ -128,6 +139,14 @@ namespace Lomztein.BFA2.ContentSystem
             }
         }
 
-        private IContentPack GetPack(string name) => _packs.FirstOrDefault(x => x.Name == name);
+        private IContentPack GetPack(string name)
+        {
+            IContentPack pack = _packs.FirstOrDefault(x => x.Name == name);
+            if (pack == null)
+            {
+                throw new ArgumentException($"Content Pack '{name}' not found.");
+            }
+            return pack;
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override string ToString()
         {
-            return Name;
+            return $"{string.Join("\n", GetComponents().Select(x => x.ToString()))}";
         }
 
         public TurretComponent GetRootComponent()

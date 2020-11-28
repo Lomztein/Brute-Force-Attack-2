@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Research.UI
         {
             if (_option != null)
             {
-                _option.OnProgressed -= OnProgressed; // Gotta clean up when dealing with events.
+                _option.OnUniquePrerequisiteProgressed -= OnProgressed; // Gotta clean up when dealing with events.
             }
         }
     }

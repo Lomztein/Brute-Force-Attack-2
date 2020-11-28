@@ -86,7 +86,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override string ToString()
         {
-            return Name;
+            return $"{Name}\n\t{Stats}";
         }
 
         private void AttachToParent ()

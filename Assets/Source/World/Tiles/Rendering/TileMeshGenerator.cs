@@ -68,10 +68,10 @@ namespace Lomztein.BFA2.World.Tiles.Rendering
             int vertWidth = width * 2;
 
             // Generate verts
-            verts[vertIndex] = new Vector3(x, y);
-            verts[vertIndex + 1] = new Vector3(x + 1, y);
-            verts[vertIndex + 2] = new Vector3(x, y + 1);
-            verts[vertIndex + 3] = new Vector3(x + 1, y + 1);
+            verts[vertIndex] = new Vector3(x, y) + Vector3.forward;
+            verts[vertIndex + 1] = new Vector3(x + 1, y) + Vector3.forward;
+            verts[vertIndex + 2] = new Vector3(x, y + 1) + Vector3.forward;
+            verts[vertIndex + 3] = new Vector3(x + 1, y + 1) + Vector3.forward;
 
             // Generate UVs
             Vector2[] uv = GetUVProvider().GetUVs(bitmask);

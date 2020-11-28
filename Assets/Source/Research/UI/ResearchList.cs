@@ -47,7 +47,6 @@ namespace Lomztein.BFA2.Research.UI
         private void OnResearchProgressed(ResearchOption obj)
         {
             UpdateMenu();
-            RegenerateButtons();
         }
 
         private void OnResearchCompleted(ResearchOption obj)
@@ -71,7 +70,7 @@ namespace Lomztein.BFA2.Research.UI
         private void UpdateMenu ()
         {
             UpdateAvailableCount();
-            UpdateButtonAvailability();
+            UpdateAllButtonAvailability();
         }
         
         private void UpdateAvailableCount ()
@@ -96,13 +95,21 @@ namespace Lomztein.BFA2.Research.UI
             ResearchOptionParent.gameObject.SetActive(false);
         }
 
-        private void UpdateButtonAvailability ()
+        private bool ShouldButtonBeAvailable (ResearchOptionButton butt)
+            => _resourceContainer.HasEnough(butt.Research.ResourceCost) && butt.Research.UniquePrerequisitesCompleted;
+
+        private void UpdateAllButtonAvailability ()
         {
             foreach (Transform child in ResearchOptionParent)
             {
                 ResearchOptionButton butt = child.GetComponent<ResearchOptionButton>();
-                butt.UpdateAffordability(_resourceContainer);
+                UpdateButtonAvailability(butt);
             }
+        }
+
+        private void UpdateButtonAvailability (ResearchOptionButton butt)
+        {
+            butt.UpdateButton(ShouldButtonBeAvailable(butt));
         }
 
         private void GenerateResearchButtons ()
@@ -124,10 +131,12 @@ namespace Lomztein.BFA2.Research.UI
                 button.Assign(option);
 
                 Button actualButton = butt.GetComponent<Button>();
+                actualButton.interactable = ShouldButtonBeAvailable(button);
+
                 actualButton.onClick.AddListener(() => OnReseachButtonClick(option));
             }
 
-            UpdateButtonAvailability();
+            UpdateAllButtonAvailability();
         }
 
         private void OnReseachButtonClick(ResearchOption option)
