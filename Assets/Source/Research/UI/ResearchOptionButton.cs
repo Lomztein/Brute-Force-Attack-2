@@ -13,45 +13,52 @@ namespace Lomztein.BFA2.Research.UI
 {
     public class ResearchOptionButton : MonoBehaviour, ITooltip
     {
-        public string Title => _research.Name;
-        public string Description => _research.Description;
-        public string Footnote => string.Join("\n", _research.GetUniqueRequirementsStatuses());
+        public string Title => Research.Name;
+        public string Description => Research.Description;
+        public string Footnote => string.Join("\n", Research.GetUniqueRequirementsStatuses());
 
         public Image Image;
         public Text Name;
         public Text Cost;
         public Button Button;
 
-        private ResearchOption _research;
+        public ResearchOption Research { get; private set; }
 
         public void Assign (ResearchOption option)
         {
-            _research = option;
-
-            Image.sprite = option.Sprite.Get();
-            Image.color = option.SpriteTint;
-
-            Name.text = option.Name;
-            Cost.text = "Cost: " + option.ResourceCost.ToString();
-            if (option.TimeCost != 0)
-            {
-                Cost.text += ", Waves: " + option.TimeCost;
-            }
-            else
-            {
-                Cost.text += ", Waves: Instant";
-            }
+            Research = option;
+            UpdateButton(true);
         }
 
         // Feels a bit strange to bring the container here, but it's easy to implement and change.
-        public void UpdateAffordability (IResourceContainer container)
+        public void UpdateButton (bool available)
         {
-            bool enough = container.HasEnough(_research.ResourceCost);
-
-            Button.interactable = enough;
-            Color c = _research.SpriteTint;
-            float alpha = enough ? 1 : 0.5f;
+            Button.interactable = available;
+            Color c = Research.SpriteTint;
+            float alpha = available ? 1 : 0.5f;
             Image.color = new Color(c.r, c.g, c.b, c.a * alpha);
+
+            Image.sprite = Research.Sprite.Get();
+            Image.color = Research.SpriteTint;
+
+            Name.text = Research.Name;
+
+            if (Research.UniquePrerequisitesCompleted)
+            {
+                Cost.text = "Cost: " + Research.ResourceCost.ToString();
+                if (Research.TimeCost != 0)
+                {
+                    Cost.text += ", Waves: " + Research.TimeCost;
+                }
+                else
+                {
+                    Cost.text += ", Waves: Instant";
+                }
+            }
+            else
+            {
+                Cost.text = string.Join(", ", Research.GetUniqueRequirementsStatuses());
+            }
         }
     }
 }

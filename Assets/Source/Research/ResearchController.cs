@@ -76,7 +76,9 @@ namespace Lomztein.BFA2.Research
         {
             foreach (var option in research)
             {
-                option.OnProgressed += ResearchProgressed;
+                option.OnTick += ResearchProgressed;
+                option.OnUniquePrerequisiteProgressed += ResearchProgressed;
+                option.OnUniquePrerequisiteCompleted += ResearchProgressed;
                 option.Init();
             }
         }
@@ -89,10 +91,9 @@ namespace Lomztein.BFA2.Research
         public void AddResearchOption (ResearchOption option)
         {
             _all.Add(option);
-            option.OnProgressed += ResearchProgressed;
             option.Init();
             OnResearchAdded?.Invoke(option);
-            Message.Send("New research option available.", Message.Type.Minor);
+            Message.Send($"New research option {option.Name}' available.", Message.Type.Minor);
         }
 
         public void BeginResearch(ResearchOption option)
@@ -121,9 +122,8 @@ namespace Lomztein.BFA2.Research
             _completed.Add(option);
             _inProgress.Remove(option);
 
-            option.OnCompleted -= ResearchCompleted;
+            option.OnUniquePrerequisiteCompleted -= ResearchCompleted;
             Message.Send($"Research '{option.Name}' completed.", Message.Type.Minor);
-            StopTrackingResearch(option);
 
             OnResearchCompleted?.Invoke(option);
         }
@@ -131,11 +131,6 @@ namespace Lomztein.BFA2.Research
         private void ResearchProgressed (ResearchOption option)
         {
             OnResearchProgressed?.Invoke(option);
-        }
-
-        private void StopTrackingResearch (ResearchOption option)
-        {
-            option.OnProgressed -= ResearchProgressed;
         }
     }
 }

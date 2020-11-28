@@ -36,16 +36,20 @@ namespace Lomztein.BFA2.Research
         [ModelProperty]
         public string PinIdentifier;
 
-        public float Progress => UniquePrerequisites.Sum(x => Mathf.Clamp01(x.Progress)) / UniquePrerequisites.Length;
+        public float RequirementsProgress => UniquePrerequisites.Sum(x => Mathf.Clamp01(x.Progress)) / UniquePrerequisites.Length;
+        public float TimeProgress => UniquePrerequisites.Sum(x => Mathf.Clamp01(x.Progress)) / UniquePrerequisites.Length;
 
         [ModelProperty]
         public UniquePrerequisite[] UniquePrerequisites = Array.Empty<UniquePrerequisite>();
-        [ModelProperty]
-        public CompletionReward[] Rewards = Array.Empty<CompletionReward>();
-
+        public bool UniquePrerequisitesCompleted => _completedRequirements >= UniquePrerequisites.Length;
         private int _completedRequirements;
 
-        public event Action<ResearchOption> OnProgressed;
+        public CompletionReward[] Rewards = Array.Empty<CompletionReward>();
+
+
+        public event Action<ResearchOption> OnTick;
+        public event Action<ResearchOption> OnUniquePrerequisiteProgressed;
+        public event Action<ResearchOption> OnUniquePrerequisiteCompleted;
         public event Action<ResearchOption> OnCompleted;
 
         public void Init()
@@ -73,15 +77,17 @@ namespace Lomztein.BFA2.Research
 
         private void OnRequirementProgressed(UniquePrerequisite obj)
         {
-            OnProgressed?.Invoke(this);
+            OnUniquePrerequisiteProgressed?.Invoke(this);
         }
 
         private void OnRequirementCompleted(UniquePrerequisite obj)
         {
             _completedRequirements++;
-            if (_completedRequirements == UniquePrerequisites.Length)
+            obj.Stop();
+
+            if (UniquePrerequisitesCompleted)
             {
-                CompleteResearch();
+                OnUniquePrerequisiteCompleted?.Invoke(this);
             }
         }
 
@@ -97,7 +103,7 @@ namespace Lomztein.BFA2.Research
         public void Tick ()
         {
             TimePayed++;
-            OnProgressed?.Invoke(this);
+            OnTick?.Invoke(this);
             if (TimePayed == TimeCost && !_isCompleted)
             {
                 CompleteResearch();
