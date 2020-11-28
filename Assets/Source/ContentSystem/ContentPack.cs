@@ -32,20 +32,13 @@ namespace Lomztein.BFA2.ContentSystem
 
         public object GetContent(string path, Type type)
         {
-            return _contentLoader.LoadContent(OSAgnosticPath(_path + path), type);
-        }
-
-        private string OSAgnosticPath (string path)
-        {
-            return 
-                path.Replace('/', Path.DirectorySeparatorChar)
-                .Replace('\\', Path.DirectorySeparatorChar);
+            return _contentLoader.LoadContent(Path.Combine(_path, path), type);
         }
 
         public object[] GetAllContent(string path, Type type)
         {
             List<object> content = new List<object>();
-            string spath = OSAgnosticPath (_path + path);
+            string spath = Path.Combine (_path, path);
 
             if (Directory.Exists(spath))
             {

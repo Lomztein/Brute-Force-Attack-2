@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Purchasing.Resources
 {
-    public enum Resource { Credits, Research }
+    // TODO: Refactor resource definition to be object-oriented, to allow much more dynamic adding.
+    public enum Resource { Credits, Research, Binaries }
 
     public class ResourceInfo
     {
@@ -27,7 +28,8 @@ namespace Lomztein.BFA2.Purchasing.Resources
         private static ResourceInfo[] _descriptors = new[]
         {
             new ResourceInfo(Resource.Credits, "Lines of Code", "LoC", "The credits used for purchasing turrets and upgrades."),
-            new ResourceInfo(Resource.Research, "Research", "Res", "Research used to unlock new components as well as bonuses to existing components.")
+            new ResourceInfo(Resource.Research, "Research", "Research", "Research used to unlock new components as well as bonuses to existing components."),
+            new ResourceInfo(Resource.Binaries, "Binaries", "Bins", "Raw binary code which can be decompiled using a Decompiler into other resources.")
         };
 
         public static ResourceInfo Get (Resource type)

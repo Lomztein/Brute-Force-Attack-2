@@ -14,7 +14,14 @@ namespace Lomztein.BFA2.World.CameraControllers
 
         public void Start()
         {
-            _mapController.IfExists((x) => x.OnMapDataLoaded += (y) => GetComponent<ScrollingCameraController>().Limit = new Vector2(y.Width, y.Height) / 2f);
+            _mapController.IfExists((x) =>
+            {
+                x.OnMapDataLoaded += (y) =>
+                {
+                    GetComponent<ScrollingCameraController>().Limit = new Vector2(y.Width, y.Height) / 2f;
+                    GetComponent<ScrollingCameraController>().SizeLimit = new Vector2(5f, Mathf.Max(y.Width, y.Height));
+                };
+            });
         }
     }
 }

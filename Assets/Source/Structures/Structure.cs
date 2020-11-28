@@ -10,6 +10,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI;
+using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures
 {
-    public class Structure : MonoBehaviour, IPurchasable, IGridObject, IIdentifiable, IModdable
+    public class Structure : MonoBehaviour, IPurchasable, IGridObject, IIdentifiable, IModdable, ITooltip
     {
         [SerializeField]
         [ModelProperty]
@@ -59,12 +60,16 @@ namespace Lomztein.BFA2.Structures
         public virtual Size Height => _height;
         public virtual StructureCategory Category { get; } = StructureCategories.Misc;
 
+        string ITooltip.Title => Name;
+        string ITooltip.Description => ToString();
+        string ITooltip.Footnote => string.Empty;
+
         public event Action<Structure> Changed;
         public event Action<Structure> Destroyed;
 
         public override string ToString()
         {
-            return Name;
+            return Name + "\n\n" + Stats.ToString();
         }
 
         protected virtual void Awake()

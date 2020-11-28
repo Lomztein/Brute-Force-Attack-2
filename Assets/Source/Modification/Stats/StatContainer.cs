@@ -66,5 +66,10 @@ namespace Lomztein.BFA2.Modification.Stats
                 Debug.LogWarning("Tried to remove stat element to non-existing stat: " + identifier);
             }
         }
+
+        public override string ToString()
+        {
+            return _stats.Count != 0 ? string.Join("\n\t", _stats) : string.Empty;
+        }
     }
 }
