@@ -1,7 +1,9 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,146 +13,175 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.UniqueStructures
 {
+    // Lots of if-branching in this class. May be difficult to follow.
+
     public class ResourceConverter : Structure
     {
-        [ModelProperty]
-        public ContentSpriteSheet ProgressSprites = new ContentSpriteSheet();
-        [ModelProperty]
-        public ContentSpriteSheet IdleSprites = new ContentSpriteSheet();
-        [ModelProperty]
-        public Resource ConsumingResource { get; private set; }
-        [ModelProperty]
-        public Resource ProducingResource { get; private set; }
+        public Resource ConsumingResource;
+        public Resource ProducingResource;
 
-        private bool _producing;
-        private bool _halted;
-        private bool _autoProduce;
+        public bool Paused;
+        public bool Automatic;
 
-        private SpriteRenderer _spriteRenderer;
-        private SpriteRenderer _backgroundSpriteRenderer;
+        private bool _isConverting;
+
+        public float BaseConversionTarget;
+        public float BaseConversionSpeed;
+        private IStatReference _conversionTarget;
+        private IStatReference _conversionSpeed;
+
+        private float _conversionProgress;
+
         private IResourceContainer _resourceContainer;
-        private Color _idleColor = Color.red;
 
-        [ModelProperty]
-        public float RequiredProcessing;
-        public IStatReference ProcessingSpeed;
-        private float _currentProcessing;
+        public ContentSpriteSheet ConversionSpriteSheet;
+        public ContentSpriteSheet IdleSpriteSheet;
 
-        [ModelProperty]
-        public float IdleAnimationSpeed;
-        private float _idleAnimationProgress;
+        private SpriteRenderer _conversionSprite;
+        private SpriteRenderer _backgroundSprite;
 
-        // These three dictionaries may be better defined somewhere else, or as a ModelProperty.
-        // Would need to implement Dictionary support for model properties first.
-        private Dictionary<Resource, int> _resouceCosts = new Dictionary<Resource, int>()
-        {
-            { Resource.Credits, 250 },
-            { Resource.Research, 1 },
-            { Resource.Binaries, 1 },
-        };
+        public Color IdleColor;
+        public Color NotEnoughResourcesColor;
 
-        private Dictionary<Resource, int> _resourceValues = new Dictionary<Resource, int>()
-        {
-            { Resource.Credits, 250 },
-            { Resource.Research, 1 },
-            { Resource.Binaries, 1 },
-        };
+        private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
-        private Dictionary<Resource, Color> _resourceColors = new Dictionary<Resource, Color>()
-        {
-            { Resource.Credits, Color.green },
-            { Resource.Research, Color.blue },
-            { Resource.Binaries, Color.magenta },
-        };
         private void Start()
         {
-            _spriteRenderer = transform.Find("Progress").GetComponent<SpriteRenderer>();
-            _backgroundSpriteRenderer = transform.Find("Background").GetComponent<SpriteRenderer>();
+            _conversionSpeed = Stats.AddStat("ConversionSpeed", "Conversion Speed", "The speed at which this converter converts", BaseConversionSpeed);
+            _conversionTarget = Stats.AddStat("ConversionTarget", "Conversion Target", "Conversion time in seconds = Conversion Target / Conversion Speed", BaseConversionTarget);
             _resourceContainer = GetComponent<IResourceContainer>();
-            ProcessingSpeed = Stats.AddStat("ProcessingSpeed", "ProcessingSpeed", "The speed of which this device converts resources", 1);
 
-            SetConsumingResource(ConsumingResource);
-            SetProducingResource(ProducingResource);
-
-            StartProduction();
-        }
-
-        public void CancelProduction ()
-        {
-            if (_producing)
+            _roundController.IfExists(x =>
             {
-                ReturnResource();
-                _producing = false;
-                _idleAnimationProgress = 0f;
-            }
+                x.OnWaveStarted += OnWaveStarted;
+                x.OnWaveFinished += OnWaveFinished;
+                SetPause(x.State != RoundController.RoundState.InProgress);
+            });
         }
 
-        public void StartProduction ()
+        protected override void OnDestroy ()
         {
-            if (!_producing && TryClaimResource())
+            base.OnDestroy();
+            _roundController.IfExists(x =>
             {
-                _producing = true;
-                _currentProcessing = 0f;
-            }
+                x.OnWaveStarted -= OnWaveStarted;
+                x.OnWaveFinished -= OnWaveFinished;
+            });
         }
 
-        private void Process ()
+        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
         {
-            _currentProcessing += ProcessingSpeed.GetValue();
+            SetPause(true);
+        }
 
-            if (_currentProcessing >= RequiredProcessing) ;
+        private void OnWaveStarted(int arg1, Enemies.Waves.IWave arg2)
+        {
+            SetPause(false);
+        }
+
+        private SpriteRenderer GetConversionSprite ()
+        {
+            if (_backgroundSprite == null)
             {
-                _currentProcessing = 0f;
-                Convert();
+                _backgroundSprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
             }
-
-            _spriteRenderer.sprite = IdleSprites.GetSprite(_idleAnimationProgress);
+            return _backgroundSprite;
         }
 
-        private void Convert ()
+        private SpriteRenderer GetBackgroundSprite ()
         {
-            _resourceContainer.AddResources(new SingleResourceCost(ProducingResource, _resourceValues[ConsumingResource]));
-        }
-
-        private void Idle ()
-        {
-            _idleAnimationProgress += IdleAnimationSpeed * Time.fixedDeltaTime;
-            if (_idleAnimationProgress >= 1f)
+            if (_conversionSprite == null)
             {
-                _idleAnimationProgress = 0f;
+                _conversionSprite = transform.Find("Conversion").GetComponent<SpriteRenderer>();
             }
-
-            _spriteRenderer.color = _idleColor;
-            _spriteRenderer.sprite = IdleSprites.GetSprite(_idleAnimationProgress);
+            return _conversionSprite;
         }
 
         private void FixedUpdate()
         {
-            if (_producing)
+            if (Automatic && !_isConverting && !Paused)
             {
-                Process();
+                TryStartConversion();
+            }
+
+            if (_isConverting)
+            {
+                UpdateConverting(Time.fixedDeltaTime);
             }
             else
             {
-                Idle();
+                UpdateIdle(Time.fixedDeltaTime);
             }
         }
 
-        public void SetConsumingResource(Resource resource)
+        private void UpdateConverting(float fixedDeltaTime)
         {
-            _backgroundSpriteRenderer.sprite = IdleSprites.GetSprite(0);
-            _backgroundSpriteRenderer.color = _resourceColors[resource];
-            ConsumingResource = resource;
+            if (!Paused)
+            {
+                _conversionProgress += _conversionSpeed.GetValue() * fixedDeltaTime;
+                _conversionSprite.sprite = ConversionSpriteSheet.GetSprite(_conversionProgress / _conversionTarget.GetValue());
+                if (_conversionProgress >= _conversionTarget.GetValue())
+                {
+                    CompleteConversion();
+                }
+            }
         }
 
-        public void SetProducingResource (Resource resource)
+        private void UpdateIdle(float fixedDeltaTime)
         {
+            GetBackgroundSprite().sprite = IdleSpriteSheet.GetSprite(Mathf.Abs(Mathf.Sin(Time.time)));
+        }
+
+        public bool TryStartConversion ()
+        {
+            if (!_isConverting && TryClaimResource())
+            {
+                _isConverting = true;
+                _conversionProgress = 0f;
+
+                GetBackgroundSprite().color = ResourceInfo.Get(ConsumingResource).Color;
+                GetConversionSprite().color = ResourceInfo.Get(ProducingResource).Color;
+
+                return true;
+            }
+            else
+            {
+                GetBackgroundSprite().color = NotEnoughResourcesColor;
+            }
+            return false;
+        }
+
+        private void CompleteConversion ()
+        {
+            if (_isConverting)
+            {
+                _isConverting = false;
+                AddConvertedResource();
+            }
+        }
+
+        public void CancelConversion ()
+        {
+            if (_isConverting)
+            {
+                _isConverting = false;
+                RefundResource();
+            }
+        }
+
+        public void SetPause (bool pause)
+        {
+            Paused = pause;
         }
 
         private bool TryClaimResource()
-            => _resourceContainer.TrySpend(new SingleResourceCost (ConsumingResource, _resouceCosts[ConsumingResource]));
+            => _resourceContainer.TrySpend(new SingleResourceCost(ConsumingResource, ResourceInfo.Get(ConsumingResource).BinaryValue));
 
-        private void ReturnResource()
-            => _resourceContainer.AddResources(new SingleResourceCost(ConsumingResource, _resouceCosts[ConsumingResource]));
+        private void RefundResource ()
+            => _resourceContainer.AddResources(new SingleResourceCost(ConsumingResource, ResourceInfo.Get(ConsumingResource).BinaryValue));
+
+
+        private void AddConvertedResource ()
+            => _resourceContainer.AddResources(new SingleResourceCost(ProducingResource, ResourceInfo.Get(ProducingResource).BinaryValue));
     }
 }

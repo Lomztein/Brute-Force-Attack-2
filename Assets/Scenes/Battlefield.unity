@@ -1145,61 +1145,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641097791}
   m_CullTransparentMesh: 0
---- !u!1 &671341248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 671341249}
-  - component: {fileID: 671341250}
-  m_Layer: 0
-  m_Name: Progress
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &671341249
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671341248}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1585877402}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &671341250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671341248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _applied: 0
-  Reference:
-    Path: Core\Sprites\Structures\CompilerProgress.png
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &685809349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,7 +2161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 943262056}
   - component: {fileID: 943262057}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3764,61 +3709,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1354429892
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1354429893}
-  - component: {fileID: 1354429894}
-  m_Layer: 0
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1354429893
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354429892}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1585877402}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1354429894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354429892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _applied: 0
-  Reference:
-    Path: Core\Sprites\Structures\CompilerSoftBlink.png
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!224 &1397679430 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7808910508009515263, guid: ff4113fb5ffe1764d829277d33e9f8db,
@@ -4525,10 +4415,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1585877402}
   - component: {fileID: 1585877401}
-  - component: {fileID: 1585877403}
   - component: {fileID: 1585877404}
-  m_Layer: 0
-  m_Name: Decompiler
+  - component: {fileID: 1585877403}
+  m_Layer: 10
+  m_Name: DecompilerLoC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4547,24 +4437,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Decompiler
-  _description: Decompiles binaries dropped from enemies into other resources.
+  _description: Decompiles raw binaries into either LoC or Research points.
   _uniqueIdentifier: Core.Decompiler
   _cost:
     Elements:
     - Type: 0
-      Value: 750
+      Value: 1000
   BaseAttributes: 
   _width: 2
   _height: 2
-  ProgressSprites:
+  ConsumingResource: 0
+  ProducingResource: 1
+  Paused: 0
+  Automatic: 1
+  BaseConversionTarget: 100
+  BaseConversionSpeed: 1
+  ConversionSpriteSheet:
     Sprites:
     - Path: Core\Sprites\Structures\CompilerProgress.png
       Rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
+      Pivot: {x: 0.5, y: 0.5}
+      PixelsPerUnit: 16
+    - Path: Core\Sprites\Structures\CompilerProgress.png
+      Rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
     - Path: Core\Sprites\Structures\CompilerProgress.png
@@ -4572,8 +4477,17 @@ MonoBehaviour:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
+      Pivot: {x: 0.5, y: 0.5}
+      PixelsPerUnit: 16
+    - Path: Core\Sprites\Structures\CompilerProgress.png
+      Rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
       Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
     - Path: Core\Sprites\Structures\CompilerProgress.png
@@ -4581,8 +4495,17 @@ MonoBehaviour:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
+      Pivot: {x: 0.5, y: 0.5}
+      PixelsPerUnit: 16
+    - Path: Core\Sprites\Structures\CompilerProgress.png
+      Rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
       Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
     - Path: Core\Sprites\Structures\CompilerProgress.png
@@ -4590,8 +4513,17 @@ MonoBehaviour:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
+      Pivot: {x: 0.5, y: 0.5}
+      PixelsPerUnit: 16
+    - Path: Core\Sprites\Structures\CompilerProgress.png
+      Rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
       Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
     - Path: Core\Sprites\Structures\CompilerProgress.png
@@ -4599,47 +4531,11 @@ MonoBehaviour:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
-    - Path: Core\Sprites\Structures\CompilerProgress.png
-      Rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      Pivot: {x: 0.5, y: 0.5}
-      PixelsPerUnit: 16
-    - Path: Core\Sprites\Structures\CompilerProgress.png
-      Rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      Pivot: {x: 0.5, y: 0.5}
-      PixelsPerUnit: 16
-    - Path: Core\Sprites\Structures\CompilerProgress.png
-      Rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      Pivot: {x: 0.5, y: 0.5}
-      PixelsPerUnit: 16
-    - Path: Core\Sprites\Structures\CompilerProgress.png
-      Rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      Pivot: {x: 0.5, y: 0.5}
-      PixelsPerUnit: 16
-  IdleSprites:
+  IdleSpriteSheet:
     Sprites:
     - Path: Core\Sprites\Structures\CompilerSoftBlink.png
       Rect:
@@ -4655,9 +4551,9 @@ MonoBehaviour:
         serializedVersion: 2
         x: 16
         y: 0
-        width: 32
-        height: 32
-      Pivot: {x: 16, y: 16}
+        width: 16
+        height: 16
+      Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
     - Path: Core\Sprites\Structures\CompilerSoftBlink.png
       Rect:
@@ -4668,8 +4564,8 @@ MonoBehaviour:
         height: 16
       Pivot: {x: 0.5, y: 0.5}
       PixelsPerUnit: 16
-  RequiredProcessing: 60
-  IdleAnimationSpeed: 1
+  IdleColor: {r: 1, g: 1, b: 0, a: 1}
+  NotEnoughResourcesColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1585877402
 Transform:
   m_ObjectHideFlags: 0
@@ -4682,8 +4578,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 943262056}
-  - {fileID: 671341249}
-  - {fileID: 1354429893}
+  - {fileID: 1886534040}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4702,7 +4597,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &1585877404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5120,6 +5015,61 @@ Transform:
   m_Father: {fileID: 707707819}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1886534039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1886534040}
+  - component: {fileID: 1886534041}
+  m_Layer: 10
+  m_Name: Conversion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1886534040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886534039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1585877402}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886534041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886534039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52a90a3291217c408eee85b8f48766b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Core\Sprites\Structures\CompilerProgress.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 16
+      height: 16
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1956858344
 GameObject:
   m_ObjectHideFlags: 0

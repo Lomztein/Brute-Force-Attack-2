@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Research
         public UniquePrerequisite[] UniquePrerequisites = Array.Empty<UniquePrerequisite>();
         public bool UniquePrerequisitesCompleted => _completedRequirements >= UniquePrerequisites.Length;
         private int _completedRequirements;
-
+        [ModelProperty]
         public CompletionReward[] Rewards = Array.Empty<CompletionReward>();
 
 
@@ -114,6 +114,7 @@ namespace Lomztein.BFA2.Research
         {
             Reward();
             Stop();
+            Debug.Log("yay!");
             _isCompleted = true;
             OnCompleted?.Invoke(this);
         }
