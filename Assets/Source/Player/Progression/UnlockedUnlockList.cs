@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,6 @@ namespace Lomztein.BFA2.Player.Progression
 {
     public class UnlockedUnlockList : MonoBehaviour, IUnlockList
     {
-        [SerializeField] private string _name;
-        public string Name => _name;
-
         public event Action<string, bool> OnUnlockChange;
 
         public void Add(string identifier, bool unlocked)

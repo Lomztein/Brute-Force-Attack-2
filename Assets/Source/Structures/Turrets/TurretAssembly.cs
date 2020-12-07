@@ -6,7 +6,7 @@ using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Modifiers;
-using Lomztein.BFA2.Modification.ModProviders.ExpansionCards;
+using Lomztein.BFA2.Modification.ModBroadcasters.ExpansionCards;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;

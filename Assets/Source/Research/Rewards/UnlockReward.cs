@@ -10,8 +10,6 @@ namespace Lomztein.BFA2.Research.Rewards
     {
         [ModelProperty]
         public string Identifier;
-        [ModelProperty]
-        public string UnlockList;
         [ModelProperty][SerializeField]
         private string _description;
 
@@ -19,7 +17,7 @@ namespace Lomztein.BFA2.Research.Rewards
 
         public override void ApplyReward()
         {
-            UnlockLists.Get(UnlockList).SetUnlocked(Identifier, true);
+            Player.Player.Unlocks.SetUnlocked(Identifier, true);
         }
     }
 }

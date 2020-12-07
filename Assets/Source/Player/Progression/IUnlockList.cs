@@ -4,8 +4,6 @@ namespace Lomztein.BFA2.Player.Progression
 {
     public interface IUnlockList
     {
-        string Name { get; }
-
         event Action<string, bool> OnUnlockChange;
 
         void Add(string identifier, bool unlocked);

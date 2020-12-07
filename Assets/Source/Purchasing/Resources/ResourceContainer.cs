@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
             var values = Enum.GetNames(typeof(Resource));
             foreach (var value in values)
             {
-                _resources.Add((Resource)Enum.Parse(typeof(Resource), value), 0);
+                SetResource((Resource)Enum.Parse(typeof(Resource), value), 0);
             }
         }
 
@@ -34,9 +34,19 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public void SetResource(Resource resource, int value)
         {
-            int before = _resources[resource];
-            _resources[resource] = value;
-            OnResourceChanged?.Invoke(resource, before, _resources[resource]);
+            if (!_resources.ContainsKey(resource))
+            {
+                _resources.Add(resource, value);
+                OnResourceChanged?.Invoke(resource, 0, _resources[resource]);
+            }
+            else
+            {
+                int before = _resources[resource];
+                _resources[resource] = value;
+
+                OnResourceChanged?.Invoke(resource, before, _resources[resource]);
+            }
+
         }
     }
 }

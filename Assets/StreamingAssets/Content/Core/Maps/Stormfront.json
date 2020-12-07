@@ -2534,7 +2534,7 @@
                     }
                 },
                 {
-                    "ValueType": "Lomztein.BFA2.Player.Defendables.Datastream",
+                    "ValueType": "Lomztein.BFA2.World.Defendables.Datastream",
                     "ValueData": {}
                 },
                 {
@@ -5981,30 +5981,38 @@
                     }
                 },
                 {
-                    "ValueType": "Lomztein.BFA2.Plugins.GlobalStructureModMutator",
+                    "ValueType": "Lomztein.BFA2.Mutators.EmbeddedMutator",
                     "ValueData": {
-                        "_mod": {
-                            "_mod": {
-                                "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-                                "ValueData": {
-                                    "Stats": [
-                                        {
-                                            "Identifier": "Range",
-                                            "Name": "Range",
-                                            "Description": "",
-                                            "Type": "Multiplicative",
-                                            "Value": 1.0
+                        "Mutator": {
+                            "ValueType": "Lomztein.BFA2.Mutators.GlobalStructureModMutator",
+                            "ValueData": {
+                                "_mod": {
+                                    "_mod": {
+                                        "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+                                        "ValueData": {
+                                            "Stats": [
+                                                {
+                                                    "Identifier": "Range",
+                                                    "Name": "Range",
+                                                    "Description": "",
+                                                    "Type": "Multiplicative",
+                                                    "Value": 1.0
+                                                }
+                                            ],
+                                            "_identifier": "Core.Mutator.Range",
+                                            "_name": "+100% Range",
+                                            "_description": "Increases range of all structures.",
+                                            "RequiredAttributes": [ "Ranged" ]
                                         }
-                                    ],
-                                    "_identifier": "Core.Mutator.Range",
-                                    "_name": "+100% Range",
-                                    "_description": "Increases range of all structures.",
-                                    "RequiredAttributes": [ "Ranged" ]
-                                }
 
 
-                            },
-                            "_filters": []
+                                    },
+                                    "_filters": []
+                                },
+                                "Name": "Global Mod",
+                                "Description": "Embedded global mod",
+                                "Identifier": "Omegakek"
+                            }
                         }
                     }
                 }
@@ -6038,15 +6046,19 @@
                     }
                 },
                 {
-                    "ValueType": "Lomztein.BFA2.Plugins.StartingResourceMultiplierMutator",
+                    "ValueType": "Lomztein.BFA2.Mutators.EmbeddedMutator",
                     "ValueData": {
-                        "CreditsMultiplier": 2,
-                        "ResearchMultiplier": 1
+                        "Mutator": {
+                            "ValueType": "Lomztein.BFA2.Mutators.StartingResourceMultiplierMutator",
+                            "ValueData": {
+                                "Name": "Starting Resource Multiplier",
+                                "Description": "Embedded multiplier",
+                                "Identifier":  "Omegakek",
+                                "CreditsMultiplier": 2,
+                                "ResearchMultiplier": 1
+                            }
+                        }
                     }
-                },
-                {
-                    "ValueType": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
-                    "ValueData": {}
                 }
             ],
             "Children": []

@@ -17,6 +17,16 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
         private ObjectCloner _cloner = new ObjectCloner();
 
+        protected virtual bool BroadcastPostAssembled => false;
+
+        public void OnPostAssembled ()
+        {
+            if (BroadcastPostAssembled)
+            {
+                //BroadcastMod();
+            }
+        }
+
         protected void BroadcastMod()
         {
             var newTargets = GetBroadcastTargets();

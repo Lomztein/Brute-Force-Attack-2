@@ -1,0 +1,48 @@
+{
+  "Name": "SandboxPlayer",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Components": [
+    {
+      "ValueType": "UnityEngine.Transform",
+      "ValueData": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Player.Player",
+      "ValueData": {}
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Player.Health.HealthContainer",
+        "ValueData": {
+            "MaxHealth": 100,
+            "StartingHealth":  100
+        }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Player.Progression.UnlockedUnlockList",
+      "ValueData": {}
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Purchasing.Resources.InfiniteResourceContainer",
+      "ValueData": {}
+    }
+  ],
+  "Children": []
+}

@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Player.Messages;
+﻿using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;

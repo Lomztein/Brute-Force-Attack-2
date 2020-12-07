@@ -212,15 +212,45 @@
       }
     },
     {
-      "ValueType": "UnityEngine.CircleCollider2D",
+        "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+        "ValueData": {
+            "AdjacencyCheckLayer": {
+                "Mask": 512
+            },
+            "AdjacencyCheckRange": 0.75,
+            "_mod": {
+                "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+                "ValueData": {
+                    "Stats": [
+                        {
+                            "Identifier": "Firerate",
+                            "Name": "Firerate",
+                            "Description": "The firerate of this weapon.",
+                            "Type": "Multiplicative",
+                            "Value": 0.6
+                        }
+                    ],
+                    "_identifier": "Core.MachineGunT3.AdjacencyFirerate",
+                    "_name": "Shared Dependencies",
+                    "_description": "Two or more machine guns are adjacent, this allows them to share certain dependencies, and thus increase firerate.",
+                    "RequiredAttributes": [
+                        "Weapon"
+                    ]
+                }
+            }
+        }
+    },
+    {
+      "ValueType": "UnityEngine.BoxCollider2D",
       "ValueData": {
-        "Radius": 0.5,
         "Offset": {
           "X": 0.0,
           "Y": 0.0
         },
-        "IsTrigger": false,
-        "UsedByEffector": false
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
+        }
       }
     }
   ],

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Modification.ModProviders.ExpansionCards
+namespace Lomztein.BFA2.Modification.ModBroadcasters.ExpansionCards
 {
     public interface IExpansionCardAcceptor
     {

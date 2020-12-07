@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Enemies.Scalers;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory.Items;
+using Lomztein.BFA2.Mutators;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace Lomztein.BFA2.Battlefield
         public static string MapIdentifier = "Core.SnakinAbout";
         public static string WaveCollectionIdentifier = "Core.DefaultGenerator";
         public static DifficultySettings Difficulty = new DifficultySettings();
+        private static List<Mutator> _mutatorsList = new List<Mutator>();
+        public static Mutator[] Mutators => _mutatorsList.ToArray();
+
+        public static void AddMutator(Mutator mutator) => _mutatorsList.Add(mutator);
+        public static void RemoveMutator(Mutator mutator) => _mutatorsList.RemoveAll (x => x.Identifier == mutator.Identifier);
 
         public static string[] DefaultUnlockedComponents =
         {
@@ -26,6 +32,7 @@ namespace Lomztein.BFA2.Battlefield
             "Core.MachineGunT1",
             "Core.RocketLauncherT1",
             "Core.AuxProcessor",
+            "Core.1x3Connector",
         };
         public static string[] DefaultUnlockedStructures =
         {

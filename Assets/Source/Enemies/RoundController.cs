@@ -231,11 +231,11 @@ namespace Lomztein.BFA2.Enemies
             if (State == RoundState.InProgress)
             {
                 IWave ended = _waveCollection.GetWave(wave);
-                OnWaveFinished?.Invoke(wave, ended);
-                Debug.Log("Wave finished.");
-
                 State = RoundState.Ready;
                 _resourceContainer.ChangeResource(Resource.Research, 1);
+
+                OnWaveFinished?.Invoke(wave, ended);
+                Debug.Log("Wave finished.");
             }
         }
 

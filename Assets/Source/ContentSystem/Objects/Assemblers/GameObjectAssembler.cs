@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         {
             GameObject obj = RecursiveAssemble(model);
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled");
+            ReflectionUtils.DynamicBroadcastInvoke(obj, "OnPostAssembled");
             return obj;
         }
 

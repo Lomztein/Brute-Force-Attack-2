@@ -7,9 +7,6 @@ namespace Lomztein.BFA2.Player.Health
 {
     public class PlayerHealthContainerLink : MonoBehaviour, IHealthContainer
     {
-        private IHealthContainer _cache;
-        private const string PLAYER_HEALTH_CONTAINER_TAG = "PlayerHealthContainer";
-
         public event Action<float, float, float> OnHealthChanged {
             add {
                 GetPlayerHealthContainer().OnHealthChanged += value;
@@ -30,14 +27,7 @@ namespace Lomztein.BFA2.Player.Health
             }
         }
 
-        private IHealthContainer GetPlayerHealthContainer ()
-        {
-            if (_cache == null)
-            {
-                _cache = GameObject.FindGameObjectWithTag(PLAYER_HEALTH_CONTAINER_TAG).GetComponent<IHealthContainer>();
-            }
-            return _cache;
-        }
+        private IHealthContainer GetPlayerHealthContainer() => Player.Health;
 
         public float GetCurrentHealth()
         {

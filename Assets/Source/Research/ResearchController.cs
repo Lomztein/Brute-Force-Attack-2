@@ -2,7 +2,7 @@
 using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
 using Lomztein.BFA2.Enemies;
-using Lomztein.BFA2.Player.Messages;
+using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Utilities;
 using System;

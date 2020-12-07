@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Modification.ModProviders.ExpansionCards
+namespace Lomztein.BFA2.Modification.ModBroadcasters.ExpansionCards
 {
     public interface IExpansionCard : IIdentifiable
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,9 @@ namespace Lomztein.BFA2.Player.Health
 {
     public class HealthContainer : MonoBehaviour, IHealthContainer
     {
+        [ModelProperty]
         public float MaxHealth;
+        [ModelProperty]
         public float StartingHealth;
 
         private float _health;

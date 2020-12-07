@@ -7,9 +7,6 @@ namespace Lomztein.BFA2.Player.Progression
 {
     public class UnlockList : MonoBehaviour, IUnlockList
     {
-        [SerializeField] private string _name;
-        public string Name => _name;
-
         private Dictionary<string, bool> _unlocks = new Dictionary<string, bool>();
 
         public event Action<string, bool> OnUnlockChange;

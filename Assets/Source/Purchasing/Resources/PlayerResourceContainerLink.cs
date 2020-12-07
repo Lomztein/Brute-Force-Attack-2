@@ -7,9 +7,6 @@ namespace Lomztein.BFA2.Purchasing.Resources
 {
     public class PlayerResourceContainerLink : MonoBehaviour, IResourceContainer
     {
-        private IResourceContainer _internalContainer;
-        private const string PLAYER_CONTAINER_OBJECT_TAG = "PlayerResourceContainer";
-
         public event Action<Resource, int, int> OnResourceChanged {
             add {
                 GetInternalContainer().OnResourceChanged += value;
@@ -20,18 +17,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
             }
         }
 
-        private void Awake()
-        {
-        }
-
-        private IResourceContainer GetInternalContainer ()
-        {
-            if (_internalContainer == null)
-            {
-                _internalContainer = GameObject.FindGameObjectWithTag(PLAYER_CONTAINER_OBJECT_TAG).GetComponent<IResourceContainer>();
-            }
-            return _internalContainer;
-        }
+        private IResourceContainer GetInternalContainer() => Player.Player.Resources;
 
         public int GetResource(Resource resource)
         {

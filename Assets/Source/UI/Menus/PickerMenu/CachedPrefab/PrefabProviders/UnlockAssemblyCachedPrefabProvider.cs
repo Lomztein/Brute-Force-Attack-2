@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
         public string ContentPath;
         public string UnlockListName;
 
-        private IUnlockList UnlockList => UnlockLists.Get(UnlockListName);
+        private IUnlockList UnlockList => Player.Player.Unlocks; // TODO: Replace with something like a PlayerUnlockListLink.
 
         private IContentCachedPrefab[] _allPrefabs;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lomztein.BFA2.Modification.ModProviders.ExpansionCards
+namespace Lomztein.BFA2.Modification.ModBroadcasters.ExpansionCards
 {
     public interface IExpansionCardContainer
     {

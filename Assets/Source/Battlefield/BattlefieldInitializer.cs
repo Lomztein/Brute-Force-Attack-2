@@ -1,7 +1,8 @@
 ﻿using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory;
-using Lomztein.BFA2.Player.Messages;
+using Lomztein.BFA2.Mutators;
+using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -29,8 +30,17 @@ namespace Lomztein.BFA2.Battlefield
             InitDefaultUnlocks();
             InitStartingItems();
             InitDifficulty();
+            InitMutators();
 
             Invoke(nameof(SendStartingMessage), 2f);
+        }
+
+        private void InitMutators()
+        {
+            foreach (Mutator mutator in BattlefieldSettings.Mutators)
+            {
+                mutator.Start();
+            }
         }
 
         private void InitDifficulty()
@@ -63,11 +73,11 @@ namespace Lomztein.BFA2.Battlefield
         {
             foreach (string comp in BattlefieldSettings.DefaultUnlockedComponents)
             {
-                UnlockLists.Get("Components").SetUnlocked(comp, true);
+                Player.Player.Unlocks.SetUnlocked(comp, true);
             }
             foreach (string structure in BattlefieldSettings.DefaultUnlockedStructures)
             {
-                UnlockLists.Get("Structures").SetUnlocked(structure, true);
+                Player.Player.Unlocks.SetUnlocked(structure, true);
             }
         }
     }

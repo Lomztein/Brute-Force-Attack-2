@@ -8,6 +8,8 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public class SelfModBroadcaster : ModBroadcaster
     {
+        protected override bool BroadcastPostAssembled => true;
+
         private IModdable _moddable;
 
         protected override void Start()

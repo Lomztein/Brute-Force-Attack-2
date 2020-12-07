@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Battlefield.Difficulty
 
         public void Apply()
         {
-            var container = GameObject.FindGameObjectWithTag(PLAYER_CONTAINER_OBJECT_TAG).GetComponent<IResourceContainer>();
+            var container = Player.Player.Resources;
             container.ChangeResource(Resource.Credits, StartingCredits);
             container.ChangeResource(Resource.Research, StartingResearch);
         }
