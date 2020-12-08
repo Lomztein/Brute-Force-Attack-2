@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.LocalizationSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +12,16 @@ namespace Lomztein.BFA2
     public class StartUp : MonoBehaviour
     {
         private static bool _hasStartedUp = false;
+        public ContentManager ContentManager;
 
         private void Awake()
         {
             if (!_hasStartedUp)
             {
+                ContentManager.TryInit();
+                DontDestroyOnLoad(ContentManager.gameObject);
+                Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "da-DK"));
+
                 InterceptLogs();
 
                 _hasStartedUp = true;

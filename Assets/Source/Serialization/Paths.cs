@@ -6,4 +6,5 @@ public static class Paths
 {
     public static string StreamingAssets => Application.streamingAssetsPath + "/";
     public static string Data => Application.dataPath + "/";
+    public static string PersistantData => Application.persistentDataPath + "/";
 }

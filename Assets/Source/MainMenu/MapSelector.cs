@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.LocalizationSystem;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.World;
 using System;
@@ -48,7 +49,7 @@ namespace Lomztein.BFA2.MainMenu
                 _current = 0;
             }
 
-            Text.text = "Map: " + GetCurrent().Name;
+            Text.text = Localization.Get("MENU_MAP_SELECTION", GetCurrent().Name);
             BattlefieldSettings.MapIdentifier = GetCurrent().Identifier;
         }
     }

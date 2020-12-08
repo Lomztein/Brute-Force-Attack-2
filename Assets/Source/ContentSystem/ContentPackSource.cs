@@ -12,8 +12,9 @@ namespace Lomztein.BFA2.ContentSystem
         private IContentPackLoader _loader = new ContentPackLoader();
         private string[] Sources => new string[]
         {
-            Paths.StreamingAssets + "Content/",
-            Paths.Data + "Content/",
+            Paths.StreamingAssets + "Content/", // Built-in content.
+            Paths.Data + "Content/", // Downloaded content.
+            Paths.PersistantData + "Content/", // User content.
         };
 
         public IContentPack[] GetPacks()
@@ -28,7 +29,10 @@ namespace Lomztein.BFA2.ContentSystem
                     string[] directories = Directory.GetDirectories(source);
                     foreach (string directory in directories)
                     {
-                        packs.Add(_loader.Load(directory));
+                        IContentPack pack = _loader.Load(directory);
+                        pack.Init();
+
+                        packs.Add(pack);
                     }
                 }
             }

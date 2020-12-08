@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lomztein.BFA2.LocalizationSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,6 @@ public class VersionDisplay : MonoBehaviour
 
     void Start()
     {
-        Text.text = $"Brute Force Attack 2 ver. {Application.version}\nBuilt using Unity {Application.unityVersion}";
+        Text.text = Localization.Get("MENU_VERSION", Application.version, Application.unityVersion);
     }
 }

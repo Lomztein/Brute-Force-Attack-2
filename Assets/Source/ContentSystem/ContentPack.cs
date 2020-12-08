@@ -12,8 +12,10 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentPack : IContentPack
     {
-        private const string IGNORE_PREFIX = "IGNORE_"; // Any files prefixed with this will be ignored.
+        private const string IGNORE_PREFIX = "IGNORE_"; // Any files suffixed with this will be ignored.
         private const string JSON_FILE_EXTENSION = ".json"; // Any files prefixed with this will be ignored.
+        private const string ASSET_BUNDLE_RELATIVE_PATH = "Assets";
+
         private readonly string _path;
 
         public string Name { get; private set; }
@@ -21,6 +23,7 @@ namespace Lomztein.BFA2.ContentSystem
         public string Description { get; private set; }
 
         private IContentLoader _contentLoader = new ContentLoader();
+        private AssetBundleContentPack _includedAssets;
 
         public ContentPack(string path, string name, string author, string description)
         {
@@ -30,13 +33,33 @@ namespace Lomztein.BFA2.ContentSystem
             Description = description;
         }
 
+        public void Init ()
+        {
+            _includedAssets = AssetBundleContentPack.FromFile(Path.Combine(_path, $"{ASSET_BUNDLE_RELATIVE_PATH}.unity3d"));
+        }
+
+        private bool ShouldLoadFromBundle (string path)
+            => _path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
+
         public object GetContent(string path, Type type)
         {
-            return _contentLoader.LoadContent(Path.Combine(_path, path), type);
+            if (ShouldLoadFromBundle(path))
+            {
+                return _includedAssets.GetContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), type);
+            }
+            else
+            {
+                return _contentLoader.LoadContent(Path.Combine(_path, path), type);
+            }
         }
 
         public object[] GetAllContent(string path, Type type)
         {
+            if (ShouldLoadFromBundle(path))
+            {
+                return _includedAssets.GetAllContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), type);
+            }
+
             List<object> content = new List<object>();
             string spath = Path.Combine (_path, path);
 

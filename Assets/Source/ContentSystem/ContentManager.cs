@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.ContentSystem
             return obj;
         }
 
-        private void TryInit ()
+        public void TryInit ()
         {
             if (!_isInitialized)
             {
@@ -68,8 +68,7 @@ namespace Lomztein.BFA2.ContentSystem
         public object GetContent(string path, Type type)
         {
             path = OSAgnosticPath(path);
-            
-            TryInit();
+
             object cache = GetCache(path);
             if (!IsCacheValid(cache))
             {
@@ -112,7 +111,6 @@ namespace Lomztein.BFA2.ContentSystem
         {
             path = OSAgnosticPath(path);
 
-            TryInit();
             object cache = GetCache(path);
             if (IsCacheValid(cache))
             {

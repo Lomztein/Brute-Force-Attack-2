@@ -58,5 +58,9 @@ namespace Lomztein.BFA2.ContentSystem
         {
             return _converters.FirstOrDefault(x => x.OutputType == outputType);
         }
+
+        public void Init()
+        {
+        }
     }
 }

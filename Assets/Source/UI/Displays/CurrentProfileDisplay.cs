@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Game;
+using Lomztein.BFA2.LocalizationSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Lomztein.BFA2.UI.Displays
 
         public void Update()
         {
-            Text.text = "Profile: " + PlayerProfile.CurrentProfile.Name;
+            Text.text = Localization.Get("MENU_PROFILE_BUTTON", PlayerProfile.CurrentProfile.Name);
         }
     }
 }
