@@ -21,7 +21,14 @@ namespace Lomztein.BFA2.ContentSystem
         private Dictionary<string, object> _cache = new Dictionary<string, object>();
         private bool _isInitialized = false;
 
-        public IContentPack[] GetContentPacks() => _packs;
+        public IContentPack[] GetContentPacks()
+        {
+            if (_packs == null)
+            {
+                _packs = _source.GetPacks();
+            }
+            return _packs;
+        }
 
         private string OSAgnosticPath(string path)
         {
@@ -50,19 +57,6 @@ namespace Lomztein.BFA2.ContentSystem
                 _cache.Add(path, obj);
             }
             return obj;
-        }
-
-        public void TryInit ()
-        {
-            if (!_isInitialized)
-            {
-                Init();
-            }
-        }
-
-        private void Init()
-        {
-            _packs = _source.GetPacks();
         }
 
         public object GetContent(string path, Type type)
@@ -125,7 +119,7 @@ namespace Lomztein.BFA2.ContentSystem
             if (wildcard)
             {
                 List<object> objects = new List<object>();
-                foreach (IContentPack pack in _packs)
+                foreach (IContentPack pack in GetContentPacks())
                 {
                     objects.AddRange(pack.GetAllContent(contentPath, type));
                 }
@@ -139,7 +133,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         private IContentPack GetPack(string name)
         {
-            IContentPack pack = _packs.FirstOrDefault(x => x.Name == name);
+            IContentPack pack = GetContentPacks().FirstOrDefault(x => x.Name == name);
             if (pack == null)
             {
                 throw new ArgumentException($"Content Pack '{name}' not found.");

@@ -50,6 +50,7 @@ namespace Lomztein.BFA2.MainMenu
             }
 
             Text.text = Localization.Get("MENU_MAP_SELECTION", GetCurrent().Name);
+            SendMessage("OnTextUpdated", Text.text, SendMessageOptions.DontRequireReceiver);
             BattlefieldSettings.CurrentSettings.MapIdentifier = GetCurrent().Identifier;
         }
     }
