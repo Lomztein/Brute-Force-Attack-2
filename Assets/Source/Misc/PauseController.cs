@@ -12,16 +12,20 @@ namespace Lomztein.BFA2.Misc
     // TODO: Consider refactoring this so that the PauseController controls time, and the window is merely a facade.
     public class PauseController : MonoBehaviour
     {
-        public KeyCode PauseKey;
         public GameObject PauseMenuPrefeb;
         private PauseMenu _currentPauseMenu;
-        
-        private void Update ()
+
+        private void Start()
         {
-            if (Input.GetKeyDown(PauseKey))
-            {
-                Toggle();
-            }
+            InputMaster master = new InputMaster();
+            master.General.CancelPause.performed += OnPause;
+            master.General.Enable();
+            master.Enable();
+        }
+
+        private void OnPause(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            Toggle();
         }
 
         public void Toggle ()

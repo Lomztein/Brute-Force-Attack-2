@@ -19,8 +19,7 @@ namespace Lomztein.BFA2
             if (!_hasStartedUp)
             {
                 ContentManager.TryInit();
-                DontDestroyOnLoad(ContentManager.gameObject);
-                Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "da-DK"));
+                Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
 
                 InterceptLogs();
 

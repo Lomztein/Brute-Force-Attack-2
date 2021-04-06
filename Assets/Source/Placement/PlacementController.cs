@@ -19,6 +19,16 @@ namespace Lomztein.BFA2.Placement
         {
             Instance = this;
             _behaviours = GetComponents<IPlacementBehaviour>();
+
+            InputMaster master = new InputMaster();
+            master.General.CancelPause.performed += Cancel;
+            master.General.Enable();
+            master.Enable();
+        }
+
+        private void Cancel(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            CancelAll();
         }
 
         public void TakePlacement (IPlacement placement)
@@ -33,14 +43,6 @@ namespace Lomztein.BFA2.Placement
             foreach (var behaviour in _behaviours)
             {
                 behaviour.Cancel();
-            }
-        }
-
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                CancelAll();
             }
         }
 

@@ -38,7 +38,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void Tick(float deltaTime)
         {
-            _mousePointer.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _mousePointer.position = Input.WorldMousePosition;
         }
     }
 }

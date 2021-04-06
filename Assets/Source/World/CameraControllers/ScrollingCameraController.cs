@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Lomztein.BFA2.World.CameraControllers
 {
-    public class ScrollingCameraController : MonoBehaviour
+    public class ScrollingCameraController : MonoBehaviour, InputMaster.ICameraActions
     {
         public Vector2 Limit;
         public Vector2 SizeLimit;
@@ -17,9 +18,22 @@ namespace Lomztein.BFA2.World.CameraControllers
 
         public Camera Camera;
 
+        private float _zoom;
+        private Vector2 _movement;
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            _movement = context.ReadValue<Vector2>();
+        }
+
+        public void OnZoom(InputAction.CallbackContext context)
+        {
+            _zoom = Mouse.current.scroll.ReadValue().y;
+        }
+
         public void Update()
         {
-            Vector3 position = Input.mousePosition;
+            Vector3 position = Mouse.current.position.ReadValue();
 
             float x = 0f;
             float y = 0f;
@@ -44,15 +58,13 @@ namespace Lomztein.BFA2.World.CameraControllers
                 y = 1f;
             }
 
-            float zoom = Input.GetAxis("Mouse ScrollWheel");
-
             if (Application.isFocused)
             {
                 transform.Translate(new Vector3(x, y) * Speed * Time.deltaTime);
                 transform.position = Clamp(transform.position);
 
-                Camera.orthographicSize += zoom * ZoomSensitivity * Camera.orthographicSize;
-                Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, SizeLimit.x, SizeLimit.y);
+                Camera.orthographicSize += _zoom * ZoomSensitivity * Camera.orthographicSize;
+                Camera.orthographicSize = Mathf.Clamp(Camera.orthographicSize, Mathf.Max (SizeLimit.x, 10), Mathf.Max (SizeLimit.y, 10));
             }
         }
 

@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.MapEditor.Objects.ComponentHandlers
 
         private float[] _transformMatrix = new float[3];
         private Vector3 TransformMatrix => new Vector3(_transformMatrix[0], _transformMatrix[1], _transformMatrix[2]);
-        private bool Snap => Input.GetKey(KeyCode.LeftControl);
+        private bool Snap => Input.Master.MapEditor.SnapToGrid.ReadValue<bool>();
 
         public Transform _transform;
         private Vector3 _prevPosition;
@@ -24,11 +24,11 @@ namespace Lomztein.BFA2.MapEditor.Objects.ComponentHandlers
 
         public void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.PrimaryDown)
             {
                 Drag();
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.PrimaryPhase == UnityEngine.InputSystem.InputActionPhase.Canceled)
             {
                 Release();
             }
@@ -62,7 +62,7 @@ namespace Lomztein.BFA2.MapEditor.Objects.ComponentHandlers
 
         private void StartDrag (int axis, State state)
         {
-            _prevPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _prevPosition = Input.WorldMousePosition;
 
             _transformMatrix[axis] = 1f;
             _currentState = state;
@@ -70,7 +70,7 @@ namespace Lomztein.BFA2.MapEditor.Objects.ComponentHandlers
 
         public void Drag ()
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePos = Input.WorldMousePosition;
             Vector3 movement = _prevPosition - mousePos;
 
             switch (_currentState)
@@ -113,7 +113,7 @@ namespace Lomztein.BFA2.MapEditor.Objects.ComponentHandlers
 
         private void DragRotation(Transform transform, Vector3 movement, Vector3 matrix)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePos = Input.WorldMousePosition;
 
             float prevAngle = Mathf.Atan2(_prevPosition.y - transform.position.y, _prevPosition.x - transform.position.x) * Mathf.Rad2Deg;
             float curAngle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;

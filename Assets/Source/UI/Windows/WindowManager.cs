@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Lomztein.BFA2.UI.Windows
 {
@@ -16,11 +17,15 @@ namespace Lomztein.BFA2.UI.Windows
         private List<GameObject> _windowObjects = new List<GameObject>();
         private bool _openedThisFrame = false;
         private static Dictionary<Type, int> _maxOfType;
+        private InputAction _onClick;
 
         private void Awake()
         {
             _instance = this;
             _maxOfType = new Dictionary<Type, int>();
+            InputMaster master = new InputMaster();
+            _onClick = master.General.PrimaryClick;
+            master.General.Enable();
         }
 
         public static GameObject OpenWindow (GameObject original)
@@ -103,7 +108,7 @@ namespace Lomztein.BFA2.UI.Windows
 
         private void Update()
         {
-            if (!_openedThisFrame && Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
+            if (!_openedThisFrame && _onClick.phase == InputActionPhase.Performed && !UIUtils.IsOverUI(Mouse.current.position.ReadValue()))
             {
                 CloseAllWindows();
             }

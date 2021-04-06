@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 namespace Lomztein.BFA2.Misc
 {
+    [Obsolete]
     public class ExecuteEventOnInputKey : MonoBehaviour
     {
         public KeyCode Key;
@@ -15,10 +16,7 @@ namespace Lomztein.BFA2.Misc
 
         private void Update()
         {
-            if (Input.GetKeyDown(Key))
-            {
-                Event.Invoke();
-            }
+            Debug.LogError("ExecuteEventOnInputKey is no longer supported.");
         }
     }
 }

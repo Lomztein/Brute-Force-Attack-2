@@ -5,6 +5,7 @@ using Lomztein.BFA2.UI.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Lomztein.BFA2.UI.ContextMenu
 {
@@ -18,10 +19,20 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
         private Collider2D _currentHover;
         private HighlighterCollection _highlighters;
+        private InputAction _secondaryClick;
+
+        private void Start()
+        {
+            InputMaster master = new InputMaster();
+            _secondaryClick = master.General.SecondaryClick;
+            master.General.Enable();
+            master.Enable();
+        }
+
 
         public void Update()
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos = Input.WorldMousePosition;
             Collider2D[] colliders = Physics2D.OverlapPointAll(mousePos, TargetLayer);
             if (colliders.Length > 0)
             {
@@ -32,7 +43,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
                     _currentHover = hover;
                 }
 
-                if (Input.GetMouseButtonDown (1))
+                if (_secondaryClick.phase == InputActionPhase.Performed)
                 {
                     IEnumerable<IContextMenuOption> providers = colliders.SelectMany(x => x.GetComponents<IContextMenuOptionProvider>()).Distinct().SelectMany(x => x.GetContextMenuOptions());
                     Open(colliders[0].gameObject, providers, Camera.main.WorldToScreenPoint(colliders[0].transform.position));

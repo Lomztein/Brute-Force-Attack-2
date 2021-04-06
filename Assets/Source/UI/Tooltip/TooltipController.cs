@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Lomztein.BFA2.UI.Tooltip
@@ -47,7 +48,7 @@ namespace Lomztein.BFA2.UI.Tooltip
             TooltipFooter.gameObject.SetActive(!string.IsNullOrEmpty(TooltipFooter.text));
 
             Vector2 flip = new Vector2();
-            Vector2 pos = Input.mousePosition;
+            Vector2 pos = Mouse.current.position.ReadValue();
             Rect rect = TooltipTransform.rect;
 
             if (pos.x + rect.width > Screen.width)

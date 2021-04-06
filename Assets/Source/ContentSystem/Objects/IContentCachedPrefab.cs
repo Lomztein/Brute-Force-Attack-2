@@ -10,7 +10,5 @@ namespace Lomztein.BFA2.ContentSystem.Objects
     public interface IContentCachedPrefab : IContentPrefab, IDisposableContent
     {
         GameObject GetCache();
-
-        void Dispose();
     }
 }

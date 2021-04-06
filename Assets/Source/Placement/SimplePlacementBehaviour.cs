@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Lomztein.BFA2.Placement
 {
@@ -16,29 +17,44 @@ namespace Lomztein.BFA2.Placement
         public static SimplePlacementBehaviour Instance { get; private set; }
         public override bool Busy => _currentPlaceable != null;
 
+        private InputAction _quickPlace;
+
         private void Awake()
         {
             Instance = this;
+
+            InputMaster master = new InputMaster();
+
+            master.General.PrimaryClick.performed += OnPrimaryClick;
+            master.General.SecondaryClick.performed += OnSecondaryClick;
+            _quickPlace = master.Placement.QuickPlace;
+            master.Placement.Enable();
+            master.General.Enable();
+            master.Enable();
+        }
+
+        private void OnSecondaryClick(InputAction.CallbackContext obj)
+        {
+            Cancel();
+        }
+
+        private void OnPrimaryClick(InputAction.CallbackContext obj)
+        {
+            if (!UIUtils.IsOverUI(Mouse.current.position.ReadValue()))
+            {
+                if (!PlaceCurrent())
+                {
+                    Message.Send("Cannot place here.", Message.Type.Minor);
+                }
+            }
         }
 
         private void Update()
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             if (_currentPlaceable != null)
             {
                 _currentPlaceable.ToPosition(mousePos, Quaternion.identity);
-                if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
-                {
-                    if (!PlaceCurrent())
-                    {
-                        Message.Send("Cannot place here.", Message.Type.Minor);
-                    }
-                }
-                if (Input.GetMouseButtonDown(1))
-                {
-                    Cancel();
-                }
             }
         }
 
@@ -57,13 +73,16 @@ namespace Lomztein.BFA2.Placement
 
         public bool PlaceCurrent()
         {
-            if (_currentPlaceable.Place())
+            if (_currentPlaceable != null)
             {
-                if (!Input.GetKey(KeyCode.LeftShift))
+                if (_currentPlaceable.Place())
                 {
-                    Cancel();
+                    if (_quickPlace.phase == InputActionPhase.Waiting)
+                    {
+                        Cancel();
+                    }
+                    return true;
                 }
-                return true;
             }
             return false;
         }

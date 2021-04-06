@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using Lomztein.BFA2.Battlefield;
+using Lomztein.BFA2.MainBattlefield;
 
 namespace Lomztein.BFA2.MainMenu.CustomGame
 {
@@ -72,7 +72,7 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
         {
             Destroy(GetAvailableMutator(obj.Identifier).gameObject);
             CreateEnabledButton(obj).Assign(obj, DisableMutator);
-            BattlefieldSettings.AddMutator(obj);
+            BattlefieldSettings.CurrentSettings.AddMutator(obj);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(EnabledParent as RectTransform);
         }
@@ -81,7 +81,7 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
         {
             Destroy(GetEnabledMutator(obj.Identifier).gameObject);
             CreateAvailableButton(obj).Assign(obj, EnableMutator);
-            BattlefieldSettings.RemoveMutator(obj);
+            BattlefieldSettings.CurrentSettings.RemoveMutator(obj);
         }
 
         private Mutator[] LoadMutators()

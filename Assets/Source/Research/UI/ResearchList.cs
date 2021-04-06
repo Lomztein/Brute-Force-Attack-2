@@ -166,13 +166,5 @@ namespace Lomztein.BFA2.Research.UI
                 button.Assign(option);
             }
         }
-
-        private void Update()
-        {
-            if (Input.GetMouseButtonDown(0) && !UIUtils.IsOverUI(Input.mousePosition))
-            {
-                Close();
-            }
-        }
     }
 }

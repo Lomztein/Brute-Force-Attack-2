@@ -88,14 +88,6 @@ namespace Lomztein.BFA2.Enemies
             _endPoints = GameObject.FindGameObjectsWithTag("EnemyEndPoint").Select(x => x.GetComponent<EnemyPoint>()).ToArray();
         }
 
-        private void Update()
-        {
-            if (Input.GetButtonDown("StartWave"))
-            {
-                BeginNextWave();
-            }
-        }
-
         public void BeginNextWave ()
         {
             if (State == RoundState.Ready)

@@ -1,0 +1,384 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "General",
+            "id": "ce515a5b-9fb2-41b4-ab40-d15d2547afbb",
+            "actions": [
+                {
+                    "name": "CancelPause",
+                    "type": "Button",
+                    "id": "ec58b7d3-1ee6-4334-a3fa-5ae7688447e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PrimaryClick",
+                    "type": "Button",
+                    "id": "cd9ba05f-9020-4e5e-a037-d00d36b404eb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SecondaryClick",
+                    "type": "Button",
+                    "id": "e07a1f54-8814-4fa0-bc1b-6271c096c54f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "66121cd7-7758-4491-9922-1a6b17ee9648",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "CancelPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d09c980-279d-476e-a0fa-86b26b652ffa",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "PrimaryClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cb5482fe-72b3-4af9-a296-3bc0b1e858fa",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "SecondaryClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Battlefield",
+            "id": "35d19b7b-6281-4fce-b2d7-6205ed400ed9",
+            "actions": [
+                {
+                    "name": "StartWave",
+                    "type": "Button",
+                    "id": "f6529fbb-5916-492a-af00-07ad6baf0d5d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ToggleFastMode",
+                    "type": "Button",
+                    "id": "132dec6a-9b7d-46e4-8250-a6c145d6840c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "627fe6d6-90ae-484d-8ec0-756846ccc671",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "StartWave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b5d35f0-f661-463a-b272-611baa2d99f6",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "ToggleFastMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Placement",
+            "id": "2ed9b9c8-8c2f-4dfe-9e53-39e274c1807b",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "d061f0f3-82cf-498c-aad2-8d7dc5f20c8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "QuickPlace",
+                    "type": "Button",
+                    "id": "d47deb4d-d0bf-430b-a57b-971ad0f9c400",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "da0cd24e-fd8b-4d35-9e36-eea8b9738eb5",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92911641-1365-4e48-b404-d64b8b4385d4",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "QuickPlace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dragging",
+            "id": "1483c507-0655-40ba-adbc-a0b904549af7",
+            "actions": [
+                {
+                    "name": "PrimaryDrag",
+                    "type": "Value",
+                    "id": "e5963dc4-074a-41f1-959e-434989633865",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SecondaryDrag",
+                    "type": "Value",
+                    "id": "12a48982-aff9-4d90-bb20-de82df902f97",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8ece1b70-9723-44c4-af26-892561b572bb",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "PrimaryDrag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65dc2829-cb0a-4bd0-b1de-9cc07f255f85",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "SecondaryDrag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Camera",
+            "id": "7a253d34-fbc7-49d0-9f43-c1964b3d846c",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "301b7388-3010-461c-8f69-84f9ba4fd415",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "a18291ec-56ae-49b1-b12f-a7ca5c026325",
+                    "expectedControlType": "Vector2",
+                    "processors": "NormalizeVector2",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "9d0133fd-8603-4f1b-b415-313484d68a4b",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "c711c8a4-a130-40ff-bd0f-03bb62df8fa5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cb983865-4331-4f9c-85d0-90063dcda7df",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "e6007acc-d214-4700-a3e8-7b19ddc0bbb4",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "cd0a8b39-31fd-42f6-9a01-fabb870a75be",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d1595859-f455-4f06-873b-a6890d73153d",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GeneralEditor",
+            "id": "b6457672-4298-455d-b10c-f442ac7d49fd",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "AssemblyEditor",
+            "id": "7f5942cd-e636-41ec-a763-9318cd57687d",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "485d8612-4323-4a98-9f4b-d448540affff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "333a4522-c6b7-45c0-9b70-6048995941b4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MapEditor",
+            "id": "e8e7b0b8-7b65-4547-b0c0-16d84295fde5",
+            "actions": [
+                {
+                    "name": "SnapToGrid",
+                    "type": "Button",
+                    "id": "c80f0f7c-ff70-4872-a476-a1c8291c4356",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Clone",
+                    "type": "Button",
+                    "id": "2dce9d2e-ed20-4c37-bb62-691602de52d9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b5594786-aada-4a85-bc50-6d655037e8f0",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "SnapToGrid",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ca98909-dec4-4ac6-94a4-7080eddefa81",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Clone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Default",
+            "bindingGroup": "Default",
+            "devices": []
+        }
+    ]
+}

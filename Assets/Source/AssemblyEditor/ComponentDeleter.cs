@@ -13,9 +13,9 @@ namespace Lomztein.BFA2.AssemblyEditor
     {
         public void Update ()
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.SecondaryPerformed)
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 mousePos = Input.WorldMousePosition;
                 var cols = Physics2D.OverlapPointAll(mousePos);
                 var components = cols.Select(x => x.GetComponent<TurretComponent>()).Where(x => x != null);
 

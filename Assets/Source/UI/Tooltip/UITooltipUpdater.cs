@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Lomztein.BFA2.UI.Tooltip
@@ -17,7 +18,7 @@ namespace Lomztein.BFA2.UI.Tooltip
             EventSystem eventSystem = UIController.Instance.EventSystem;
 
             PointerEventData data = new PointerEventData(eventSystem);
-            data.position = Input.mousePosition;
+            data.position = Mouse.current.position.ReadValue();
 
             List<RaycastResult> results = new List<RaycastResult>();
 

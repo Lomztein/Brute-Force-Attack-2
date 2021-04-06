@@ -27,12 +27,12 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         private void Update()
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mousePos = Input.WorldMousePosition;
             bool placedThisFrame = false;
 
             if (_current != null)
             {
-                if (Input.GetMouseButtonDown(0) && !HoverOverHandle())
+                if (Input.PrimaryPhase == UnityEngine.InputSystem.InputActionPhase.Performed && !HoverOverHandle())
                 {
                     _current.Deselect();
                     placedThisFrame = true;
@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.MapEditor.Objects
             else
             {
                 Collider2D collider = Physics2D.OverlapPointAll(mousePos).Where(x => x.GetComponent<MapObjectHandle>() != null).FirstOrDefault();
-                if (collider && Input.GetMouseButtonDown(0) && !placedThisFrame)
+                if (collider && Input.PrimaryPerformed && !placedThisFrame)
                 {
                     MapObjectPlacement placement = new MapObjectPlacement();
                     placement.Select(collider.GetComponent<MapObjectHandle>());
@@ -50,7 +50,7 @@ namespace Lomztein.BFA2.MapEditor.Objects
             }
         }
 
-        private bool HoverOverHandle() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), Mathf.Infinity, HandleLayer);
+        private bool HoverOverHandle() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.MousePosition), Mathf.Infinity, HandleLayer);
 
         public override void TakePlacement(MapObjectPlacement placement)
         {

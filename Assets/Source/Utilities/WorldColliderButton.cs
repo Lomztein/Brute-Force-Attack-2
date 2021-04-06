@@ -14,10 +14,10 @@ namespace Lomztein.BFA2.Utilities
 
         public void Update()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.MousePosition);
             if (Collider.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
-                if (Input.GetMouseButtonDown(MouseButton))
+                if (MouseButton == 0 ? Input.PrimaryDown : Input.SecondaryDown)
                 {
                     OnClick.Invoke();
                 }
