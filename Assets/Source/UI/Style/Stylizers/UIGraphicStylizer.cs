@@ -11,10 +11,11 @@ namespace Lomztein.BFA2.UI.Style.Stylizers
     public class UIGraphicStylizer : UIStylizerBase<Graphic>
     {
         public UIStyle.Slot Slot;
+        public Color BlendColor = Color.white;
 
         public override void ApplyStyle(UIStyle style)
         {
-            GetGraphic().color = style.GetColor(Slot);
+            GetGraphic().color = style.GetColor(Slot) * BlendColor;
         }
     }
 }
