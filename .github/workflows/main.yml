@@ -46,7 +46,7 @@ jobs:
       - uses: webbertakken/unity-builder@v2.0-aplha-5
         with:
           buildMethod: Builder.CDBuildGame
-          unityVersion: 2019.4.12f1
+          unityVersion: 2020.3.2f1
           targetPlatform: ${{ matrix.targetPlatform }}
 
       - uses: actions/upload-artifact@v2
