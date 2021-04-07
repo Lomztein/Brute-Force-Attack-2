@@ -114,7 +114,6 @@ namespace Lomztein.BFA2.Research
         {
             Reward();
             Stop();
-            Debug.Log("yay!");
             _isCompleted = true;
             OnCompleted?.Invoke(this);
         }

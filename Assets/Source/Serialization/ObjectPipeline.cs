@@ -22,6 +22,18 @@ namespace Lomztein.BFA2.Serialization
             return assembler.Assemble(DeserializeObject(token), type);
         }
 
+        public static T BuildScriptableObject<T>(JToken token) where T : ScriptableObject
+           => (T)BuildScriptableObject(token, typeof(T));
+
+        public static object BuildScriptableObject (JToken token, Type type)
+        {
+            ScriptableObject obj = ScriptableObject.CreateInstance(type);
+            var model = DeserializeObject(token);
+            ObjectPopulator populator = new ObjectPopulator();
+            populator.Populate(obj, model as ObjectModel);
+            return obj;
+        }
+
         public static ValueModel DeserializeObject (JToken token)
         {
             ValueModelSerializer serializer = new ValueModelSerializer();

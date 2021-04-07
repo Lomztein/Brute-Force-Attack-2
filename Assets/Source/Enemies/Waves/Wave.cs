@@ -34,6 +34,8 @@ namespace Lomztein.BFA2.Enemies.Waves
         public event Action OnFinished;
         public event Action OnAllSpawned;
 
+        private GameObject _spawnerObj;
+
         public void Start()
         {
             Alive = SpawnAmount;
@@ -56,7 +58,8 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private void Spawn()
         {
-            ISpawner spawner = SpawnerPrefab.Instantiate().GetComponent<ISpawner>();
+            _spawnerObj = SpawnerPrefab.Instantiate();
+            ISpawner spawner = _spawnerObj.GetComponent<ISpawner>();
 
             spawner.OnSpawn += Spawner_OnSpawn;
             spawner.OnFinished += () => OnAllSpawned?.Invoke();
@@ -92,6 +95,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             if (Alive == 0)
             {
                 OnFinished?.Invoke();
+                UnityEngine.Object.Destroy(_spawnerObj);
             }
         }
     }

@@ -17,9 +17,6 @@ namespace Lomztein.BFA2.Enemies
     {
         private const float CRITICAL_DAMAGE_MULT = 2f;
 
-        [ModelProperty] [SerializeField]
-        private float _difficultyValue;
-        public float DifficultyValue => _difficultyValue;
         [ModelProperty]
         public float MaxHealth;
         [ModelProperty]

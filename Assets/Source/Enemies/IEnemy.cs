@@ -10,8 +10,6 @@ namespace Lomztein.BFA2.Enemies
 {
     public interface IEnemy : IIdentifiable
     {
-        float DifficultyValue { get; }
-
         void Init(EnemySpawnPoint point);
 
         event Action<IEnemy> OnKilled;

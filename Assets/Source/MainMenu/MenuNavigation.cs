@@ -1,3 +1,4 @@
+using Lomztein.BFA2.UI.Messages;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,7 +71,6 @@ namespace Lomztein.BFA2.MainMenu
         private void MoveTo (RectTransform transform)
         {
             _targetPosition = transform.anchoredPosition;
-            Debug.Log(_targetPosition);
         }
 
         private void Update()

@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Research.UniquePrerequisites
 
         public override float Progress => _current / Target;
 
-        public override string Description => "Slay " + Target + " worth of " + FormatTargetColors() + " enemies.";
+        public override string Description => "Slay " + Target + " " + FormatTargetColors() + " enemies.";
         public override string Status => Mathf.Round(_current) + " / " + Target + " " + FormatTargetColors() + " worth of enemies slain.";
 
         public override event Action<UniquePrerequisite> OnCompleted;
@@ -41,7 +41,6 @@ namespace Lomztein.BFA2.Research.UniquePrerequisites
         {
             if (IsTargetColor(enemy))
             {
-                _current += enemy.DifficultyValue;
                 OnProgressed?.Invoke(this);
                 if (_current >= Target)
                 {

@@ -3,9 +3,8 @@ using Lomztein.BFA2.Enemies.Waves.Generators;
 using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Lomztein.BFA2.Enemies.Waves
 {
@@ -49,8 +48,9 @@ namespace Lomztein.BFA2.Enemies.Waves
             }
             else
             {
+                Seed = Random.Range(0, short.MaxValue);
                 //IWaveGenerator generator = new WaveGenerator(Spawner, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), 200, 0.5f);
-                IWaveGenerator generator = new CompositeWaveGenerator(Spawner, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), GetMaxSequence(index), GetMaxParallel(index));
+                IWaveGenerator generator = new CompositeWaveGenerator(Spawner, index, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), GetMaxSequence(index), GetMaxParallel(index));
                 IWave wave = generator.GenerateWave();
                 _waves.Add(index, wave);
                 return wave;

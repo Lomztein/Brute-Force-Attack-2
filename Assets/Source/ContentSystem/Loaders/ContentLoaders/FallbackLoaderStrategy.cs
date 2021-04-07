@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
 {
@@ -19,7 +20,15 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         {
             string json = File.ReadAllText(path);
             var jtoken = JToken.Parse(json);
-            return ObjectPipeline.BuildObject(jtoken, type);
+
+            if (typeof(ScriptableObject).IsAssignableFrom(type))
+            {
+                return ObjectPipeline.BuildScriptableObject(jtoken, type);
+            }
+            else
+            {
+                return ObjectPipeline.BuildObject(jtoken, type);
+            }
         }
     }
 }

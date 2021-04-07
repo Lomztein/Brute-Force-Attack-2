@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class GameObjectSerializer : EditorWindow
 {
@@ -18,9 +19,10 @@ public class GameObjectSerializer : EditorWindow
         GameObject, Assembly, Object
     }
 
-    public GameObject Object;
+    public Object Object;
     public string Path;
     public TargetType Type;
+    public bool Implicit;
 
     private string _objectTypeName;
 
@@ -32,9 +34,10 @@ public class GameObjectSerializer : EditorWindow
 
     private void OnGUI()
     {
-        Object = EditorGUILayout.ObjectField("Object", Object, typeof(GameObject), true) as GameObject;
+        Object = EditorGUILayout.ObjectField("Object", Object, typeof(Object), true) as Object;
         Path = EditorGUILayout.TextField("Path", Path);
         Type = (TargetType)EditorGUILayout.EnumPopup("Type", Type);
+        Implicit = EditorGUILayout.Toggle("Implicit Type", Implicit);
 
         if (Type == TargetType.Object)
         {
@@ -63,18 +66,18 @@ public class GameObjectSerializer : EditorWindow
         switch (Type)
         {
             case TargetType.Assembly:
-                data = ObjectPipeline.SerializeObject(_assemblyAssembler.Disassemble(Object.GetComponent<TurretAssembly>())).ToString();
+                data = ObjectPipeline.SerializeObject(_assemblyAssembler.Disassemble((Object as GameObject).GetComponent<TurretAssembly>())).ToString();
                 name = Object.name;
                 break;
 
             case TargetType.GameObject:
-                data = ObjectPipeline.SerializeObject(_assembler.Disassemble(Object)).ToString();
+                data = ObjectPipeline.SerializeObject(_assembler.Disassemble(Object as GameObject)).ToString();
                 name = Object.name;
                 break;
 
             case TargetType.Object:
-                data = ObjectPipeline.UnbuildObject(Activator.CreateInstance(ReflectionUtils.GetType(_objectTypeName)), false).ToString();
-                name = _objectTypeName.Replace(".", "");
+                data = ObjectPipeline.UnbuildObject(Object == null ? Activator.CreateInstance(ReflectionUtils.GetType(_objectTypeName)) : Object, Implicit).ToString();
+                name = Object == null ? _objectTypeName.Replace(".", "") : Object.name;
                 break;
         }
 
