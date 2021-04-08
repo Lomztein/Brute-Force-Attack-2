@@ -12,6 +12,6 @@ namespace Lomztein.BFA2.Game
     public class ProfileSettings
     {
         [ModelProperty]
-        public UIStyle UIStyle = UIStyle.Default;
+        public UIStyle UIStyle = UIStyle.Default();
     }
 }

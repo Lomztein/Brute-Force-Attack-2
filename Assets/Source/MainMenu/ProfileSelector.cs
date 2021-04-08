@@ -16,7 +16,6 @@ namespace Lomztein.BFA2.MainMenu
 {
     public class ProfileSelector : MonoBehaviour, IWindow
     {
-        public static string ProfileFolder => Application.persistentDataPath + "/Profiles";
 
         public event Action OnClosed;
 
@@ -49,7 +48,7 @@ namespace Lomztein.BFA2.MainMenu
         {
             PlayerProfile newProfile = new PlayerProfile(name);
             SetProfile(newProfile);
-            Save(newProfile);
+            newProfile.Save();
         }
 
         private void GenerateColorProfiles ()
@@ -66,15 +65,8 @@ namespace Lomztein.BFA2.MainMenu
             }
         }
 
-        public void Save(PlayerProfile profile)
-        {
-            JToken json = ObjectPipeline.UnbuildObject(profile, true);
-            Directory.CreateDirectory(ProfileFolder);
-            File.WriteAllText(GetPath(profile.Name), json.ToString());
-        }
 
-        private static string GetPath(string profileName)
-            => ProfileFolder + "/" + profileName + ".json";
+
 
         public void CreateNew ()
         {
@@ -103,12 +95,12 @@ namespace Lomztein.BFA2.MainMenu
 
         public PlayerProfile[] LoadProfiles()
         {
-            if (!Directory.Exists(ProfileFolder))
+            if (!Directory.Exists(PlayerProfile.ProfileFolder))
             {
-                Directory.CreateDirectory(ProfileFolder);
+                Directory.CreateDirectory(PlayerProfile.ProfileFolder);
             }
 
-            string[] files = Directory.GetFiles(ProfileFolder);
+            string[] files = Directory.GetFiles(PlayerProfile.ProfileFolder);
             PlayerProfile[] profiles = new PlayerProfile[files.Length];
 
             for (int i = 0; i < files.Length; i++)

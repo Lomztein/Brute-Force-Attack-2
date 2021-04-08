@@ -9,8 +9,8 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.UI.Style
 {
-    [Serializable]
-    public class UIStyle
+    [CreateAssetMenu(fileName = "NewUIStyke", menuName = "BFA2/UI/Style")]
+    public class UIStyle : ScriptableObject
     {
         [ModelProperty]
         public string Name;
@@ -18,34 +18,43 @@ namespace Lomztein.BFA2.UI.Style
         [ModelProperty]
         public string Description;
 
-        public static UIStyle Default = new UIStyle()
-        {
-            Name = "Friendly Cyan",
-            Description = "Cyan colors heavily reminiciant of chill summer days and colors similar to cyan.",
-            _colors = new Color[]
-            {
-                new Color(0f, 1f, 1f),
-                new Color(0f, 1f, 0.8f),
-                new Color(0.2f, 1f, 1f),
-                new Color(0f, 0.7f, 0.7f),
-                new Color(0f, 0.3f, 0.3f),
-                new Color(0.2f, 1f, 1f),
-            }
-        };
-
-        public enum Slot { Primary, Secondary, Highlight, Pressed, Disabled, Text }
         [ModelProperty]
-        [SerializeField] private Color[] _colors;
+        public Color Primary;
+        [ModelProperty]
+        public Color Secondary;
+        [ModelProperty]
+        public Color Highlight;
+        [ModelProperty]
+        public Color Detail;
+        [ModelProperty]
+        public Color Text;
+
+        public static UIStyle Default() {
+            UIStyle style = CreateInstance<UIStyle>();
+
+            style.Name = "Beautiful Blue";
+            style.Description = "Blue, or cyan colors heavily reminiciant of chill summer days and colors similar to cyan.";
+            style.Primary = new Color(0f, 1f, 1f);
+            style.Secondary = new Color(0f, 1f, 0.8f);
+            style.Highlight = new Color(0.2f, 1f, 1f);
+            style.Detail = new Color(0.1f, 1f, 1f);
+            style.Text = new Color(0.2f, 1f, 1f);
+
+            return style;
+        }
+
+        public enum Slot { Primary, Secondary, Highlight, Detail, Text }
 
         public Color GetColor(Slot slot)
         {
-            if (_colors.Length <= (int)slot)
+            switch (slot)
             {
-                return Color.white;
-            }
-            else
-            {
-                return _colors[(int)slot];
+                case Slot.Primary: return Primary;
+                case Slot.Secondary: return Secondary;
+                case Slot.Highlight: return Highlight;
+                case Slot.Detail: return Detail;
+                case Slot.Text: return Text;
+                default: return Color.white;
             }
         }
     }

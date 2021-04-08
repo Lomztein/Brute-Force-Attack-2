@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Assemblers
 {
@@ -15,7 +16,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public object Assemble (ValueModel model, Type implicitType)
         {
             Type type = model.IsTypeImplicit ? implicitType : model.GetModelType();
-            object obj = Activator.CreateInstance(type);
+            object obj = CreateInstance(type);
             _populator.Populate(obj, model as ObjectModel);
             return obj;
         }
@@ -28,6 +29,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public ValueModel Disassemble(object obj, Type type)
         {
             return _populator.Extract(obj);
+        }
+
+        private object CreateInstance (Type type)
+        {
+            if (typeof(ScriptableObject).IsAssignableFrom(type))
+            {
+                return ScriptableObject.CreateInstance(type);
+            }
+            else
+            {
+                return Activator.CreateInstance(type);
+            }
         }
     }
 }

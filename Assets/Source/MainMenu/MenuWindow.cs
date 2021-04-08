@@ -26,6 +26,11 @@ namespace Lomztein.BFA2.MainMenu
             MenuNavigation.Return();
         }
 
+        public void ReturnHome ()
+        {
+            MenuNavigation.Home();
+        }
+
         public void SetHeader (string text, bool canReturn)
         {
             HeaderText.text = text;

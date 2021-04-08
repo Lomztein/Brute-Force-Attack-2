@@ -48,7 +48,6 @@ namespace Lomztein.BFA2.LocalizationSystem
             }
             else
             {
-                Debug.LogWarning($"Missing translation info for '{Culture}' - '{key}'. Returning key.");
                 return key;
             }
         }
