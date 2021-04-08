@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Grid;
-using Lomztein.BFA2.World;
+﻿using Lomztein.BFA2.World;
 using Lomztein.BFA2.World.Tiles;
 using System;
 using System.Collections.Generic;
@@ -53,7 +52,7 @@ namespace Lomztein.BFA2.Placement
 
         public void StartDrag (int mb, Vector2 position)
         {
-            _startPosition = GridDimensions.SnapToGrid(ClampToMap(position), Size.Small);
+            _startPosition = World.Grid.SnapToGrid(ClampToMap(position), Size.Small);
             if (mb == 0)
             {
                 TintGraphic(Color.green);
@@ -67,7 +66,7 @@ namespace Lomztein.BFA2.Placement
 
         public void ToPosition (Vector2 position)
         {
-            GetPlacementGraphic().transform.position = GridDimensions.SnapToGrid(ClampToMap(position), Size.Small);
+            GetPlacementGraphic().transform.position = World.Grid.SnapToGrid(ClampToMap(position), Size.Small);
             GetPlacementGraphic().transform.localScale = Vector3.one;
             TileObject(GetPlacementGraphic(), Vector2.one);
         }
@@ -88,7 +87,7 @@ namespace Lomztein.BFA2.Placement
 
         public void Drag (int mb, Vector2 position)
         {
-            position = GridDimensions.SnapToGrid(ClampToMap(position), Size.Small);
+            position = World.Grid.SnapToGrid(ClampToMap(position), Size.Small);
             (Vector2 from, Vector2 to) = Normalize(_startPosition, position);
             (from, to) = ExpandNormalized(from, to, 0.5f);
 
@@ -102,7 +101,7 @@ namespace Lomztein.BFA2.Placement
 
         public void EndDrag (int mb, Vector2 position)
         {
-            position = GridDimensions.SnapToGrid(ClampToMap(position), Size.Small);
+            position = World.Grid.SnapToGrid(ClampToMap(position), Size.Small);
             (Vector2 from, Vector2 to) = Normalize(_startPosition, position);
             (from, to) = ExpandNormalized(from, to, 0.1f);
 

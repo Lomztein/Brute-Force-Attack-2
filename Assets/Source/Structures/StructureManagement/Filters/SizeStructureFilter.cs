@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Grid;
+﻿using Lomztein.BFA2.World;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

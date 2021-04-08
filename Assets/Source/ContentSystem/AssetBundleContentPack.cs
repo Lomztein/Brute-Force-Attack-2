@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.ContentSystem
         public string Name => _assetBundle.name;
         public string Author => null; //TODO: Figure out a way to include name, author, and description in the asset bundle. Text files perhaps?
         public string Description => null;
+        public bool RequireReload => true;
 
         private AssetBundle _assetBundle;
         private string[] _assetPaths;

@@ -9,12 +9,12 @@ using UnityEngine.UI;
 public class ContentDisplay : MonoBehaviour
 {
     public GameObject ContentManager;
-    private IContentManager _contentManager;
+    private ContentManager _contentManager;
     public Text Text;
 
     private void Awake()
     {
-        _contentManager = ContentManager.GetComponent<IContentManager>();
+        _contentManager = ContentManager.GetComponent<ContentManager>();
     }
 
     private string FormatContent()

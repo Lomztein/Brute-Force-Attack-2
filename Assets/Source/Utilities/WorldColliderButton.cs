@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Lomztein.BFA2.Weaponary.Projectiles;
 using UnityEngine.Events;
 
 namespace Lomztein.BFA2.Utilities

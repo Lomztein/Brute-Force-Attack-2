@@ -1,7 +1,9 @@
-﻿namespace Lomztein.BFA2.ContentSystem
+﻿using System.Collections.Generic;
+
+namespace Lomztein.BFA2.ContentSystem
 {
     public interface IContentPackSource
     {
-        IContentPack[] GetPacks();
+        IEnumerable<IContentPack> GetPacks();
     }
 }

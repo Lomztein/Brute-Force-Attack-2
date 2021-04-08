@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Grid;
-using Lomztein.BFA2.Structures;
+﻿using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.Highlighters;
 using Lomztein.BFA2.Structures.StructureManagement;
 using Lomztein.BFA2.UI.Tooltip;
@@ -85,7 +84,7 @@ namespace Lomztein.BFA2.Placement
 
         public bool ToPosition(Vector2 position, Quaternion rotation)
         {
-            position = GridDimensions.SnapToGrid(position, _placeable.Width, _placeable.Height);
+            position = World.Grid.SnapToGrid(position, _placeable.Width, _placeable.Height);
             rotation = _manualRotationOverride ? rotation : Quaternion.Euler(0f, 0f, GetAngleToNearestSpawnPoint(position, 90));
             _obj.transform.position = position;
             _obj.transform.rotation = rotation;
@@ -109,7 +108,7 @@ namespace Lomztein.BFA2.Placement
         private string CanPlace (Vector2 position, Quaternion rotation)
         {
             CannotPlaceReasons reasons = new CannotPlaceReasons();
-            Vector2 size = new Vector2 (GridDimensions.SizeOf (_placeable.Width), GridDimensions.SizeOf(_placeable.Height));
+            Vector2 size = new Vector2(World.Grid.SizeOf (_placeable.Width), World.Grid.SizeOf(_placeable.Height));
 
 
             if (Physics2D.OverlapBox(position, size * 0.9f, 0))

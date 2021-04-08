@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
-using Lomztein.BFA2.Grid;
 using Lomztein.BFA2.Inventory;
 using Lomztein.BFA2.Inventory.Items;
 using Lomztein.BFA2.Misc;
@@ -20,6 +19,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Lomztein.BFA2.World;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {

@@ -8,6 +8,7 @@ namespace Lomztein.BFA2.ContentSystem
         string Name { get; }
         string Author { get; }
         string Description { get; }
+        bool RequireReload { get; }
 
         void Init();
 

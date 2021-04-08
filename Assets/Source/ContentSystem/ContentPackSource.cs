@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.ContentSystem
             Paths.PersistantData + "Content/", // User content.
         };
 
-        public IContentPack[] GetPacks()
+        public IEnumerable<IContentPack> GetPacks()
         {
             List<IContentPack> packs = new List<IContentPack>();
             packs.Add(new ResourcesContentPack());
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.ContentSystem
                 }
             }
 
-            return packs.ToArray();
+            return packs;
         }
     }
 }

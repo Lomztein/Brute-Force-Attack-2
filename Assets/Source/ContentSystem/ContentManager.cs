@@ -1,6 +1,8 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.Plugins;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.UI.Messages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,23 +13,51 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem
 {
-    public class ContentManager : MonoBehaviour, IContentManager
+    public class ContentManager : MonoBehaviour
     {
         readonly IContentPackSource _source = new ContentPackSource();
 
         private const string WILDCARD = "*";
-        private IContentPack[] _packs;
+        private List<IContentPack> _activePacks;
+        private PluginManager _pluginManager = new PluginManager();
 
         private Dictionary<string, object> _cache = new Dictionary<string, object>();
-        private bool _isInitialized = false;
 
-        public IContentPack[] GetContentPacks()
+        public IEnumerable<IContentPack> GetContentPacks()
         {
-            if (_packs == null)
+            if (_activePacks == null)
             {
-                _packs = _source.GetPacks();
+                _activePacks = new List<IContentPack>();
+                IEnumerable<IContentPack> loaded = _source.GetPacks();
+                Message.Send("Loaded " + loaded.Count() + " content packs.", Message.Type.Minor);
+                _activePacks.AddRange(loaded);
             }
-            return _packs;
+            return _activePacks;
+        }
+
+        internal void Init()
+        {
+            LoadPlugins();
+        }
+
+        internal void LoadPlugins ()
+        {
+            _pluginManager.Init();
+
+            foreach (IContentPack pack in GetContentPacks())
+            {
+                if (pack is ContentPack contentPack)
+                {
+                    _pluginManager.LoadAllPlugins(contentPack.GetPluginAssemblies());
+                }
+            }
+
+            if (_pluginManager.LoadedCount > 0)
+            {
+                Message.Send("Loaded " + _pluginManager.LoadedCount + " plugin assemblies.", Message.Type.Minor);
+            }
+
+            _pluginManager.StartPlugins();
         }
 
         private string OSAgnosticPath(string path)

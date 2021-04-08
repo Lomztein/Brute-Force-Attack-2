@@ -1,18 +1,11 @@
-﻿using System.Collections;
+﻿using Lomztein.BFA2.Plugins;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IPlugin : MonoBehaviour
+public interface IPlugin
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start(Facade facade);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Stop(Facade facade);
 }

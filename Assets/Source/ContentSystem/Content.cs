@@ -9,14 +9,16 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public static class Content
     {
-        private const string CONTENT_MANAGER_TAG = "ContentManager";
-        private static IContentManager _manager;
+        public static string CustomContentPath => Paths.PersistantData + "/Content/Custom/";
 
-        private static IContentManager GetManager ()
+        private const string CONTENT_MANAGER_TAG = "ContentManager";
+        private static ContentManager _manager;
+
+        private static ContentManager GetManager ()
         {
             if (_manager == null)
             {
-                _manager = GameObject.FindGameObjectWithTag(CONTENT_MANAGER_TAG).GetComponent<IContentManager>();
+                _manager = GameObject.FindGameObjectWithTag(CONTENT_MANAGER_TAG).GetComponent<ContentManager>();
             }
             return _manager;
         }

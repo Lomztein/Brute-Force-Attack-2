@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.ContentSystem
         public string Name => "Resources";
         public string Author => "Brute Force Attack 2";
         public string Description => "Built-in resources.";
+        public bool RequireReload => false;
 
         public string Path => "Internal built-in resources.";
 

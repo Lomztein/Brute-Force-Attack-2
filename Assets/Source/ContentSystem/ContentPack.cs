@@ -15,12 +15,15 @@ namespace Lomztein.BFA2.ContentSystem
         private const string IGNORE_PREFIX = "IGNORE_"; // Any files suffixed with this will be ignored.
         private const string JSON_FILE_EXTENSION = ".json"; // Any files prefixed with this will be ignored.
         private const string ASSET_BUNDLE_RELATIVE_PATH = "Assets";
+        private const string PLUGINS_RELATIVE_PATH = "Plugins";
 
         private readonly string _path;
+        private string PluginDirectory => Path.Combine(_path, PLUGINS_RELATIVE_PATH);
 
         public string Name { get; private set; }
         public string Author { get; private set; }
         public string Description { get; private set; }
+        public bool RequireReload => Directory.Exists(PluginDirectory);
 
         private IContentLoader _contentLoader = new ContentLoader();
         private AssetBundleContentPack _includedAssets;
@@ -89,6 +92,18 @@ namespace Lomztein.BFA2.ContentSystem
         public override string ToString()
         {
             return Name;
+        }
+
+        public string[] GetPluginAssemblies ()
+        {
+            if (Directory.Exists(PluginDirectory))
+            {
+                return Directory.GetFiles(PluginDirectory, "*.dll");
+            }
+            else
+            {
+                return Array.Empty<string>();
+            }
         }
     }
 }

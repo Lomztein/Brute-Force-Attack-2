@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.LocalizationSystem;
+using Lomztein.BFA2.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Lomztein.BFA2
             {
                 Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
 
+                ContentManager.Init();
                 InterceptLogs();
 
                 _hasStartedUp = true;

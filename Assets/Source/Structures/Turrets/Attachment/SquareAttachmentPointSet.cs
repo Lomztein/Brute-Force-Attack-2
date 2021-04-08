@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.World;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace Lomztein.BFA2.Structures.Turrets.Attachment
     public class SquareAttachmentPointSet : IAttachmentPointSet
     {
         private List<AttachmentPoint> _localPointCache;
-        private Grid.Size _width;
-        private Grid.Size _height;
+        private Size _width;
+        private Size _height;
 
-        public SquareAttachmentPointSet (Grid.Size width, Grid.Size height)
+        public SquareAttachmentPointSet (Size width, Size height)
         {
             _width = width;
             _height = height;

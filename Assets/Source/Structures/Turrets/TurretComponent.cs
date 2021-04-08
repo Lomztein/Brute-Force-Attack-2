@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Grid;
-using Lomztein.BFA2.Misc;
+﻿using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Modifiers;
@@ -9,6 +8,7 @@ using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets.Attachment;
+using Lomztein.BFA2.World;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

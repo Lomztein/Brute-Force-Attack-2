@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Grid;
-using Lomztein.BFA2.Misc;
+﻿using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
@@ -11,6 +10,7 @@ using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI;
 using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
