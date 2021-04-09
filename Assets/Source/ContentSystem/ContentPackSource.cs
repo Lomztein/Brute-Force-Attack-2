@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.ContentSystem
         private string[] Sources => new string[]
         {
             Paths.StreamingAssets + "Content/", // Built-in content.
-            Paths.Data + "Content/", // Downloaded content.
+            Paths.Data + "/Content/", // Downloaded content.
             Paths.PersistantData + "Content/", // User content.
         };
 

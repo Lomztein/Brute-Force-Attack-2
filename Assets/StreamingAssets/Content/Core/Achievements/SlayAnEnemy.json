@@ -1,0 +1,36 @@
+{
+  "Name": "One down, thousands to go",
+  "Description": "Slay but a single enemy. Don't worry, there are MANY more where that came from.",
+  "Identifier": "Core.SlayOneEnemy",
+  "Sprite": {
+    "Path": "Core\\Sprites\\Enemies\\BasicEnemyT1.png",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 32.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "ValueType": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
+    "ValueData": {
+      "TargetEnemies": 1,
+      "TargetColors": [
+        "Blue",
+        "Yellow",
+        "Red",
+        "Pink",
+        "Magenta",
+        "Green",
+        "Orange"
+      ]
+    }
+  },
+  "Reward": null
+}

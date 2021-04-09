@@ -15,8 +15,8 @@ namespace Lomztein.BFA2
 
         private List<FacadeComponent> _components = new List<FacadeComponent>();
 
-        public FacadeComponents.MainMenuFacade MainMenu => GetComponent<FacadeComponents.MainMenuFacade>();
-        public SceneManagerFacade Scenes => GetComponent<SceneManagerFacade>();
+        public MainMenuFacade MainMenu => GetComponent<MainMenuFacade>();
+        public BattlefieldFacade Battlefield => GetComponent<BattlefieldFacade>();
 
         public static Facade GetInstance ()
         {

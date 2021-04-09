@@ -1,5 +1,7 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Player.Progression.Achievements.Requirements;
 using Lomztein.BFA2.Serialization;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ using UnityEngine;
 namespace Lomztein.BFA2.Player.Progression.Achievements
 {
     [CreateAssetMenu(fileName = "NewAchievement", menuName = "BFA2/Achievement")]
-    public class Achievement : ScriptableObject
+    public class Achievement : SerializedScriptableObject
     {
         [ModelProperty]
         public string Name;
@@ -19,7 +21,9 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         [ModelProperty]
         public string Identifier;
         [ModelProperty]
-        public ContentSpriteReference Sprite; 
+        public ContentSpriteReference Sprite;
+        [ModelProperty]
+        public bool Hidden;
 
         [ModelProperty]
         public IAchievementRequirement Requirement;
@@ -44,7 +48,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         {
             if (!_completed)
             {
-                Reward.Apply();
+                Reward?.Apply();
                 OnCompleted?.Invoke(this);
                 _completed = true;
             }

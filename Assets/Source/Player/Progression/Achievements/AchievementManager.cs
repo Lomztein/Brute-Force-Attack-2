@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         public static AchievementManager Instance;
 
         private const string ACHIEVEMENTS_PATH = "*/Achievements";
-        private Achievement[] _achievements;
+        public Achievement[] Achievements;
 
         public event Action<Achievement> OnAchievementCompleted;
 
@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
 
         private void Start()
         {
-            _achievements = LoadAchievements();
+            Achievements = LoadAchievements();
             InitAchievements();
         }
 
@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
 
         private void InitAchievements()
         {
-            foreach (Achievement achievement in _achievements)
+            foreach (Achievement achievement in Achievements)
             {
                 if (IsCompleted(achievement, ProfileManager.CurrentProfile))
                 {
@@ -52,6 +52,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         {
             obj.End(Facade.GetInstance());
             obj.OnCompleted -= AchievementCompleted;
+            ProfileManager.CurrentProfile.AddCompletedAchievement(obj.Identifier);
+            ProfileManager.SaveCurrent();
             OnAchievementCompleted?.Invoke(obj);
         }
 

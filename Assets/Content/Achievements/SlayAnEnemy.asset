@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
-  m_Name: EnterCredits
+  m_Name: SlayAnEnemy
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,23 +23,56 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Requirement
       Entry: 7
-      Data: 0|Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement,
+      Data: 0|Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement,
         Assembly-CSharp
-    - Name: WindowToVisit
-      Entry: 1
-      Data: credits
+    - Name: TargetEnemies
+      Entry: 3
+      Data: 1
+    - Name: TargetColors
+      Entry: 7
+      Data: 1|Lomztein.BFA2.Colorization.Color[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: Reward
       Entry: 6
       Data: 
-  Name: We love you too!
-  Description: Enter the credits to view the very incredibly handsome sexy talented
-    developers behind this.
-  Identifier: Core.VisitCredits
+  Name: One down, thousands to go
+  Description: Slay but a single enemy. Don't worry, there are MANY more where that
+    came from.
+  Identifier: Core.SlayOneEnemy
   Sprite:
-    Path: Core\Sprites\UI\Credits.png
+    Path: Core\Sprites\Enemies\BasicEnemyT1.png
     Rect:
       serializedVersion: 2
       x: 0

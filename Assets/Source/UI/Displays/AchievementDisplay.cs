@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.UI.Displays
         {
             _targetPosition = ShowPosition;
 
-            NameText.text = achievement.name;
+            NameText.text = achievement.Name;
             Image.sprite = achievement.Sprite.Get();
 
             Invoke(nameof(Hide), ShowTime);

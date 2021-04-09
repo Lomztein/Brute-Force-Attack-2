@@ -1,0 +1,36 @@
+{
+  "Name": "A million more on their way",
+  "Description": "You've slain ten thousand enemies, but they never end.",
+  "Identifier": "Core.SlayTenThousandEnemies",
+  "Sprite": {
+    "Path": "Core\\Sprites\\Enemies\\BasicEnemyT2.png",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 32.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "ValueType": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
+    "ValueData": {
+      "TargetEnemies": 10000,
+      "TargetColors": [
+        "Blue",
+        "Yellow",
+        "Red",
+        "Pink",
+        "Magenta",
+        "Green",
+        "Orange"
+      ]
+    }
+  },
+  "Reward": null
+}

@@ -1,0 +1,27 @@
+{
+  "Name": "Endless options",
+  "Description": "Enter the content pack menu, wherein you can select all the content for the game!",
+  "Identifier": "Core.VisitContentMenu",
+  "Sprite": {
+    "Path": "Core\\Sprites\\UI\\ContentPacks.png",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 32.0
+  },
+  "Hidden": true,
+  "Requirement": {
+    "ValueType": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement",
+    "ValueData": {
+      "WindowToVisit": "content"
+    }
+  },
+  "Reward": null
+}

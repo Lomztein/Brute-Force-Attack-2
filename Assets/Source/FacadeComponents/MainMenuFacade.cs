@@ -9,42 +9,26 @@ using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.FacadeComponents
 {
-    public class MainMenuFacade : FacadeComponent
+    public class MainMenuFacade : SceneFacadeComponent
     {
-        public override bool Active => _navigation != null;
-        private const int _mainMenuBuildIndex = 0;
-
         private MenuNavigation _navigation;
+        protected override int SceneBuildIndex => 0;
 
         public event Action<MenuWindow, MenuWindow> OnWindowChanged;
 
-        public override void Init(Facade facade)
-        {
-            facade.GetComponent<SceneManagerFacade>().OnSceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-        {
-            if (_navigation != null)
-            {
-                Detach();
-            }
-            if (arg0.buildIndex == _mainMenuBuildIndex)
-            {
-                Attach();
-            }
-        }
-
-        private void Attach ()
+        public override void Attach (Scene scene)
         {
             _navigation = MenuNavigation.Instance;
             _navigation.OnWindowChanged += WindowChanged;
         }
 
-        private void Detach ()
+        public override void Detach ()
         {
-            _navigation.OnWindowChanged -= WindowChanged;
-            _navigation = null;
+            if (_navigation)
+            {
+                _navigation.OnWindowChanged -= WindowChanged;
+                _navigation = null;
+            }
         }
 
         private void WindowChanged(MenuWindow prev, MenuWindow next)

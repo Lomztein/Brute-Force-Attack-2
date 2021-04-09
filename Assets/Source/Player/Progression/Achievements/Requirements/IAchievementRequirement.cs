@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Player.Progression.Achievements
+namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
     public interface IAchievementRequirement
     {
-        string Name { get; }
-        string Description { get; }
-
         bool Binary { get; }
         float Progression { get; }
 

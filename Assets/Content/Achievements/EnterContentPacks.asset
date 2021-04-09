@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
-  m_Name: EnterCredits
+  m_Name: EnterContentPacks
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -27,19 +27,19 @@ MonoBehaviour:
         Assembly-CSharp
     - Name: WindowToVisit
       Entry: 1
-      Data: credits
+      Data: content
     - Name: 
       Entry: 8
       Data: 
     - Name: Reward
       Entry: 6
       Data: 
-  Name: We love you too!
-  Description: Enter the credits to view the very incredibly handsome sexy talented
-    developers behind this.
-  Identifier: Core.VisitCredits
+  Name: Endless options
+  Description: Enter the content pack menu, wherein you can select all the content
+    for the game!
+  Identifier: Core.VisitContentMenu
   Sprite:
-    Path: Core\Sprites\UI\Credits.png
+    Path: Core\Sprites\UI\ContentPacks.png
     Rect:
       serializedVersion: 2
       x: 0
@@ -48,4 +48,4 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
-  Hidden: 0
+  Hidden: 1
