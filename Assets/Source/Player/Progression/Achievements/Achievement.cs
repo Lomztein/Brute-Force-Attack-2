@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization;
+﻿using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements
 {
+    [CreateAssetMenu(fileName = "NewAchievement", menuName = "BFA2/Achievement")]
     public class Achievement : ScriptableObject
     {
         [ModelProperty]
@@ -16,6 +18,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         public string Description;
         [ModelProperty]
         public string Identifier;
+        [ModelProperty]
+        public ContentSpriteReference Sprite; 
 
         [ModelProperty]
         public IAchievementRequirement Requirement;
