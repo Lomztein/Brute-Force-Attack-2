@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.ContentSystem.Assemblers;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.Assemblers;
 using Lomztein.BFA2.MapEditor.Objects;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.IO;
@@ -37,12 +38,12 @@ namespace Lomztein.BFA2.MapEditor
 
         public void OpenSaveDialog ()
         {
-            SaveFileDialog.Create(Application.streamingAssetsPath + "/Content/Custom/Maps", ".json", SaveFile);
+            SaveFileDialog.Create(Path.Combine (Content.CustomContentPath, "Maps"), ".json", SaveFile);
         }
 
         public void OpenLoadFileBrowser ()
         {
-            FileBrowser.Create(Application.streamingAssetsPath + "/Content/Custom/Maps", ".json", LoadFile);
+            FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Maps"), ".json", LoadFile);
         }
 
         public void OpenMapResizer ()
@@ -147,7 +148,6 @@ namespace Lomztein.BFA2.MapEditor
             var model = MapData.Disassemble();
 
             ValueModelSerializer serializer = new ValueModelSerializer();
-
             File.WriteAllText(path, serializer.Serialize(model).ToString());
         }
 

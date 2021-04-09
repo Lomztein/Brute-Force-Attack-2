@@ -35,15 +35,8 @@ namespace Lomztein.BFA2.ContentSystem
             return _activePacks;
         }
 
-        internal void Init()
-        {
-            LoadPlugins();
-        }
-
         internal void LoadPlugins ()
         {
-            _pluginManager.Init();
-
             foreach (IContentPack pack in GetContentPacks())
             {
                 if (pack is ContentPack contentPack)

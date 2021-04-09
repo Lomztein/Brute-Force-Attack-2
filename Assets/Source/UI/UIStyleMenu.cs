@@ -1,5 +1,5 @@
 using Lomztein.BFA2.ContentSystem;
-using Lomztein.BFA2.Game;
+using Lomztein.BFA2.Player.Profile;
 using Lomztein.BFA2.UI.Style;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,8 +49,8 @@ namespace Lomztein.BFA2.UI
 
         private void OnStyleClicked (UIStyle style)
         {
-            PlayerProfile.CurrentProfile.Settings.UIStyle = style;
-            PlayerProfile.CurrentProfile.Save();
+            ProfileManager.CurrentProfile.UIStyle = style;
+            ProfileManager.Save(ProfileManager.CurrentProfile);
             UIStyleController.Main.ApplyStyle(style);
         }
     }

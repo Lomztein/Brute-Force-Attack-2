@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Game;
+﻿using Lomztein.BFA2.Player.Profile;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.UI.Style;
 using Lomztein.BFA2.UI.Windows;
@@ -16,7 +16,6 @@ namespace Lomztein.BFA2.MainMenu
 {
     public class ProfileSelector : MonoBehaviour, IWindow
     {
-
         public event Action OnClosed;
 
         public GameObject ProfileButtonPrefab;
@@ -33,13 +32,12 @@ namespace Lomztein.BFA2.MainMenu
 
         public void Init()
         {
-            GenerateColorProfiles();
             InstantiateButtons();
         }
 
         private void SetProfile (PlayerProfile profile)
         {
-            PlayerProfile.CurrentProfile = profile;
+            ProfileManager.SetProfile(profile);
             PlayerPrefs.SetString("PlayerProfile", profile.Name);
             Close();
         }
@@ -48,25 +46,8 @@ namespace Lomztein.BFA2.MainMenu
         {
             PlayerProfile newProfile = new PlayerProfile(name);
             SetProfile(newProfile);
-            newProfile.Save();
+            ProfileManager.Save(newProfile);
         }
-
-        private void GenerateColorProfiles ()
-        {
-            PlayerProfile[] profiles = LoadProfiles();
-            UIStyle[] styles = ContentSystem.Content.GetAll("*/UIStyles", typeof(UIStyle)).Cast<UIStyle>().ToArray();
-            foreach (UIStyle style in styles)
-            {
-                if (!profiles.Any(x => x.Name == style.Name))
-                {
-                    PlayerProfile newProfile = new PlayerProfile(style.Name);
-                    newProfile.Settings.UIStyle = style;
-                }
-            }
-        }
-
-
-
 
         public void CreateNew ()
         {
@@ -95,12 +76,12 @@ namespace Lomztein.BFA2.MainMenu
 
         public PlayerProfile[] LoadProfiles()
         {
-            if (!Directory.Exists(PlayerProfile.ProfileFolder))
+            if (!Directory.Exists(ProfileManager.ProfileFolder))
             {
-                Directory.CreateDirectory(PlayerProfile.ProfileFolder);
+                Directory.CreateDirectory(ProfileManager.ProfileFolder);
             }
 
-            string[] files = Directory.GetFiles(PlayerProfile.ProfileFolder);
+            string[] files = Directory.GetFiles(ProfileManager.ProfileFolder);
             PlayerProfile[] profiles = new PlayerProfile[files.Length];
 
             for (int i = 0; i < files.Length; i++)

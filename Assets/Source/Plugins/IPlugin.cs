@@ -1,11 +1,14 @@
-﻿using Lomztein.BFA2.Plugins;
+﻿using Lomztein.BFA2;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPlugin
+namespace Lomztein.BFA2.Plugins
 {
-    void Start(Facade facade);
+    public interface IPlugin
+    {
+        void Start(Facade facade);
 
-    void Stop(Facade facade);
+        void Stop(Facade facade);
+    }
 }

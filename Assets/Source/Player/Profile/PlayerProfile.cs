@@ -9,60 +9,29 @@ using Lomztein.BFA2.UI.Style;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Game
+namespace Lomztein.BFA2.Player.Profile
 {
     public class PlayerProfile
     {
-        public static string ProfileFolder => Application.persistentDataPath + "/Profiles";
-
-        public static PlayerProfile CurrentProfile = LoadOrDefault(PlayerPrefs.GetString("PlayerProfile", "Default"));
-
         [ModelProperty]
         public string Name;
         [ModelProperty]
-        public ProfileSettings Settings;
+        public UIStyle UIStyle = UIStyle.Default();
+        [ModelProperty]
+        private List<string> _completedAchievements = new List<string>();
 
         public PlayerProfile() { }
 
         public PlayerProfile (string name)
         {
             Name = name;
-            Settings = new ProfileSettings();
         }
 
-
-        private static string GetPath(string profileName)
-            => ProfileFolder + "/" + profileName + ".json";
-
-        public void Save()
+        public void AddCompletedAchievement (string identifier)
         {
-            JToken json = ObjectPipeline.UnbuildObject(this, true);
-            Directory.CreateDirectory(ProfileFolder);
-            File.WriteAllText(GetPath(Name), json.ToString());
+            _completedAchievements.Add(identifier);
         }
 
-        public static PlayerProfile Load (string profileName)
-        {
-            try
-            {
-                JToken json = JToken.Parse(File.ReadAllText(GetPath(profileName)));
-                return ObjectPipeline.BuildObject<PlayerProfile>(json);
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public static PlayerProfile LoadOrDefault (string profileName)
-        {
-            PlayerProfile profile = Load(profileName);
-            if (profile == null)
-            {
-                profile = new PlayerProfile("Default");
-                profile.Save();
-            }
-            return profile;
-        }
+        public bool HasCompletedAchievement(string identifier) => _completedAchievements.Contains(identifier);
     }
 }

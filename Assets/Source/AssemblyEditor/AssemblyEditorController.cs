@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.ContentSystem.Assemblers;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.Assemblers;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
@@ -46,7 +47,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public void Save ()
         {
-            SaveFileDialog.Create(Application.streamingAssetsPath + "/Content/Custom/Assemblies", ".json", SaveFile);
+            SaveFileDialog.Create(Path.Combine(Content.CustomContentPath, "Assemblies"), ".json", SaveFile);
         }
 
         private void SaveFile (string name, string path)
@@ -74,7 +75,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public void Load ()
         {
-            FileBrowser.Create(Application.streamingAssetsPath + "/Content/Custom/Assemblies", ".json", LoadFile);
+            FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Assemblies"), ".json", LoadFile);
         }
     }
 }

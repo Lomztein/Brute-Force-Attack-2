@@ -16,8 +16,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
 
         bool Completed { get; }
 
-        void Start(Action onCompletedCallback);
+        void Init(Facade facade, Action onCompletedCallback);
 
-        void Stop();
+        void End(Facade facade);
     }
 }

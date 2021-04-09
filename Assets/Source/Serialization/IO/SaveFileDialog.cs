@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.UI.Windows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace Lomztein.BFA2.Serialization.IO
 
         public static SaveFileDialog Create (string path, string extension, Action<string, string> callback)
         {
+            Directory.CreateDirectory(path);
             GameObject go = Resources.Load<GameObject>(PrefabPath);
             SaveFileDialog dialog = WindowManager.OpenWindowAboveOverlay(go).GetComponent<SaveFileDialog>();
             dialog.InitDialog(path, extension, callback);

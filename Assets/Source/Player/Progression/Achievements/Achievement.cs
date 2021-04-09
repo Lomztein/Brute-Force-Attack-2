@@ -14,37 +14,41 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         public string Name;
         [ModelProperty]
         public string Description;
+        [ModelProperty]
+        public string Identifier;
 
         [ModelProperty]
-        public IAchievementRequirement[] Requirements;
-
+        public IAchievementRequirement Requirement;
         [ModelProperty]
-        public IAchievementReward[] Rewards;
+        public IAchievementReward Reward;
 
-        public void Start ()
+        private bool _completed;
+
+        public event Action<Achievement> OnCompleted;
+
+        public void Init (Facade facade)
         {
-            foreach (IAchievementRequirement requirement in Requirements)
+            Requirement.Init(facade, OnRequirementCompleted);
+        }
+
+        public void End (Facade facade)
+        {
+            Requirement.End(facade);
+        }
+
+        public void Complete ()
+        {
+            if (!_completed)
             {
-                requirement.Start(() => OnRequirementCompleted(requirement));
+                Reward.Apply();
+                OnCompleted?.Invoke(this);
+                _completed = true;
             }
         }
 
-        public void Stop ()
+        private void OnRequirementCompleted()
         {
-            foreach (IAchievementRequirement requirement in Requirements)
-            {
-                requirement.Stop();
-            }
-        }
-
-        private void OnRequirementCompleted(IAchievementRequirement requirement)
-        {
-
-        }
-
-        private void Reward ()
-        {
-
+            Complete();
         }
     }
 }

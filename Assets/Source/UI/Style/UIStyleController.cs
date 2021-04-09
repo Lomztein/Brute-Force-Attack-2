@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Game;
+﻿using Lomztein.BFA2.Player.Profile;
 using Lomztein.BFA2.UI.Style.Stylizers;
 using Newtonsoft.Json.Linq;
 using System;
@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.UI.Style
 
         public UIStyle GetCurrentStyle ()
         {
-            return PlayerProfile.CurrentProfile.Settings.UIStyle;
+            return ProfileManager.CurrentProfile.UIStyle;
         }
 
         public void ApplyStyle (UIStyle style)

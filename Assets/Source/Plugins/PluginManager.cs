@@ -30,17 +30,11 @@ namespace Lomztein.BFA2.Plugins
             }
         }
 
-        internal void Init ()
-        {
-            _facade = new Facade();
-            _facade.Init();
-        }
-
         internal void StartPlugins ()
         {
             foreach (IPlugin plugin in _loadedPlugins)
             {
-                plugin.Start(_facade);
+                plugin.Start(Facade.GetInstance());
             }
         }
 

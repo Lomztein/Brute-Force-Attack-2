@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace Lomztein.BFA2
+namespace Lomztein.BFA2.Plugins
 {
     public static class PluginLoader
     {
