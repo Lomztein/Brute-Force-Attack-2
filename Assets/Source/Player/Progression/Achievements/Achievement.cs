@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Player.Progression.Achievements.Requirements;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Models;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -33,10 +34,11 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         private bool _completed;
 
         public event Action<Achievement> OnCompleted;
+        public event Action<Achievement> OnProgressed;
 
-        public void Init (Facade facade)
+        public void Init (Facade facade) // TODO: Decide on whether or not this is executed on scene load or only on initial startup.
         {
-            Requirement.Init(facade, OnRequirementCompleted);
+            Requirement.Init(facade, OnRequirementCompleted, OnRequirementProgressed);
         }
 
         public void End (Facade facade)
@@ -58,5 +60,13 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         {
             Complete();
         }
+
+        private void OnRequirementProgressed()
+        {
+            OnProgressed?.Invoke(this);
+        }
+
+        public ValueModel SerializeProgress() => Requirement.SerializeProgress();
+        public void DeserializeProgress(ValueModel source) => Requirement.DeserializeProgress(source);
     }
 }

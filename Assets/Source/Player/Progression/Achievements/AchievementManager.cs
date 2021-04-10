@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements
 {
@@ -27,6 +28,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
             InitAchievements();
         }
 
+        private void OnDestroy()
+        {
+            CleanUp();
+            ProfileManager.SaveCurrent();
+        }
+
         private Achievement[] LoadAchievements ()
         {
             return Content.GetAll<Achievement>(ACHIEVEMENTS_PATH);
@@ -42,22 +49,46 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
                 }
                 else
                 {
+                    achievement.DeserializeProgress (ProfileManager.CurrentProfile.GetAchievementStatus(achievement.Identifier).Progression);
+
                     achievement.Init(Facade.GetInstance());
                     achievement.OnCompleted += AchievementCompleted;
+                    achievement.OnProgressed += AchievementProgressed;
                 }
             }
+        }
+
+        private void CleanUp ()
+        {
+            foreach (Achievement achievement in Achievements)
+            {
+                if (!IsCompleted(achievement, ProfileManager.CurrentProfile))
+                {
+                    achievement.End(Facade.GetInstance());
+                    achievement.OnCompleted -= AchievementCompleted;
+                    achievement.OnProgressed -= AchievementProgressed;
+                }
+            }
+        }
+
+        private void AchievementProgressed(Achievement obj)
+        {
+            ProfileManager.CurrentProfile.MutateAchievementStatus(obj.Identifier, x => x.Progression = obj.SerializeProgress());
         }
 
         private void AchievementCompleted(Achievement obj)
         {
             obj.End(Facade.GetInstance());
             obj.OnCompleted -= AchievementCompleted;
-            ProfileManager.CurrentProfile.AddCompletedAchievement(obj.Identifier);
+            obj.OnProgressed -= AchievementProgressed;
+
+            ProfileManager.CurrentProfile.MutateAchievementStatus(obj.Identifier, x => { x.IsCompleted = true; x.CompletedOn = DateTime.Now; });
             ProfileManager.SaveCurrent();
+
             OnAchievementCompleted?.Invoke(obj);
         }
 
         private bool IsCompleted(Achievement achievement, PlayerProfile profile)
-            => profile.HasCompletedAchievement(achievement.Identifier);
+            => profile.GetAchievementStatus(achievement.Identifier).IsCompleted;
     }
 }

@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             foreach (Achievement achievement in all)
             {
                 GameObject newCell = Instantiate(CellPrefab, CellParent);
-                newCell.GetComponent<AchievementMenuCell>().Assign(achievement, ProfileManager.CurrentProfile.HasCompletedAchievement(achievement.Identifier));
+                newCell.GetComponent<AchievementMenuCell>().Assign(achievement, ProfileManager.CurrentProfile.GetAchievementStatus(achievement.Identifier).IsCompleted);
             }
 
             (transform as RectTransform).sizeDelta += Vector2.up;

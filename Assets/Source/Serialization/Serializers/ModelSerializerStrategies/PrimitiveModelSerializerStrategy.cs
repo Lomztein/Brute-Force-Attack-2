@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
         protected override JToken SerializeImplicit(ValueModel model)
         {
             PrimitiveModel prim = model as PrimitiveModel;
-            if (prim.Value == null)
+            if (prim.Value == null || prim.StoreAs == null)
             {
                 return JValue.CreateNull();
             }

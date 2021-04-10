@@ -1,3 +1,5 @@
+using Lomztein.BFA2.LocalizationSystem;
+using Lomztein.BFA2.Player.Profile;
 using Lomztein.BFA2.Player.Progression.Achievements;
 using Lomztein.BFA2.UI.Tooltip;
 using System.Collections;
@@ -21,7 +23,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             if (unlocked)
             {
                 Image.sprite = achievement.Sprite.Get();
-                Footnote = "Achieved on: Not implemented yet lol";
+                Footnote = "Achieved on: " + ProfileManager.CurrentProfile.GetAchievementStatus(achievement.Identifier).CompletedOn.ToString(Localization.GetCurrentCulture());
             }
             else
             {

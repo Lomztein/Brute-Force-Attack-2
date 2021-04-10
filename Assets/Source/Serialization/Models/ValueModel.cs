@@ -48,5 +48,8 @@ namespace Lomztein.BFA2.Serialization.Models
         {
             return IsTypeImplicit ? "Implicit Type" : _typeName;
         }
+
+        internal static bool IsNull(ValueModel model)
+            => model == null || model is NullModel;
     }
 }

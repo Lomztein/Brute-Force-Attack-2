@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         bool Completed { get; }
 
-        void Init(Facade facade, Action onCompletedCallback);
+        void Init(Facade facade, Action onCompletedCallback, Action onProgressedCallback);
 
         void End(Facade facade);
+
+        ValueModel SerializeProgress();
+
+        void DeserializeProgress(ValueModel source);
     }
 }

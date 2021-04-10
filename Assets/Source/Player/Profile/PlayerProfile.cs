@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Player.Profile
         [ModelProperty]
         public UIStyle UIStyle = UIStyle.Default();
         [ModelProperty]
-        private List<string> _completedAchievements = new List<string>();
+        public List<PlayerAchievementStatus> AchievementStatus = new List<PlayerAchievementStatus>();
 
         public PlayerProfile() { }
 
@@ -27,11 +27,20 @@ namespace Lomztein.BFA2.Player.Profile
             Name = name;
         }
 
-        public void AddCompletedAchievement (string identifier)
+        public void MutateAchievementStatus (string identifier, Action<PlayerAchievementStatus> action)
         {
-            _completedAchievements.Add(identifier);
+            action(GetAchievementStatus(identifier));
         }
 
-        public bool HasCompletedAchievement(string identifier) => _completedAchievements.Contains(identifier);
+        public PlayerAchievementStatus GetAchievementStatus(string identifier)
+        {
+            PlayerAchievementStatus status = AchievementStatus.FirstOrDefault(x => x.Identifier == identifier);
+            if (status == null)
+            {
+                status = new PlayerAchievementStatus(identifier);
+                AchievementStatus.Add(status);
+            }
+            return status;
+        }
     }
 }

@@ -25,10 +25,12 @@ namespace Lomztein.BFA2.FacadeComponents
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             Detach();
+            _active = false;
             OnDetached?.Invoke();
             if (arg0.buildIndex == SceneBuildIndex)
             {
                 Attach(arg0);
+                _active = true;
                 OnAttached?.Invoke();
             }
         }

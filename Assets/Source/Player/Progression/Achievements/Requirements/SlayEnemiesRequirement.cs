@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Models;
 using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,6 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public Colorization.Color[] TargetColors;
 
         private int _enemiesSlain;
-        private BattlefieldController _battlefield;
         private Facade _facade;
 
         public override bool Binary => false;
@@ -28,44 +28,47 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         public override void End(Facade facade)
         {
-            facade.Battlefield.OnAttached -= OnBattlefieldAttached;
-            facade.Battlefield.OnDetached -= OnBattlefieldDetached;
+            if (_facade.Battlefield.Active)
+            {
+                _facade.Battlefield.Battlefield.RoundController.OnEnemyKill -= OnEnemySpawn;
+            }
         }
 
         public override void Init(Facade facade)
         {
-            facade.Battlefield.OnAttached += OnBattlefieldAttached;
-            facade.Battlefield.OnDetached += OnBattlefieldDetached;
             _facade = facade;
-        }
-
-        private void OnBattlefieldDetached()
-        {
-            if (_battlefield)
+            if (_facade.Battlefield.Active)
             {
-                _battlefield.RoundController.OnEnemySpawn -= OnEnemySpawn;
-                _battlefield = null;
+                _facade.Battlefield.Battlefield.RoundController.OnEnemyKill += OnEnemySpawn;
             }
         }
 
-        private void OnBattlefieldAttached()
-        {
-            _battlefield = _facade.Battlefield.Battlefield;
-            _battlefield.RoundController.OnEnemyKill += OnEnemySpawn;
-        }
-
-        private void OnEnemySpawn(Enemies.IEnemy obj)
+        private void OnEnemySpawn(IEnemy obj)
         {
             if (obj is Enemy enemy)
             {
                 if (TargetColors.Contains (enemy.Color))
                 {
                     _enemiesSlain++;
+                    _onProgressedCallback();
                     if (_enemiesSlain >= TargetEnemies)
                     {
                         _onCompletedCallback();
                     }
                 }
+            }
+        }
+
+        public override ValueModel SerializeProgress()
+        {
+            return new PrimitiveModel(_enemiesSlain);
+        }
+
+        public override void DeserializeProgress (ValueModel model)
+        {
+            if (!ValueModel.IsNull(model))
+            {
+                _enemiesSlain = (model as PrimitiveModel).ToObject<int>();
             }
         }
     }

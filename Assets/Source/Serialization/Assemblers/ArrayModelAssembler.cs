@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public object Assemble(ValueModel model, Type implicitType)
         {
             ArrayModel array = model as ArrayModel;
-            Type elementType = implicitType.GetElementType();
+            Type elementType = GetElementType (implicitType);
             bool isList = IsList(implicitType);
 
             object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
@@ -40,6 +40,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
 
+        private Type GetElementType(Type type)
+            => type.GetElementType() ?? type.GetGenericArguments()[0];
+
         public ValueModel Disassemble(object obj, Type implicitType)
         {
             List<ValueModel> models = new List<ValueModel>();
@@ -50,7 +53,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 foreach (object element in enumerable)
                 {
                     ValueModel model = _elementAssembler.Disassemble(element, element.GetType());
-                    if (element.GetType() != obj.GetType().GetElementType())
+                    if (element.GetType() != GetElementType(obj.GetType()))
                     {
                         model.MakeExplicit(element.GetType());
                     }
@@ -63,6 +66,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public bool CanAssemble(Type type) => IsArray(type) || IsList(type);
 
         public static bool IsArray(Type type) => type.IsArray;
-        public static bool IsList(Type type) => typeof(List<>).IsAssignableFrom(type);
+        public static bool IsList(Type type) => typeof(IList).IsAssignableFrom(type) && type.IsGenericType;
     }
 }
