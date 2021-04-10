@@ -11,9 +11,11 @@ namespace Lomztein.BFA2.ContentSystem
     public class AssetBundleContentPack : IContentPack
     {
         public string Name => _assetBundle.name;
-        public string Author => null; //TODO: Figure out a way to include name, author, and description in the asset bundle. Text files perhaps?
+        public string Author => null; //TODO: Figure out a way to include information in the asset bundle. About.json in asset bundle?
+        public string Version => null;
         public string Description => null;
         public bool RequireReload => true;
+        public Texture2D Image => null;
 
         private AssetBundle _assetBundle;
         private string[] _assetPaths;

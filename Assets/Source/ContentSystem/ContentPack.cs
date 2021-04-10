@@ -17,32 +17,37 @@ namespace Lomztein.BFA2.ContentSystem
         private const string ASSET_BUNDLE_RELATIVE_PATH = "Assets";
         private const string PLUGINS_RELATIVE_PATH = "Plugins";
 
-        private readonly string _path;
-        private string PluginDirectory => Path.Combine(_path, PLUGINS_RELATIVE_PATH);
+        public readonly string Path;
+        private string PluginDirectory => System.IO.Path.Combine(Path, PLUGINS_RELATIVE_PATH);
 
         public string Name { get; private set; }
         public string Author { get; private set; }
         public string Description { get; private set; }
+        public string Version { get; private set; }
+        public Texture2D Image { get; private set; }
         public bool RequireReload => Directory.Exists(PluginDirectory);
+        public bool HasAssetBundle => _includedAssets != null;
 
         private IContentLoader _contentLoader = new ContentLoader();
         private AssetBundleContentPack _includedAssets;
 
-        public ContentPack(string path, string name, string author, string description)
+        public ContentPack(string path, string name, string author, string description, string version, Texture2D sprite)
         {
-            _path = path;
+            Path = path;
             Name = name;
             Author = author;
             Description = description;
+            Version = version;
+            Image = sprite;
         }
 
         public void Init ()
         {
-            _includedAssets = AssetBundleContentPack.FromFile(Path.Combine(_path, $"{ASSET_BUNDLE_RELATIVE_PATH}.unity3d"));
+            _includedAssets = AssetBundleContentPack.FromFile(System.IO.Path.Combine(Path, $"{ASSET_BUNDLE_RELATIVE_PATH}.unity3d"));
         }
 
         private bool ShouldLoadFromBundle (string path)
-            => _path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
+            => Path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
 
         public object GetContent(string path, Type type)
         {
@@ -52,7 +57,7 @@ namespace Lomztein.BFA2.ContentSystem
             }
             else
             {
-                return _contentLoader.LoadContent(Path.Combine(_path, path), type);
+                return _contentLoader.LoadContent(System.IO.Path.Combine(Path, path), type);
             }
         }
 
@@ -64,14 +69,14 @@ namespace Lomztein.BFA2.ContentSystem
             }
 
             List<object> content = new List<object>();
-            string spath = Path.Combine (_path, path);
+            string spath = System.IO.Path.Combine (Path, path);
 
             if (Directory.Exists(spath))
             {
                 string[] files = Directory.GetFiles(spath, $"*{JSON_FILE_EXTENSION}");
                 foreach (string file in files)
                 {
-                    if (!Path.GetFileName(file).StartsWith(IGNORE_PREFIX))
+                    if (!System.IO.Path.GetFileName(file).StartsWith(IGNORE_PREFIX))
                     {
                         try
                         {

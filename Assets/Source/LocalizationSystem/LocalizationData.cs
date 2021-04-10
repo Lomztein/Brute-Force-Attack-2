@@ -40,16 +40,21 @@ namespace Lomztein.BFA2.LocalizationSystem
         {
             if (_translations.TryGetValue(key, out string translation))
             {
-                for (int i = 0; i < values.Length; i++)
-                {
-                    translation = translation.Replace($"{{{i}}}", values[i].ToString());
-                }
-                return translation;
+                return InsertValues(translation, values);
             }
             else
             {
-                return key;
+                return InsertValues(key, values);
             }
+        }
+
+        private string InsertValues (string text, params object[] values)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                text = text.Replace($"{{{i}}}", values[i].ToString());
+            }
+            return text;
         }
 
         public ValueModel Disassemble()

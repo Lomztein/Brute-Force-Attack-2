@@ -17,6 +17,9 @@ namespace Lomztein.BFA2.ContentSystem
 
         public string Path => "Internal built-in resources.";
 
+        public string Version => Application.version;
+        public Texture2D Image => Resources.Load<Sprite>("ResourceContentPackSprite").texture;
+
         private IResourceTypeConverter[] _converters = new IResourceTypeConverter[]
         {
             new GameObjectToCachedGameObjectResourceConverter(),

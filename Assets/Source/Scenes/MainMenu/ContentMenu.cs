@@ -1,5 +1,5 @@
 using Lomztein.BFA2.ContentSystem;
-using System.Collections;
+using Lomztein.BFA2.Scenes.MainMenu.ContentMenuContentDisplay;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,10 +9,20 @@ namespace Lomztein.BFA2.MainMenu
 {
     public class ContentMenu : MonoBehaviour
     {
-        public Text InfoText;
         public GameObject ContentPackPrefab;
         public Transform ContentPackParent;
         public ContentManager Manager;
+
+        public Text NameText;
+        public Text AuthorText;
+        public Text VersionText;
+        public Text DescriptionText;
+        public RawImage Image;
+
+        public GameObject RequireReload;
+        public ContentDisplay ContentDisplay;
+
+        public Texture2D DefaultImage;
 
         void Start()
         {
@@ -39,11 +49,31 @@ namespace Lomztein.BFA2.MainMenu
         {
             if (source == null)
             {
-                InfoText.text = "No packs loaded.";
+                NameText.text = "No packs loaded.";
+                AuthorText.text = string.Empty;
+                VersionText.text = string.Empty;
+                DescriptionText.text = string.Empty;
+                Image.texture = DefaultImage;
+                RequireReload.SetActive(false);
+                ContentDisplay.Clear();
             }
             else
             {
-                InfoText.text = $"{source.Name}\n\nAuthor: {source.Author}\n\n{source.Description}";
+                NameText.text = source.Name;
+                AuthorText.text = source.Author;
+                VersionText.text = source.Version;
+                DescriptionText.text = source.Description;
+                RequireReload.SetActive(source.RequireReload);
+                ContentDisplay.DisplayContent(source);
+
+                if (source.Image != null)
+                {
+                    Image.texture = source.Image;
+                }
+                else
+                {
+                    Image.texture = DefaultImage;
+                }
             }
         }
 

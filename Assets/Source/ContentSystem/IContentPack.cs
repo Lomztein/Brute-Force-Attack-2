@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem
 {
@@ -8,6 +9,9 @@ namespace Lomztein.BFA2.ContentSystem
         string Name { get; }
         string Author { get; }
         string Description { get; }
+        string Version { get; }
+        Texture2D Image { get; }
+
         bool RequireReload { get; }
 
         void Init();

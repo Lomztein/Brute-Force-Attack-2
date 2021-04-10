@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.MainMenu
         public void Assign(IContentPack pack, Action<IContentPack> buttonCallback, Func<IContentPack, bool, bool> toggleCallback)
         {
             ContentPack = pack;
-            Text.text = pack.Author + " - " + pack.Name;
+            Text.text = pack.Name;
 
             _buttonCallback = buttonCallback;
             _toggleCallback = toggleCallback;
