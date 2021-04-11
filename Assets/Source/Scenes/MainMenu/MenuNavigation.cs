@@ -1,4 +1,5 @@
 using Lomztein.BFA2.UI.Messages;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,11 +19,28 @@ namespace Lomztein.BFA2.MainMenu
         public float LerpTime;
 
         public event Action<MenuWindow, MenuWindow> OnWindowChanged;
+        private DragListener _dragListener;
 
         private void Awake()
         {
             Instance = this;
             Home();
+            //_dragListener = DragListener.Create(DragListenerStartTest, DragListenerUpdateTest, DragListenerEndTest);
+        }
+
+        private void DragListenerStartTest(int index, DragListener.Drag drag)
+        {
+            //Debug.Log($"START {index}: {drag.ScreenStart} - {drag.ScreenPosition}");
+        }
+
+        private void DragListenerUpdateTest(int index, DragListener.Drag drag)
+        {
+            //Debug.Log($"UPDATE {index}: {drag.ScreenStart} - {drag.ScreenPosition}");
+        }
+
+        private void DragListenerEndTest (int index, DragListener.Drag drag)
+        {
+            //Debug.Log($"END {index}: {drag.ScreenStart} - {drag.ScreenPosition}");
         }
 
         public string GetCurrentPath ()

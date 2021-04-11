@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Serialization;
-using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +8,11 @@ using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
+    [System.Serializable]
     public class LoadSceneRequirement : AchievementRequirement
     {
         private bool _sceneLoaded;
-        [ModelProperty, OdinSerialize]
         public int SceneBuildIndex;
-        [ModelProperty, OdinSerialize]
         public string SceneName;
 
         public override bool Binary => true;

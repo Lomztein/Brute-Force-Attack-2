@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Serialization;
-using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +8,10 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
+    [System.Serializable]
     public class VisitMainMenuWindowRequirement : AchievementRequirement
     {
-        [ModelProperty, OdinSerialize]
+        [ModelProperty]
         public string WindowToVisit;
         private bool _visitedWindow;
 

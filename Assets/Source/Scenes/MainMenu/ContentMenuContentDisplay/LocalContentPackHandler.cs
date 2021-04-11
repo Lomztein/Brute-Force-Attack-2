@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.LocalizationSystem;
-using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +13,6 @@ namespace Lomztein.BFA2.Scenes.MainMenu.ContentMenuContentDisplay
 {
     public class LocalContentPackHandler : ContentPackHandler<ContentPack>
     {
-        [OdinSerialize]
         public ContentDirectory[] DirectoriesToCheck;
 
         protected override void InstantiateElements(ContentPack pack, Transform parent)

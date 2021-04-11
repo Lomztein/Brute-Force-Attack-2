@@ -1,18 +1,18 @@
 ﻿using Lomztein.BFA2.ContentSystem;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Scenes.MainMenu.ContentMenuContentDisplay
 {
-    public class ContentDisplay : SerializedMonoBehaviour
+    public class ContentDisplay : MonoBehaviour
     {
-        public List<ContentPackHandler> Handlers;
+        [SerializeReference, SR]
+        public ContentPackHandler[] Handlers;
         public Transform ListParent;
 
         private ContentPackHandler FindHandler (IContentPack pack)

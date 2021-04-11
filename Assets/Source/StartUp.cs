@@ -20,6 +20,7 @@ namespace Lomztein.BFA2
             if (!_hasStartedUp)
             {
                 Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
+                Input.Init();
                 Facade.GetInstance();
 
                 ContentManager.LoadPlugins();

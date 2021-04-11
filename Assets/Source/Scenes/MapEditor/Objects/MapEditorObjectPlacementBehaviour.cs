@@ -50,7 +50,7 @@ namespace Lomztein.BFA2.MapEditor.Objects
             }
         }
 
-        private bool HoverOverHandle() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.MousePosition), Mathf.Infinity, HandleLayer);
+        private bool HoverOverHandle() => Physics.Raycast(Camera.main.ScreenPointToRay(Input.ScreenMousePosition), Mathf.Infinity, HandleLayer);
 
         public override void TakePlacement(MapObjectPlacement placement)
         {

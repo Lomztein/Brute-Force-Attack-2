@@ -172,52 +172,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Dragging"",
-            ""id"": ""1483c507-0655-40ba-adbc-a0b904549af7"",
-            ""actions"": [
-                {
-                    ""name"": ""PrimaryDrag"",
-                    ""type"": ""Value"",
-                    ""id"": ""e5963dc4-074a-41f1-959e-434989633865"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""SecondaryDrag"",
-                    ""type"": ""Value"",
-                    ""id"": ""12a48982-aff9-4d90-bb20-de82df902f97"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""8ece1b70-9723-44c4-af26-892561b572bb"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Default"",
-                    ""action"": ""PrimaryDrag"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""65dc2829-cb0a-4bd0-b1de-9cc07f255f85"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Default"",
-                    ""action"": ""SecondaryDrag"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Camera"",
             ""id"": ""7a253d34-fbc7-49d0-9f43-c1964b3d846c"",
             ""actions"": [
@@ -408,10 +362,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Placement = asset.FindActionMap("Placement", throwIfNotFound: true);
         m_Placement_Rotate = m_Placement.FindAction("Rotate", throwIfNotFound: true);
         m_Placement_QuickPlace = m_Placement.FindAction("QuickPlace", throwIfNotFound: true);
-        // Dragging
-        m_Dragging = asset.FindActionMap("Dragging", throwIfNotFound: true);
-        m_Dragging_PrimaryDrag = m_Dragging.FindAction("PrimaryDrag", throwIfNotFound: true);
-        m_Dragging_SecondaryDrag = m_Dragging.FindAction("SecondaryDrag", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
@@ -602,47 +552,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     }
     public PlacementActions @Placement => new PlacementActions(this);
 
-    // Dragging
-    private readonly InputActionMap m_Dragging;
-    private IDraggingActions m_DraggingActionsCallbackInterface;
-    private readonly InputAction m_Dragging_PrimaryDrag;
-    private readonly InputAction m_Dragging_SecondaryDrag;
-    public struct DraggingActions
-    {
-        private @InputMaster m_Wrapper;
-        public DraggingActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PrimaryDrag => m_Wrapper.m_Dragging_PrimaryDrag;
-        public InputAction @SecondaryDrag => m_Wrapper.m_Dragging_SecondaryDrag;
-        public InputActionMap Get() { return m_Wrapper.m_Dragging; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DraggingActions set) { return set.Get(); }
-        public void SetCallbacks(IDraggingActions instance)
-        {
-            if (m_Wrapper.m_DraggingActionsCallbackInterface != null)
-            {
-                @PrimaryDrag.started -= m_Wrapper.m_DraggingActionsCallbackInterface.OnPrimaryDrag;
-                @PrimaryDrag.performed -= m_Wrapper.m_DraggingActionsCallbackInterface.OnPrimaryDrag;
-                @PrimaryDrag.canceled -= m_Wrapper.m_DraggingActionsCallbackInterface.OnPrimaryDrag;
-                @SecondaryDrag.started -= m_Wrapper.m_DraggingActionsCallbackInterface.OnSecondaryDrag;
-                @SecondaryDrag.performed -= m_Wrapper.m_DraggingActionsCallbackInterface.OnSecondaryDrag;
-                @SecondaryDrag.canceled -= m_Wrapper.m_DraggingActionsCallbackInterface.OnSecondaryDrag;
-            }
-            m_Wrapper.m_DraggingActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @PrimaryDrag.started += instance.OnPrimaryDrag;
-                @PrimaryDrag.performed += instance.OnPrimaryDrag;
-                @PrimaryDrag.canceled += instance.OnPrimaryDrag;
-                @SecondaryDrag.started += instance.OnSecondaryDrag;
-                @SecondaryDrag.performed += instance.OnSecondaryDrag;
-                @SecondaryDrag.canceled += instance.OnSecondaryDrag;
-            }
-        }
-    }
-    public DraggingActions @Dragging => new DraggingActions(this);
-
     // Camera
     private readonly InputActionMap m_Camera;
     private ICameraActions m_CameraActionsCallbackInterface;
@@ -806,11 +715,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnQuickPlace(InputAction.CallbackContext context);
-    }
-    public interface IDraggingActions
-    {
-        void OnPrimaryDrag(InputAction.CallbackContext context);
-        void OnSecondaryDrag(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

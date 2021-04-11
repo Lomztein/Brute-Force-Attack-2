@@ -2,18 +2,18 @@
 using Lomztein.BFA2.Player.Progression.Achievements.Requirements;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
-using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements
 {
     [CreateAssetMenu(fileName = "NewAchievement", menuName = "BFA2/Achievement")]
-    public class Achievement : SerializedScriptableObject
+    public class Achievement : ScriptableObject
     {
         [ModelProperty]
         public string Name;
@@ -26,9 +26,9 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         [ModelProperty]
         public bool Hidden;
 
-        [ModelProperty]
+        [ModelProperty, SerializeReference, SR]
         public IAchievementRequirement Requirement;
-        [ModelProperty]
+        [ModelProperty, SerializeReference, SR]
         public IAchievementReward Reward;
 
         private bool _completed;

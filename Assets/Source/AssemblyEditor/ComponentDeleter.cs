@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             if (Input.SecondaryPerformed)
             {
-                Vector3 mousePos = Input.WorldMousePosition;
+                Vector3 mousePos = MousePosition.WorldPosition;
                 var cols = Physics2D.OverlapPointAll(mousePos);
                 var components = cols.Select(x => x.GetComponent<TurretComponent>()).Where(x => x != null);
 
@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
                 foreach (var component in components)
                 {
-                    float val = (component as Component).transform.position.z;
+                    float val = component.transform.position.z;
                     if (val > highestNum && component.GetUpperAttachmentPoints().All(x => x.IsEmpty))
                     {
                         highestNum = val;
@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
                 if (highest != null)
                 {
-                    Destroy((highest as Component).gameObject);
+                    Destroy(highest.gameObject);
                 }
             }
         }

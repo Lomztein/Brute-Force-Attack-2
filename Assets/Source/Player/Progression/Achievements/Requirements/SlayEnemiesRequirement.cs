@@ -1,22 +1,18 @@
-﻿using Lomztein.BFA2.Battlefield;
-using Lomztein.BFA2.Enemies;
+﻿using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
-using Sirenix.Serialization;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
+    [Serializable]
     public class SlayEnemiesRequirement : AchievementRequirement
     {
-        [ModelProperty, OdinSerialize]
+        [ModelProperty]
         public int TargetEnemies;
-        [ModelProperty, OdinSerialize]
+        [ModelProperty]
         public Colorization.Color[] TargetColors;
 
         private int _enemiesSlain;

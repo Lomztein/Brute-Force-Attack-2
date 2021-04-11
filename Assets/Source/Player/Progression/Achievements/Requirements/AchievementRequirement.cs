@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
-using Sirenix.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
