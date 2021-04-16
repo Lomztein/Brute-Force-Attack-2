@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faed54e9197285548a75621dfd057677, type: 3}
+  m_Name: InflationModePlayerModMutator
+  m_EditorClassIdentifier: 
+  Name: 
+  Description: 
+  Identifier: 
+  Mod:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: StatMod, ns: Lomztein.BFA2.Modification.Modifiers, asm: Assembly-CSharp}
+      data:
+        _identifier: Core.InflationNoCredits
+        _name: Inflation Mode
+        _description: You earn no credits.
+        RequiredAttributes: 
+        Stats:
+        - Identifier: CreditsEarningMult
+          Name: 
+          Description: 
+          Type: 1
+          Value: -1

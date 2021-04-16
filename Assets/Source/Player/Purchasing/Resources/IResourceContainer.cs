@@ -11,16 +11,20 @@ namespace Lomztein.BFA2.Purchasing.Resources
         event Action<Resource, int, int> OnResourceChanged;
 
         int GetResource(Resource resource);
-
-        void ChangeResource(Resource resource, int value);
-
-        void SetResource(Resource resource, int value);
+        void SetResource(Resource resource, int value, bool silent);
     }
 
     public static class ResourceContainerExtensions
     {
         public static bool HasEnough(this IResourceContainer container, IResourceCost cost)
             => cost.GetCost().All(x => container.GetResource(x.Key) >= x.Value);
+
+        public static void SetResource(this IResourceContainer container, Resource resource, int value) => container.SetResource(resource, value, false);
+
+        public static void ChangeResource (this IResourceContainer container, Resource resource, int value)
+        {
+            SetResource(container, resource, container.GetResource(resource) + value);
+        }
 
         public static bool TrySpend (this IResourceContainer container, IResourceCost cost)
         {

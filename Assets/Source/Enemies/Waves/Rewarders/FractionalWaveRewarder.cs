@@ -14,12 +14,11 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
         private float _totalKillReward;
         private int _totalCount;
 
-        private float _earnings;
-        private IResourceContainer _rewardTarget;
+        private Action<float> _rewardCallback;
 
         public void OnFinished()
         {
-            _rewardTarget.ChangeResource(Resource.Credits, Mathf.RoundToInt(_finishReward));
+            Earn (_finishReward);
         }
 
         public void OnKill(IEnemy enemy)
@@ -29,18 +28,15 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
 
         private void Earn(float value)
         {
-            _earnings += value;
-            int floored = Mathf.FloorToInt(_earnings);
-            _rewardTarget.ChangeResource(Resource.Credits, floored);
-            _earnings -= floored;
+            _rewardCallback(value);
         }
 
-        public FractionalWaveRewarder (int total, float finishReward, float totalKillReward, IResourceContainer container)
+        public FractionalWaveRewarder(int total, float finishReward, float totalKillReward, Action<float> callback)
         {
             _totalCount = total;
             _finishReward = finishReward;
             _totalKillReward = totalKillReward;
-            _rewardTarget = container;
+            _rewardCallback = callback;
         }
     }
 }

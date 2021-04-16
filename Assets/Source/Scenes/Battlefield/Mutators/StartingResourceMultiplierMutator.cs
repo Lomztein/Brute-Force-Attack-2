@@ -20,8 +20,8 @@ namespace Lomztein.BFA2.Mutators
 
         public void AddPropertiesTo(PropertyMenu menu)
         {
-            menu.AddProperty(new NumberDefinition("Credits", CreditsMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetCredits;
-            menu.AddProperty(new NumberDefinition("Research", ResearchMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetResearch;
+            menu.AddProperty(new NumberDefinition("Credits Mult", CreditsMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetCredits;
+            menu.AddProperty(new NumberDefinition("Research Mult", ResearchMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetResearch;
         }
 
         private void SetResearch(object obj)

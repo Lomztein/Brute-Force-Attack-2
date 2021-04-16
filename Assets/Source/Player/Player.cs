@@ -34,6 +34,9 @@ namespace Lomztein.BFA2.Player
         private IUnlockList _unlocks;
         public static IUnlockList Unlocks => Instance._unlocks;
 
+        private float[] _resourceFractionTrackers = new float[3];
+        public IStatReference[] ResourceEarningMultiplier;
+
         private void Awake()
         {
             Init();
@@ -63,7 +66,25 @@ namespace Lomztein.BFA2.Player
                 _resources?.ChangeResource(Resource.Credits, 0);
             }
 
+            ResourceEarningMultiplier = new IStatReference[]
+            {
+                _stats.AddStat("CreditsEarningMult", "Credit Earnings Multiplier", "Multiplier for how many credits you earn.", 1f),
+                _stats.AddStat("ResearchEarningMult", "Research Earnings Multiplier", "Multiplier for how much research you earn.", 1f),
+                _stats.AddStat("BinariesEarningMult", "Binaries Earnings Multiplier", "Multiplier for how many binaries you earn.", 1f),
+            };
+
             OnNewPlayerInstance?.Invoke(this);
+        }
+
+        public void Earn (Resource resource, float amount)
+        {
+            int resourceIndex = (int)resource;
+            amount *= ResourceEarningMultiplier[resourceIndex].GetValue();
+
+            _resourceFractionTrackers[resourceIndex] += amount;
+            int floored = Mathf.FloorToInt(_resourceFractionTrackers[resourceIndex]);
+            Resources.ChangeResource(Resource.Credits, floored);
+            _resourceFractionTrackers[resourceIndex] -= floored;
         }
 
         public ModdableAttribute[] GetModdableAttributes()

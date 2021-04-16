@@ -24,14 +24,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
             return GetInternalContainer().GetResource(resource);
         }
 
-        public void ChangeResource(Resource resource, int value)
+        public void SetResource(Resource resource, int value, bool silent)
         {
-            GetInternalContainer().ChangeResource(resource, value);
-        }
-
-        public void SetResource(Resource resource, int value)
-        {
-            GetInternalContainer().SetResource(resource, value);
+            GetInternalContainer().SetResource(resource, value, silent);
         }
     }
 }

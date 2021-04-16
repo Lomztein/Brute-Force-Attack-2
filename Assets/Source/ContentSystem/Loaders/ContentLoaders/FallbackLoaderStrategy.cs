@@ -20,15 +20,7 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         {
             string json = File.ReadAllText(path);
             var jtoken = JToken.Parse(json);
-
-            if (typeof(ScriptableObject).IsAssignableFrom(type))
-            {
-                return ObjectPipeline.BuildScriptableObject(jtoken, type);
-            }
-            else
-            {
-                return ObjectPipeline.BuildObject(jtoken, type);
-            }
+            return ObjectPipeline.BuildObject(jtoken, type);
         }
     }
 }

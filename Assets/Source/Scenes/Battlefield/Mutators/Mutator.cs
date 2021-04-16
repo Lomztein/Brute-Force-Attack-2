@@ -8,14 +8,14 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Mutators
 {
-    public abstract class Mutator
+    public abstract class Mutator : ScriptableObject
     {
         [ModelProperty]
-        public string Name { get; set; }
+        public string Name;
         [ModelProperty]
-        public string Description { get; set; }
+        public string Description;
         [ModelProperty]
-        public string Identifier { get; set; }
+        public string Identifier;
 
         public abstract void Start();
         public void Stop() { }

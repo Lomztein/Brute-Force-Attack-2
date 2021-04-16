@@ -8,5 +8,6 @@ namespace Lomztein.BFA2.Editor.Content
     public class CompilationTypeReference : ScriptableObject
     {
         public ContentCompiler.CompilationType CompilationType;
+        public bool WithExplicitType;
     }
 }

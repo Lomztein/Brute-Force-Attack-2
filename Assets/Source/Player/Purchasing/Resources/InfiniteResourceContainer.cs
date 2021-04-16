@@ -11,19 +11,17 @@ namespace Lomztein.BFA2.Purchasing.Resources
     {
         public event Action<Resource, int, int> OnResourceChanged;
 
-        public void ChangeResource(Resource resource, int value)
-        {
-            SetResource(resource, value);
-        }
-
         public int GetResource(Resource resource)
         {
             return int.MaxValue;
         }
 
-        public void SetResource(Resource resource, int value)
+        public void SetResource(Resource resource, int value, bool silent)
         {
-            OnResourceChanged?.Invoke(resource, int.MaxValue, int.MaxValue);
+            if (!silent)
+            {
+                OnResourceChanged?.Invoke(resource, int.MaxValue, int.MaxValue);
+            }
         }
     }
 }

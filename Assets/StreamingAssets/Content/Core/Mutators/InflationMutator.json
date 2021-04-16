@@ -1,0 +1,46 @@
+{
+  "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Mutators.CompositeMutator",
+  "ValueData": {
+    "Children": [
+      {
+        "ValueType": "Lomztein.BFA2.Mutators.PlayerModMutator",
+        "ValueData": {
+          "Mod": {
+            "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+            "ValueData": {
+              "Stats": [
+                {
+                  "Identifier": "CreditsEarningMult",
+                  "Name": "",
+                  "Description": "",
+                  "Type": "Multiplicative",
+                  "Value": -1.0
+                }
+              ],
+              "_identifier": "Core.InflationNoCredits",
+              "_name": "Inflation Mode",
+              "_description": "You earn no credits.",
+              "RequiredAttributes": []
+            }
+          },
+          "Name": "",
+          "Description": "",
+          "Identifier": ""
+        }
+      },
+      {
+        "ValueType": "Lomztein.BFA2.Mutators.StartingResourceMultiplierMutator",
+        "ValueData": {
+          "CreditsMultiplier": 50.0,
+          "ResearchMultiplier": 50.0,
+          "Name": "",
+          "Description": "",
+          "Identifier": ""
+        }
+      }
+    ],
+    "Name": "Inflation Mode",
+    "Description": "You start with riches, but no money flows in.",
+    "Identifier": "Core.InflationMode"
+  }
+}

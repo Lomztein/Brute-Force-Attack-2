@@ -21,6 +21,25 @@ namespace Lomztein.BFA2.Purchasing.Resources
             public Resource Type;
             [ModelProperty]
             public int Value;
+
+            public Element ()
+            {
+            }
+
+            public Element (Resource type, int value)
+            {
+                Type = type;
+                Value = value;
+            }
+        }
+
+        public ResourceCost()
+        {
+        }
+
+        public ResourceCost(params Element[] elements)
+        {
+            Elements = elements;
         }
 
         public Dictionary<Resource, int> GetCost()

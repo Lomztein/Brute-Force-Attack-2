@@ -156,7 +156,7 @@ namespace Lomztein.BFA2.Enemies
             {
                 next.OnEnemySpawn += OnSpawn;
 
-                IWaveRewarder rewarder = new FractionalWaveRewarder(next.SpawnAmount, GetCompletionReward(wave), GetEarnedFromKills(wave), _resourceContainer);
+                IWaveRewarder rewarder = new FractionalWaveRewarder(next.SpawnAmount, GetCompletionReward(wave), GetEarnedFromKills(wave), RewardCredits);
                 IWavePunisher punshier = new FractionalWavePunisher(next.SpawnAmount, _healthContainer);
 
                 next.OnEnemyKill += rewarder.OnKill;
@@ -175,6 +175,11 @@ namespace Lomztein.BFA2.Enemies
             }
 
             return next != null;
+        }
+
+        private void RewardCredits (float credits)
+        {
+            Player.Player.Instance.Earn(Resource.Credits, credits);
         }
 
         private void EnemyFinished(IEnemy obj)

@@ -45,13 +45,18 @@ namespace Lomztein.BFA2.Editor.Content
 
                 if (!AssetDatabase.IsValidFolder(path))
                 {
-                    CompilationType type = folderCompilationType.ContainsKey(relativeFolder) ? folderCompilationType[relativeFolder].CompilationType : CompilationType.Copy;
-                    CompileAsset(asset, Path.Combine(targetPath, relativeFolder, Path.GetFileName(path)), type);
+                    CompilationTypeReference compileType = folderCompilationType.ContainsKey(relativeFolder) ? folderCompilationType[relativeFolder] : null;
+                    if (compileType == null)
+                    {
+                        compileType = ScriptableObject.CreateInstance<CompilationTypeReference>();
+                    }
+
+                    CompileAsset(asset, Path.Combine(targetPath, relativeFolder, Path.GetFileName(path)), compileType.CompilationType, !compileType.WithExplicitType);
                 }
             }
         }
 
-        public static void CompileAsset(string guid, string targetPath, CompilationType type)
+        public static void CompileAsset(string guid, string targetPath, CompilationType type, bool implicitType)
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
             string directory = Directory.GetParent(targetPath).FullName;
@@ -86,7 +91,7 @@ namespace Lomztein.BFA2.Editor.Content
                 case CompilationType.SerializeObject:
 
                 default:
-                    json = ObjectPipeline.UnbuildObject(asset, true);
+                    json = ObjectPipeline.UnbuildObject(asset, implicitType);
                     break;
             }
 
