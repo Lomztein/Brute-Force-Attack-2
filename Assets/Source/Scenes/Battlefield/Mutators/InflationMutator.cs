@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Mutators
         [ModelProperty]
         public float StartingResearch = 2f;
 
-        public void AddProperties(PropertyMenu menu)
+        public void AddPropertiesTo(PropertyMenu menu)
         {
             menu.AddProperty(new NumberDefinition("Credits", StartingCredits, false, 0, float.MaxValue)).OnValueChanged += SetCredits;
             menu.AddProperty(new NumberDefinition("Research", StartingResearch, false, 0, float.MaxValue)).OnValueChanged += SetResearch;

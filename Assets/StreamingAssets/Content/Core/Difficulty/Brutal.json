@@ -1,0 +1,30 @@
+{
+  "Name": "Brutal",
+  "Description": "You will die.",
+  "GradeIdentifier": "Core.Brutal",
+  "Identifier": "Core.Brutal",
+  "Aspects": [
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
+      "ValueData": {
+        "StartingCredits": 1000,
+        "StartingResearch": 0
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
+      "ValueData": {
+        "HealthMult": 1.5,
+        "ArmorMult": 1.0,
+        "ShieldMult": 1.0
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemySpawnDifficultyAspect",
+      "ValueData": {
+        "AmountMultiplier": 1.5,
+        "FrequencyMultiplier": 1.5
+      }
+    }
+  ]
+}

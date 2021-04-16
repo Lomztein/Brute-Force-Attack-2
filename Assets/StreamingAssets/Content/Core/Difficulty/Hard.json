@@ -1,0 +1,23 @@
+{
+  "Name": "Hard",
+  "Description": "Harder difficulty that requires strategic placement of turrets, frequent use of complex turrets and structures, and careful resource management.",
+  "GradeIdentifier": "Core.Hard",
+  "Identifier": "Core.Hard",
+  "Aspects": [
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
+      "ValueData": {
+        "StartingCredits": 1000,
+        "StartingResearch": 0
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
+      "ValueData": {
+        "HealthMult": 1.5,
+        "ArmorMult": 1.0,
+        "ShieldMult": 1.0
+      }
+    }
+  ]
+}

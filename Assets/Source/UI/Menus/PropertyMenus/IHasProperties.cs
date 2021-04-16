@@ -6,6 +6,6 @@ namespace Lomztein.BFA2.UI.Menus.PropertyMenus
 {
     public interface IHasProperties
     {
-        void AddProperties(PropertyMenu menu);
+        void AddPropertiesTo(PropertyMenu menu);
     }
 }

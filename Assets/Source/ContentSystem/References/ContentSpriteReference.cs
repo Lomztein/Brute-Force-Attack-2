@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem.References
@@ -24,7 +25,16 @@ namespace Lomztein.BFA2.ContentSystem.References
         {
             if (_cache == null)
             {
-                Texture2D texture = (Texture2D)Content.Get(Path, typeof(Texture2D));
+                Texture2D texture;
+
+                try
+                {
+                    texture = (Texture2D)Content.Get(Path, typeof(Texture2D));
+                }catch (FileNotFoundException)
+                {
+                    texture = new Texture2D(2, 2);
+                }
+
                 texture.filterMode = FilterMode.Point;
                 Rect rect = Rect.size.magnitude > 0.1f ? Rect : new Rect(0f, 0f, texture.width, texture.height);
 

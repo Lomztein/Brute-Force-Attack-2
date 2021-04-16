@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
 
             if (mutator is IHasProperties withProperties)
             {
-                withProperties.AddProperties(Properties);
+                withProperties.AddPropertiesTo(Properties);
             }
             else
             {

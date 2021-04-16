@@ -13,7 +13,8 @@ namespace Lomztein.BFA2.UI.Menus.PropertyMenus.Controls
 
         public override bool CanControl(PropertyDefinition def)
         {
-            return (def is StringDefinition) ||
+            return 
+                (def is StringDefinition) ||
                 (def is NumberDefinition);
         }
 

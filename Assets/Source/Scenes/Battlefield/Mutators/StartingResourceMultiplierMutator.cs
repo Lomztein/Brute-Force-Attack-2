@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Mutators
         [ModelProperty]
         public float ResearchMultiplier = 2f;
 
-        public void AddProperties(PropertyMenu menu)
+        public void AddPropertiesTo(PropertyMenu menu)
         {
             menu.AddProperty(new NumberDefinition("Credits", CreditsMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetCredits;
             menu.AddProperty(new NumberDefinition("Research", ResearchMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetResearch;

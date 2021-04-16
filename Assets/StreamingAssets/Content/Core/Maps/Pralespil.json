@@ -1,9 +1,23 @@
 {
-    "Name": "Pralespil",
-    "Description": "Junk",
-    "Identifier":  "Core.Pralespil",
+  "Name": "Pralespil",
+  "Description": "Some say this map was created just so that the developer could brag to his mom.",
+  "Identifier": "Core.Pralespil",
   "Width": 30,
   "Height": 16,
+  "MapImage": {
+    "Path": "Core/Maps/Images/Pralespil.png",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
   "Tiles": [
     "BlockingWall",
     "BlockingWall",
@@ -514,8 +528,8 @@
           }
         },
         {
-            "ValueType": "Lomztein.BFA2.World.Defendables.Datacore",
-            "ValueData": {}
+          "ValueType": "Lomztein.BFA2.World.Defendables.Datacore",
+          "ValueData": {}
         },
         {
           "ValueType": "Lomztein.BFA2.Player.Health.PlayerHealthContainerLink",

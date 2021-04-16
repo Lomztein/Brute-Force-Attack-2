@@ -21,6 +21,11 @@ namespace Lomztein.BFA2.World.CameraControllers
         private float _zoom;
         private Vector2 _movement;
 
+        private void Start()
+        {
+            Input.Master.Camera.SetCallbacks(this);
+        }
+
         public void OnMove(InputAction.CallbackContext context)
         {
             _movement = context.ReadValue<Vector2>();
@@ -28,7 +33,7 @@ namespace Lomztein.BFA2.World.CameraControllers
 
         public void OnZoom(InputAction.CallbackContext context)
         {
-            _zoom = Mouse.current.scroll.ReadValue().y;
+            _zoom = context.ReadValue<Vector2>().y;
         }
 
         public void Update()

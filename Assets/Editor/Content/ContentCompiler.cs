@@ -54,6 +54,11 @@ namespace Lomztein.BFA2.Editor.Content
         public static void CompileAsset(string guid, string targetPath, CompilationType type)
         {
             string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+            string directory = Directory.GetParent(targetPath).FullName;
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
 
             if (type == CompilationType.Copy)
             {

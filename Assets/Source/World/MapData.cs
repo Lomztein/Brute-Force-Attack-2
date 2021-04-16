@@ -1,4 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.Assemblers;
+using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Utilities;
@@ -17,6 +19,7 @@ namespace Lomztein.BFA2.World
         public string Name;
         public string Description;
         public string Identifier;
+        public ContentSpriteReference MapImage;
 
         public int Width;
         public int Height;
@@ -94,6 +97,7 @@ namespace Lomztein.BFA2.World
                 new ObjectField("Identifier", new PrimitiveModel(Identifier)),
                 new ObjectField("Width", new PrimitiveModel(Width)),
                 new ObjectField("Height", new PrimitiveModel(Height)),
+                new ObjectField("MapImage", ValueModelFactory.Create(MapImage)),
                 new ObjectField("Tiles", Tiles.Disassemble()),
                 new ObjectField("Objects", new ArrayModel(Objects))
                 );
@@ -112,6 +116,9 @@ namespace Lomztein.BFA2.World
             Height = obj.GetValue<int>("Height");
             Tiles = AssembleTileData(obj.GetArray("Tiles"));
             Objects = obj.GetArray("Objects").Elements.Cast<ObjectModel>().ToArray();
+
+            ObjectAssembler assembler = new ObjectAssembler();
+            MapImage = (ContentSpriteReference)assembler.Assemble (obj.GetObject("MapImage"), typeof(ContentSpriteReference));
         }
 
         private TileData AssembleTileData (ArrayModel array)

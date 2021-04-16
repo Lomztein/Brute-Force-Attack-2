@@ -1,14 +1,15 @@
-﻿using Lomztein.BFA2.Battlefield.Difficulty;
-using Lomztein.BFA2.Enemies.Scalers;
+﻿using Lomztein.BFA2.Enemies.Scalers;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory.Items;
 using Lomztein.BFA2.Mutators;
+using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Battlefield
 {
@@ -18,7 +19,7 @@ namespace Lomztein.BFA2.Battlefield
 
         public string MapIdentifier = "Core.SnakinAbout";
         public string WaveCollectionIdentifier = "Core.DefaultGenerator";
-        public DifficultySettings Difficulty = new DifficultySettings();
+        public Difficulty Difficulty = ScriptableObject.CreateInstance<Difficulty>();
         private List<Mutator> _mutatorsList = new List<Mutator>();
         public Mutator[] Mutators => _mutatorsList.ToArray();
 

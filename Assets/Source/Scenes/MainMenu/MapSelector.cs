@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.LocalizationSystem;
+using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.World;
 using System;
@@ -13,21 +14,22 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.MainMenu
 {
-    public class MapSelector : MonoBehaviour, ITooltip
+    public class MapSelector : MonoBehaviour
     {
         private MapData[] _maps;
-        private int _current;
 
-        public Text Text;
+        public GameObject MapButtonPrefab;
+        public Transform MapButtonParent;
 
-        public string Title => GetCurrent()?.Name;
-        public string Description => GetCurrent()?.Description;
-        public string Footnote => null;
+        public Text MapName;
+        public Text MapDescription;
+        public Image Mapimage;
 
         private void Start()
         {
             _maps = LoadMaps();
-            Cycle(0);
+            InstantiateMapButtons();
+            SelectMap(0);
         }
 
         private MapData[] LoadMaps ()
@@ -35,23 +37,34 @@ namespace Lomztein.BFA2.MainMenu
             return Content.GetAll("*/Maps", typeof(MapData)).Cast<MapData>().ToArray();
         }
 
-        private MapData GetCurrent() => _maps[_current];
-
-        public void Cycle (int direction)
+        private void SelectMap (int index)
         {
-            _current += direction;
+            MapName.text = _maps[index].Name;
+            MapDescription.text = _maps[index].Description;
+            Mapimage.sprite = _maps[index].MapImage.Get();
+            BattlefieldSettings.CurrentSettings.MapIdentifier = _maps[index].Identifier;
+        }
 
-            if (_current < 0)
+        public void InstantiateMapButtons ()
+        {
+            foreach (Transform child in MapButtonParent)
             {
-                _current = _maps.Length - 1;
-            }else if (_current > _maps.Length - 1)
-            {
-                _current = 0;
+                Destroy(child);
             }
 
-            Text.text = Localization.Get("MENU_MAP_SELECTION", GetCurrent().Name);
-            SendMessage("OnTextUpdated", Text.text, SendMessageOptions.DontRequireReceiver);
-            BattlefieldSettings.CurrentSettings.MapIdentifier = GetCurrent().Identifier;
+            for (int i = 0; i < _maps.Length; i++)
+            {
+                MapData data = _maps[i];
+                GameObject newButton = Instantiate(MapButtonPrefab, MapButtonParent);
+                newButton.GetComponentInChildren<Text>().text = data.Name;
+                Button button = newButton.GetComponentInChildren<Button>();
+                AddListener(button, i);
+            }
+        }
+
+        private void AddListener(Button button, int index)
+        {
+            button.onClick.AddListener(() => SelectMap(index));
         }
     }
 }

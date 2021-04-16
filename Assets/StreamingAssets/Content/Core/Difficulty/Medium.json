@@ -1,0 +1,23 @@
+{
+  "Name": "Medium",
+  "Description": "Very easy difficulty that requires you to do little more than place turrets occasionally and then just watch the fireworks.",
+  "GradeIdentifier": "Core.Medium",
+  "Identifier": "Core.Medium",
+  "Aspects": [
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
+      "ValueData": {
+        "StartingCredits": 1000,
+        "StartingResearch": 0
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
+      "ValueData": {
+        "HealthMult": 1.0,
+        "ArmorMult": 1.0,
+        "ShieldMult": 1.0
+      }
+    }
+  ]
+}
