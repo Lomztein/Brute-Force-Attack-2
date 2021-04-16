@@ -11,7 +11,6 @@ namespace Lomztein.BFA2.MainMenu
     {
         public GameObject ContentPackPrefab;
         public Transform ContentPackParent;
-        public ContentManager Manager;
 
         public Text NameText;
         public Text AuthorText;
@@ -31,7 +30,7 @@ namespace Lomztein.BFA2.MainMenu
 
         private void LoadPacks ()
         {
-            IEnumerable<IContentPack> packs = Manager.GetContentPacks();
+            IEnumerable<IContentPack> packs = ContentManager.Instance.GetContentPacks();
             foreach (IContentPack pack in packs)
             {
                 GameObject newButton = Instantiate(ContentPackPrefab, ContentPackParent);
@@ -55,7 +54,7 @@ namespace Lomztein.BFA2.MainMenu
                 DescriptionText.text = string.Empty;
                 Image.texture = DefaultImage;
                 RequireReload.SetActive(false);
-                ContentDisplay.Clear();
+                //ContentDisplay.Clear();
             }
             else
             {
@@ -64,7 +63,7 @@ namespace Lomztein.BFA2.MainMenu
                 VersionText.text = source.Version;
                 DescriptionText.text = source.Description;
                 RequireReload.SetActive(source.RequireReload);
-                ContentDisplay.DisplayContent(source);
+                //ContentDisplay.DisplayContent(source);
 
                 if (source.Image != null)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Editor.Content;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,7 @@ public class Builder : MonoBehaviour
             { BuildTarget.StandaloneLinux64, "Linux" },
             { BuildTarget.StandaloneOSX, "OSX" },
         };
+
     private static readonly Dictionary<BuildTarget, string> buildExtensions = new Dictionary<BuildTarget, string>()
         {
             { BuildTarget.StandaloneWindows, ".exe" },
@@ -24,6 +26,7 @@ public class Builder : MonoBehaviour
             { BuildTarget.StandaloneLinux64, ".x86" },
             { BuildTarget.StandaloneOSX, ".app" },
         };
+
     private static readonly Dictionary<BuildTarget, string> buildChannels = new Dictionary<BuildTarget, string>()
         {
             { BuildTarget.StandaloneWindows, "windows" },
@@ -31,7 +34,6 @@ public class Builder : MonoBehaviour
             { BuildTarget.StandaloneLinux64, "linux" },
             { BuildTarget.StandaloneOSX, "osx" },
         };
-
 
     private static readonly string[] buildScenes =
         {
@@ -52,11 +54,10 @@ public class Builder : MonoBehaviour
         BuildGame("./build/", Environment.GetEnvironmentVariable("BUILD_TARGET"));
     }
 
-
-
     public static void BuildGame(params string[] args)
     {
         BuildTarget[] targets = args.Skip(1).Select(x => (BuildTarget)Enum.Parse(typeof(BuildTarget), x)).ToArray();
+        ContentCompiler.CompileAll();
 
         string buildDir = args[0];
         DateTime lastMinorRelease = new DateTime(2020, 7, 16);

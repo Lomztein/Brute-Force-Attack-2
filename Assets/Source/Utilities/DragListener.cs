@@ -28,44 +28,42 @@ namespace Lomztein.BFA2.Utilities
             return listener;
         }
 
-        public void Start ()
+        private void Start ()
         {
-            Input.PrimaryClick += PrimaryClick;
-            Input.SecondaryClick += SecondaryClick;
+            Input.PrimaryClick.started += PrimaryStart;
+            Input.PrimaryClick.canceled += PrimaryEnd;
+
+            Input.SecondaryClick.started += SecondaryStart;
+            Input.SecondaryClick.canceled += SecondaryEnd;
         }
 
         private void OnDestroy()
         {
-            Input.PrimaryClick -= PrimaryClick;
-            Input.SecondaryClick -= SecondaryClick;
+            Input.PrimaryClick.started -= PrimaryStart;
+            Input.PrimaryClick.canceled -= PrimaryEnd;
+
+            Input.SecondaryClick.started -= SecondaryStart;
+            Input.SecondaryClick.canceled -= SecondaryEnd;
         }
 
-        private void PrimaryClick(CallbackContext context)
+        private void PrimaryStart(CallbackContext context)
         {
-            switch(context.phase)
-            {
-                case InputActionPhase.Performed:
-                    BeginDrag(0, context);
-                    break;
-
-                case InputActionPhase.Canceled:
-                    EndDrag(0, context);
-                    break;
-            }
+            BeginDrag(0, context);
         }
 
-        private void SecondaryClick(CallbackContext context)
+        private void PrimaryEnd(CallbackContext context)
         {
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    BeginDrag(1, context);
-                    break;
+            EndDrag(0, context);
+        }
 
-                case InputActionPhase.Canceled:
-                    EndDrag(1, context);
-                    break;
-            }
+        private void SecondaryStart(CallbackContext context)
+        {
+            BeginDrag(1, context);
+        }
+
+        private void SecondaryEnd(CallbackContext context)
+        {
+            EndDrag(1, context);
         }
 
         private void BeginDrag(int button, CallbackContext context)

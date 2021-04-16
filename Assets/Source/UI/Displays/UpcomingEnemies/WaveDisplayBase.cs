@@ -15,7 +15,5 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
 
         public void Display(IWave wave) => Display((T)wave);
         public abstract void Display(T wave);
-
-        public abstract void OnEnemyKilled(IEnemy enemy);
     }
 }

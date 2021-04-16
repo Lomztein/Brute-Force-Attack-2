@@ -56,5 +56,13 @@ namespace Lomztein.BFA2.Placement
                 _current.EndDrag(mouse, Camera.main.ScreenToWorldPoint(drag.ScreenPosition));
             }
         }
+
+        private void Update()
+        {
+            if (_current != null)
+            {
+                _current.ToPosition(Input.WorldMousePosition);
+            }
+        }
     }
 }

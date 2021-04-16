@@ -12,22 +12,33 @@ namespace Lomztein.BFA2
 {
     public class StartUp : MonoBehaviour
     {
+        public const string UNIVERSAL_RESOURCE_PATH = "Universal";
+
         private static bool _hasStartedUp = false;
         public ContentManager ContentManager;
 
-        private void Awake()
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        public static void OnStartUp ()
         {
             if (!_hasStartedUp)
             {
-                Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
-                Input.Init();
-                Facade.GetInstance();
-
-                ContentManager.LoadPlugins();
-                InterceptLogs();
-
-                _hasStartedUp = true;
+                GameObject startup = Instantiate(Resources.Load<GameObject>(UNIVERSAL_RESOURCE_PATH));
+                startup.GetComponentInChildren<StartUp>().InitializeGame();
+                DontDestroyOnLoad(startup);
             }
+        }
+
+        internal void InitializeGame()
+        {
+            Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
+            Input.Init();
+            Facade.GetInstance();
+
+            ContentManager.LoadPlugins();
+            ContentManager.InitializeContent();
+            InterceptLogs();
+
+            _hasStartedUp = true;
         }
 
         private void InterceptLogs()

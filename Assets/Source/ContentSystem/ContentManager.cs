@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentManager : MonoBehaviour
     {
+        public static ContentManager Instance;
         readonly IContentPackSource _source = new ContentPackSource();
 
         private const string WILDCARD = "*";
@@ -51,6 +52,12 @@ namespace Lomztein.BFA2.ContentSystem
             }
 
             _pluginManager.StartPlugins();
+        }
+
+        internal void InitializeContent ()
+        {
+            GetContentPacks();
+            Instance = this;
         }
 
         private string OSAgnosticPath(string path)

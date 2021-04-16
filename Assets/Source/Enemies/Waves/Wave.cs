@@ -72,11 +72,11 @@ namespace Lomztein.BFA2.Enemies.Waves
             IEnemy enemy = obj.GetComponent<IEnemy>();
             OnEnemySpawn?.Invoke(enemy);
 
-            enemy.OnKilled += OnEnemyDeath;
-            enemy.OnFinished += OnEnemyDeath;
-
             enemy.OnKilled += OnEnemyKilled;
             enemy.OnFinished += OnEnemyFinished;
+
+            enemy.OnKilled += OnEnemyDeath;
+            enemy.OnFinished += OnEnemyDeath;
         }
 
         private void OnEnemyFinished(IEnemy obj)

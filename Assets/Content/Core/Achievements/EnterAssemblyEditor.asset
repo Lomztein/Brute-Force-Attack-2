@@ -12,31 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: EnterAssemblyEditor
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: Requirement
-      Entry: 7
-      Data: 0|Lomztein.BFA2.Player.Progression.Achievements.Requirements.LoadSceneRequirement,
-        Assembly-CSharp
-    - Name: SceneBuildIndex
-      Entry: 3
-      Data: 2
-    - Name: SceneName
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Reward
-      Entry: 6
-      Data: 
   Name: What's all this then
   Description: Enter the assembly editor, wherein you can create your very own turrets!
   Identifier: Core.EnterAssemblyEditor
@@ -51,3 +26,17 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
   Hidden: 0
+  Requirement:
+    id: 0
+  Reward:
+    id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: LoadSceneRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        SceneBuildIndex: 2
+        SceneName: 
+    00000001:
+      type: {class: , ns: , asm: }

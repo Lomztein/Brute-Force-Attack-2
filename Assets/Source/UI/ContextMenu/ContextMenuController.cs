@@ -19,16 +19,6 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
         private Collider2D _currentHover;
         private HighlighterCollection _highlighters;
-        private InputAction _secondaryClick;
-
-        private void Start()
-        {
-            InputMaster master = new InputMaster();
-            _secondaryClick = master.General.SecondaryClick;
-            master.General.Enable();
-            master.Enable();
-        }
-
 
         public void Update()
         {
@@ -43,7 +33,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
                     _currentHover = hover;
                 }
 
-                if (_secondaryClick.phase == InputActionPhase.Performed)
+                if (Input.SecondaryDown)
                 {
                     IEnumerable<IContextMenuOption> providers = colliders.SelectMany(x => x.GetComponents<IContextMenuOptionProvider>()).Distinct().SelectMany(x => x.GetContextMenuOptions());
                     Open(colliders[0].gameObject, providers, Camera.main.WorldToScreenPoint(colliders[0].transform.position));

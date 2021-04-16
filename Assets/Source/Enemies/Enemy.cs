@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Colorization;
 using Lomztein.BFA2.Enemies.Motors;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Weaponary;
@@ -34,7 +35,6 @@ namespace Lomztein.BFA2.Enemies
 
         [ModelProperty]
         public Color Color;
-
         public IEnemyMotor _motor;
 
         [ModelProperty]

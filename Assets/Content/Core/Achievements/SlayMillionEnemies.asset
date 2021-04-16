@@ -12,61 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: SlayMillionEnemies
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: Requirement
-      Entry: 7
-      Data: 0|Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement,
-        Assembly-CSharp
-    - Name: TargetEnemies
-      Entry: 3
-      Data: 1000000
-    - Name: TargetColors
-      Entry: 7
-      Data: 1|Lomztein.BFA2.Colorization.Color[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 7
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 3
-      Data: 3
-    - Name: 
-      Entry: 3
-      Data: 4
-    - Name: 
-      Entry: 3
-      Data: 5
-    - Name: 
-      Entry: 3
-      Data: 6
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Reward
-      Entry: 6
-      Data: 
   Name: It never truly ends
   Description: One million enemies down, a most impressive effort.
   Identifier: Core.SlayMillionEnemies
@@ -81,3 +26,17 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
   Hidden: 0
+  Requirement:
+    id: 0
+  Reward:
+    id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: SlayEnemiesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        TargetEnemies: 1000000
+        TargetColors: 00000000010000000200000003000000040000000500000006000000
+    00000001:
+      type: {class: , ns: , asm: }

@@ -67,6 +67,6 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         }
 
         public ValueModel SerializeProgress() => Requirement.SerializeProgress();
-        public void DeserializeProgress(ValueModel source) => Requirement.DeserializeProgress(source);
+        public void DeserializeProgress(ValueModel source) => Requirement?.DeserializeProgress(source);
     }
 }

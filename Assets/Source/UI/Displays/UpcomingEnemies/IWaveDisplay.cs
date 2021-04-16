@@ -8,6 +8,5 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
     {
         bool CanDisplay(IWave wave);
         void Display(IWave wave);
-        void OnEnemyKilled(IEnemy enemy);
     }
 }

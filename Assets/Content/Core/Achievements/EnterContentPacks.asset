@@ -12,28 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: EnterContentPacks
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: Requirement
-      Entry: 7
-      Data: 0|Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement,
-        Assembly-CSharp
-    - Name: WindowToVisit
-      Entry: 1
-      Data: content
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: Reward
-      Entry: 6
-      Data: 
   Name: Endless options
   Description: Enter the content pack menu, wherein you can select all the content
     for the game!
@@ -49,3 +27,16 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
   Hidden: 0
+  Requirement:
+    id: 0
+  Reward:
+    id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: VisitMainMenuWindowRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        WindowToVisit: content
+    00000001:
+      type: {class: , ns: , asm: }

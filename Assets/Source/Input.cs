@@ -15,32 +15,33 @@ namespace Lomztein.BFA2
         public static Vector3 ScreenMousePosition => MousePosition.ScreenPosition;
         public static Vector3 WorldMousePosition => MousePosition.WorldPosition;
 
-        public static event Action<InputAction.CallbackContext> CancelPause;
-        public static event Action<InputAction.CallbackContext> PrimaryClick;
-        public static event Action<InputAction.CallbackContext> SecondaryClick;
+        public static event Action<InputAction.CallbackContext> CancelPauseStarted;
+        public static event Action<InputAction.CallbackContext> PrimaryClickStarted;
+        public static event Action<InputAction.CallbackContext> SecondaryClicKStarted;
 
-        private static InputAction _primaryClick;
-        private static InputAction _secondaryClick;
+        public static InputAction CancelPause { get; private set; }
+        public static InputAction PrimaryClick { get; private set; }
+        public static InputAction SecondaryClick { get; private set; }
 
-        public static InputActionPhase PrimaryPhase => _primaryClick.phase;
-        public static InputActionPhase SecondaryPhase => _secondaryClick.phase;
+        public static InputActionPhase PrimaryPhase => PrimaryClick.phase;
+        public static InputActionPhase SecondaryPhase => SecondaryClick.phase;
 
         public static bool PrimaryPerformed => PrimaryPhase == InputActionPhase.Performed;
         public static bool SecondaryPerformed => SecondaryPhase == InputActionPhase.Performed;
 
-        public static bool PrimaryDown => _primaryClick.ReadValue<float>() > 0.5f;
-        public static bool SecondaryDown => _secondaryClick.ReadValue<float>() > 0.5f;
+        public static bool PrimaryDown => PrimaryClick.ReadValue<float>() > 0.5f;
+        public static bool SecondaryDown => SecondaryClick.ReadValue<float>() > 0.5f;
 
         public static void Init ()
         {
             Master = new InputMaster();
 
-            _primaryClick = Master.General.PrimaryClick;
-            _secondaryClick = Master.General.SecondaryClick;
+            PrimaryClick = Master.General.PrimaryClick;
+            SecondaryClick = Master.General.SecondaryClick;
 
-            Master.General.CancelPause.performed += OnCancelPause;
-            Master.General.PrimaryClick.performed += OnPrimaryClick;
-            Master.General.SecondaryClick.performed += OnSecondaryClick;
+            Master.General.CancelPause.started += OnCancelPauseStarted;
+            Master.General.PrimaryClick.started += OnPrimaryClickStarted;
+            Master.General.SecondaryClick.started += OnSecondaryClickStarted;
 
             EnableAllMaster();
             Master.Enable();
@@ -57,19 +58,19 @@ namespace Lomztein.BFA2
             Master.MapEditor.Enable();
         }
 
-        private static void OnCancelPause(InputAction.CallbackContext context)
+        private static void OnCancelPauseStarted(InputAction.CallbackContext context)
         {
-            CancelPause?.Invoke(context);
+            CancelPauseStarted?.Invoke(context);
         }
 
-        private static void OnPrimaryClick(InputAction.CallbackContext context)
+        private static void OnPrimaryClickStarted(InputAction.CallbackContext context)
         {
-            PrimaryClick?.Invoke(context);
+            PrimaryClickStarted?.Invoke(context);
         }
 
-        private static void OnSecondaryClick(InputAction.CallbackContext context)
+        private static void OnSecondaryClickStarted(InputAction.CallbackContext context)
         {
-            SecondaryClick?.Invoke(context);
+            SecondaryClicKStarted?.Invoke(context);
         }
     }
 }

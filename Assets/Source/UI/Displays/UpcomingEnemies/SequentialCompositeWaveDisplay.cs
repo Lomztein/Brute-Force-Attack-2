@@ -32,9 +32,5 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
                 index++;
             }
         }
-
-        public override void OnEnemyKilled(IEnemy enemy)
-        {
-        }
     }
 }

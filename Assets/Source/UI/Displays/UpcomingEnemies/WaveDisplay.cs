@@ -15,24 +15,33 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
         public Image EnemyImage;
         public Text AmountText;
 
-        private string _enemyIdentifier;
         private int _amount;
+        private Wave _wave;
 
         public override void Display(Wave wave)
         {
             EnemyImage.sprite = Iconography.GenerateSprite(wave.Prefab.GetCache());
-            _enemyIdentifier = wave.Prefab.GetCache().GetComponent<IEnemy>().UniqueIdentifier;
             _amount = wave.SpawnAmount;
+            _wave = wave;
             UpdateAmount();
+
+            _wave.OnEnemyKill += OnEnemyKilled;
+            _wave.OnEnemyFinish += OnEnemyKilled;
+
+            _wave.OnFinished += OnWaveFinished;
         }
 
-        public override void OnEnemyKilled(IEnemy enemy)
+        private void OnWaveFinished()
         {
-            if (enemy.UniqueIdentifier == _enemyIdentifier)
-            {
-                _amount--;
-                UpdateAmount();
-            }
+            _wave.OnEnemyKill -= OnEnemyKilled;
+            _wave.OnEnemyFinish -= OnEnemyKilled;
+            _wave.OnFinished -= OnWaveFinished;
+        }
+
+        private void OnEnemyKilled(IEnemy enemy)
+        {
+            _amount--;
+            UpdateAmount();
         }
 
         private void UpdateAmount()
