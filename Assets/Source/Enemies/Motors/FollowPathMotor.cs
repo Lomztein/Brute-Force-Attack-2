@@ -10,8 +10,8 @@ namespace Lomztein.BFA2.Enemies.Motors
 {
     public class FollowPathMotor : MonoBehaviour, IEnemyMotor
     {
-        private Vector3[] _path;
-        private int _pathIndex;
+        public Vector3[] Path {get; set; }
+        public int PathIndex { get; set; }
 
         public float Speed { get; set; }
         [ModelProperty]
@@ -19,19 +19,19 @@ namespace Lomztein.BFA2.Enemies.Motors
 
         public bool HasReachedEnd()
         {
-            return _pathIndex == _path.Length;
+            return PathIndex == Path.Length;
         }
 
         public void SetPath(Vector3[] path)
         {
-            _path = path;
+            Path = path;
         }
 
         public void Tick(float deltaTime)
         {
-            if (_pathIndex < _path.Length)
+            if (PathIndex < Path.Length)
             {
-                Vector3 waypoint = _path[_pathIndex];
+                Vector3 waypoint = Path[PathIndex];
                 Vector3 direction = (waypoint - transform.position).normalized;
 
                 transform.position += direction * Speed * deltaTime;
@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Enemies.Motors
 
                 if ((waypoint - transform.position).sqrMagnitude <= Mathf.Pow(Speed * deltaTime, 2))
                 {
-                    _pathIndex++;
+                    PathIndex++;
                 }
             }
         }

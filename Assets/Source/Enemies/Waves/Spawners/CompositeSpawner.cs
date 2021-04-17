@@ -28,18 +28,23 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             int a = Mathf.RoundToInt(amount / spawners);
             int remaining = amount - (a * spawners);
 
-            _totalSpawners = spawners + 1;
+            _totalSpawners = spawners;
             for (int i = 0; i < spawners; i++)
             {
                 InstantiateSpawner(a, d, prefab);
             }
+
             // Dirty solution but of little consequence.
-            InstantiateSpawner(remaining, 1 / f / remaining, prefab);
+            if (remaining > 0)
+            {
+                _totalSpawners++;
+                InstantiateSpawner(remaining, 1 / f / remaining, prefab);
+            }
         }
 
         private ISpawner InstantiateSpawner (int amount, float delay, IContentPrefab prefab)
         {
-            GameObject newSpawner = Instantiate(NestedSpawner, transform);
+            GameObject newSpawner = Instantiate(NestedSpawner);
             ISpawner spawner = newSpawner.GetComponent<ISpawner>();
             spawner.OnSpawn += OnSpawnerSpawn;
             spawner.OnFinished += OnSpawnerFinished;
@@ -53,6 +58,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             if (_finishedSpawners == _totalSpawners)
             {
                 OnFinished?.Invoke();
+                Destroy(gameObject);
             }
         }
 

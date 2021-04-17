@@ -26,8 +26,13 @@ namespace Lomztein.BFA2.Enemies
         public float Shields;
         [ModelProperty]
         public float MaxSpeed;
+
+        public Vector3[] Path { get => _motor.Path; set => _motor.Path = value; }
         public float Speed { get => _motor.Speed; set => _motor.Speed = value; }
+        public int PathIndex { get => _motor.PathIndex; set => _motor.PathIndex = value; }
+
         public float Health;
+        private bool _isDead;
 
         [ModelProperty]
         public string _UniqueIdentifier;
@@ -69,10 +74,14 @@ namespace Lomztein.BFA2.Enemies
             }
         }
 
-        private void DoDamage ()
+        private void DoDamage()
         {
-            Destroy(gameObject);
-            OnFinished?.Invoke(this);
+            if (!_isDead)
+            {
+                Destroy(gameObject);
+                _isDead = true;
+                OnFinished?.Invoke(this);
+            }
         }
 
         public float TakeDamage(DamageInfo damageInfo)
@@ -85,7 +94,7 @@ namespace Lomztein.BFA2.Enemies
             Health -= Mathf.Min (damage, Health);
             Shields = Mathf.Max (Shields - 1, 0);
 
-            if (Health <= 0f)
+            if (Health <= 0f && !_isDead)
             {
                 Die();
             }
@@ -111,19 +120,20 @@ namespace Lomztein.BFA2.Enemies
 
             _deathParticle.transform.parent = null;
             _deathParticle.Play();
+            _isDead = true;
 
             Destroy(_deathParticle.gameObject, DeathParticleLife);
         }
 
-        public void Init(EnemySpawnPoint point)
+        public void Init(Vector3 position, Vector3[] path)
         {
             Health = MaxHealth;
             _motor = GetComponent<IEnemyMotor>();
             _deathParticle = transform.Find("DeathParticle").GetComponent<ParticleSystem>();
             Speed = MaxSpeed;
 
-            transform.position = point.transform.position;
-            _motor.SetPath(point.GetPath());
+            transform.position = position;
+            _motor.Path = path;
         }
     }
 }

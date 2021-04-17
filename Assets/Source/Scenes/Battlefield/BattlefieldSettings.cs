@@ -1,8 +1,8 @@
 ﻿using Lomztein.BFA2.Enemies.Scalers;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory.Items;
-using Lomztein.BFA2.Mutators;
 using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
+using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;

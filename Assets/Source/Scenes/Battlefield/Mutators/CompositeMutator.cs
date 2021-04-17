@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.Mutators;
-using Lomztein.BFA2.Serialization;
+﻿using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.UI.Menus.PropertyMenus;
 using System;
 using System.Collections.Generic;

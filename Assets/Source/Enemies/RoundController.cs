@@ -57,6 +57,7 @@ namespace Lomztein.BFA2.Enemies
         public event Action<int, IWave> OnWaveFinished;
         public event Action<int, string> OnWaveCancelled;
         public event Action<int> OnWavesExhausted;
+        public event Action<int> OnWaveSet;
 
         public event Action<IEnemy> OnEnemySpawn;
         public event Action<IEnemy> OnEnemyKill;
@@ -208,7 +209,8 @@ namespace Lomztein.BFA2.Enemies
 
         private void OnSpawn(IEnemy obj)
         {
-            obj.Init(GetSpawnPoint());
+            EnemySpawnPoint spawnpoint = GetSpawnPoint();
+            obj.Init(spawnpoint.transform.position, spawnpoint.GetPath());
             OnEnemySpawn?.Invoke(obj);
         }
 

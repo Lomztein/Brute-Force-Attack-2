@@ -11,7 +11,8 @@ namespace Lomztein.BFA2.Enemies.Motors
     {
         float Speed { get; set; }
 
-        void SetPath(Vector3[] path);
+        Vector3[] Path { get; set; }
+        int PathIndex { get; set; }
 
         void Tick(float deltaTime);
 

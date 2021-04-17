@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
-namespace Lomztein.BFA2.Mutators
+namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 {
     public class PlayerModMutator : Mutator
     {

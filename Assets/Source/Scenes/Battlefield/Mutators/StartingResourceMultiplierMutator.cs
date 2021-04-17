@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Mutators
+namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 {
     public class StartingResourceMultiplierMutator : Mutator, IHasProperties
     {

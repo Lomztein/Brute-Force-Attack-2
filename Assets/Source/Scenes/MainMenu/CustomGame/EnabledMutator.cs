@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Mutators;
+﻿using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.UI.Menus.PropertyMenus;
 using Lomztein.BFA2.UI.Tooltip;
 using System;

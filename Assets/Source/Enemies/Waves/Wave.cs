@@ -95,7 +95,6 @@ namespace Lomztein.BFA2.Enemies.Waves
             if (Alive == 0)
             {
                 OnFinished?.Invoke();
-                UnityEngine.Object.Destroy(_spawnerObj);
             }
         }
     }

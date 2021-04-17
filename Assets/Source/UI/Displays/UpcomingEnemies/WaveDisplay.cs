@@ -46,7 +46,10 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
 
         private void UpdateAmount()
         {
-            AmountText.text = "x " + _amount.ToString();
+            if (AmountText)
+            {
+                AmountText.text = "x " + _amount.ToString();
+            }
         }
     }
 }

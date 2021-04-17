@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.ContentSystem;
-using Lomztein.BFA2.Mutators;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using Lomztein.BFA2.Battlefield;
+using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 
 namespace Lomztein.BFA2.MainMenu.CustomGame
 {

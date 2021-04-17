@@ -1,6 +1,6 @@
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
-using Lomztein.BFA2.Mutators;
+using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;

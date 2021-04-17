@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Lomztein.BFA2.Mutators
+namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 {
     public class SandboxModeMutator : Mutator
     {

@@ -10,7 +10,10 @@ namespace Lomztein.BFA2.Enemies
 {
     public interface IEnemy : IIdentifiable
     {
-        void Init(EnemySpawnPoint point);
+        void Init(Vector3 position, Vector3[] path);
+
+        Vector3[] Path { get; set; }
+        int PathIndex { get; set; }
 
         event Action<IEnemy> OnKilled;
         event Action<IEnemy> OnFinished;
