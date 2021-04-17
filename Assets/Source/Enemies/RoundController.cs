@@ -161,13 +161,11 @@ namespace Lomztein.BFA2.Enemies
                 IWavePunisher punshier = new FractionalWavePunisher(next.SpawnAmount, _healthContainer);
 
                 next.OnEnemyKill += rewarder.OnKill;
-                next.OnEnemyKill += EnemyKill;
+                next.OnEnemyFinish += punshier.Punish;
 
                 next.OnFinished += rewarder.OnFinished;
                 next.OnFinished += WaveFinished;
 
-                next.OnEnemyFinish += punshier.Punish;
-                next.OnEnemyFinish += EnemyFinished;
 
                 next.Start();
                 CurrentWave = next;
@@ -186,19 +184,13 @@ namespace Lomztein.BFA2.Enemies
         private void EnemyFinished(IEnemy obj)
         {
             OnEnemyFinish?.Invoke(obj);
+            RemoveEnemy(obj);
         }
 
         private void EnemyKill(IEnemy obj)
         {
             OnEnemyKill?.Invoke(obj);
-            RandomizedLoot loot = _commonLootTable.GetRandomLoot((100f / CurrentWave.SpawnAmount) * (CurrentWaveIndex / LootChanceGrowthDenominator + 1), 1);
-            if (!loot.Empty)
-            {
-                if (obj is Component comp)
-                {
-                    loot.InstantiateLoot(comp.transform.position, 3f);
-                }
-            }
+            RemoveEnemy(obj);
         }
 
         private float GetEarnedFromKills(int wave) => StartingEarnedFromKills + EarnedFromKillsPerWave * (wave - 1);
@@ -211,7 +203,21 @@ namespace Lomztein.BFA2.Enemies
         {
             EnemySpawnPoint spawnpoint = GetSpawnPoint();
             obj.Init(spawnpoint.transform.position, spawnpoint.GetPath());
+            AddEnemy(obj);
+
             OnEnemySpawn?.Invoke(obj);
+        }
+
+        public void AddEnemy (IEnemy enemy) // Should provide a good starting point for future jobified enemy movement system.
+        {
+            enemy.OnKilled += EnemyKill;
+            enemy.OnFinished += EnemyFinished;
+        }
+
+        public void RemoveEnemy (IEnemy enemy)
+        {
+            enemy.OnKilled -= EnemyKill;
+            enemy.OnFinished -= EnemyFinished;
         }
 
         private EnemySpawnPoint GetSpawnPoint()

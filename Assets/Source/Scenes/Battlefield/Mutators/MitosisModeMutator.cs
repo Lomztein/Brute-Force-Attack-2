@@ -78,10 +78,15 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             IContentCachedPrefab enemy = GetPreviousTier(obj.UniqueIdentifier);
             if (enemy != null)
             {
-                GameObject newEnemyGO = enemy.Instantiate();
-                IEnemy newEnemy = newEnemyGO.GetComponent<IEnemy>();
-                newEnemy.Init((obj as Component).transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path);
-                newEnemy.PathIndex = obj.PathIndex;
+                for (int i = 0; i < Clones; i++)
+                {
+                    GameObject newEnemyGO = enemy.Instantiate();
+                    IEnemy newEnemy = newEnemyGO.GetComponent<IEnemy>();
+                    newEnemy.Init((obj as Component).transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path);
+                    newEnemy.PathIndex = obj.PathIndex;
+
+                    RoundController.Instance.AddEnemy(newEnemy);
+                }
             }
         }
 
