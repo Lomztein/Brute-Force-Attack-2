@@ -38,8 +38,17 @@
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
         "BaseSpeed": 100.0,
-        "BaseFirerate": 0.75,
+        "BaseFirerate": 0.5,
         "Color": "Red",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Medium",
+            "Height": "Medium"
+          }
+        },
         "_name": "Dual Cannon",
         "_description": "Fires two heavy slugs of molten metal in rapid succesion.",
         "_uniqueIdentifier": "Core.HeavyCannonT2",
@@ -178,12 +187,6 @@
       "ValueType": "Lomztein.BFA2.Weaponary.FireControl.SequenceFireControl",
       "ValueData": {
         "DelayDenominator": 0.1666667
-      }
-    },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Upgrading.TurretComponentTypeUpgrader",
-      "ValueData": {
-        "UpgradeComponentIdentifier": "Core.HeavyCannonT3"
       }
     }
   ],

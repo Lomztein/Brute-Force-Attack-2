@@ -1,0 +1,171 @@
+{
+  "Name": "MediumTConnector",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "ValueType": "UnityEngine.Transform",
+      "ValueData": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Structures.Turrets.Connectors.Connector",
+      "ValueData": {
+        "LocalTargetPosition": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AttachmentPointSet",
+          "ValueData": {
+            "Points": [
+              {
+                "LocalPosition": {
+                  "X": 0.5,
+                  "Y": 0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": -0.5,
+                  "Y": -0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": 0.5,
+                  "Y": -0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": -0.5,
+                  "Y": 0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": 0.0,
+                  "Y": 1.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": 0.0,
+                  "Y": -1.5
+                }
+              }
+            ]
+          }
+        },
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Medium",
+            "Height": "Medium"
+          }
+        },
+        "_name": "Medium T-Connector",
+        "_description": "Connects two small supporting weapons to a large medium-sized wepaon.",
+        "_uniqueIdentifier": "Core.MediumTConnector",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 350
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Small",
+        "_height": "Small"
+      }
+    },
+    {
+      "ValueType": "UnityEngine.BoxCollider2D",
+      "ValueData": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 3.0
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites/Components/MediumTConnector.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 64.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

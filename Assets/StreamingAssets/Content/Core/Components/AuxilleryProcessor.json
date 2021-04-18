@@ -27,6 +27,21 @@
     {
       "ValueType": "Lomztein.BFA2.Structures.Turrets.PassiveTurretComponent",
       "ValueData": {
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
         "_name": "Auxillery Processor",
         "_description": "Noticably improves range of underlying target finders.",
         "_uniqueIdentifier": "Core.AuxProcessor",
@@ -58,26 +73,28 @@
     {
       "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.HierarchicalModBroadcaster",
       "ValueData": {
-        "ProvideUpwards": true,
-        "ProvideDownwards": false,
+        "ProvideUpwards": false,
+        "ProvideDownwards": true,
         "ProvideSelf": false,
         "_mod": {
-            "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-            "ValueData": {
-                "Stats": [
-                    {
-                        "Identifier": "Range",
-                        "Name": "Range",
-                        "Description": "The range of this unit.",
-                        "Type": "Multiplicative",
-                        "Value": 0.5
-                    }
-                ],
-                "_identifier": "Core.AuxProcessorRange",
-                "_name": "Auxillery Processor Range",
-                "_description": "The auxillery processor assists in target identification, allowing greater range.",
-                "RequiredAttributes": ["Ranged"]
-            }
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "",
+                "Name": "",
+                "Description": "",
+                "Type": "Additive",
+                "Value": 0.0
+              }
+            ],
+            "_identifier": "",
+            "_name": "",
+            "_description": "",
+            "RequiredAttributes": [
+              "Ranged"
+            ]
+          }
         }
       }
     }

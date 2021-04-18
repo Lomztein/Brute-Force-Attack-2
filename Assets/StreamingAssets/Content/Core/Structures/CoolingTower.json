@@ -1,0 +1,337 @@
+{
+  "Name": "CoolingTower",
+  "Tag": "Untagged",
+  "Layer": 10,
+  "Static": false,
+  "Components": [
+    {
+      "ValueType": "UnityEngine.Transform",
+      "ValueData": {
+        "Position": {
+          "X": -6.25,
+          "Y": -4.5,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Structures.Structure",
+      "ValueData": {
+        "_name": "Coolant Tower",
+        "_description": "Cools nearby weapons, allowing for much faster firing rates.",
+        "_uniqueIdentifier": "Core.CoolantTower",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 1500
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Medium",
+        "_height": "Medium"
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
+      "ValueData": {
+        "TargetLayer": {
+          "Mask": 512
+        },
+        "Range": 2.5,
+        "IncludeSelf": false,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Firerate",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.5
+              }
+            ],
+            "_identifier": "Core.WeaponCooling",
+            "_name": "Cooled",
+            "_description": "This weapon has been cooled by a nearby cooling tower, increasing firerate.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "ValueType": "UnityEngine.CircleCollider2D",
+      "ValueData": {
+        "Radius": 1.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites\\Structures\\CoolantTower.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": -0.1
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites/Structures/CoolantFan.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.Misc.Rotator",
+          "ValueData": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan (1)",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.4,
+              "Z": -0.1
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites/Structures/CoolantFan.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.Misc.Rotator",
+          "ValueData": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan (2)",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "ValueType": "UnityEngine.Transform",
+          "ValueData": {
+            "Position": {
+              "X": 0.0,
+              "Y": -0.4,
+              "Z": -0.1
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "ValueData": {
+            "Reference": {
+              "Path": "Core/Sprites/Structures/CoolantFan.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        },
+        {
+          "ValueType": "Lomztein.BFA2.Misc.Rotator",
+          "ValueData": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

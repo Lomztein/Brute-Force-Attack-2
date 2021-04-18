@@ -1,0 +1,52 @@
+{
+  "Name": "Mega Double Trouble",
+  "Description": "",
+  "RootComponent": {
+    "UniqueIdentifier": "Core.SmallBase",
+    "LocalPosition": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "Children": [
+      {
+        "UniqueIdentifier": "Core.SmallRotator",
+        "LocalPosition": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Children": [
+          {
+            "UniqueIdentifier": "Core.OneToTwoConnector",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": -1.0
+            },
+            "Children": [
+              {
+                "UniqueIdentifier": "Core.MachineGunT3",
+                "LocalPosition": {
+                  "X": 0.0,
+                  "Y": -0.5,
+                  "Z": -1.0
+                },
+                "Children": []
+              },
+              {
+                "UniqueIdentifier": "Core.MachineGunT3",
+                "LocalPosition": {
+                  "X": 0.0,
+                  "Y": 0.5,
+                  "Z": -1.0
+                },
+                "Children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

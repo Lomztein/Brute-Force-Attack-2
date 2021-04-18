@@ -40,6 +40,15 @@
         "BaseSpeed": 20.0,
         "BaseFirerate": 0.5,
         "Color": "Red",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
         "_name": "Rocket Launcher",
         "_description": "Fwooompff -BOOOOOM",
         "_uniqueIdentifier": "Core.RocketLauncherT1",
@@ -90,55 +99,84 @@
       }
     },
     {
-      "ValueType": "Lomztein.BFA2.Structures.Upgrading.TurretComponentTypeUpgrader",
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
       "ValueData": {
-        "UpgradeComponentIdentifier": "Core.RocketLauncherT2"
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+          "ValueData": {
+            "DamageMultBase": 0.25,
+            "RangeBase": 1.0,
+            "DamageMultStack": 0.25,
+            "RangeStack": 0.25,
+            "ExplosionPrefab": {
+              "Path": "Core/Projectiles/Explosion.json"
+            },
+            "DestroyProjectile": true,
+            "_identifier": "Core.ExplosiveRounds",
+            "_name": "Explosive Rounds",
+            "_description": "This weapon has built-in explosive rounds.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
       }
     },
     {
-        "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
-        "ValueData": {
-            "_mod": {
-                "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-                "ValueData": {
-                    "DamageMultBase": 0.2,
-                    "RangeBase": 0.5,
-                    "DamageMultStack": 1.5,
-                    "RangeStack": 1.2,
-                    "ExplosionPrefab": {
-                        "Path": "Core/Projectiles/Explosion.json"
-                    },
-                    "DestroyProjectile": true,
-                    "_identifier": "Core.ExplodeOnProjectileHit",
-                    "_name": "Explode on Hit",
-                    "_description": "Volatile energies cause the projectile to explode when it hits something.",
-                    "RequiredAttributes": [ "Weapon" ]
-                }
-            }
-        }
+      "ValueType": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
+      "ValueData": {
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+          "ValueData": {
+            "DamageMultBase": 0.25,
+            "RangeBase": 0.5,
+            "DamageMultStack": 0.25,
+            "RangeStack": 0.25,
+            "ExplosionPrefab": {
+              "Path": "Core/Projectiles/Explosion.json"
+            },
+            "DestroyProjectile": true,
+            "_identifier": "Core.ExplosiveRounds",
+            "_name": "Explosive Rounds",
+            "_description": "This weapon is provided with the explosive rounds of a nearby rocket launcher.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        },
+        "_behavioursToDisable": [
+          "TurretWeapon"
+        ]
+      }
     },
     {
-      "ValueType": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
-        "ValueData": {
-            "_mod": {
-                "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-                "ValueData": {
-                    "DamageMultBase": 0.2,
-                    "RangeBase": 0.5,
-                    "DamageMultStack": 1.5,
-                    "RangeStack": 1.2,
-                    "ExplosionPrefab": {
-                        "Path": "Core/Projectiles/Explosion.json"
-                    },
-                    "DestroyProjectile": true,
-                    "_identifier": "Core.ExplodeOnProjectileHit",
-                    "_name": "Explode on Hit",
-                    "_description": "Volatile energies cause the projectile to explode when it hits something.",
-                    "RequiredAttributes": [ "Weapon" ]
-                }
-            },
-            "_behavioursToDisable": [ "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon" ]
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+      "ValueData": {
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Damage",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.25
+              }
+            ],
+            "_identifier": "Core.RocketLauncherDamageBoost",
+            "_name": "Heavy Impact",
+            "_description": "This weapons damage is boosted from a nearby rocket launcher",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
         }
+      }
     }
   ],
   "Children": [

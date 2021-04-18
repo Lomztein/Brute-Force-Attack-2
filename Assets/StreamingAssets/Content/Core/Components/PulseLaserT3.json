@@ -40,6 +40,15 @@
         "BaseSpeed": 1337.0,
         "BaseFirerate": 15.0,
         "Color": "Yellow",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
         "_name": "Heavy Pulse Laser Cannon",
         "_description": "Goes <b>FUCKING PEEEEW</b>",
         "_uniqueIdentifier": "Core.PulseLaserT3",
@@ -87,6 +96,35 @@
         },
         "IsTrigger": false,
         "UsedByEffector": false
+      }
+    },
+    {
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+      "ValueData": {
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Speed",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 1.5
+              }
+            ],
+            "_identifier": "Core.PulseLaserSpeedBoost",
+            "_name": "Lightning Speed",
+            "_description": "This weapons projectile are speedboosted",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
       }
     }
   ],

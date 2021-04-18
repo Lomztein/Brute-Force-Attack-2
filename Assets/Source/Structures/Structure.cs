@@ -77,10 +77,15 @@ namespace Lomztein.BFA2.Structures
             Mods = new ModContainer(Stats, Events);
         }
 
-        public void InvokeChanged() => Changed?.Invoke(this);
+        public void InvokeChanged()
+        {
+            BroadcastMessage("OnStructureChanged", SendMessageOptions.DontRequireReceiver);
+            Changed?.Invoke(this);
+        }
 
         protected virtual void OnDestroy ()
         {
+            BroadcastMessage("OnStructureDestroyed", SendMessageOptions.DontRequireReceiver);
             Destroyed?.Invoke(this);
         }
 

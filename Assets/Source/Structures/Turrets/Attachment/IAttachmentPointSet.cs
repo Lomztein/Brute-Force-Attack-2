@@ -9,6 +9,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Attachment
 {
     public interface IAttachmentPointSet
     {
-        AttachmentPoint[] GetPoints();
+        IEnumerable<AttachmentPoint> GetPoints();
     }
 }

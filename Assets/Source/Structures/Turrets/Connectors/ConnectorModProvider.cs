@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Structures.Turrets.Connectors
 {
     public class ConnectorModProvider : MonoBehaviour
     {
-        [ModelProperty] [SerializeReference]
+        [SerializeField, ModelProperty, SerializeReference, SR]
         private IMod _mod;
         [ModelProperty] [SerializeField]
         private string[] _behavioursToDisable;

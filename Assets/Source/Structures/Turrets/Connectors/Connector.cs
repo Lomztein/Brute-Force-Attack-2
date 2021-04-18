@@ -19,11 +19,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
         [ModelProperty]
         public Vector2 LocalTargetPosition;
 
-        [ModelProperty]
-        public Size UpperAttachmentPointWidth;
-        [ModelProperty]
-        public Size UpperAttachmentPointHeight;
-
         public override StructureCategory Category => StructureCategories.Connector;
 
         private IModdable GetTarget ()
@@ -65,8 +60,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
 
         public override void Init()
         {
-            _upperAttachmentPoints = new SquareAttachmentPointSet(UpperAttachmentPointWidth, UpperAttachmentPointHeight);
-
             if (_assembly)
             {
                 _assembly.Changed += OnAssemblyChanged;

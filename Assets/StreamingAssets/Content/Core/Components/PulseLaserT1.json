@@ -40,6 +40,15 @@
         "BaseSpeed": 1337.0,
         "BaseFirerate": 15.0,
         "Color": "Yellow",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
         "_name": "Pulse Laser Cannon",
         "_description": "Goes <i>pew pew!</ii>",
         "_uniqueIdentifier": "Core.PulseLaserT1",
@@ -75,7 +84,7 @@
             "X": 0.5,
             "Y": 0.5
           },
-          "PixelsPerUnit": 32.0
+          "PixelsPerUnit": 16.0
         },
         "PlaySpeedMultiplier": 1.0
       }
@@ -93,9 +102,32 @@
       }
     },
     {
-      "ValueType": "Lomztein.BFA2.Structures.Upgrading.TurretComponentTypeUpgrader",
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
       "ValueData": {
-        "UpgradeComponentIdentifier": "Core.PulseLaserT2"
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Speed",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.5
+              }
+            ],
+            "_identifier": "Core.PulseLaserSpeedBoost",
+            "_name": "Lightning Speed",
+            "_description": "This weapons projectile are speedboosted",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
       }
     }
   ],
@@ -141,7 +173,7 @@
                 "X": 0.5,
                 "Y": 0.5
               },
-              "PixelsPerUnit": 32.0
+              "PixelsPerUnit": 16.0
             },
             "Color": {
               "Red": 1.0,

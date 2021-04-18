@@ -6,13 +6,14 @@ using Lomztein.BFA2.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public abstract class ModBroadcaster : MonoBehaviour
     {
         [ModelProperty]
-        [SerializeReference]
+        [SerializeField, SerializeReference, SR]
         protected IMod _mod;
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
         private ObjectCloner _cloner = new ObjectCloner();
@@ -91,7 +92,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             moddable.Mods.RemoveMod(_mod.Identifier);
         }
 
-        protected abstract IEnumerable<IModdable> GetBroadcastTargets();
+        public abstract IEnumerable<IModdable> GetBroadcastTargets();
 
         public void DelayedBroadcast ()
         {

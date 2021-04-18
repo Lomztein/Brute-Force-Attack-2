@@ -69,7 +69,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             var matches = new List<Tuple<TurretComponent, Vector3>>();
             foreach (TurretComponent component in components)
             {
-                AttachmentPoint[] points = component.GetUpperAttachmentPoints();
+                IEnumerable<AttachmentPoint> points = component.GetUpperAttachmentPoints();
                 foreach (var point in points)
                 {
                     Vector2 offset = point.LocalPosition - checkPoint.LocalPosition;
@@ -101,10 +101,10 @@ namespace Lomztein.BFA2.AssemblyEditor
             return curr;
         }
 
-        private bool Matches(AttachmentPoint[] parentPoints, AttachmentPoint[] childPoints, Vector3 parentPosition, Vector3 childPosition)
+        private bool Matches(IEnumerable<AttachmentPoint> parentPoints, IEnumerable<AttachmentPoint> childPoints, Vector3 parentPosition, Vector3 childPosition)
             => childPoints.All(x => IsPointAvailable(parentPoints, x, parentPosition, childPosition));
 
-        private bool IsPointAvailable(AttachmentPoint[] parentPoints, AttachmentPoint point, Vector3 parentPos, Vector3 childPos)
+        private bool IsPointAvailable(IEnumerable<AttachmentPoint> parentPoints, AttachmentPoint point, Vector3 parentPos, Vector3 childPos)
         {
             var p = parentPoints.GetPoint(parentPos, point.LocalToWorldPosition(childPos));
             return p != null && p.IsEmpty;

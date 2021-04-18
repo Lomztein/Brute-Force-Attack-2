@@ -11,31 +11,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Upgrading
 {
-    public class ModUpgrader : MonoBehaviour, IUpgrader
+    public class ModUpgrader : Upgrader
     {
-        private const string MOD_CHILD_NAME = "UpgradeMod";
-
-        [ModelProperty]
-        [SerializeField]
-        private ExponentialResourceCost _cost;
-        public IResourceCost Cost => _cost;
-        [ModelProperty]
-        public int MaxUpgrades = 10;
-
-        private int _upgradeCount;
-
-        public string Description => GetMod().Name;
-
-        public void Upgrade()
+        public override bool Upgrade()
         {
-            if (_upgradeCount < MaxUpgrades)
-            {
-                GetComponent<IModdable>().Mods.AddMod(GetMod());
-                _upgradeCount++;
-                _cost.X = _upgradeCount;
-            }
+            return true;
         }
-
-        private IMod GetMod() => transform.Find(MOD_CHILD_NAME).GetComponent<IMod>();
     }
 }

@@ -40,6 +40,15 @@
         "BaseSpeed": 75.0,
         "BaseFirerate": 5.0,
         "Color": "Blue",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
         "_name": "Dual Machine Gun",
         "_description": "Goes pew pew even faster lol",
         "_uniqueIdentifier": "Core.MachineGunT2",
@@ -229,39 +238,33 @@
       }
     },
     {
-      "ValueType": "Lomztein.BFA2.Structures.Upgrading.TurretComponentTypeUpgrader",
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
       "ValueData": {
-        "UpgradeComponentIdentifier": "Core.MachineGunT3"
-      }
-    },
-    {
-        "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
-        "ValueData": {
-            "AdjacencyCheckLayer": {
-                "Mask": 512
-            },
-            "AdjacencyCheckRange": 0.75,
-            "_mod": {
-                "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-                "ValueData": {
-                    "Stats": [
-                        {
-                            "Identifier": "Firerate",
-                            "Name": "Firerate",
-                            "Description": "The firerate of this weapon.",
-                            "Type": "Multiplicative",
-                            "Value": 0.4
-                        }
-                    ],
-                    "_identifier": "Core.MachineGunT2.AdjacencyFirerate",
-                    "_name": "Shared Dependencies",
-                    "_description": "Two or more machine guns are adjacent, this allows them to share certain dependencies, and thus increase firerate.",
-                    "RequiredAttributes": [
-                        "Weapon"
-                    ]
-                }
-            }
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Firerate",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.5
+              }
+            ],
+            "_identifier": "MachineGunT2Adjecency",
+            "_name": "Rain of Fire",
+            "_description": "Firerate increased by a nearby machine gun.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
         }
+      }
     },
     {
       "ValueType": "UnityEngine.BoxCollider2D",

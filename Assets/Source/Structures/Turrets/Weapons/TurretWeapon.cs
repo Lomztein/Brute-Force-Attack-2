@@ -113,7 +113,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         public override void PreInit()
         {
-            _upperAttachmentPoints = new EmptyAttachmentPointSet();
+            UpperAttachmentPoints = new EmptyAttachmentPointSet();
 
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
@@ -234,12 +234,14 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         }
         public float GetRange()
         {
-            MapController controller = MapController.Instance;
-            if (controller != null)
+            if (Ranger != null)
             {
-                return Mathf.Max(controller.Width, controller.Height) * 2f;
+                return Ranger.GetRange();
             }
-            return 50f;
+            else
+            {
+                return 50;
+            }
         }
     }
 }

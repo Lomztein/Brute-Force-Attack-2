@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         public float GetRange() => Range;
 
-        protected override IEnumerable<IModdable> GetBroadcastTargets()
+        public override IEnumerable<IModdable> GetBroadcastTargets()
         {
             var colliders = Physics2D.OverlapCircleAll(transform.position, Range, TargetLayer);
             var self = GetComponent<Collider2D>();

@@ -13,15 +13,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {
-    public abstract class TurretComponent : Structure, INamed, IModdable, IPurchasable, IGridObject
+    public abstract class TurretComponent : Structure, IModdable
     {
         public override Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
+        [ModelProperty]
+        public float BaseComplexity;
 
-        protected IAttachmentPointSet _upperAttachmentPoints;
-        protected IAttachmentPointSet _lowerAttachmentPoints;
+        [ModelProperty, SerializeReference, SR]
+        protected IAttachmentPointSet UpperAttachmentPoints;
+        [ModelProperty, SerializeReference, SR]
+        protected IAttachmentPointSet LowerAttachmentPoints;
 
         protected TurretAssembly _assembly;
 
@@ -49,9 +54,6 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         private void InitComponent()
         {
-            _upperAttachmentPoints = new SquareAttachmentPointSet(Width, Height);
-            _lowerAttachmentPoints = new SquareAttachmentPointSet(Width, Height);
-
             AttachToParent();
 
             Init();
@@ -124,11 +126,11 @@ namespace Lomztein.BFA2.Structures.Turrets
             }
         }
 
-        public AttachmentPoint[] GetUpperAttachmentPoints()
-            => _upperAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
+        public IEnumerable<AttachmentPoint> GetUpperAttachmentPoints()
+            => UpperAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
 
-        public AttachmentPoint[] GetLowerAttachmentPoints()
-            => _lowerAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
+        public IEnumerable<AttachmentPoint> GetLowerAttachmentPoints()
+            => LowerAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
 
         public void OnDrawGizmosSelected()
         {
@@ -142,6 +144,6 @@ namespace Lomztein.BFA2.Structures.Turrets
             }
         }
 
-
+        public virtual float ComputeComplexity() => BaseComplexity;
     }
 }

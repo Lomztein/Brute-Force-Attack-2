@@ -40,6 +40,15 @@
         "BaseSpeed": 75.0,
         "BaseFirerate": 15.0,
         "Color": "Blue",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
         "_name": "Tri-Barreled Gatling Cannon",
         "_description": "Shoots super fast lol",
         "_uniqueIdentifier": "Core.MachineGunT3",
@@ -212,33 +221,33 @@
       }
     },
     {
-        "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
-        "ValueData": {
-            "AdjacencyCheckLayer": {
-                "Mask": 512
-            },
-            "AdjacencyCheckRange": 0.75,
-            "_mod": {
-                "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-                "ValueData": {
-                    "Stats": [
-                        {
-                            "Identifier": "Firerate",
-                            "Name": "Firerate",
-                            "Description": "The firerate of this weapon.",
-                            "Type": "Multiplicative",
-                            "Value": 0.6
-                        }
-                    ],
-                    "_identifier": "Core.MachineGunT3.AdjacencyFirerate",
-                    "_name": "Shared Dependencies",
-                    "_description": "Two or more machine guns are adjacent, this allows them to share certain dependencies, and thus increase firerate.",
-                    "RequiredAttributes": [
-                        "Weapon"
-                    ]
-                }
-            }
+      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+      "ValueData": {
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "ValueData": {
+            "Stats": [
+              {
+                "Identifier": "Firerate",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.75
+              }
+            ],
+            "_identifier": "MachineGunT3Adjecency",
+            "_name": "Rain of Fire",
+            "_description": "Firerate increased by a nearby machine gun.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
         }
+      }
     },
     {
       "ValueType": "UnityEngine.BoxCollider2D",

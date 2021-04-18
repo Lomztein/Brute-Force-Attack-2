@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.World;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +9,24 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Turrets.Attachment
 {
+    [Serializable]
     public class AttachmentPoint
     {
-        public Vector2 LocalPosition { get; private set; }
+        [ModelProperty]
+        public Vector2 LocalPosition;
+        public Size Size;
+
         public AttachmentPoint AttachedPoint { get; private set; }
         public bool IsEmpty => AttachedPoint == null;
 
-        public AttachmentPoint (Vector2 localPosition)
+        public AttachmentPoint ()
+        {
+        }
+
+        public AttachmentPoint (Vector2 localPosition, Size size)
         {
             LocalPosition = localPosition;
+            Size = size;
         }
 
         public void AttachTo(AttachmentPoint other) => AttachedPoint = other;
@@ -28,10 +39,10 @@ namespace Lomztein.BFA2.Structures.Turrets.Attachment
 
     public static class AttachmentPointExtensions
     {
-        public static Vector3[] LocalToWorldPosition(this AttachmentPoint[] points, Vector3 worldPosition)
+        public static Vector3[] LocalToWorldPosition(this IEnumerable<AttachmentPoint> points, Vector3 worldPosition)
             => points.Select(x => x.LocalToWorldPosition(worldPosition)).ToArray();
 
-        public static AttachmentPoint GetPoint (this AttachmentPoint[] points, Vector3 worldPosition, Vector3 point, float margin = 0.1f)
+        public static AttachmentPoint GetPoint (this IEnumerable<AttachmentPoint> points, Vector3 worldPosition, Vector3 point, float margin = 0.1f)
         {
             foreach (AttachmentPoint ap in points)
             {

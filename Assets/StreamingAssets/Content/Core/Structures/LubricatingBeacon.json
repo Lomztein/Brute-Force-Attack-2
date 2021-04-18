@@ -35,10 +35,6 @@
             {
               "Type": "Credits",
               "Value": 500
-            },
-            {
-              "Type": "Research",
-              "Value": 1
             }
           ]
         },
@@ -61,15 +57,15 @@
             "Stats": [
               {
                 "Identifier": "Turnrate",
-                "Name": "Turnrate",
-                "Description": "The rotation speed of this unit.",
+                "Name": "",
+                "Description": "",
                 "Type": "Multiplicative",
-                "Value": 1.0
+                "Value": 0.5
               }
             ],
-            "_identifier": "Core.LubricatorRotationSpeed",
-            "_name": "Lubricated Machinery",
-            "_description": "The machinery of this units rotators has been lubed up, and rotates much more freely.",
+            "_identifier": "Core.Lubrication",
+            "_name": "Lubricated",
+            "_description": "This rotator has been lubricated, it turns much quicker.",
             "RequiredAttributes": [
               "Rotator"
             ]
@@ -87,25 +83,6 @@
         },
         "IsTrigger": false,
         "UsedByEffector": false
-      }
-    },
-    {
-      "ValueType": "Lomztein.BFA2.Turrets.TurretSeller",
-      "ValueData": {
-        "SellSprite": {
-          "Path": "Core/Sprites/UI/TrashCan.png",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 0.0,
-            "Height": 0.0
-          },
-          "Pivot": {
-            "X": 0.5,
-            "Y": 0.5
-          },
-          "PixelsPerUnit": 32.0
-        }
       }
     }
   ],
@@ -172,84 +149,84 @@
           }
         }
       ],
-        "Children": [
+      "Children": [
+        {
+          "Name": "RightLubeParticle",
+          "Tag": "Untagged",
+          "Layer": 10,
+          "Static": false,
+          "Components": [
             {
-                "Name": "RightLubeParticle",
-                "Tag": "Untagged",
-                "Layer": "10",
-                "Static": "False",
-                "Components": [
-                    {
-                        "ValueType": "UnityEngine.Transform",
-                        "ValueData": {
-                            "Position": {
-                                "X": "1",
-                                "Y": "0",
-                                "Z": "0"
-                            },
-                            "Rotation": {
-                                "X": "5,433382E-05",
-                                "Y": "90",
-                                "Z": "180"
-                            },
-                            "Scale": {
-                                "X": "1",
-                                "Y": "1",
-                                "Z": "1"
-                            }
-                        }
-                    },
-                    {
-                        "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                        "ValueData": {
-                            "Reference": {
-                                "Path": "Resources/Particles/LubeParticles"
-                            },
-                            "NameOverride": ""
-                        }
-                    }
-                ],
-                "Children": []
+              "ValueType": "UnityEngine.Transform",
+              "ValueData": {
+                "Position": {
+                  "X": 1.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 5.433382E-05,
+                  "Y": 90.0,
+                  "Z": 180.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
             },
             {
-                "Name": "LeftLubeParticle",
-                "Tag": "Untagged",
-                "Layer": "10",
-                "Static": "False",
-                "Components": [
-                    {
-                        "ValueType": "UnityEngine.Transform",
-                        "ValueData": {
-                            "Position": {
-                                "X": "-1",
-                                "Y": "0",
-                                "Z": "0"
-                            },
-                            "Rotation": {
-                                "X": "-6,097462E-05",
-                                "Y": "270",
-                                "Z": "-7,508434E-06"
-                            },
-                            "Scale": {
-                                "X": "1",
-                                "Y": "1",
-                                "Z": "1"
-                            }
-                        }
-                    },
-                    {
-                        "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                        "ValueData": {
-                            "Reference": {
-                                "Path": "Resources/Particles/LubeParticles"
-                            },
-                            "NameOverride": ""
-                        }
-                    }
-                ],
-                "Children": []
+              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+              "ValueData": {
+                "Reference": {
+                  "Path": "Resources/Particles/LubeParticles"
+                },
+                "NameOverride": ""
+              }
             }
-        ]
+          ],
+          "Children": []
+        },
+        {
+          "Name": "LeftLubeParticle",
+          "Tag": "Untagged",
+          "Layer": 10,
+          "Static": false,
+          "Components": [
+            {
+              "ValueType": "UnityEngine.Transform",
+              "ValueData": {
+                "Position": {
+                  "X": -1.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": -6.097462E-05,
+                  "Y": 270.0,
+                  "Z": -7.508434E-06
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            },
+            {
+              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+              "ValueData": {
+                "Reference": {
+                  "Path": "Resources/Particles/LubeParticles"
+                },
+                "NameOverride": ""
+              }
+            }
+          ],
+          "Children": []
+        }
+      ]
     },
     {
       "Name": "Feet",

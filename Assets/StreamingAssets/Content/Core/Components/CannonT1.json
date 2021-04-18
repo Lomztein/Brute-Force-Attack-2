@@ -38,8 +38,17 @@
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
         "BaseSpeed": 100.0,
-        "BaseFirerate": 0.75,
+        "BaseFirerate": 0.5,
         "Color": "Red",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "ValueData": {
+            "Width": "Medium",
+            "Height": "Medium"
+          }
+        },
         "_name": "Cannon",
         "_description": "Fires heavy slugs of molten metal.",
         "_uniqueIdentifier": "Core.HeavyCannonT1",
@@ -54,18 +63,6 @@
         "BaseAttributes": [],
         "_width": "Medium",
         "_height": "Medium"
-      }
-    },
-    {
-      "ValueType": "UnityEngine.CircleCollider2D",
-      "ValueData": {
-        "Radius": 0.5,
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "IsTrigger": false,
-        "UsedByEffector": false
       }
     },
     {
@@ -147,9 +144,16 @@
       }
     },
     {
-      "ValueType": "Lomztein.BFA2.Structures.Upgrading.TurretComponentTypeUpgrader",
+      "ValueType": "UnityEngine.BoxCollider2D",
       "ValueData": {
-        "UpgradeComponentIdentifier": "Core.HeavyCannonT2"
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 2.0,
+          "Y": 2.0
+        }
       }
     }
   ],

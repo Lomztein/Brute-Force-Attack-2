@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 6094629530807130616}
   - component: {fileID: 5563669402843524042}
   - component: {fileID: -2768476238171883026}
-  - component: {fileID: -7532642262125420409}
-  - component: {fileID: 4521667712478599596}
   - component: {fileID: 4421234629336450257}
-  - component: {fileID: -1109665557147856863}
+  - component: {fileID: 6232743743797018108}
   m_Layer: 10
   m_Name: AssemblyPrefab
   m_TagString: Untagged
@@ -72,31 +70,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-7532642262125420409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7641300259387924724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0345f79e1a88da7428d33fd7846cff77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgradeSprite: {fileID: 21300000, guid: a6d18b3fd687d8d40b5d27d64c276697, type: 3}
---- !u!114 &4521667712478599596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7641300259387924724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1774fcb862c4d3439f1843d28cb8f4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4421234629336450257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +92,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
---- !u!114 &-1109665557147856863
+--- !u!114 &6232743743797018108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,6 +101,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 7641300259387924724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3e5fc58a85d3ac49b7edb0e6fea36be, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aa1f3d7c421e8f4083ec5eee8fd8cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeName: Upgrade Assembly
+  UpgradeDecsription: (Doesn't actually do anything right now I'm reworking it please
+    be patient)
+  UpgradeSprite:
+    Path: Core/Sprites/UI/UpgradeArrow.png
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 32
+  UpgradeCost:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: ResourceCost, ns: Lomztein.BFA2.Purchasing.Resources, asm: Assembly-CSharp}
+      data:
+        Elements:
+        - Type: 0
+          Value: 1337
