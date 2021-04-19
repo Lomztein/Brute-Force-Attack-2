@@ -1,0 +1,89 @@
+{
+  "Name": "SlowfieldGenerator",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.SlowfieldGenerator",
+      "$Data": {
+        "BaseRange": 2.5,
+        "SlowFactor": 0.5,
+        "Mask": {
+          "Mask": 0
+        },
+        "SpinnyThing": "$Ref{1cdf8185-d3e3-41da-a70d-b23a9babf0ea}",
+        "SomeComponent": "$Path{Core/Structures/Collector.json}",
+        "SomeTexture": "$Path{Core/Sprites/Components/LaserCannonT2.png}",
+        "_name": "Slowfield Generator",
+        "_description": "Generates slowing slowfield that slows nearby enemies.",
+        "_uniqueIdentifier": "Core.SlowfieldGenerator",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 1500
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Medium",
+        "_height": "Medium"
+      }
+    }
+  ],
+  "Children": [
+    {
+      "$GUID": "1cdf8185-d3e3-41da-a70d-b23a9babf0ea",
+      "$Data": {
+        "Name": "SpinnyThing",
+        "Tag": "Untagged",
+        "Layer": 0,
+        "Static": false,
+        "Components": [
+          {
+            "$Type": "UnityEngine.Transform",
+            "$Data": {
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "Rotation": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "Scale": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            }
+          }
+        ],
+        "Children": []
+      }
+    }
+  ]
+}

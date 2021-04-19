@@ -23,9 +23,14 @@ namespace Lomztein.BFA2
             if (_instance == null)
             {
                 _instance = new Facade();
-                _instance.Init();
+                _instance.InitComponents();
             }
             return _instance;
+        }
+
+        public static void Init ()
+        {
+            GetInstance();
         }
 
         public T GetComponent<T>() where T : FacadeComponent
@@ -45,7 +50,7 @@ namespace Lomztein.BFA2
             _components.Add(component);
         }
 
-        internal void Init ()
+        internal void InitComponents ()
         {
             _components.AddRange(ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<FacadeComponent>());
 

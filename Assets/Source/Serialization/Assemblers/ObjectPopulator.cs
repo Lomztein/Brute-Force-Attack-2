@@ -1,27 +1,32 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler;
+using Lomztein.BFA2.Serialization.IO;
+using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Serialization.Assemblers
 {
     public class ObjectPopulator
     {
-        private IValueAssembler _propertyAssembler;
+        private static IEnumerable<PropertyAssemblerBase> _propertyAssemblers;
 
-        public ObjectPopulator (IValueAssembler assembler)
+        private static IEnumerable<PropertyAssemblerBase> GetPropertyAssemblers ()
         {
-            _propertyAssembler = assembler;
+            if (_propertyAssemblers == null)
+            {
+                _propertyAssemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<PropertyAssemblerBase>();
+            }
+            return _propertyAssemblers;
         }
 
-        public ObjectPopulator()
-        {
-            _propertyAssembler = new ValueAssembler();
-        }
+        private PropertyAssemblerBase GetPropertyAssembler(Type attributeType) => GetPropertyAssemblers().First(x => x.AttributeType == attributeType);
 
         public void Populate (object obj, ObjectModel model, AssemblyContext context)
         {
@@ -31,9 +36,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             foreach (IAssignableMemberInfo field in fields)
             {
                 var property = model.GetProperty(field.Name);
-                if (property != null)
+                if (!ValueModel.IsNull (property))
                 {
-                    var value = _propertyAssembler.Assemble(property, field.ValueType, context);
+                    var value = GetPropertyAssembler(field.AttributeType).Assemble(property, field.ValueType, context);
                     field.SetValue(obj, value);
                 }
                 else
@@ -54,14 +59,26 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             {
                 try
                 {
-                    object componentValue = info.GetValue(obj);
-                    var model = _propertyAssembler.Disassemble(componentValue, info.ValueType, context);
-                    if (componentValue != null && componentValue.GetType() != info.ValueType)
+                    ObjectField objectField = new ObjectField();
+                    objectField.Name = info.Name;
+
+                    object memberValue = info.GetValue(obj);
+
+                    if (memberValue != null)
                     {
-                        model.MakeExplicit(componentValue.GetType());
+                        GetPropertyAssembler(info.AttributeType).Disassemble(objectField, memberValue, info.ValueType, context);
+
+                        if (memberValue.GetType() != info.ValueType)
+                        {
+                            objectField.Model.MakeExplicit(memberValue.GetType());
+                        }
+                    }
+                    else
+                    {
+                        objectField.Model = new NullModel();
                     }
 
-                    properties.Add(new ObjectField(info.Name, model));
+                    properties.Add(objectField);
                 }
                 catch (Exception e)
                 {
@@ -70,7 +87,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             }
 
-            return new ObjectModel(properties.ToArray());
+            return context.MakeReferencable (obj, new ObjectModel(properties.ToArray())) as ObjectModel;
         }
 
         private IEnumerable<IAssignableMemberInfo> GetModelFields(Type type)
@@ -96,6 +113,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         {
             string Name { get; }
             Type ValueType { get; }
+            Type AttributeType { get; }
 
             object GetValue(object obj);
 
@@ -113,6 +131,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             public string Name => _info.Name;
             public Type ValueType => _info.FieldType;
+            public Type AttributeType => _info.GetCustomAttribute<ModelPropertyAttribute>().GetType();
 
             public object GetValue(object obj)
             {
@@ -136,6 +155,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             public string Name => _info.Name;
             public Type ValueType => _info.PropertyType;
+            public Type AttributeType => _info.GetCustomAttribute<ModelPropertyAttribute>().GetType();
 
             public object GetValue(object obj)
             {

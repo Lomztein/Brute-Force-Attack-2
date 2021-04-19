@@ -21,6 +21,8 @@ namespace Lomztein.BFA2.Serialization.Serializers
             new NullModelSerializerStrategy(),
             new PrimitiveModelSerializerStrategy(),
             new ObjectModelSerializerStrategy(),
+            new PathModelSerializerStrategy(),
+            new ReferenceModelSerializerStrategy(),
             new ArrayModelSerializerStrategy(),
         };
 

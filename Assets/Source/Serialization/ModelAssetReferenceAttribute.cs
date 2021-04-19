@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Serialization
 {
-    public class ModelFileReferenceAttribute : ModelPropertyAttribute 
+    public class ModelAssetReferenceAttribute : ModelPropertyAttribute 
     {
     }
 }

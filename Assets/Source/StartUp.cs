@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.LocalizationSystem;
 using Lomztein.BFA2.Plugins;
+using Lomztein.BFA2.Serialization.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +32,9 @@ namespace Lomztein.BFA2
         internal void InitializeGame()
         {
             Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
+            SerializationFileAccess.SetAccessor(new ContentFileAccessor());
             Input.Init();
-            Facade.GetInstance();
+            Facade.Init();
 
             ContentManager.LoadPlugins();
             ContentManager.InitializeContent();

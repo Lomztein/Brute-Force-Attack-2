@@ -58,17 +58,14 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         public RootModel Disassemble(GameObject gameObject)
         {
             DisassemblyContext context = new DisassemblyContext();
-            return new RootModel (RecursiveDisassemble(gameObject, context));
+            RootModel model = new RootModel (RecursiveDisassemble(gameObject, context));
+            context.ReturnGuidRequests();
+            return model;
         }
 
         public ObjectModel RecursiveDisassemble (GameObject gameObject, DisassemblyContext context)
         {
             var children = new List<ObjectModel>();
-            foreach (Transform child in gameObject.transform)
-            {
-                children.Add(RecursiveDisassemble(child.gameObject, context));
-            }
-
             Component[] components = gameObject.GetComponents<Component>().Where(x => !x.GetType().IsDefined(typeof(DontSerializeAttribute), false)).ToArray();
             var componentModels = new List<ObjectModel>();
             foreach (Component component in components)
@@ -76,14 +73,14 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 componentModels.Add(_componentAssembler.Disassemble(component, context).MakeExplicit(component.GetType()) as ObjectModel);
             }
 
-            return new ObjectModel(
+            return context.MakeReferencable (gameObject, new ObjectModel(
                 new ObjectField("Name", ValueModelFactory.Create(gameObject.name, context)),
                 new ObjectField("Tag", ValueModelFactory.Create(gameObject.tag, context)),
                 new ObjectField("Layer", ValueModelFactory.Create(gameObject.layer, context)),
                 new ObjectField("Static", ValueModelFactory.Create(gameObject.isStatic, context)),
                 new ObjectField("Components", new ArrayModel(componentModels)),
                 new ObjectField("Children", new ArrayModel(GetChildren(gameObject).Select(x => RecursiveDisassemble(x, context))))
-            );
+            )) as ObjectModel;
         }
 
         private IEnumerable<GameObject> GetChildren (GameObject go)

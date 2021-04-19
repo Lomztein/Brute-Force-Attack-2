@@ -46,7 +46,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
 
             if (model.HasGuid)
             {
-                obj.Add(ValueModelSerializer.VALUE_MODEL_GUID_NAME, model.Guid.Value);
+                obj.Add(ValueModelSerializer.VALUE_MODEL_GUID_NAME, model.Guid);
             }
             if (!model.IsTypeImplicit)
             {

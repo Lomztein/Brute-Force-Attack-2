@@ -23,6 +23,12 @@ namespace Lomztein.BFA2.Structures
         public float SlowFactor;
         [ModelProperty]
         public LayerMask Mask;
+        [ModelReference]
+        public GameObject SpinnyThing;
+        [ModelAssetReference]
+        public GameObject SomeComponent;
+        [ModelAssetReference]
+        public Texture2D SomeTexture;
 
         public float GetRange() => _range.GetValue();
 

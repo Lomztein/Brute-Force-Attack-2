@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         private Dictionary<object, Tuple<Guid, ValueModel>> _sharedObjectMap = new Dictionary<object, Tuple<Guid, ValueModel>>();
         private List<GuidRequest> _guidRequests = new List<GuidRequest>();
 
-        public ValueModel MakeReferencable (object obj, ValueModel model)
+        public ValueModel MakeReferencable(object obj, ValueModel model)
         {
             Guid id = Guid.NewGuid();
             _objectMap.Add(obj, new Tuple<Guid, ValueModel>(id, model));

@@ -88,6 +88,10 @@ namespace Lomztein.BFA2.Serialization.Models
             Model = model;
         }
 
+        public ObjectField()
+        {
+        }
+
         public override string ToString()
         {
             return $"{Name}: {Model}";
