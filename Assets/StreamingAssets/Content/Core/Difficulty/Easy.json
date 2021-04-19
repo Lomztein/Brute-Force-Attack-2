@@ -1,58 +1,23 @@
 {
-  "$GUID": "a2bc41cb-e007-43a7-9e3b-838ad06b706d",
-  "$Data": {
-    "Name": {
-      "$GUID": "35f49818-e134-446a-863c-6da3a1bc185f",
-      "$Data": "Easy"
+  "Name": "Easy",
+  "Description": "Very easy difficulty that requires you to do little more than place turrets occasionally and then just watch the fireworks.",
+  "GradeIdentifier": "Core.Easy",
+  "Identifier": "Core.Easy",
+  "Aspects": [
+    {
+      "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
+      "$Data": {
+        "StartingCredits": 1000,
+        "StartingResearch": 2
+      }
     },
-    "Description": {
-      "$GUID": "fb23ff1b-f8df-4a25-a4f8-013fc978af89",
-      "$Data": "Very easy difficulty that requires you to do little more than place turrets occasionally and then just watch the fireworks."
-    },
-    "GradeIdentifier": {
-      "$GUID": "c3221f4d-3e3c-4936-b1ae-80b94990c52b",
-      "$Data": "Core.Easy"
-    },
-    "Identifier": {
-      "$GUID": "d9f432b4-eff8-420d-b978-183323026710",
-      "$Data": "Core.Easy"
-    },
-    "Aspects": {
-      "$GUID": "4518657f-82c5-4972-9f16-525240f4a00e",
-      "$Data": [
-        {
-          "$GUID": "340c0613-4276-4da2-9ee3-9403a2166662",
-          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
-          "$Data": {
-            "StartingCredits": {
-              "$GUID": "e17f0544-eb45-4fad-a2a7-06f08637c683",
-              "$Data": 1000
-            },
-            "StartingResearch": {
-              "$GUID": "b9a85637-6dcf-4171-97dd-188d66578df4",
-              "$Data": 2
-            }
-          }
-        },
-        {
-          "$GUID": "3419242e-4aaf-4004-9820-ee7017c507a6",
-          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
-          "$Data": {
-            "HealthMult": {
-              "$GUID": "707c69ad-1443-4441-a55e-818efce5c168",
-              "$Data": 0.75
-            },
-            "ArmorMult": {
-              "$GUID": "294dfba6-a3d6-40f4-b732-b1ff8080bedd",
-              "$Data": 0.0
-            },
-            "ShieldMult": {
-              "$GUID": "45117143-d1c7-4823-9cb6-ddcefdd49454",
-              "$Data": 0.0
-            }
-          }
-        }
-      ]
+    {
+      "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
+      "$Data": {
+        "HealthMult": 0.75,
+        "ArmorMult": 0.0,
+        "ShieldMult": 0.0
+      }
     }
-  }
+  ]
 }

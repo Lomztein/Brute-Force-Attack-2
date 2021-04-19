@@ -1,383 +1,138 @@
 {
-  "$GUID": "76d5c6a9-665d-4515-b458-ea18290638b3",
-  "$Data": {
-    "Name": {
-      "$GUID": "fa37e303-3191-4efc-870e-ec0ba7ce2ecb",
-      "$Data": "TurretBase"
+  "Name": "TurretBase",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
     },
-    "Tag": {
-      "$GUID": "7c05840e-65d3-4e71-a254-f164dedc8f0f",
-      "$Data": "Untagged"
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
+      "$Data": {
+        "BaseRange": 10.0,
+        "TargetLayer": {
+          "Mask": 256
+        },
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": {
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "$Data": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
+        "LowerAttachmentPoints": {
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "$Data": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
+        "_name": "Small Base",
+        "_description": "Targets nearby hostiles.",
+        "_uniqueIdentifier": "Core.SmallBase",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 200
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Small",
+        "_height": "Small"
+      }
     },
-    "Layer": {
-      "$GUID": "40230f18-beda-4583-b533-560c174da7cd",
-      "$Data": 9
+    {
+      "$Type": "Lomztein.BFA2.Targeting.EnemyTargetFinder",
+      "$Data": {}
     },
-    "Static": {
-      "$GUID": "772b5d58-ab5c-435b-a548-451d2db71811",
-      "$Data": false
-    },
-    "Components": {
-      "$GUID": "fa5ca266-fbe7-45b7-ac76-52edaf855a50",
-      "$Data": [
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Base",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "12f44d87-fe25-43c9-b594-34eddb3bda3a",
           "$Type": "UnityEngine.Transform",
           "$Data": {
             "Position": {
-              "$GUID": "a92072d9-de3c-49dd-b93b-78762690d3cb",
-              "$Data": {
-                "X": {
-                  "$GUID": "03230d76-31f2-4802-98e5-7b49f7f83c2e",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "596202cf-4ef1-4697-80e8-7524831e90ce",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "dbb9086b-381d-4451-b8cc-69e42a5ba3e3",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "$GUID": "ecc69497-7fc7-4965-b398-21426ad7b8e0",
-              "$Data": {
-                "X": {
-                  "$GUID": "235ba9dd-0555-456e-af4a-5a15f17ca21d",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "f2127bbe-7bc9-405e-bf8b-a3f5ee4dd026",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "8144e0c4-5830-4a1a-941e-2b0c08455a7c",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "$GUID": "3622fd42-c25b-4539-8b5e-4de73e9a07b9",
-              "$Data": {
-                "X": {
-                  "$GUID": "e72dcd7e-75d0-43eb-aefc-482458eec9cb",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "630f4825-e657-44e6-8cc1-475e4983c41a",
-                  "$Data": 1.0
-                },
-                "Z": {
-                  "$GUID": "1cc77994-8f0d-4ded-88c0-de6331c243e5",
-                  "$Data": 1.0
-                }
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "7ca00866-4bd5-41da-90d1-32eaf095d130",
-          "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "BaseRange": {
-              "$GUID": "cfa8ecaa-adaa-4de8-a412-2f0147c357d5",
-              "$Data": 10.0
+            "Reference": {
+              "Path": "Core/Sprites/Components/SmallBase.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
-            "TargetLayer": {
-              "$GUID": "4c17dc37-a8fe-4f8f-9d64-30dfc390af59",
-              "$Data": {
-                "Mask": {
-                  "$GUID": "196fdc4e-b8d8-490e-936b-02291f72f865",
-                  "$Data": 256
-                }
-              }
-            },
-            "BaseComplexity": {
-              "$GUID": "9ce4f28b-5e05-47c3-8e27-e5762e670c15",
-              "$Data": 0.0
-            },
-            "UpperAttachmentPoints": {
-              "$GUID": "96718863-d618-4cc8-8857-e25d84496a28",
-              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-              "$Data": {
-                "Width": {
-                  "$GUID": "dd6cd658-2b02-4684-8ef0-55e14958119d",
-                  "$Data": "Small"
-                },
-                "Height": {
-                  "$GUID": "3e35c332-02fb-469e-b902-86735f3d9b7c",
-                  "$Data": "Small"
-                }
-              }
-            },
-            "LowerAttachmentPoints": {
-              "$GUID": "7ff5fb38-043f-4913-a2d7-b2d38115bf5c",
-              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-              "$Data": {
-                "Width": {
-                  "$GUID": "bc52c44f-b01a-429d-9526-01f855fffdb6",
-                  "$Data": "Small"
-                },
-                "Height": {
-                  "$GUID": "3f586b08-d6c6-448c-a0be-5790baa8bd06",
-                  "$Data": "Small"
-                }
-              }
-            },
-            "_name": {
-              "$GUID": "03c922d7-a2fe-49fa-b628-5a22a9e61466",
-              "$Data": "Small Base"
-            },
-            "_description": {
-              "$GUID": "bc405117-be3b-42b4-ab31-a52f289af18a",
-              "$Data": "Targets nearby hostiles."
-            },
-            "_uniqueIdentifier": {
-              "$GUID": "affaa9ff-6b05-4e4b-bcd7-a799e72f83a5",
-              "$Data": "Core.SmallBase"
-            },
-            "_cost": {
-              "$GUID": "2009f384-357f-4ce5-b789-055cb825ec6f",
-              "$Data": {
-                "Elements": {
-                  "$GUID": "dc381703-7997-4e90-a21a-1c8ce52592ab",
-                  "$Data": [
-                    {
-                      "$GUID": "aa34e20a-c7ae-4d1a-8e5c-27dea059d0fa",
-                      "$Data": {
-                        "Type": {
-                          "$GUID": "fc6926ae-a960-480d-a0d1-6efa79a8740d",
-                          "$Data": "Credits"
-                        },
-                        "Value": {
-                          "$GUID": "7761c95f-97c4-4ef5-b971-9c09ed66c772",
-                          "$Data": 200
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "BaseAttributes": {
-              "$GUID": "b776d63b-2af4-44a0-b978-e08cd4766b52",
-              "$Data": []
-            },
-            "_width": {
-              "$GUID": "47f19ad6-f056-4606-b337-8e7ac3f8180a",
-              "$Data": "Small"
-            },
-            "_height": {
-              "$GUID": "9e26ee2b-15d0-42e3-bce0-0e907643788c",
-              "$Data": "Small"
-            }
-          }
-        },
-        {
-          "$GUID": "8f0ed298-e661-45de-b522-401b0ab0f6ec",
-          "$Type": "Lomztein.BFA2.Targeting.EnemyTargetFinder",
-          "$Data": {}
-        },
-        {
-          "$GUID": "fb109f0e-1331-421c-a845-89ee7a239171",
-          "$Type": "UnityEngine.CircleCollider2D",
-          "$Data": {
-            "Radius": {
-              "$GUID": "1de383d8-fc40-4f83-a08d-f87eb680b568",
-              "$Data": 0.5
-            },
-            "Offset": {
-              "$GUID": "35f88a84-b423-44f6-9eee-c35c82ec799d",
-              "$Data": {
-                "X": {
-                  "$GUID": "02f03186-ab57-4782-808f-5b267621393e",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "77472c79-d7ba-49eb-ab6b-419907c0e2e9",
-                  "$Data": 0.0
-                }
-              }
-            },
-            "IsTrigger": {
-              "$GUID": "ce37c53f-956c-410b-a7ae-0454f78cf05f",
-              "$Data": false
-            },
-            "UsedByEffector": {
-              "$GUID": "549cd8fe-ad78-4071-af61-3fd2754737c0",
-              "$Data": false
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
-      ]
-    },
-    "Children": {
-      "$GUID": "1bb5830f-6e33-4a8e-93ca-e21502fb6fb2",
-      "$Data": [
-        {
-          "$GUID": "9f70fd3c-a4f6-4acc-8d2f-385bb6fef464",
-          "$Data": {
-            "Name": {
-              "$GUID": "b63ceec7-ce12-4057-81a8-f6ce64a8eb5f",
-              "$Data": "Base"
-            },
-            "Tag": {
-              "$GUID": "86c0902f-0268-45e3-b945-889292453cd8",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "fc669ad0-89cb-4e56-a603-1a6b22b3cf43",
-              "$Data": 9
-            },
-            "Static": {
-              "$GUID": "c942ceed-bb79-41ce-a284-04e4ef0b36c3",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "450f8229-0273-4522-bad3-2c23f448f431",
-              "$Data": [
-                {
-                  "$GUID": "3598cbca-cd90-4912-8205-8c52019a46e6",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "8a6b481d-7f03-4197-9c9e-af637a11e718",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "8f14f373-775f-4bcc-99d0-f4c4b6cffb36",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "a6db888a-6ae4-4352-8b07-9a0190fd7224",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "0c9ad8d3-cb09-4cc0-8a61-895f0ed1dd4f",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "5e983635-8f9e-4b78-8a4e-35b9dab12ea9",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "2f8a7b91-0c3f-46f3-8a9a-d6e451a18e57",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "616f2829-44ec-436c-a94d-6d00e258b9e5",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "9eb7ee14-c9cf-41a3-aa6d-74e651fdd9a3",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "6f63b3e8-bd83-4e45-8282-ebfb75149285",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "fbc4e062-fdec-451b-8384-e6c0b132a668",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "9685e2d7-f0e4-40c6-b5a1-526c1fc129ae",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "b32a0412-db8d-4612-b1ef-92d301d3d06a",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "c6553977-0200-46b5-a958-708c5f0dabb5",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "ba93cab2-9a90-48c5-be80-65780431d555",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "4281994f-6bb8-44cc-9b77-c1e50cc1c7b6",
-                          "$Data": "Core/Sprites/Components/SmallBase.png"
-                        },
-                        "Rect": {
-                          "$GUID": "f2c0ffca-bf5e-4499-b0bf-7723b54967d4",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "3bc871e2-0f4f-437a-bdbd-d1f352879798",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "ff7689de-805d-4b24-be71-442d20e094a9",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "3cea1388-649a-49c0-9be9-c31322a5f9f2",
-                              "$Data": 0.0
-                            },
-                            "Height": {
-                              "$GUID": "4f8bf61e-d848-404d-8b9f-3775ea908ce3",
-                              "$Data": 0.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "42a92d09-0870-41ef-982e-2862bf9b545c",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "42316271-9fd5-475d-a62e-3362e32c45db",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "b4b2c83a-f4b3-4634-ac45-d2edf439ba82",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "303fdceb-9feb-4a16-830f-9763c4f0aa81",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "aa8fedbb-3839-45e9-8d15-9b9f70327686",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "a206ad15-1ec7-42d3-8953-4ee17bafa7ca",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "ad752d98-80ab-4f23-8bde-67ee3aa34d36",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "80048168-e3e3-4a48-9787-5c6bd7d06f3e",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "d1842694-8b59-42d5-9bfb-7db4922e3fe2",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "fd7ea4c9-e13c-4d5a-b856-69e870f8b51a",
-              "$Data": []
-            }
-          }
-        }
-      ]
+      ],
+      "Children": []
     }
-  }
+  ]
 }

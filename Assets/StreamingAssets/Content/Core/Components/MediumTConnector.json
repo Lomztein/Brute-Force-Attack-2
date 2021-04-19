@@ -1,484 +1,171 @@
 {
-  "$GUID": "fa917109-227c-4c0d-b55d-00a6b4a4e783",
-  "$Data": {
-    "Name": {
-      "$GUID": "f8b9b8d6-0707-43ae-8437-8c7cad56792f",
-      "$Data": "MediumTConnector"
+  "Name": "MediumTConnector",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
     },
-    "Tag": {
-      "$GUID": "fa8dec77-ca90-4afa-9ebb-4747114d8a3d",
-      "$Data": "Untagged"
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Connectors.Connector",
+      "$Data": {
+        "LocalTargetPosition": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": {
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AttachmentPointSet",
+          "$Data": {
+            "Points": [
+              {
+                "LocalPosition": {
+                  "X": 0.5,
+                  "Y": 0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": -0.5,
+                  "Y": -0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": 0.5,
+                  "Y": -0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": -0.5,
+                  "Y": 0.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": 0.0,
+                  "Y": 1.5
+                }
+              },
+              {
+                "LocalPosition": {
+                  "X": 0.0,
+                  "Y": -1.5
+                }
+              }
+            ]
+          }
+        },
+        "LowerAttachmentPoints": {
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "$Data": {
+            "Width": "Medium",
+            "Height": "Medium"
+          }
+        },
+        "_name": "Medium T-Connector",
+        "_description": "Connects two small supporting weapons to a large medium-sized wepaon.",
+        "_uniqueIdentifier": "Core.MediumTConnector",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 350
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Small",
+        "_height": "Small"
+      }
     },
-    "Layer": {
-      "$GUID": "44e21177-640e-44cb-8cac-1f888cbd705a",
-      "$Data": 9
-    },
-    "Static": {
-      "$GUID": "99380fe5-c568-4824-a3df-f58074b15502",
-      "$Data": false
-    },
-    "Components": {
-      "$GUID": "a250b180-55bd-445d-8b18-b0b81cb1f2cf",
-      "$Data": [
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 3.0
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "72610569-ce1a-4224-a3f7-d04cca07f7b0",
           "$Type": "UnityEngine.Transform",
           "$Data": {
             "Position": {
-              "$GUID": "bb9b2bbf-2b32-4ba8-bef0-ec069492f15a",
-              "$Data": {
-                "X": {
-                  "$GUID": "83f14ac7-08ba-4004-8e00-4f9dc86a97d7",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "072fe0c5-6918-4a63-89fd-0d26d4c32cfe",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "5b244a90-e993-4976-88f7-c623453b1eac",
-                  "$Data": -1.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "$GUID": "e1654445-6c43-478f-bb70-63acf902f968",
-              "$Data": {
-                "X": {
-                  "$GUID": "93a64d50-19fa-4842-9654-64bbbffd2471",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "bd5e075c-0c25-439c-8c77-3fce87f82e7f",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "3908a7b9-9812-4689-9522-a3f8cf293467",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "$GUID": "b0878be2-2d3b-44a3-b083-4db6e5dda378",
-              "$Data": {
-                "X": {
-                  "$GUID": "aa646e83-f25d-4528-9c49-6728ef7deb57",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "c4cfe341-65d3-4d22-b254-796962d77921",
-                  "$Data": 1.0
-                },
-                "Z": {
-                  "$GUID": "d9b90942-67d9-4dd4-8cad-f26a84134e93",
-                  "$Data": 1.0
-                }
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "64a4e741-f8af-40f1-8fbc-fdbcbc9e5076",
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Connectors.Connector",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "LocalTargetPosition": {
-              "$GUID": "aef1ad40-4d20-47f1-9876-a320d1a14fde",
-              "$Data": {
-                "X": {
-                  "$GUID": "c885c4bb-fd31-4886-8d03-168bdf5c697d",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "f38d202e-4cdc-4bb0-ba97-fc63d83ae7fa",
-                  "$Data": 0.0
-                }
-              }
+            "Reference": {
+              "Path": "Core/Sprites/Components/MediumTConnector.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 64.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
-            "BaseComplexity": {
-              "$GUID": "e6fef380-b25a-4067-a62d-3eede0c1b595",
-              "$Data": 0.0
-            },
-            "UpperAttachmentPoints": {
-              "$GUID": "5a07173b-3946-44a4-ab86-8e01936885f9",
-              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AttachmentPointSet",
-              "$Data": {
-                "Points": {
-                  "$GUID": "44c4b01d-fb96-4b54-aa72-ac8fb61b2f5d",
-                  "$Data": [
-                    {
-                      "$GUID": "e1c52a66-33c0-4f19-8e35-bf9138e4acc5",
-                      "$Data": {
-                        "LocalPosition": {
-                          "$GUID": "f021412d-525a-4f88-a638-8210efd90a2a",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "c34161d6-4c35-4d66-bfb8-e33777ac0be3",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "9dd3a98f-84c9-4fd3-9805-b8b0a551d4c4",
-                              "$Data": 0.5
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "$GUID": "5041ea88-3844-4683-b579-a76e3a25a449",
-                      "$Data": {
-                        "LocalPosition": {
-                          "$GUID": "9b6c64a0-275b-4185-95cd-c6b47881f62d",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "763732e2-6f3d-4aff-9909-e569e2796b6a",
-                              "$Data": -0.5
-                            },
-                            "Y": {
-                              "$GUID": "b61d1a91-000c-43ae-8a12-32e0f700f3e0",
-                              "$Data": -0.5
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "$GUID": "b17069bf-9453-4f04-87dc-443833e17bf8",
-                      "$Data": {
-                        "LocalPosition": {
-                          "$GUID": "7921f477-133e-42bf-8b1e-b2d9d451d556",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "e3d69181-e234-448d-a547-c61bf22cfa1a",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "f81c9793-1e5f-4ff4-b28c-0d2fce93d750",
-                              "$Data": -0.5
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "$GUID": "bed6af70-5f62-4f10-af38-96fecd15091f",
-                      "$Data": {
-                        "LocalPosition": {
-                          "$GUID": "611b0f2e-d25b-47c2-9207-d0f42241418b",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "1ce439a6-111d-4438-8479-8d2c72322424",
-                              "$Data": -0.5
-                            },
-                            "Y": {
-                              "$GUID": "e1fbc7c9-4833-4997-b4b4-1ae3f0df90b5",
-                              "$Data": 0.5
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "$GUID": "9fa03c8f-5f8e-4f50-8650-58631d5f65fe",
-                      "$Data": {
-                        "LocalPosition": {
-                          "$GUID": "8321cfd5-7348-4eff-aefa-f6a13033b9ca",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "54303a25-caa7-4a89-b85f-c8f3f3343ee3",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "67511d08-7e0d-454c-a23c-5e104178743c",
-                              "$Data": 1.5
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "$GUID": "0656494d-365e-4297-a811-f291497d561d",
-                      "$Data": {
-                        "LocalPosition": {
-                          "$GUID": "4ff14246-d807-43ba-b34a-04b6e091ef35",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "5d6425d0-4cfb-46d3-8283-abe93850c3ae",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "868f1187-5487-42a9-b61f-b06565abae7e",
-                              "$Data": -1.5
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "LowerAttachmentPoints": {
-              "$GUID": "bc6bc759-cc3a-4e75-bc40-ce75edf5a93c",
-              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-              "$Data": {
-                "Width": {
-                  "$GUID": "b7f191db-9106-42f5-bdd4-ccd8a09521f0",
-                  "$Data": "Medium"
-                },
-                "Height": {
-                  "$GUID": "86b8ad66-54da-497f-8f81-d532c3497a40",
-                  "$Data": "Medium"
-                }
-              }
-            },
-            "_name": {
-              "$GUID": "c9fa57a0-d205-4b34-81e8-18a447190176",
-              "$Data": "Medium T-Connector"
-            },
-            "_description": {
-              "$GUID": "312a0e9c-4387-4e53-bad8-326e8187574b",
-              "$Data": "Connects two small supporting weapons to a large medium-sized wepaon."
-            },
-            "_uniqueIdentifier": {
-              "$GUID": "32ee05fc-5810-40c4-ba8d-98217a2a2f13",
-              "$Data": "Core.MediumTConnector"
-            },
-            "_cost": {
-              "$GUID": "b6c363f0-8895-4b50-aa6c-fae2ba6d1f92",
-              "$Data": {
-                "Elements": {
-                  "$GUID": "886439f2-35f8-46fc-9008-055c87b6f9ee",
-                  "$Data": [
-                    {
-                      "$GUID": "218037a1-449e-46f2-a6a1-d60bb786d660",
-                      "$Data": {
-                        "Type": {
-                          "$GUID": "b9902614-4dd9-4a39-8415-a93279b84b10",
-                          "$Data": "Credits"
-                        },
-                        "Value": {
-                          "$GUID": "79a42f6e-076e-45fd-86f7-5eea286ede1e",
-                          "$Data": 350
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "BaseAttributes": {
-              "$GUID": "e8823ad9-262a-401c-be05-825da6e3a9e6",
-              "$Data": []
-            },
-            "_width": {
-              "$GUID": "4a72c39d-a781-4dff-85bd-a4cabdfc32b9",
-              "$Data": "Small"
-            },
-            "_height": {
-              "$GUID": "4dd2ea05-147d-4d58-bf51-dd9091188fad",
-              "$Data": "Small"
-            }
-          }
-        },
-        {
-          "$GUID": "0de1cbdf-05f4-4287-9ac7-bcca9a705a48",
-          "$Type": "UnityEngine.BoxCollider2D",
-          "$Data": {
-            "Offset": {
-              "$GUID": "cf92c98a-7fcb-48f1-96c7-9c4a8a474f80",
-              "$Data": {
-                "X": {
-                  "$GUID": "1853c085-8f62-47fa-910e-1d29c0e09619",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "537c4c90-9179-4798-8a57-a334b580117a",
-                  "$Data": 0.0
-                }
-              }
-            },
-            "Size": {
-              "$GUID": "67d9b45f-3a3c-4e1e-8281-1e6ae34aeffb",
-              "$Data": {
-                "X": {
-                  "$GUID": "b7b03088-e899-4d82-bb1e-03fba7184d79",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "be0f9dbd-5f41-4b2f-bcea-f581ac71c1a0",
-                  "$Data": 3.0
-                }
-              }
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
-      ]
-    },
-    "Children": {
-      "$GUID": "82df18e4-c649-43ca-8ca8-da7fe829edf8",
-      "$Data": [
-        {
-          "$GUID": "4f41b956-af01-4e36-85d3-ad8aee062ce3",
-          "$Data": {
-            "Name": {
-              "$GUID": "94bee466-a157-4747-b71d-7621c7e27a64",
-              "$Data": "Sprite"
-            },
-            "Tag": {
-              "$GUID": "318f9ba6-4523-4b99-b2b9-c83454b7782e",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "f9c66221-9507-4402-9b31-b8fb1af3be59",
-              "$Data": 9
-            },
-            "Static": {
-              "$GUID": "0ab7de3b-9c77-48f5-9f5e-718fd08a2819",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "eb4c09db-c968-44bd-91a5-1eb309026e08",
-              "$Data": [
-                {
-                  "$GUID": "408bb8aa-0c73-4d1c-82f9-766904fd20b5",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "ce21debe-7ce1-4e38-9194-d020cd5ceba6",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "dfb37901-ad19-4496-b05e-2d4cd9097a81",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "dac58af0-c797-4c26-b1cd-06ab959e97de",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "ca9537b8-3355-4f63-b2ca-e24f9a684203",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "9631d14c-df32-43ed-bbd6-78426baea2b4",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "4cc16e67-e8a1-468d-ab30-c7ee1c458aac",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "fe679508-ddee-41f7-be58-4182139f2da9",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "9e988a28-0461-4212-83d6-83508a56cb05",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "42719d74-86a5-48e1-850f-31f80e397d41",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "e61d6ecd-ae47-4cb3-9cfe-9118335e9c56",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "7bb5a82a-f787-44ee-90fc-ba7f2df28ea3",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "49a7c09a-15bf-4839-aeb0-85071791d1f4",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "5ff57e8a-3995-4b69-b370-58306c9cfbe8",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "568de7f2-5d5b-4282-bb79-430cd50902dc",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "8e2a1116-d569-429f-b175-5e14bb01cfcb",
-                          "$Data": "Core/Sprites/Components/MediumTConnector.png"
-                        },
-                        "Rect": {
-                          "$GUID": "fb486d72-6f00-422f-a1f3-12fa45e400c0",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "09af242d-fdda-4558-b660-bef40ba2f30d",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "471f2855-8fe7-435b-8b0b-3e8fdbabb824",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "3b385b76-a2fe-4b9b-bf4e-c8a01074c541",
-                              "$Data": 32.0
-                            },
-                            "Height": {
-                              "$GUID": "918b8901-fc41-4866-9843-8c8a6940e1ac",
-                              "$Data": 64.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "cf4a3bbf-e93d-43ad-b091-96f9b4a5891c",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "748274aa-b40e-4b00-8060-4c1574eef38a",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "126b8f4f-1ce0-452f-8e63-bb52ce6036c4",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "6f63d6b3-11ce-4bae-8f35-1de628544537",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "27ffb3d4-80c4-44ed-83fd-f413f09baa06",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "c2de63e8-8c68-4f86-86b2-91b365734a7d",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "055f617d-a14c-40bd-877c-250760c92bac",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "42067d29-e96f-46f9-95c1-d8233cd3d379",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "a4aba586-3a3b-4220-9bd7-c493b738321b",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "19523f00-9299-49dc-a1da-186fde03951b",
-              "$Data": []
-            }
-          }
-        }
-      ]
+      ],
+      "Children": []
     }
-  }
+  ]
 }

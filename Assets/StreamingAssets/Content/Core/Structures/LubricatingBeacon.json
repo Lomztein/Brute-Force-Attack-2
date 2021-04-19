@@ -1,810 +1,286 @@
 {
-  "$GUID": "51626571-a06d-4412-9c8c-3a2e88fad4bf",
-  "$Data": {
-    "Name": {
-      "$GUID": "d6d0b3c2-c1c2-4507-a7d3-fb98ed228874",
-      "$Data": "LubricatingBeacon"
+  "Name": "LubricatingBeacon",
+  "Tag": "Untagged",
+  "Layer": 10,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
     },
-    "Tag": {
-      "$GUID": "dfba8a9f-1916-4ac7-817c-7e48d9809edd",
-      "$Data": "Untagged"
+    {
+      "$Type": "Lomztein.BFA2.Structures.Structure",
+      "$Data": {
+        "_name": "Lubricator",
+        "_description": "Increases nearby rotators rotate speed by violently spraying lubricant everywhere.",
+        "_uniqueIdentifier": "Core.Lubricator",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 500
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Medium",
+        "_height": "Medium"
+      }
     },
-    "Layer": {
-      "$GUID": "ef70d8aa-d2c7-4ee8-9aa4-0de178481ff3",
-      "$Data": 10
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
+      "$Data": {
+        "TargetLayer": {
+          "Mask": 512
+        },
+        "Range": 2.5,
+        "IncludeSelf": false,
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": {
+            "Stats": [
+              {
+                "Identifier": "Turnrate",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.5
+              }
+            ],
+            "_identifier": "Core.Lubrication",
+            "_name": "Lubricated",
+            "_description": "This rotator has been lubricated, it turns much quicker.",
+            "RequiredAttributes": [
+              "Rotator"
+            ]
+          }
+        }
+      }
     },
-    "Static": {
-      "$GUID": "59f56b1f-7452-433c-942c-3b5daab879c3",
-      "$Data": false
-    },
-    "Components": {
-      "$GUID": "4b464221-e694-4031-b123-5809e1cff952",
-      "$Data": [
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 1.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "46e23021-74ef-4726-a98d-0da780f0452c",
           "$Type": "UnityEngine.Transform",
           "$Data": {
             "Position": {
-              "$GUID": "0d5125df-7f9c-48aa-b0e9-6e99342605e2",
-              "$Data": {
-                "X": {
-                  "$GUID": "ddbb3fcb-fe55-4746-8e50-ea55974d641f",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "6295e070-38ee-464f-94a6-361dfb8b9035",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "ec9d90bd-9175-4c82-8469-cc08e0649431",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "$GUID": "8825af18-5d25-4410-adcb-c86c14a960bd",
-              "$Data": {
-                "X": {
-                  "$GUID": "09d43d23-06b8-4f19-9dc8-c070358117d3",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "d63db98c-3af3-4b7c-a64e-60516c361597",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "35a776b1-30ef-4731-b8db-e2795987076d",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "$GUID": "cf144f99-12cc-488a-a24f-86923330fd84",
-              "$Data": {
-                "X": {
-                  "$GUID": "893c9f1d-c02c-464a-a890-aa03aaffeb7e",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "9de02e27-17a5-42ec-9880-4cb1dfae91f7",
-                  "$Data": 1.0
-                },
-                "Z": {
-                  "$GUID": "1ea4f216-c014-4ebf-a63c-d9967434906a",
-                  "$Data": 1.0
-                }
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "e5912763-585c-4687-bd6a-330f332f5fa6",
-          "$Type": "Lomztein.BFA2.Structures.Structure",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "_name": {
-              "$GUID": "fa1aa868-1164-4932-9934-3ee847688936",
-              "$Data": "Lubricator"
+            "Reference": {
+              "Path": "Core/Sprites\\Structures\\LubeSprayer.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
-            "_description": {
-              "$GUID": "1027c017-006c-4228-acef-c5d431a14ff1",
-              "$Data": "Increases nearby rotators rotate speed by violently spraying lubricant everywhere."
-            },
-            "_uniqueIdentifier": {
-              "$GUID": "43444f73-c94b-43f3-95b6-dd57a0ea2887",
-              "$Data": "Core.Lubricator"
-            },
-            "_cost": {
-              "$GUID": "0436daa6-4c29-4ac7-a785-20b3ef1ab909",
-              "$Data": {
-                "Elements": {
-                  "$GUID": "fadc7e4c-ac43-4fa7-af07-c43c142c0a54",
-                  "$Data": [
-                    {
-                      "$GUID": "a5b80eb7-093e-4dcb-9b47-faff769a269e",
-                      "$Data": {
-                        "Type": {
-                          "$GUID": "3ca65a68-b507-40e7-aa0e-3042eb8119fd",
-                          "$Data": "Credits"
-                        },
-                        "Value": {
-                          "$GUID": "ea97283f-8ac0-4bd4-8526-b6670c8f8340",
-                          "$Data": 500
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "BaseAttributes": {
-              "$GUID": "2c95512e-8b4c-4e39-a3ff-dc9f4213f343",
-              "$Data": []
-            },
-            "_width": {
-              "$GUID": "1b48d88f-d916-4829-841f-6769f4e9e413",
-              "$Data": "Medium"
-            },
-            "_height": {
-              "$GUID": "bff7cf93-6c8c-4829-b38f-7d71558a411f",
-              "$Data": "Medium"
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         },
         {
-          "$GUID": "8299aa00-19ab-4bfe-9490-b858dd8e797f",
-          "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
+          "$Type": "Lomztein.BFA2.Misc.Rotator",
           "$Data": {
-            "TargetLayer": {
-              "$GUID": "18cf2a39-72d5-4654-a820-f0446ccc8e2d",
-              "$Data": {
-                "Mask": {
-                  "$GUID": "74f6d6c6-0349-4eaf-bbd3-0045eab83c34",
-                  "$Data": 512
-                }
-              }
-            },
-            "Range": {
-              "$GUID": "df3ce186-4f36-4b2a-8d3c-3463d5a7f513",
-              "$Data": 2.5
-            },
-            "IncludeSelf": {
-              "$GUID": "d80751f5-77de-4c18-8ff0-aa22f824e155",
-              "$Data": false
-            },
-            "_mod": {
-              "$GUID": "138c003c-7222-4aa7-9759-937aed914fa1",
-              "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-              "$Data": {
-                "Stats": {
-                  "$GUID": "dedde99c-a1b4-401c-9cc3-90cfa4ed5f38",
-                  "$Data": [
-                    {
-                      "$GUID": "baebaff8-88ba-4613-9195-616b44703c30",
-                      "$Data": {
-                        "Identifier": {
-                          "$GUID": "f2584d69-3e3b-4e5c-bb65-626795675c44",
-                          "$Data": "Turnrate"
-                        },
-                        "Name": {
-                          "$GUID": "c3674dab-545a-4e3c-a19d-fc02c59a7d59",
-                          "$Data": ""
-                        },
-                        "Description": {
-                          "$GUID": "f37f8dc7-c3a7-4b83-934c-80d38ba1eef2",
-                          "$Data": ""
-                        },
-                        "Type": {
-                          "$GUID": "5679662d-eaad-4f21-a85e-e84dbb833637",
-                          "$Data": "Multiplicative"
-                        },
-                        "Value": {
-                          "$GUID": "bc525125-5373-43c7-8a0f-cb1d6a71e5c2",
-                          "$Data": 0.5
-                        }
-                      }
-                    }
-                  ]
-                },
-                "_identifier": {
-                  "$GUID": "2a75af74-504a-4384-890b-aa54c0fbf136",
-                  "$Data": "Core.Lubrication"
-                },
-                "_name": {
-                  "$GUID": "605a9658-8e13-4ffe-9da6-9ca5a791edbd",
-                  "$Data": "Lubricated"
-                },
-                "_description": {
-                  "$GUID": "1f62cb57-5b83-4ef1-9706-8b0c45669bd7",
-                  "$Data": "This rotator has been lubricated, it turns much quicker."
-                },
-                "RequiredAttributes": {
-                  "$GUID": "9fe2c13c-d478-4ea3-bb8e-fe80d343c616",
-                  "$Data": [
-                    {
-                      "$GUID": "8c0eb542-9936-4111-af8e-df913fc44b78",
-                      "$Data": "Rotator"
-                    }
-                  ]
-                }
-              }
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 135.0
             }
           }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "RightLubeParticle",
+          "Tag": "Untagged",
+          "Layer": 10,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 1.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 5.433382E-05,
+                  "Y": 90.0,
+                  "Z": 180.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            },
+            {
+              "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+              "$Data": {
+                "Reference": {
+                  "Path": "Resources/Particles/LubeParticles"
+                },
+                "NameOverride": ""
+              }
+            }
+          ],
+          "Children": []
         },
         {
-          "$GUID": "9d15bc81-ea93-44be-872d-9924b1a43814",
-          "$Type": "UnityEngine.CircleCollider2D",
-          "$Data": {
-            "Radius": {
-              "$GUID": "df678fb7-4ea4-497f-a403-24ecb1e183b3",
-              "$Data": 1.0
-            },
-            "Offset": {
-              "$GUID": "ee939eb3-c261-4526-8132-78f1329e7f0c",
+          "Name": "LeftLubeParticle",
+          "Tag": "Untagged",
+          "Layer": 10,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
               "$Data": {
-                "X": {
-                  "$GUID": "f8da1bf7-a25c-452e-911a-ad5a8890ff3c",
-                  "$Data": 0.0
+                "Position": {
+                  "X": -1.0,
+                  "Y": 0.0,
+                  "Z": 0.0
                 },
-                "Y": {
-                  "$GUID": "731b9439-b3bc-4a80-95a7-bd163017fe85",
-                  "$Data": 0.0
+                "Rotation": {
+                  "X": -6.097462E-05,
+                  "Y": 270.0,
+                  "Z": -7.508434E-06
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
                 }
               }
             },
-            "IsTrigger": {
-              "$GUID": "05775201-3418-4d46-ab80-2a4491cd2950",
-              "$Data": false
-            },
-            "UsedByEffector": {
-              "$GUID": "038c701e-02b1-4884-a74c-c9fce73be9d1",
-              "$Data": false
+            {
+              "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+              "$Data": {
+                "Reference": {
+                  "Path": "Resources/Particles/LubeParticles"
+                },
+                "NameOverride": ""
+              }
             }
-          }
+          ],
+          "Children": []
         }
       ]
     },
-    "Children": {
-      "$GUID": "7209f08a-bf84-4429-bd4f-6bdcb8cd515f",
-      "$Data": [
+    {
+      "Name": "Feet",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "53f29c0c-a13e-451c-80ae-a3fcb7c965eb",
+          "$Type": "UnityEngine.Transform",
           "$Data": {
-            "Name": {
-              "$GUID": "aa1cc376-c3ab-4c84-9982-b953225c9918",
-              "$Data": "Sprite"
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.1
             },
-            "Tag": {
-              "$GUID": "ac5319bc-2c16-43d9-98a8-4596fa36c0a6",
-              "$Data": "Untagged"
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
-            "Layer": {
-              "$GUID": "9d2217fc-1c82-46e2-8ed5-3f1226389df8",
-              "$Data": 10
-            },
-            "Static": {
-              "$GUID": "5e1b5b6f-d0e8-42f2-abd6-c2df0dfe6756",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "c1793d8f-b7eb-4376-b548-4412554a512e",
-              "$Data": [
-                {
-                  "$GUID": "525dde00-4dde-43aa-a87d-6c71e6365a8a",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "fb889330-1359-4be5-9983-2c53433f5a10",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "d84b54b7-687d-4bde-b78a-3a5014646c34",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "d8f4693d-e3b5-45e7-8b1d-2e43c96a702b",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "b46c54f8-7c15-42b7-ac46-6598d8e78f58",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "bfa6cbb0-0701-488d-b7e0-39065637fa3c",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "a7505005-8bc6-4173-8c81-74773598ef11",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "c0394820-1be2-4c63-86b4-9572af6adab7",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "9a2e1a5e-ba11-4b1a-9606-8f18d8ef8c16",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "44ab0bef-9c00-40a6-916a-2bba0c00353a",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "30b9f9c8-93d0-4ac3-9faf-4e13f8f9888c",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "a82e341a-292c-4fce-9686-e5ad52d2438a",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "079cb574-d8f0-4a09-8462-a93b9269845a",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "28cba12a-b977-4738-a2f4-76a5fb22001a",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "f3085fd0-4aac-4f22-918f-12f3426c6d04",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "2a2f1747-f0f4-4e58-b909-7b00ad23937f",
-                          "$Data": "Core/Sprites\\Structures\\LubeSprayer.png"
-                        },
-                        "Rect": {
-                          "$GUID": "759a4bf9-9ae8-4286-b1b0-32e3c9adcf92",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "45d13d91-42ef-4afc-91b3-9e703a5bd662",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "096bf0f8-61c4-4c9e-b10a-073c46b0f122",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "af6fe22f-1d18-4728-bfeb-982fbd0fb52d",
-                              "$Data": 32.0
-                            },
-                            "Height": {
-                              "$GUID": "b42ac2c1-fe20-411e-800b-f2c377432f25",
-                              "$Data": 32.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "8a31e080-8940-42d7-85a9-9ccb6476ca0f",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "9709e1b4-7f51-4283-8826-10ecbd344d7f",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "1ad9cef0-21aa-4245-929a-e45674edfd31",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "06f3404c-09c8-4665-86ad-5fc35467c371",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "491276ba-7669-41b0-a5f5-d05e0270812d",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "23d32112-55f6-4bcc-bab0-8eaff02b6bfb",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "b022e4c5-3986-4a73-84fa-79b0d2d12724",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "dfeb155a-aa81-44a1-91c8-d9d69dfe3960",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "f9391f08-3afd-4362-863a-9d2e151b28af",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "b371b3b7-371e-406d-87c8-f57e9e73c4d3",
-                  "$Type": "Lomztein.BFA2.Misc.Rotator",
-                  "$Data": {
-                    "Rotation": {
-                      "$GUID": "f36c39d4-d6ad-4d8e-b1f8-e8aa702a1223",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "94b69eef-09f1-4616-aea2-f9eedb9d5610",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "e3472b1a-9134-4ce8-b040-8a9a288a173d",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "f35815a8-a114-4d57-95e2-097499262f4f",
-                          "$Data": 135.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "6185c725-b006-439c-8788-c068c478d804",
-              "$Data": [
-                {
-                  "$GUID": "b659fbc2-438b-4978-bd84-6d355bcdb6a5",
-                  "$Data": {
-                    "Name": {
-                      "$GUID": "7d669ddc-969c-4d8a-9d36-7755a1d7d2ae",
-                      "$Data": "RightLubeParticle"
-                    },
-                    "Tag": {
-                      "$GUID": "777e2204-9efb-453b-9d62-8165a8f1b6ac",
-                      "$Data": "Untagged"
-                    },
-                    "Layer": {
-                      "$GUID": "74e8a2e0-3611-48e7-94bc-3001018f0796",
-                      "$Data": 10
-                    },
-                    "Static": {
-                      "$GUID": "15c67826-dc41-4b21-9791-fcbccb342e84",
-                      "$Data": false
-                    },
-                    "Components": {
-                      "$GUID": "965d84da-7ca9-4e35-bfac-cb0504078dc2",
-                      "$Data": [
-                        {
-                          "$GUID": "74617878-2888-4389-a1eb-6ce2d6b3a100",
-                          "$Type": "UnityEngine.Transform",
-                          "$Data": {
-                            "Position": {
-                              "$GUID": "12663ead-c44a-497b-8a87-b83009aad15c",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "62f68b90-a7e4-4c7a-bee5-d06ce7704e5d",
-                                  "$Data": 1.0
-                                },
-                                "Y": {
-                                  "$GUID": "58488a8b-de9e-4486-93f5-65473265cdd0",
-                                  "$Data": 0.0
-                                },
-                                "Z": {
-                                  "$GUID": "f96ae721-d40b-4761-8971-e48576c04094",
-                                  "$Data": 0.0
-                                }
-                              }
-                            },
-                            "Rotation": {
-                              "$GUID": "ede38bef-1973-40e4-89a4-f1ba9530f7bd",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "853cba53-6895-4b33-a080-d7a3121ca850",
-                                  "$Data": 5.433382E-05
-                                },
-                                "Y": {
-                                  "$GUID": "7de0b9de-8ae6-467e-929e-263c99b5187d",
-                                  "$Data": 90.0
-                                },
-                                "Z": {
-                                  "$GUID": "7d24a15b-706e-4973-97ad-b0b6bfef3a30",
-                                  "$Data": 180.0
-                                }
-                              }
-                            },
-                            "Scale": {
-                              "$GUID": "3e9f90ae-47dc-4238-8336-4ecb0980c259",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "f7110d0a-2a24-4325-a1f1-8616cbfc7c3d",
-                                  "$Data": 1.0
-                                },
-                                "Y": {
-                                  "$GUID": "6b1233ea-1b93-411e-a244-b63418c75279",
-                                  "$Data": 1.0
-                                },
-                                "Z": {
-                                  "$GUID": "4a8c49e6-af2f-4862-b0ab-b40af71883db",
-                                  "$Data": 1.0
-                                }
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "$GUID": "439ec28e-a770-4792-9fa7-2a1a6e63cfba",
-                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                          "$Data": {
-                            "Reference": {
-                              "$GUID": "988b55f6-8031-4484-8b8e-8678a25abebd",
-                              "$Data": {
-                                "Path": {
-                                  "$GUID": "09f6381d-1fef-408e-9d03-0c2266fcf5fc",
-                                  "$Data": "Resources/Particles/LubeParticles"
-                                }
-                              }
-                            },
-                            "NameOverride": {
-                              "$GUID": "619a7e5a-2bf2-4ed3-ba49-b41f5a570634",
-                              "$Data": ""
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "Children": {
-                      "$GUID": "f41c4eeb-e4d0-40f1-b6bb-a4964aa66e82",
-                      "$Data": []
-                    }
-                  }
-                },
-                {
-                  "$GUID": "0e6ff6bd-8ff2-4a2b-9413-3e62dbdb3e9d",
-                  "$Data": {
-                    "Name": {
-                      "$GUID": "e0c73cf2-a621-4e6d-97aa-a88c7204ae8a",
-                      "$Data": "LeftLubeParticle"
-                    },
-                    "Tag": {
-                      "$GUID": "a0e3b45b-e1c2-411e-9842-11fa80cded2d",
-                      "$Data": "Untagged"
-                    },
-                    "Layer": {
-                      "$GUID": "9d232e0e-46aa-42f3-add2-d7de81fe36fc",
-                      "$Data": 10
-                    },
-                    "Static": {
-                      "$GUID": "5ec5c0e3-b478-47f7-818d-fc82d3d2ceec",
-                      "$Data": false
-                    },
-                    "Components": {
-                      "$GUID": "cdcf0c14-0b59-448f-8ae8-9f45f5a7a727",
-                      "$Data": [
-                        {
-                          "$GUID": "ea3168b3-a8b5-4db3-99e1-86b7743fb60d",
-                          "$Type": "UnityEngine.Transform",
-                          "$Data": {
-                            "Position": {
-                              "$GUID": "7a0f4bb2-45be-4d81-938e-ed27f5e57e2a",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "73c62998-b759-4a29-94ab-0057ef5fbf57",
-                                  "$Data": -1.0
-                                },
-                                "Y": {
-                                  "$GUID": "5a578323-187a-4199-9bef-47fa41fc8c59",
-                                  "$Data": 0.0
-                                },
-                                "Z": {
-                                  "$GUID": "11b5b9d8-e442-4864-9ee3-be1993b78ac2",
-                                  "$Data": 0.0
-                                }
-                              }
-                            },
-                            "Rotation": {
-                              "$GUID": "94d9a5c6-ef16-4fee-a439-88fbacbbcd60",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "032f11e4-d959-4928-8754-2a09371a1660",
-                                  "$Data": -6.097462E-05
-                                },
-                                "Y": {
-                                  "$GUID": "62085d7b-778a-4950-9e97-1850c4c26fd9",
-                                  "$Data": 270.0
-                                },
-                                "Z": {
-                                  "$GUID": "1f0c8889-b8ff-47d0-9662-3bcc811140c8",
-                                  "$Data": -7.508434E-06
-                                }
-                              }
-                            },
-                            "Scale": {
-                              "$GUID": "659e6faf-6c43-458d-bec0-67cf4e89e800",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "709257cb-2bad-41b2-933f-755f353fa082",
-                                  "$Data": 1.0
-                                },
-                                "Y": {
-                                  "$GUID": "2ef7da7b-8d05-4cd0-aeda-274d62812b31",
-                                  "$Data": 1.0
-                                },
-                                "Z": {
-                                  "$GUID": "8d4c0b8e-723a-480a-aadb-daa426a4538f",
-                                  "$Data": 1.0
-                                }
-                              }
-                            }
-                          }
-                        },
-                        {
-                          "$GUID": "58ef1769-cc6d-4303-a268-ac7783107efe",
-                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                          "$Data": {
-                            "Reference": {
-                              "$GUID": "863cf2f8-1183-40b0-8730-45afc5d9b13d",
-                              "$Data": {
-                                "Path": {
-                                  "$GUID": "8ef74e07-075b-4d01-9d73-ebbcd3410b31",
-                                  "$Data": "Resources/Particles/LubeParticles"
-                                }
-                              }
-                            },
-                            "NameOverride": {
-                              "$GUID": "af2a526d-63db-4a70-a269-070751f14e59",
-                              "$Data": ""
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "Children": {
-                      "$GUID": "0da0c4ce-96a7-48a9-94c9-3bedc1d86738",
-                      "$Data": []
-                    }
-                  }
-                }
-              ]
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "67912302-35d7-451c-a57a-b6d4f752748a",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "Name": {
-              "$GUID": "5f812d57-99c3-494e-9db1-4669d2a2604c",
-              "$Data": "Feet"
+            "Reference": {
+              "Path": "Core/Sprites\\Structures\\ResearchCollectorBase.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
-            "Tag": {
-              "$GUID": "60df13da-1a41-4db3-b80a-399d519e2c8d",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "87de5781-ed20-4f46-ba22-027bec1971f9",
-              "$Data": 10
-            },
-            "Static": {
-              "$GUID": "73cc4c5e-d7b6-4fb7-ba1d-1f230d74be5b",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "34bdd991-b674-4d24-832e-dba8270d22cb",
-              "$Data": [
-                {
-                  "$GUID": "be39f772-edc7-44e5-85c3-4275a6e76811",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "5ec60ebc-c83d-4e65-b3f7-a401676ddb63",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "a9416d96-6abe-46eb-ba7b-9975b42a34f0",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "49e7c7ee-cf23-4411-9a21-6a01f49e1459",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "eae49df4-8be1-4df9-aa43-4349958af11a",
-                          "$Data": 0.1
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "33025c48-d447-47e0-950f-233d436edd0a",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "274376e1-42f7-42e2-b9de-f0d4997eaef4",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "5e4bef37-7264-4a13-b385-0faad0a989df",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "6fdf232d-a092-4023-b01a-8f493fdfc842",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "9d5fd9e5-b5eb-434a-9f94-2df670f7d5b9",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "a806f227-c602-434b-a530-48eb7bfed1fb",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "fcef5588-daa1-4f16-9e9c-b48889b857f6",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "9788dbcb-a6e7-4c7d-9d00-dd637769178d",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "5d7d2108-eeed-461f-b206-140187c4438c",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "5375286d-6876-4b9d-b3da-9cecf781e53a",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "08fc926c-7e9d-40e0-9015-3c128add482a",
-                          "$Data": "Core/Sprites\\Structures\\ResearchCollectorBase.png"
-                        },
-                        "Rect": {
-                          "$GUID": "2bc47d76-bb06-4c13-b79f-d8c4a3798184",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "e4e4b2c2-3d60-4291-9227-a514da0b2675",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "55f83332-6134-4a91-a95f-a07b8934fd80",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "6d14e853-af17-4765-9ff1-faac563c90de",
-                              "$Data": 32.0
-                            },
-                            "Height": {
-                              "$GUID": "f3c09d25-df1c-492b-a147-0c94aa36279c",
-                              "$Data": 32.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "53e44e83-4740-4f8c-aa6d-7c979c85719b",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "76a36cb9-51bc-4a69-b1a0-799e8aa6d90d",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "ec49c4a2-1e86-4c0f-8044-42f425054057",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "b6cf2d64-8750-4417-826d-2cef4a7d7744",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "6d6ed9cb-bfc6-4ac8-a7aa-190cb5af505a",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "4a422d31-4cd5-4afa-8bb1-1665637c9515",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "599ebb95-24d3-41ff-8c8a-a16b09782649",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "c45de833-d1b8-4ba1-ac25-e04ce505070e",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "40378299-33ca-4ce0-9f26-1ed0f16e4f18",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "0a57076b-a900-4114-80a5-b923e38365a7",
-              "$Data": []
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
-      ]
+      ],
+      "Children": []
     }
-  }
+  ]
 }

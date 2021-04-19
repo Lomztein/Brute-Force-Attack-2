@@ -1,58 +1,23 @@
 {
-  "$GUID": "524832b3-30e9-4a43-af78-05d772346d5a",
-  "$Data": {
-    "Name": {
-      "$GUID": "ba450bf8-331e-43e3-afe0-646db46be47e",
-      "$Data": "Hard"
+  "Name": "Hard",
+  "Description": "Harder difficulty that requires strategic placement of turrets, frequent use of complex turrets and structures, and careful resource management.",
+  "GradeIdentifier": "Core.Hard",
+  "Identifier": "Core.Hard",
+  "Aspects": [
+    {
+      "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
+      "$Data": {
+        "StartingCredits": 750,
+        "StartingResearch": 0
+      }
     },
-    "Description": {
-      "$GUID": "7074810d-df85-4cd2-a546-9d6bdf47a4c2",
-      "$Data": "Harder difficulty that requires strategic placement of turrets, frequent use of complex turrets and structures, and careful resource management."
-    },
-    "GradeIdentifier": {
-      "$GUID": "200e17be-a506-4447-9e84-cbf10ab073bb",
-      "$Data": "Core.Hard"
-    },
-    "Identifier": {
-      "$GUID": "efec69f6-f32e-456b-9ec5-398a2b05e835",
-      "$Data": "Core.Hard"
-    },
-    "Aspects": {
-      "$GUID": "3d6638c9-a1c9-4270-92f6-1bcbf0bdc790",
-      "$Data": [
-        {
-          "$GUID": "1c862d1c-e9aa-460c-90f0-fd48e4bdcc89",
-          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
-          "$Data": {
-            "StartingCredits": {
-              "$GUID": "7042718b-d88a-4e0f-9cac-610bc9bec7ae",
-              "$Data": 750
-            },
-            "StartingResearch": {
-              "$GUID": "66384083-5aca-4dbf-a96e-0dfbc2c951c1",
-              "$Data": 0
-            }
-          }
-        },
-        {
-          "$GUID": "511d2542-926d-4c73-a296-484fb24479ef",
-          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
-          "$Data": {
-            "HealthMult": {
-              "$GUID": "0aa10eee-2825-4ef1-bfa3-46dd423296e8",
-              "$Data": 1.5
-            },
-            "ArmorMult": {
-              "$GUID": "567f9c05-151f-415c-b22b-3dd794573f7a",
-              "$Data": 1.0
-            },
-            "ShieldMult": {
-              "$GUID": "e6579175-4e86-405f-a23e-f03dd6fa5f37",
-              "$Data": 1.0
-            }
-          }
-        }
-      ]
+    {
+      "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.EnemyScalerDifficultyAspect",
+      "$Data": {
+        "HealthMult": 1.5,
+        "ArmorMult": 1.0,
+        "ShieldMult": 1.0
+      }
     }
-  }
+  ]
 }

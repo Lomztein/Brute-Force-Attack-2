@@ -1,965 +1,337 @@
 {
-  "$GUID": "3019a711-477b-4747-9c5e-4e3b927e7533",
-  "$Data": {
-    "Name": {
-      "$GUID": "5d77b75d-1060-443c-9052-82ab57e941d6",
-      "$Data": "CoolingTower"
+  "Name": "CoolingTower",
+  "Tag": "Untagged",
+  "Layer": 10,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": -6.25,
+          "Y": -4.5,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
     },
-    "Tag": {
-      "$GUID": "d8048d5d-970e-45b2-bb63-d787d0bb169f",
-      "$Data": "Untagged"
+    {
+      "$Type": "Lomztein.BFA2.Structures.Structure",
+      "$Data": {
+        "_name": "Coolant Tower",
+        "_description": "Cools nearby weapons, allowing for much faster firing rates.",
+        "_uniqueIdentifier": "Core.CoolantTower",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 1500
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Medium",
+        "_height": "Medium"
+      }
     },
-    "Layer": {
-      "$GUID": "c81633db-9017-4151-a410-204cf0f42b3e",
-      "$Data": 10
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
+      "$Data": {
+        "TargetLayer": {
+          "Mask": 512
+        },
+        "Range": 2.5,
+        "IncludeSelf": false,
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": {
+            "Stats": [
+              {
+                "Identifier": "Firerate",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.5
+              }
+            ],
+            "_identifier": "Core.WeaponCooling",
+            "_name": "Cooled",
+            "_description": "This weapon has been cooled by a nearby cooling tower, increasing firerate.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
+      }
     },
-    "Static": {
-      "$GUID": "19b05c90-9aa4-4f9a-a3b4-2387b3740a91",
-      "$Data": false
-    },
-    "Components": {
-      "$GUID": "1445f778-2791-4477-9d05-4a21a6002f44",
-      "$Data": [
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 1.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "793a0e3d-2118-4cbe-90a5-6e1c61f239aa",
           "$Type": "UnityEngine.Transform",
           "$Data": {
             "Position": {
-              "$GUID": "be04143e-4069-4c39-b192-1e97721c25db",
-              "$Data": {
-                "X": {
-                  "$GUID": "6f6aee23-53be-4118-926c-a4e2a89ac02b",
-                  "$Data": -6.25
-                },
-                "Y": {
-                  "$GUID": "31e829f5-1792-4262-b2a1-ed83b3387bf2",
-                  "$Data": -4.5
-                },
-                "Z": {
-                  "$GUID": "dfd9fa58-1920-4094-839a-a7f4234c7311",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "$GUID": "3044ae28-b24b-4d9c-9760-7cb61d3738e1",
-              "$Data": {
-                "X": {
-                  "$GUID": "fac5f65c-8f8c-4b45-894d-f46c3cdc09a9",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "9ac6c087-d8e9-4e43-8a38-6d4ed7f26bb6",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "3c416e88-0dee-4af1-97ba-fa0c699b1046",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "$GUID": "a45638a6-dd85-40fe-96f5-9a5fefb1ea2b",
-              "$Data": {
-                "X": {
-                  "$GUID": "501392e8-66aa-45db-b389-8af8d91ffeaf",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "2ae9383c-151c-492e-8ab4-7b2e4d4eb7c4",
-                  "$Data": 1.0
-                },
-                "Z": {
-                  "$GUID": "05216449-887e-4ba6-b740-075c4ccaca25",
-                  "$Data": 1.0
-                }
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "670c93ae-e07c-4edb-9dc8-10a25a7a0e5a",
-          "$Type": "Lomztein.BFA2.Structures.Structure",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "_name": {
-              "$GUID": "e50f08a8-6239-48ba-a712-568c9ae97f33",
-              "$Data": "Coolant Tower"
+            "Reference": {
+              "Path": "Core/Sprites\\Structures\\CoolantTower.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
-            "_description": {
-              "$GUID": "307ab252-afc1-4be7-b984-c1d05a592df0",
-              "$Data": "Cools nearby weapons, allowing for much faster firing rates."
-            },
-            "_uniqueIdentifier": {
-              "$GUID": "4dc79053-ae37-4e8c-ac5c-63448738daa3",
-              "$Data": "Core.CoolantTower"
-            },
-            "_cost": {
-              "$GUID": "82f7ccd3-50ba-44c7-a246-e7d508676969",
-              "$Data": {
-                "Elements": {
-                  "$GUID": "9427a8eb-5577-4721-b619-de0b218154fd",
-                  "$Data": [
-                    {
-                      "$GUID": "cffd8f5d-3a8b-473f-989a-053f6c1ddf4f",
-                      "$Data": {
-                        "Type": {
-                          "$GUID": "27af1525-f4b6-40d5-8cb6-252984d9908a",
-                          "$Data": "Credits"
-                        },
-                        "Value": {
-                          "$GUID": "8c406374-d3a4-4662-97d9-7c6d8a637640",
-                          "$Data": 1500
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "BaseAttributes": {
-              "$GUID": "8a30e8eb-a288-4656-8134-6833e0086cb3",
-              "$Data": []
-            },
-            "_width": {
-              "$GUID": "d8cbf613-fdf8-4517-9a89-362cb49f14ac",
-              "$Data": "Medium"
-            },
-            "_height": {
-              "$GUID": "e47843b0-9e43-457f-a31a-ce7d83e629f9",
-              "$Data": "Medium"
-            }
-          }
-        },
-        {
-          "$GUID": "362d9ed9-5ced-4642-8cc9-7798539c0918",
-          "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AreaModBroadcaster",
-          "$Data": {
-            "TargetLayer": {
-              "$GUID": "01bd9f66-d53b-464f-9743-6a56f89d8d61",
-              "$Data": {
-                "Mask": {
-                  "$GUID": "868b7d10-1156-4028-90bc-0ea4949c0c33",
-                  "$Data": 512
-                }
-              }
-            },
-            "Range": {
-              "$GUID": "43c59f8a-3444-486c-9669-1c10f9acd500",
-              "$Data": 2.5
-            },
-            "IncludeSelf": {
-              "$GUID": "a5675d87-f909-48d5-96ac-d19ba3020f7a",
-              "$Data": false
-            },
-            "_mod": {
-              "$GUID": "18c18602-ee5a-4b07-9597-4fd01b67ce13",
-              "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-              "$Data": {
-                "Stats": {
-                  "$GUID": "e27c9331-910c-41f7-8205-3687946a826f",
-                  "$Data": [
-                    {
-                      "$GUID": "2093ade2-65e5-4892-bc62-103e80351b11",
-                      "$Data": {
-                        "Identifier": {
-                          "$GUID": "acabf254-5795-4367-bcae-8e0b8c3aed76",
-                          "$Data": "Firerate"
-                        },
-                        "Name": {
-                          "$GUID": "a9071b4c-8fc8-46c2-a012-e4c92907036d",
-                          "$Data": ""
-                        },
-                        "Description": {
-                          "$GUID": "135a37b8-4c36-4a7b-aeaa-946f480e0ef7",
-                          "$Data": ""
-                        },
-                        "Type": {
-                          "$GUID": "25a39c8f-efda-4b15-a0e8-6359cbe3e8f0",
-                          "$Data": "Multiplicative"
-                        },
-                        "Value": {
-                          "$GUID": "5798f7e1-8063-4947-922b-cd88667e11a7",
-                          "$Data": 0.5
-                        }
-                      }
-                    }
-                  ]
-                },
-                "_identifier": {
-                  "$GUID": "550740d8-fcc8-47aa-8147-c23c73058cca",
-                  "$Data": "Core.WeaponCooling"
-                },
-                "_name": {
-                  "$GUID": "813f5bde-07b4-4547-90c8-1a4ce6b2e279",
-                  "$Data": "Cooled"
-                },
-                "_description": {
-                  "$GUID": "e8fa1f3c-579b-4bff-96cc-0b74c2d6ca16",
-                  "$Data": "This weapon has been cooled by a nearby cooling tower, increasing firerate."
-                },
-                "RequiredAttributes": {
-                  "$GUID": "99c4f11e-16c5-40a1-b99c-8f7a36a2ddca",
-                  "$Data": [
-                    {
-                      "$GUID": "6d6cb757-7c54-4156-98ed-d64f618a851e",
-                      "$Data": "Weapon"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
-          "$GUID": "55742fa1-1486-4d25-b2a9-89edbed6230d",
-          "$Type": "UnityEngine.CircleCollider2D",
-          "$Data": {
-            "Radius": {
-              "$GUID": "c05a7759-5fe7-46e3-b69f-7749ea343eeb",
-              "$Data": 1.0
-            },
-            "Offset": {
-              "$GUID": "5877aafe-3415-49c9-a512-48d87e145115",
-              "$Data": {
-                "X": {
-                  "$GUID": "ddae2976-4300-4f14-a3f1-cc4e9c3abb13",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "9ec5ef01-0973-4695-a471-2a3f3ee994d3",
-                  "$Data": 0.0
-                }
-              }
-            },
-            "IsTrigger": {
-              "$GUID": "c13b04fa-9c0d-4be7-8a01-66d7163793e7",
-              "$Data": false
-            },
-            "UsedByEffector": {
-              "$GUID": "35a941cc-69e0-464a-b891-187f4e081d9d",
-              "$Data": false
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
-      ]
+      ],
+      "Children": []
     },
-    "Children": {
-      "$GUID": "d6e6ad59-7b18-49ac-b571-45443549cc79",
-      "$Data": [
+    {
+      "Name": "Fan",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "5f5e77db-3b7c-4a08-8e88-1b6ded5d085b",
+          "$Type": "UnityEngine.Transform",
           "$Data": {
-            "Name": {
-              "$GUID": "1d6bc8c7-5cf0-4058-81a7-f60f6a890680",
-              "$Data": "Sprite"
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": -0.1
             },
-            "Tag": {
-              "$GUID": "26352f27-1c82-4c9c-aeee-156010c7dbb5",
-              "$Data": "Untagged"
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
-            "Layer": {
-              "$GUID": "1632a3ba-7159-472c-b088-eced68985fba",
-              "$Data": 10
-            },
-            "Static": {
-              "$GUID": "f1e6a0a9-8e2a-45e4-9609-5540ad73b8ba",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "9751868f-ab76-4ac4-babe-69d4ef86d5fe",
-              "$Data": [
-                {
-                  "$GUID": "9bfe6aaf-a983-4c9e-a2dd-4294d4f322c0",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "b8c6856e-cdb0-485a-8fd1-a5e1ffa9a000",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "c48e53fc-caa1-4473-97e5-7129f1a56993",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "87601bbe-9a5d-4a06-b968-5aa6d14dfcd4",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "3bf66fc8-c9f8-4e0e-ad2b-1d03a85c8a9a",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "6978666c-a8d0-4faf-8574-b9354cf07455",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "d144ef0d-ba41-4387-bbf5-626b0807090d",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "98241596-5502-4acc-ba33-04ebb91fc570",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "d0a889df-3d16-4ba1-95ce-9238bce76899",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "75d075ba-4cfc-44c7-9c8c-86202473e95c",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "87f4cdc6-3079-45a3-918b-a828fa57f128",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "b3a2b550-6709-46a4-9fc1-67fa6fdc38f2",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "0c97e288-06d3-4026-9415-5ac38c51ae9a",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "3d698dc4-3ad1-43a3-8bc1-c3e241401dad",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "2f913448-435f-4934-851d-87aa94aee849",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "25a200ea-2891-4be0-81a3-7ac69f5b7194",
-                          "$Data": "Core/Sprites\\Structures\\CoolantTower.png"
-                        },
-                        "Rect": {
-                          "$GUID": "1f04ba99-035c-4437-a4ec-efea4b6cc552",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "19f475ae-2d3a-4216-b6b4-8324f21196b5",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "4b00b7f9-3a2e-4822-8a6b-0c348572c6be",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "d978f948-d6fa-41c3-b90a-6a58ed9dd211",
-                              "$Data": 32.0
-                            },
-                            "Height": {
-                              "$GUID": "deef9477-4818-43c5-950a-f7acf26c95ae",
-                              "$Data": 32.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "2adfbd41-7ddb-4de2-a557-1f490a06c34f",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "a72b73d3-564f-4d65-a8a1-8248ed713d08",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "906902fe-b64e-435e-a264-b452d12020c7",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "537b2d31-6948-41f2-a102-0778d6ad4d35",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "5223b73d-1989-4056-85a3-441c0ef39b8b",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "617d7608-6a0a-435b-8cce-51ee78e290ca",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "57675e86-3382-43e4-b953-cacb87f44831",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "6fb6c6d6-1cb1-4d35-be65-774f13cd1d39",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "4eab5139-89b8-478b-8525-7f2932d7e26d",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "cf7de50c-c291-46b8-8d47-2fbb51bf2bcc",
-              "$Data": []
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "f246998d-08d9-4554-af29-99592cc9a871",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "Name": {
-              "$GUID": "68892058-7db7-4f7a-8471-e266b33711d1",
-              "$Data": "Fan"
+            "Reference": {
+              "Path": "Core/Sprites/Structures/CoolantFan.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
             },
-            "Tag": {
-              "$GUID": "e39504fa-c5b6-4eb3-87a5-82fbcc7b0831",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "d4473ac1-775a-433d-b53c-c98d5c671161",
-              "$Data": 10
-            },
-            "Static": {
-              "$GUID": "5983a129-2b03-4932-9f36-55de9490ea2d",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "a506cc3f-ed7d-4164-a7ce-8a17dc1fc675",
-              "$Data": [
-                {
-                  "$GUID": "11897e27-f580-4f08-b371-9d2875a1e3c8",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "3d2faa1e-9f80-46bc-b2f5-aa45a36736c2",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "7b52fb28-bbf5-4c54-b257-642dc619f807",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "101a1e74-5391-457e-ada4-3009b5631661",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "905ba4d7-91fd-4fd1-8845-ae2f47973b18",
-                          "$Data": -0.1
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "36ad74a0-ad5e-4f55-a58c-eb76fd2ac1ef",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "d2ae0c55-aa86-42a2-9f29-a32372b5585f",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "66337fcc-0ce3-483e-b6e0-f995f93804e8",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "bb70c551-6a38-468c-9ad1-c429b400577e",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "e0038140-a5e0-4189-af67-61ad560d2fb6",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "c7461f33-7d4e-4aee-ada2-ccde90169874",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "51a2e6e0-fb4a-4a00-994a-94b6c4409bc3",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "f70a452d-08ec-4c40-88f6-47001ca8249c",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "a3f19bd9-cc6e-461b-a7db-ab173d2e9f24",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "3a3f0fc9-81d4-48be-a4eb-a1d43680f401",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "402db7ca-6176-4e61-b313-43da071ce41f",
-                          "$Data": "Core/Sprites/Structures/CoolantFan.png"
-                        },
-                        "Rect": {
-                          "$GUID": "058438c5-caf9-4b42-b184-1282f5ea145f",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "bc1fd686-d5b7-4a6a-a2a5-2d36689008d6",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "e9245351-ef40-4fe2-949c-7fb1ee1f7a87",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "04053141-9874-435b-b54f-7ad5f0d7f0a5",
-                              "$Data": 0.0
-                            },
-                            "Height": {
-                              "$GUID": "e3e78e80-4571-4d5c-8cc6-2b22e56fb5af",
-                              "$Data": 0.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "052489ee-dc78-4d58-98c5-5f20e48060e7",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "06bbab72-c2f9-4c82-a9c2-c298414c610f",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "a6d8f136-f217-41c9-afb4-f44bd4856e0d",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "e7617157-e09a-40d8-a516-45cae17f598d",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "2283aae9-de61-4316-8f13-b62137892b9b",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "ebb4b6ec-0a4b-41f1-8ff6-df97276dce1a",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "78e41cf1-4f80-4a69-869d-5d82af4e0194",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "ce68694d-8fe1-459b-881a-ccfcd8b98653",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "7f1527a0-c6b9-4122-8ab4-f31822401d22",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "09035aad-11eb-4821-ac71-7b48f76f96bb",
-                  "$Type": "Lomztein.BFA2.Misc.Rotator",
-                  "$Data": {
-                    "Rotation": {
-                      "$GUID": "67869035-b0d0-4302-a335-e64d72db6635",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "bdf70da7-205c-4c64-9c92-b8aa76e21005",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "5aca543f-1e25-4910-b122-3f1c2f516f83",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "16f4f12d-1667-47f5-82c7-571bb6fd3eb3",
-                          "$Data": 1440.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "77169642-5447-4dbe-aacc-d103525f3779",
-              "$Data": []
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         },
         {
-          "$GUID": "d2a74752-7872-4e79-979e-c66adc48ee37",
+          "$Type": "Lomztein.BFA2.Misc.Rotator",
           "$Data": {
-            "Name": {
-              "$GUID": "5c8bf214-30aa-4012-a705-47ae57173989",
-              "$Data": "Fan (1)"
-            },
-            "Tag": {
-              "$GUID": "ae44ce7d-f1da-4eb9-a8f9-39cdaeaa23a0",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "4eda1b23-f84c-4ecb-aafd-8dbf86499e4d",
-              "$Data": 10
-            },
-            "Static": {
-              "$GUID": "4554088a-95af-4026-8aa6-b3f6f62e2672",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "bac066e4-bb44-485e-a69d-4c273097bd2a",
-              "$Data": [
-                {
-                  "$GUID": "672b56c7-23b4-4811-9935-4383ea88d371",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "2dea9f74-4b2b-4db2-bf4a-1be3a3ceb829",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "03a59a5a-7e71-4a64-b262-55792ee99b6c",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "b7925e70-45ec-4d8a-9537-c18514a26ad5",
-                          "$Data": 0.4
-                        },
-                        "Z": {
-                          "$GUID": "f0f1fbcb-dfbd-4212-ad48-85499e2bb520",
-                          "$Data": -0.1
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "eb2cacd3-7a04-4e6c-a1bf-93e0d362089e",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "7dbe09c0-6e38-424d-948a-a7c70f422b4d",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "e62081a7-bb33-4132-883b-96f08750c610",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "842ef66b-de92-4fcd-a645-bd47c09946c7",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "c35159f2-d0d3-4261-bf5d-6b52c7a2ca80",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "370cea43-e7bd-4866-bab9-c0357f46ca41",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "6b62a1da-6c17-4b09-8c11-3e13ba84bced",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "d1d70745-e7b8-4072-8d0d-227e9aacad6d",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "edc21192-b774-4815-a801-7a8378417832",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "4a70c6a7-6eda-4be2-9ab1-f4f5aab40860",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "3e978d9e-ccf7-4b57-8d47-d3aab6b5fc73",
-                          "$Data": "Core/Sprites/Structures/CoolantFan.png"
-                        },
-                        "Rect": {
-                          "$GUID": "f4eee9a5-2c0f-46cd-b625-c8cef1b38fe3",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "8a058056-7014-429e-bbc1-1443866f0942",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "2a6dd3f5-62d4-40f6-aae6-b20f30f9dfad",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "99e712d8-936b-41ad-832f-c79b0c6d6a03",
-                              "$Data": 0.0
-                            },
-                            "Height": {
-                              "$GUID": "93920050-8d7b-4152-9f1b-005ac39830c0",
-                              "$Data": 0.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "66c1af5c-a0a9-4c87-b05c-72a35ed9228a",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "3da86e7a-a78f-438f-8358-08a318cd0cab",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "32e6d783-640b-4967-8e07-052901914e5f",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "73d342dd-676d-49fa-ba9e-81d5006f071b",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "5721519d-69cf-44a9-89c9-856a3c1396a3",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "ed3ac1f0-ff1c-4b26-b662-8232c2bc3dff",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "19f70814-6cf9-4a9c-b005-16382e706289",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "71e48537-ac16-4590-aa4f-1d611622833e",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "0e831f17-2ddb-4360-aa04-7cfa574e1902",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "d5f4a152-2331-4b6f-822c-0b7d36a3b52d",
-                  "$Type": "Lomztein.BFA2.Misc.Rotator",
-                  "$Data": {
-                    "Rotation": {
-                      "$GUID": "de82c166-5cb7-4de6-bba9-2eec701e54d5",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "3e20bb54-1ea3-4487-8fa5-8199e32beccd",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "be3a01de-32df-44bc-9029-6d854e8c2ef2",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "9e2673f1-e326-48d2-bd79-dfaea74a382c",
-                          "$Data": 1440.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "48f00475-7274-46cc-8638-c5b0799da108",
-              "$Data": []
-            }
-          }
-        },
-        {
-          "$GUID": "c21266ce-9e28-4585-b5bd-2c1230f5957a",
-          "$Data": {
-            "Name": {
-              "$GUID": "303ffcb1-30de-4f1e-bc9e-54e6874d93ff",
-              "$Data": "Fan (2)"
-            },
-            "Tag": {
-              "$GUID": "69d1da75-2497-4290-aa75-a16c55774552",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "d50b6d9f-7de8-4aa4-a175-2e0d8fc2e267",
-              "$Data": 10
-            },
-            "Static": {
-              "$GUID": "4a2d3d02-dd27-4b00-b760-b8edb422f608",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "67e266a7-3cb2-48d3-84f1-22d394c9383f",
-              "$Data": [
-                {
-                  "$GUID": "03f7ce41-a9b7-48cc-b903-512008f6336c",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "43380e84-84df-40a9-bc05-a8b15bf95bb6",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "88539457-8a0b-4bd5-ad60-1b5202944c2c",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "2a036d57-1883-42bf-83ec-e5db7789dacf",
-                          "$Data": -0.4
-                        },
-                        "Z": {
-                          "$GUID": "84e3d35c-8d1d-4cf4-a2bf-c2251a725ba4",
-                          "$Data": -0.1
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "e342107f-a179-41c0-a1c8-dfe25a07d76b",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "22fbbeb1-8f0f-4183-aacf-897f0aa514a0",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "4dbf5ce9-d5cb-455f-a292-ee39c77b8863",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "e34d7b5b-3b71-4b50-8271-d876fed1b453",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "ce3abc34-8f62-4d11-9923-0ce5917eb962",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "ab6243dd-1a10-4a23-8269-261228099270",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "96c30fcb-7b3b-4af4-8b6f-da5ae5b6ca38",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "0cc95de9-f9a0-4d9b-ae55-1dd670be8203",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "326fed92-cdd5-44ee-a3f8-a712d64e5618",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "$Data": {
-                    "Reference": {
-                      "$GUID": "8925029e-9b87-46ca-a10a-ebe6f3b94fcf",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "866f514a-09f8-4e9d-b4e7-7936813e90f7",
-                          "$Data": "Core/Sprites/Structures/CoolantFan.png"
-                        },
-                        "Rect": {
-                          "$GUID": "2167a44a-c0e6-4d77-b768-7b67de1332ba",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "7ca04358-0b83-40ad-993b-99dce5188bcc",
-                              "$Data": 0.0
-                            },
-                            "Y": {
-                              "$GUID": "44bcfc0d-de48-4fe6-9fcb-223b10a3431b",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "34db0b19-18ca-4592-9721-3c196d63879e",
-                              "$Data": 0.0
-                            },
-                            "Height": {
-                              "$GUID": "774736db-040f-4b03-a7f6-4e77d9a71340",
-                              "$Data": 0.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "36ed0b3d-803c-4ea0-901a-893b9a1e01cd",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "ee17fb0a-8ebe-4b8b-a861-6f3e227043ac",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "b9ae9629-5e36-485c-9dc5-cdd84586268a",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "2a8dcd47-4499-4f2f-9d3a-7d571af7618e",
-                          "$Data": 16.0
-                        }
-                      }
-                    },
-                    "Color": {
-                      "$GUID": "6c49ab06-52a6-407e-a743-2f084243573a",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "7116f511-d369-4168-bc7a-47c8d0aca7e4",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "7e80b90a-4198-4d5e-9c36-111642301036",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "cecbf605-f5cc-4229-8dd7-e5a3cab8b4c4",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "5caeb362-7de4-4f19-a437-8b9d9a67fbfd",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "$GUID": "b94984dc-3090-40fd-ba76-741607908559",
-                  "$Type": "Lomztein.BFA2.Misc.Rotator",
-                  "$Data": {
-                    "Rotation": {
-                      "$GUID": "1c4ed224-0261-4ad9-922e-ba52d80be7bf",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "9a086774-7395-45db-aa64-1feb1e64415c",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "a4018480-b18f-46e3-9369-5ed50a6eaa36",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "6577ea73-022b-4642-9ea4-5ea3d7ebb985",
-                          "$Data": 1440.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "fa71775c-881d-46b2-bd2e-542d7d173aa9",
-              "$Data": []
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
             }
           }
         }
-      ]
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan (1)",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.4,
+              "Z": -0.1
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": "Core/Sprites/Structures/CoolantFan.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Misc.Rotator",
+          "$Data": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan (2)",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": -0.4,
+              "Z": -0.1
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": "Core/Sprites/Structures/CoolantFan.png",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Misc.Rotator",
+          "$Data": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
+            }
+          }
+        }
+      ],
+      "Children": []
     }
-  }
+  ]
 }

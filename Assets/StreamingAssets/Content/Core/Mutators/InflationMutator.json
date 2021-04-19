@@ -1,119 +1,46 @@
 {
-  "$GUID": "007a5f75-e417-4dc2-ac61-899d94bc1a48",
   "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.CompositeMutator",
   "$Data": {
-    "Children": {
-      "$GUID": "2a45a8b8-0f6b-4592-96e4-5a7d58d9a614",
-      "$Data": [
-        {
-          "$GUID": "79be216c-336d-4511-9d03-9a621f6feef3",
-          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.PlayerModMutator",
-          "$Data": {
-            "Mod": {
-              "$GUID": "eac5b5fa-af96-4d86-a344-7f91efd40127",
-              "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-              "$Data": {
-                "Stats": {
-                  "$GUID": "e7b94014-bbc6-4618-bb05-74e946dc2264",
-                  "$Data": [
-                    {
-                      "$GUID": "255fec8e-5d4d-410a-8c4b-0857b63a92d3",
-                      "$Data": {
-                        "Identifier": {
-                          "$GUID": "6f16bb39-ea89-4080-bf8d-262617cdb03a",
-                          "$Data": "CreditsEarningMult"
-                        },
-                        "Name": {
-                          "$GUID": "d650e75c-ae92-47f0-bc01-b1df95a2e7aa",
-                          "$Data": ""
-                        },
-                        "Description": {
-                          "$GUID": "124ecae6-796a-456c-89d1-21b538c99467",
-                          "$Data": ""
-                        },
-                        "Type": {
-                          "$GUID": "adb2251e-0c97-426d-a517-a73f5fdb740e",
-                          "$Data": "Multiplicative"
-                        },
-                        "Value": {
-                          "$GUID": "904ed15d-ab6d-4c4c-a00b-28b628a53907",
-                          "$Data": -1.0
-                        }
-                      }
-                    }
-                  ]
-                },
-                "_identifier": {
-                  "$GUID": "1eb51b72-ad9a-4e98-ac21-060a926fb17e",
-                  "$Data": "Core.InflationNoCredits"
-                },
-                "_name": {
-                  "$GUID": "99eb016f-a2a1-40a6-8cc7-8e55857ba11b",
-                  "$Data": "Inflation Mode"
-                },
-                "_description": {
-                  "$GUID": "c7bb7bb4-5d5a-486f-b7fd-20fb819b5e97",
-                  "$Data": "You earn no credits."
-                },
-                "RequiredAttributes": {
-                  "$GUID": "1e62d104-877a-4ff7-954b-02e43c54c870",
-                  "$Data": []
+    "Children": [
+      {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.PlayerModMutator",
+        "$Data": {
+          "Mod": {
+            "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+            "$Data": {
+              "Stats": [
+                {
+                  "Identifier": "CreditsEarningMult",
+                  "Name": "",
+                  "Description": "",
+                  "Type": "Multiplicative",
+                  "Value": -1.0
                 }
-              }
-            },
-            "Name": {
-              "$GUID": "884f966b-6dc5-433b-a797-e30e4e8d1fe3",
-              "$Data": ""
-            },
-            "Description": {
-              "$GUID": "58f66bd6-ff75-43fa-bd4c-b51b9de1817c",
-              "$Data": ""
-            },
-            "Identifier": {
-              "$GUID": "ed241c91-82ff-45c3-8427-c48da5409fc2",
-              "$Data": ""
+              ],
+              "_identifier": "Core.InflationNoCredits",
+              "_name": "Inflation Mode",
+              "_description": "You earn no credits.",
+              "RequiredAttributes": []
             }
-          }
-        },
-        {
-          "$GUID": "f2a6e7a5-2587-4dbf-adf7-c2973108bd3a",
-          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingResourceMultiplierMutator",
-          "$Data": {
-            "CreditsMultiplier": {
-              "$GUID": "5cb9fd6b-f0d8-4610-95dc-967da4ed6a95",
-              "$Data": 50.0
-            },
-            "ResearchMultiplier": {
-              "$GUID": "0cee323e-5eea-443a-9bfb-650c4c329642",
-              "$Data": 50.0
-            },
-            "Name": {
-              "$GUID": "53d5a006-a55e-4bec-9570-d57fd18f29da",
-              "$Data": ""
-            },
-            "Description": {
-              "$GUID": "6783614b-19d9-4bcd-bf9b-c70c557a718d",
-              "$Data": ""
-            },
-            "Identifier": {
-              "$GUID": "25186a7b-7de9-4cd6-a49d-9273b52a4ca8",
-              "$Data": ""
-            }
-          }
+          },
+          "Name": "",
+          "Description": "",
+          "Identifier": ""
         }
-      ]
-    },
-    "Name": {
-      "$GUID": "d45dd125-9f9e-4d72-b79d-8e425c14c7ed",
-      "$Data": "Inflation Mode"
-    },
-    "Description": {
-      "$GUID": "3987130e-fcbd-4b6b-b738-766b608ef3ce",
-      "$Data": "You start with riches, but no money flows in."
-    },
-    "Identifier": {
-      "$GUID": "57a245b1-fa46-4ae1-b4cb-501ef9f674c3",
-      "$Data": "Core.InflationMode"
-    }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingResourceMultiplierMutator",
+        "$Data": {
+          "CreditsMultiplier": 50.0,
+          "ResearchMultiplier": 50.0,
+          "Name": "",
+          "Description": "",
+          "Identifier": ""
+        }
+      }
+    ],
+    "Name": "Inflation Mode",
+    "Description": "You start with riches, but no money flows in.",
+    "Identifier": "Core.InflationMode"
   }
 }

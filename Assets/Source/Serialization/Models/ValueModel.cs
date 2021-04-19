@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Models
     public abstract class ValueModel
     {
         [SerializeField]
-        public Guid? GUID = Guid.NewGuid();
+        public Guid? GUID;
         public string TypeName { get; private set; }
         private Type _typeCache;
 

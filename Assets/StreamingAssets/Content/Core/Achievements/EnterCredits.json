@@ -1,82 +1,27 @@
 {
-  "$GUID": "ce70d71f-baa6-4092-b401-e1208e5f725c",
-  "$Data": {
-    "Name": {
-      "$GUID": "eeed6e49-405e-4880-8aeb-cadbe8a3a784",
-      "$Data": "We love you too!"
+  "Name": "We love you too!",
+  "Description": "Enter the credits to view the very incredibly handsome sexy talented developers behind this.",
+  "Identifier": "Core.VisitCredits",
+  "Sprite": {
+    "Path": "Core\\Sprites\\UI\\Credits.png",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
     },
-    "Description": {
-      "$GUID": "4a1b770c-32fc-4583-a4e0-a0b8000523bd",
-      "$Data": "Enter the credits to view the very incredibly handsome sexy talented developers behind this."
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
     },
-    "Identifier": {
-      "$GUID": "84ea4684-8409-4c17-bfa9-ae0e27c4681d",
-      "$Data": "Core.VisitCredits"
-    },
-    "Sprite": {
-      "$GUID": "d55b5efe-c86c-46d2-a361-e7ce8226cb53",
-      "$Data": {
-        "Path": {
-          "$GUID": "50d4cc93-5128-4fe9-9808-8726e063ea7c",
-          "$Data": "Core\\Sprites\\UI\\Credits.png"
-        },
-        "Rect": {
-          "$GUID": "13b4fb58-6beb-4994-8b57-d5de773e442f",
-          "$Data": {
-            "X": {
-              "$GUID": "c6c7613b-2d93-45f6-8a09-ebde26315b9c",
-              "$Data": 0.0
-            },
-            "Y": {
-              "$GUID": "6dd8c2d6-c127-4413-bf66-840351602390",
-              "$Data": 0.0
-            },
-            "Width": {
-              "$GUID": "f1faa6c3-b414-4bc0-9c6f-868b506d0c81",
-              "$Data": 0.0
-            },
-            "Height": {
-              "$GUID": "5e682f53-f12d-4933-b70d-6cd70cacbd1d",
-              "$Data": 0.0
-            }
-          }
-        },
-        "Pivot": {
-          "$GUID": "309a2bbe-d61b-48d9-98db-8ff38d789dde",
-          "$Data": {
-            "X": {
-              "$GUID": "7a1a0fa3-0e66-4abd-a6ab-cb568992a3c2",
-              "$Data": 0.5
-            },
-            "Y": {
-              "$GUID": "775a8f1b-6d2d-4309-bc68-369c9ce8d742",
-              "$Data": 0.5
-            }
-          }
-        },
-        "PixelsPerUnit": {
-          "$GUID": "36d3db73-5b23-44b4-9db9-c0bc11a1a3db",
-          "$Data": 32.0
-        }
-      }
-    },
-    "Hidden": {
-      "$GUID": "b8061f4f-1119-4671-b62b-5c723f79f119",
-      "$Data": false
-    },
-    "Requirement": {
-      "$GUID": "8aae9d1a-d652-4318-ade0-93e97beecf12",
-      "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement",
-      "$Data": {
-        "WindowToVisit": {
-          "$GUID": "d946ffda-da37-4eb0-a125-7444d325fee9",
-          "$Data": "credits"
-        }
-      }
-    },
-    "Reward": {
-      "$GUID": "c3f7bf4f-f948-435a-a75c-9e2e10c56d5d",
-      "$Data": null
+    "PixelsPerUnit": 32.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement",
+    "$Data": {
+      "WindowToVisit": "credits"
     }
-  }
+  },
+  "Reward": null
 }

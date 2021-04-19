@@ -1,115 +1,36 @@
 {
-  "$GUID": "ba9ab1de-584e-44ee-9d2a-4fe5125cebf6",
-  "$Data": {
-    "Name": {
-      "$GUID": "713c2058-24cd-444c-bd24-b5e4a32d4f79",
-      "$Data": "A million more on their way"
+  "Name": "A million more on their way",
+  "Description": "You've slain ten thousand enemies, but they never end.",
+  "Identifier": "Core.SlayTenThousandEnemies",
+  "Sprite": {
+    "Path": "Core\\Sprites\\Enemies\\BasicEnemyT2.png",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
     },
-    "Description": {
-      "$GUID": "6ee47d9f-3df8-462f-be43-0c5361a94483",
-      "$Data": "You've slain ten thousand enemies, but they never end."
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
     },
-    "Identifier": {
-      "$GUID": "07d71cea-cb7e-4221-a909-114d3bcb8d7a",
-      "$Data": "Core.SlayTenThousandEnemies"
-    },
-    "Sprite": {
-      "$GUID": "9d937d32-8ff9-4be0-a057-8b9a3d65694f",
-      "$Data": {
-        "Path": {
-          "$GUID": "5b1ce1a5-481e-4fa1-995a-71f8c3c1eb9a",
-          "$Data": "Core\\Sprites\\Enemies\\BasicEnemyT2.png"
-        },
-        "Rect": {
-          "$GUID": "ce3b6a56-2e52-422f-ab38-a268c31dd438",
-          "$Data": {
-            "X": {
-              "$GUID": "a87daa21-e3ee-4dc5-bc3a-76db9cf71911",
-              "$Data": 0.0
-            },
-            "Y": {
-              "$GUID": "46abb177-3ede-4c17-97dc-46fe8945c0a0",
-              "$Data": 0.0
-            },
-            "Width": {
-              "$GUID": "74b558f3-90ae-4ecb-8409-cc62c2b862fa",
-              "$Data": 0.0
-            },
-            "Height": {
-              "$GUID": "4ce20745-1c62-417e-bdfb-49b426ce31e8",
-              "$Data": 0.0
-            }
-          }
-        },
-        "Pivot": {
-          "$GUID": "2b7faa25-33cb-4820-a381-9b836667b4e5",
-          "$Data": {
-            "X": {
-              "$GUID": "4765ecc6-2f54-49cd-8458-8200cd67f648",
-              "$Data": 0.5
-            },
-            "Y": {
-              "$GUID": "5fe5f114-93ae-43d1-bed5-a50e43eca528",
-              "$Data": 0.5
-            }
-          }
-        },
-        "PixelsPerUnit": {
-          "$GUID": "37598b98-80db-484f-898e-779cbae921fa",
-          "$Data": 32.0
-        }
-      }
-    },
-    "Hidden": {
-      "$GUID": "77d13b12-fb78-4c57-87e8-fcb63186e30b",
-      "$Data": false
-    },
-    "Requirement": {
-      "$GUID": "bf174bd1-740a-4837-a8cf-d806f75b8f57",
-      "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
-      "$Data": {
-        "TargetEnemies": {
-          "$GUID": "01c25dcd-aaf7-44bc-92bf-c9def7720f7e",
-          "$Data": 1000
-        },
-        "TargetColors": {
-          "$GUID": "2509d643-7d47-4984-8b0c-981e0161ca5d",
-          "$Data": [
-            {
-              "$GUID": "056cedb7-cc1f-488a-96ba-9dd43b31bd2c",
-              "$Data": "Blue"
-            },
-            {
-              "$GUID": "1b1353f3-0c0a-4a4d-80ff-50274780bb4d",
-              "$Data": "Yellow"
-            },
-            {
-              "$GUID": "bbb331ac-19e3-4118-b107-ebe15d7d05a7",
-              "$Data": "Red"
-            },
-            {
-              "$GUID": "79147407-a492-4a56-b750-6f63fbb64eff",
-              "$Data": "Pink"
-            },
-            {
-              "$GUID": "2fe7a118-777c-4534-81d4-9336cbe26897",
-              "$Data": "Magenta"
-            },
-            {
-              "$GUID": "b90aa4f8-8bce-40fe-b635-7be8c9f55b1f",
-              "$Data": "Green"
-            },
-            {
-              "$GUID": "5cdbf334-ace5-4257-adda-f03572ffa810",
-              "$Data": "Orange"
-            }
-          ]
-        }
-      }
-    },
-    "Reward": {
-      "$GUID": "802145b5-46e3-4c69-b7c6-d5ffb88b36b8",
-      "$Data": null
+    "PixelsPerUnit": 32.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
+    "$Data": {
+      "TargetEnemies": 1000,
+      "TargetColors": [
+        "Blue",
+        "Yellow",
+        "Red",
+        "Pink",
+        "Magenta",
+        "Green",
+        "Orange"
+      ]
     }
-  }
+  },
+  "Reward": null
 }

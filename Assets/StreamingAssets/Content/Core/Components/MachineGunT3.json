@@ -1,1264 +1,420 @@
 {
-  "$GUID": "585a4d82-af39-4025-90c4-7b84dc4dfffc",
-  "$Data": {
-    "Name": {
-      "$GUID": "d58fe226-eaef-4ce7-b5e6-583c059a15ba",
-      "$Data": "MachineGunT3"
+  "Name": "MachineGunT3",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
     },
-    "Tag": {
-      "$GUID": "1d22af0c-1818-4e64-a097-ecddc32b863a",
-      "$Data": "Untagged"
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Core/Projectiles/MachineGunProjectile.json"
+        },
+        "FireTreshold": 30.0,
+        "HitLayer": {
+          "Mask": 256
+        },
+        "BaseDamage": 30.0,
+        "BaseProjectileAmount": 1,
+        "BaseSpread": 3.0,
+        "BaseSpeed": 75.0,
+        "BaseFirerate": 15.0,
+        "Color": "Blue",
+        "BaseComplexity": 0.0,
+        "UpperAttachmentPoints": null,
+        "LowerAttachmentPoints": {
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+          "$Data": {
+            "Width": "Small",
+            "Height": "Small"
+          }
+        },
+        "_name": "Tri-Barreled Gatling Cannon",
+        "_description": "Shoots super fast lol",
+        "_uniqueIdentifier": "Core.MachineGunT3",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 2250
+            }
+          ]
+        },
+        "BaseAttributes": [
+          "Weapon",
+          "Projectile"
+        ],
+        "_width": "Small",
+        "_height": "Small"
+      }
     },
-    "Layer": {
-      "$GUID": "eeeea795-9114-4dab-87eb-71ddd1ddde27",
-      "$Data": 9
+    {
+      "$Type": "Lomztein.BFA2.Animation.FireAnimations.TileableFireAnimation",
+      "$Data": {
+        "StartAnimationSprites": [
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 64.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          },
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 96.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          },
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 128.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        ],
+        "MidAnimationSprites": [
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 160.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          },
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 64.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          },
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 96.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          },
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 128.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        ],
+        "EndAnimationSprites": [
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 160.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          },
+          {
+            "Path": "Core/Sprites/Components/MachineGunT3.png",
+            "Rect": {
+              "X": 32.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 32.0
+          }
+        ],
+        "DefaultSprite": {
+          "Path": "Core/Sprites/Components/MachineGunT3.png",
+          "Rect": {
+            "X": 32.0,
+            "Y": 0.0,
+            "Width": 32.0,
+            "Height": 32.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 32.0
+        },
+        "PlaySpeedMultiplier": 1.0
+      }
     },
-    "Static": {
-      "$GUID": "e5d0a541-6ab1-40dc-8332-1531b8fcb73c",
-      "$Data": false
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+      "$Data": {
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": {
+            "Stats": [
+              {
+                "Identifier": "Firerate",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.75
+              }
+            ],
+            "_identifier": "MachineGunT3Adjecency",
+            "_name": "Rain of Fire",
+            "_description": "Firerate increased by a nearby machine gun.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
+      }
     },
-    "Components": {
-      "$GUID": "61b15032-e4dc-4dac-9e7d-8d7134200087",
-      "$Data": [
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "35973043-7c63-4de2-8d93-7ef5dc860ae7",
           "$Type": "UnityEngine.Transform",
           "$Data": {
             "Position": {
-              "$GUID": "b8417245-6cd9-44c2-a041-9043ed4177e7",
-              "$Data": {
-                "X": {
-                  "$GUID": "c8889cda-3661-4b12-84c0-270615826788",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "cea7fc97-a387-4403-a6d9-77e875a667e0",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "0e4427b7-4e7f-439b-86ec-fd6753a1b582",
-                  "$Data": -1.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Rotation": {
-              "$GUID": "4346f830-b010-4469-9824-c433c7076713",
-              "$Data": {
-                "X": {
-                  "$GUID": "eaf6d703-9a03-4dc6-9791-1215683cf2da",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "1ec7008b-4eaf-49f3-ba72-6b6a6f8437ad",
-                  "$Data": 0.0
-                },
-                "Z": {
-                  "$GUID": "b1fe8762-4822-4bfb-aa43-a7d84ad1fc1c",
-                  "$Data": 0.0
-                }
-              }
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
             "Scale": {
-              "$GUID": "3cd5e044-b960-4430-b5a8-ba5db2ed82e5",
-              "$Data": {
-                "X": {
-                  "$GUID": "84abe67d-8b3b-457c-825c-9245b0f1cd3f",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "c39f82b5-e2b6-48d0-baef-564297e29908",
-                  "$Data": 1.0
-                },
-                "Z": {
-                  "$GUID": "c20e0baf-2c94-416f-9b97-0eb506f9fa34",
-                  "$Data": 1.0
-                }
-              }
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
             }
           }
         },
         {
-          "$GUID": "cfca300d-104e-4a69-97d4-c5370b73153b",
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
-            "ProjectilePrefab": {
-              "$GUID": "add50560-33a6-48da-8187-4fdaa5a196b4",
-              "$Data": {
-                "Path": {
-                  "$GUID": "d77f348c-343f-4187-badd-31e601dcdd17",
-                  "$Data": "Core/Projectiles/MachineGunProjectile.json"
-                }
-              }
-            },
-            "FireTreshold": {
-              "$GUID": "594305f9-61b7-48f8-95a2-cf14fde83f48",
-              "$Data": 30.0
-            },
-            "HitLayer": {
-              "$GUID": "8fe73463-f446-46f3-b178-58ad8f347a72",
-              "$Data": {
-                "Mask": {
-                  "$GUID": "16e1a9eb-678d-4171-bd1b-2fadc42c99f1",
-                  "$Data": 256
-                }
-              }
-            },
-            "BaseDamage": {
-              "$GUID": "02219a1e-993e-4ad1-9402-243640c12874",
-              "$Data": 30.0
-            },
-            "BaseProjectileAmount": {
-              "$GUID": "bf3c66a0-ad3d-4b23-9ab3-2ac8ad2e3bd2",
-              "$Data": 1
-            },
-            "BaseSpread": {
-              "$GUID": "88010550-e0c8-4684-a5a0-3931fbe9c9d2",
-              "$Data": 3.0
-            },
-            "BaseSpeed": {
-              "$GUID": "ab5a7ac1-28a5-4cb6-a5d0-4b9a1db01de6",
-              "$Data": 75.0
-            },
-            "BaseFirerate": {
-              "$GUID": "fa6265c8-8541-49b3-aaf0-62a8af05cbde",
-              "$Data": 15.0
+            "Reference": {
+              "Path": "Core/Sprites/Components/MachineGunT3.png",
+              "Rect": {
+                "X": 32.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 32.0
             },
             "Color": {
-              "$GUID": "2ff793af-ec33-4d0c-977c-e1f062548a5b",
-              "$Data": "Blue"
-            },
-            "BaseComplexity": {
-              "$GUID": "85e7b894-f649-4c11-90fc-f209542e8e6f",
-              "$Data": 0.0
-            },
-            "UpperAttachmentPoints": {
-              "$GUID": "f943da7f-1da4-4428-a417-bf3cfd67eab7",
-              "$Data": null
-            },
-            "LowerAttachmentPoints": {
-              "$GUID": "51eb93d4-0068-4aaf-a9be-44e41d6bfa62",
-              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-              "$Data": {
-                "Width": {
-                  "$GUID": "48fd2e77-253f-497f-9a06-bbe28138f865",
-                  "$Data": "Small"
-                },
-                "Height": {
-                  "$GUID": "6b125f24-7e89-415c-b5a7-6779f064bcef",
-                  "$Data": "Small"
-                }
-              }
-            },
-            "_name": {
-              "$GUID": "43b5ffce-d237-4ba2-ab9b-c417d8960492",
-              "$Data": "Tri-Barreled Gatling Cannon"
-            },
-            "_description": {
-              "$GUID": "1617338f-36f2-4496-8069-caf5fe3168ad",
-              "$Data": "Shoots super fast lol"
-            },
-            "_uniqueIdentifier": {
-              "$GUID": "e2d96ff6-59ef-4613-a9ed-5618c7f0a01c",
-              "$Data": "Core.MachineGunT3"
-            },
-            "_cost": {
-              "$GUID": "0073f989-d24c-4c4a-85c5-7ffcc741d6c0",
-              "$Data": {
-                "Elements": {
-                  "$GUID": "ed2547ba-bff0-4717-9b37-e8cc496caf85",
-                  "$Data": [
-                    {
-                      "$GUID": "fa1582cc-d2e3-467a-850c-318b6060944a",
-                      "$Data": {
-                        "Type": {
-                          "$GUID": "c5ff96df-76fb-4188-b36e-b24bc7996a70",
-                          "$Data": "Credits"
-                        },
-                        "Value": {
-                          "$GUID": "db873209-3c36-459b-a4a8-3e4b31bf852c",
-                          "$Data": 2250
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            },
-            "BaseAttributes": {
-              "$GUID": "9c54af27-d471-4d8f-9998-7b074e82b713",
-              "$Data": [
-                {
-                  "$GUID": "f3da0129-9e41-4ce9-8239-e2ccc42a7461",
-                  "$Data": "Weapon"
-                },
-                {
-                  "$GUID": "536c5055-0265-45ff-9682-072047e9c418",
-                  "$Data": "Projectile"
-                }
-              ]
-            },
-            "_width": {
-              "$GUID": "d9ea6986-30de-4814-b556-589bae081ba6",
-              "$Data": "Small"
-            },
-            "_height": {
-              "$GUID": "98efcfbe-d48a-4493-af97-38ebc0e74fab",
-              "$Data": "Small"
-            }
-          }
-        },
-        {
-          "$GUID": "65584870-8c1e-4076-bc2a-1aed76900c89",
-          "$Type": "Lomztein.BFA2.Animation.FireAnimations.TileableFireAnimation",
-          "$Data": {
-            "StartAnimationSprites": {
-              "$GUID": "59c0d1c7-3ebe-4b05-910e-5e8bc5df6154",
-              "$Data": [
-                {
-                  "$GUID": "fa4789e2-32b0-44aa-83bd-2b49ac608f48",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "e5a01792-c4d2-49b4-a82d-19ec981955ef",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "d4ca9401-4a0b-4477-9d3e-25983ef2a1d4",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "6dde8575-ea6b-4ba3-9d11-f541262e5f7e",
-                          "$Data": 64.0
-                        },
-                        "Y": {
-                          "$GUID": "f4ac809d-1d16-4f2c-a8ca-4fc4d05409b2",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "056c731f-dbcd-4c2c-87a5-a2643a88988e",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "ad9c0bdb-0b5b-4f2d-995d-3a1af613a01b",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "6b5afffa-63b5-44df-bd3a-3810deb0f75b",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "03651951-b564-48de-af6c-3d2c92659567",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "388d35c4-5d6d-4903-aea4-23261140ef5b",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "f7fd6cf0-8697-41d6-bddb-e8700a034c59",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                {
-                  "$GUID": "4bdbb6a6-43b3-4ab9-999e-5f87de007305",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "8ae37a5c-4bbb-4b5e-8b2a-35e608149826",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "62446779-4db3-4140-babf-dc4dc6e648a8",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "3604d0d0-4f91-4017-aed2-6fa4e3de0843",
-                          "$Data": 96.0
-                        },
-                        "Y": {
-                          "$GUID": "3ae9516c-8914-47eb-8d26-4529b512c8c3",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "be6cd498-e9ec-40dc-8b1f-f45ac5387c36",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "24fe0131-db53-421b-a337-76479fbf7fbc",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "ee1aa7f3-b8b1-4a20-9676-d4a973606733",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "c501e241-2443-4b48-8693-c6d1b00b7235",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "8ec0ca1b-ef24-4143-9528-3f89d27dfd96",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "395b57cd-fc75-4fc2-93fd-df4743c02f39",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                {
-                  "$GUID": "0b3d14a8-8dfa-4922-847d-0cf9124d1726",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "b63454a2-3ac0-4090-9ba0-fdf242053e7c",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "a5a77d0f-c903-47e3-a6e4-6a28ce02c071",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "6b82b262-b1b0-430f-beb4-7f69a841915b",
-                          "$Data": 128.0
-                        },
-                        "Y": {
-                          "$GUID": "a65fe05f-42bf-4154-a762-ed6c073f3f1c",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "f620fa77-5f71-4ae9-bbe3-75bd0cf78207",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "919e85dd-9206-416b-ada1-497150612f95",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "e1aa79e0-8817-436d-99e8-4d882e49e39b",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "40f38f04-f1fe-4f11-8491-b50fdc522f4f",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "0ae783ba-ed1a-47c7-8706-d9d5c72bedde",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "7489cc53-48f8-4d18-ba0b-e3d84b2020fa",
-                      "$Data": 32.0
-                    }
-                  }
-                }
-              ]
-            },
-            "MidAnimationSprites": {
-              "$GUID": "5f012901-edd0-4004-be64-bcb54153492b",
-              "$Data": [
-                {
-                  "$GUID": "e2eb6508-ffa2-4501-95a0-4c8dcc52f3d8",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "3e9655d4-32a6-47a5-ab77-0f1b5e4d7630",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "8d00715d-3a78-4c7b-b979-198d3d10e4cd",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "cb2840a5-8447-43f4-8f37-d83ae32e516c",
-                          "$Data": 160.0
-                        },
-                        "Y": {
-                          "$GUID": "6da49283-80c7-4d08-a472-b12a39a39dc8",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "4198fffd-10cd-4f59-9fbe-a9e6881a941f",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "ac21fe56-7019-44d2-aaa1-16a9f4613ed3",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "1c1d80ec-2617-4741-9588-8689f2b48ed4",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "e9f15d76-414b-4970-b109-5cbc1fb16f2d",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "100c0037-e248-436b-84b1-27d372466726",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "ece9d575-a4e7-4c8c-9e6f-18939a23580b",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                {
-                  "$GUID": "52a438ce-16ef-4a32-ae73-cceacee51526",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "24e1c580-1d29-49c4-9386-182cd7f1511a",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "6dd912cf-a024-42ad-99ed-1376a54072c3",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "b56df697-dc43-4d92-a8cb-e80a0f6e6059",
-                          "$Data": 64.0
-                        },
-                        "Y": {
-                          "$GUID": "22a638da-ee27-4733-ba8a-558f78a3a9d9",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "97849bed-07bd-46d0-b102-ace46c3bd6f5",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "f0514682-7a6f-4527-bfdc-697baee2df2c",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "7bc8aa74-01f0-4ea7-83fb-6d18d5c004a5",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "927d0364-c444-4f0c-9680-768761172149",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "fc28b72f-b6b2-4a0e-822f-059be40445c8",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "7489e321-886e-44bd-9065-6fd926f98fee",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                {
-                  "$GUID": "e7cb46fc-41e9-4af4-a9ca-087e4b9eaa42",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "d10f8fcf-905d-4a99-a454-cc2fcc2e52a5",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "1ae3b787-de45-4a2e-8cb4-973e257f7a99",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "62c24bfe-33d4-4c3e-b7d4-f4d55fc8470c",
-                          "$Data": 96.0
-                        },
-                        "Y": {
-                          "$GUID": "161c89d7-d084-4bc7-8bdd-8b79cfe44a40",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "03ed8452-867c-473c-95f7-e171eb70b021",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "26c8464d-babe-4daf-98e8-f6c0d1f337ff",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "d012faac-6f52-4bd4-9435-d05b678a36c1",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "36cd7e6a-c411-4dd5-afe3-4a1ba98ee217",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "e5b3fa99-b249-4598-8ddb-641f4dd88f49",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "bf9a6a97-190f-42d2-98ac-880010a75711",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                {
-                  "$GUID": "22af3362-d5fb-4312-b59c-55f464a45be0",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "63620bcb-bb93-4116-8c9e-c70a30ba9b37",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "d8c67e33-ed22-4770-8428-14919da90d1e",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "474a1731-d598-413b-87b9-1b953a565141",
-                          "$Data": 128.0
-                        },
-                        "Y": {
-                          "$GUID": "0cd3caef-fd71-4ebb-a29c-06c96fc7f388",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "480f98b6-357f-47e5-adf9-dfa3809ea626",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "14714b9e-ad77-43ee-a8cf-6d3a6c0da19b",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "a5cfcdb4-2b58-4a69-8994-572f024944dc",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "e074623f-0780-4263-b962-f6e0203b2287",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "15c0ec00-b917-4d45-b147-36d320c5c9f0",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "ee63e52a-5a88-4a95-ba65-40a69b218546",
-                      "$Data": 32.0
-                    }
-                  }
-                }
-              ]
-            },
-            "EndAnimationSprites": {
-              "$GUID": "fe646a13-198e-452c-bb8b-dd622265f847",
-              "$Data": [
-                {
-                  "$GUID": "04a86f4e-1f61-4071-9082-4ab390f69a77",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "791b5673-12c7-46c1-8d04-b6b35ffd4843",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "b62b762b-6443-4efa-92da-7b3bbf0a0559",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "14165664-d6bd-4163-a015-b0f2c03554ba",
-                          "$Data": 160.0
-                        },
-                        "Y": {
-                          "$GUID": "ae802e8c-012a-462a-8451-65be43d205bd",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "aa66a807-c6de-436e-94e1-b2e761296f58",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "781b9e92-76ca-4c6c-9316-f5180255969c",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "88f9a942-d66f-4703-8c92-99fcc8cc5623",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "2d94c49b-3090-4cdb-808d-d064132502b6",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "d2444e73-ad77-469c-8547-4d89efe4f28b",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "6e41a6fc-314e-4444-a92e-ea1e1967b0c6",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                {
-                  "$GUID": "5d15c62f-fb1c-4d1c-b978-61743a281703",
-                  "$Data": {
-                    "Path": {
-                      "$GUID": "e2892c00-b877-451c-8330-c688cdca3feb",
-                      "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                    },
-                    "Rect": {
-                      "$GUID": "d002faec-dc15-423c-949f-51e98cda2c2c",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "cd28d15b-af08-45dc-87b0-1cea9234b67e",
-                          "$Data": 32.0
-                        },
-                        "Y": {
-                          "$GUID": "464b85f2-2ab2-402b-a791-706014f8be16",
-                          "$Data": 0.0
-                        },
-                        "Width": {
-                          "$GUID": "521dc06e-2c46-4242-88d3-b5c2e9c93b0e",
-                          "$Data": 32.0
-                        },
-                        "Height": {
-                          "$GUID": "8b874a4e-7485-4ecd-9eda-ddac65492a18",
-                          "$Data": 32.0
-                        }
-                      }
-                    },
-                    "Pivot": {
-                      "$GUID": "5f8a48ed-e87a-43ad-ad2c-4e5440b911fb",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "e299cf41-295d-4f77-a9ca-5ada63dae7f1",
-                          "$Data": 0.5
-                        },
-                        "Y": {
-                          "$GUID": "a9701a95-412a-4820-9fcf-05d50eaf82a6",
-                          "$Data": 0.5
-                        }
-                      }
-                    },
-                    "PixelsPerUnit": {
-                      "$GUID": "7055ffe6-18b4-4b6c-b293-2acc365a0a1f",
-                      "$Data": 32.0
-                    }
-                  }
-                }
-              ]
-            },
-            "DefaultSprite": {
-              "$GUID": "643b8068-2c87-48d1-b5c3-713d886b7608",
-              "$Data": {
-                "Path": {
-                  "$GUID": "35dc2c1f-1db6-4dac-b1d9-0ec9202125d2",
-                  "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                },
-                "Rect": {
-                  "$GUID": "58048d9e-030a-4291-a049-c3231cf0e717",
-                  "$Data": {
-                    "X": {
-                      "$GUID": "bce44748-688c-4ed1-b97c-42e2a7d763b1",
-                      "$Data": 32.0
-                    },
-                    "Y": {
-                      "$GUID": "758e0c8b-a4a2-4169-98d8-0a3b5ab06e30",
-                      "$Data": 0.0
-                    },
-                    "Width": {
-                      "$GUID": "8adb2177-5d66-4950-924d-c149810dc181",
-                      "$Data": 32.0
-                    },
-                    "Height": {
-                      "$GUID": "db87eed6-9e1f-4f74-bba9-639e437dd74b",
-                      "$Data": 32.0
-                    }
-                  }
-                },
-                "Pivot": {
-                  "$GUID": "d04f9baf-c675-4798-a497-2f23b8dca05e",
-                  "$Data": {
-                    "X": {
-                      "$GUID": "308f2e2c-c777-41c4-871c-08cdd8d6dd32",
-                      "$Data": 0.5
-                    },
-                    "Y": {
-                      "$GUID": "db8a1be0-e169-400a-93d6-1f2b933973cb",
-                      "$Data": 0.5
-                    }
-                  }
-                },
-                "PixelsPerUnit": {
-                  "$GUID": "3c925478-2f8f-4c37-a61d-061c5ce29e56",
-                  "$Data": 32.0
-                }
-              }
-            },
-            "PlaySpeedMultiplier": {
-              "$GUID": "eb189029-7cff-4d2d-9728-ba809e354558",
-              "$Data": 1.0
-            }
-          }
-        },
-        {
-          "$GUID": "980a7946-660c-461d-95fa-1678dade7690",
-          "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
-          "$Data": {
-            "AdjacencyCheckLayer": {
-              "$GUID": "75b62c22-dfe8-454a-b9de-7b33ccd908f7",
-              "$Data": {
-                "Mask": {
-                  "$GUID": "8860031f-8cc8-4494-a79d-2f35ae9b2b7b",
-                  "$Data": 512
-                }
-              }
-            },
-            "AdjacencyCheckRange": {
-              "$GUID": "945e5d8a-019a-4543-b8db-aefdc70e84b2",
-              "$Data": 0.75
-            },
-            "_mod": {
-              "$GUID": "33169c9f-3def-4f96-9471-7f62e91564ee",
-              "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-              "$Data": {
-                "Stats": {
-                  "$GUID": "c71e99a6-5bed-4fc1-8b2a-1aa5861d65c5",
-                  "$Data": [
-                    {
-                      "$GUID": "54a60226-b4b8-4f72-851a-3e46355a00ed",
-                      "$Data": {
-                        "Identifier": {
-                          "$GUID": "5f55956c-4b65-4af6-b785-84e4ea1c360c",
-                          "$Data": "Firerate"
-                        },
-                        "Name": {
-                          "$GUID": "2cc73c46-28c6-4cae-bfb7-cbc1219da581",
-                          "$Data": ""
-                        },
-                        "Description": {
-                          "$GUID": "feb6d313-7548-4153-8c71-4d8477faa445",
-                          "$Data": ""
-                        },
-                        "Type": {
-                          "$GUID": "219f26f0-6cd0-40c1-a96a-5661bcfef33e",
-                          "$Data": "Multiplicative"
-                        },
-                        "Value": {
-                          "$GUID": "6b25274b-8c44-4757-bb3a-b42559810a02",
-                          "$Data": 0.75
-                        }
-                      }
-                    }
-                  ]
-                },
-                "_identifier": {
-                  "$GUID": "5951ef93-8cdd-4347-9418-0a1d87b1614f",
-                  "$Data": "MachineGunT3Adjecency"
-                },
-                "_name": {
-                  "$GUID": "b18e20d7-6c64-4308-bfe6-c6c65e1419ac",
-                  "$Data": "Rain of Fire"
-                },
-                "_description": {
-                  "$GUID": "fad3a537-24e2-4b98-8305-657879860295",
-                  "$Data": "Firerate increased by a nearby machine gun."
-                },
-                "RequiredAttributes": {
-                  "$GUID": "9010808e-2a43-40f2-bfe2-75d131b8d7ef",
-                  "$Data": [
-                    {
-                      "$GUID": "0fc42485-b353-4dc0-8c78-ac64eccc4218",
-                      "$Data": "Weapon"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
-          "$GUID": "fd9d5592-5e51-45b0-986c-fabad64b16e6",
-          "$Type": "UnityEngine.BoxCollider2D",
-          "$Data": {
-            "Offset": {
-              "$GUID": "e3f91b93-16c7-45d8-81fd-1be23c1612ce",
-              "$Data": {
-                "X": {
-                  "$GUID": "d467c224-11db-4687-8cc2-e0be2013ca34",
-                  "$Data": 0.0
-                },
-                "Y": {
-                  "$GUID": "63dbed8b-b84b-424d-8798-f3202420e89f",
-                  "$Data": 0.0
-                }
-              }
-            },
-            "Size": {
-              "$GUID": "70bb61bb-0cfb-47f3-992e-2fc93c1f23df",
-              "$Data": {
-                "X": {
-                  "$GUID": "0617fced-80f4-4591-b87e-c6fd50769ae6",
-                  "$Data": 1.0
-                },
-                "Y": {
-                  "$GUID": "76583ae3-673d-4f57-95e7-9cc057da9ab6",
-                  "$Data": 1.0
-                }
-              }
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
             }
           }
         }
-      ]
+      ],
+      "Children": []
     },
-    "Children": {
-      "$GUID": "57ac6efa-f933-4f55-ab37-d93538eb7b9a",
-      "$Data": [
+    {
+      "Name": "Muzzles",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
         {
-          "$GUID": "69fa3151-aab0-4971-bedf-2b4fc85dedc1",
+          "$Type": "UnityEngine.Transform",
           "$Data": {
-            "Name": {
-              "$GUID": "2edf61b4-a087-4dcf-99a1-822ccfd88c71",
-              "$Data": "Sprite"
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
-            "Tag": {
-              "$GUID": "7b16267c-8b14-4fb3-81b5-53ac865012b4",
-              "$Data": "Untagged"
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
             },
-            "Layer": {
-              "$GUID": "f9c649a2-d304-48d1-9d76-bc552fcf04b4",
-              "$Data": 9
-            },
-            "Static": {
-              "$GUID": "4893a7f2-4bad-4086-8581-764a1b02d49a",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "95c87e27-d0d3-4257-9fec-02745a363ffa",
-              "$Data": [
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 0.5,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            }
+          ],
+          "Children": [
+            {
+              "Name": "FireParticle",
+              "Tag": "Untagged",
+              "Layer": 9,
+              "Static": false,
+              "Components": [
                 {
-                  "$GUID": "12c5a8e2-33ae-4270-b3b7-2e3ba75edbc1",
                   "$Type": "UnityEngine.Transform",
                   "$Data": {
                     "Position": {
-                      "$GUID": "653fc6b7-3f86-446b-a553-5594184e861b",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "75437c73-5cf6-47b0-a34d-9f210b525b1a",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "f4bfa21d-24c6-450c-a78f-76f309af43cb",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "6dae2194-fb60-468e-ab01-23fb86958c24",
-                          "$Data": 0.0
-                        }
-                      }
+                      "X": 0.0,
+                      "Y": 0.0,
+                      "Z": 0.0
                     },
                     "Rotation": {
-                      "$GUID": "e385a97b-0bf4-45fa-af74-b9332cf8b6f6",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "f2afc102-8765-4065-8e2a-e523c5efce11",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "0051b443-7def-4211-9244-d3720a057286",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "ec017742-cf44-4424-aedb-61648565949a",
-                          "$Data": 0.0
-                        }
-                      }
+                      "X": 0.0,
+                      "Y": 90.0,
+                      "Z": 0.0
                     },
                     "Scale": {
-                      "$GUID": "0b27db15-8e47-42d5-9244-48ed2c108779",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "ee939b5d-7431-44a0-9c56-5a6a1e0ce954",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "1434ab0a-a3fe-4b05-8259-46b8153b08c6",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "f99ce1e2-0944-4f0e-b611-f78529c8eec3",
-                          "$Data": 1.0
-                        }
-                      }
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 1.0
                     }
                   }
                 },
                 {
-                  "$GUID": "c72532d0-a02b-495b-9335-1c0869d68472",
-                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
                   "$Data": {
                     "Reference": {
-                      "$GUID": "1a0e07bb-1862-4f42-b668-f9e237d0aeb7",
-                      "$Data": {
-                        "Path": {
-                          "$GUID": "41013009-b8c9-4938-896c-0cf8d7b255c2",
-                          "$Data": "Core/Sprites/Components/MachineGunT3.png"
-                        },
-                        "Rect": {
-                          "$GUID": "20b1ae01-2459-4a66-8c6d-2fe3109f1978",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "5a69817b-54f2-43ee-ac3e-a73719094e7a",
-                              "$Data": 32.0
-                            },
-                            "Y": {
-                              "$GUID": "cf10b239-c8d7-47d1-bd8d-a7c8deca00b5",
-                              "$Data": 0.0
-                            },
-                            "Width": {
-                              "$GUID": "6180dd3b-6164-4745-a7c1-8f95cf7e893a",
-                              "$Data": 32.0
-                            },
-                            "Height": {
-                              "$GUID": "253cd207-f5e7-4094-8edd-9c4ff4851ec9",
-                              "$Data": 32.0
-                            }
-                          }
-                        },
-                        "Pivot": {
-                          "$GUID": "afaa17eb-33b1-4f77-975e-20a912f1639f",
-                          "$Data": {
-                            "X": {
-                              "$GUID": "920ce2ba-14ed-4a71-8956-d1a9287f6678",
-                              "$Data": 0.5
-                            },
-                            "Y": {
-                              "$GUID": "e09f3b78-df46-45a8-9f46-d0d5d27da9f7",
-                              "$Data": 0.5
-                            }
-                          }
-                        },
-                        "PixelsPerUnit": {
-                          "$GUID": "b1bde328-be34-492e-aef1-50edb33d7b1b",
-                          "$Data": 32.0
-                        }
-                      }
+                      "Path": "Resources/Particles/FireEffects/MachineGunFireEffect"
                     },
-                    "Color": {
-                      "$GUID": "f0865f75-3ed0-47e7-9719-027259ee1f30",
-                      "$Data": {
-                        "Red": {
-                          "$GUID": "3fd251f7-9ac2-477b-8d4e-38261e9a1e91",
-                          "$Data": 1.0
-                        },
-                        "Green": {
-                          "$GUID": "f1ce5a13-340e-47a0-ab13-c24fb1085ff0",
-                          "$Data": 1.0
-                        },
-                        "Blue": {
-                          "$GUID": "dea71637-6ee4-4eda-aeb5-fa566bb9246a",
-                          "$Data": 1.0
-                        },
-                        "Alpha": {
-                          "$GUID": "39d24165-f506-46f4-91a6-55e6d0368311",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
+                    "NameOverride": ""
                   }
                 }
-              ]
-            },
-            "Children": {
-              "$GUID": "151acebb-1bf4-45c1-9a00-7a1d9c915e44",
-              "$Data": []
+              ],
+              "Children": []
             }
-          }
-        },
-        {
-          "$GUID": "e1013115-9a57-4202-b796-3505ae87f003",
-          "$Data": {
-            "Name": {
-              "$GUID": "15a3c43c-ec88-4dfb-aae4-1449a8826c72",
-              "$Data": "Muzzles"
-            },
-            "Tag": {
-              "$GUID": "52aed34c-83ef-49b7-9d9e-0872633ed608",
-              "$Data": "Untagged"
-            },
-            "Layer": {
-              "$GUID": "599ace10-cb18-4096-bada-8afba550aafb",
-              "$Data": 9
-            },
-            "Static": {
-              "$GUID": "bf11dcea-bc6c-4603-a0ae-66fb5dfbe55e",
-              "$Data": false
-            },
-            "Components": {
-              "$GUID": "85a1c265-9446-4e65-bd8d-8eb7a06144f8",
-              "$Data": [
-                {
-                  "$GUID": "aa52f87f-12ba-4fa1-966c-d03c3f11d587",
-                  "$Type": "UnityEngine.Transform",
-                  "$Data": {
-                    "Position": {
-                      "$GUID": "3c07338b-e81d-46bf-a738-ed6413a46810",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "cb1a8cb5-eed5-4ce8-ac72-0b3acdead592",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "13bbd2f8-2d8b-49ec-8ae7-dd2aa9513f6e",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "0328738d-ec59-4a14-9552-dca87034277b",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Rotation": {
-                      "$GUID": "1a5b2da0-19d3-4bb8-819e-8b12b780272a",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "6c1c58b2-6d70-4e74-859e-093d5ed5a099",
-                          "$Data": 0.0
-                        },
-                        "Y": {
-                          "$GUID": "0246b7dc-30c4-410f-82c2-5c40d8f61717",
-                          "$Data": 0.0
-                        },
-                        "Z": {
-                          "$GUID": "f121c692-a82c-4b24-ba9f-6362882b4a40",
-                          "$Data": 0.0
-                        }
-                      }
-                    },
-                    "Scale": {
-                      "$GUID": "b4685643-92ee-4120-aaf5-809f30c22cdd",
-                      "$Data": {
-                        "X": {
-                          "$GUID": "2119f3b9-9f18-4b79-a78a-7fa811a8b65e",
-                          "$Data": 1.0
-                        },
-                        "Y": {
-                          "$GUID": "9db0f544-fcd2-44da-b162-49ca66efb169",
-                          "$Data": 1.0
-                        },
-                        "Z": {
-                          "$GUID": "2ebc7943-ffa9-4849-a179-2b27fae1758f",
-                          "$Data": 1.0
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "Children": {
-              "$GUID": "6bf118dc-df8f-4c41-8b1d-1ae22ecbe42c",
-              "$Data": [
-                {
-                  "$GUID": "1028003b-facb-4829-ab30-48baf168c347",
-                  "$Data": {
-                    "Name": {
-                      "$GUID": "3fcbcb95-7eeb-435b-a122-d99018bcd363",
-                      "$Data": "Muzzle"
-                    },
-                    "Tag": {
-                      "$GUID": "7266772c-449e-41ee-a5a3-c7cab8375fe5",
-                      "$Data": "Untagged"
-                    },
-                    "Layer": {
-                      "$GUID": "82b45a89-9cf3-40c5-9cc1-03366c0762f1",
-                      "$Data": 9
-                    },
-                    "Static": {
-                      "$GUID": "ef5b45c3-5191-4677-8135-3fd71e035cd9",
-                      "$Data": false
-                    },
-                    "Components": {
-                      "$GUID": "dcc032ce-d7ea-4543-98f1-d8d3a3e03b1f",
-                      "$Data": [
-                        {
-                          "$GUID": "e45ea08c-d94e-4298-9531-2047c8aaedf1",
-                          "$Type": "UnityEngine.Transform",
-                          "$Data": {
-                            "Position": {
-                              "$GUID": "91f30a10-1aa9-49d4-a59a-1bf9cbc2c4fd",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "1b8325f5-95ff-447b-80d7-7c412d60b046",
-                                  "$Data": 0.5
-                                },
-                                "Y": {
-                                  "$GUID": "5c32bd1f-4128-4385-a4f5-dce978131586",
-                                  "$Data": 0.0
-                                },
-                                "Z": {
-                                  "$GUID": "2de2beba-bd0d-4bd9-b975-2430a1588b42",
-                                  "$Data": 0.0
-                                }
-                              }
-                            },
-                            "Rotation": {
-                              "$GUID": "12c41ab5-e556-4445-808a-fe0527b6025b",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "6abd7a0a-2e1b-41a3-b94a-844e6c12db78",
-                                  "$Data": 0.0
-                                },
-                                "Y": {
-                                  "$GUID": "3763a052-bfd4-4a3e-9aca-a9453160c864",
-                                  "$Data": 0.0
-                                },
-                                "Z": {
-                                  "$GUID": "029c124c-18c6-4829-a135-41fa09244a4b",
-                                  "$Data": 0.0
-                                }
-                              }
-                            },
-                            "Scale": {
-                              "$GUID": "2281d509-47e6-4667-b6f0-777c1c73bba8",
-                              "$Data": {
-                                "X": {
-                                  "$GUID": "f860869e-ff24-4c99-8878-903d39c632ab",
-                                  "$Data": 1.0
-                                },
-                                "Y": {
-                                  "$GUID": "26ee6136-1d15-4e07-9b36-1d3beafad060",
-                                  "$Data": 1.0
-                                },
-                                "Z": {
-                                  "$GUID": "6e5a7b18-90f5-4526-9ad4-feeed722d264",
-                                  "$Data": 1.0
-                                }
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    },
-                    "Children": {
-                      "$GUID": "bc627f6a-2b13-47ee-9356-26b27e72a5b9",
-                      "$Data": [
-                        {
-                          "$GUID": "03f417ad-05ed-4a68-a543-88ae6c10bd28",
-                          "$Data": {
-                            "Name": {
-                              "$GUID": "c844723b-46f0-45f1-959d-79ff1dc48b30",
-                              "$Data": "FireParticle"
-                            },
-                            "Tag": {
-                              "$GUID": "cf3a3fac-739b-4119-840e-54ff4989ac70",
-                              "$Data": "Untagged"
-                            },
-                            "Layer": {
-                              "$GUID": "4e463fa7-2496-4722-8a11-1f024df3a7b4",
-                              "$Data": 9
-                            },
-                            "Static": {
-                              "$GUID": "b80667e0-b45e-4a03-8bec-3fbc86ca03a8",
-                              "$Data": false
-                            },
-                            "Components": {
-                              "$GUID": "2d6f1838-99a6-42cd-8ee8-d560a56449e4",
-                              "$Data": [
-                                {
-                                  "$GUID": "55568814-98db-4e7d-b134-42dcad8fd434",
-                                  "$Type": "UnityEngine.Transform",
-                                  "$Data": {
-                                    "Position": {
-                                      "$GUID": "bd3bd122-fe18-41ba-82b5-f124c378734b",
-                                      "$Data": {
-                                        "X": {
-                                          "$GUID": "05b4dcf3-67a8-4ebc-81e4-ee7b7fe70eaf",
-                                          "$Data": 0.0
-                                        },
-                                        "Y": {
-                                          "$GUID": "913a30da-5dbd-45c8-abcc-06bacc4ec41d",
-                                          "$Data": 0.0
-                                        },
-                                        "Z": {
-                                          "$GUID": "40fba1bb-4b8c-4a24-b528-77d68146a614",
-                                          "$Data": 0.0
-                                        }
-                                      }
-                                    },
-                                    "Rotation": {
-                                      "$GUID": "97d6608a-2fd5-4277-b482-56555b4f6b66",
-                                      "$Data": {
-                                        "X": {
-                                          "$GUID": "a310f6bc-b710-4ece-849c-6251bdb67120",
-                                          "$Data": 0.0
-                                        },
-                                        "Y": {
-                                          "$GUID": "c56d9fff-a884-4ca8-a21a-d13f52b86590",
-                                          "$Data": 90.0
-                                        },
-                                        "Z": {
-                                          "$GUID": "d9391a92-02aa-4918-a250-98b1e3a6bef5",
-                                          "$Data": 0.0
-                                        }
-                                      }
-                                    },
-                                    "Scale": {
-                                      "$GUID": "309fe185-8a46-4ceb-a5d8-85d6dbf34677",
-                                      "$Data": {
-                                        "X": {
-                                          "$GUID": "ab9a98d4-1857-43a5-b852-ffa6012b8b2c",
-                                          "$Data": 1.0
-                                        },
-                                        "Y": {
-                                          "$GUID": "3d8f162b-864d-4eec-a64d-69b536f8223b",
-                                          "$Data": 1.0
-                                        },
-                                        "Z": {
-                                          "$GUID": "61e0f091-cf4c-478a-8b0c-c9c9ee5cd0c2",
-                                          "$Data": 1.0
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
-                                {
-                                  "$GUID": "ec45d258-1251-4752-958c-6b227d2c5f4d",
-                                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                                  "$Data": {
-                                    "Reference": {
-                                      "$GUID": "04d6d0a1-dab3-4931-a3c6-64709a2feb7b",
-                                      "$Data": {
-                                        "Path": {
-                                          "$GUID": "65323e8e-fd87-4462-9427-fc9d7762dac3",
-                                          "$Data": "Resources/Particles/FireEffects/MachineGunFireEffect"
-                                        }
-                                      }
-                                    },
-                                    "NameOverride": {
-                                      "$GUID": "02e7d7ee-5713-4ec7-aa41-95d386ac3f0f",
-                                      "$Data": ""
-                                    }
-                                  }
-                                }
-                              ]
-                            },
-                            "Children": {
-                              "$GUID": "2aa3e828-e92b-4134-a2ce-7753373a8526",
-                              "$Data": []
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          }
+          ]
         }
       ]
     }
-  }
+  ]
 }
