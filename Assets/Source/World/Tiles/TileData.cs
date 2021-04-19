@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
@@ -147,20 +148,20 @@ namespace Lomztein.BFA2.World.Tiles
             return twodi;
         }
 
-        public ValueModel Disassemble()
+        public ValueModel Disassemble(DisassemblyContext context)
         {
-            return new ArrayModel (EnflattenTiles(Tiles).Select(x => x.Disassemble()));
+            return new ArrayModel (EnflattenTiles(Tiles).Select(x => x.Disassemble(context)));
         }
 
-        public void Assemble(ValueModel source)
+        public void Assemble(ValueModel source, AssemblyContext context)
         {
-            Tiles = TwodifyTiles((source as ArrayModel).Select(x => DeserializeTileTypeReference(x)).ToArray());
+            Tiles = TwodifyTiles((source as ArrayModel).Select(x => DeserializeTileTypeReference(x, context)).ToArray());
         }
 
-        private TileTypeReference DeserializeTileTypeReference (ValueModel model)
+        private TileTypeReference DeserializeTileTypeReference (ValueModel model, AssemblyContext context)
         {
             TileTypeReference reference = new TileTypeReference();
-            reference.Assemble(model);
+            reference.Assemble(model, context);
             return reference;
         }
     }

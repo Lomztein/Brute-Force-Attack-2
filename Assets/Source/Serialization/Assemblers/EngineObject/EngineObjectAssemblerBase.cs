@@ -11,18 +11,18 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
     public abstract class EngineObjectAssemblerBase<T> : IEngineObjectAssembler
     {
         public bool CanConvert(Type objectType) => objectType == typeof(T);
-        public object Assemble(ObjectModel value)
+        public object Assemble(ObjectModel value, AssemblyContext context)
         {
-            return AssembleValue(value);
+            return AssembleValue(value, context);
         }
 
-        public abstract T AssembleValue(ObjectModel value);
+        public abstract T AssembleValue(ObjectModel value, AssemblyContext context);
 
-        public ObjectModel Disassemble(object value)
+        public ObjectModel Disassemble(object value, DisassemblyContext context)
         {
-            return DisassembleValue((T)value);
+            return DisassembleValue((T)value, context);
         }
 
-        public abstract ObjectModel DisassembleValue(T value);
+        public abstract ObjectModel DisassembleValue(T value, DisassemblyContext context);
     }
 }

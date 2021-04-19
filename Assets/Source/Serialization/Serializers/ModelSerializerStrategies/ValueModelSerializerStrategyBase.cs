@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
 
             if (obj.TryGetValue (ValueModelSerializer.VALUE_MODEL_GUID_NAME, out JToken guid)) // TODO: Create some sort of more extensible metadata serialization handler
             {
-                model.GUID = guid.ToObject<Guid>();
+                model.Guid = guid.ToObject<Guid>();
             }
             if (obj.TryGetValue(ValueModelSerializer.VALUE_MODEL_TYPE_NAME, out JToken type))
             {
@@ -44,9 +44,9 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
         {
             JObject obj = new JObject();
 
-            if (model.HasGUID)
+            if (model.HasGuid)
             {
-                obj.Add(ValueModelSerializer.VALUE_MODEL_GUID_NAME, model.GUID.Value);
+                obj.Add(ValueModelSerializer.VALUE_MODEL_GUID_NAME, model.Guid.Value);
             }
             if (!model.IsTypeImplicit)
             {

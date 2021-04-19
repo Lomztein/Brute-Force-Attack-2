@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         private static readonly string COMPONENTS_CONTENT_PATH = "*/Components";
         private IContentCachedPrefab[] _allComponents;
 
-        public void Assemble (ObjectModel model, TurretComponent parent, TurretAssembly assembly)
+        public void Assemble (ObjectModel model, TurretComponent parent, TurretAssembly assembly, AssemblyContext context)
         {
             IContentCachedPrefab component = GetComponent(model.GetValue<string>("UniqueIdentifier"));
             ValueAssembler assembler = new ValueAssembler();
@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             if (parent != null)
             {
                 obj.transform.SetParent(parent.transform);
-                obj.transform.localPosition = (Vector3)assembler.Assemble (model.GetObject("LocalPosition"), typeof (Vector3));
+                obj.transform.localPosition = (Vector3)assembler.Assemble (model.GetObject("LocalPosition"), typeof (Vector3), context);
             }
             else
             {
@@ -35,11 +35,11 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             TurretComponent newComponent = obj.GetComponent<TurretComponent>();
             foreach (ValueModel child in model.GetArray("Children"))
             {
-                Assemble(child as ObjectModel, newComponent, assembly);
+                Assemble(child as ObjectModel, newComponent, assembly, context);
             }
         }
 
-        public ObjectModel Dissassemble (TurretComponent component)
+        public ObjectModel Dissassemble (TurretComponent component, DisassemblyContext context)
         {
             GameObject obj = component.gameObject;
             List<ObjectModel> children = new List<ObjectModel>();
@@ -48,13 +48,13 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 TurretComponent childComponent = child.GetComponent<TurretComponent>();
                 if (childComponent != null)
                 {
-                    children.Add(Dissassemble(childComponent));
+                    children.Add(Dissassemble(childComponent, context));
                 }
             }
 
             return new ObjectModel(
-                new ObjectField("UniqueIdentifier", ValueModelFactory.Create(component.UniqueIdentifier)),
-                new ObjectField("LocalPosition", ValueModelFactory.Create(obj.transform.localPosition)),
+                new ObjectField("UniqueIdentifier", ValueModelFactory.Create(component.UniqueIdentifier, context)),
+                new ObjectField("LocalPosition", ValueModelFactory.Create(obj.transform.localPosition, context)),
                 new ObjectField("Children", new ArrayModel(children))
                 );
         }

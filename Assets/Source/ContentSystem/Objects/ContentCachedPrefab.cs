@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.ContentSystem.Objects
     {
         private SceneCachedGameObject _cache;
 
-        public ContentCachedPrefab(ObjectModel model)
+        public ContentCachedPrefab(RootModel model)
         {
             GameObjectAssembler assembler = new GameObjectAssembler();
             GameObject instance = assembler.Assemble(model);

@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
         private IEngineComponentAssembler GetEngineComponentAssembler(Type type) => _engineSerializers.FirstOrDefault(x => x.Type == type);
 
-        public void Assemble (ObjectModel model, GameObject target)
+        public void Assemble (ObjectModel model, GameObject target, AssemblyContext context)
         {
             var serializer = GetEngineComponentAssembler(model.GetModelType());
             if (serializer != null)
@@ -40,25 +40,25 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                      comp = target.AddComponent(model.GetModelType());
                 }
 
-                serializer.Assemble(model, comp);
+                serializer.Assemble(model, comp, context);
                 return;
             }
 
             Component component = target.AddComponent(model.GetModelType());
             ObjectPopulator populator = new ObjectPopulator();
-            populator.Populate(component, model);
+            populator.Populate(component, model, context);
         }
         
-        public ObjectModel Disassemble(Component component)
+        public ObjectModel Disassemble(Component component, DisassemblyContext context)
         {
             var assembler = GetEngineComponentAssembler(component.GetType());
             if (assembler != null)
             {
-                return assembler.Disassemble(component); // Components are always explicit.
+                return assembler.Disassemble(component, context); // Components are always explicit.
             }
 
             ObjectPopulator populator = new ObjectPopulator();
-            return populator.Extract(component);
+            return populator.Extract(component, context);
         }
     }
 }

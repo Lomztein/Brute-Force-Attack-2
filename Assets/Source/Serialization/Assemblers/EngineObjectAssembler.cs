@@ -22,14 +22,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
 
-        public object Assemble(ValueModel model, Type type)
+        public object Assemble(ValueModel model, Type type, AssemblyContext context)
         {
-            return GetAssembler(type).Assemble(model as ObjectModel);
+            return GetAssembler(type).Assemble(model as ObjectModel, context);
         }
 
-        public ValueModel Disassemble(object value, Type type)
+        public ValueModel Disassemble(object value, Type type, DisassemblyContext context)
         {
-            return GetAssembler(value.GetType()).Disassemble(value);
+            return GetAssembler(value.GetType()).Disassemble(value, context);
         }
 
         private IEngineObjectAssembler GetAssembler (Type type)

@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,12 +58,12 @@ namespace Lomztein.BFA2.LocalizationSystem
             return text;
         }
 
-        public ValueModel Disassemble()
+        public ValueModel Disassemble(DisassemblyContext context)
         {
             return new ObjectModel(_translations.Select(x => new ObjectField(x.Key, new PrimitiveModel(x.Value))).ToArray());
         }
 
-        public void Assemble(ValueModel source)
+        public void Assemble(ValueModel source, AssemblyContext context)
         {
             ObjectModel obj = source as ObjectModel;
             _translations = obj.GetProperties().ToDictionary(x => x.Name, y => (y.Model as PrimitiveModel).Value);

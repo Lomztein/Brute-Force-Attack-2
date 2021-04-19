@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 {
     public class AnimationCurveAssembler : EngineObjectAssemblerBase<AnimationCurve>
     {
-        public override AnimationCurve AssembleValue(ObjectModel value)
+        public override AnimationCurve AssembleValue(ObjectModel value, AssemblyContext context)
         {
             ArrayModel array = value.GetProperty<ArrayModel>("Keyframes");
             AnimationCurve curve = new AnimationCurve(array.Select(x => AssembleKeyframe(x as ObjectModel)).ToArray());
@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                     );
         }
 
-        public override ObjectModel DisassembleValue(AnimationCurve value)
+        public override ObjectModel DisassembleValue(AnimationCurve value, DisassemblyContext context)
         {
             IEnumerable<ObjectModel> frames = value.keys.Select(x => DissasembleKeyframe(x));
             return new ObjectModel(

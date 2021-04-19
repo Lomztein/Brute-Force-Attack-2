@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace Lomztein.BFA2.World
             GameObjectAssembler assembler = new GameObjectAssembler();
             foreach (var obj in _mapData.Objects)
             {
-                _mapObjects.Add(assembler.Assemble(obj));
+                _mapObjects.Add(assembler.Assemble(new RootModel (obj)));
             }
 
             // Assign to correct parent.

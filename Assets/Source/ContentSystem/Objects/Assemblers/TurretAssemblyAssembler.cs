@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using System;
@@ -15,23 +16,25 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         private const string ASSEMBLY_PREFAB_PATH = "Prefabs/AssemblyPrefab";
         private TurretComponentAssembler _assembler = new TurretComponentAssembler();
 
-        public TurretAssembly Assemble (ObjectModel model)
+        public TurretAssembly Assemble (RootModel model)
         {
             GameObject assemblyObject = UnityEngine.Object.Instantiate(Resources.Load<GameObject>(ASSEMBLY_PREFAB_PATH));
             TurretAssembly assembly = assemblyObject.GetComponent<TurretAssembly>();
-            assembly.Name = model.GetValue<string>("Name");
-            assembly.Description = model.GetValue<string>("Description");
-            _assembler.Assemble (model.GetObject("RootComponent"), null, assembly);
+            ObjectModel obj = model.Root as ObjectModel;
+            assembly.Name = obj.GetValue<string>("Name");
+            assembly.Description = obj.GetValue<string>("Description");
+            _assembler.Assemble (obj.GetObject("RootComponent"), null, assembly, new AssemblyContext());
             return assembly;
         }
 
-        public ObjectModel Disassemble (TurretAssembly assembly)
+        public RootModel Disassemble (TurretAssembly assembly)
         {
-            return new ObjectModel(
-                new ObjectField("Name", ValueModelFactory.Create(assembly.Name)),
-                new ObjectField("Description", ValueModelFactory.Create(assembly.Description)),
-                new ObjectField("RootComponent", _assembler.Dissassemble(assembly.GetRootComponent())
-                ));
+            DisassemblyContext context = new DisassemblyContext();
+            return new RootModel(new ObjectModel(
+                new ObjectField("Name", ValueModelFactory.Create(assembly.Name, context)),
+                new ObjectField("Description", ValueModelFactory.Create(assembly.Description, context)),
+                new ObjectField("RootComponent", _assembler.Dissassemble(assembly.GetRootComponent(), context)
+                )));
         }
     }
 }

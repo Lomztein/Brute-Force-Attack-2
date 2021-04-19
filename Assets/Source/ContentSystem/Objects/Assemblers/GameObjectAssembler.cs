@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Utilities;
 using System.Collections;
@@ -12,15 +13,15 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
     {
         private ComponentAssembler _componentAssembler = new ComponentAssembler();
 
-        public GameObject Assemble(ObjectModel model)
+        public GameObject Assemble(RootModel model)
         {
-            GameObject obj = RecursiveAssemble(model);
+            GameObject obj = RecursiveAssemble(model.Root as ObjectModel, new AssemblyContext());
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled");
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnPostAssembled");
             return obj;
         }
 
-        private GameObject RecursiveAssemble (ObjectModel model)
+        private GameObject RecursiveAssemble (ObjectModel model, AssemblyContext context)
         {
             GameObject obj = new GameObject(model.GetValue<string>("Name"))
             {
@@ -32,13 +33,13 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             var components = model.GetArray("Components");
             foreach (var component in components)
             {
-                _componentAssembler.Assemble(component as ObjectModel, obj);
+                _componentAssembler.Assemble(component as ObjectModel, obj, context);
             }
 
             var children = model.GetArray("Children");
             foreach (var child in children)
             {
-                GameObject childObj = RecursiveAssemble(child as ObjectModel);
+                GameObject childObj = RecursiveAssemble(child as ObjectModel, context);
 
                 Vector3 pos = childObj.transform.position;
                 Quaternion rot = childObj.transform.rotation;
@@ -54,28 +55,34 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             return obj;
         }
 
-        public ObjectModel Disassemble(GameObject gameObject)
+        public RootModel Disassemble(GameObject gameObject)
+        {
+            DisassemblyContext context = new DisassemblyContext();
+            return new RootModel (RecursiveDisassemble(gameObject, context));
+        }
+
+        public ObjectModel RecursiveDisassemble (GameObject gameObject, DisassemblyContext context)
         {
             var children = new List<ObjectModel>();
             foreach (Transform child in gameObject.transform)
             {
-                children.Add(Disassemble(child.gameObject));
+                children.Add(RecursiveDisassemble(child.gameObject, context));
             }
 
-            Component[] components = gameObject.GetComponents<Component>().Where(x => !x.GetType().IsDefined(typeof (DontSerializeAttribute), false)).ToArray();
+            Component[] components = gameObject.GetComponents<Component>().Where(x => !x.GetType().IsDefined(typeof(DontSerializeAttribute), false)).ToArray();
             var componentModels = new List<ObjectModel>();
             foreach (Component component in components)
             {
-                componentModels.Add(_componentAssembler.Disassemble(component).MakeExplicit(component.GetType()) as ObjectModel);
+                componentModels.Add(_componentAssembler.Disassemble(component, context).MakeExplicit(component.GetType()) as ObjectModel);
             }
 
             return new ObjectModel(
-                new ObjectField("Name", ValueModelFactory.Create(gameObject.name)),
-                new ObjectField("Tag", ValueModelFactory.Create(gameObject.tag)),
-                new ObjectField("Layer", ValueModelFactory.Create(gameObject.layer)),
-                new ObjectField("Static", ValueModelFactory.Create(gameObject.isStatic)),
+                new ObjectField("Name", ValueModelFactory.Create(gameObject.name, context)),
+                new ObjectField("Tag", ValueModelFactory.Create(gameObject.tag, context)),
+                new ObjectField("Layer", ValueModelFactory.Create(gameObject.layer, context)),
+                new ObjectField("Static", ValueModelFactory.Create(gameObject.isStatic, context)),
                 new ObjectField("Components", new ArrayModel(componentModels)),
-                new ObjectField("Children", new ArrayModel(GetChildren(gameObject).Select(x => Disassemble(x))))
+                new ObjectField("Children", new ArrayModel(GetChildren(gameObject).Select(x => RecursiveDisassemble(x, context))))
             );
         }
 

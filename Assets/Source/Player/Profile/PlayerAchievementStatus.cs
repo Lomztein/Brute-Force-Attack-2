@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Lomztein.BFA2.Player.Profile
         {
         }
 
-        public void Assemble(ValueModel source)
+        public void Assemble(ValueModel source, AssemblyContext context)
         {
             ObjectModel model = source as ObjectModel;
             Identifier = model.GetValue<string>("Identifier");
@@ -32,7 +33,7 @@ namespace Lomztein.BFA2.Player.Profile
             Progression = model.GetProperty("Progression");
         }
 
-        public ValueModel Disassemble()
+        public ValueModel Disassemble(DisassemblyContext context)
         {
             return new ObjectModel(
                 new ObjectField("Identifier", new PrimitiveModel(Identifier)),

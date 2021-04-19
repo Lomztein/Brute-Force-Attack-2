@@ -89,7 +89,7 @@ namespace Lomztein.BFA2.World
             return new Graph(nodes.ToArray(), edges.ToArray(), new TileGraphMap(Width, Height, nodeMap));
         }
 
-        public ValueModel Disassemble()
+        public ValueModel Disassemble(DisassemblyContext context)
         {
             ObjectModel obj = new ObjectModel(
                 new ObjectField("Name", new PrimitiveModel(Name)),
@@ -97,15 +97,15 @@ namespace Lomztein.BFA2.World
                 new ObjectField("Identifier", new PrimitiveModel(Identifier)),
                 new ObjectField("Width", new PrimitiveModel(Width)),
                 new ObjectField("Height", new PrimitiveModel(Height)),
-                new ObjectField("MapImage", ValueModelFactory.Create(MapImage)),
-                new ObjectField("Tiles", Tiles.Disassemble()),
+                new ObjectField("MapImage", ValueModelFactory.Create(MapImage, context)),
+                new ObjectField("Tiles", Tiles.Disassemble(context)),
                 new ObjectField("Objects", new ArrayModel(Objects))
                 );
 
             return obj;
         }
 
-        public void Assemble(ValueModel source)
+        public void Assemble(ValueModel source, AssemblyContext context)
         {
             ObjectModel obj = (source as ObjectModel);
 
@@ -114,17 +114,17 @@ namespace Lomztein.BFA2.World
             Identifier = obj.GetValue<string>("Identifier");
             Width = obj.GetValue<int>("Width");
             Height = obj.GetValue<int>("Height");
-            Tiles = AssembleTileData(obj.GetArray("Tiles"));
+            Tiles = AssembleTileData(obj.GetArray("Tiles"), context);
             Objects = obj.GetArray("Objects").Elements.Cast<ObjectModel>().ToArray();
 
             ObjectAssembler assembler = new ObjectAssembler();
-            MapImage = (ContentSpriteReference)assembler.Assemble (obj.GetObject("MapImage"), typeof(ContentSpriteReference));
+            MapImage = (ContentSpriteReference)assembler.Assemble (obj.GetObject("MapImage"), typeof(ContentSpriteReference), context);
         }
 
-        private TileData AssembleTileData (ArrayModel array)
+        private TileData AssembleTileData (ArrayModel array, AssemblyContext context)
         {
             TileData data = new TileData(Width, Height);
-            data.Assemble(array);
+            data.Assemble(array, context);
             return data;
         }
     }

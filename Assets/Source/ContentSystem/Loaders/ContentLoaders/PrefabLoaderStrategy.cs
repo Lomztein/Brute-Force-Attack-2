@@ -18,9 +18,9 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         public object Load(string path, Type type)
         {
             JToken data = DataSerialization.FromFile(path);
-            var serializer = new ValueModelSerializer();
+            var serializer = new RootSerializer();
             var model = serializer.Deserialize(data);
-            return new ContentCachedPrefab (model as ObjectModel);
+            return new ContentCachedPrefab (model);
         }
     }
 }

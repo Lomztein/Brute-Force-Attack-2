@@ -145,7 +145,7 @@ namespace Lomztein.BFA2.MapEditor
         {
             MapData.Name = name;
             MapData.Objects = AssembleMapObjects();
-            var model = MapData.Disassemble();
+            var model = MapData.Disassemble(new Serialization.Assemblers.DisassemblyContext());
 
             ValueModelSerializer serializer = new ValueModelSerializer();
             File.WriteAllText(path, serializer.Serialize(model).ToString());
@@ -158,7 +158,7 @@ namespace Lomztein.BFA2.MapEditor
 
             foreach (Transform child in _mapController.Dependancy.MapObjectParent)
             {
-                models.Add(assembler.Disassemble(child.gameObject));
+                models.Add(assembler.Disassemble(child.gameObject).Root as ObjectModel);
             }
 
             return models.ToArray();

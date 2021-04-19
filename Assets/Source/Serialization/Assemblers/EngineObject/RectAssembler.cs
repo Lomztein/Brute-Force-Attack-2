@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 {
     public class RectAssembler : EngineObjectAssemblerBase<Rect>
     {
-        public override Rect AssembleValue(ObjectModel value)
+        public override Rect AssembleValue(ObjectModel value, AssemblyContext context)
         {
             return new Rect(
                 value.GetValue<float>("X"),
@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
                 );
         }
 
-        public override ObjectModel DisassembleValue(Rect value)
+        public override ObjectModel DisassembleValue(Rect value, DisassemblyContext context)
         {
             return new ObjectModel(
                 new ObjectField ("X", new PrimitiveModel(value.x)),

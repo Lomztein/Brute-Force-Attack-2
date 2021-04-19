@@ -13,11 +13,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     {
         private ObjectPopulator _populator = new ObjectPopulator();
 
-        public object Assemble (ValueModel model, Type implicitType)
+        public object Assemble (ValueModel model, Type implicitType, AssemblyContext context)
         {
             Type type = model.IsTypeImplicit ? implicitType : model.GetModelType();
             object obj = CreateInstance(type);
-            _populator.Populate(obj, model as ObjectModel);
+            _populator.Populate(obj, model as ObjectModel, context);
             return obj;
         }
 
@@ -26,9 +26,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public static bool IsComplex(Type type)
             => !type.IsPrimitive && type != typeof(string) && !type.IsEnum;
 
-        public ValueModel Disassemble(object obj, Type type)
+        public ValueModel Disassemble(object obj, Type type, DisassemblyContext context)
         {
-            return _populator.Extract(obj);
+            return _populator.Extract(obj, context);
         }
 
         private object CreateInstance (Type type)

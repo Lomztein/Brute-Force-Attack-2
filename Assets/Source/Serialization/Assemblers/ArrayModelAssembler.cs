@@ -14,11 +14,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     {
         private IValueAssembler _elementAssembler = new ValueAssembler();
 
-        public object Assemble(ValueModel model, Type implicitType)
+        public object Assemble(ValueModel model, Type expectedType, AssemblyContext context)
         {
             ArrayModel array = model as ArrayModel;
-            Type elementType = GetElementType (implicitType);
-            bool isList = IsList(implicitType);
+            Type elementType = GetElementType (expectedType);
+            bool isList = IsList(expectedType);
 
             object list = Activator.CreateInstance(typeof(List<>).MakeGenericType(elementType));
             MethodInfo add = list.GetType().GetMethod("Add");
@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
             for (int i = 0; i < array.Length; i++) 
             {
-                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], array.IsTypeImplicit ? elementType : array[i].GetModelType()) });
+                add.Invoke(list, new object[] { _elementAssembler.Assemble(array[i], array.IsTypeImplicit ? elementType : array[i].GetModelType(), context) });
             }
 
             if (isList)
@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         private Type GetElementType(Type type)
             => type.GetElementType() ?? type.GetGenericArguments()[0];
 
-        public ValueModel Disassemble(object obj, Type implicitType)
+        public ValueModel Disassemble(object obj, Type expectedType, DisassemblyContext context)
         {
             List<ValueModel> models = new List<ValueModel>();
             IEnumerable enumerable = obj as IEnumerable;
@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             {
                 foreach (object element in enumerable)
                 {
-                    ValueModel model = _elementAssembler.Disassemble(element, element.GetType());
+                    ValueModel model = _elementAssembler.Disassemble(element, element.GetType(), context);
                     if (element.GetType() != GetElementType(obj.GetType()))
                     {
                         model.MakeExplicit(element.GetType());
@@ -60,7 +60,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                     models.Add(model);
                 }
             }
-            return new ArrayModel(models.ToArray());
+
+            var modelsArray = models.ToArray();
+            return context.MakeReferencable (modelsArray, new ArrayModel(modelsArray));
         }
 
         public bool CanAssemble(Type type) => IsArray(type) || IsList(type);

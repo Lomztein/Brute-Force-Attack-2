@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Serialization.Models
     public abstract class ValueModel
     {
         [SerializeField]
-        public Guid? GUID;
+        public Guid? Guid;
         public string TypeName { get; private set; }
         private Type _typeCache;
 
@@ -22,8 +22,8 @@ namespace Lomztein.BFA2.Serialization.Models
         /// If it cannot be fetched from somewhere else, for instance if it is a subtype, then it must be explicit.
         /// </summary>
         public bool IsTypeImplicit => string.IsNullOrEmpty(TypeName);
-        public bool HasGUID => GUID != null;
-        public bool HasMetadata => !IsTypeImplicit || HasGUID;
+        public bool HasGuid => Guid != null;
+        public bool HasMetadata => !IsTypeImplicit || HasGuid;
 
         public Type GetModelType ()
         {

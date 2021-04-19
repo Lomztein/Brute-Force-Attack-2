@@ -7,7 +7,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
     public interface IEngineObjectAssembler
     {
         bool CanConvert(Type objectType);
-        object Assemble(ObjectModel value);
-        ObjectModel Disassemble(object value);
+        object Assemble(ObjectModel value, AssemblyContext context);
+        ObjectModel Disassemble(object value, DisassemblyContext context);
     }
 }

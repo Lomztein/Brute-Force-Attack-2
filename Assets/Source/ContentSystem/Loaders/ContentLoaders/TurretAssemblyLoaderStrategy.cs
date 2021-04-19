@@ -19,7 +19,8 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         {
             var data = DataSerialization.FromFile(path);
             var model = ObjectPipeline.DeserializeObject(data);
-            return new ContentCachedTurretAssemblyPrefab (model as ObjectModel);
+            return null; // TODO: Fix this
+            //return new ContentCachedTurretAssemblyPrefab (model as RootModel));
         }
     }
 }

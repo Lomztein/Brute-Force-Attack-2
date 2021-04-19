@@ -13,14 +13,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     {
         public bool CanAssemble(Type type) => IsPrimitive(type);
 
-        public object Assemble(ValueModel model, Type obj)
+        public object Assemble(ValueModel model, Type obj, AssemblyContext context)
         {
             return (model as PrimitiveModel).ToObject(obj);
         }
 
-        public ValueModel Disassemble(object value, Type type)
+        public ValueModel Disassemble(object value, Type type, DisassemblyContext context)
         {
-            return new PrimitiveModel(value);
+            return context.MakeReferencable (value, new PrimitiveModel(value));
         }
 
         private static bool IsPrimitive(Type type)

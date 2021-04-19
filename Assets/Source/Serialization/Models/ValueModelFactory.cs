@@ -9,10 +9,10 @@ namespace Lomztein.BFA2.Serialization.Models
 {
     public static class ValueModelFactory
     {
-        public static ValueModel Create (object value)
+        public static ValueModel Create (object value, DisassemblyContext context)
         {
             ValueAssembler assemblers = new ValueAssembler();
-            return assemblers.Disassemble(value, value.GetType());
+            return assemblers.Disassemble(value, value.GetType(), context);
         }
     }
 }

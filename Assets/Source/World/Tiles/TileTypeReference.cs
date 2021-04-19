@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -18,12 +19,12 @@ namespace Lomztein.BFA2.World.Tiles
             TileType = type;
         }
 
-        public void Assemble(ValueModel source)
+        public void Assemble(ValueModel source, AssemblyContext context)
         {
             TileType = (source as PrimitiveModel).ToObject<string>();
         }
 
-        public ValueModel Disassemble()
+        public ValueModel Disassemble(DisassemblyContext context)
         {
             return new PrimitiveModel(TileType);
         }

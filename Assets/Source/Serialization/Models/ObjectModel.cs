@@ -26,9 +26,9 @@ namespace Lomztein.BFA2.Serialization.Models
             _properties = properties.ToList();
         }
 
-        public void Add (string name, object value)
+        public void Add (string name, ValueModel value)
         {
-            _properties.Add(new ObjectField(name, ValueModelFactory.Create(value)));
+            _properties.Add(new ObjectField(name, value));
         }
 
         public ObjectModel(ObjectModel baseModel, params ObjectField[] properties) : this(properties)

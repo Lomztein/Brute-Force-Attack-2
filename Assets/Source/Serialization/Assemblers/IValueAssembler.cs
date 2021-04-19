@@ -6,8 +6,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 {
     public interface IValueAssembler
     {
-        object Assemble(ValueModel model, Type type);
-        ValueModel Disassemble(object value, Type type);
+        object Assemble(ValueModel model, Type expectedType, AssemblyContext context);
+        ValueModel Disassemble(object value, Type expectedType, DisassemblyContext context);
         bool CanAssemble(Type type);
     }
 }

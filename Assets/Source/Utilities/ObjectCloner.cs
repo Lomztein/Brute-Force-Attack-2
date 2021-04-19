@@ -13,17 +13,17 @@ namespace Lomztein.BFA2.Utilities
     // TODO: Somehow mark as non-assembalable.
     public class ObjectCloner
     {
-        private ValueModel _modelCache;
-        private ValueAssembler _assembler = new ValueAssembler();
+        private RootModel _modelCache;
+        private RootAssembler _assembler = new RootAssembler();
 
         public T Clone<T>(T original)
         {
             if (_modelCache == null)
             {
-                _modelCache = _assembler.Disassemble(original, typeof(T));
+                _modelCache = _assembler.Disassemble(original);
             }
 
-            return (T)_assembler.Assemble(_modelCache, typeof(T));
+            return _assembler.Assemble<T>(_modelCache);
         }
     }
 

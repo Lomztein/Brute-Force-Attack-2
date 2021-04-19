@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
 {
     public class RendererAssembler : EngineComponentAssembler<Renderer>
     {
-        public override void Assemble(ObjectModel model, Renderer target)
+        public override void Assemble(ObjectModel model, Renderer target, AssemblyContext context)
         {
             var properties = model.GetProperties();
 
@@ -26,7 +27,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
             target.sortingOrder = model.GetValue<int>("OrderInLayer");
         }
 
-        public override ObjectModel Disassemble(Renderer source)
+        public override ObjectModel Disassemble(Renderer source, DisassemblyContext context)
         {
             return new ObjectModel(
                 new ObjectField("ShadowCastingMode", new PrimitiveModel(source.shadowCastingMode)),

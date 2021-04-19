@@ -11,12 +11,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 {
     public class ColorAssembler : EngineObjectAssemblerBase<Color>
     {
-        public override Color AssembleValue(ObjectModel value)
+        public override Color AssembleValue(ObjectModel value, AssemblyContext context)
         {
             return new Color(value.GetValue<float>("Red"), value.GetValue<float>("Green"), value.GetValue<float>("Blue"), value.GetValue<float>("Alpha"));
         }
 
-        public override ObjectModel DisassembleValue(Color value)
+        public override ObjectModel DisassembleValue(Color value, DisassemblyContext context)
         {
             return new ObjectModel(
                 new ObjectField("Red", new PrimitiveModel(value.r)),

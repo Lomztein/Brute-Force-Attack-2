@@ -25,22 +25,22 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
 
-        public object Assemble(ValueModel model, Type implicitType)
+        public object Assemble(ValueModel model, Type expectedType, AssemblyContext context)
         {
             if (model is NullModel)
                 return null;
 
-            Type type = model.IsTypeImplicit ? implicitType : model.GetModelType();
-            return GetAssembler(type).Assemble(model, implicitType);
+            Type type = model.IsTypeImplicit ? expectedType : model.GetModelType();
+            return GetAssembler(type).Assemble(model, expectedType, context);
         }
 
-        public ValueModel Disassemble(object obj, Type implicitType)
+        public ValueModel Disassemble(object obj, Type expectedType, DisassemblyContext context)
         {
             if (obj == null)
                 return new NullModel();
 
-            var model = GetAssembler(obj.GetType()).Disassemble(obj, implicitType);
-            if (obj.GetType() != implicitType)
+            var model = GetAssembler(obj.GetType()).Disassemble(obj, expectedType, context);
+            if (obj.GetType() != expectedType)
                 model.MakeExplicit(obj.GetType());
             return model;
         }

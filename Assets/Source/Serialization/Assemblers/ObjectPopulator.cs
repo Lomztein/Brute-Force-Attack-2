@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             _propertyAssembler = new ValueAssembler();
         }
 
-        public void Populate (object obj, ObjectModel model)
+        public void Populate (object obj, ObjectModel model, AssemblyContext context)
         {
             Type modelType = obj.GetType();
             IEnumerable<IAssignableMemberInfo> fields = GetModelFields(modelType);
@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 var property = model.GetProperty(field.Name);
                 if (property != null)
                 {
-                    var value = _propertyAssembler.Assemble(property, field.ValueType);
+                    var value = _propertyAssembler.Assemble(property, field.ValueType, context);
                     field.SetValue(obj, value);
                 }
                 else
@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
 
-        public ObjectModel Extract (object obj)
+        public ObjectModel Extract (object obj, DisassemblyContext context)
         {
             Type objectType = obj.GetType();
             var properties = new List<ObjectField>();
@@ -55,7 +55,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 try
                 {
                     object componentValue = info.GetValue(obj);
-                    var model = _propertyAssembler.Disassemble(componentValue, info.ValueType);
+                    var model = _propertyAssembler.Disassemble(componentValue, info.ValueType, context);
                     if (componentValue != null && componentValue.GetType() != info.ValueType)
                     {
                         model.MakeExplicit(componentValue.GetType());

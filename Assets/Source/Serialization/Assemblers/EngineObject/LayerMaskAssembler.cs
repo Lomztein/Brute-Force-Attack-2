@@ -10,16 +10,16 @@ namespace Lomztein.BFA2.Serialization.Assemblers.EngineObject
 {
     public class LayerMaskAssembler : EngineObjectAssemblerBase<LayerMask>
     {
-        public override LayerMask AssembleValue(ObjectModel value)
+        public override LayerMask AssembleValue(ObjectModel value, AssemblyContext context)
         {
             return value.GetValue<int>("Mask");
         }
 
-        public override ObjectModel DisassembleValue(LayerMask value)
+        public override ObjectModel DisassembleValue(LayerMask value, DisassemblyContext context)
         {
             return new ObjectModel()
             {
-                { "Mask", value.value }
+                { "Mask", new PrimitiveModel (value.value) }
             };
         }
     }

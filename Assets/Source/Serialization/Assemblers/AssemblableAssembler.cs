@@ -11,15 +11,15 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 {
     public class AssemblableAssembler : IValueAssembler
     {
-        public object Assemble(ValueModel model, Type type)
+        public object Assemble(ValueModel model, Type expectedType, AssemblyContext context)
         {
-            IAssemblable serializable = Activator.CreateInstance(type) as IAssemblable;
-            serializable.Assemble(model);
+            IAssemblable serializable = Activator.CreateInstance(expectedType) as IAssemblable;
+            serializable.Assemble(model, context);
             return serializable;
         }
 
-        public ValueModel Disassemble(object value, Type implicitType)
-            => (value as IAssemblable).Disassemble();
+        public ValueModel Disassemble(object value, Type expectedType, DisassemblyContext context)
+            => (value as IAssemblable).Disassemble(context);
 
         public bool CanAssemble(Type type)
             => type.GetInterfaces().Contains(typeof(IAssemblable));

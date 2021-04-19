@@ -18,32 +18,28 @@ namespace Lomztein.BFA2.Serialization
 
         public static object BuildObject (JToken token, Type type)
         {
-            ValueAssembler assembler = new ValueAssembler();
+            RootAssembler assembler = new RootAssembler();
             return assembler.Assemble(DeserializeObject(token), type);
         }
 
-        public static ValueModel DeserializeObject (JToken token)
+        public static RootModel DeserializeObject (JToken token)
         {
-            ValueModelSerializer serializer = new ValueModelSerializer();
+            RootSerializer serializer = new RootSerializer();
             var model = serializer.Deserialize(token);
             return model;
         }
 
         public static JToken UnbuildObject (object obj, bool implicitType = false)
         {
-            ValueModelSerializer serializer = new ValueModelSerializer();
-            ValueAssembler assembler = new ValueAssembler();
-
-            var model = assembler.Disassemble(obj, typeof(object));
-            if (implicitType)
-                model.MakeImplicit();
-
+            RootSerializer serializer = new RootSerializer();
+            RootAssembler assembler = new RootAssembler();
+            var model = assembler.Disassemble(obj, !implicitType);
             return serializer.Serialize(model);
         }
 
-        public static JToken SerializeObject (ObjectModel model)
+        public static JToken SerializeObject (RootModel model)
         {
-            ValueModelSerializer serializer = new ValueModelSerializer();
+            RootSerializer serializer = new RootSerializer();
             var token = serializer.Serialize(model);
             return token;
         }

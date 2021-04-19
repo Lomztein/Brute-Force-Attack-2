@@ -54,8 +54,8 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
             CurrentAsssembly.Name = name;
-            var model = assembler.Disassemble(CurrentAsssembly);
-            File.WriteAllText(path, ObjectPipeline.SerializeObject(model).ToString());
+            //var model = assembler.Disassemble(CurrentAsssembly); TODO: Fix this
+            //File.WriteAllText(path, ObjectPipeline.SerializeObject(model).ToString());
         }
 
         private void LoadFile(string path)
@@ -64,7 +64,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             var model = ObjectPipeline.DeserializeObject(json);
 
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
-            CurrentAsssembly = assembler.Assemble(model as ObjectModel);
+            CurrentAsssembly = assembler.Assemble(model);
 
             if (CurrentAsssembly is Component comp)
             {

@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent
     {
         Type Type { get; }
 
-        ObjectModel Disassemble(Component source);
+        ObjectModel Disassemble(Component source, DisassemblyContext context);
 
-        void Assemble(ObjectModel model, Component target);
+        void Assemble(ObjectModel model, Component target, AssemblyContext context);
     }
 }

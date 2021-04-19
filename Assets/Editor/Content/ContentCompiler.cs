@@ -78,14 +78,14 @@ namespace Lomztein.BFA2.Editor.Content
             {
                 case CompilationType.SerializeGameObject:
                     GameObjectAssembler assembler = new GameObjectAssembler();
-                    ValueModel model = assembler.Disassemble(asset as GameObject);
-                    json = ObjectPipeline.SerializeObject(model as ObjectModel);
+                    RootModel model = assembler.Disassemble(asset as GameObject);
+                    json = ObjectPipeline.SerializeObject(model);
                     break;
 
                 case CompilationType.SerializeAssembly:
                     TurretAssemblyAssembler tAssembler = new TurretAssemblyAssembler();
-                    ValueModel tModel = tAssembler.Disassemble((asset as GameObject).GetComponent<TurretAssembly>());
-                    json = ObjectPipeline.SerializeObject(tModel as ObjectModel);
+                    RootModel tModel = tAssembler.Disassemble((asset as GameObject).GetComponent<TurretAssembly>());
+                    json = ObjectPipeline.SerializeObject(tModel);
                     break;
 
                 case CompilationType.SerializeObject:
