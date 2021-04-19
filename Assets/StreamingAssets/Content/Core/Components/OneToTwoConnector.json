@@ -1,135 +1,379 @@
 {
-  "Name": "OneToTwoConnector",
-  "Tag": "Untagged",
-  "Layer": 9,
-  "Static": false,
-  "Components": [
-    {
-      "ValueType": "UnityEngine.Transform",
-      "ValueData": {
-        "Position": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": -1.0
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 1.0,
-          "Y": 1.0,
-          "Z": 1.0
-        }
-      }
+  "$GUID": "a01a63cd-21a2-4c52-9537-7a78edbc30cc",
+  "$Data": {
+    "Name": {
+      "$GUID": "33d84ef6-4906-4204-9939-442996557e7d",
+      "$Data": "OneToTwoConnector"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Turrets.Connectors.Connector",
-      "ValueData": {
-        "LocalTargetPosition": {
-          "X": 0.0,
-          "Y": 0.5
-        },
-        "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "ValueData": {
-            "Width": "Small",
-            "Height": "Medium"
-          }
-        },
-        "LowerAttachmentPoints": {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "ValueData": {
-            "Width": "Small",
-            "Height": "Small"
-          }
-        },
-        "_name": "One-to-Two Connector",
-        "_description": "Connects the two outer components to the middle.",
-        "_uniqueIdentifier": "Core.OneToTwoConnector",
-        "_cost": {
-          "Elements": [
-            {
-              "Type": "Credits",
-              "Value": 350
-            }
-          ]
-        },
-        "BaseAttributes": [],
-        "_width": "Small",
-        "_height": "Small"
-      }
+    "Tag": {
+      "$GUID": "f3f71c24-77a2-4d3e-bf5b-b19db8eb3ef8",
+      "$Data": "Untagged"
     },
-    {
-      "ValueType": "UnityEngine.BoxCollider2D",
-      "ValueData": {
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "Size": {
-          "X": 1.0,
-          "Y": 3.0
-        }
-      }
-    }
-  ],
-  "Children": [
-    {
-      "Name": "Sprite",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
+    "Layer": {
+      "$GUID": "2671d7b3-8bd7-4aba-b880-0833c9b82ee8",
+      "$Data": 9
+    },
+    "Static": {
+      "$GUID": "80348442-b1cd-4266-9f58-858fb88f6032",
+      "$Data": false
+    },
+    "Components": {
+      "$GUID": "bcfb8426-9f30-4b55-a3f8-999f067ee920",
+      "$Data": [
         {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
+          "$GUID": "f8a85ac5-a08a-4fcd-ae6f-5e8cab7a676b",
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
             "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "c5d36b67-242d-43ce-8f85-bd7e26f2f572",
+              "$Data": {
+                "X": {
+                  "$GUID": "74adfcc0-60d6-45cf-8d62-fd254621546f",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "56760c75-c18a-420f-ba1d-3768ff18450e",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "a954c969-4869-470f-9f47-6c3dfa50bf0b",
+                  "$Data": -1.0
+                }
+              }
             },
             "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "0502c0b3-4736-4227-b786-29e338b98db7",
+              "$Data": {
+                "X": {
+                  "$GUID": "5be4715a-6fbe-49a2-ac63-f5337fd315b6",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "5a5c9676-00f9-4c67-8035-a3f5d32ed38e",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "ba1298dd-f4e2-4d69-b28a-9f0dc755b278",
+                  "$Data": 0.0
+                }
+              }
             },
             "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
+              "$GUID": "93994653-7bb2-4f7a-86e3-d49fd9f9e5d8",
+              "$Data": {
+                "X": {
+                  "$GUID": "b9de4024-71c5-4c90-b955-f28c95f30a31",
+                  "$Data": 1.0
+                },
+                "Y": {
+                  "$GUID": "54ffcd73-6cab-4d3d-94a6-9313fa947278",
+                  "$Data": 1.0
+                },
+                "Z": {
+                  "$GUID": "b5b49636-803b-4b39-bfad-3b15b2c0869b",
+                  "$Data": 1.0
+                }
+              }
             }
           }
         },
         {
-          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-          "ValueData": {
-            "Reference": {
-              "Path": "Core/Sprites/Components/OneByTwoConnector.png",
-              "Rect": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Width": 16.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
+          "$GUID": "a4c5467b-22e0-445a-ad82-e9512f624382",
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Connectors.Connector",
+          "$Data": {
+            "LocalTargetPosition": {
+              "$GUID": "1a916682-ebb6-4aa9-8b8b-b3429925ab73",
+              "$Data": {
+                "X": {
+                  "$GUID": "e3de38ff-38a2-4c3c-b3f9-600e713d3ecd",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "905ba616-4309-439b-a7f9-89296c12c3eb",
+                  "$Data": 0.5
+                }
+              }
             },
-            "Color": {
-              "Red": 1.0,
-              "Green": 1.0,
-              "Blue": 1.0,
-              "Alpha": 1.0
+            "BaseComplexity": {
+              "$GUID": "651b4f50-f582-4349-8cce-86a2dfdbd448",
+              "$Data": 0.0
+            },
+            "UpperAttachmentPoints": {
+              "$GUID": "3bd14997-e8ec-44e9-b3a1-969f2069125f",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+              "$Data": {
+                "Width": {
+                  "$GUID": "21a983fd-b0f3-49d2-b92c-5949a40d0443",
+                  "$Data": "Small"
+                },
+                "Height": {
+                  "$GUID": "2e660854-47e5-47ee-a3cb-dd8902d6e868",
+                  "$Data": "Medium"
+                }
+              }
+            },
+            "LowerAttachmentPoints": {
+              "$GUID": "d5e66221-67f7-4a6b-b8f3-5a1ad788fdfe",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+              "$Data": {
+                "Width": {
+                  "$GUID": "6a26d274-6628-4f21-9365-c165cf1d67dc",
+                  "$Data": "Small"
+                },
+                "Height": {
+                  "$GUID": "c0e6ad87-9610-46b5-a575-8688ae3a272e",
+                  "$Data": "Small"
+                }
+              }
+            },
+            "_name": {
+              "$GUID": "0aab354f-bad4-4146-8029-b294b6b59385",
+              "$Data": "One-to-Two Connector"
+            },
+            "_description": {
+              "$GUID": "5fc79ac8-bd98-47fd-9b29-e152bbcc6f93",
+              "$Data": "Connects the two outer components to the middle."
+            },
+            "_uniqueIdentifier": {
+              "$GUID": "9c5a3c30-c8df-4411-86f0-54e9de7aa458",
+              "$Data": "Core.OneToTwoConnector"
+            },
+            "_cost": {
+              "$GUID": "3469b0b5-6d81-4ffa-b959-7068705d30e6",
+              "$Data": {
+                "Elements": {
+                  "$GUID": "1de9f146-009f-40d3-8ff8-decc32872c27",
+                  "$Data": [
+                    {
+                      "$GUID": "2eb01fc3-2ffc-4e8c-9ae2-3e2db27f03c4",
+                      "$Data": {
+                        "Type": {
+                          "$GUID": "1ec68075-697c-4398-b5fc-8f3b07ed4cfe",
+                          "$Data": "Credits"
+                        },
+                        "Value": {
+                          "$GUID": "0c3f4ebe-eecf-457d-9231-4d6c64721d4a",
+                          "$Data": 350
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "BaseAttributes": {
+              "$GUID": "8154a471-dd02-4c6f-a3c6-e8ebcaf57c97",
+              "$Data": []
+            },
+            "_width": {
+              "$GUID": "d5cef8dc-e895-4d54-8bbb-5fab171e3064",
+              "$Data": "Small"
+            },
+            "_height": {
+              "$GUID": "f0d974c7-cef9-4eb5-913c-18965f6c0e19",
+              "$Data": "Small"
+            }
+          }
+        },
+        {
+          "$GUID": "1aeac55d-038a-469d-b0b8-bba00f742613",
+          "$Type": "UnityEngine.BoxCollider2D",
+          "$Data": {
+            "Offset": {
+              "$GUID": "d8f03a6c-ae05-4658-8bba-76d56f9ef944",
+              "$Data": {
+                "X": {
+                  "$GUID": "ee97757d-b4d1-4e56-b41e-bcc11e419a67",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "0cf8f306-3efc-46ae-b3d6-3639ea6092fa",
+                  "$Data": 0.0
+                }
+              }
+            },
+            "Size": {
+              "$GUID": "43ea67ad-93c3-4a55-9fe2-80bc4dd9f349",
+              "$Data": {
+                "X": {
+                  "$GUID": "6e765433-c8ce-40e2-8d46-3f5b1cbbc329",
+                  "$Data": 1.0
+                },
+                "Y": {
+                  "$GUID": "eb035ad0-f30b-47c5-92bf-4c84f6b0d088",
+                  "$Data": 3.0
+                }
+              }
             }
           }
         }
-      ],
-      "Children": []
+      ]
+    },
+    "Children": {
+      "$GUID": "6b724ba6-c648-4cdc-ade7-52d062f82a69",
+      "$Data": [
+        {
+          "$GUID": "49a34fe2-24df-48c1-a4dd-e11d410bbdf1",
+          "$Data": {
+            "Name": {
+              "$GUID": "9e3492d9-b0c3-42ef-b9b9-f12ce3597bc1",
+              "$Data": "Sprite"
+            },
+            "Tag": {
+              "$GUID": "3dce9de1-639d-4e95-8556-6042dd05a91c",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "6c826d01-fe34-42cd-8565-8a437e6df927",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "dc75a5bc-44c0-43de-96e7-ff133bddff97",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "9ff5ceac-6840-47c9-bb0a-de9c92d7eeea",
+              "$Data": [
+                {
+                  "$GUID": "f3cb7073-bdf4-4d49-8b8c-3741d102e601",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "$GUID": "de89cbfa-2759-4cc8-a673-ee528ae20d83",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "dc4461aa-add5-4189-b15b-cc4a00b5fade",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "195937d6-c278-4ee8-b7f3-4a182837f8e2",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "19f87551-4d8b-477d-be2e-d7ad4c3f9053",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Rotation": {
+                      "$GUID": "e05fd12c-2ad0-4b8d-ad19-7ee1d434f7a5",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "77aec0b5-fe01-4523-9681-e963f6a7b51f",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "3ca6ae4f-ed6f-4ba4-bba2-4e149cd30c8a",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "0be4e17c-8a54-4e25-8ebc-94c5c537801a",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Scale": {
+                      "$GUID": "345bf12e-b387-4a71-a28f-23afe34056c4",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "9071b562-fce9-4e96-877f-aa0323c9f84f",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "f463a6a4-7ec8-4a58-bdd8-b7d267667cd5",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "7b589dba-675a-41e3-8376-69ae4b32d4a3",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "$GUID": "d5f94649-1aaf-4a2b-bb68-52d718c59d25",
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                  "$Data": {
+                    "Reference": {
+                      "$GUID": "08c52716-af6a-4584-87e1-dfc489d6bdb4",
+                      "$Data": {
+                        "Path": {
+                          "$GUID": "f7ca2127-abac-4e69-8d55-72aceab203c3",
+                          "$Data": "Core/Sprites/Components/OneByTwoConnector.png"
+                        },
+                        "Rect": {
+                          "$GUID": "9f7ef87c-bd2e-48ab-97b8-e4e935e7723c",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "5886fe92-c830-4605-a64c-dca68dcbfa3b",
+                              "$Data": 0.0
+                            },
+                            "Y": {
+                              "$GUID": "28b99a1c-c579-4315-8b38-14ac80afce01",
+                              "$Data": 0.0
+                            },
+                            "Width": {
+                              "$GUID": "a52dcc07-1a39-42ab-acd1-f91be8405cbd",
+                              "$Data": 16.0
+                            },
+                            "Height": {
+                              "$GUID": "188380b6-3468-42fe-9783-5e932364977c",
+                              "$Data": 32.0
+                            }
+                          }
+                        },
+                        "Pivot": {
+                          "$GUID": "8489e0aa-5cce-43e2-a489-d12725da53f9",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "26dcf1df-44ab-4035-962c-b5fe35aa42ca",
+                              "$Data": 0.5
+                            },
+                            "Y": {
+                              "$GUID": "22eed138-0949-417b-87ee-25df5f4350b9",
+                              "$Data": 0.5
+                            }
+                          }
+                        },
+                        "PixelsPerUnit": {
+                          "$GUID": "d4719ff2-2bd9-40d8-9f91-0e9912aaf133",
+                          "$Data": 16.0
+                        }
+                      }
+                    },
+                    "Color": {
+                      "$GUID": "7bdaca9e-5759-4fbd-87d6-5804c8a28883",
+                      "$Data": {
+                        "Red": {
+                          "$GUID": "020560e3-c68c-4a31-91a4-8a80a16880d3",
+                          "$Data": 1.0
+                        },
+                        "Green": {
+                          "$GUID": "1b2bf7ba-22b2-4daf-8707-1b15fa314bde",
+                          "$Data": 1.0
+                        },
+                        "Blue": {
+                          "$GUID": "8fff76d5-513b-4b61-be68-1184475b5d87",
+                          "$Data": 1.0
+                        },
+                        "Alpha": {
+                          "$GUID": "e3ca8476-29bd-410b-8e4b-f1f8337a266a",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "Children": {
+              "$GUID": "a1840ac3-33ce-4ade-ad24-07dee49e12d5",
+              "$Data": []
+            }
+          }
+        }
+      ]
     }
-  ]
+  }
 }

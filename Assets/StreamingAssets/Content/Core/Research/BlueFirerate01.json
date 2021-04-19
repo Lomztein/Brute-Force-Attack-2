@@ -1,7 +1,7 @@
 
 {
-    "ValueType": "Lomztein.BFA2.Research.ResearchOption",
-    "ValueData": {
+    "$Type": "Lomztein.BFA2.Research.ResearchOption",
+    "$Data": {
         "Name": "+10% Blue Firerate",
         "Description": "Increase blue weapons firerate by +10%",
         "Sprite": {
@@ -38,8 +38,8 @@
         "PinIdentifier": "Core.BlueFirerate",
         "UniquePrerequisites": [
             {
-                "ValueType": "Lomztein.BFA2.Research.UniquePrerequisites.KillEnemiesPrerequisite",
-                "ValueData": {
+                "$Type": "Lomztein.BFA2.Research.UniquePrerequisites.KillEnemiesPrerequisite",
+                "$Data": {
                     "Target": 100.0,
                     "TargetColors": ["Blue"]
                 }
@@ -47,12 +47,12 @@
         ],
         "Rewards": [
             {
-                "ValueType": "Lomztein.BFA2.Research.Rewards.GlobalStructureModReward",
-                "ValueData": {
+                "$Type": "Lomztein.BFA2.Research.Rewards.GlobalStructureModReward",
+                "$Data": {
                     "Mod": {
                         "_mod": {
-                            "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-                            "ValueData": {
+                            "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+                            "$Data": {
                                 "Stats": [
                                     {
                                         "Identifier": "Firerate",
@@ -70,14 +70,14 @@
                         },
                         "_filters": [
                             {
-                                "ValueType": "Lomztein.BFA2.Structures.StructureManagement.Filters.ColorStructureFilter",
-                                "ValueData": {
+                                "$Type": "Lomztein.BFA2.Structures.StructureManagement.Filters.ColorStructureFilter",
+                                "$Data": {
                                     "_applicableColors": ["Blue"]
                                 }
                             },
                             {
-                                "ValueType": "Lomztein.BFA2.Structures.StructureManagement.Filters.TypeStructureFilter",
-                                "ValueData": {
+                                "$Type": "Lomztein.BFA2.Structures.StructureManagement.Filters.TypeStructureFilter",
+                                "$Data": {
                                     "_typeName": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon"
                                 }
                             }

@@ -13,8 +13,8 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
         public override bool CanSerialize(Type type)
             => type == typeof(NullModel);
 
-        protected override ValueModel DeserializeImplicit(JToken token) => new NullModel();
+        protected override ValueModel DeserializeWithoutMetadata(JToken token) => new NullModel();
 
-        protected override JToken SerializeImplicit(ValueModel model) => JValue.CreateNull();
+        protected override JToken SerializeWithoutMetadata(ValueModel model) => JValue.CreateNull();
     }
 }

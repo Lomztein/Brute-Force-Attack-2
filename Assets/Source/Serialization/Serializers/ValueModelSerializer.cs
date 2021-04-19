@@ -12,8 +12,9 @@ namespace Lomztein.BFA2.Serialization.Serializers
 {
     public class ValueModelSerializer
     {
-        public const string VALUE_MODEL_TYPE_PROPERTY_NAME = "ValueType";
-        public const string VALUE_MODEL_VALUE_PROPERTY_NAME = "ValueData";
+        public const string VALUE_MODEL_GUID_NAME = "$GUID"; // TODO: Create some sort of more easily extendable metadata handler.
+        public const string VALUE_MODEL_TYPE_NAME = "$Type";
+        public const string VALUE_MODEL_DATA_NAME = "$Data";
 
         private static ValueModelSerializerStrategyBase[] _strategies = new ValueModelSerializerStrategyBase[]
         {
@@ -38,7 +39,7 @@ namespace Lomztein.BFA2.Serialization.Serializers
 
         private Type JTokenToPropertyType (JToken token)
         {
-            IsExplicit(token, out JToken data);
+            HasMetadata(token, out JToken data);
 
             if (token == null)
                 return typeof(NullModel);
@@ -55,15 +56,16 @@ namespace Lomztein.BFA2.Serialization.Serializers
             return null;
         }
 
-        public static bool IsExplicit (JToken token, out JToken valueData)
+        public static bool HasMetadata (JToken token, out JToken valueData)
         {
-            if (token is JObject obj &&
-                obj.ContainsKey(VALUE_MODEL_TYPE_PROPERTY_NAME) && 
-                obj.ContainsKey(VALUE_MODEL_VALUE_PROPERTY_NAME) && 
-                obj.Count == 2)
+            if (token is JObject obj)
             {
-                valueData = obj[VALUE_MODEL_VALUE_PROPERTY_NAME];
-                return true;
+                string[] explicitMarkers = new string[] { VALUE_MODEL_GUID_NAME, VALUE_MODEL_TYPE_NAME };
+                if (explicitMarkers.Any(x => obj.ContainsKey(x)) && obj.ContainsKey(VALUE_MODEL_DATA_NAME))
+                {
+                    valueData = obj[VALUE_MODEL_DATA_NAME];
+                    return true;
+                }
             }
             valueData = token;
             return false;

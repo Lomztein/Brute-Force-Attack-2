@@ -1,297 +1,846 @@
 {
-  "Name": "RocketLauncherT2",
-  "Tag": "Untagged",
-  "Layer": 9,
-  "Static": false,
-  "Components": [
-    {
-      "ValueType": "UnityEngine.Transform",
-      "ValueData": {
-        "Position": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": -1.0
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 1.0,
-          "Y": 1.0,
-          "Z": 1.0
-        }
-      }
+  "$GUID": "d5b2f2f6-b316-4bf4-b1a1-ecaea550149f",
+  "$Data": {
+    "Name": {
+      "$GUID": "75bd8d72-83a1-4fb0-9979-dc765eb275b1",
+      "$Data": "RocketLauncherT2"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
-      "ValueData": {
-        "ProjectilePrefab": {
-          "Path": "Resources/Projectiles/ThiccRocketProjectile"
-        },
-        "FireTreshold": 1.0,
-        "HitLayer": {
-          "Mask": 256
-        },
-        "BaseDamage": 300.0,
-        "BaseProjectileAmount": 1,
-        "BaseSpread": 0.0,
-        "BaseSpeed": 20.0,
-        "BaseFirerate": 0.5,
-        "Color": "Red",
-        "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": null,
-        "LowerAttachmentPoints": {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "ValueData": {
-            "Width": "Small",
-            "Height": "Small"
-          }
-        },
-        "_name": "Heavy Rocket Launcher",
-        "_description": "FWOOOOMF",
-        "_uniqueIdentifier": "Core.RocketLauncherT2",
-        "_cost": {
-          "Elements": [
-            {
-              "Type": "Credits",
-              "Value": 750
-            }
-          ]
-        },
-        "BaseAttributes": [],
-        "_width": "Small",
-        "_height": "Small"
-      }
+    "Tag": {
+      "$GUID": "c6a3b7bf-b80b-4a03-894d-f4b0444c5fd9",
+      "$Data": "Untagged"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
-      "ValueData": {
-        "AnimationSprites": [],
-        "DefaultSprite": {
-          "Path": "Core/Sprites/Components/RocketLauncherT2.png",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 0.0,
-            "Height": 0.0
-          },
-          "Pivot": {
-            "X": 0.5,
-            "Y": 0.5
-          },
-          "PixelsPerUnit": 32.0
-        },
-        "PlaySpeedMultiplier": 1.0
-      }
+    "Layer": {
+      "$GUID": "d89541d9-b046-4020-8d85-ef114d7754b2",
+      "$Data": 9
     },
-    {
-      "ValueType": "UnityEngine.CircleCollider2D",
-      "ValueData": {
-        "Radius": 0.5,
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "IsTrigger": false,
-        "UsedByEffector": false
-      }
+    "Static": {
+      "$GUID": "8df464b2-7a00-4791-a38c-1d8392b9dcd5",
+      "$Data": false
     },
-    {
-      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
-      "ValueData": {
-        "_mod": {
-          "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-          "ValueData": {
-            "DamageMultBase": 0.5,
-            "RangeBase": 1.5,
-            "DamageMultStack": 0.5,
-            "RangeStack": 0.5,
-            "ExplosionPrefab": {
-              "Path": "Core/Projectiles/Explosion.json"
-            },
-            "DestroyProjectile": true,
-            "_identifier": "Core.ExplosiveRounds",
-            "_name": "Explosive Rounds",
-            "_description": "This weapon has built-in explosive rounds.",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
-        }
-      }
-    },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
-      "ValueData": {
-        "_mod": {
-          "ValueType": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-          "ValueData": {
-            "DamageMultBase": 0.5,
-            "RangeBase": 0.5,
-            "DamageMultStack": 0.5,
-            "RangeStack": 0.5,
-            "ExplosionPrefab": {
-              "Path": "Core/Projectiles/Explosion.json"
-            },
-            "DestroyProjectile": true,
-            "_identifier": "Core.ExplosiveRounds",
-            "_name": "Explosive Rounds",
-            "_description": "This weapon is provided with the explosive rounds of a nearby rocket launcher.",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
-        },
-        "_behavioursToDisable": [
-          "TurretWeapon"
-        ]
-      }
-    },
-    {
-      "ValueType": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
-      "ValueData": {
-        "AdjacencyCheckLayer": {
-          "Mask": 512
-        },
-        "AdjacencyCheckRange": 0.75,
-        "_mod": {
-          "ValueType": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "ValueData": {
-            "Stats": [
-              {
-                "Identifier": "Damage",
-                "Name": "",
-                "Description": "",
-                "Type": "Multiplicative",
-                "Value": 0.5
+    "Components": {
+      "$GUID": "debd53cb-3fb8-4781-bdd2-aee85c137a75",
+      "$Data": [
+        {
+          "$GUID": "e76dc4db-6b35-40a0-a37b-89e162599b3b",
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "$GUID": "31af5b7b-a995-4889-854c-ed608a0f8175",
+              "$Data": {
+                "X": {
+                  "$GUID": "e29fda39-9667-40cf-8efb-747bcc480c8d",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "34aa5f32-cf01-4832-8c93-10daa82dbbc6",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "c0b5bf50-122f-4751-9c78-c20e19c7c7e3",
+                  "$Data": -1.0
+                }
               }
-            ],
-            "_identifier": "Core.RocketLauncherDamageBoost",
-            "_name": "Heavy Impact",
-            "_description": "This weapons damage is boosted from a nearby rocket launcher",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
-        }
-      }
-    }
-  ],
-  "Children": [
-    {
-      "Name": "Sprite",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
-        {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
-            "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
             },
             "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "7712e2fd-a821-48cc-923c-1ab12049b2a5",
+              "$Data": {
+                "X": {
+                  "$GUID": "0c02075a-becf-4260-8020-7f986c9bad42",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "9f922695-264c-4aa4-b9c3-e61b8126f9bb",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "5e6a13cf-6af8-4e6c-ab05-1a7f2ded0d54",
+                  "$Data": 0.0
+                }
+              }
             },
             "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
-            }
-          }
-        },
-        {
-          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-          "ValueData": {
-            "Reference": {
-              "Path": "Core/Sprites/Components/RocketLauncherT2.png",
-              "Rect": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 32.0
-            },
-            "Color": {
-              "Red": 1.0,
-              "Green": 1.0,
-              "Blue": 1.0,
-              "Alpha": 1.0
-            }
-          }
-        }
-      ],
-      "Children": []
-    },
-    {
-      "Name": "Muzzles",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
-        {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
-            "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
-            },
-            "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
-            },
-            "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
-            }
-          }
-        }
-      ],
-      "Children": [
-        {
-          "Name": "Muzzle",
-          "Tag": "Untagged",
-          "Layer": 9,
-          "Static": false,
-          "Components": [
-            {
-              "ValueType": "UnityEngine.Transform",
-              "ValueData": {
-                "Position": {
-                  "X": 0.5,
-                  "Y": 0.0,
-                  "Z": 0.0
+              "$GUID": "626abce0-9308-4308-819a-11a6e654f2af",
+              "$Data": {
+                "X": {
+                  "$GUID": "5b9efe00-737f-4419-9445-f5258b129997",
+                  "$Data": 1.0
                 },
-                "Rotation": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
+                "Y": {
+                  "$GUID": "289df185-db7d-4a63-b5de-d9b9df132cc0",
+                  "$Data": 1.0
                 },
-                "Scale": {
-                  "X": 1.0,
-                  "Y": 1.0,
-                  "Z": 1.0
+                "Z": {
+                  "$GUID": "8d36ba4b-e22f-45ff-a6c9-f63cc8d0f8d0",
+                  "$Data": 1.0
                 }
               }
             }
-          ],
-          "Children": []
+          }
+        },
+        {
+          "$GUID": "6bbd8aba-5d10-4b4c-b9ae-8538bf466043",
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+          "$Data": {
+            "ProjectilePrefab": {
+              "$GUID": "1da9c760-fa58-4c81-8157-7325274140bd",
+              "$Data": {
+                "Path": {
+                  "$GUID": "54ee254f-efe5-4c0f-8ec2-e4659ccd9bb4",
+                  "$Data": "Resources/Projectiles/ThiccRocketProjectile"
+                }
+              }
+            },
+            "FireTreshold": {
+              "$GUID": "cfa70e9b-7c3a-485b-a8ed-7fed22733246",
+              "$Data": 1.0
+            },
+            "HitLayer": {
+              "$GUID": "97b87f75-df57-4fcb-86cf-0d08620a68f6",
+              "$Data": {
+                "Mask": {
+                  "$GUID": "23c0eb10-8794-4724-b0b7-b9b135de2ea7",
+                  "$Data": 256
+                }
+              }
+            },
+            "BaseDamage": {
+              "$GUID": "3f7c4008-2d13-4068-be2d-9e9f00078e35",
+              "$Data": 300.0
+            },
+            "BaseProjectileAmount": {
+              "$GUID": "28a98cc3-83b6-4faf-bb44-e51d56f053d6",
+              "$Data": 1
+            },
+            "BaseSpread": {
+              "$GUID": "4ab45573-f33a-411b-b3b1-6475f4c37d58",
+              "$Data": 0.0
+            },
+            "BaseSpeed": {
+              "$GUID": "f83d6d3c-1b25-44b1-9798-cd711fd6ca3c",
+              "$Data": 20.0
+            },
+            "BaseFirerate": {
+              "$GUID": "2c45277a-3d3a-495d-bb40-ef741bc99a73",
+              "$Data": 0.5
+            },
+            "Color": {
+              "$GUID": "55bf37bc-697d-4118-b35e-7e4497318f1e",
+              "$Data": "Red"
+            },
+            "BaseComplexity": {
+              "$GUID": "d14f3ccf-dfed-4373-878f-3fdbcb06f161",
+              "$Data": 0.0
+            },
+            "UpperAttachmentPoints": {
+              "$GUID": "94a16f86-4fda-4fd2-8051-7a415dfb1c8a",
+              "$Data": null
+            },
+            "LowerAttachmentPoints": {
+              "$GUID": "14effbaf-24e6-4211-b1b2-47f9ed40e6aa",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+              "$Data": {
+                "Width": {
+                  "$GUID": "c7007119-7504-4c67-a729-77595e7a7b1f",
+                  "$Data": "Small"
+                },
+                "Height": {
+                  "$GUID": "56f96217-804c-4076-ba2b-1f951eeb55f0",
+                  "$Data": "Small"
+                }
+              }
+            },
+            "_name": {
+              "$GUID": "ebf1b21d-938f-4de5-8485-421e67887b07",
+              "$Data": "Heavy Rocket Launcher"
+            },
+            "_description": {
+              "$GUID": "b9a4f4dd-0211-4501-902d-d50b28a1ee94",
+              "$Data": "FWOOOOMF"
+            },
+            "_uniqueIdentifier": {
+              "$GUID": "bbc75f9a-5ce4-4a6d-bb7e-29ca6e92ad16",
+              "$Data": "Core.RocketLauncherT2"
+            },
+            "_cost": {
+              "$GUID": "81f5c5cb-9d77-4c6b-acc5-f837c3192e31",
+              "$Data": {
+                "Elements": {
+                  "$GUID": "7245c4c8-4231-4683-99ae-940c49e29f1a",
+                  "$Data": [
+                    {
+                      "$GUID": "8f2ce01d-b413-4613-a958-7304cab4b0d4",
+                      "$Data": {
+                        "Type": {
+                          "$GUID": "5f334d59-7525-4d17-b94f-1642c3339f27",
+                          "$Data": "Credits"
+                        },
+                        "Value": {
+                          "$GUID": "65b33129-ab95-4614-8ce2-5a00ab455ed1",
+                          "$Data": 750
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "BaseAttributes": {
+              "$GUID": "86d41cb0-2ed0-4148-8f97-037a517e608a",
+              "$Data": []
+            },
+            "_width": {
+              "$GUID": "3c6ff2bd-52bd-4ca9-a1af-2929cc73b5a5",
+              "$Data": "Small"
+            },
+            "_height": {
+              "$GUID": "bfa9e634-22f7-46ac-bc78-6ffb245554de",
+              "$Data": "Small"
+            }
+          }
+        },
+        {
+          "$GUID": "dc4b5953-58ce-48fa-8515-0e1349bf3494",
+          "$Type": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+          "$Data": {
+            "AnimationSprites": {
+              "$GUID": "07f83973-410a-4053-bc9d-4e4700632768",
+              "$Data": []
+            },
+            "DefaultSprite": {
+              "$GUID": "74d8c52b-f32e-4eb6-bf3d-1c77d3eb1a0e",
+              "$Data": {
+                "Path": {
+                  "$GUID": "545b7e01-81de-4606-9840-61354a084788",
+                  "$Data": "Core/Sprites/Components/RocketLauncherT2.png"
+                },
+                "Rect": {
+                  "$GUID": "b7040f97-7490-4075-a587-e6c985f892f8",
+                  "$Data": {
+                    "X": {
+                      "$GUID": "a73ab1e7-b222-47b5-9511-714e40d124ad",
+                      "$Data": 0.0
+                    },
+                    "Y": {
+                      "$GUID": "f4c886d5-2e75-472a-941a-fe4351e1afd3",
+                      "$Data": 0.0
+                    },
+                    "Width": {
+                      "$GUID": "cb634a18-0c38-41d1-8e31-7965300f5f75",
+                      "$Data": 0.0
+                    },
+                    "Height": {
+                      "$GUID": "e0a231da-691f-4d37-8052-3226f391dcb7",
+                      "$Data": 0.0
+                    }
+                  }
+                },
+                "Pivot": {
+                  "$GUID": "68a1df51-0e85-446b-b1b6-5a40a1dcd047",
+                  "$Data": {
+                    "X": {
+                      "$GUID": "638f2838-50a5-4cf8-aee1-57b52c038c9f",
+                      "$Data": 0.5
+                    },
+                    "Y": {
+                      "$GUID": "a9c288fd-531e-454b-8c2c-09552ea4c46d",
+                      "$Data": 0.5
+                    }
+                  }
+                },
+                "PixelsPerUnit": {
+                  "$GUID": "69fb1beb-13e0-47d6-bd64-2183bcba71bb",
+                  "$Data": 32.0
+                }
+              }
+            },
+            "PlaySpeedMultiplier": {
+              "$GUID": "3e61b34f-813a-4078-94a2-d6f5e37f6849",
+              "$Data": 1.0
+            }
+          }
+        },
+        {
+          "$GUID": "e817eb03-6e62-4824-ae4a-e77c46b41610",
+          "$Type": "UnityEngine.CircleCollider2D",
+          "$Data": {
+            "Radius": {
+              "$GUID": "bca04e22-6be0-4b68-a64a-f6f44d74870d",
+              "$Data": 0.5
+            },
+            "Offset": {
+              "$GUID": "8fe9645e-15b1-4f44-bd9e-6c87da527678",
+              "$Data": {
+                "X": {
+                  "$GUID": "485278ff-768c-4939-9dd5-53734c636305",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "cd53abc8-c374-43bc-9a32-67759c43ec0e",
+                  "$Data": 0.0
+                }
+              }
+            },
+            "IsTrigger": {
+              "$GUID": "f5fe031c-6475-450f-90f1-b54e06688b7b",
+              "$Data": false
+            },
+            "UsedByEffector": {
+              "$GUID": "db3f2166-979b-46d5-8b1d-534b85882c1e",
+              "$Data": false
+            }
+          }
+        },
+        {
+          "$GUID": "f0aeabf4-6e31-4c64-91c1-8839620dc99c",
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
+          "$Data": {
+            "_mod": {
+              "$GUID": "db5b0d66-e696-4f7d-8aa1-d2ba030e1a37",
+              "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+              "$Data": {
+                "DamageMultBase": {
+                  "$GUID": "488f891d-1947-49ec-8319-179464602797",
+                  "$Data": 0.5
+                },
+                "RangeBase": {
+                  "$GUID": "4aa12eb9-1276-4d4f-b80a-25ac42fbbce3",
+                  "$Data": 1.5
+                },
+                "DamageMultStack": {
+                  "$GUID": "a0266a4e-5fd2-4984-805c-e82e0edfefdb",
+                  "$Data": 0.5
+                },
+                "RangeStack": {
+                  "$GUID": "8edb0f17-cba1-4f88-b205-e241c6efaf80",
+                  "$Data": 0.5
+                },
+                "ExplosionPrefab": {
+                  "$GUID": "514c87e4-bbf4-4135-8f38-c827283d737e",
+                  "$Data": {
+                    "Path": {
+                      "$GUID": "7bea5996-aee8-4bdb-8210-3eb2f17b4c6d",
+                      "$Data": "Core/Projectiles/Explosion.json"
+                    }
+                  }
+                },
+                "DestroyProjectile": {
+                  "$GUID": "d24abaad-f3cb-4073-90d9-2c489f787778",
+                  "$Data": true
+                },
+                "_identifier": {
+                  "$GUID": "e357a650-5594-4637-8405-871745a108b1",
+                  "$Data": "Core.ExplosiveRounds"
+                },
+                "_name": {
+                  "$GUID": "63c8a13f-bd6a-43ee-a85b-c669a881e705",
+                  "$Data": "Explosive Rounds"
+                },
+                "_description": {
+                  "$GUID": "d467bda2-a9c9-4f7f-8279-93ad7bb6ab34",
+                  "$Data": "This weapon has built-in explosive rounds."
+                },
+                "RequiredAttributes": {
+                  "$GUID": "e7cd8101-217f-426d-928e-9876c70c2475",
+                  "$Data": [
+                    {
+                      "$GUID": "3de805da-2ad9-4eaa-b1c5-a1ee8b1258e4",
+                      "$Data": "Weapon"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "$GUID": "128ccbc3-9692-44f2-afb9-e820f08aa8c8",
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
+          "$Data": {
+            "_mod": {
+              "$GUID": "618f1cf8-d507-4409-a815-ee4a37fb2606",
+              "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+              "$Data": {
+                "DamageMultBase": {
+                  "$GUID": "043e7737-5d08-45c3-9071-bfaa4314e550",
+                  "$Data": 0.5
+                },
+                "RangeBase": {
+                  "$GUID": "f489a202-8beb-4d3c-a679-840bd2fa80e7",
+                  "$Data": 0.5
+                },
+                "DamageMultStack": {
+                  "$GUID": "5c3f5f61-e311-4c31-8900-32e7481241ae",
+                  "$Data": 0.5
+                },
+                "RangeStack": {
+                  "$GUID": "8b53f7e9-291b-4135-9b8b-465ce4e43c78",
+                  "$Data": 0.5
+                },
+                "ExplosionPrefab": {
+                  "$GUID": "9a2c43a4-8326-4e86-aa5b-8329f6412f9b",
+                  "$Data": {
+                    "Path": {
+                      "$GUID": "352934c0-a71a-49e5-980f-17d686ced4ab",
+                      "$Data": "Core/Projectiles/Explosion.json"
+                    }
+                  }
+                },
+                "DestroyProjectile": {
+                  "$GUID": "ed8a5b0a-48da-4b60-b75b-c9bb89d2be97",
+                  "$Data": true
+                },
+                "_identifier": {
+                  "$GUID": "5b06bc36-62c4-4f65-81a0-6d928dc3b29a",
+                  "$Data": "Core.ExplosiveRounds"
+                },
+                "_name": {
+                  "$GUID": "8dcf82a3-83f5-4829-ad55-dbf24e3e35ea",
+                  "$Data": "Explosive Rounds"
+                },
+                "_description": {
+                  "$GUID": "cf9172ab-365e-41ab-91b4-e2f2bb1459b1",
+                  "$Data": "This weapon is provided with the explosive rounds of a nearby rocket launcher."
+                },
+                "RequiredAttributes": {
+                  "$GUID": "0f45bd0f-03ec-4c08-b72d-c9fb66d69212",
+                  "$Data": [
+                    {
+                      "$GUID": "c192522e-2acc-46ff-8e4e-cfad68eda6bb",
+                      "$Data": "Weapon"
+                    }
+                  ]
+                }
+              }
+            },
+            "_behavioursToDisable": {
+              "$GUID": "cc830d31-306b-4e10-ac7e-be966943d611",
+              "$Data": [
+                {
+                  "$GUID": "1a9c3847-5a94-4daf-ab47-321d54376ac2",
+                  "$Data": "TurretWeapon"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "$GUID": "ce928049-f35b-4716-ad1d-0b0aaa26daf9",
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+          "$Data": {
+            "AdjacencyCheckLayer": {
+              "$GUID": "44fe4c17-ea1e-48f1-a021-6189ba5ca26b",
+              "$Data": {
+                "Mask": {
+                  "$GUID": "3ebc05a8-f870-40a5-a8ca-120cdb8e06a9",
+                  "$Data": 512
+                }
+              }
+            },
+            "AdjacencyCheckRange": {
+              "$GUID": "2ee51aef-9e12-4eb1-8204-09367906d182",
+              "$Data": 0.75
+            },
+            "_mod": {
+              "$GUID": "6f15a481-8b5b-4aa1-9138-08e0e0fbf0b1",
+              "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+              "$Data": {
+                "Stats": {
+                  "$GUID": "f16343df-f3b2-4654-b09a-32822f4eabb5",
+                  "$Data": [
+                    {
+                      "$GUID": "a033ecfd-0568-4452-bb60-06136864f8b3",
+                      "$Data": {
+                        "Identifier": {
+                          "$GUID": "dd88c337-dbfd-478b-a0aa-1fbbfe7d3968",
+                          "$Data": "Damage"
+                        },
+                        "Name": {
+                          "$GUID": "1fba2112-4f77-47ea-b87a-28e422e7d4c2",
+                          "$Data": ""
+                        },
+                        "Description": {
+                          "$GUID": "8985256f-79d3-43f6-b0f7-469b0591db59",
+                          "$Data": ""
+                        },
+                        "Type": {
+                          "$GUID": "99dc0f7a-952e-448a-8cbf-b8ea94713aaf",
+                          "$Data": "Multiplicative"
+                        },
+                        "Value": {
+                          "$GUID": "97b02088-5421-4307-a8a6-fdbe7277483a",
+                          "$Data": 0.5
+                        }
+                      }
+                    }
+                  ]
+                },
+                "_identifier": {
+                  "$GUID": "7c8d2992-9879-41a5-88b6-819255e7d678",
+                  "$Data": "Core.RocketLauncherDamageBoost"
+                },
+                "_name": {
+                  "$GUID": "7efd52a2-e1b9-4441-a7b4-d9e606afd3ee",
+                  "$Data": "Heavy Impact"
+                },
+                "_description": {
+                  "$GUID": "5d7bd3e3-fe14-488a-84d6-dc455677da52",
+                  "$Data": "This weapons damage is boosted from a nearby rocket launcher"
+                },
+                "RequiredAttributes": {
+                  "$GUID": "7f6c8190-ca4f-4aed-b195-49aef6b6e99b",
+                  "$Data": [
+                    {
+                      "$GUID": "715081f3-372c-491a-a058-be6b4606253d",
+                      "$Data": "Weapon"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Children": {
+      "$GUID": "f2d69cd7-9293-4ded-9a23-c211c43411d2",
+      "$Data": [
+        {
+          "$GUID": "6adddab3-97fa-496e-bc37-f538e2140efc",
+          "$Data": {
+            "Name": {
+              "$GUID": "0e6e1806-27cf-4b70-931e-080c17959828",
+              "$Data": "Sprite"
+            },
+            "Tag": {
+              "$GUID": "d3ed8eb2-c1a4-49a0-bd14-58c63767fe50",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "2246df1b-4db3-4c11-b921-d110895e058e",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "0a5b414b-c484-488e-95fb-bf0c07a0a1f0",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "7ee2c534-472e-438f-b75a-1b917a9b18d1",
+              "$Data": [
+                {
+                  "$GUID": "05546bc8-e854-4499-8be9-798729b5a94a",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "$GUID": "c2b68b75-682b-45ee-a438-e9122a265b40",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "a8b90c5e-8cb3-4d4c-8800-06771ebf9f6a",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "5db9c7cd-d114-45fd-8ca3-423a0c81b7af",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "72ce7dc4-f2dd-4a7f-af22-5b44d26dda53",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Rotation": {
+                      "$GUID": "2f38fa87-7f53-4d74-a48a-e0682e9e0d07",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "913989d7-d267-4cd4-bc9e-67d9f789ebdd",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "69e95e3d-1b50-4866-949b-ed8d9d62c455",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "1f8fd7dc-e111-4196-ac08-129e92beb5ed",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Scale": {
+                      "$GUID": "0da499d1-8e3d-4b7f-bb10-08cf132fca1a",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "e3f3d522-1b8a-46c7-a9ce-e775b4005254",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "3d738dbc-4897-4346-9951-38bb53689fdc",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "bdd2b144-fa96-46f0-8524-3ceb1c06f251",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "$GUID": "c574e576-29c9-4afa-a124-5e3d305b926c",
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                  "$Data": {
+                    "Reference": {
+                      "$GUID": "ff7b8d9f-c90a-499f-a355-1e666048f3ba",
+                      "$Data": {
+                        "Path": {
+                          "$GUID": "b7b06aa2-6ebc-49bd-862c-851546cb43a1",
+                          "$Data": "Core/Sprites/Components/RocketLauncherT2.png"
+                        },
+                        "Rect": {
+                          "$GUID": "f4343216-04b5-48c3-a322-6a2f045bbde0",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "4f99f334-093f-4a48-9331-ac6d5db6cf28",
+                              "$Data": 0.0
+                            },
+                            "Y": {
+                              "$GUID": "80a62152-846c-4645-97b6-56ef33b7250a",
+                              "$Data": 0.0
+                            },
+                            "Width": {
+                              "$GUID": "73c5a6b1-6de4-42d5-afa4-ccba70d87a0f",
+                              "$Data": 0.0
+                            },
+                            "Height": {
+                              "$GUID": "ca9aa175-6b5e-45b9-820c-844b11d0f6ff",
+                              "$Data": 0.0
+                            }
+                          }
+                        },
+                        "Pivot": {
+                          "$GUID": "a83eb3f5-ffe9-4c55-a250-68e6ea22b75a",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "4997c3b7-6ef4-4b2a-a5a3-e11993e2975f",
+                              "$Data": 0.5
+                            },
+                            "Y": {
+                              "$GUID": "0c949b7b-4362-463d-bfe1-ba91247dfc86",
+                              "$Data": 0.5
+                            }
+                          }
+                        },
+                        "PixelsPerUnit": {
+                          "$GUID": "4c889686-ef24-47d3-bd0d-26c273dc1dd7",
+                          "$Data": 32.0
+                        }
+                      }
+                    },
+                    "Color": {
+                      "$GUID": "28843607-77de-416f-902c-016ef0ee5f84",
+                      "$Data": {
+                        "Red": {
+                          "$GUID": "021be1b8-f7d5-46a9-b6f7-2cf15e7e0286",
+                          "$Data": 1.0
+                        },
+                        "Green": {
+                          "$GUID": "0d6b0c74-8b6a-4755-bbc7-749301913209",
+                          "$Data": 1.0
+                        },
+                        "Blue": {
+                          "$GUID": "6ed24089-012c-4bf0-bc47-9fd557fc3014",
+                          "$Data": 1.0
+                        },
+                        "Alpha": {
+                          "$GUID": "d25d2100-fb67-4705-9f7e-18410dde5b62",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "Children": {
+              "$GUID": "4b54347a-7366-4026-8943-4b8c981a8e60",
+              "$Data": []
+            }
+          }
+        },
+        {
+          "$GUID": "34485d19-2747-4cd7-a87e-def9909fc814",
+          "$Data": {
+            "Name": {
+              "$GUID": "7340cdcd-dd70-432e-9121-4c8d9344a801",
+              "$Data": "Muzzles"
+            },
+            "Tag": {
+              "$GUID": "1328edd5-1d5a-4442-9d54-73280a900e59",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "0f6b7fde-b063-45b5-9c26-010447d59c93",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "a2e98c1b-9c66-4e0b-bcd8-b35e805f01ef",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "981c045e-8691-47fe-8a46-66e4a98b87bf",
+              "$Data": [
+                {
+                  "$GUID": "60350d27-47af-4932-a4de-66898ef63fcf",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "$GUID": "82457531-90ca-4284-a8e5-b1a8555ed9e7",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "cce5b334-73f5-43f7-8a5f-e7b2c917f612",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "4e73fee7-0d29-4148-b0af-3a744a2e2de8",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "010b916a-6ea8-464b-b84a-4147b18d2398",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Rotation": {
+                      "$GUID": "02470037-eea7-48fd-98cb-b0cece974255",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "233c4148-c4c7-4fe5-942f-b4e4f623742c",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "1a98a0d7-02bc-4648-86ce-237bf948e74a",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "dc2b3470-335f-4e36-8987-84189b5b94aa",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Scale": {
+                      "$GUID": "965a3d57-fb4c-4789-a46e-e55e11ad1dd2",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "6d6b1428-3ae2-4999-8420-3cec3f945dd0",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "876ef4da-ff14-4dbf-9cd5-627f8634c455",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "bb6c4305-15df-4f7b-a0e7-b17fac9aeebc",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "Children": {
+              "$GUID": "5d5c938c-031d-40ce-9a04-63e1a945492f",
+              "$Data": [
+                {
+                  "$GUID": "1b437320-f00a-43a8-a3b3-ead2ed2e59b5",
+                  "$Data": {
+                    "Name": {
+                      "$GUID": "c901de66-c466-4f22-a3fc-21a2f62a080a",
+                      "$Data": "Muzzle"
+                    },
+                    "Tag": {
+                      "$GUID": "59602400-9f0f-4b8f-ad85-97edf15244c8",
+                      "$Data": "Untagged"
+                    },
+                    "Layer": {
+                      "$GUID": "25d6a69f-5bfc-4d94-ad7f-e382e9c0294d",
+                      "$Data": 9
+                    },
+                    "Static": {
+                      "$GUID": "46e0354a-bfcc-4271-a391-31080d7a4305",
+                      "$Data": false
+                    },
+                    "Components": {
+                      "$GUID": "d757c9db-5307-48dd-85b7-ab2ded93e7fa",
+                      "$Data": [
+                        {
+                          "$GUID": "90bdd5e2-ad5d-416d-9aae-740c8f8e185f",
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "$GUID": "d742c7d7-a3af-4992-b157-774de25c0180",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "5de2febb-5798-4332-9e9c-14858e025144",
+                                  "$Data": 0.5
+                                },
+                                "Y": {
+                                  "$GUID": "19d1d497-5bef-4ca7-bd1b-1459a258ed2c",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "57220798-8e55-4df6-b271-3bfcacf865fc",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Rotation": {
+                              "$GUID": "77d79f49-47d1-49f9-a849-03eab63b3abb",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "380d101a-2dbd-4562-8921-4c97951680f8",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "794af334-f92f-40f3-aec6-fe4111fe78f1",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "2b8de830-43f2-4694-9d01-8e306e2af1f7",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Scale": {
+                              "$GUID": "6e6f4f08-cdde-4c2b-a58d-f0373f453d3b",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "b5660a2c-fc55-4bc8-b465-5c79f4bf02a8",
+                                  "$Data": 1.0
+                                },
+                                "Y": {
+                                  "$GUID": "193a4d2d-565c-4cb9-ab01-5475f47d1675",
+                                  "$Data": 1.0
+                                },
+                                "Z": {
+                                  "$GUID": "e610b006-631f-4ecb-ad53-5c7c95a051a5",
+                                  "$Data": 1.0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "Children": {
+                      "$GUID": "1256b3b2-5049-44d1-a821-bfad00ffb684",
+                      "$Data": []
+                    }
+                  }
+                }
+              ]
+            }
+          }
         }
       ]
     }
-  ]
+  }
 }

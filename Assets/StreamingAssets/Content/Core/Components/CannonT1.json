@@ -1,314 +1,934 @@
 {
-  "Name": "CannonT1",
-  "Tag": "Untagged",
-  "Layer": 9,
-  "Static": false,
-  "Components": [
-    {
-      "ValueType": "UnityEngine.Transform",
-      "ValueData": {
-        "Position": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": -1.0
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 1.0,
-          "Y": 1.0,
-          "Z": 1.0
-        }
-      }
+  "$GUID": "90e5bc64-67cd-4472-bd46-3ad96dd8b1cc",
+  "$Data": {
+    "Name": {
+      "$GUID": "983a2c25-5b02-4de6-bd6e-2fcc803044dd",
+      "$Data": "CannonT1"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
-      "ValueData": {
-        "ProjectilePrefab": {
-          "Path": "Resources/Projectiles/CannonProjectile"
-        },
-        "FireTreshold": 1.0,
-        "HitLayer": {
-          "Mask": 256
-        },
-        "BaseDamage": 1500.0,
-        "BaseProjectileAmount": 1,
-        "BaseSpread": 0.0,
-        "BaseSpeed": 100.0,
-        "BaseFirerate": 0.5,
-        "Color": "Red",
-        "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": null,
-        "LowerAttachmentPoints": {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "ValueData": {
-            "Width": "Medium",
-            "Height": "Medium"
-          }
-        },
-        "_name": "Cannon",
-        "_description": "Fires heavy slugs of molten metal.",
-        "_uniqueIdentifier": "Core.HeavyCannonT1",
-        "_cost": {
-          "Elements": [
-            {
-              "Type": "Credits",
-              "Value": 2250
-            }
-          ]
-        },
-        "BaseAttributes": [],
-        "_width": "Medium",
-        "_height": "Medium"
-      }
+    "Tag": {
+      "$GUID": "4010258d-6638-401a-a4c8-e1fd669c670c",
+      "$Data": "Untagged"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
-      "ValueData": {
-        "AnimationSprites": [
-          {
-            "Path": "Core/Sprites/Components/CannonT1.png",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "Core/Sprites/Components/CannonT1.png",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "Core/Sprites/Components/CannonT1.png",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "Core/Sprites/Components/CannonT1.png",
-            "Rect": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        ],
-        "DefaultSprite": {
-          "Path": "Core/Sprites/Components/CannonT1.png",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 32.0,
-            "Height": 32.0
-          },
-          "Pivot": {
-            "X": 0.5,
-            "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
-        },
-        "PlaySpeedMultiplier": 1.0
-      }
+    "Layer": {
+      "$GUID": "a115f3b3-c07c-4234-bc3d-b4ba64ff65df",
+      "$Data": 9
     },
-    {
-      "ValueType": "UnityEngine.BoxCollider2D",
-      "ValueData": {
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "Size": {
-          "X": 2.0,
-          "Y": 2.0
-        }
-      }
-    }
-  ],
-  "Children": [
-    {
-      "Name": "Sprite",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
+    "Static": {
+      "$GUID": "b2076413-c628-471a-ade6-815820bc3dff",
+      "$Data": false
+    },
+    "Components": {
+      "$GUID": "523f035c-d1f1-4a5a-acb6-1a9c61715c76",
+      "$Data": [
         {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
+          "$GUID": "6f25ea5b-ff23-438b-bf04-3b3f19cff318",
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
             "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "925ffc40-81d0-4ece-a098-8ff6209661fb",
+              "$Data": {
+                "X": {
+                  "$GUID": "eb2bd745-9d8f-4c4a-99af-aac9ba632650",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "9a31ad60-a7f3-4fb6-8335-3b8ae87a1aa9",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "4bf35b95-f040-47f4-94d2-97da9c8cb657",
+                  "$Data": -1.0
+                }
+              }
             },
             "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "c8f68cd6-1a03-47bc-ba42-6fd38f29c64c",
+              "$Data": {
+                "X": {
+                  "$GUID": "5250daf7-b2cd-4ba9-8910-bb3e74d5d296",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "e29f15ec-5aba-4bf7-941a-0ed15dbba436",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "710f5ad5-c536-4787-a097-d48e600574fe",
+                  "$Data": 0.0
+                }
+              }
             },
             "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
-            }
-          }
-        },
-        {
-          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-          "ValueData": {
-            "Reference": {
-              "Path": "Core/Sprites/Components/CannonT1.png",
-              "Rect": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
-            },
-            "Color": {
-              "Red": 1.0,
-              "Green": 1.0,
-              "Blue": 1.0,
-              "Alpha": 1.0
-            }
-          }
-        }
-      ],
-      "Children": []
-    },
-    {
-      "Name": "Muzzles",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
-        {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
-            "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
-            },
-            "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
-            },
-            "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
-            }
-          }
-        }
-      ],
-      "Children": [
-        {
-          "Name": "Muzzle",
-          "Tag": "Untagged",
-          "Layer": 9,
-          "Static": false,
-          "Components": [
-            {
-              "ValueType": "UnityEngine.Transform",
-              "ValueData": {
-                "Position": {
-                  "X": 0.5,
-                  "Y": 0.0,
-                  "Z": 0.0
+              "$GUID": "40209580-a1c6-49c4-b516-432f685003fb",
+              "$Data": {
+                "X": {
+                  "$GUID": "b03b542b-0c20-405b-88ac-7bb2fc31f4c3",
+                  "$Data": 1.0
                 },
-                "Rotation": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
+                "Y": {
+                  "$GUID": "00f71d6f-cc50-4cd0-992a-ac1649d607b3",
+                  "$Data": 1.0
                 },
-                "Scale": {
-                  "X": 1.0,
-                  "Y": 1.0,
-                  "Z": 1.0
+                "Z": {
+                  "$GUID": "9f114695-0b14-403e-9e23-4abd86482cc6",
+                  "$Data": 1.0
                 }
               }
             }
-          ],
-          "Children": [
-            {
-              "Name": "FireParticle",
-              "Tag": "Untagged",
-              "Layer": 0,
-              "Static": false,
-              "Components": [
+          }
+        },
+        {
+          "$GUID": "aadd1a4c-4793-49d8-88f0-bfeb471b4005",
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+          "$Data": {
+            "ProjectilePrefab": {
+              "$GUID": "2567c037-84c1-4e99-aef5-1f628aab0fdd",
+              "$Data": {
+                "Path": {
+                  "$GUID": "0fd4108e-a5dd-4d8d-afad-f86ad0343087",
+                  "$Data": "Resources/Projectiles/CannonProjectile"
+                }
+              }
+            },
+            "FireTreshold": {
+              "$GUID": "92b1ec3f-b918-4ced-9343-379b21ce8fce",
+              "$Data": 1.0
+            },
+            "HitLayer": {
+              "$GUID": "a4ae091f-00a6-4d7b-bf4d-dfca36dfd676",
+              "$Data": {
+                "Mask": {
+                  "$GUID": "dd168683-ee78-4181-9e27-5277424795a2",
+                  "$Data": 256
+                }
+              }
+            },
+            "BaseDamage": {
+              "$GUID": "30f1ba8a-fc3d-49fd-94ae-01779beaa200",
+              "$Data": 1500.0
+            },
+            "BaseProjectileAmount": {
+              "$GUID": "5b91e44b-a74f-46b1-9ab8-ed934822935a",
+              "$Data": 1
+            },
+            "BaseSpread": {
+              "$GUID": "b924d088-7e57-43fd-8fbf-953993021333",
+              "$Data": 0.0
+            },
+            "BaseSpeed": {
+              "$GUID": "0079e8fd-1ba7-4fc2-8fba-2e508c322d3f",
+              "$Data": 100.0
+            },
+            "BaseFirerate": {
+              "$GUID": "cec6bcdc-864c-45d8-b04b-6129efd5e3a8",
+              "$Data": 0.5
+            },
+            "Color": {
+              "$GUID": "ccb8a04e-8502-4280-ac3b-7f8c437379ad",
+              "$Data": "Red"
+            },
+            "BaseComplexity": {
+              "$GUID": "eef258a6-4491-4a67-b9c3-504c2b5bb9e3",
+              "$Data": 0.0
+            },
+            "UpperAttachmentPoints": {
+              "$GUID": "75cd41c1-8ddf-4d86-b8de-c0432ed380f5",
+              "$Data": null
+            },
+            "LowerAttachmentPoints": {
+              "$GUID": "69fbb127-504b-4b39-9c8e-9b5704053209",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+              "$Data": {
+                "Width": {
+                  "$GUID": "27352679-3241-4c8b-af41-9594c2b0bd33",
+                  "$Data": "Medium"
+                },
+                "Height": {
+                  "$GUID": "fe14ca56-9766-43d1-bd5b-3bac5cf421f0",
+                  "$Data": "Medium"
+                }
+              }
+            },
+            "_name": {
+              "$GUID": "e9a3fb94-e563-4a26-b496-11ed5b000784",
+              "$Data": "Cannon"
+            },
+            "_description": {
+              "$GUID": "df801b6c-f122-44e8-bd68-60ce9795fefb",
+              "$Data": "Fires heavy slugs of molten metal."
+            },
+            "_uniqueIdentifier": {
+              "$GUID": "fa66c5db-dc7e-4079-a846-4f892273d3f3",
+              "$Data": "Core.HeavyCannonT1"
+            },
+            "_cost": {
+              "$GUID": "fd686a25-fbb4-424a-9226-ee12d654514c",
+              "$Data": {
+                "Elements": {
+                  "$GUID": "47d409da-49c5-4ac0-8cfb-fa0b4db08be6",
+                  "$Data": [
+                    {
+                      "$GUID": "ff8cb837-1009-450a-8f04-ff903c67d6ea",
+                      "$Data": {
+                        "Type": {
+                          "$GUID": "443da467-5b88-4ae9-80e9-75dc26da3088",
+                          "$Data": "Credits"
+                        },
+                        "Value": {
+                          "$GUID": "5371daf6-6112-42cc-a21b-b8327ba9d941",
+                          "$Data": 2250
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "BaseAttributes": {
+              "$GUID": "77d25109-3ebe-49e5-b41a-d298d99472ba",
+              "$Data": []
+            },
+            "_width": {
+              "$GUID": "5f19834b-669d-4201-bd14-ae26a3b2de99",
+              "$Data": "Medium"
+            },
+            "_height": {
+              "$GUID": "5be4af70-1b4c-41f9-a1cc-c5b54cd5b544",
+              "$Data": "Medium"
+            }
+          }
+        },
+        {
+          "$GUID": "9bc69326-d87d-4f24-8af0-4a58572a4bfc",
+          "$Type": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+          "$Data": {
+            "AnimationSprites": {
+              "$GUID": "22ef5694-32fa-4e26-98d7-5bc1ec3ef240",
+              "$Data": [
                 {
-                  "ValueType": "UnityEngine.Transform",
-                  "ValueData": {
-                    "Position": {
-                      "X": 0.25,
-                      "Y": 0.0,
-                      "Z": 0.0
+                  "$GUID": "e862f23e-432e-420e-8b55-5bb442a6b457",
+                  "$Data": {
+                    "Path": {
+                      "$GUID": "165bfc0e-7e12-41a0-bdc7-717008145b11",
+                      "$Data": "Core/Sprites/Components/CannonT1.png"
                     },
-                    "Rotation": {
-                      "X": 0.0,
-                      "Y": 90.0,
-                      "Z": 0.0
+                    "Rect": {
+                      "$GUID": "2b194f3d-57b3-4b32-b081-cd90c16dd813",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "14043eae-221f-4ce2-99b4-163d1f35a92a",
+                          "$Data": 32.0
+                        },
+                        "Y": {
+                          "$GUID": "d7312f5c-52b0-41d2-9582-a1a3bed259b6",
+                          "$Data": 0.0
+                        },
+                        "Width": {
+                          "$GUID": "153661a3-9eb6-48aa-ba99-41fcf56d8846",
+                          "$Data": 32.0
+                        },
+                        "Height": {
+                          "$GUID": "697e0c37-cd0f-4961-9fb1-9c24edcb00a5",
+                          "$Data": 32.0
+                        }
+                      }
                     },
-                    "Scale": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 1.0
+                    "Pivot": {
+                      "$GUID": "a18a3396-b90e-4d16-9d78-6cca67603844",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "2b62b589-f8de-423d-9dfa-c6f4a69ce4a8",
+                          "$Data": 0.5
+                        },
+                        "Y": {
+                          "$GUID": "db91aee2-3d18-469e-b9fb-4ebf86335291",
+                          "$Data": 0.5
+                        }
+                      }
+                    },
+                    "PixelsPerUnit": {
+                      "$GUID": "937258a4-bbf8-4e27-9200-4c70b9e2a87c",
+                      "$Data": 16.0
                     }
                   }
                 },
                 {
-                  "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                  "ValueData": {
-                    "Reference": {
-                      "Path": "Resources/Particles/FireEffects/CannonFireEffect"
+                  "$GUID": "a3989313-3912-4c41-a6ec-8d405170e4ef",
+                  "$Data": {
+                    "Path": {
+                      "$GUID": "2a5fc266-e29b-4880-9ed2-dd24e9bb5f8b",
+                      "$Data": "Core/Sprites/Components/CannonT1.png"
                     },
-                    "NameOverride": ""
+                    "Rect": {
+                      "$GUID": "59a1b71c-d73d-4036-a5fa-4cb5659a3b55",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "0077d826-e734-454d-87b1-39a30e844899",
+                          "$Data": 64.0
+                        },
+                        "Y": {
+                          "$GUID": "4d994344-c131-4294-8fe6-f69331c632c6",
+                          "$Data": 0.0
+                        },
+                        "Width": {
+                          "$GUID": "dcba9a6e-8574-486f-a7a4-1c856500082e",
+                          "$Data": 32.0
+                        },
+                        "Height": {
+                          "$GUID": "c0394154-6152-45f3-bda4-5a002130804b",
+                          "$Data": 32.0
+                        }
+                      }
+                    },
+                    "Pivot": {
+                      "$GUID": "48a3bca8-a0b7-4a06-a91b-8fdbd296f195",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "b30047ad-b6b1-43a4-ac70-3c8302d62a64",
+                          "$Data": 0.5
+                        },
+                        "Y": {
+                          "$GUID": "1c3abf02-ee89-422c-a080-c2e8b9542b7c",
+                          "$Data": 0.5
+                        }
+                      }
+                    },
+                    "PixelsPerUnit": {
+                      "$GUID": "03f23678-ca11-4de6-8879-0ffc94e7ca30",
+                      "$Data": 16.0
+                    }
+                  }
+                },
+                {
+                  "$GUID": "90622565-5408-421a-afd3-d661e0008996",
+                  "$Data": {
+                    "Path": {
+                      "$GUID": "8f24e3db-0d6e-4897-ae4c-a156fcd378bb",
+                      "$Data": "Core/Sprites/Components/CannonT1.png"
+                    },
+                    "Rect": {
+                      "$GUID": "fb34e982-7074-4f3e-baee-18d5698be8ef",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "74a469b8-4f29-42a0-b342-f8f14e02d280",
+                          "$Data": 96.0
+                        },
+                        "Y": {
+                          "$GUID": "e05b17c5-8351-42f2-8c71-1ffd7dc90078",
+                          "$Data": 0.0
+                        },
+                        "Width": {
+                          "$GUID": "47c5b6f4-47a0-4889-b580-631e60d3cc41",
+                          "$Data": 32.0
+                        },
+                        "Height": {
+                          "$GUID": "8f279ab0-4a02-43d1-9fb3-511f8c354650",
+                          "$Data": 32.0
+                        }
+                      }
+                    },
+                    "Pivot": {
+                      "$GUID": "d8d788cd-67d1-4d61-8891-2775d80d1e04",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "f2764efd-d475-44a7-88a4-a32bf2c02f91",
+                          "$Data": 0.5
+                        },
+                        "Y": {
+                          "$GUID": "e240fc29-7096-4d0d-89db-690b3e25ed50",
+                          "$Data": 0.5
+                        }
+                      }
+                    },
+                    "PixelsPerUnit": {
+                      "$GUID": "3a5436b6-77c9-4991-a52f-21ff66a31ba6",
+                      "$Data": 16.0
+                    }
+                  }
+                },
+                {
+                  "$GUID": "06d44f98-5d70-454b-b8ad-30dac64f4b02",
+                  "$Data": {
+                    "Path": {
+                      "$GUID": "9ade5e68-b774-4fbd-87e2-3b415aad542a",
+                      "$Data": "Core/Sprites/Components/CannonT1.png"
+                    },
+                    "Rect": {
+                      "$GUID": "70b22f1d-6783-4ba9-833b-2111bba4ed80",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "a82b9b70-7096-426b-a327-edf53d1db012",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "dbac085b-c308-4f85-9981-2a7fcd4ee07f",
+                          "$Data": 0.0
+                        },
+                        "Width": {
+                          "$GUID": "eeaefe43-dd3b-4779-9724-c3402d7ff8f5",
+                          "$Data": 32.0
+                        },
+                        "Height": {
+                          "$GUID": "5800d1fa-7e09-4a81-b54c-6d98c4813623",
+                          "$Data": 32.0
+                        }
+                      }
+                    },
+                    "Pivot": {
+                      "$GUID": "c0270a99-f30a-4955-a9fe-ab588b8619fd",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "615fdc4e-b6d6-4507-94eb-3236be23cc77",
+                          "$Data": 0.5
+                        },
+                        "Y": {
+                          "$GUID": "f3805509-eabf-47c3-80de-d7d15ff3731e",
+                          "$Data": 0.5
+                        }
+                      }
+                    },
+                    "PixelsPerUnit": {
+                      "$GUID": "e071c485-26b8-4215-b604-468c88dd248c",
+                      "$Data": 16.0
+                    }
                   }
                 }
-              ],
-              "Children": []
+              ]
+            },
+            "DefaultSprite": {
+              "$GUID": "34acee2b-1e0d-4a0c-b5a3-1b5b6de23d21",
+              "$Data": {
+                "Path": {
+                  "$GUID": "8c6da4ae-46a4-48d8-b6db-553bb219baf1",
+                  "$Data": "Core/Sprites/Components/CannonT1.png"
+                },
+                "Rect": {
+                  "$GUID": "4dc4a50d-314a-4b84-a4be-ac74394a6dae",
+                  "$Data": {
+                    "X": {
+                      "$GUID": "4c8c61e8-c46e-410c-8c6d-98acfe9b6388",
+                      "$Data": 0.0
+                    },
+                    "Y": {
+                      "$GUID": "d1713552-4a2a-4851-b31e-1383f59364b4",
+                      "$Data": 0.0
+                    },
+                    "Width": {
+                      "$GUID": "fe879806-a994-446c-bd49-ce997950a532",
+                      "$Data": 32.0
+                    },
+                    "Height": {
+                      "$GUID": "c831420b-1415-49bb-85b6-8672e495bc42",
+                      "$Data": 32.0
+                    }
+                  }
+                },
+                "Pivot": {
+                  "$GUID": "cea25b3c-87b4-4b1e-b39d-43fbeff3f93c",
+                  "$Data": {
+                    "X": {
+                      "$GUID": "ed2eb694-78ca-481c-aa80-b594e4c4b180",
+                      "$Data": 0.5
+                    },
+                    "Y": {
+                      "$GUID": "7fba6001-2029-42a3-a7a9-e9e728ab981f",
+                      "$Data": 0.5
+                    }
+                  }
+                },
+                "PixelsPerUnit": {
+                  "$GUID": "8101dd53-7ed6-47e9-be90-bfe37e62a379",
+                  "$Data": 16.0
+                }
+              }
+            },
+            "PlaySpeedMultiplier": {
+              "$GUID": "48a2a8d2-3d00-48a1-8602-082cbcf37c1c",
+              "$Data": 1.0
             }
-          ]
+          }
+        },
+        {
+          "$GUID": "f61e6927-831e-4c98-b990-00c706e9c098",
+          "$Type": "UnityEngine.BoxCollider2D",
+          "$Data": {
+            "Offset": {
+              "$GUID": "7f363f8c-4418-4767-8652-87a9e552569e",
+              "$Data": {
+                "X": {
+                  "$GUID": "d2a0ba0b-c511-438a-948b-98d6bcebc5a2",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "cf184ee8-7936-4228-9ffc-4ae099ef39a8",
+                  "$Data": 0.0
+                }
+              }
+            },
+            "Size": {
+              "$GUID": "e10a5684-8091-471b-8e06-6a86c803ecb3",
+              "$Data": {
+                "X": {
+                  "$GUID": "5a809663-74e2-4f76-b7cb-69c17ff2624c",
+                  "$Data": 2.0
+                },
+                "Y": {
+                  "$GUID": "2ef40bc3-2ccc-4667-ad58-8cd8ae137182",
+                  "$Data": 2.0
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Children": {
+      "$GUID": "64c53de2-35b0-4c6b-a5c0-1a5d5d9b983d",
+      "$Data": [
+        {
+          "$GUID": "84b015fc-7c1b-435e-909e-9d4502b560e3",
+          "$Data": {
+            "Name": {
+              "$GUID": "6712865a-e476-4411-b2e5-ec27f1265e94",
+              "$Data": "Sprite"
+            },
+            "Tag": {
+              "$GUID": "5c940b7f-061f-4f6c-9396-83061d8760b4",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "828df17a-e703-4587-9a37-3f251a02b3cc",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "1e8ca30b-81c3-4f8b-a4d9-f5561c391a16",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "6f0f1123-2dda-4bd2-b4e0-21a7c1953799",
+              "$Data": [
+                {
+                  "$GUID": "227e14c9-a813-4f4e-aebc-3c54ea537b6e",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "$GUID": "301a0608-80aa-4dc5-91fb-e47968ccc7f0",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "f2ccb02c-9398-4758-882c-845a9e687917",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "d233e4b0-78b7-4728-b589-681783296a32",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "8dba0a45-b511-49f6-a369-1c6267fa9f7c",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Rotation": {
+                      "$GUID": "140a8628-7132-4e6b-b194-8fb45ffc2ef3",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "d28cc4a4-c147-40e6-bace-da1868f10c9a",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "987ab53c-631e-42c3-9610-f326cc925642",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "b03e6974-76d4-4dcb-bc32-72201e6883d2",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Scale": {
+                      "$GUID": "516df8f6-1bf1-4cee-b633-efedb0994b3e",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "8703106c-b93e-4917-a95b-84ed942816b5",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "40387cae-35b5-4643-97b9-1ba7e50df7e4",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "67b69c92-0323-4406-a0a4-9c474e7604bf",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "$GUID": "551beda7-ed22-4986-8abc-59d278d27cad",
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                  "$Data": {
+                    "Reference": {
+                      "$GUID": "7b05f8ff-0d8c-4197-9f80-c628753afa5f",
+                      "$Data": {
+                        "Path": {
+                          "$GUID": "fbbe29ae-fa9d-4a74-ae59-3e6ec8dea6b6",
+                          "$Data": "Core/Sprites/Components/CannonT1.png"
+                        },
+                        "Rect": {
+                          "$GUID": "536358f4-a1c9-4949-bc9a-c23e8d5013b5",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "f655c698-5d33-4014-9661-5c1221a462ca",
+                              "$Data": 0.0
+                            },
+                            "Y": {
+                              "$GUID": "4c6fd6de-b54d-4f7d-ba61-c206fe62e26c",
+                              "$Data": 0.0
+                            },
+                            "Width": {
+                              "$GUID": "0979842d-fc2e-418f-92df-b306a6b9e205",
+                              "$Data": 32.0
+                            },
+                            "Height": {
+                              "$GUID": "b5dd3d5b-b357-406c-ad35-5cc1c7900bd8",
+                              "$Data": 32.0
+                            }
+                          }
+                        },
+                        "Pivot": {
+                          "$GUID": "8c4d3e7d-35a7-4d62-92a0-bf9bf8ee9c9c",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "7565cdb9-1ae9-4b0a-8a65-4f64a7002daf",
+                              "$Data": 0.5
+                            },
+                            "Y": {
+                              "$GUID": "6b9bc496-7eeb-472c-afaa-6d086ffee02d",
+                              "$Data": 0.5
+                            }
+                          }
+                        },
+                        "PixelsPerUnit": {
+                          "$GUID": "8f007000-7361-42d7-802d-c55f8cc284f0",
+                          "$Data": 16.0
+                        }
+                      }
+                    },
+                    "Color": {
+                      "$GUID": "868c5735-55ea-44fe-8c4a-d48f82c7c6b0",
+                      "$Data": {
+                        "Red": {
+                          "$GUID": "b95035a3-95e2-4033-b5e7-32d52e6e50e2",
+                          "$Data": 1.0
+                        },
+                        "Green": {
+                          "$GUID": "295accc4-3867-4a29-aa78-134bba84b7ee",
+                          "$Data": 1.0
+                        },
+                        "Blue": {
+                          "$GUID": "f49174e2-b2d7-4f54-8666-27ec59ad3866",
+                          "$Data": 1.0
+                        },
+                        "Alpha": {
+                          "$GUID": "b547bc01-5f6c-4643-99e0-73ff2a83b278",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "Children": {
+              "$GUID": "9ebc3a8f-2114-471d-8266-adcdc9078dbe",
+              "$Data": []
+            }
+          }
+        },
+        {
+          "$GUID": "dc92845e-ccbc-4aa5-beef-53cd1f9153cf",
+          "$Data": {
+            "Name": {
+              "$GUID": "9e75202d-ac95-440b-add9-3b6086e7d9cc",
+              "$Data": "Muzzles"
+            },
+            "Tag": {
+              "$GUID": "0928c90a-5b11-494c-9902-57dd76b093f6",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "d0a43016-10ac-4eaa-94ca-12e60f0d0c8f",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "651441c5-5c3f-49e1-992d-893abf8fc01a",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "956b2c24-e6ff-4297-acf9-aa7dc61130e8",
+              "$Data": [
+                {
+                  "$GUID": "fc927bca-51f7-4ce1-8fad-b56469d8c8d0",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "$GUID": "9bfd82f6-bcff-48bb-978f-17b3d37de802",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "3f5ba29c-a62e-4938-9208-a56274b31c06",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "bb07a2ae-d5f7-4d9c-ab71-f6f9b20b780c",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "fb3717aa-10ae-4dcc-90c3-c9c82b64df7f",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Rotation": {
+                      "$GUID": "e073d4ae-0468-4ad5-bb6e-86faca63727c",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "bcf34df8-3a90-4a0d-9a0e-3aa5ab476dae",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "a801a0db-05d0-4384-9f93-24694a3d6821",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "a8c10211-149b-4fe5-9e39-6b4075fb0387",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Scale": {
+                      "$GUID": "a31133b5-2b3f-422c-acc3-646f960747d9",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "549e7538-1a78-4df2-bde0-b7333dee5816",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "e73fc726-7700-4b92-ab6d-d9ada88e56bf",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "e3280545-2ffa-4f1c-8719-23517bbd50ef",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "Children": {
+              "$GUID": "a17e686d-87e0-4723-92f4-8444207e4e5b",
+              "$Data": [
+                {
+                  "$GUID": "252cf4d6-075a-4f91-bee6-f74a572ec1aa",
+                  "$Data": {
+                    "Name": {
+                      "$GUID": "87d57b88-2237-41d7-a2f6-e6ba0aa6b150",
+                      "$Data": "Muzzle"
+                    },
+                    "Tag": {
+                      "$GUID": "3d61a73b-5c83-40f1-bda0-6cfe3f5f6e6d",
+                      "$Data": "Untagged"
+                    },
+                    "Layer": {
+                      "$GUID": "086a02fa-a133-4426-8665-645a06049d5c",
+                      "$Data": 9
+                    },
+                    "Static": {
+                      "$GUID": "15af5fdd-55de-40bd-8eca-40c46864f39f",
+                      "$Data": false
+                    },
+                    "Components": {
+                      "$GUID": "8826a4e9-6889-4de1-a69d-99bfff5bab3a",
+                      "$Data": [
+                        {
+                          "$GUID": "8ea22e6a-277d-411d-82d4-cbd793f903da",
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "$GUID": "1aa93064-c434-43e1-9695-cea39269b417",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "e856c79f-2cf6-4cc1-ab69-4e3956a14971",
+                                  "$Data": 0.5
+                                },
+                                "Y": {
+                                  "$GUID": "deb697c9-d75e-4093-b8f5-899730094ba7",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "ed1718e1-2de4-426e-8697-24848ce72143",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Rotation": {
+                              "$GUID": "879c7b72-e199-4859-ad5d-e092270d6487",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "3427eba6-75ab-4a47-9b1f-3a4b3bb2d953",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "0e9f7d68-2ca9-4bfd-8130-522935f549ae",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "84636654-d766-4acd-b088-4215fc1f61a4",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Scale": {
+                              "$GUID": "c46eee07-6710-4030-aee3-4af1d22cf231",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "f004bb88-d59f-4a2c-b664-e4f4f354b87f",
+                                  "$Data": 1.0
+                                },
+                                "Y": {
+                                  "$GUID": "f3047e08-c024-4a7a-a36c-9033004b2333",
+                                  "$Data": 1.0
+                                },
+                                "Z": {
+                                  "$GUID": "00a01139-40d1-45f3-b0bd-2d28354d8c9a",
+                                  "$Data": 1.0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "Children": {
+                      "$GUID": "d75f393a-1505-44cb-a8b5-5808733f12e9",
+                      "$Data": [
+                        {
+                          "$GUID": "a6b4c85d-e40a-4df3-9173-1957508340d6",
+                          "$Data": {
+                            "Name": {
+                              "$GUID": "43677460-9cf1-40e8-87c2-899af007c431",
+                              "$Data": "FireParticle"
+                            },
+                            "Tag": {
+                              "$GUID": "6c79dd93-4fa2-4770-a303-d889c2856d53",
+                              "$Data": "Untagged"
+                            },
+                            "Layer": {
+                              "$GUID": "6c3803ea-854c-4db3-a1b9-7f8fc3a5a428",
+                              "$Data": 0
+                            },
+                            "Static": {
+                              "$GUID": "4a4a3b85-9fca-45d3-b869-affbf08cbaee",
+                              "$Data": false
+                            },
+                            "Components": {
+                              "$GUID": "26b88501-924d-417c-9d16-74811bec6d65",
+                              "$Data": [
+                                {
+                                  "$GUID": "3548ce3f-0fdc-40e2-969d-ebf4993f45c9",
+                                  "$Type": "UnityEngine.Transform",
+                                  "$Data": {
+                                    "Position": {
+                                      "$GUID": "4f892ca1-176e-410a-b508-179a3bbae76c",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "f2a19359-d906-4c89-83e5-c49441e984e7",
+                                          "$Data": 0.25
+                                        },
+                                        "Y": {
+                                          "$GUID": "2970fd2a-85e4-418a-96d6-cd5cf622431e",
+                                          "$Data": 0.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "3b39757b-db29-4b27-a5da-9bd170fead12",
+                                          "$Data": 0.0
+                                        }
+                                      }
+                                    },
+                                    "Rotation": {
+                                      "$GUID": "9c51f204-4ba0-4f98-bd11-e8ad520d6c9c",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "edb18e6d-0519-4d78-8d06-d6ab45481d91",
+                                          "$Data": 0.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "4f953f02-19e0-454e-a0b3-3dc32fc63dab",
+                                          "$Data": 90.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "791edf81-ce5d-4b83-a689-9f3de78fea0a",
+                                          "$Data": 0.0
+                                        }
+                                      }
+                                    },
+                                    "Scale": {
+                                      "$GUID": "8654f704-33ab-4e76-b1ad-14e8ec2006a1",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "be389004-b31c-490f-bbb3-47ddf2b65231",
+                                          "$Data": 1.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "f1ed050e-7c27-482d-b1b3-83b21d017899",
+                                          "$Data": 1.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "399e4b1f-4c65-43e0-ace0-d5c1c8f53178",
+                                          "$Data": 1.0
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "$GUID": "3b4bf3c2-e99b-4946-98e3-74523b7870a2",
+                                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                                  "$Data": {
+                                    "Reference": {
+                                      "$GUID": "a05e3fdc-4678-45fc-97ff-1ee27dc6f139",
+                                      "$Data": {
+                                        "Path": {
+                                          "$GUID": "44374685-fa0c-4da2-8a78-b0b60a68123b",
+                                          "$Data": "Resources/Particles/FireEffects/CannonFireEffect"
+                                        }
+                                      }
+                                    },
+                                    "NameOverride": {
+                                      "$GUID": "e7e1d4f1-245f-45b2-bd23-b5825bd2ea9f",
+                                      "$Data": ""
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "Children": {
+                              "$GUID": "70ed276b-c0fd-4a22-b595-05b9b1468a5e",
+                              "$Data": []
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
         }
       ]
     }
-  ]
+  }
 }

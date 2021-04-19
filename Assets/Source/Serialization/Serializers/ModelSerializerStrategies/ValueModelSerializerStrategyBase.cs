@@ -13,43 +13,56 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     {
         public abstract bool CanSerialize(Type type);
 
-        private bool IsImplicit(JToken token) => !ValueModelSerializer.IsExplicit(token, out JToken _);
-        private bool IsImplicit(ValueModel model) => model.IsTypeImplicit;
+        private bool HasMetadata(JToken token) => ValueModelSerializer.HasMetadata(token, out JToken _);
+        private bool HasMetadata(ValueModel model) => model.HasMetadata;
 
-        private JToken SerializeExplicit(ValueModel model)
-            => CreateExplicitContainer(model.GetModelType(), SerializeImplicit(model));
+        private JToken SerializeWithMetadata(ValueModel model)
+            => CreateMetadataContainer(model, SerializeWithoutMetadata(model));
 
+        protected abstract JToken SerializeWithoutMetadata(ValueModel model);
 
-        private ValueModel DeserializeExplicit(JToken token)
+        private ValueModel DeserializeWithMetadata(JToken token)
         {
-            (Type type, JToken value) = GetDataFromExplicitContainer(token);
-            ValueModel model = DeserializeImplicit(value);
-            model.MakeExplicit(type);
+            JObject obj = token as JObject;
+            ValueModel model = DeserializeWithoutMetadata(obj[ValueModelSerializer.VALUE_MODEL_DATA_NAME]);
+
+            if (obj.TryGetValue (ValueModelSerializer.VALUE_MODEL_GUID_NAME, out JToken guid)) // TODO: Create some sort of more extensible metadata serialization handler
+            {
+                model.GUID = guid.ToObject<Guid>();
+            }
+            if (obj.TryGetValue(ValueModelSerializer.VALUE_MODEL_TYPE_NAME, out JToken type))
+            {
+                model.MakeExplicit(type.ToString());
+            }
+            
             return model;
         }
 
-        private JObject CreateExplicitContainer(Type type, JToken value)
+        protected abstract ValueModel DeserializeWithoutMetadata(JToken token);
+
+        private JObject CreateMetadataContainer(ValueModel model, JToken data)
         {
-            return new JObject()
+            JObject obj = new JObject();
+
+            if (model.HasGUID)
             {
-                { ValueModelSerializer.VALUE_MODEL_TYPE_PROPERTY_NAME, type.FullName },
-                { ValueModelSerializer.VALUE_MODEL_VALUE_PROPERTY_NAME, value }
-            };
+                obj.Add(ValueModelSerializer.VALUE_MODEL_GUID_NAME, model.GUID.Value);
+            }
+            if (!model.IsTypeImplicit)
+            {
+                obj.Add(ValueModelSerializer.VALUE_MODEL_TYPE_NAME, model.TypeName);
+            }
+            obj.Add(ValueModelSerializer.VALUE_MODEL_DATA_NAME, data);
+
+            return obj;
         }
 
-        private (Type, JToken value) GetDataFromExplicitContainer(JToken container)
-        {
-            return (ReflectionUtils.GetType(container[ValueModelSerializer.VALUE_MODEL_TYPE_PROPERTY_NAME].ToString()), container[ValueModelSerializer.VALUE_MODEL_VALUE_PROPERTY_NAME]);
-        }
-
-        protected abstract JToken SerializeImplicit(ValueModel model);
-        protected abstract ValueModel DeserializeImplicit(JToken token);
 
         public ValueModel Deserialize(JToken token)
-            => IsImplicit(token) ? DeserializeImplicit(token) : DeserializeExplicit(token);
+            => HasMetadata(token) ? DeserializeWithMetadata(token) : DeserializeWithoutMetadata(token);
 
         public JToken Serialize(ValueModel model)
-            => IsImplicit(model) ? SerializeImplicit(model) : SerializeExplicit(model);
+            => HasMetadata(model) ? SerializeWithMetadata(model) : SerializeWithoutMetadata(model);
 
     }
 }

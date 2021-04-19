@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
         public override bool CanSerialize(Type type) => type == typeof(ObjectModel);
         private ValueModelSerializer _internalSerializer = new ValueModelSerializer();
 
-        protected override ValueModel DeserializeImplicit(JToken value)
+        protected override ValueModel DeserializeWithoutMetadata(JToken value)
         {
             List<ObjectField> properties = new List<ObjectField>();
 
@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
             return new ObjectModel(properties.ToArray());
         }
 
-        protected override JToken SerializeImplicit(ValueModel value)
+        protected override JToken SerializeWithoutMetadata(ValueModel value)
         {
             ObjectModel model = value as ObjectModel;
             IEnumerable<JProperty> properties = model.GetProperties().Select(x => new JProperty(x.Name, _internalSerializer.Serialize(x.Model)));

@@ -1,27 +1,82 @@
 {
-  "Name": "Endless options",
-  "Description": "Enter the content pack menu, wherein you can select all the content for the game!",
-  "Identifier": "Core.VisitContentMenu",
-  "Sprite": {
-    "Path": "Core\\Sprites\\UI\\ContentPacks.png",
-    "Rect": {
-      "X": 0.0,
-      "Y": 0.0,
-      "Width": 0.0,
-      "Height": 0.0
+  "$GUID": "7b261d32-32a9-431b-91de-3f6c3ad3782a",
+  "$Data": {
+    "Name": {
+      "$GUID": "19f74770-1736-4596-9bc4-8de6edce7855",
+      "$Data": "Endless options"
     },
-    "Pivot": {
-      "X": 0.5,
-      "Y": 0.5
+    "Description": {
+      "$GUID": "5cf0a40f-0e24-43ed-8725-78fb35bc7260",
+      "$Data": "Enter the content pack menu, wherein you can select all the content for the game!"
     },
-    "PixelsPerUnit": 32.0
-  },
-  "Hidden": false,
-  "Requirement": {
-    "ValueType": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement",
-    "ValueData": {
-      "WindowToVisit": "content"
+    "Identifier": {
+      "$GUID": "2ef9b031-261c-471c-872c-b0c4869e125e",
+      "$Data": "Core.VisitContentMenu"
+    },
+    "Sprite": {
+      "$GUID": "b54ca171-7a40-4c07-bbc8-39871e95bbac",
+      "$Data": {
+        "Path": {
+          "$GUID": "b075696c-eca0-437a-9bb1-c3f7880b2396",
+          "$Data": "Core\\Sprites\\UI\\ContentPacks.png"
+        },
+        "Rect": {
+          "$GUID": "1d1d361f-0bd6-4428-89c3-de6a57d4e42c",
+          "$Data": {
+            "X": {
+              "$GUID": "8ee3b553-b447-4082-accb-71d71108d017",
+              "$Data": 0.0
+            },
+            "Y": {
+              "$GUID": "c823fc29-46b3-4872-bbc9-cc153a810a7c",
+              "$Data": 0.0
+            },
+            "Width": {
+              "$GUID": "058057ed-7cd9-4f1d-8bd8-31e57d72bd75",
+              "$Data": 0.0
+            },
+            "Height": {
+              "$GUID": "aa543ba2-14ea-47bd-a8e5-481eee9fead2",
+              "$Data": 0.0
+            }
+          }
+        },
+        "Pivot": {
+          "$GUID": "3f84a70f-3e54-451c-bab9-4c90053e09ee",
+          "$Data": {
+            "X": {
+              "$GUID": "1ff34888-3b51-4e0b-8234-5d670e8ff769",
+              "$Data": 0.5
+            },
+            "Y": {
+              "$GUID": "bdb974a2-e426-49b9-9709-b9e21d68b135",
+              "$Data": 0.5
+            }
+          }
+        },
+        "PixelsPerUnit": {
+          "$GUID": "7a6d08a9-d9bf-4640-9496-7f96f29cad70",
+          "$Data": 32.0
+        }
+      }
+    },
+    "Hidden": {
+      "$GUID": "1022558f-0b62-487b-8422-ad2474009bce",
+      "$Data": false
+    },
+    "Requirement": {
+      "$GUID": "f866ae17-9818-4ced-9b9a-b711dba56931",
+      "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.VisitMainMenuWindowRequirement",
+      "$Data": {
+        "WindowToVisit": {
+          "$GUID": "a3a166f9-fc21-4e66-8103-fa7388580b24",
+          "$Data": "content"
+        }
+      }
+    },
+    "Reward": {
+      "$GUID": "e00e898e-990a-43c7-bc65-7f0d01ea6f9b",
+      "$Data": null
     }
-  },
-  "Reward": null
+  }
 }

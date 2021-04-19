@@ -1,131 +1,369 @@
 {
-  "Name": "TurretMediumRotator",
-  "Tag": "Untagged",
-  "Layer": 9,
-  "Static": false,
-  "Components": [
-    {
-      "ValueType": "UnityEngine.Transform",
-      "ValueData": {
-        "Position": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": -1.0
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 1.0,
-          "Y": 1.0,
-          "Z": 1.0
-        }
-      }
+  "$GUID": "0c552f61-5ec8-43aa-957f-ba3477859595",
+  "$Data": {
+    "Name": {
+      "$GUID": "ed1f1c81-0ec1-4744-9ea0-740ed84079bb",
+      "$Data": "TurretMediumRotator"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
-      "ValueData": {
-        "BaseTurnrate": 180.0,
-        "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "ValueData": {
-            "Width": "Medium",
-            "Height": "Medium"
-          }
-        },
-        "LowerAttachmentPoints": {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "ValueData": {
-            "Width": "Medium",
-            "Height": "Medium"
-          }
-        },
-        "_name": "Medium Rotator",
-        "_description": "",
-        "_uniqueIdentifier": "Core.MediumRotator",
-        "_cost": {
-          "Elements": [
-            {
-              "Type": "Credits",
-              "Value": 250
-            }
-          ]
-        },
-        "BaseAttributes": [],
-        "_width": "Medium",
-        "_height": "Medium"
-      }
+    "Tag": {
+      "$GUID": "77e355fd-460a-4a7a-b74b-a27a5ddbfd75",
+      "$Data": "Untagged"
     },
-    {
-      "ValueType": "UnityEngine.CircleCollider2D",
-      "ValueData": {
-        "Radius": 1.0,
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "IsTrigger": false,
-        "UsedByEffector": false
-      }
-    }
-  ],
-  "Children": [
-    {
-      "Name": "Rotator",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
+    "Layer": {
+      "$GUID": "7c0b1b87-7741-4d37-bc44-daeac429898d",
+      "$Data": 9
+    },
+    "Static": {
+      "$GUID": "1179be71-35a8-4201-9902-c8f8724b8d45",
+      "$Data": false
+    },
+    "Components": {
+      "$GUID": "f09d1657-e38f-4b4b-b208-caf62790e038",
+      "$Data": [
         {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
+          "$GUID": "853894fb-109c-48d7-a112-00d9c2b4179b",
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
             "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "c4b920c8-5082-44f9-b3fe-9cc9d554ce53",
+              "$Data": {
+                "X": {
+                  "$GUID": "98e80678-1e20-4ae5-8e57-fc1542158bc3",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "ffd040e6-8aec-4053-9716-f4e2c106d1f2",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "25cd3482-57cc-4c20-b984-34ca688e0da1",
+                  "$Data": -1.0
+                }
+              }
             },
             "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "fbbdd903-2dbb-45f1-9162-5bf1448ce4cf",
+              "$Data": {
+                "X": {
+                  "$GUID": "6148140b-4265-4d6a-b124-ed936452d235",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "aa419184-2a3b-4378-aea4-9466135d2f96",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "9946d016-ef50-4561-8983-66f71f3cf751",
+                  "$Data": 0.0
+                }
+              }
             },
             "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
+              "$GUID": "264ff1c6-ba15-4ed6-977b-8e2db5e8ba3c",
+              "$Data": {
+                "X": {
+                  "$GUID": "596d5ca0-d2ad-4b40-9b0b-086166487df4",
+                  "$Data": 1.0
+                },
+                "Y": {
+                  "$GUID": "f65e5e8f-9e1e-4fdd-abce-10abb5694699",
+                  "$Data": 1.0
+                },
+                "Z": {
+                  "$GUID": "03182fc4-38d7-4c97-8e3f-22ecc3e128f8",
+                  "$Data": 1.0
+                }
+              }
             }
           }
         },
         {
-          "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-          "ValueData": {
-            "Reference": {
-              "Path": "Core/Sprites/Components/Rotator.png",
-              "Rect": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
-              },
-              "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-              },
-              "PixelsPerUnit": 16.0
+          "$GUID": "e507f1b4-e5be-4be0-9552-2175ea8e3677",
+          "$Type": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
+          "$Data": {
+            "BaseTurnrate": {
+              "$GUID": "11ad6762-94a8-4b91-a653-347574aaf6bf",
+              "$Data": 180.0
             },
-            "Color": {
-              "Red": 1.0,
-              "Green": 1.0,
-              "Blue": 1.0,
-              "Alpha": 1.0
+            "BaseComplexity": {
+              "$GUID": "6f84591a-1681-4e0f-b121-83fe516eea20",
+              "$Data": 0.0
+            },
+            "UpperAttachmentPoints": {
+              "$GUID": "5052fd04-a88f-43cf-8c2d-5237aeea3d19",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+              "$Data": {
+                "Width": {
+                  "$GUID": "8868b235-1ef7-4412-9569-d15ac87458c1",
+                  "$Data": "Medium"
+                },
+                "Height": {
+                  "$GUID": "8fc1c898-30b6-4d78-ac3d-635af5c8de3f",
+                  "$Data": "Medium"
+                }
+              }
+            },
+            "LowerAttachmentPoints": {
+              "$GUID": "25f31df9-e0f6-4ec4-94f1-892e727a5f70",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
+              "$Data": {
+                "Width": {
+                  "$GUID": "4a5a4e83-9ea1-469f-a3fd-5b8372dfb012",
+                  "$Data": "Medium"
+                },
+                "Height": {
+                  "$GUID": "442abcd6-536e-4911-be55-4b7769567116",
+                  "$Data": "Medium"
+                }
+              }
+            },
+            "_name": {
+              "$GUID": "e304288e-48d9-48fa-ab6a-fce9df2a1313",
+              "$Data": "Medium Rotator"
+            },
+            "_description": {
+              "$GUID": "b480a3d3-c8a7-4b07-9790-a4d90fd85c55",
+              "$Data": ""
+            },
+            "_uniqueIdentifier": {
+              "$GUID": "770439c7-e990-419e-b917-bfae711791fb",
+              "$Data": "Core.MediumRotator"
+            },
+            "_cost": {
+              "$GUID": "12659c52-eb4a-44ab-9976-e3c46df776ae",
+              "$Data": {
+                "Elements": {
+                  "$GUID": "855b54a7-47ae-40c5-96d0-58e297372107",
+                  "$Data": [
+                    {
+                      "$GUID": "880a5696-a727-424d-a827-86e0eb6f1be2",
+                      "$Data": {
+                        "Type": {
+                          "$GUID": "cb0107cd-3f7a-4252-adae-1e3d7010588a",
+                          "$Data": "Credits"
+                        },
+                        "Value": {
+                          "$GUID": "dccf2a5d-9720-4219-a30c-8fcc83228521",
+                          "$Data": 250
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            "BaseAttributes": {
+              "$GUID": "b0a33e74-baa4-4eb1-a274-f88c7fa74bfd",
+              "$Data": []
+            },
+            "_width": {
+              "$GUID": "49a27d78-f620-462c-a96a-cba319ecc516",
+              "$Data": "Medium"
+            },
+            "_height": {
+              "$GUID": "fc671ad9-415a-4a22-9fbe-c8b63e4bd3d8",
+              "$Data": "Medium"
+            }
+          }
+        },
+        {
+          "$GUID": "30b2ecf2-b404-43a2-8053-d4f04cdd99b8",
+          "$Type": "UnityEngine.CircleCollider2D",
+          "$Data": {
+            "Radius": {
+              "$GUID": "1bf510d7-781e-4640-869d-00c1aa2f26ca",
+              "$Data": 1.0
+            },
+            "Offset": {
+              "$GUID": "e4de5323-1cd6-4936-9548-8ee772212f66",
+              "$Data": {
+                "X": {
+                  "$GUID": "80df5258-4ccb-43ab-9730-b5770106d387",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "333548ff-6feb-4a0d-b69f-87f2c50652de",
+                  "$Data": 0.0
+                }
+              }
+            },
+            "IsTrigger": {
+              "$GUID": "7f4095c9-82da-4d43-8b49-979afad6b49e",
+              "$Data": false
+            },
+            "UsedByEffector": {
+              "$GUID": "88eafe6c-efac-4e34-a051-b81ceb0651d8",
+              "$Data": false
             }
           }
         }
-      ],
-      "Children": []
+      ]
+    },
+    "Children": {
+      "$GUID": "d9bef2a1-7028-4390-8762-a1a41346a71f",
+      "$Data": [
+        {
+          "$GUID": "f5e7aa44-7d10-4217-b77e-f8c00425a0f3",
+          "$Data": {
+            "Name": {
+              "$GUID": "c360fe58-2de1-4129-aa87-084f77a29393",
+              "$Data": "Rotator"
+            },
+            "Tag": {
+              "$GUID": "44d03685-6a58-4c61-b4df-412f18d71392",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "83baa344-a293-408b-b20f-3b6ed024e10e",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "ccae5811-40ed-4dc4-95db-bbe751e34065",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "691718bf-8670-400b-821d-6e67204796dc",
+              "$Data": [
+                {
+                  "$GUID": "e2e4237c-a6de-417a-8e63-df6d2c5966b2",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "$GUID": "b32f782a-da5a-4184-856d-370e1e503a45",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "eb741c6f-3e46-4c1c-aca4-2f0dc0fc080e",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "2be9375f-e121-4d1e-b7c9-36073b5b119d",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "71f8c3fa-4e46-4154-b743-50d0575cc743",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Rotation": {
+                      "$GUID": "f7a98711-b2cc-4053-b8eb-506622cc8de0",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "ee2170e6-ba4c-4f34-ab63-cf94a7d333d7",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "f2e9c1a7-4ec9-4e97-853d-40ad421bcb0d",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "69f47ce8-9689-4e13-8458-f86314ffff60",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "Scale": {
+                      "$GUID": "eb7f7b47-9206-4b83-9a89-6e2faf8dd52d",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "18b91475-85a3-4fa2-8b44-24896f21e605",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "5f0f4938-4d52-4ca5-87c8-3cc8e16ce0b9",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "f046661f-69c6-4f33-aa49-06d468e44e99",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "$GUID": "0bf35215-f46e-49b1-9737-87f8cf56cad2",
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                  "$Data": {
+                    "Reference": {
+                      "$GUID": "6d27fb33-4205-43fc-bac1-d5117f355a3d",
+                      "$Data": {
+                        "Path": {
+                          "$GUID": "69f9962d-cdbc-4d99-b648-45b450e5ddb3",
+                          "$Data": "Core/Sprites/Components/Rotator.png"
+                        },
+                        "Rect": {
+                          "$GUID": "5b7b4391-b93c-4e8a-ab13-14ef5ca6701d",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "88ca05af-8263-4f1a-bbba-abb33645f8dc",
+                              "$Data": 0.0
+                            },
+                            "Y": {
+                              "$GUID": "9c50f89f-fe12-494c-ac93-c78c23d3f3d2",
+                              "$Data": 0.0
+                            },
+                            "Width": {
+                              "$GUID": "2a3626a4-3930-44ce-a255-a8cd41610641",
+                              "$Data": 0.0
+                            },
+                            "Height": {
+                              "$GUID": "c5f31dc8-e472-41be-b368-fba0ff6b5c4f",
+                              "$Data": 0.0
+                            }
+                          }
+                        },
+                        "Pivot": {
+                          "$GUID": "1d8517b3-e264-4dce-a384-63a82e085549",
+                          "$Data": {
+                            "X": {
+                              "$GUID": "261ccf44-db6d-43b4-8199-7945624f55c1",
+                              "$Data": 0.5
+                            },
+                            "Y": {
+                              "$GUID": "68737de1-6377-4f50-81b3-0ac100ef9ab3",
+                              "$Data": 0.5
+                            }
+                          }
+                        },
+                        "PixelsPerUnit": {
+                          "$GUID": "0f73c8f7-eae3-4b31-9698-12f29e299e17",
+                          "$Data": 16.0
+                        }
+                      }
+                    },
+                    "Color": {
+                      "$GUID": "a3923306-1943-4fba-90f7-fe3e0c77af58",
+                      "$Data": {
+                        "Red": {
+                          "$GUID": "427b3445-2c74-4b19-a40e-f14c2348d884",
+                          "$Data": 1.0
+                        },
+                        "Green": {
+                          "$GUID": "a5fe677b-0133-4364-bcb6-110cefae5965",
+                          "$Data": 1.0
+                        },
+                        "Blue": {
+                          "$GUID": "b17d6f5f-51d7-4f24-83f1-27f9bd3feb41",
+                          "$Data": 1.0
+                        },
+                        "Alpha": {
+                          "$GUID": "f9ae6dbd-97b9-4eb3-87b2-b199748b5fb0",
+                          "$Data": 1.0
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "Children": {
+              "$GUID": "72796137-0df6-44a7-b5d5-972e3717344c",
+              "$Data": []
+            }
+          }
+        }
+      ]
     }
-  ]
+  }
 }

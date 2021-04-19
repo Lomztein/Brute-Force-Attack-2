@@ -13,12 +13,12 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     {
         public override bool CanSerialize(Type type) => type == typeof(PrimitiveModel);
 
-        protected override ValueModel DeserializeImplicit(JToken token)
+        protected override ValueModel DeserializeWithoutMetadata(JToken token)
         {
             return PrimitiveModel.FromToken(token as JValue);
         }
 
-        protected override JToken SerializeImplicit(ValueModel model)
+        protected override JToken SerializeWithoutMetadata(ValueModel model)
         {
             PrimitiveModel prim = model as PrimitiveModel;
             if (prim.Value == null || prim.StoreAs == null)

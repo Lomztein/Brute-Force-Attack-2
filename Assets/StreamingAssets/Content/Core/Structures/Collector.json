@@ -1,565 +1,1660 @@
 {
-  "Name": "Collector",
-  "Tag": "Untagged",
-  "Layer": 10,
-  "Static": false,
-  "Components": [
-    {
-      "ValueType": "UnityEngine.Transform",
-      "ValueData": {
-        "Position": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Rotation": {
-          "X": 0.0,
-          "Y": 0.0,
-          "Z": 0.0
-        },
-        "Scale": {
-          "X": 1.0,
-          "Y": 1.0,
-          "Z": 1.0
-        }
-      }
+  "$GUID": "8d065f0f-8e19-4f50-a494-29d4b69e365f",
+  "$Data": {
+    "Name": {
+      "$GUID": "34a69427-81d0-4901-9867-4f4eaf9a669d",
+      "$Data": "Collector"
     },
-    {
-      "ValueType": "Lomztein.BFA2.Structures.Structure",
-      "ValueData": {
-        "_name": "Collector",
-        "_description": "\"I am Dehaka, one who collects.\"",
-        "_uniqueIdentifier": "Core.Collector",
-        "_cost": {
-          "Elements": [
-            {
-              "Type": "Credits",
-              "Value": 1000
-            }
-          ]
-        },
-        "BaseAttributes": [],
-        "_width": "Medium",
-        "_height": "Medium"
-      }
+    "Tag": {
+      "$GUID": "4d73a5c1-a6f7-4b6c-bb28-55487ee9ce95",
+      "$Data": "Untagged"
     },
-    {
-      "ValueType": "UnityEngine.CircleCollider2D",
-      "ValueData": {
-        "Radius": 0.5,
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "IsTrigger": false,
-        "UsedByEffector": false
-      }
+    "Layer": {
+      "$GUID": "032e0f8f-f5be-4298-b06f-c03dff67f742",
+      "$Data": 10
     },
-    {
-      "ValueType": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
-      "ValueData": {}
+    "Static": {
+      "$GUID": "ac389a09-3848-4d6f-a2de-7fbe90b3879d",
+      "$Data": false
     },
-    {
-      "ValueType": "Lomztein.BFA2.Turrets.TurretSeller",
-      "ValueData": {
-        "SellSprite": {
-          "Path": "",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 0.0,
-            "Height": 0.0
-          },
-          "Pivot": {
-            "X": 0.5,
-            "Y": 0.5
-          },
-          "PixelsPerUnit": 32.0
-        }
-      }
-    }
-  ],
-  "Children": [
-    {
-      "Name": "CollectorBase",
-      "Tag": "Untagged",
-      "Layer": 9,
-      "Static": false,
-      "Components": [
+    "Components": {
+      "$GUID": "549b5479-1a33-4ecc-b404-8610eb8a212f",
+      "$Data": [
         {
-          "ValueType": "UnityEngine.Transform",
-          "ValueData": {
+          "$GUID": "a2ed191c-2e8d-4587-801d-0a7b9766392e",
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
             "Position": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "d9c31ab4-84e3-423b-b375-8243b4c72523",
+              "$Data": {
+                "X": {
+                  "$GUID": "bedf3e52-6d5f-42c7-824a-5c33f9183701",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "4471d410-01a4-45aa-a9de-15271e583d57",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "fe5bfb00-99bd-4f99-a19d-7714548c830c",
+                  "$Data": 0.0
+                }
+              }
             },
             "Rotation": {
-              "X": 0.0,
-              "Y": 0.0,
-              "Z": 0.0
+              "$GUID": "540f7a54-c800-40a1-8528-33d568da95e7",
+              "$Data": {
+                "X": {
+                  "$GUID": "8d46ee85-1d11-495b-bdb7-c5e1af4bfb37",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "4c4f375a-9b6d-41f5-847a-9ba769586080",
+                  "$Data": 0.0
+                },
+                "Z": {
+                  "$GUID": "d1517c54-09b1-48d8-8338-62c4902cee75",
+                  "$Data": 0.0
+                }
+              }
             },
             "Scale": {
-              "X": 1.0,
-              "Y": 1.0,
-              "Z": 1.0
+              "$GUID": "a7f5e419-464a-4d12-8dc8-7a06d1717013",
+              "$Data": {
+                "X": {
+                  "$GUID": "2b866252-c327-48a7-ab7c-e8f9d775aa8e",
+                  "$Data": 1.0
+                },
+                "Y": {
+                  "$GUID": "63a68407-76cf-49e5-ab43-63e09ce6cc78",
+                  "$Data": 1.0
+                },
+                "Z": {
+                  "$GUID": "90a1fd7e-fd0c-421a-a5e6-2667043f3ade",
+                  "$Data": 1.0
+                }
+              }
             }
           }
         },
         {
-          "ValueType": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
-          "ValueData": {
-            "BaseRange": 666.0,
-            "TargetLayer": {
-              "Mask": 4096
+          "$GUID": "f2d3cf51-f2e1-49ce-99af-14d76373e8a9",
+          "$Type": "Lomztein.BFA2.Structures.Structure",
+          "$Data": {
+            "_name": {
+              "$GUID": "33b440d5-7ac4-44ca-94ea-e5ebda576e7c",
+              "$Data": "Collector"
             },
-            "BaseComplexity": 0.0,
-            "UpperAttachmentPoints": null,
-            "LowerAttachmentPoints": null,
-            "_name": "Collector Base",
-            "_description": "Searches for collectables.",
-            "_uniqueIdentifier": "",
+            "_description": {
+              "$GUID": "fc6d49e7-11b3-44f9-92df-5d1e57c04d7a",
+              "$Data": "\"I am Dehaka, one who collects.\""
+            },
+            "_uniqueIdentifier": {
+              "$GUID": "56e143af-d53a-4e7f-b2a5-6bc93962acfe",
+              "$Data": "Core.Collector"
+            },
             "_cost": {
-              "Elements": []
+              "$GUID": "f9f5edb4-99b2-41ae-b37b-21baf8c5a13e",
+              "$Data": {
+                "Elements": {
+                  "$GUID": "783ec8cc-d7b7-42bc-865c-211740b8ea75",
+                  "$Data": [
+                    {
+                      "$GUID": "32721136-2bd5-4308-9722-e889d17a1716",
+                      "$Data": {
+                        "Type": {
+                          "$GUID": "da4afa4e-34ff-40bc-9e4f-0110740bebe4",
+                          "$Data": "Credits"
+                        },
+                        "Value": {
+                          "$GUID": "02f51f05-969f-4932-b736-41ed6008ad63",
+                          "$Data": 1000
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
             },
-            "BaseAttributes": [],
-            "_width": "Medium",
-            "_height": "Medium"
+            "BaseAttributes": {
+              "$GUID": "0b442fee-fdfc-4628-8d6f-4240274839c0",
+              "$Data": []
+            },
+            "_width": {
+              "$GUID": "0ef57a74-b593-48d6-aacf-d11aa558d3bc",
+              "$Data": "Medium"
+            },
+            "_height": {
+              "$GUID": "c4d6eb00-8255-4d4c-bbbb-ce91c320c29f",
+              "$Data": "Medium"
+            }
           }
         },
         {
-          "ValueType": "UnityEngine.CircleCollider2D",
-          "ValueData": {
-            "Radius": 0.5,
+          "$GUID": "df990681-f40e-4bb6-b27f-68c0ad6287b9",
+          "$Type": "UnityEngine.CircleCollider2D",
+          "$Data": {
+            "Radius": {
+              "$GUID": "a77757bb-2812-4674-b379-cdc170d71577",
+              "$Data": 0.5
+            },
             "Offset": {
-              "X": 0.0,
-              "Y": 0.0
+              "$GUID": "a90eac7a-ed13-4c80-b107-359337b9bacd",
+              "$Data": {
+                "X": {
+                  "$GUID": "8bf65ab7-db72-4951-a22f-a2247644259c",
+                  "$Data": 0.0
+                },
+                "Y": {
+                  "$GUID": "9aff122b-d721-4a02-9a46-989d6fa89a5a",
+                  "$Data": 0.0
+                }
+              }
             },
-            "IsTrigger": false,
-            "UsedByEffector": false
+            "IsTrigger": {
+              "$GUID": "194b6499-3be8-4013-8634-0034dd627a68",
+              "$Data": false
+            },
+            "UsedByEffector": {
+              "$GUID": "41c73e54-3228-44aa-8cc3-33531390072d",
+              "$Data": false
+            }
           }
         },
         {
-          "ValueType": "Lomztein.BFA2.Targeting.TargetFinder",
-          "ValueData": {}
-        }
-      ],
-      "Children": [
-        {
-          "Name": "Base",
-          "Tag": "Untagged",
-          "Layer": 9,
-          "Static": false,
-          "Components": [
-            {
-              "ValueType": "UnityEngine.Transform",
-              "ValueData": {
-                "Position": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "Rotation": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "Scale": {
-                  "X": 1.0,
-                  "Y": 1.0,
-                  "Z": 1.0
-                }
-              }
-            },
-            {
-              "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-              "ValueData": {
-                "Reference": {
-                  "Path": "Core/Sprites/Structures/ResearchCollectorBase.png",
-                  "Rect": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Width": 0.0,
-                    "Height": 0.0
-                  },
-                  "Pivot": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  },
-                  "PixelsPerUnit": 16.0
-                },
-                "Color": {
-                  "Red": 1.0,
-                  "Green": 1.0,
-                  "Blue": 1.0,
-                  "Alpha": 1.0
-                }
-              }
-            }
-          ],
-          "Children": []
+          "$GUID": "ae6d2355-ba3a-462a-b9bf-5b8fa8abaf70",
+          "$Type": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
+          "$Data": {}
         },
         {
-          "Name": "CollectorRotator",
-          "Tag": "Untagged",
-          "Layer": 9,
-          "Static": false,
-          "Components": [
-            {
-              "ValueType": "UnityEngine.Transform",
-              "ValueData": {
-                "Position": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": -1.0
+          "$GUID": "6530f462-4d11-4974-9738-97e4976c6d02",
+          "$Type": "Lomztein.BFA2.Turrets.TurretSeller",
+          "$Data": {
+            "SellSprite": {
+              "$GUID": "e15190de-835b-4a8f-b3b6-1b78c5aaa64b",
+              "$Data": {
+                "Path": {
+                  "$GUID": "8ea307e9-c74f-4e2f-b5c3-1521de8044ca",
+                  "$Data": ""
                 },
-                "Rotation": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
+                "Rect": {
+                  "$GUID": "01706161-06b7-481e-a6de-7cc9d04ff51a",
+                  "$Data": {
+                    "X": {
+                      "$GUID": "ada030a8-cb20-407f-b4aa-a2482bc59c79",
+                      "$Data": 0.0
+                    },
+                    "Y": {
+                      "$GUID": "c610259c-e9e7-41aa-accf-3d3f86c23fe2",
+                      "$Data": 0.0
+                    },
+                    "Width": {
+                      "$GUID": "aa6b803d-e782-43e6-9546-66ed928d6dcf",
+                      "$Data": 0.0
+                    },
+                    "Height": {
+                      "$GUID": "e2e5276e-651a-4d5a-a6e5-c98f79938478",
+                      "$Data": 0.0
+                    }
+                  }
                 },
-                "Scale": {
-                  "X": 1.0,
-                  "Y": 1.0,
-                  "Z": 1.0
+                "Pivot": {
+                  "$GUID": "fba64dc5-81f3-42a4-b887-cb11eb3b70f9",
+                  "$Data": {
+                    "X": {
+                      "$GUID": "5ee2694f-4e00-4cff-9b0f-92922b26d289",
+                      "$Data": 0.5
+                    },
+                    "Y": {
+                      "$GUID": "9f089262-2022-4c8d-90a1-5da212c98655",
+                      "$Data": 0.5
+                    }
+                  }
+                },
+                "PixelsPerUnit": {
+                  "$GUID": "2543b4e1-115b-43d1-b303-eb2d9b65c863",
+                  "$Data": 32.0
                 }
-              }
-            },
-            {
-              "ValueType": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
-              "ValueData": {
-                "BaseTurnrate": 60.0,
-                "BaseComplexity": 0.0,
-                "UpperAttachmentPoints": null,
-                "LowerAttachmentPoints": null,
-                "_name": "Collector Rotator",
-                "_description": "",
-                "_uniqueIdentifier": "",
-                "_cost": {
-                  "Elements": []
-                },
-                "BaseAttributes": [],
-                "_width": "Medium",
-                "_height": "Medium"
-              }
-            },
-            {
-              "ValueType": "UnityEngine.CircleCollider2D",
-              "ValueData": {
-                "Radius": 0.5,
-                "Offset": {
-                  "X": 0.0,
-                  "Y": 0.0
-                },
-                "IsTrigger": false,
-                "UsedByEffector": false
               }
             }
-          ],
-          "Children": [
-            {
-              "Name": "Rotator",
-              "Tag": "Untagged",
-              "Layer": 9,
-              "Static": false,
-              "Components": [
-                {
-                  "ValueType": "UnityEngine.Transform",
-                  "ValueData": {
-                    "Position": {
-                      "X": 0.0,
-                      "Y": 0.0,
-                      "Z": 0.0
-                    },
-                    "Rotation": {
-                      "X": 0.0,
-                      "Y": 0.0,
-                      "Z": 0.0
-                    },
-                    "Scale": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 1.0
-                    }
-                  }
-                },
-                {
-                  "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                  "ValueData": {
-                    "Reference": {
-                      "Path": "Core/Sprites/Structures/ResearchCollectorRotator.png",
-                      "Rect": {
-                        "X": 0.0,
-                        "Y": 0.0,
-                        "Width": 0.0,
-                        "Height": 0.0
-                      },
-                      "Pivot": {
-                        "X": 0.5,
-                        "Y": 0.5
-                      },
-                      "PixelsPerUnit": 16.0
-                    },
-                    "Color": {
-                      "Red": 1.0,
-                      "Green": 1.0,
-                      "Blue": 1.0,
-                      "Alpha": 1.0
-                    }
-                  }
-                }
-              ],
-              "Children": []
+          }
+        }
+      ]
+    },
+    "Children": {
+      "$GUID": "38e587fb-c240-4c5f-b1ca-b89b4c39a111",
+      "$Data": [
+        {
+          "$GUID": "9d4415d0-a76b-4125-a923-fe440965dc7f",
+          "$Data": {
+            "Name": {
+              "$GUID": "879cca77-728b-4fdb-8fc7-966c1846fd86",
+              "$Data": "CollectorBase"
             },
-            {
-              "Name": "Collector",
-              "Tag": "Untagged",
-              "Layer": 9,
-              "Static": false,
-              "Components": [
+            "Tag": {
+              "$GUID": "4558378e-173f-44bb-a1a4-82d97d09fc2b",
+              "$Data": "Untagged"
+            },
+            "Layer": {
+              "$GUID": "e2eb29f5-a281-4020-980a-0d201bdc8fc9",
+              "$Data": 9
+            },
+            "Static": {
+              "$GUID": "4a26ba81-578a-4161-ad5b-fdae09cdd9cb",
+              "$Data": false
+            },
+            "Components": {
+              "$GUID": "ec3af8c9-7958-42f4-97d0-2d6a7c9bc92f",
+              "$Data": [
                 {
-                  "ValueType": "UnityEngine.Transform",
-                  "ValueData": {
+                  "$GUID": "1753dc29-5579-4b9a-84f4-7cbc7eadb66c",
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
                     "Position": {
-                      "X": 0.0,
-                      "Y": 0.0,
-                      "Z": 0.0
+                      "$GUID": "7ed4c22e-44e1-4085-a703-a97e0f391a51",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "385d8e21-0287-4ba2-b032-04e5111e7deb",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "93e1fa18-8212-412a-a4d0-29f98eb4649c",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "02418e07-7964-4b9f-949a-030ce419c84d",
+                          "$Data": 0.0
+                        }
+                      }
                     },
                     "Rotation": {
-                      "X": 0.0,
-                      "Y": 0.0,
-                      "Z": 0.0
+                      "$GUID": "b89a6756-09b2-4d00-a6e2-dda728cf91d4",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "d52a2a01-f3e2-41e3-9a40-17b6213a52dd",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "fa5e7ebf-6efe-4980-8f8a-4c0de5161430",
+                          "$Data": 0.0
+                        },
+                        "Z": {
+                          "$GUID": "793a659f-6c1e-4022-9516-9424687ee208",
+                          "$Data": 0.0
+                        }
+                      }
                     },
                     "Scale": {
-                      "X": 1.0,
-                      "Y": 1.0,
-                      "Z": 1.0
+                      "$GUID": "03863462-9d9b-435d-87b7-f7bdd79aa7b2",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "7bd922a9-706c-4446-b3ad-070b32a8c49a",
+                          "$Data": 1.0
+                        },
+                        "Y": {
+                          "$GUID": "a7477904-6cd9-4b16-9420-7b6348087161",
+                          "$Data": 1.0
+                        },
+                        "Z": {
+                          "$GUID": "a3cf2cef-71de-481e-8ab1-98d86185e137",
+                          "$Data": 1.0
+                        }
+                      }
                     }
                   }
                 },
                 {
-                  "ValueType": "Lomztein.BFA2.Structures.Collector",
-                  "ValueData": {
-                    "AngleTreshold": 1.0,
-                    "BaseComplexity": 0.0,
-                    "UpperAttachmentPoints": null,
-                    "LowerAttachmentPoints": null,
-                    "_name": "Collector",
-                    "_description": "Collects stuff",
-                    "_uniqueIdentifier": "",
+                  "$GUID": "918d1fe9-c46f-4e0f-933f-398281a51ab6",
+                  "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
+                  "$Data": {
+                    "BaseRange": {
+                      "$GUID": "dbf70aec-99df-4030-acf9-f584eb9a88c1",
+                      "$Data": 666.0
+                    },
+                    "TargetLayer": {
+                      "$GUID": "fa2093d0-8eb1-4741-9a3a-e28aa1714ef0",
+                      "$Data": {
+                        "Mask": {
+                          "$GUID": "d6d566d6-7ad7-4c8c-9ad5-9c03b2c8ac38",
+                          "$Data": 4096
+                        }
+                      }
+                    },
+                    "BaseComplexity": {
+                      "$GUID": "07c1390a-502f-4ced-a484-7143574177ec",
+                      "$Data": 0.0
+                    },
+                    "UpperAttachmentPoints": {
+                      "$GUID": "987975f0-c683-46b0-b203-8010668b1915",
+                      "$Data": null
+                    },
+                    "LowerAttachmentPoints": {
+                      "$GUID": "15c52056-ec46-4e6d-b1a6-f63ab8f3e6da",
+                      "$Data": null
+                    },
+                    "_name": {
+                      "$GUID": "acaa5cd7-7938-40c9-86fb-fd2862535354",
+                      "$Data": "Collector Base"
+                    },
+                    "_description": {
+                      "$GUID": "78997a61-d52d-498c-9314-19f474ecf987",
+                      "$Data": "Searches for collectables."
+                    },
+                    "_uniqueIdentifier": {
+                      "$GUID": "fde48205-db8e-4a60-87f2-ed52dcb2700c",
+                      "$Data": ""
+                    },
                     "_cost": {
-                      "Elements": []
+                      "$GUID": "2f486065-adb5-4977-9ab8-0fde0c3c5c9d",
+                      "$Data": {
+                        "Elements": {
+                          "$GUID": "f3bf6f66-2cc1-4341-bb0d-1b11ed2fb67a",
+                          "$Data": []
+                        }
+                      }
                     },
-                    "BaseAttributes": [],
-                    "_width": "Medium",
-                    "_height": "Medium"
+                    "BaseAttributes": {
+                      "$GUID": "e5b1b713-6bc2-4252-82d7-5fce3974be1c",
+                      "$Data": []
+                    },
+                    "_width": {
+                      "$GUID": "1207618b-e7e1-42d5-833b-813024202189",
+                      "$Data": "Medium"
+                    },
+                    "_height": {
+                      "$GUID": "ed3a3542-f38a-4f25-8376-b7458c47a3cb",
+                      "$Data": "Medium"
+                    }
                   }
+                },
+                {
+                  "$GUID": "b1b34067-d19b-4d2c-ab9f-35b3e1d1fbbb",
+                  "$Type": "UnityEngine.CircleCollider2D",
+                  "$Data": {
+                    "Radius": {
+                      "$GUID": "d696614e-2f4e-4f75-a55d-df7975fdff5f",
+                      "$Data": 0.5
+                    },
+                    "Offset": {
+                      "$GUID": "11d6fa76-ce23-49eb-9bde-179be4150183",
+                      "$Data": {
+                        "X": {
+                          "$GUID": "cea107e6-0e95-4872-9209-d7aa1b44e702",
+                          "$Data": 0.0
+                        },
+                        "Y": {
+                          "$GUID": "fffaefd5-00d5-4168-8641-7e83aa3aca0d",
+                          "$Data": 0.0
+                        }
+                      }
+                    },
+                    "IsTrigger": {
+                      "$GUID": "57019c5b-39a3-408b-a529-0e4814ab8043",
+                      "$Data": false
+                    },
+                    "UsedByEffector": {
+                      "$GUID": "aa4a761e-4993-4ebf-b380-a1191feffa2f",
+                      "$Data": false
+                    }
+                  }
+                },
+                {
+                  "$GUID": "7056f59a-871d-4559-9996-e9297d56c44c",
+                  "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
+                  "$Data": {}
                 }
-              ],
-              "Children": [
+              ]
+            },
+            "Children": {
+              "$GUID": "03d7f021-f2aa-4eb6-a45b-7a27ccb032d2",
+              "$Data": [
                 {
-                  "Name": "Collector",
-                  "Tag": "Untagged",
-                  "Layer": 9,
-                  "Static": false,
-                  "Components": [
-                    {
-                      "ValueType": "UnityEngine.Transform",
-                      "ValueData": {
-                        "Position": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Rotation": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Scale": {
-                          "X": 1.0,
-                          "Y": 1.0,
-                          "Z": 1.0
-                        }
-                      }
+                  "$GUID": "78d3f2af-5e7b-46ba-b47f-de685410a690",
+                  "$Data": {
+                    "Name": {
+                      "$GUID": "90dcc748-6199-4355-b858-03e5efe09c18",
+                      "$Data": "Base"
                     },
-                    {
-                      "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
-                      "ValueData": {
-                        "Reference": {
-                          "Path": "Core/Sprites/Structures/ResearchCollector.png",
-                          "Rect": {
-                            "X": 0.0,
-                            "Y": 0.0,
-                            "Width": 0.0,
-                            "Height": 0.0
-                          },
-                          "Pivot": {
-                            "X": 0.5,
-                            "Y": 0.5
-                          },
-                          "PixelsPerUnit": 16.0
-                        },
-                        "Color": {
-                          "Red": 1.0,
-                          "Green": 1.0,
-                          "Blue": 1.0,
-                          "Alpha": 1.0
-                        }
-                      }
-                    }
-                  ],
-                  "Children": []
-                },
-                {
-                  "Name": "Beam",
-                  "Tag": "Untagged",
-                  "Layer": 9,
-                  "Static": false,
-                  "Components": [
-                    {
-                      "ValueType": "UnityEngine.Transform",
-                      "ValueData": {
-                        "Position": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Rotation": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Scale": {
-                          "X": 1.0,
-                          "Y": 1.0,
-                          "Z": 1.0
-                        }
-                      }
+                    "Tag": {
+                      "$GUID": "f91a130a-27ec-4bca-a902-805733142491",
+                      "$Data": "Untagged"
                     },
-                    {
-                      "ValueType": "UnityEngine.LineRenderer",
-                      "ValueData": {
-                        "PositionCount": 2,
-                        "Positions": [
-                          {
-                            "X": 0.0,
-                            "Y": 0.0,
-                            "Z": 0.0
-                          },
-                          {
-                            "X": 0.0,
-                            "Y": 0.0,
-                            "Z": 1.0
+                    "Layer": {
+                      "$GUID": "cf424a18-7709-46aa-9ea0-8b4341d7e87e",
+                      "$Data": 9
+                    },
+                    "Static": {
+                      "$GUID": "7141ce2d-a321-4478-9a86-69b316c2c949",
+                      "$Data": false
+                    },
+                    "Components": {
+                      "$GUID": "856cd490-6144-4c2e-a3d3-ca18401ade43",
+                      "$Data": [
+                        {
+                          "$GUID": "6b723e21-4d57-4120-9acd-2dbfc17c8f3c",
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "$GUID": "e8c48ab4-7200-410d-a21c-338eac531c44",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "0cb26065-9872-47ac-8924-475c52f1489e",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "499a7d0b-92fb-4e2e-b61b-0a55f8ca2929",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "50d49cac-5ff7-409b-818e-e873d34f710f",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Rotation": {
+                              "$GUID": "443a4de4-2353-4e60-9c41-e98473a7a123",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "349f2dc0-53fa-403a-a373-274ed09bd237",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "abe5f3ee-2d4c-4d1d-b31b-b0eb85cb15ac",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "d7995238-db24-4e3c-8cf5-f8d1daf246a2",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Scale": {
+                              "$GUID": "16c5292c-93ad-4378-9c8f-20ac3f889d75",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "21e8abf3-eb6d-40b0-b67b-961e2f510c08",
+                                  "$Data": 1.0
+                                },
+                                "Y": {
+                                  "$GUID": "bce5c3d7-18a7-442a-8b22-f9d1ff9f065d",
+                                  "$Data": 1.0
+                                },
+                                "Z": {
+                                  "$GUID": "8ef6108c-19b9-4eb6-bedb-cae99923fdb2",
+                                  "$Data": 1.0
+                                }
+                              }
+                            }
                           }
-                        ],
-                        "Curve": {
-                          "Keyframes": [
-                            {
-                              "Time": 0.0,
-                              "Value": 0.1365433,
-                              "InTangent": 0.0,
-                              "OutTangent": 0.0,
-                              "InWeight": 0.3333333,
-                              "OutWeight": 0.3333333
-                            }
-                          ]
                         },
-                        "Colors": {
-                          "ColorKeys": [
-                            {
-                              "Time": 0.0,
-                              "Color": {
-                                "Red": 1.0,
-                                "Green": 1.0,
-                                "Blue": 1.0,
-                                "Alpha": 1.0
+                        {
+                          "$GUID": "34aa0b97-7054-4351-b036-664b41c33345",
+                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                          "$Data": {
+                            "Reference": {
+                              "$GUID": "78af0024-5be0-4fe1-978e-01fdf541681e",
+                              "$Data": {
+                                "Path": {
+                                  "$GUID": "3f75b06b-d592-4241-8b93-ce3aa4c18bf1",
+                                  "$Data": "Core/Sprites/Structures/ResearchCollectorBase.png"
+                                },
+                                "Rect": {
+                                  "$GUID": "1eeed288-774b-43df-b8ff-320fe00c7720",
+                                  "$Data": {
+                                    "X": {
+                                      "$GUID": "77226c77-fa8d-4a43-b426-b45cbe6c2c3d",
+                                      "$Data": 0.0
+                                    },
+                                    "Y": {
+                                      "$GUID": "7c2eafcd-3d9c-4f9a-96f7-8c41e70edb82",
+                                      "$Data": 0.0
+                                    },
+                                    "Width": {
+                                      "$GUID": "6338d4c7-c1ac-47fc-8034-32bfe39bef04",
+                                      "$Data": 0.0
+                                    },
+                                    "Height": {
+                                      "$GUID": "96cf9374-5041-473b-a180-32273e41fc16",
+                                      "$Data": 0.0
+                                    }
+                                  }
+                                },
+                                "Pivot": {
+                                  "$GUID": "163afe6e-7c93-4609-9d1c-76862b502a81",
+                                  "$Data": {
+                                    "X": {
+                                      "$GUID": "c112cb79-196f-43ff-be08-7608baebb811",
+                                      "$Data": 0.5
+                                    },
+                                    "Y": {
+                                      "$GUID": "0c2aba70-e07f-4c74-8762-b22e74ea5a47",
+                                      "$Data": 0.5
+                                    }
+                                  }
+                                },
+                                "PixelsPerUnit": {
+                                  "$GUID": "5e30adfe-7e90-40fd-93ce-f99487a29415",
+                                  "$Data": 16.0
+                                }
                               }
                             },
-                            {
-                              "Time": 1.0,
-                              "Color": {
-                                "Red": 1.0,
-                                "Green": 1.0,
-                                "Blue": 1.0,
-                                "Alpha": 1.0
+                            "Color": {
+                              "$GUID": "5b47a290-b5b3-44d5-afeb-52cd10b3cdf8",
+                              "$Data": {
+                                "Red": {
+                                  "$GUID": "0b661b77-bc3b-45f5-b45b-22607d8b7a83",
+                                  "$Data": 1.0
+                                },
+                                "Green": {
+                                  "$GUID": "51e73836-496a-45b6-89aa-55445c96d635",
+                                  "$Data": 1.0
+                                },
+                                "Blue": {
+                                  "$GUID": "2782f184-da86-42a6-9568-e9c82f0e8cbc",
+                                  "$Data": 1.0
+                                },
+                                "Alpha": {
+                                  "$GUID": "1a757416-dd70-4e69-8eb0-85e72b9a7d43",
+                                  "$Data": 1.0
+                                }
                               }
                             }
-                          ],
-                          "AlphaKeys": [
-                            {
-                              "Time": 0.0,
-                              "Alpha": 1.0
-                            },
-                            {
-                              "Time": 1.0,
-                              "Alpha": 1.0
-                            }
-                          ],
-                          "Mode": 0
-                        },
-                        "CornerVerticies": 0,
-                        "CapVerticies": 3,
-                        "Alignment": "View",
-                        "TextureMode": "Stretch",
-                        "ShadowBias": 0.5,
-                        "GenerateLighingData": false,
-                        "UseWorldSpace": true,
-                        "ShadowCastingMode": "Off",
-                        "RecieveShadows": false,
-                        "LightProbeUsage": "Off",
-                        "ReflectionProbeUsage": "Off",
-                        "MotionVectorGenerationMode": "Camera",
-                        "AllowOcclusionWhenDynamic": true,
-                        "SortingLayer": 0,
-                        "OrderInLayer": 0
-                      }
-                    },
-                    {
-                      "ValueType": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentMaterial",
-                      "ValueData": {
-                        "Reference": {
-                          "Path": "Resources/Materials/BrightGreen"
+                          }
                         }
-                      }
+                      ]
+                    },
+                    "Children": {
+                      "$GUID": "d8520802-b037-4b8d-9d6b-93303b7dd007",
+                      "$Data": []
                     }
-                  ],
-                  "Children": []
+                  }
                 },
                 {
-                  "Name": "BeamStart",
-                  "Tag": "Untagged",
-                  "Layer": 9,
-                  "Static": false,
-                  "Components": [
-                    {
-                      "ValueType": "UnityEngine.Transform",
-                      "ValueData": {
-                        "Position": {
-                          "X": 0.5,
-                          "Y": 0.0,
-                          "Z": 0.0
+                  "$GUID": "922c9085-7aff-463f-a237-110308b8a3ee",
+                  "$Data": {
+                    "Name": {
+                      "$GUID": "6a0fbbf0-c03c-4475-888d-ad5441275052",
+                      "$Data": "CollectorRotator"
+                    },
+                    "Tag": {
+                      "$GUID": "c8b08f77-ec52-4d22-b000-a9afab055e17",
+                      "$Data": "Untagged"
+                    },
+                    "Layer": {
+                      "$GUID": "eaa03ca0-7cb1-4507-bd5d-c4e903a9563f",
+                      "$Data": 9
+                    },
+                    "Static": {
+                      "$GUID": "1c363b27-fcab-4d59-bf1a-3dfb4ed2efce",
+                      "$Data": false
+                    },
+                    "Components": {
+                      "$GUID": "7a164973-aa0c-4f00-a2ce-18205ea27285",
+                      "$Data": [
+                        {
+                          "$GUID": "866025b9-5193-426c-a316-991822fe1b95",
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "$GUID": "1e55192e-7818-4071-8bc7-205e88aec314",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "c8953286-e807-4241-9de0-76d212e5aefd",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "39b9e1ed-5939-43d9-b844-5d176559baee",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "17667162-e1c4-4545-92f7-ea131cd1b1d9",
+                                  "$Data": -1.0
+                                }
+                              }
+                            },
+                            "Rotation": {
+                              "$GUID": "2579ef91-db4b-4503-8e96-bb096359567f",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "6c2b3c8d-11bc-4fe5-b028-c035a6f0851b",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "60ed10a7-eb5d-491e-b277-7b6834ad6d04",
+                                  "$Data": 0.0
+                                },
+                                "Z": {
+                                  "$GUID": "0f8baddf-d84d-4d94-821a-24eeec87e53a",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "Scale": {
+                              "$GUID": "60b52626-ccbf-42e0-87ba-dc484d137bab",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "a67ca2de-157a-49ce-a55f-8c0f98e6a0fe",
+                                  "$Data": 1.0
+                                },
+                                "Y": {
+                                  "$GUID": "cca89849-46a2-4bfd-a11a-bd2fbb7763cb",
+                                  "$Data": 1.0
+                                },
+                                "Z": {
+                                  "$GUID": "3514b766-ef8f-4fc5-9cf1-53d29999239a",
+                                  "$Data": 1.0
+                                }
+                              }
+                            }
+                          }
                         },
-                        "Rotation": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
+                        {
+                          "$GUID": "e9af664b-42c1-41e8-b0f7-534e726d83b2",
+                          "$Type": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
+                          "$Data": {
+                            "BaseTurnrate": {
+                              "$GUID": "3fc0d8e9-dbfa-4bfe-95cb-f6aadb09c58d",
+                              "$Data": 60.0
+                            },
+                            "BaseComplexity": {
+                              "$GUID": "bd9ab3db-66cc-4bc1-aac6-f5289f1a0f9b",
+                              "$Data": 0.0
+                            },
+                            "UpperAttachmentPoints": {
+                              "$GUID": "733955d0-b0f9-44b6-ad92-58eb384cd3dd",
+                              "$Data": null
+                            },
+                            "LowerAttachmentPoints": {
+                              "$GUID": "2a88211a-c710-429b-a724-8ab5a0a7f6ac",
+                              "$Data": null
+                            },
+                            "_name": {
+                              "$GUID": "7c9b9396-b0bc-4201-b2ac-7e0bc19bc932",
+                              "$Data": "Collector Rotator"
+                            },
+                            "_description": {
+                              "$GUID": "e0f428cb-1b63-40db-92fb-d0baeeb42afb",
+                              "$Data": ""
+                            },
+                            "_uniqueIdentifier": {
+                              "$GUID": "7454cdca-795d-4467-8006-8b0e904a7b72",
+                              "$Data": ""
+                            },
+                            "_cost": {
+                              "$GUID": "d6ed52aa-b13a-4f6a-baa2-52e89f70a219",
+                              "$Data": {
+                                "Elements": {
+                                  "$GUID": "e4c39754-16af-41e1-b2be-0f90bd6743e3",
+                                  "$Data": []
+                                }
+                              }
+                            },
+                            "BaseAttributes": {
+                              "$GUID": "728cd875-21ba-434b-b29e-facd91f34f26",
+                              "$Data": []
+                            },
+                            "_width": {
+                              "$GUID": "af7bffbe-1f40-435f-aeca-cb5b6a493496",
+                              "$Data": "Medium"
+                            },
+                            "_height": {
+                              "$GUID": "8c73bd79-2aa6-4755-a0f8-0c95d40ebf18",
+                              "$Data": "Medium"
+                            }
+                          }
                         },
-                        "Scale": {
-                          "X": 1.0,
-                          "Y": 1.0,
-                          "Z": 1.0
+                        {
+                          "$GUID": "80349cfa-899e-49ee-9e9d-b4e6ef819bcd",
+                          "$Type": "UnityEngine.CircleCollider2D",
+                          "$Data": {
+                            "Radius": {
+                              "$GUID": "2389493e-e49d-4685-a3ef-05f0d4e8c965",
+                              "$Data": 0.5
+                            },
+                            "Offset": {
+                              "$GUID": "8d557de4-6cc6-46d3-bc75-4fc63f582252",
+                              "$Data": {
+                                "X": {
+                                  "$GUID": "dffd539f-bc26-46fd-b063-0cbae8073ec6",
+                                  "$Data": 0.0
+                                },
+                                "Y": {
+                                  "$GUID": "b99d09c7-2d91-462c-9953-7d41ee1fcc9f",
+                                  "$Data": 0.0
+                                }
+                              }
+                            },
+                            "IsTrigger": {
+                              "$GUID": "1671c5da-def0-4d67-8240-9e5e7f11435b",
+                              "$Data": false
+                            },
+                            "UsedByEffector": {
+                              "$GUID": "e5cbb7bd-2943-4018-9c4d-4088dde8cc10",
+                              "$Data": false
+                            }
+                          }
                         }
-                      }
+                      ]
+                    },
+                    "Children": {
+                      "$GUID": "3c606c64-5996-4038-aba8-63c6385a81d8",
+                      "$Data": [
+                        {
+                          "$GUID": "48d49ebc-7948-471e-bc15-4d97cfb66de1",
+                          "$Data": {
+                            "Name": {
+                              "$GUID": "b2f44051-41e4-4dac-a7e6-f8a0bba39abe",
+                              "$Data": "Rotator"
+                            },
+                            "Tag": {
+                              "$GUID": "937f158d-3846-4a82-9e36-02b20ca7e34d",
+                              "$Data": "Untagged"
+                            },
+                            "Layer": {
+                              "$GUID": "e3913bd6-5880-4a83-ba01-ccdb166271ec",
+                              "$Data": 9
+                            },
+                            "Static": {
+                              "$GUID": "89b1534b-5b09-41d8-a61d-058ec724303d",
+                              "$Data": false
+                            },
+                            "Components": {
+                              "$GUID": "ab941706-2f80-47b6-89d9-d85c65dfa405",
+                              "$Data": [
+                                {
+                                  "$GUID": "ca250b3b-4a20-4dba-8ba1-4324c6eeb978",
+                                  "$Type": "UnityEngine.Transform",
+                                  "$Data": {
+                                    "Position": {
+                                      "$GUID": "c5f0fee0-732d-4579-bd6f-50ff709ca61c",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "36b5153a-e742-41a3-8157-9303f5bfd68a",
+                                          "$Data": 0.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "80c051d1-c298-44d1-b183-0b13520701ed",
+                                          "$Data": 0.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "8db528a3-4733-4b80-bc60-42916876fe21",
+                                          "$Data": 0.0
+                                        }
+                                      }
+                                    },
+                                    "Rotation": {
+                                      "$GUID": "66ac21bf-340b-4b96-ac79-08779e859df2",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "6d16bc98-7c45-4361-9a6f-5843719973c7",
+                                          "$Data": 0.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "b6543fc9-bb28-4af6-9e4a-7662fd6de27b",
+                                          "$Data": 0.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "adabd870-9a66-4842-8091-c7f07c2c65cb",
+                                          "$Data": 0.0
+                                        }
+                                      }
+                                    },
+                                    "Scale": {
+                                      "$GUID": "06223acf-c57d-4975-a499-e230d9dd20a2",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "3f6821d6-66f9-47c2-8d4b-45b0e0c95eba",
+                                          "$Data": 1.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "5f7a5952-75a8-4196-ab37-fec73765bda1",
+                                          "$Data": 1.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "29c0671a-2df3-4e8d-8615-d8ab06f4ba3e",
+                                          "$Data": 1.0
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "$GUID": "a51b180d-9ab3-43a1-94a9-77561369f373",
+                                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                                  "$Data": {
+                                    "Reference": {
+                                      "$GUID": "2edc32a9-9d40-4d77-94bf-d3759227de2c",
+                                      "$Data": {
+                                        "Path": {
+                                          "$GUID": "8d4770dd-051b-46bb-b9cb-5ec4a55e7501",
+                                          "$Data": "Core/Sprites/Structures/ResearchCollectorRotator.png"
+                                        },
+                                        "Rect": {
+                                          "$GUID": "e30dc92f-be28-49ff-a066-56e0536dd770",
+                                          "$Data": {
+                                            "X": {
+                                              "$GUID": "4c3360a4-d4f2-417a-ad22-3fc5d15daafc",
+                                              "$Data": 0.0
+                                            },
+                                            "Y": {
+                                              "$GUID": "6280250a-7f8c-433f-8294-e60913650828",
+                                              "$Data": 0.0
+                                            },
+                                            "Width": {
+                                              "$GUID": "c93addce-d05a-4f18-bbd1-fa4afef6f0c7",
+                                              "$Data": 0.0
+                                            },
+                                            "Height": {
+                                              "$GUID": "260a5c4b-720d-47f9-8016-af4f74e8baae",
+                                              "$Data": 0.0
+                                            }
+                                          }
+                                        },
+                                        "Pivot": {
+                                          "$GUID": "b65f483c-47cf-460c-a786-65018af1ba4e",
+                                          "$Data": {
+                                            "X": {
+                                              "$GUID": "e69b39ab-b94e-4a44-97f2-149d6a7daf39",
+                                              "$Data": 0.5
+                                            },
+                                            "Y": {
+                                              "$GUID": "16c9986d-af55-4b7e-bfb7-1a6762ad4084",
+                                              "$Data": 0.5
+                                            }
+                                          }
+                                        },
+                                        "PixelsPerUnit": {
+                                          "$GUID": "b81e7d33-27fd-41a3-8cc6-fff113b71a54",
+                                          "$Data": 16.0
+                                        }
+                                      }
+                                    },
+                                    "Color": {
+                                      "$GUID": "e7fbdcbd-6987-484d-9bb6-65d4bf1effd3",
+                                      "$Data": {
+                                        "Red": {
+                                          "$GUID": "217e07cf-7142-4e64-8118-e2df1756bb9c",
+                                          "$Data": 1.0
+                                        },
+                                        "Green": {
+                                          "$GUID": "27492f93-4eef-4acb-b376-bb19f8a27319",
+                                          "$Data": 1.0
+                                        },
+                                        "Blue": {
+                                          "$GUID": "9ad2e2e0-7565-4fa0-b1e9-94899350bc67",
+                                          "$Data": 1.0
+                                        },
+                                        "Alpha": {
+                                          "$GUID": "931b8c54-1e47-45c3-b788-0ab1eaf02a06",
+                                          "$Data": 1.0
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "Children": {
+                              "$GUID": "1eca9498-9370-49b7-8300-1c1bd9ddf1b4",
+                              "$Data": []
+                            }
+                          }
+                        },
+                        {
+                          "$GUID": "3a906bb5-8d7f-4b06-be60-489197a7bf2d",
+                          "$Data": {
+                            "Name": {
+                              "$GUID": "464d74c0-0998-4268-9504-095bf45f5171",
+                              "$Data": "Collector"
+                            },
+                            "Tag": {
+                              "$GUID": "657932a5-3c70-4a3a-9aaa-e73332f27502",
+                              "$Data": "Untagged"
+                            },
+                            "Layer": {
+                              "$GUID": "7264704e-a9d5-454d-b4c6-547e82febdad",
+                              "$Data": 9
+                            },
+                            "Static": {
+                              "$GUID": "a819a431-c0a3-4485-b147-3ccdae987de6",
+                              "$Data": false
+                            },
+                            "Components": {
+                              "$GUID": "74c1f6c1-d618-432e-91c0-2460b2ff9050",
+                              "$Data": [
+                                {
+                                  "$GUID": "f3f01b5c-b07f-49d1-af1f-9fcb35c5c0cf",
+                                  "$Type": "UnityEngine.Transform",
+                                  "$Data": {
+                                    "Position": {
+                                      "$GUID": "f06c9215-3fbc-467a-b83d-b40a1de0ad7e",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "f1673188-4b05-4e38-81c2-7512ed61646d",
+                                          "$Data": 0.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "472e1233-a0d0-4f83-94ad-ea484e4c57dd",
+                                          "$Data": 0.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "acd06780-85fb-42f3-9722-eed710d792a7",
+                                          "$Data": 0.0
+                                        }
+                                      }
+                                    },
+                                    "Rotation": {
+                                      "$GUID": "d84eb13b-d4f2-483f-b351-7d2401783ee5",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "f70feff5-8568-4325-ac07-215c9a4f7fc0",
+                                          "$Data": 0.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "73d4ddfa-c41d-4947-a5af-db121aa91c0d",
+                                          "$Data": 0.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "5e21ad83-f1ce-4ffe-8f7c-b18026b82565",
+                                          "$Data": 0.0
+                                        }
+                                      }
+                                    },
+                                    "Scale": {
+                                      "$GUID": "0687e293-b4e4-4621-b0db-03bc20aec541",
+                                      "$Data": {
+                                        "X": {
+                                          "$GUID": "a1e4ce70-b6ac-4691-a304-834928ead0c0",
+                                          "$Data": 1.0
+                                        },
+                                        "Y": {
+                                          "$GUID": "9e825dc3-dc3a-4339-8010-4f2a181d6ba6",
+                                          "$Data": 1.0
+                                        },
+                                        "Z": {
+                                          "$GUID": "4010a630-1758-494f-bdfc-442e9005698a",
+                                          "$Data": 1.0
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "$GUID": "d85673d5-7918-440d-9059-54fda1203373",
+                                  "$Type": "Lomztein.BFA2.Structures.Collector",
+                                  "$Data": {
+                                    "AngleTreshold": {
+                                      "$GUID": "97ac6225-3d7a-4159-afa3-0ba508a320d2",
+                                      "$Data": 1.0
+                                    },
+                                    "BaseComplexity": {
+                                      "$GUID": "212e6528-343f-4740-8006-7f5e8d3f1593",
+                                      "$Data": 0.0
+                                    },
+                                    "UpperAttachmentPoints": {
+                                      "$GUID": "b29ffc61-5f22-44fa-b24f-064d290f0866",
+                                      "$Data": null
+                                    },
+                                    "LowerAttachmentPoints": {
+                                      "$GUID": "a2a8d815-0efb-462b-b725-530b2816e372",
+                                      "$Data": null
+                                    },
+                                    "_name": {
+                                      "$GUID": "e6f16de3-fbd1-4d78-82b6-5864cd781651",
+                                      "$Data": "Collector"
+                                    },
+                                    "_description": {
+                                      "$GUID": "bce769a7-8136-4aac-a021-01b584715af5",
+                                      "$Data": "Collects stuff"
+                                    },
+                                    "_uniqueIdentifier": {
+                                      "$GUID": "1fd6af85-ba87-4c05-ae1d-906b966deaf6",
+                                      "$Data": ""
+                                    },
+                                    "_cost": {
+                                      "$GUID": "b618cd30-62cd-4d43-b772-886024a9264f",
+                                      "$Data": {
+                                        "Elements": {
+                                          "$GUID": "15122679-3337-4679-83a1-cac03b2d83da",
+                                          "$Data": []
+                                        }
+                                      }
+                                    },
+                                    "BaseAttributes": {
+                                      "$GUID": "c16b8c1d-92d8-40bd-bcb2-1f956fd2a7f9",
+                                      "$Data": []
+                                    },
+                                    "_width": {
+                                      "$GUID": "b47f3dbc-8704-4b27-a8af-77a7e68f1377",
+                                      "$Data": "Medium"
+                                    },
+                                    "_height": {
+                                      "$GUID": "06bcc080-74f5-4b84-a6c7-47924137fb2f",
+                                      "$Data": "Medium"
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "Children": {
+                              "$GUID": "8d0ae311-7797-4d1a-bb16-455718363565",
+                              "$Data": [
+                                {
+                                  "$GUID": "848c6448-eb95-4d2a-90c0-698c49f3efb8",
+                                  "$Data": {
+                                    "Name": {
+                                      "$GUID": "2ab20d8c-75ae-4844-b590-4c674af3c277",
+                                      "$Data": "Collector"
+                                    },
+                                    "Tag": {
+                                      "$GUID": "c893c6d7-6036-4ccb-b1e2-f9d69651ec06",
+                                      "$Data": "Untagged"
+                                    },
+                                    "Layer": {
+                                      "$GUID": "3dca23f6-2e8a-4184-a23c-3d18d80f99b8",
+                                      "$Data": 9
+                                    },
+                                    "Static": {
+                                      "$GUID": "84dc41ad-1a99-4d91-9f03-d10af296389d",
+                                      "$Data": false
+                                    },
+                                    "Components": {
+                                      "$GUID": "984b9f2c-5022-4d46-bb5a-367d83bd5b96",
+                                      "$Data": [
+                                        {
+                                          "$GUID": "d6c7fe5d-e1ff-4ed0-a80b-3dcfd8d7e7d8",
+                                          "$Type": "UnityEngine.Transform",
+                                          "$Data": {
+                                            "Position": {
+                                              "$GUID": "666bd79c-f332-424a-be52-6e4d5b78ce48",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "bf35e169-decf-41d1-a587-4cd517454ab4",
+                                                  "$Data": 0.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "5f253f96-8c93-4896-ae05-b71ecdfd51e1",
+                                                  "$Data": 0.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "e3bc22d1-ecee-4aa9-9664-c63592b2f0d0",
+                                                  "$Data": 0.0
+                                                }
+                                              }
+                                            },
+                                            "Rotation": {
+                                              "$GUID": "49e18154-5b28-4a62-a930-d61686cd7966",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "272c8634-590f-4abb-abc9-5d5a57cfab95",
+                                                  "$Data": 0.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "5db3ce38-661f-4261-9117-474dce801e86",
+                                                  "$Data": 0.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "26ca83e9-46ba-4294-9a4a-3d09b25374e6",
+                                                  "$Data": 0.0
+                                                }
+                                              }
+                                            },
+                                            "Scale": {
+                                              "$GUID": "49649a7c-9812-4ee8-acb8-b082533438a6",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "c650345c-bfe1-49e1-a362-6842d618837b",
+                                                  "$Data": 1.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "a1eeb6c9-da4f-4fd1-8514-a00730f0800e",
+                                                  "$Data": 1.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "7fca7ce6-d6cb-4ae5-a103-edacd502da30",
+                                                  "$Data": 1.0
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "$GUID": "46e22d6c-11e1-4701-891d-25c680b0b77a",
+                                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                                          "$Data": {
+                                            "Reference": {
+                                              "$GUID": "06ae5a29-3abc-451d-836c-0a1b0c9a3fb7",
+                                              "$Data": {
+                                                "Path": {
+                                                  "$GUID": "d6f75cc7-7be1-4a6c-aa98-183fdb503571",
+                                                  "$Data": "Core/Sprites/Structures/ResearchCollector.png"
+                                                },
+                                                "Rect": {
+                                                  "$GUID": "1b365c44-879f-4637-a761-04d57f600686",
+                                                  "$Data": {
+                                                    "X": {
+                                                      "$GUID": "8ac1cb56-8615-4d7c-8384-06ba83eaf5e2",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Y": {
+                                                      "$GUID": "2996615d-27cb-4214-aeb9-5136862f6d60",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Width": {
+                                                      "$GUID": "c81abe3d-137c-415e-8f44-a78320ab8892",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Height": {
+                                                      "$GUID": "ae230a40-2554-4994-b16b-80dbe5018fe3",
+                                                      "$Data": 0.0
+                                                    }
+                                                  }
+                                                },
+                                                "Pivot": {
+                                                  "$GUID": "9e33a7dd-eb96-4c40-a632-cb90b291e71a",
+                                                  "$Data": {
+                                                    "X": {
+                                                      "$GUID": "93d54996-4b19-46b7-a04a-3f2a6fa0d1a1",
+                                                      "$Data": 0.5
+                                                    },
+                                                    "Y": {
+                                                      "$GUID": "5f0f29f0-22f7-414b-affd-40ae4b764904",
+                                                      "$Data": 0.5
+                                                    }
+                                                  }
+                                                },
+                                                "PixelsPerUnit": {
+                                                  "$GUID": "e9838368-2bd9-447c-b213-1d2553c5c102",
+                                                  "$Data": 16.0
+                                                }
+                                              }
+                                            },
+                                            "Color": {
+                                              "$GUID": "2c51ab6b-5639-4ba9-a58c-4f17db942ae6",
+                                              "$Data": {
+                                                "Red": {
+                                                  "$GUID": "67c2cb73-8937-4dac-8ef7-6f039413a6e2",
+                                                  "$Data": 1.0
+                                                },
+                                                "Green": {
+                                                  "$GUID": "710c8bb5-2a65-490c-8173-ea1ea7083c9f",
+                                                  "$Data": 1.0
+                                                },
+                                                "Blue": {
+                                                  "$GUID": "63e4f4f8-0dcd-44c1-954d-4249d2fe21d5",
+                                                  "$Data": 1.0
+                                                },
+                                                "Alpha": {
+                                                  "$GUID": "71a0fb71-0a7a-493c-aca7-88607fd554fb",
+                                                  "$Data": 1.0
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "Children": {
+                                      "$GUID": "432fcf53-88ee-4b9c-b97f-095e2a76bc04",
+                                      "$Data": []
+                                    }
+                                  }
+                                },
+                                {
+                                  "$GUID": "267e1dda-45ff-4729-81b4-c3afc124a262",
+                                  "$Data": {
+                                    "Name": {
+                                      "$GUID": "4cd86082-29d9-49d1-b9e9-2cf18285a866",
+                                      "$Data": "Beam"
+                                    },
+                                    "Tag": {
+                                      "$GUID": "d0e836a0-5fde-4039-9408-32f080ec9ff9",
+                                      "$Data": "Untagged"
+                                    },
+                                    "Layer": {
+                                      "$GUID": "0b93d6c0-81cd-476d-a7dc-b5230767f651",
+                                      "$Data": 9
+                                    },
+                                    "Static": {
+                                      "$GUID": "8edd72e2-1366-446d-ac2e-7fc8721c79fe",
+                                      "$Data": false
+                                    },
+                                    "Components": {
+                                      "$GUID": "be13fc4f-481e-4388-890a-9e80975a034d",
+                                      "$Data": [
+                                        {
+                                          "$GUID": "c8b2a003-e3a4-49e8-a697-8986656d377a",
+                                          "$Type": "UnityEngine.Transform",
+                                          "$Data": {
+                                            "Position": {
+                                              "$GUID": "86ad0049-5b1b-4715-bc4c-9a2c2245ba99",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "de13ce7d-2816-47a8-9f1d-a77fae81babc",
+                                                  "$Data": 0.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "c3437a58-5c25-4970-a768-26eb3405df26",
+                                                  "$Data": 0.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "12d75577-9058-4703-b4d8-5a64fbed9b69",
+                                                  "$Data": 0.0
+                                                }
+                                              }
+                                            },
+                                            "Rotation": {
+                                              "$GUID": "f6bf81b1-20ca-4c74-86ec-1fb671ff185e",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "1024698f-a4d6-44c3-971d-666e29eead9f",
+                                                  "$Data": 0.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "523cf98a-072f-4454-87c4-77a4f113370d",
+                                                  "$Data": 0.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "5639aeab-c9ca-4ec5-b7d7-9300f6e9bc05",
+                                                  "$Data": 0.0
+                                                }
+                                              }
+                                            },
+                                            "Scale": {
+                                              "$GUID": "4557fae5-1ce6-4c93-ac74-b9143a32f383",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "8aab2096-ef7c-4299-bda9-029914846a34",
+                                                  "$Data": 1.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "72bb632d-56cc-4560-866f-427383bd1b66",
+                                                  "$Data": 1.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "61860da7-e4b8-4d23-b60d-bd05dca05ed4",
+                                                  "$Data": 1.0
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "$GUID": "b9ba5dfc-884e-4d50-9e12-51462beac457",
+                                          "$Type": "UnityEngine.LineRenderer",
+                                          "$Data": {
+                                            "PositionCount": {
+                                              "$GUID": "29e0ab78-60e4-4340-b2a4-35139af32fe8",
+                                              "$Data": 2
+                                            },
+                                            "Positions": {
+                                              "$GUID": "a6086195-c2e9-42dd-ab56-86b34c71d166",
+                                              "$Data": [
+                                                {
+                                                  "$GUID": "be53d2df-9a5e-4547-8d26-2c392feb0d21",
+                                                  "$Data": {
+                                                    "X": {
+                                                      "$GUID": "2c45a78a-bf95-46bc-8cfd-f2ba59cb93de",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Y": {
+                                                      "$GUID": "2c009d2f-b749-410a-89e4-eadb1fea1507",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Z": {
+                                                      "$GUID": "aba210df-fe02-4543-a868-d76e8466a3b4",
+                                                      "$Data": 0.0
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "$GUID": "d55c14df-f66b-4e76-9ed4-873f9133106b",
+                                                  "$Data": {
+                                                    "X": {
+                                                      "$GUID": "84d3a702-7ae5-4a5d-9b8c-dc791e5da5e1",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Y": {
+                                                      "$GUID": "6a228302-b36f-4189-9a8e-1622f407e7bb",
+                                                      "$Data": 0.0
+                                                    },
+                                                    "Z": {
+                                                      "$GUID": "1e059827-a0e7-4b3e-bd56-8e7b5e77d974",
+                                                      "$Data": 1.0
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "Curve": {
+                                              "$GUID": "bc15e886-1603-4749-850f-f4dec439fd48",
+                                              "$Data": {
+                                                "Keyframes": {
+                                                  "$GUID": "3608dc7c-0e5f-4c73-9f6a-7728e80643ef",
+                                                  "$Data": [
+                                                    {
+                                                      "$GUID": "3b85b6e7-629e-4056-8b62-a16c837280a2",
+                                                      "$Data": {
+                                                        "Time": {
+                                                          "$GUID": "7ac2c904-e623-481d-aaee-800446256f2d",
+                                                          "$Data": 0.0
+                                                        },
+                                                        "Value": {
+                                                          "$GUID": "f1a4747c-582d-4960-bb76-7b1d5655c8e8",
+                                                          "$Data": 0.1365433
+                                                        },
+                                                        "InTangent": {
+                                                          "$GUID": "dfa3eb14-d0c6-45e0-9410-e993a3ab27cd",
+                                                          "$Data": 0.0
+                                                        },
+                                                        "OutTangent": {
+                                                          "$GUID": "01cfcae1-d777-4af2-a175-6e999577ae53",
+                                                          "$Data": 0.0
+                                                        },
+                                                        "InWeight": {
+                                                          "$GUID": "3bd4ac64-fa17-4d2d-a242-787b7bc47c02",
+                                                          "$Data": 0.3333333
+                                                        },
+                                                        "OutWeight": {
+                                                          "$GUID": "1ae4cd28-c341-4bad-8a88-344dc271d567",
+                                                          "$Data": 0.3333333
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "Colors": {
+                                              "$GUID": "a9951d05-c458-488c-b65a-ab64cf394a6d",
+                                              "$Data": {
+                                                "ColorKeys": {
+                                                  "$GUID": "e2c808c7-6a1b-48d0-ba04-3621b6945695",
+                                                  "$Data": [
+                                                    {
+                                                      "$GUID": "ef96ff36-741e-4d01-825f-0ebbb4823242",
+                                                      "$Data": {
+                                                        "Time": {
+                                                          "$GUID": "97cc5cc9-4c3f-4dd7-a1f7-5a18e928304d",
+                                                          "$Data": 0.0
+                                                        },
+                                                        "Color": {
+                                                          "$GUID": "62af2fd8-8c17-4867-bcec-9eae5bda2c59",
+                                                          "$Data": {
+                                                            "Red": {
+                                                              "$GUID": "859d27fd-4cd0-48cd-aeb7-60eb5ac28c45",
+                                                              "$Data": 1.0
+                                                            },
+                                                            "Green": {
+                                                              "$GUID": "b7f1f5f3-69dc-41ec-99fe-9162e84f8318",
+                                                              "$Data": 1.0
+                                                            },
+                                                            "Blue": {
+                                                              "$GUID": "fd5f14a9-5089-4286-adf8-ab3fd8c472cd",
+                                                              "$Data": 1.0
+                                                            },
+                                                            "Alpha": {
+                                                              "$GUID": "cbd7ba70-fbe5-4b6b-8b87-97a17bc6288b",
+                                                              "$Data": 1.0
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "$GUID": "f25d063e-c7e2-48aa-bda0-fac7575fd267",
+                                                      "$Data": {
+                                                        "Time": {
+                                                          "$GUID": "231c2187-889a-43bc-98da-3feff3aa0502",
+                                                          "$Data": 1.0
+                                                        },
+                                                        "Color": {
+                                                          "$GUID": "bb272ac8-4c62-41d7-b443-6995f7e7ac3c",
+                                                          "$Data": {
+                                                            "Red": {
+                                                              "$GUID": "4ba9e661-ed26-47a3-8067-02935f7d9164",
+                                                              "$Data": 1.0
+                                                            },
+                                                            "Green": {
+                                                              "$GUID": "be38359c-ad34-429b-94ff-b46f3ff7d6d3",
+                                                              "$Data": 1.0
+                                                            },
+                                                            "Blue": {
+                                                              "$GUID": "ab6027bc-710a-4dc5-96a8-eb4750a1c519",
+                                                              "$Data": 1.0
+                                                            },
+                                                            "Alpha": {
+                                                              "$GUID": "2dca91f2-2955-4fb0-bee5-117c3ea7d1d8",
+                                                              "$Data": 1.0
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "AlphaKeys": {
+                                                  "$GUID": "672887d8-6b06-4996-8b02-772e397e180c",
+                                                  "$Data": [
+                                                    {
+                                                      "$GUID": "ea13f0cf-270f-4997-96ee-21a2ee7ecf5b",
+                                                      "$Data": {
+                                                        "Time": {
+                                                          "$GUID": "1cb64807-d7bd-439e-991e-b000e9f4b9d5",
+                                                          "$Data": 0.0
+                                                        },
+                                                        "Alpha": {
+                                                          "$GUID": "a5d0e81c-e7d0-42cc-9955-b225e9ae51ec",
+                                                          "$Data": 1.0
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "$GUID": "80be7670-8d57-4d61-ad63-2a0a9aca6422",
+                                                      "$Data": {
+                                                        "Time": {
+                                                          "$GUID": "36c96dee-e3f7-4de3-9004-8e845dd49cc4",
+                                                          "$Data": 1.0
+                                                        },
+                                                        "Alpha": {
+                                                          "$GUID": "06017c09-850a-4610-b42f-7e3defdd2596",
+                                                          "$Data": 1.0
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "Mode": {
+                                                  "$GUID": "d709dcc7-5d16-4a39-8ae5-d4fecf31a3bf",
+                                                  "$Data": 0
+                                                }
+                                              }
+                                            },
+                                            "CornerVerticies": {
+                                              "$GUID": "0d75d771-aa83-4676-8456-f76f06c9e56b",
+                                              "$Data": 0
+                                            },
+                                            "CapVerticies": {
+                                              "$GUID": "fa948f73-2f94-4ff3-a82f-0f0bc029c873",
+                                              "$Data": 3
+                                            },
+                                            "Alignment": {
+                                              "$GUID": "29f52423-c641-45df-9f04-855ac149cae2",
+                                              "$Data": "View"
+                                            },
+                                            "TextureMode": {
+                                              "$GUID": "9314fa39-e9c1-457e-89b4-28110a334eb5",
+                                              "$Data": "Stretch"
+                                            },
+                                            "ShadowBias": {
+                                              "$GUID": "f519ed00-8ffa-4e1f-8d3d-fca29e5e514b",
+                                              "$Data": 0.5
+                                            },
+                                            "GenerateLighingData": {
+                                              "$GUID": "57740e17-201f-4ed4-b403-039046cd446d",
+                                              "$Data": false
+                                            },
+                                            "UseWorldSpace": {
+                                              "$GUID": "5f797343-1efd-45f9-bde3-09489eda0051",
+                                              "$Data": true
+                                            },
+                                            "ShadowCastingMode": {
+                                              "$GUID": "7b9fa830-d34a-4c91-84a5-632f86b215ef",
+                                              "$Data": "Off"
+                                            },
+                                            "RecieveShadows": {
+                                              "$GUID": "d3836547-6516-4e0d-9f4d-3df850647686",
+                                              "$Data": false
+                                            },
+                                            "LightProbeUsage": {
+                                              "$GUID": "8a8f1037-2a41-4e09-9391-ba9460a27afb",
+                                              "$Data": "Off"
+                                            },
+                                            "ReflectionProbeUsage": {
+                                              "$GUID": "fd2e8d84-8c95-4e9b-9c7e-2777a215f825",
+                                              "$Data": "Off"
+                                            },
+                                            "MotionVectorGenerationMode": {
+                                              "$GUID": "d7369ae0-a166-4207-a15c-a156c075d2ed",
+                                              "$Data": "Camera"
+                                            },
+                                            "AllowOcclusionWhenDynamic": {
+                                              "$GUID": "10e89f9b-f0a3-49f0-a5c8-a23270af7078",
+                                              "$Data": true
+                                            },
+                                            "SortingLayer": {
+                                              "$GUID": "e19206c7-3ae3-4ac6-86c8-6a6686f0fa13",
+                                              "$Data": 0
+                                            },
+                                            "OrderInLayer": {
+                                              "$GUID": "7991483a-63cd-4135-98ff-b1b3714445ff",
+                                              "$Data": 0
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "$GUID": "ba601ce8-708d-4524-969c-5600791ec644",
+                                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentMaterial",
+                                          "$Data": {
+                                            "Reference": {
+                                              "$GUID": "56482157-22b0-4c04-84c1-124933b0d278",
+                                              "$Data": {
+                                                "Path": {
+                                                  "$GUID": "16262c71-7384-487c-b80f-131e0ff2bd4f",
+                                                  "$Data": "Resources/Materials/BrightGreen"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "Children": {
+                                      "$GUID": "2bcbc2f4-b847-47bf-94b6-28dc21cba08b",
+                                      "$Data": []
+                                    }
+                                  }
+                                },
+                                {
+                                  "$GUID": "42a01e75-2da2-49b0-b3cd-d38bd06b06af",
+                                  "$Data": {
+                                    "Name": {
+                                      "$GUID": "462bc560-30ae-490e-9047-c3bf04116a25",
+                                      "$Data": "BeamStart"
+                                    },
+                                    "Tag": {
+                                      "$GUID": "dc5e305b-3968-4569-84b8-fcf0668cce1b",
+                                      "$Data": "Untagged"
+                                    },
+                                    "Layer": {
+                                      "$GUID": "ef9f2d80-570b-4bae-af5e-894e1d6bb416",
+                                      "$Data": 9
+                                    },
+                                    "Static": {
+                                      "$GUID": "7181c9cc-1601-4f77-9195-311698ab5c23",
+                                      "$Data": false
+                                    },
+                                    "Components": {
+                                      "$GUID": "cf191802-3047-4874-9588-c017e1664f69",
+                                      "$Data": [
+                                        {
+                                          "$GUID": "5bb4f076-7eed-4d4f-a8a6-c1fd8c6b8287",
+                                          "$Type": "UnityEngine.Transform",
+                                          "$Data": {
+                                            "Position": {
+                                              "$GUID": "f6fab726-67ea-4d44-ab51-fb4b5077c46a",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "ed94d77f-4d04-4949-835d-b9d542a31f01",
+                                                  "$Data": 0.5
+                                                },
+                                                "Y": {
+                                                  "$GUID": "b55aec65-267b-4aa6-a9e2-a05452b50d67",
+                                                  "$Data": 0.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "840f2a4f-0e85-48d1-8b86-2a8394176d98",
+                                                  "$Data": 0.0
+                                                }
+                                              }
+                                            },
+                                            "Rotation": {
+                                              "$GUID": "9a397ca3-ae2f-4fc2-94b8-70c90e7fc063",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "c05d032f-cf8c-46fa-b37e-fea37dbd2ac2",
+                                                  "$Data": 0.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "02c552df-fa3b-4c39-b041-4c1fd0f01f9b",
+                                                  "$Data": 0.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "75043003-c8c6-49a4-92e4-114704a02031",
+                                                  "$Data": 0.0
+                                                }
+                                              }
+                                            },
+                                            "Scale": {
+                                              "$GUID": "00bac38d-e7c8-486b-a23a-ca870fdf0f20",
+                                              "$Data": {
+                                                "X": {
+                                                  "$GUID": "139bd34c-4606-4242-8dc7-34e2b448a2b9",
+                                                  "$Data": 1.0
+                                                },
+                                                "Y": {
+                                                  "$GUID": "e3ca0475-3f2d-45d4-8a63-5261ee92e5eb",
+                                                  "$Data": 1.0
+                                                },
+                                                "Z": {
+                                                  "$GUID": "646cfcc1-8f8e-48cd-93b4-5a8c5db15c16",
+                                                  "$Data": 1.0
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "Children": {
+                                      "$GUID": "945d61a9-13a5-4d75-b739-23a716279a13",
+                                      "$Data": []
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
                     }
-                  ],
-                  "Children": []
+                  }
                 }
               ]
             }
-          ]
+          }
         }
       ]
     }
-  ]
+  }
 }

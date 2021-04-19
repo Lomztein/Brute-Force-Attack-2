@@ -1,36 +1,115 @@
 {
-  "Name": "It never truly ends",
-  "Description": "One million enemies down, a most impressive effort.",
-  "Identifier": "Core.SlayMillionEnemies",
-  "Sprite": {
-    "Path": "Core\\Sprites\\Enemies\\BasicEnemyT3.png",
-    "Rect": {
-      "X": 0.0,
-      "Y": 0.0,
-      "Width": 0.0,
-      "Height": 0.0
+  "$GUID": "d2f81ddf-fb8a-4825-b5b1-88ca58d537bd",
+  "$Data": {
+    "Name": {
+      "$GUID": "9b2de837-378c-483a-89df-1a0dedd6aea4",
+      "$Data": "It never truly ends"
     },
-    "Pivot": {
-      "X": 0.5,
-      "Y": 0.5
+    "Description": {
+      "$GUID": "642b207f-6eba-4378-b234-4ded2aae4497",
+      "$Data": "One million enemies down, a most impressive effort."
     },
-    "PixelsPerUnit": 32.0
-  },
-  "Hidden": false,
-  "Requirement": {
-    "ValueType": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
-    "ValueData": {
-      "TargetEnemies": 1000000,
-      "TargetColors": [
-        "Blue",
-        "Yellow",
-        "Red",
-        "Pink",
-        "Magenta",
-        "Green",
-        "Orange"
-      ]
+    "Identifier": {
+      "$GUID": "5424bd4b-224b-4d89-91a1-110347f63003",
+      "$Data": "Core.SlayMillionEnemies"
+    },
+    "Sprite": {
+      "$GUID": "bc7a2812-c079-4f27-bf4f-3079855062d9",
+      "$Data": {
+        "Path": {
+          "$GUID": "b8dd62ca-20c3-4174-87c4-19688be7caaa",
+          "$Data": "Core\\Sprites\\Enemies\\BasicEnemyT3.png"
+        },
+        "Rect": {
+          "$GUID": "b2410d7d-b7e1-4164-b5fe-6339d6ebbe2a",
+          "$Data": {
+            "X": {
+              "$GUID": "62e9d484-0a76-4d5d-bb8e-46bd53c27c23",
+              "$Data": 0.0
+            },
+            "Y": {
+              "$GUID": "30687f2e-4a07-4608-b090-512c23ab93c4",
+              "$Data": 0.0
+            },
+            "Width": {
+              "$GUID": "ef49a7fc-9e85-432f-9dfa-56caf66e3922",
+              "$Data": 0.0
+            },
+            "Height": {
+              "$GUID": "4ca45b79-83c7-4b41-b1e4-d2ab51116d0c",
+              "$Data": 0.0
+            }
+          }
+        },
+        "Pivot": {
+          "$GUID": "8f93ff15-6c05-41f4-9964-280a65626f08",
+          "$Data": {
+            "X": {
+              "$GUID": "507eb271-ad6b-4778-b6c4-362376410f14",
+              "$Data": 0.5
+            },
+            "Y": {
+              "$GUID": "5b2fc9eb-9813-403a-b5cb-c22e7294ed13",
+              "$Data": 0.5
+            }
+          }
+        },
+        "PixelsPerUnit": {
+          "$GUID": "ff731bda-7b62-45c5-8746-a761c2849c2f",
+          "$Data": 32.0
+        }
+      }
+    },
+    "Hidden": {
+      "$GUID": "1fe02294-3b50-46c4-b764-8106b23f0836",
+      "$Data": false
+    },
+    "Requirement": {
+      "$GUID": "89784931-0d48-47bb-9b25-fbd6c887b24c",
+      "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
+      "$Data": {
+        "TargetEnemies": {
+          "$GUID": "6a6dbad9-076a-4b42-a2c0-fd9e11e117b1",
+          "$Data": 1000000
+        },
+        "TargetColors": {
+          "$GUID": "d1f0c4fc-d64c-4cc6-983e-b2d4fbd072e0",
+          "$Data": [
+            {
+              "$GUID": "5a14e7be-2539-4844-b53a-6ab60aa02e62",
+              "$Data": "Blue"
+            },
+            {
+              "$GUID": "14f3236c-b747-4109-bd34-59011a1d0f4a",
+              "$Data": "Yellow"
+            },
+            {
+              "$GUID": "c3fc9c00-c8ae-43a0-ac89-1e5eb4937061",
+              "$Data": "Red"
+            },
+            {
+              "$GUID": "7180fa38-e86c-499c-b986-197308aeaba0",
+              "$Data": "Pink"
+            },
+            {
+              "$GUID": "a2119671-12e9-4727-a0c1-4c8c434635cd",
+              "$Data": "Magenta"
+            },
+            {
+              "$GUID": "545bc844-5b07-474a-a3fe-42061ee0c466",
+              "$Data": "Green"
+            },
+            {
+              "$GUID": "00302f20-2202-4bf9-adac-d29494cafc1a",
+              "$Data": "Orange"
+            }
+          ]
+        }
+      }
+    },
+    "Reward": {
+      "$GUID": "14cdb9c5-f98d-4fa4-92b3-215130f85a4e",
+      "$Data": null
     }
-  },
-  "Reward": null
+  }
 }

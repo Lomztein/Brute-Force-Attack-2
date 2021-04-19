@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
 
         private ValueModelSerializer _internalSerializer = new ValueModelSerializer();
 
-        protected override ValueModel DeserializeImplicit(JToken token)
+        protected override ValueModel DeserializeWithoutMetadata(JToken token)
         {
             JArray array = token as JArray;
             List<ValueModel> values = new List<ValueModel>();
@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
             return new ArrayModel(values.ToArray());
         }
 
-        protected override JToken SerializeImplicit(ValueModel model)
+        protected override JToken SerializeWithoutMetadata(ValueModel model)
         {
             ArrayModel arrayModel = model as ArrayModel;
             return new JArray(arrayModel.Elements.Select(x => _internalSerializer.Serialize(x)));
