@@ -13,9 +13,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
     {
         private ObjectPopulator _populator = new ObjectPopulator();
 
-        public object Assemble (ValueModel model, Type implicitType, AssemblyContext context)
+        public object Assemble (ValueModel model, Type expectedType, AssemblyContext context)
         {
-            Type type = model.IsTypeImplicit ? implicitType : model.GetModelType();
+            Type type = model.IsTypeImplicit ? expectedType : model.GetModelType();
             object obj = CreateInstance(type);
             _populator.Populate(obj, model as ObjectModel, context);
             return obj;

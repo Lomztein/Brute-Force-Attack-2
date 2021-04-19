@@ -20,9 +20,8 @@ namespace Lomztein.BFA2.Utilities
         {
             if (_modelCache == null)
             {
-                _modelCache = _assembler.Disassemble(original);
+                _modelCache = _assembler.Disassemble(original, true);
             }
-
             return _assembler.Assemble<T>(_modelCache);
         }
     }

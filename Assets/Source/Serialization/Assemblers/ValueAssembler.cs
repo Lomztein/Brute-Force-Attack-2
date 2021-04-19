@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 return null;
 
             Type type = model.IsTypeImplicit ? expectedType : model.GetModelType();
-            return GetAssembler(type).Assemble(model, expectedType, context);
+            return GetAssembler(type).Assemble(model, type, context);
         }
 
         public ValueModel Disassemble(object obj, Type expectedType, DisassemblyContext context)

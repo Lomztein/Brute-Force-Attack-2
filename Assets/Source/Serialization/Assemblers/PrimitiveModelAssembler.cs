@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public ValueModel Disassemble(object value, Type type, DisassemblyContext context)
         {
-            return context.MakeReferencable (value, new PrimitiveModel(value));
+            return new PrimitiveModel(value);
         }
 
         private static bool IsPrimitive(Type type)

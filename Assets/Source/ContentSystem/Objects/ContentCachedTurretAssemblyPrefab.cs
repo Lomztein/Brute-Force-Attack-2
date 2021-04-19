@@ -12,8 +12,7 @@ namespace Lomztein.BFA2.ContentSystem.Objects
         public ContentCachedTurretAssemblyPrefab(RootModel model)
         {
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
-            GameObject instance = (assembler.Assemble(model)).gameObject;
-
+            GameObject instance = assembler.Assemble(model).gameObject;
             _cache = new SceneCachedGameObject(instance);
         }
 

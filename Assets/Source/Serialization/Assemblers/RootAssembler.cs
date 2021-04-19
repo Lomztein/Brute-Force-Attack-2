@@ -31,7 +31,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public object Assemble(RootModel model, Type expectedType)
         {
-            return null;
+            AssemblyContext context = new AssemblyContext();
+            object obj = _rootAssembler.Assemble(model.Root, expectedType, context);
+            return obj;
         }
 
         public RootModel Disassemble(object obj) => Disassemble(obj, false);
