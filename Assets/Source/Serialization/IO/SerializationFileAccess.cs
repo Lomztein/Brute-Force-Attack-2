@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.ContentSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Lomztein.BFA2.Serialization.IO
 {
     public static class SerializationFileAccess
     {
-        private static IFileAccessor _accessor;
+        private static IFileAccessor _accessor = new ContentFileAccessor();
 
         internal static void SetAccessor(IFileAccessor accessor) => _accessor = accessor;
 

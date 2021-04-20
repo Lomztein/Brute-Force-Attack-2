@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lomztein.BFA2.Serialization.Assemblers.ObjectPopulator;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
 {
@@ -13,6 +14,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
 
         public abstract void Disassemble(ObjectField field, object obj, Type expectedType, DisassemblyContext context);
 
-        public abstract object Assemble(ValueModel model, Type expectedType, AssemblyContext context);
+        public abstract void Assemble(object obj, IAssignableMemberInfo member, ValueModel model, Type expectedType, AssemblyContext context);
     }
 }

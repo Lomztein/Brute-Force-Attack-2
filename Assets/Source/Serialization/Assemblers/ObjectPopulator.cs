@@ -38,14 +38,15 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 var property = model.GetProperty(field.Name);
                 if (!ValueModel.IsNull (property))
                 {
-                    var value = GetPropertyAssembler(field.AttributeType).Assemble(property, field.ValueType, context);
-                    field.SetValue(obj, value);
+                    GetPropertyAssembler(field.AttributeType).Assemble(obj, field, property, field.ValueType, context);
                 }
                 else
                 {
                     Debug.LogWarning($"Could not find property for field {field.Name} in {modelType.Name}. Value is defualt.");
                 }
             }
+
+            context.MakeReferencable(obj, model.Guid);
         }
 
         public ObjectModel Extract (object obj, DisassemblyContext context)
@@ -109,7 +110,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             // That CreateMemberInfo factory method didn't really end up neccesary.
         }
 
-        private interface IAssignableMemberInfo
+        public interface IAssignableMemberInfo
         {
             string Name { get; }
             Type ValueType { get; }

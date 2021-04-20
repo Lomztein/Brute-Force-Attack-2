@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     public class ArrayModelSerializerStrategy : ValueModelSerializerStrategyBase
     {
         public override bool CanSerialize(Type type) => type == typeof(ArrayModel);
+        public override bool CanDeserialize(JToken token) => token is JArray;
 
         private ValueModelSerializer _internalSerializer = new ValueModelSerializer();
 

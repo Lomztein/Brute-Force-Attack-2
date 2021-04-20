@@ -12,9 +12,10 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     public abstract class ValueModelSerializerStrategyBase
     {
         public abstract bool CanSerialize(Type type);
+        public abstract bool CanDeserialize(JToken token);
 
         private bool HasMetadata(JToken token) => ValueModelSerializer.HasMetadata(token, out JToken _);
-        private bool HasMetadata(ValueModel model) => model.HasMetadata;
+        private bool HasMetadata(ValueModel model) => model == null ? false : model.HasMetadata;
 
         private JToken SerializeWithMetadata(ValueModel model)
             => CreateMetadataContainer(model, SerializeWithoutMetadata(model));

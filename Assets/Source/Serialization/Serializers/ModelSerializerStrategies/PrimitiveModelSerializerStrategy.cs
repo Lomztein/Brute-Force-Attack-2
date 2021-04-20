@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     public class PrimitiveModelSerializerStrategy : ValueModelSerializerStrategyBase
     {
         public override bool CanSerialize(Type type) => type == typeof(PrimitiveModel);
+        public override bool CanDeserialize(JToken token) => token is JValue;
 
         protected override ValueModel DeserializeWithoutMetadata(JToken token)
         {

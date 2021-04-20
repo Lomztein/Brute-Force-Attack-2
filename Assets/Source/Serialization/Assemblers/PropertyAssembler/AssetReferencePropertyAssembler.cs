@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using static Lomztein.BFA2.Serialization.Assemblers.ObjectPopulator;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
 {
@@ -29,11 +30,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
         private string GetAssetToContentFileExtension(string extension)
             => _assetToContentFileExtenisons.TryGetValue(extension, out string newExtension) ? newExtension : extension;
 
-        public override object Assemble(ValueModel model, Type expectedType, AssemblyContext context)
+        public override void Assemble(object obj, IAssignableMemberInfo member, ValueModel model, Type expectedType, AssemblyContext context)
         {
             if (model is PathModel pathModel)
             {
-                return SerializationFileAccess.LoadObjectFromFile(pathModel.Path, expectedType);
+                member.SetValue(obj, SerializationFileAccess.LoadObjectFromFile(pathModel.Path, expectedType));
+                return;
             }
             throw new InvalidOperationException(nameof(model) + " must be a " + nameof (PathModel));
         }

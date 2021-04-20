@@ -12,6 +12,8 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     public class ObjectModelSerializerStrategy : ValueModelSerializerStrategyBase
     {
         public override bool CanSerialize(Type type) => type == typeof(ObjectModel);
+        public override bool CanDeserialize(JToken token) => token is JObject;
+
         private ValueModelSerializer _internalSerializer = new ValueModelSerializer();
 
         protected override ValueModel DeserializeWithoutMetadata(JToken value)

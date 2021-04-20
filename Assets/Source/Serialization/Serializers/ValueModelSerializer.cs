@@ -16,46 +16,37 @@ namespace Lomztein.BFA2.Serialization.Serializers
         public const string VALUE_MODEL_TYPE_NAME = "$Type";
         public const string VALUE_MODEL_DATA_NAME = "$Data";
 
+        // Ordering is important, as more than one strategy can handle a specific token type.
+        // In other words, very specialized ones like Path and Reference must come before Primitive
+        // as Primitive catches all JValue types that comes through, but the others only catch some JValue types.
         private static ValueModelSerializerStrategyBase[] _strategies = new ValueModelSerializerStrategyBase[]
         {
             new NullModelSerializerStrategy(),
-            new PrimitiveModelSerializerStrategy(),
-            new ObjectModelSerializerStrategy(),
             new PathModelSerializerStrategy(),
             new ReferenceModelSerializerStrategy(),
+            new PrimitiveModelSerializerStrategy(),
+            new ObjectModelSerializerStrategy(),
             new ArrayModelSerializerStrategy(),
-        };
+        }; // TODO: Consider replacing with call to ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies
 
-        private ValueModelSerializerStrategyBase GetStrategy(Type type) => _strategies.FirstOrDefault(x => x.CanSerialize(type));
+        private ValueModelSerializerStrategyBase GetSerializerStrategy(Type modelType)
+            => _strategies.FirstOrDefault(x => x.CanSerialize(modelType));
+
+        private ValueModelSerializerStrategyBase GetDeserialzierStrategy(JToken token)
+            => _strategies.FirstOrDefault(x => x.CanDeserialize(token));
 
         public ValueModel Deserialize(JToken value)
         {
-            return GetStrategy(JTokenToPropertyType(value)).Deserialize(value);
+            HasMetadata(value, out JToken data);
+            return GetDeserialzierStrategy(data).Deserialize(value);
         }
 
         public JToken Serialize(ValueModel value)
         {
-            var strat = GetStrategy(value?.GetType());
+            Type valueType = value == null ? typeof(NullModel) : value.GetType();
+            var strat = GetSerializerStrategy(valueType);
+
             return strat == null ? JValue.CreateNull() : strat.Serialize(value);
-        }
-
-        private Type JTokenToPropertyType (JToken token)
-        {
-            HasMetadata(token, out JToken data);
-
-            if (token == null)
-                return typeof(NullModel);
-
-            if (data is JValue value)
-                return value.Type == JTokenType.Null ? typeof(NullModel) : typeof(PrimitiveModel);
-
-            if (data is JObject)
-                return typeof(ObjectModel);
-
-            if (data is JArray)
-                return typeof(ArrayModel);
-
-            return null;
         }
 
         public static bool HasMetadata (JToken token, out JToken valueData)

@@ -15,7 +15,10 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
         public GameObject Assemble(RootModel model)
         {
-            GameObject obj = RecursiveAssemble(model.Root as ObjectModel, new AssemblyContext());
+            AssemblyContext context = new AssemblyContext();
+            GameObject obj = RecursiveAssemble(model.Root as ObjectModel, context);
+            context.ReturnReferenceRequests();
+
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled");
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnPostAssembled");
             return obj;
@@ -52,7 +55,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 childObj.transform.localScale = scale;
             }
 
-            return obj;
+            return context.MakeReferencable(obj, model.Guid);
         }
 
         public RootModel Disassemble(GameObject gameObject)
@@ -80,7 +83,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 new ObjectField("Static", ValueModelFactory.Create(gameObject.isStatic, context)),
                 new ObjectField("Components", new ArrayModel(componentModels)),
                 new ObjectField("Children", new ArrayModel(GetChildren(gameObject).Select(x => RecursiveDisassemble(x, context))))
-            )) as ObjectModel;
+            ));
         }
 
         private IEnumerable<GameObject> GetChildren (GameObject go)

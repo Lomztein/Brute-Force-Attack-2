@@ -10,6 +10,9 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
 {
     class NullModelSerializerStrategy : ValueModelSerializerStrategyBase
     {
+        public override bool CanDeserialize(JToken token)
+            => token == null || token.Type == JTokenType.Null;
+
         public override bool CanSerialize(Type type)
             => type == typeof(NullModel);
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lomztein.BFA2.Serialization.Assemblers.ObjectPopulator;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
 {
@@ -19,9 +20,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
             field.Model = _assembler.Disassemble(obj, expectedType, context);
         }
 
-        public override object Assemble(ValueModel model, Type expectedType, AssemblyContext context)
+        public override void Assemble(object obj, IAssignableMemberInfo member, ValueModel model, Type expectedType, AssemblyContext context)
         {
-            return _assembler.Assemble(model, expectedType, context);
+            member.SetValue(obj, _assembler.Assemble(model, expectedType, context));
         }
     }
 }

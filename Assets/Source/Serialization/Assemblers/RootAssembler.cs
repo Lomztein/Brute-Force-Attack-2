@@ -23,16 +23,20 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public RootModel Disassemble (object obj, bool isExplicit)
         {
             Type expectedType = isExplicit ? typeof(object) : obj.GetType();
+
             DisassemblyContext context = new DisassemblyContext();
             ValueModel value = _rootAssembler.Disassemble(obj, expectedType, context);
             context.ReturnGuidRequests();
-            return new RootModel(value, context.GetSharedReferences());
+
+            return new RootModel(value, new ArrayModel());
         }
 
         public object Assemble(RootModel model, Type expectedType)
         {
             AssemblyContext context = new AssemblyContext();
             object obj = _rootAssembler.Assemble(model.Root, expectedType, context);
+            context.ReturnReferenceRequests();
+
             return obj;
         }
 

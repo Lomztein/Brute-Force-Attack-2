@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization.Models;
+﻿using Lomztein.BFA2.Assets.Source.Utilities;
+using Lomztein.BFA2.Serialization.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,10 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
     public class ReferenceModelSerializerStrategy : ValueModelSerializerStrategyBase
     {
         public override bool CanSerialize(Type type) => type == typeof(ReferenceModel);
+        public override bool CanDeserialize(JToken token) => token is JValue value && value.ToString().StartsWith(VALUE_PREFIX);
         public const string VALUE_PREFIX = "$Ref";
 
-        private string Extract(string input)
-            => input.Substring(input.IndexOf('{'), input.IndexOf('}'));
-
-        protected override ValueModel DeserializeWithoutMetadata(JToken token)
-        {
-            return new ReferenceModel(Guid.Parse(Extract(token.ToString())));
-        }
+        protected override ValueModel DeserializeWithoutMetadata(JToken token) => new ReferenceModel(Guid.Parse(StringUtils.ExtractContent(token.ToString(), '{', '}')));
 
         protected override JToken SerializeWithoutMetadata(ValueModel model)
         {
