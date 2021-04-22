@@ -13,8 +13,6 @@ namespace Lomztein.BFA2.Research.Rewards
         [ModelProperty]
         public GlobalStructureMod Mod = new GlobalStructureMod();
 
-        public override string Description => Mod.ToString();
-
         public override void ApplyReward()
         {
             GlobalStructureModManager.Instance.AddMod(Mod);

@@ -8,10 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Research
 {
-    public class ResearchOption
+    [CreateAssetMenu(fileName = "NewResearchOption", menuName = "BFA2/Research Option")]
+    public class ResearchOption : ScriptableObject
     {
         [ModelProperty]
         public string Name = "Unnamed";
@@ -36,14 +38,11 @@ namespace Lomztein.BFA2.Research
         [ModelProperty]
         public string PinIdentifier;
 
-        public float RequirementsProgress => UniquePrerequisites.Sum(x => Mathf.Clamp01(x.Progress)) / UniquePrerequisites.Length;
-        public float TimeProgress => UniquePrerequisites.Sum(x => Mathf.Clamp01(x.Progress)) / UniquePrerequisites.Length;
-
-        [ModelProperty]
+        [ModelProperty, SerializeReference, SR]
         public UniquePrerequisite[] UniquePrerequisites = Array.Empty<UniquePrerequisite>();
         public bool UniquePrerequisitesCompleted => _completedRequirements >= UniquePrerequisites.Length;
         private int _completedRequirements;
-        [ModelProperty]
+        [ModelProperty, SerializeReference, SR]
         public CompletionReward[] Rewards = Array.Empty<CompletionReward>();
 
 
@@ -70,10 +69,6 @@ namespace Lomztein.BFA2.Research
                 req.Stop();
             }
         }
-
-        public string[] GetUniqueRequirementsStatuses() => UniquePrerequisites.Select(x => x.Status).ToArray();
-        public string[] GetUniqueRequirementsDescriptions() => UniquePrerequisites.Select(x => x.Description).ToArray();
-        public string[] GetRewardDescriptions() => Rewards.Select(x => x.Description).ToArray();
 
         private void OnRequirementProgressed(UniquePrerequisite obj)
         {

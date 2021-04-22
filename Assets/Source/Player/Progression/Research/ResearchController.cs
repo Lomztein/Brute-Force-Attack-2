@@ -21,6 +21,7 @@ namespace Lomztein.BFA2.Research
 
         private IResourceContainer _resourceContainer;
 
+        [SerializeField]
         private List<ResearchOption> _all;
         private List<ResearchOption> _inProgress = new List<ResearchOption>();
         private List<ResearchOption> _completed = new List<ResearchOption>();
@@ -30,6 +31,7 @@ namespace Lomztein.BFA2.Research
         public event Action<ResearchOption> OnResearchProgressed;
         public event Action<ResearchOption> OnResearchCancelled;
         public event Action<ResearchOption> OnResearchAdded;
+        public event Action OnTick;
 
         private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
@@ -42,6 +44,7 @@ namespace Lomztein.BFA2.Research
                 .Where(x => !_inProgress.Exists(y => y.Identifier == x.Identifier)) // Filter in progress.
                 .Where(x => !_completed.Exists(y => y.Identifier == x.Identifier)) // Filter completed.
                 .Where(x => PrerequisitesCompleted(x)) // Filter unfinished prerequisites.
+                .Where(x => x.UniquePrerequisitesCompleted) // Filter with own unfinished prerequisites.
                 .ToArray();
         }
 
@@ -67,6 +70,8 @@ namespace Lomztein.BFA2.Research
             {
                 option.Tick();
             }
+
+            OnTick?.Invoke();
         }
 
         private IEnumerable<ResearchOption> LoadResearch()

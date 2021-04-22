@@ -32,17 +32,24 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
 
         public override void Assemble(object obj, IAssignableMemberInfo member, ValueModel model, Type expectedType, AssemblyContext context)
         {
-            if (model is PathModel pathModel)
+            if (!ValueModel.IsNull(model))
             {
-                member.SetValue(obj, SerializationFileAccess.LoadObjectFromFile(pathModel.Path, expectedType));
-                return;
+                if (model is PathModel pathModel)
+                {
+                    var value = SerializationFileAccess.LoadObjectFromFile(pathModel.Path, expectedType);
+                    member.SetValue(obj, value);
+                    return;
+                }
+                throw new InvalidOperationException(nameof(model) + " must be a " + nameof(PathModel));
             }
-            throw new InvalidOperationException(nameof(model) + " must be a " + nameof (PathModel));
         }
 
         public override void Disassemble(ObjectField field, object obj, Type expectedType, DisassemblyContext context)
         {
-            if (obj is UnityEngine.Object uObj)
+            if (obj == null)
+            {
+                field.Model = new NullModel();
+            } else if (obj is UnityEngine.Object uObj)
             {
                 string assetPath = AssetDatabase.GetAssetPath(uObj);
                 foreach (string path in _assetPaths)

@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Research.UI
     {
         public string Title => Research.Name;
         public string Description => Research.Description;
-        public string Footnote => string.Join("\n", Research.GetUniqueRequirementsStatuses());
+        public string Footnote => null;
 
         public Image Image;
         public Text Name;
@@ -54,10 +54,6 @@ namespace Lomztein.BFA2.Research.UI
                 {
                     Cost.text += ", Waves: Instant";
                 }
-            }
-            else
-            {
-                Cost.text = string.Join(", ", Research.GetUniqueRequirementsStatuses());
             }
         }
     }

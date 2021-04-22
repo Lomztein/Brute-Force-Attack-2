@@ -12,11 +12,12 @@ namespace Lomztein.BFA2.UI
     public class TextLocalizer : MonoBehaviour
     {
         public string Key;
+        public bool Required = true;
 
         private void Awake()
         {
             Text text = GetComponent<Text>();
-            text.text = Localization.Get(string.IsNullOrEmpty(Key) ? text.text : Key) ;
+            text.text = Localization.Get(string.IsNullOrEmpty(Key) ? text.text : Key, Required) ;
         }
     }
 }

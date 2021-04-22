@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Research.Rewards
 {
+    [System.Serializable]
     public abstract class CompletionReward
     {
-        public abstract string Description { get; }
-
         public abstract void ApplyReward();
     }
 }

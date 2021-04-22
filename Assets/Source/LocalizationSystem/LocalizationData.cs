@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.LocalizationSystem
     // TODO: Reimplement as composite pattern if performance is trash.
     public class LocalizationData : IAssemblable, IEnumerable<KeyValuePair<string, string>>
     {
-        public CultureInfo Culture { get; private set; } = CultureInfo.GetCultureInfo("en-US");
+        public CultureInfo Culture { get; private set; } = CultureInfo.GetCultureInfo(PlayerPrefs.GetString("Culture", "en-US"));
         private Dictionary<string, string> _translations = new Dictionary<string, string>();
 
         public LocalizationData() { }
@@ -37,11 +37,15 @@ namespace Lomztein.BFA2.LocalizationSystem
             }
         }
 
-        public string Get(string key, params object[] values)
+        public string Get(string key, bool required, params object[] values)
         {
             if (_translations.TryGetValue(key, out string translation))
             {
                 return InsertValues(translation, values);
+            }
+            else if (required)
+            {
+                throw new NoLocalizationException(key, Culture);
             }
             else
             {

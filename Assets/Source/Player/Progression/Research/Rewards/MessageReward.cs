@@ -10,8 +10,6 @@ namespace Lomztein.BFA2.Research.Rewards
 {
     public class MessageReward : CompletionReward
     {
-        public override string Description => "Recieve a message.";
-
         [ModelProperty]
         public string Content = "Message Content";
         [ModelProperty]

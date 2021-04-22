@@ -10,10 +10,6 @@ namespace Lomztein.BFA2.Research.Rewards
     {
         [ModelProperty]
         public string Identifier;
-        [ModelProperty][SerializeField]
-        private string _description;
-
-        public override string Description => _description;
 
         public override void ApplyReward()
         {

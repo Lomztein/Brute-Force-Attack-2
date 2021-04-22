@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             foreach (IAssignableMemberInfo field in fields)
             {
                 var property = model.GetProperty(field.Name);
-                if (!ValueModel.IsNull (property))
+                if (property != null)
                 {
                     GetPropertyAssembler(field.AttributeType).Assemble(obj, field, property, field.ValueType, context);
                 }

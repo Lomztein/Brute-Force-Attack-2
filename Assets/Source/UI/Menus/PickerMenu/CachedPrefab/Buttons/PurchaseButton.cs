@@ -40,7 +40,10 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 
         private void OnDestroy()
         {
-            _resourceContainer.OnResourceChanged -= OnResourceChanged;
+            if (_resourceContainer != null)
+            {
+                _resourceContainer.OnResourceChanged -= OnResourceChanged;
+            }
         }
 
         private void OnResourceChanged(Resource arg1, int arg2, int arg3)

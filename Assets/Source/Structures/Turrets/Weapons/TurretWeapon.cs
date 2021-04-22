@@ -210,9 +210,9 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         private void HandleProjectile(IProjectile projectile)
         {
             Projectile proj = projectile as Projectile; // TODO: Extend this to an external ProjectileHandler class, to support other projectile implementations. If needed.
-            proj.Speed = GetSpeed();
+            proj.Speed = GetSpeed() * Random.Range(0.9f, 1.1f);
             proj.Damage = GetDamage();
-            proj.Range = GetRange();
+            proj.Range = GetRange() * Random.Range(0.9f, 1.1f); ;
             proj.Layer = HitLayer;
             proj.Color = GetColor();
             proj.Target = Provider.GetTarget();

@@ -11,6 +11,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.HitscanRender
 {
     public class StraightHitscanRenderer : MonoBehaviour, IHitscanRenderer
     {
+        [ModelReference]
         public LineRenderer Renderer;
         [ModelProperty] public float ShrinkTime;
 

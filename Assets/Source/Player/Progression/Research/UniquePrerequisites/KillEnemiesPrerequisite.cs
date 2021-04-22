@@ -18,11 +18,6 @@ namespace Lomztein.BFA2.Research.UniquePrerequisites
         [ModelProperty]
         public Colorization.Color[] TargetColors;
 
-        public override float Progress => _current / Target;
-
-        public override string Description => "Slay " + Target + " " + FormatTargetColors() + " enemies.";
-        public override string Status => Mathf.Round(_current) + " / " + Target + " " + FormatTargetColors() + " worth of enemies slain.";
-
         public override event Action<UniquePrerequisite> OnCompleted;
         public override event Action<UniquePrerequisite> OnProgressed;
 

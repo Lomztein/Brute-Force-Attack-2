@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem.Assemblers.EngineComponent;
+using Lomztein.BFA2.ContentSystem.Objects.Assemblers.ComponentConverters;
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Utilities;
@@ -18,6 +19,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
     {
 
         private static IEnumerable<IEngineComponentAssembler> _engineSerializers;
+        private static IEnumerable<IComponentConverter> _converters;
 
         public ComponentAssembler ()
         {
@@ -25,9 +27,14 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             {
                 _engineSerializers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IEngineComponentAssembler>();
             }
+            if (_converters == null)
+            {
+                _converters = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IComponentConverter>();
+            }
         }
 
         private IEngineComponentAssembler GetEngineComponentAssembler(Type type) => _engineSerializers.FirstOrDefault(x => x.Type == type);
+        private IComponentConverter GetComponentConverter (Type type) => _converters.FirstOrDefault(x => x.CanConvert (type));
 
         public void Assemble (ObjectModel model, GameObject target, AssemblyContext context)
         {
@@ -41,6 +48,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 }
 
                 serializer.Assemble(model, comp, context);
+                context.MakeReferencable(comp, model.Guid);
                 return;
             }
 
@@ -51,14 +59,21 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         
         public ObjectModel Disassemble(Component component, DisassemblyContext context)
         {
+            var converter = GetComponentConverter(component.GetType());
+            if (converter != null)
+            {
+                Component converted = converter.ConvertComponent(component, component.gameObject);
+                return context.MakeReferencable(component, (ObjectModel)Disassemble(converted, context).MakeExplicit(converted.GetType()));
+            }
+
             var assembler = GetEngineComponentAssembler(component.GetType());
             if (assembler != null)
             {
-                return assembler.Disassemble(component, context); // Components are always explicit.
+                return context.MakeReferencable(component, (ObjectModel)assembler.Disassemble(component, context).MakeExplicit(component.GetType())); // Components are always explicit.
             }
 
             ObjectPopulator populator = new ObjectPopulator();
-            return populator.Extract(component, context);
+            return (ObjectModel)populator.Extract(component, context).MakeExplicit(component.GetType());
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Lomztein.BFA2.UI
 
             Bounds bounds = GetObjectBounds(model);
 
-            float camSize = Mathf.Abs(bounds.extents.y);
+            float camSize = Mathf.Max (bounds.extents.y, bounds.extents.x);
             Camera.orthographicSize = camSize;
 
             RenderTexture.active = renderTexture;

@@ -25,6 +25,8 @@ namespace Lomztein.BFA2.Research.UI
             SpriteImage.color = option.SpriteTint;
 
             _option = option;
+            _option.OnTick += OnProgressed;
+
             UpdateText();
         }
 
@@ -40,7 +42,7 @@ namespace Lomztein.BFA2.Research.UI
         {
             if (_option != null)
             {
-                _option.OnUniquePrerequisiteProgressed -= OnProgressed; // Gotta clean up when dealing with events.
+                _option.OnTick -= OnProgressed; // Gotta clean up when dealing with events.
             }
         }
     }

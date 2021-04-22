@@ -16,9 +16,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private const string ENEMY_CONTENT_PATH = "*/Enemies";
         private const string GENERATOR_ENEMY_DATA_PATH = "*/WaveCollections/GeneratorEnemyData";
 
-        private const int BASIC_ENEMY_HEALTH = 10;
-        private const int BASIC_ENEMY_SPEED = 5;
-
         private IContentCachedPrefab[] _enemies;
         private System.Random _random;
 
@@ -74,37 +71,14 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         }
 
         private GeneratorEnemyData GetGeneratorEnemyData (IEnemy enemy)
-        {
-            GeneratorEnemyData data = GetGeneratorEnemyDataCache().FirstOrDefault(x => x.EnemyIdentifier == enemy.UniqueIdentifier);
-            if (data == null)
-            {
-                data = ScriptableObject.CreateInstance<GeneratorEnemyData>();
-                data.DifficultyValue = CalculateEnemyDifficulty(enemy);
-                data.EarliestWave = Mathf.RoundToInt (Mathf.Log10(data.DifficultyValue));
-                data.EnemyIdentifier = enemy.UniqueIdentifier;
-                Debug.LogWarning($"Enemy type {enemy.UniqueIdentifier} missing data for wave generator to use. Please create this data and place it in $ContentPack/WaveCollections/GeneratorEnemyData/");
-            }
-            return data;
-        }
-
-        private float CalculateEnemyDifficulty (IEnemy enemy)
-        {
-            if (enemy is Enemy concrete)
-            {
-                return (concrete.MaxHealth / BASIC_ENEMY_HEALTH) * (concrete.Speed / BASIC_ENEMY_SPEED) * ((concrete.Armor + concrete.Shields) / concrete.MaxHealth);
-            }
-            else
-            {
-                return 1; // fuck I dunno I really need to remove the IEnemy interface it's truly nothing but trouble and serves no purpose.
-            }
-        }
+            => GetGeneratorEnemyDataCache().FirstOrDefault(x => x.EnemyIdentifier == enemy.UniqueIdentifier);
 
         private (IContentCachedPrefab enemy, int amount) GetRandomEnemy(float credits)
         {
             var enemies = GetEnemies();
             IContentCachedPrefab[] options = enemies.Where(x => ShouldSpawn(x.GetCache().GetComponent<IEnemy>())).ToArray();
-
             IContentCachedPrefab enemy = options[GetRandom().Next(0, options.Length)];
+
             GeneratorEnemyData data = GetGeneratorEnemyData(enemy.GetCache().GetComponent<IEnemy>());
 
             return (enemy, Mathf.Max(Mathf.RoundToInt(credits / data.DifficultyValue), 1));
@@ -113,6 +87,9 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private bool ShouldSpawn(IEnemy enemy)
         {
             GeneratorEnemyData data = GetGeneratorEnemyData(enemy);
+            if (data == null)
+                return false;
+
             float frequency = _frequency / data.DifficultyValue;
 
             return _wave >= data.EarliestWave && frequency <= _maxSpawnFrequency && frequency >= _minSpawnFrequency;

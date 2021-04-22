@@ -37,7 +37,9 @@ namespace Lomztein.BFA2.LocalizationSystem
             _current = newData;
         }
 
-        public static string Get(string key, params object[] values) => _current != null ? _current.Get(key, values) : key;
+        public static string Get(string key, params object[] values) => _current != null ? Get (key, false, values) : key;
+        public static string Get(string key, bool required, params object[] values) => _current != null ? _current.Get(key, required, values) : key;
+
         public static CultureInfo GetCurrentCulture() => _current.Culture;
     }
 }

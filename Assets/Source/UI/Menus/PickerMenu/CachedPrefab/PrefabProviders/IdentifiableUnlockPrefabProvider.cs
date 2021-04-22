@@ -37,13 +37,16 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
         private void OnUnlockChanged(string identifier, bool value)
         {
             IContentCachedPrefab prefab = _prefabs.FirstOrDefault(x => x.GetCache().GetComponent<IIdentifiable>().UniqueIdentifier == identifier);
-            if (value == true)
+            if (prefab != null)
             {
-                Add(new[] { prefab });
-            }
-            else
-            {
-                Remove(new[] { prefab });
+                if (value == true)
+                {
+                    Add(new[] { prefab });
+                }
+                else
+                {
+                    Remove(new[] { prefab });
+                }
             }
         }
 

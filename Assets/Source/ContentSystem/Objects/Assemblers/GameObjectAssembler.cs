@@ -61,8 +61,10 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         public RootModel Disassemble(GameObject gameObject)
         {
             DisassemblyContext context = new DisassemblyContext();
-            RootModel model = new RootModel (RecursiveDisassemble(gameObject, context));
+            GameObject copy = Object.Instantiate(gameObject);
+            RootModel model = new RootModel (RecursiveDisassemble(copy, context));
             context.ReturnGuidRequests();
+            Object.DestroyImmediate(copy);
             return model;
         }
 
@@ -73,7 +75,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             var componentModels = new List<ObjectModel>();
             foreach (Component component in components)
             {
-                componentModels.Add(_componentAssembler.Disassemble(component, context).MakeExplicit(component.GetType()) as ObjectModel);
+                componentModels.Add(_componentAssembler.Disassemble(component, context));
             }
 
             return context.MakeReferencable (gameObject, new ObjectModel(

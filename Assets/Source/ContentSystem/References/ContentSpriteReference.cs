@@ -10,8 +10,11 @@ namespace Lomztein.BFA2.ContentSystem.References
     [Serializable]
     public class ContentSpriteReference
     {
-        [ModelProperty]
+        [ModelProperty, Obsolete("Use ContentSpriteReference.Texture instead.")]
         public string Path;
+        [ModelAssetReference]
+        public Texture2D Texture;
+
         private Sprite _cache;
 
         [ModelProperty]
@@ -19,7 +22,7 @@ namespace Lomztein.BFA2.ContentSystem.References
         [ModelProperty]
         public Vector2 Pivot = new Vector2(0.5f, 0.5f);
         [ModelProperty]
-        public float PixelsPerUnit = 32;
+        public float PixelsPerUnit = 16;
 
         public Sprite Get()
         {
@@ -27,11 +30,24 @@ namespace Lomztein.BFA2.ContentSystem.References
             {
                 Texture2D texture;
 
-                try
+                if (Texture != null)
                 {
-                    texture = (Texture2D)Content.Get(Path, typeof(Texture2D));
-                }catch (FileNotFoundException)
+                    texture = Texture;
+                }
+                else if (!string.IsNullOrEmpty(Path))
                 {
+                    try
+                    {
+                        texture = (Texture2D)Content.Get(Path, typeof(Texture2D));
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        texture = new Texture2D(2, 2);
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Texture missing!");
                     texture = new Texture2D(2, 2);
                 }
 

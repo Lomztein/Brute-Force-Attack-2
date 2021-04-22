@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Battlefield
             "Core.MachineGunT1",
             "Core.RocketLauncherT1",
             "Core.AuxProcessor",
-            "Core.1x3Connector",
+            "Core.OneToTwoConnector",
         };
         public string[] DefaultUnlockedStructures =
         {

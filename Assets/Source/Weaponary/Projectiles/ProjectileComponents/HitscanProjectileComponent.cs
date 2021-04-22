@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 
         private void Awake()
         {
-            _renderer = GetComponent<IHitscanRenderer>();
+            _renderer = GetComponentInChildren<IHitscanRenderer>();
         }
 
         public void End()

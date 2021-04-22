@@ -7,12 +7,9 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Research.UniquePrerequisites
 {
+    [Serializable]
     public abstract class UniquePrerequisite 
     {
-        public abstract string Description { get; }
-        public abstract float Progress { get; }
-        public abstract string Status { get; }
-
         public abstract event Action<UniquePrerequisite> OnCompleted;
         public abstract event Action<UniquePrerequisite> OnProgressed;
 
