@@ -40,10 +40,6 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 {
                     GetPropertyAssembler(field.AttributeType).Assemble(obj, field, property, field.ValueType, context);
                 }
-                else
-                {
-                    Debug.LogWarning($"Could not find property for field {field.Name} in {modelType.Name}. Value is defualt.");
-                }
             }
 
             context.MakeReferencable(obj, model.Guid);

@@ -13,6 +13,7 @@ using Lomztein.BFA2.Structures.Turrets.TargetProviders;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.FireControl;
+using Lomztein.BFA2.Weaponary.FireSynchronization;
 using Lomztein.BFA2.Weaponary.Projectiles;
 using Lomztein.BFA2.World;
 using System.Collections;
@@ -65,6 +66,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         private IProjectilePool _projectilePool;
         private IFireAnimation _fireAnimation;
         private IFireControl _fireControl;
+        private IFireSynchronization _fireSync;
 
         [ModelProperty]
         public Color Color;
@@ -117,6 +119,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
+            _fireSync = GetComponent<IFireSynchronization>() ?? new NoFireSynchronization();
+
             _pool = new NoGameObjectPool<IProjectile>(ProjectilePrefab);
             _projectilePool = new ProjectilePool(_pool);
             _pool.OnNew += OnNewProjectile;
@@ -147,6 +151,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
                 _chambered = false;
                 StartCoroutine(Rechamber(Cooldown));
             }
+        }
+
+        public void Synchronize(IFireSynchronization sync)
+        {
+            _fireSync = sync;
         }
 
         private void OnNewProjectile(IProjectile obj)
@@ -181,7 +190,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         public bool TryFire()
         {
-            if (_chambered)
+            if (_chambered && _fireSync.TryFire())
             {
                 Fire();
                 _chambered = false;
