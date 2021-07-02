@@ -1,0 +1,42 @@
+{
+  "Name": "I'll puncture the next thing that moves!",
+  "Description": "Deploy a turret with four synchronized machine guns. ",
+  "Identifier": "Core.DeployQuad",
+  "Sprite": {
+    "Path": "Core\\Sprites\\Enemies\\BasicEnemyT2.png",
+    "Texture": "$Path{Core/Sprites/Components/FlakCannonT3.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SynchronizerTurretRequirement",
+    "$Data": {
+      "WeaponIdentifier": "Core.MachineGun",
+      "WeaponAmount": 4
+    }
+  },
+  "Reward": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Rewards.AddMutatorReward",
+    "$Data": {
+      "Mutator": {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.MitosisModeMutator",
+        "$Data": {
+          "Clones": 2,
+          "Name": "Mitosis Mode",
+          "Description": "Slaying a higher tier enemy spawns lower tier variants.",
+          "Identifier": "Core.MitosisMode"
+        }
+      }
+    }
+  }
+}

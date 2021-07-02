@@ -28,7 +28,6 @@ namespace Lomztein.BFA2.Structures.Turrets
         public override Size Width => GetRootComponent().Width;
         public override Size Height => GetRootComponent().Height;
 
-        public IExpansionCardContainer ExpansionCards { get; } = new ExpansionCardContainer();
         public override IResourceCost Cost => GetCost();
         public float Complexity => GetComponents().Sum(x => x.ComputeComplexity());
 

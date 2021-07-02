@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: DeployQuadCannon
+  m_EditorClassIdentifier: 
+  Name: I'll puncture the next thing that moves!
+  Description: 'Deploy a turret with four synchronized machine guns. '
+  Identifier: Core.DeployQuad
+  Sprite:
+    Path: Core\Sprites\Enemies\BasicEnemyT2.png
+    Texture: {fileID: 2800000, guid: f33b876aeab70424d87f29bac73399b0, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    id: 0
+  Reward:
+    id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: SynchronizerTurretRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        WeaponIdentifier: Core.MachineGun
+        WeaponAmount: 4
+    00000001:
+      type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
+        asm: Assembly-CSharp}
+      data:
+        Mutator: {fileID: 11400000, guid: e39fdebb699634f48b03ef7b9ed9ed63, type: 2}

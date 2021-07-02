@@ -14,6 +14,7 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
     {
         public BattlefieldController Battlefield;
 
+        public StructureSubFacade Structures => Facade.GetComponent<StructureSubFacade>();
         public PlayerSubFacade Player => Facade.GetComponent<PlayerSubFacade>();
         public EnemySubFacade Enemies => Facade.GetComponent<EnemySubFacade>();
 
