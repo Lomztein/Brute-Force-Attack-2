@@ -1,0 +1,42 @@
+{
+  "Name": "In waves, they fall",
+  "Description": "Clear 50 waves of enemies. Unlocks the Starting Wave mutator, with which you can select which wave to start on.",
+  "Identifier": "Core.Clear50Waves",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Enemies/SplitterEnemy.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
+    "$Data": {
+      "Target": 50,
+      "CrossGames": true
+    }
+  },
+  "Reward": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Rewards.AddMutatorReward",
+    "$Data": {
+      "Mutator": {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingWaveMutator",
+        "$Data": {
+          "StartingWave": 0,
+          "Name": "Starting Wave",
+          "Description": "Modify which wave you start the game on.",
+          "Identifier": "Core.StartingWaveMutator"
+        }
+      }
+    }
+  }
+}

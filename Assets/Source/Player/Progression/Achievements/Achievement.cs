@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Player.Progression.Achievements.Requirements;
+using Lomztein.BFA2.Player.Progression.Achievements.Rewards;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
 using System;
@@ -17,7 +18,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
     {
         [ModelProperty]
         public string Name;
-        [ModelProperty]
+        [ModelProperty] [TextArea]
         public string Description;
         [ModelProperty]
         public string Identifier;
@@ -36,14 +37,14 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         public event Action<Achievement> OnCompleted;
         public event Action<Achievement> OnProgressed;
 
-        public void Init (Facade facade) // TODO: Decide on whether or not this is executed on scene load or only on initial startup.
+        public void Init ()
         {
-            Requirement.Init(facade, OnRequirementCompleted, OnRequirementProgressed);
+            Requirement.Init(OnRequirementCompleted, OnRequirementProgressed);
         }
 
-        public void End (Facade facade)
+        public void End ()
         {
-            Requirement.End(facade);
+            Requirement.End();
         }
 
         public void Complete ()
@@ -67,6 +68,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         }
 
         public ValueModel SerializeProgress() => Requirement.SerializeProgress();
-        public void DeserializeProgress(ValueModel source) => Requirement?.DeserializeProgress(source);
+        public void DeserializeProgress(ValueModel source)
+        {
+            if (!ValueModel.IsNull(source))
+            {
+                Requirement?.DeserializeProgress(source);
+            }
+        }
     }
 }

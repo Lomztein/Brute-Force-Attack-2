@@ -1,6 +1,6 @@
 {
   "Name": "We love you too!",
-  "Description": "Enter the credits to view the very incredibly handsome sexy talented developers behind this.",
+  "Description": "Enter the credits to view the very incredibly handsome sexy talented developers behind this. Unlocks the Sandbox Mode mutator, with which you have infinite resources available.",
   "Identifier": "Core.VisitCredits",
   "Sprite": {
     "Path": "Core\\Sprites\\UI\\Credits.png",
@@ -24,5 +24,17 @@
       "WindowToVisit": "credits"
     }
   },
-  "Reward": null
+  "Reward": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Rewards.AddMutatorReward",
+    "$Data": {
+      "Mutator": {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.SandboxModeMutator",
+        "$Data": {
+          "Name": "Sandbox Mode",
+          "Description": "You have infinite of all resources.",
+          "Identifier": "Core.SandboxMode"
+        }
+      }
+    }
+  }
 }

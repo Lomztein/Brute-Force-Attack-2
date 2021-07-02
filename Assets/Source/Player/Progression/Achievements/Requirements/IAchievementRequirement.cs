@@ -14,9 +14,9 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         bool Completed { get; }
 
-        void Init(Facade facade, Action onCompletedCallback, Action onProgressedCallback);
+        void Init(Action onCompletedCallback, Action onProgressedCallback);
 
-        void End(Facade facade);
+        void End();
 
         ValueModel SerializeProgress();
 

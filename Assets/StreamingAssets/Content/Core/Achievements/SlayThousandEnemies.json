@@ -1,6 +1,6 @@
 {
   "Name": "A million more on their way",
-  "Description": "You've slain ten thousand enemies, but they never end.",
+  "Description": "You've slain ten thousand enemies, but they never end. Unlocks the Mitosis Mode mutator, which has enemies splitting into lower tier variants on death.",
   "Identifier": "Core.SlayTenThousandEnemies",
   "Sprite": {
     "Path": "Core\\Sprites\\Enemies\\BasicEnemyT2.png",
@@ -33,5 +33,18 @@
       ]
     }
   },
-  "Reward": null
+  "Reward": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Rewards.AddMutatorReward",
+    "$Data": {
+      "Mutator": {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.MitosisModeMutator",
+        "$Data": {
+          "Clones": 2,
+          "Name": "Mitosis Mode",
+          "Description": "Slaying a higher tier enemy spawns lower tier variants.",
+          "Identifier": "Core.MitosisMode"
+        }
+      }
+    }
+  }
 }

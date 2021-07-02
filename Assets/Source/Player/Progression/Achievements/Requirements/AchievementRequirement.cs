@@ -14,20 +14,20 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public abstract float Progression { get; }
         public abstract bool Completed { get; }
 
-        public abstract void End(Facade facade);
+        public abstract void End();
 
         protected Action _onCompletedCallback;
         protected Action _onProgressedCallback;
 
-        public void Init(Facade facade, Action onCompletedCallback, Action onProgressedCallback)
+        public void Init(Action onCompletedCallback, Action onProgressedCallback)
         {
             _onCompletedCallback = onCompletedCallback;
             _onProgressedCallback = onProgressedCallback;
 
-            Init(facade);
+            Init();
         }
 
-        public abstract void Init(Facade facade);
+        public abstract void Init();
 
         public virtual ValueModel SerializeProgress()
         {

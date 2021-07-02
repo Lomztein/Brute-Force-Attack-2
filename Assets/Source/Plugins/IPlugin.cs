@@ -7,8 +7,8 @@ namespace Lomztein.BFA2.Plugins
 {
     public interface IPlugin
     {
-        void Start(Facade facade);
+        void Start();
 
-        void Stop(Facade facade);
+        void Stop();
     }
 }

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: SlayMillionEnemies
   m_EditorClassIdentifier: 
   Name: It never truly ends
-  Description: One million enemies down, a most impressive effort.
+  Description: One million enemies down, a most impressive effort. Unlocks the Apocalypse
+    Mode mutator, where the enemies NEVER. STOP. COMING.
   Identifier: Core.SlayMillionEnemies
   Sprite:
     Path: Core\Sprites\Enemies\BasicEnemyT3.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -39,4 +41,7 @@ MonoBehaviour:
         TargetEnemies: 1000000
         TargetColors: 00000000010000000200000003000000040000000500000006000000
     00000001:
-      type: {class: , ns: , asm: }
+      type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
+        asm: Assembly-CSharp}
+      data:
+        Mutator: {fileID: 11400000, guid: f940f4666b9353a418c55358293012c8, type: 2}

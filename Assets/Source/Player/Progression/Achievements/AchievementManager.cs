@@ -51,7 +51,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
                 {
                     achievement.DeserializeProgress (ProfileManager.CurrentProfile.GetAchievementStatus(achievement.Identifier).Progression);
 
-                    achievement.Init(Facade.GetInstance());
+                    achievement.Init();
                     achievement.OnCompleted += AchievementCompleted;
                     achievement.OnProgressed += AchievementProgressed;
                 }
@@ -64,7 +64,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
             {
                 if (!IsCompleted(achievement, ProfileManager.CurrentProfile))
                 {
-                    achievement.End(Facade.GetInstance());
+                    achievement.End();
                     achievement.OnCompleted -= AchievementCompleted;
                     achievement.OnProgressed -= AchievementProgressed;
                 }
@@ -78,7 +78,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
 
         private void AchievementCompleted(Achievement obj)
         {
-            obj.End(Facade.GetInstance());
+            obj.End();
             obj.OnCompleted -= AchievementCompleted;
             obj.OnProgressed -= AchievementProgressed;
 

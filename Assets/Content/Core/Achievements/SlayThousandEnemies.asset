@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: SlayThousandEnemies
   m_EditorClassIdentifier: 
   Name: A million more on their way
-  Description: You've slain ten thousand enemies, but they never end.
+  Description: You've slain ten thousand enemies, but they never end. Unlocks the
+    Mitosis Mode mutator, which has enemies splitting into lower tier variants on
+    death.
   Identifier: Core.SlayTenThousandEnemies
   Sprite:
     Path: Core\Sprites\Enemies\BasicEnemyT2.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -39,4 +42,7 @@ MonoBehaviour:
         TargetEnemies: 1000
         TargetColors: 00000000010000000200000003000000040000000500000006000000
     00000001:
-      type: {class: , ns: , asm: }
+      type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
+        asm: Assembly-CSharp}
+      data:
+        Mutator: {fileID: 11400000, guid: e39fdebb699634f48b03ef7b9ed9ed63, type: 2}

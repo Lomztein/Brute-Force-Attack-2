@@ -1,6 +1,6 @@
 {
   "Name": "It never truly ends",
-  "Description": "One million enemies down, a most impressive effort.",
+  "Description": "One million enemies down, a most impressive effort. Unlocks the Apocalypse Mode mutator, where the enemies NEVER. STOP. COMING.",
   "Identifier": "Core.SlayMillionEnemies",
   "Sprite": {
     "Path": "Core\\Sprites\\Enemies\\BasicEnemyT3.png",
@@ -33,5 +33,17 @@
       ]
     }
   },
-  "Reward": null
+  "Reward": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Rewards.AddMutatorReward",
+    "$Data": {
+      "Mutator": {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.ApocalypseModeMutator",
+        "$Data": {
+          "Name": "Apocalypse Mode",
+          "Description": "Once the attacks begin, they never end again.",
+          "Identifier": "Core.ApocalypseMode"
+        }
+      }
+    }
+  }
 }

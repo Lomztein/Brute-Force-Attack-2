@@ -16,27 +16,19 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public Colorization.Color[] TargetColors;
 
         private int _enemiesSlain;
-        private Facade _facade;
 
         public override bool Binary => false;
         public override float Progression => Mathf.Clamp01(_enemiesSlain / (float)TargetEnemies);
         public override bool Completed => _enemiesSlain / (float)TargetEnemies > 1f;
 
-        public override void End(Facade facade)
+        public override void End()
         {
-            if (_facade.Battlefield.Active)
-            {
-                _facade.Battlefield.Battlefield.RoundController.OnEnemyKill -= OnEnemySpawn;
-            }
+            Facade.Battlefield.Enemies.OnEnemyKill -= OnEnemySpawn;
         }
 
-        public override void Init(Facade facade)
+        public override void Init()
         {
-            _facade = facade;
-            if (_facade.Battlefield.Active)
-            {
-                _facade.Battlefield.Battlefield.RoundController.OnEnemyKill += OnEnemySpawn;
-            }
+            Facade.Battlefield.Enemies.OnEnemyKill += OnEnemySpawn;
         }
 
         private void OnEnemySpawn(IEnemy obj)

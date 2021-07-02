@@ -19,6 +19,7 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
         public GameObject AvailablePrefab;
 
         private readonly List<Mutator> _allMutators = new List<Mutator>();
+        public bool DisableIfNone;
 
         private IEnumerable<AvailableMutator> AvailableMutators ()
         {
@@ -36,8 +37,8 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
             }
         }
 
-        private AvailableMutator GetAvailableMutator(string identifier) => AvailableMutators().First(x => x.Mutator.Identifier == identifier);
-        private EnabledMutator GetEnabledMutator(string identifier) => EnabledMutators().First(x => x.Mutator.Identifier == identifier);
+        private AvailableMutator GetAvailableMutator(string identifier) => AvailableMutators().FirstOrDefault(x => x.Mutator.Identifier == identifier);
+        private EnabledMutator GetEnabledMutator(string identifier) => EnabledMutators().FirstOrDefault(x => x.Mutator.Identifier == identifier);
 
         private void Awake()
         {
@@ -46,13 +47,57 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
 
         private void Start()
         {
+            InitializeAvailableList();
+            UpdateListHidden();
+        }
+
+        private void InitializeAvailableList ()
+        {
             foreach (Mutator mutator in _allMutators)
             {
-                CreateAvailableButton(mutator).Assign(mutator, EnableMutator);
+                if (GetAvailableMutator(mutator.Identifier) == null)
+                {
+                    CreateAvailableButton(mutator).Assign(mutator, EnableMutator);
+                }
             }
         }
 
-        public void AddMutator(Mutator mutator) => _allMutators.Add(mutator);
+        public void AddMutator(Mutator mutator)
+        {
+            _allMutators.Add(mutator);
+            CreateAvailableButton(mutator).Assign(mutator, EnableMutator);
+            UpdateListHidden();
+        }
+
+        public void UpdateListHidden ()
+        {
+            if (DisableIfNone)
+            {
+                if (_allMutators.Count == 0)
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    gameObject.SetActive(true);
+                }
+            }
+        }
+
+        public void RemoveMutator (string identifier)
+        {
+            // Disable it if it is enabled.
+            EnabledMutator enabled = GetEnabledMutator(identifier);
+            if (enabled)
+            {
+                DisableMutator(enabled.Mutator);
+            }
+            // Destroy the button.
+            Destroy(GetAvailableMutator(identifier).gameObject);
+
+            // Remove from list.
+            _allMutators.RemoveAll(x => x.Identifier == identifier);
+        }
 
         private AvailableMutator CreateAvailableButton(Mutator mutator)
         {

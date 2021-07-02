@@ -1,4 +1,6 @@
 ﻿using Lomztein.BFA2.FacadeComponents;
+using Lomztein.BFA2.FacadeComponents.Battlefield;
+using Lomztein.BFA2.FacadeComponents.MainMenu;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -13,12 +15,12 @@ namespace Lomztein.BFA2
     {
         private static Facade _instance;
 
-        private List<FacadeComponent> _components = new List<FacadeComponent>();
+        private List<IFacadeComponent> _components = new List<IFacadeComponent>();
 
-        public MainMenuFacade MainMenu => GetComponent<MainMenuFacade>();
-        public BattlefieldFacade Battlefield => GetComponent<BattlefieldFacade>();
+        public static MainMenuFacade MainMenu => GetComponent<MainMenuFacade>();
+        public static BattlefieldFacade Battlefield => GetComponent<BattlefieldFacade>();
 
-        public static Facade GetInstance ()
+        private static Facade GetInstance ()
         {
             if (_instance == null)
             {
@@ -33,9 +35,9 @@ namespace Lomztein.BFA2
             GetInstance();
         }
 
-        public T GetComponent<T>() where T : FacadeComponent
+        public static T GetComponent<T>() where T : IFacadeComponent
         {
-            foreach (FacadeComponent component in _components)
+            foreach (IFacadeComponent component in GetInstance()._components)
             {
                 if (component is T)
                 {
@@ -45,18 +47,18 @@ namespace Lomztein.BFA2
             throw new InvalidOperationException("The requested FacadeComponent was not found, please ensure that the FacadeComponent is added to the Facade during preloading.");
         }
 
-        public void AddFacadeComponent (FacadeComponent component)
+        public static void AddFacadeComponent (IFacadeComponent component)
         {
-            _components.Add(component);
+            GetInstance()._components.Add(component);
         }
 
         internal void InitComponents ()
         {
-            _components.AddRange(ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<FacadeComponent>());
+            _components.AddRange(ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IFacadeComponent>());
 
-            foreach (FacadeComponent component in _components)
+            foreach (IFacadeComponent component in _components)
             {
-                component.Init(this);
+                component.Init();
             }
         }
     }

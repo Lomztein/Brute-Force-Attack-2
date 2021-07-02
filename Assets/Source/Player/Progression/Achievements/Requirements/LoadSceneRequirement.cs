@@ -19,12 +19,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public override float Progression => Completed ? 1f : 0f;
         public override bool Completed => _sceneLoaded;
 
-        public override void End(Facade facade)
+        public override void End()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        public override void Init(Facade facade)
+        public override void Init()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }

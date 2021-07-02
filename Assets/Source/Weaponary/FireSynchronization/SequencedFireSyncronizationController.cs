@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Weaponary.FireSynchronization
         private void Next()
         {
             _currentIndex++;
-            _currentIndex = _currentIndex % _syncs.Count;
+            _currentIndex %= _syncs.Count;
             _next = _syncs[_currentIndex];
             _nextFireTime = (_timeBetweenFires / _syncs.Count) + Time;
         }

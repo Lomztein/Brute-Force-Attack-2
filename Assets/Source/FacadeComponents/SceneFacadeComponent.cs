@@ -7,31 +7,31 @@ using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.FacadeComponents
 {
-    public abstract class SceneFacadeComponent : FacadeComponent
+    public abstract class SceneFacadeComponent : IFacadeComponent
     {
         protected abstract int SceneBuildIndex { get; }
 
-        public override bool Active => _active;
+        public bool Active => _active;
         private bool _active;
 
-        public event Action OnAttached;
-        public event Action OnDetached;
+        public event Action OnSceneLoaded;
+        public event Action OnSceneUnloaded;
 
-        public override void Init(Facade facade)
+        public void Init()
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded += SceneManager_OnSceneLoaded;
         }
 
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        private void SceneManager_OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             Detach();
             _active = false;
-            OnDetached?.Invoke();
+            OnSceneUnloaded?.Invoke();
             if (arg0.buildIndex == SceneBuildIndex)
             {
                 Attach(arg0);
                 _active = true;
-                OnAttached?.Invoke();
+                OnSceneLoaded?.Invoke();
             }
         }
 

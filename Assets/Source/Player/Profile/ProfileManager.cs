@@ -12,8 +12,9 @@ namespace Lomztein.BFA2.Player.Profile
 {
     public static class ProfileManager
     {
+        private const string DEFAULT_NAME = "Default";
         public static string ProfileFolder => Application.persistentDataPath + "/Profiles";
-        public static PlayerProfile CurrentProfile { get; private set; } = LoadOrDefault(PlayerPrefs.GetString("PlayerProfile", "Default"));
+        public static PlayerProfile CurrentProfile { get; private set; } = LoadOrDefault(PlayerPrefs.GetString("PlayerProfile", DEFAULT_NAME));
 
         public static event Action<PlayerProfile, PlayerProfile> OnProfileChanged;
 
@@ -51,11 +52,18 @@ namespace Lomztein.BFA2.Player.Profile
 
         public static PlayerProfile LoadOrDefault(string profileName)
         {
+            // First, check if requested profile exists.
             PlayerProfile profile = Load(profileName);
             if (profile == null)
             {
-                profile = new PlayerProfile("Default");
-                Save(profile);
+                // Check if defualt profile exists.
+                profile = Load(DEFAULT_NAME);
+                if (profile == null)
+                {
+                    // If none at all, create new default.
+                    profile = new PlayerProfile(DEFAULT_NAME);
+                    Save(profile);
+                }
             }
             return profile;
         }

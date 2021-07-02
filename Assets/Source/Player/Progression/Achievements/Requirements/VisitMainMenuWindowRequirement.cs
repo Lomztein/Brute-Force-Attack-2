@@ -19,9 +19,9 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public override bool Completed => _visitedWindow;
         public override bool Binary => true;
 
-        public override void End(Facade facade)
+        public override void End()
         {
-            facade.MainMenu.OnWindowChanged += OnWindowChanged;
+            Facade.MainMenu.OnWindowChanged += OnWindowChanged;
         }
 
         private void OnWindowChanged(MainMenu.MenuWindow arg1, MainMenu.MenuWindow arg2)
@@ -33,9 +33,9 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             }
         }
 
-        public override void Init(Facade facade)
+        public override void Init()
         {
-            facade.MainMenu.OnWindowChanged += OnWindowChanged;
+            Facade.MainMenu.OnWindowChanged += OnWindowChanged;
         }
     }
 }

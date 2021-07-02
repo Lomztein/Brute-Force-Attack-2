@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: Clear50Waves
+  m_EditorClassIdentifier: 
+  Name: In waves, they fall
+  Description: Clear 50 waves of enemies. Unlocks the Starting Wave mutator, with
+    which you can select which wave to start on.
+  Identifier: Core.Clear50Waves
+  Sprite:
+    Path: 
+    Texture: {fileID: 2800000, guid: 6bbe8bcd75625134b828465194e83852, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    id: 0
+  Reward:
+    id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: ClearWavesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Target: 50
+        CrossGames: 1
+    00000001:
+      type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
+        asm: Assembly-CSharp}
+      data:
+        Mutator: {fileID: 11400000, guid: 2862ba1d14d44ad4996b3596d78db296, type: 2}

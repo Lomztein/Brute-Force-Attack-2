@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Plugins
         {
             foreach (IPlugin plugin in _loadedPlugins)
             {
-                plugin.Start(Facade.GetInstance());
+                plugin.Start();
             }
         }
 
@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Plugins
         {
             foreach (IPlugin plugin in _loadedPlugins)
             {
-                plugin.Stop(_facade);
+                plugin.Stop();
             }
         }
     }

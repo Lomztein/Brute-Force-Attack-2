@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: One down, thousands to go
   Description: Slay but a single enemy. Don't worry, there are MANY more where that
-    came from.
+    came from. Unlocks the Undying Enemies mutator, with which enemies have a chance
+    to revive on death.
   Identifier: Core.SlayOneEnemy
   Sprite:
     Path: Core\Sprites\Enemies\BasicEnemyT1.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -40,4 +42,7 @@ MonoBehaviour:
         TargetEnemies: 1
         TargetColors: 00000000010000000200000003000000040000000500000006000000
     00000001:
-      type: {class: , ns: , asm: }
+      type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
+        asm: Assembly-CSharp}
+      data:
+        Mutator: {fileID: 11400000, guid: fee0e2c80633a6845a54ada297ebd459, type: 2}

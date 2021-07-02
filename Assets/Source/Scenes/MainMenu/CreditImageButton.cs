@@ -14,10 +14,11 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         public string Name;
         public string Description;
         public string WebsiteUrl;
+        public string DisplayedWebsiteUrl;
 
         public string Title => Name;
         string ITooltip.Description => Description;
-        public string Footnote => WebsiteUrl;
+        public string Footnote => String.IsNullOrEmpty(DisplayedWebsiteUrl) ? WebsiteUrl : DisplayedWebsiteUrl;
 
         private void Start()
         {
