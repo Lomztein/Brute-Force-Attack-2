@@ -26,7 +26,6 @@ jobs:
     strategy:
       matrix: 
         targetPlatform:
-          - StandaloneWindows
           - StandaloneWindows64 
           - StandaloneLinux64
           - StandaloneOSX
@@ -61,7 +60,6 @@ jobs:
     strategy:
       matrix:
         buildTarget:
-          - StandaloneWindows
           - StandaloneWindows64 
           - StandaloneLinux64
           - StandaloneOSX
