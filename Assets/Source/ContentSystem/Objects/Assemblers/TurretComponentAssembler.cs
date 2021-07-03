@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         private static readonly string COMPONENTS_CONTENT_PATH = "*/Components";
         private IContentCachedPrefab[] _allComponents;
 
-        public void Assemble (ObjectModel model, TurretComponent parent, TurretAssembly assembly, AssemblyContext context)
+        public TurretComponent Assemble (ObjectModel model, Transform parent, TurretAssembly assembly, AssemblyContext context)
         {
             IContentCachedPrefab component = GetComponent(model.GetValue<string>("UniqueIdentifier"));
             ValueAssembler assembler = new ValueAssembler();
@@ -35,8 +35,10 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             TurretComponent newComponent = obj.GetComponent<TurretComponent>();
             foreach (ValueModel child in model.GetArray("Children"))
             {
-                Assemble(child as ObjectModel, newComponent, assembly, context);
+                Assemble(child as ObjectModel, newComponent.transform, assembly, context);
             }
+
+            return newComponent;
         }
 
         public ObjectModel Dissassemble (TurretComponent component, DisassemblyContext context)

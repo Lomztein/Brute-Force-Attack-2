@@ -28,6 +28,7 @@ namespace Lomztein.BFA2.Structures
 
         [SerializeField]
         [ModelProperty]
+        [TextArea]
         public string _description;
 
         [SerializeField]

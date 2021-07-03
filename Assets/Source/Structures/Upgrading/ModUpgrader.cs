@@ -13,6 +13,11 @@ namespace Lomztein.BFA2.Structures.Upgrading
 {
     public class ModUpgrader : Upgrader
     {
+        public override bool CanUpgrade()
+        {
+            return true;
+        }
+
         public override bool Upgrade()
         {
             return true;

@@ -34,6 +34,23 @@ namespace Lomztein.BFA2.Purchasing.Resources
             }
         }
 
+        public static IResourceCost Subtract(this IResourceCost rhs, IResourceCost lhs)
+        {
+            List<ResourceCost.Element> elements = new List<ResourceCost.Element>();
+            foreach (var element in rhs.GetCost())
+            {
+                if (lhs.GetCost().TryGetValue(element.Key, out int value))
+                {
+                    elements.Add(new ResourceCost.Element(element.Key, element.Value - value));
+                }
+                else
+                {
+                    elements.Add(new ResourceCost.Element(element.Key, element.Value));
+                }
+            }
+            return new ResourceCost(elements.ToArray());
+        }
+
         public static string Format(this IResourceCost cost)
         {
             return string.Join("\n\t", cost.GetCost().Select(x => ResourceInfo.Get(x.Key).Shorthand + ": " + x.Value));

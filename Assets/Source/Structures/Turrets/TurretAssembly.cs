@@ -25,31 +25,50 @@ namespace Lomztein.BFA2.Structures.Turrets
 {
     public class TurretAssembly : Structure
     {
-        public override Size Width => GetRootComponent().Width;
-        public override Size Height => GetRootComponent().Height;
+        public override Size Width => GetRootComponent(CurrentTeir).Width;
+        public override Size Height => GetRootComponent(CurrentTeir).Height;
+        public override IResourceCost Cost => GetCost(CurrentTeir);
 
-        public override IResourceCost Cost => GetCost();
-        public float Complexity => GetComponents().Sum(x => x.ComputeComplexity());
+        public int CurrentTeir { get; private set; }
+        [SerializeField] private List<Transform> _tierParents;
 
-        private IResourceCost GetCost()
+        public float Complexity => GetComponents(CurrentTeir).Sum(x => x.ComputeComplexity());
+
+        public IResourceCost GetCost(int tier)
         {
-            IEnumerable<IPurchasable> children = GetComponentsInChildren<TurretComponent>().Select (x => x as IPurchasable).Where (x => x != null);
+            IEnumerable<IPurchasable> children = GetComponents(tier).Select (x => x as IPurchasable).Where (x => x != null);
             return children.Select(x => x.Cost).Sum();
         }
-        
-        public TurretComponent[] GetComponents()
+
+        public TurretComponent[] GetComponents(int tier)
         {
-            return GetComponentsInChildren<TurretComponent>();
+            return GetTierParent(tier).GetComponentsInChildren<TurretComponent>();
         }
+        public TurretComponent[] GetComponents() => GetComponents(CurrentTeir);
 
         public override string ToString()
         {
-            return $"{string.Join("\n", GetComponents().Select(x => x.ToString()))}";
+            return $"{string.Join("\n", GetComponents(CurrentTeir).Select(x => x.ToString()))}";
         }
 
-        public TurretComponent GetRootComponent()
+        public TurretComponent GetRootComponent(int tier)
         {
-            return GetComponentInChildren<TurretComponent>();
+            return GetTierParent(tier).GetComponentInChildren<TurretComponent>();
+        }
+        public TurretComponent GetRootComponent() => GetRootComponent(CurrentTeir);
+
+        public void AddTier(Transform parent) => _tierParents.Add(parent);
+        public void InsertTier(int tier, Transform parent) => _tierParents.Insert(tier, parent);
+        public void RemoveTier(int tier) => _tierParents.RemoveAt(tier);
+        public Transform GetTierParent(int tier) => _tierParents[tier];
+        public Transform[] GetTiers => _tierParents.ToArray();
+        public int TierAmount => _tierParents.Count();
+
+        public void SetTier (int tier)
+        {
+            GetTierParent(CurrentTeir).gameObject.SetActive(false);
+            CurrentTeir = tier;
+            GetTierParent(CurrentTeir).gameObject.SetActive(true);
         }
     }
 }

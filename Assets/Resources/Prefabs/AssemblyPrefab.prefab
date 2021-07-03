@@ -54,6 +54,7 @@ MonoBehaviour:
   BaseAttributes: 
   _width: 0
   _height: 0
+  _tierParents: []
 --- !u!58 &-2768476238171883026
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -84,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SellSprite:
     Path: Core/Sprites/UI/TrashCan.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -105,10 +107,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeName: Upgrade Assembly
-  UpgradeDecsription: (Doesn't actually do anything right now I'm reworking it please
-    be patient)
+  UpgradeDecsription: Upgrade assembly to the next tier.
   UpgradeSprite:
     Path: Core/Sprites/UI/UpgradeArrow.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -124,6 +126,4 @@ MonoBehaviour:
     00000000:
       type: {class: ResourceCost, ns: Lomztein.BFA2.Purchasing.Resources, asm: Assembly-CSharp}
       data:
-        Elements:
-        - Type: 0
-          Value: 1337
+        Elements: []
