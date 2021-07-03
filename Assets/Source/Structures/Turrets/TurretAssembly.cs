@@ -61,7 +61,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         public void InsertTier(int tier, Transform parent) => _tierParents.Insert(tier, parent);
         public void RemoveTier(int tier) => _tierParents.RemoveAt(tier);
         public Transform GetTierParent(int tier) => _tierParents[tier];
-        public Transform[] GetTiers => _tierParents.ToArray();
+        public Transform[] GetTiers() => _tierParents.ToArray();
         public int TierAmount => _tierParents.Count();
 
         public void SetTier (int tier)

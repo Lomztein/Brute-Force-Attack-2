@@ -5,6 +5,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.UI;
 using Lomztein.BFA2.UI.Displays.Stats;
 using Newtonsoft.Json.Linq;
 using System;
@@ -72,17 +73,45 @@ namespace Lomztein.BFA2.AssemblyEditor
             SetTier(AddTier());
         }
 
+        public void OnClickNewAssembly ()
+        {
+            if (!IsAssemblyEmpty())
+            {
+                Confirm.Open("Creating a new assembly will trash unsaved progress.\nConfirm?", StartNewAssembly);
+            }
+            else
+            {
+                StartNewAssembly();
+            }
+        }
+
         public void SetAssembly (TurretAssembly assembly)
         {
             CurrentAsssembly = assembly;
         }
 
-        public void SaveFile ()
+        public void SaveAssembly ()
         {
             string path = Path.Combine(Content.CustomContentPath, "Assemblies", CurrentAsssembly.Name) + ".json";
+            if (File.Exists(path))
+            {
+                Confirm.Open("Saving will overwrite assembly file\n" + path + "\nConfirm?", () =>
+                {
+                    SaveFile(path, CurrentAsssembly);
+                });
+            }
+            else
+            {
+                SaveFile(path, CurrentAsssembly);
+            }
+        }
+
+        public static void SaveFile(string path, TurretAssembly assembly)
+        {
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
-            var model = assembler.Disassemble(CurrentAsssembly);
+            var model = assembler.Disassemble(assembly);
             File.WriteAllText(path, ObjectPipeline.SerializeObject(model).ToString());
+            Alert.Open("Assembly has been saved.");
         }
 
         private void LoadFile(string path)
@@ -123,6 +152,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         public void UpdateAssemblyDescription() => CurrentAsssembly.Description = DescriptionText.text;
 
         public bool IsTierEmpty(int tier) => CurrentAsssembly.GetRootComponent(tier) == null;
+        public bool IsAssemblyEmpty() => Enumerable.Range(0, CurrentAsssembly.TierAmount).All(x => IsTierEmpty(x));
 
         public void SetTier (int tier)
         {

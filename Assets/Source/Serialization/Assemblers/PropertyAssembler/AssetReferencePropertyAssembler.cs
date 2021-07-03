@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
             } else if (obj is UnityEngine.Object uObj)
             {
 #if UNITY_EDITOR 
-                // This code cannot function without the UnityEditor library.
+                // This code cannot function without the UnityEditor assemblies.
                 string assetPath = AssetDatabase.GetAssetPath(uObj);
                 foreach (string path in _assetPaths)
                 {
