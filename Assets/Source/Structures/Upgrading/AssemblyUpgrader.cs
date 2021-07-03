@@ -27,15 +27,16 @@ namespace Lomztein.BFA2.Structures.Upgrading
         public override bool CanUpgrade()
         {
             TurretAssembly assembly = GetComponent<TurretAssembly>();
-            return Player.Player.Resources.HasEnough(Cost) && assembly.CurrentTeir < assembly.TierAmount;
+            return assembly.CurrentTeir < assembly.TierAmount - 1;
         }
 
         public override bool Upgrade()
         {
             TurretAssembly assembly = GetComponent<TurretAssembly>();
-            if (Player.Player.Resources.TrySpend(Cost) && assembly.CurrentTeir < assembly.TierAmount)
+            if (Player.Player.Resources.TrySpend(Cost))
             {
                 assembly.SetTier(assembly.CurrentTeir + 1);
+                assembly.InvokeChanged();
                 return true;
             }
             else

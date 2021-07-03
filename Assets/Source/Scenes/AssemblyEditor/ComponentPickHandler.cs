@@ -15,28 +15,31 @@ namespace Lomztein.BFA2.AssemblyEditor
 {
     public class ComponentPickHandler : MonoBehaviour, IPickHandler<IContentCachedPrefab>
     {
-        public GameObject AssemblyPrefab;
-
         public void Handle(IContentCachedPrefab pick)
         {
-            if (AssemblyEditorController.Instance.CurrentAsssembly != null)
+            if (!AssemblyEditorController.Instance.IsTierEmpty(AssemblyEditorController.Instance.WorkingTier))
             {
                 var placement = new ComponentPlacement();
                 GameObject obj = pick.Instantiate();
                 ReflectionUtils.DynamicBroadcastInvoke(obj, "OnInstantiated");
                 placement.Pickup(obj);
                 PlacementController.Instance.TakePlacement(placement);
+                placement.OnPlaced += OnPlaced;
             }
             else
             {
-                GameObject newAssembly = Instantiate(AssemblyPrefab, Vector3.zero, Quaternion.identity);
+                Transform tier = AssemblyEditorController.Instance.GetWorkingTierParent();
                 GameObject baseComponent = pick.Instantiate();
-                baseComponent.transform.position = newAssembly.transform.position;
-                baseComponent.transform.rotation = newAssembly.transform.rotation;
-                baseComponent.transform.parent = newAssembly.transform;
-
-                AssemblyEditorController.Instance.SetAssembly(newAssembly.GetComponent<TurretAssembly>());
+                baseComponent.transform.position = tier.position;
+                baseComponent.transform.rotation = tier.rotation;
+                baseComponent.transform.parent = tier;
+                AssemblyEditorController.Instance.UpdateTierDisplay(AssemblyEditorController.Instance.WorkingTier);
             }
+        }
+
+        private void OnPlaced(GameObject obj)
+        {
+            AssemblyEditorController.Instance.UpdateTierDisplay(AssemblyEditorController.Instance.WorkingTier);
         }
     }
 }

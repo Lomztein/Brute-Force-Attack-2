@@ -83,6 +83,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public float GetFirerate() => Firerate.GetValue();
 
         public int GetProjectileAmount() => (int)ProjectileAmount.GetValue();
+        public int GetMuzzleAmount() => _muzzles == null ? 0 : _muzzles.Length;
 
         public float GetSpread() => Spread.GetValue();
 

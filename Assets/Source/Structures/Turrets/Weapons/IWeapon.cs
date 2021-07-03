@@ -5,6 +5,7 @@
         float GetDamage();
         float GetFirerate();
         int GetProjectileAmount();
+        int GetMuzzleAmount ();
         float GetSpeed();
         float GetSpread();
         float GetRange();

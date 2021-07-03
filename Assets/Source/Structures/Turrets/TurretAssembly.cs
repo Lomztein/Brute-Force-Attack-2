@@ -66,7 +66,10 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public void SetTier (int tier)
         {
-            GetTierParent(CurrentTeir).gameObject.SetActive(false);
+            if (CurrentTeir < TierAmount) // In case a higher tier was removed.
+            {
+                GetTierParent(CurrentTeir).gameObject.SetActive(false);
+            }
             CurrentTeir = tier;
             GetTierParent(CurrentTeir).gameObject.SetActive(true);
         }

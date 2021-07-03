@@ -33,10 +33,17 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
-            return new IContextMenuOption[]
+            if (CanUpgrade())
             {
-                new ContextMenuOption ("Upgrade - " + Cost.Format(), Description, Sprite, Upgrade, CanUpgrade)
-            };
+                return new IContextMenuOption[]
+                {
+                new ContextMenuOption ("Upgrade - " + Cost.Format(), Description, Sprite, Upgrade, () => Player.Player.Resources.HasEnough(Cost))
+                };
+            }
+            else
+            {
+                return new IContextMenuOption[0];
+            }
         }
     }
 }
