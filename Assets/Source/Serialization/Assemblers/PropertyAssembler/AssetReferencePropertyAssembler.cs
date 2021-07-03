@@ -51,6 +51,8 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                 field.Model = new NullModel();
             } else if (obj is UnityEngine.Object uObj)
             {
+#if UNITY_EDITOR 
+                // This code cannot function without the UnityEditor library.
                 string assetPath = AssetDatabase.GetAssetPath(uObj);
                 foreach (string path in _assetPaths)
                 {
@@ -64,6 +66,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                 {
                     field.Model = new PathModel(Path.ChangeExtension(assetPath.Substring(7), null)); // Hardcoded length for "Assets/" so that only the part with and after Resources remains. Is there an easier way to do this?
                 }
+#else
+                throw new InvalidOperationException("Cannot run AssetReferenceProperty disassembly outside of the Unity Editor.");
+#endif
             }
             else
             {
