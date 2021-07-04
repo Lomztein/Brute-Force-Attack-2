@@ -137,7 +137,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             foreach (AttachmentSlot slot in set)
             {
                 Vector3 slotPos = slot.GetWorldPosition(parentPos, parentRot);
-                if (Vector2.SqrMagnitude(pointWorldPos - slotPos) < sqrEpsilon)
+                if (Vector2.SqrMagnitude((parentPos + pointWorldPos) - slotPos) < sqrEpsilon)
                 {
                     return slot;
                 }
