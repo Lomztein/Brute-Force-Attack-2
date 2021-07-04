@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Purchasing.Resources
 {
@@ -47,6 +48,16 @@ namespace Lomztein.BFA2.Purchasing.Resources
                 {
                     elements.Add(new ResourceCost.Element(element.Key, element.Value));
                 }
+            }
+            return new ResourceCost(elements.ToArray());
+        }
+
+        public static IResourceCost Scale(this IResourceCost cost, float scalar)
+        {
+            List<ResourceCost.Element> elements = new List<ResourceCost.Element>();
+            foreach (var element in cost.GetCost())
+            {
+                elements.Add(new ResourceCost.Element(element.Key, Mathf.RoundToInt(element.Value * scalar)));
             }
             return new ResourceCost(elements.ToArray());
         }

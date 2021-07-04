@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8306588519832492543}
-  - component: {fileID: 3116462493430905811}
+  - component: {fileID: 1275944817877542216}
   m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
@@ -109,7 +109,7 @@ Transform:
   m_Father: {fileID: 8306588521249971285}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3116462493430905811
+--- !u!114 &1275944817877542216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _applied: 0
   Reference:
-    Path: Core/Sprites/Components/MachineGunT1_16PPU.png
+    Path: 
+    Texture: {fileID: 2800000, guid: 002a75f08d319a945910cc629ef60864, type: 3}
     Rect:
       serializedVersion: 2
       x: 0
@@ -223,10 +224,19 @@ MonoBehaviour:
   _width: 1
   _height: 1
   BaseComplexity: 0
-  UpperAttachmentPoints:
-    id: 0
-  LowerAttachmentPoints:
-    id: 1
+  AttachmentSlots:
+    _attachmentPoints:
+    - Type: 3
+      MinSupportedSize: 1
+      MaxSupportedSize: 1
+      LocalPosition: {x: -0.5, y: 0, z: 0}
+      LocalAngle: 0
+  AttachmentPoints:
+  - Type: 0
+    Size: 1
+    LocalPosition: {x: 0, y: 0, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 1
   ProjectilePrefab:
     Path: Core/Projectiles/MachineGunProjectile.json
   FireTreshold: 5
@@ -239,16 +249,6 @@ MonoBehaviour:
   BaseSpeed: 75
   BaseFirerate: 5
   Color: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
-    00000001:
-      type: {class: AutoAttachmentPointSet, ns: Lomztein.BFA2.Structures.Turrets.Attachment,
-        asm: Assembly-CSharp}
-      data:
-        Width: 1
-        Height: 1
 --- !u!114 &6588776079876450199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultSprite:
     Path: Core/Sprites/Components/MachineGunT1_16PPU.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -274,6 +275,7 @@ MonoBehaviour:
   PlaySpeedMultiplier: 1
   AnimationSprites:
   - Path: Core/Sprites/Components/MachineGunT1_16PPU.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 16
@@ -283,6 +285,7 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
   - Path: Core/Sprites/Components/MachineGunT1_16PPU.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 32
@@ -292,6 +295,7 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
   - Path: Core/Sprites/Components/MachineGunT1_16PPU.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 48

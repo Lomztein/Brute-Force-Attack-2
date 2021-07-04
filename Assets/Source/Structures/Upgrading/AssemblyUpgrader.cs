@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,14 @@ namespace Lomztein.BFA2.Structures.Upgrading
     public class AssemblyUpgrader : Upgrader
     {
         public override IResourceCost Cost => ComputeCost();
+        public override Sprite Sprite => GetSprite();
+
+        private Sprite GetSprite ()
+        {
+            TurretAssembly assembly = GetComponent<TurretAssembly>();
+            int next = assembly.CurrentTeir + 1;
+            return Iconography.GenerateSprite(assembly.GetTierParent(next).gameObject);
+        }
 
         private IResourceCost ComputeCost()
         {

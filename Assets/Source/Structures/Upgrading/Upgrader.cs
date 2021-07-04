@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
         public string Name => UpgradeName;
         public string Description => UpgradeDecsription;
         public virtual IResourceCost Cost => UpgradeCost;
-        public Sprite Sprite => UpgradeSprite.Get();
+        public virtual Sprite Sprite => UpgradeSprite.Get();
 
         public abstract bool Upgrade();
         public abstract bool CanUpgrade();

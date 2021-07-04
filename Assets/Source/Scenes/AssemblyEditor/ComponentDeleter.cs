@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 foreach (var component in components)
                 {
                     float val = component.transform.position.z;
-                    if (val > highestNum && component.GetUpperAttachmentPoints().All(x => x.IsEmpty))
+                    if (val > highestNum && component.AttachmentSlots.GetPointsOfType(Structures.Turrets.Attachment.AttachmentType.Upper).All(x => x.IsEmpty()))
                     {
                         highestNum = val;
                         highest = component;

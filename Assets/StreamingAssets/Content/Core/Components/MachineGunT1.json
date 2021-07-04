@@ -41,14 +41,34 @@
         "BaseFirerate": 5.0,
         "Color": "Blue",
         "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": null,
-        "LowerAttachmentPoints": {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "$Data": {
-            "Width": "Small",
-            "Height": "Small"
-          }
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Module",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Small",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
+          }
+        ],
         "_name": "Machine Gun",
         "_description": "shootin doods",
         "_uniqueIdentifier": "Core.MachineGunT1",
@@ -210,8 +230,8 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Components/MachineGunT1_16PPU.png",
-              "Texture": null,
+              "Path": "",
+              "Texture": "$Path{Core/Sprites/Components/MachineGunT1_16PPU.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,

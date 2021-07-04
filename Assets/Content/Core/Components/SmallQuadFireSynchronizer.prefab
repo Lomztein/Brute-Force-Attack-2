@@ -138,24 +138,49 @@ MonoBehaviour:
   _width: 2
   _height: 2
   BaseComplexity: 0
-  UpperAttachmentPoints:
-    id: 0
-  LowerAttachmentPoints:
-    id: 1
-  references:
-    version: 1
-    00000000:
-      type: {class: AutoAttachmentPointSet, ns: Lomztein.BFA2.Structures.Turrets.Attachment,
-        asm: Assembly-CSharp}
-      data:
-        Width: 2
-        Height: 2
-    00000001:
-      type: {class: AutoAttachmentPointSet, ns: Lomztein.BFA2.Structures.Turrets.Attachment,
-        asm: Assembly-CSharp}
-      data:
-        Width: 2
-        Height: 2
+  AttachmentSlots:
+    _attachmentPoints:
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 2
+      LocalPosition: {x: 0.5, y: 0.5, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 2
+      LocalPosition: {x: 0.5, y: -0.5, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 2
+      LocalPosition: {x: -0.5, y: -0.5, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 2
+      LocalPosition: {x: -0.5, y: 0.5, z: 0}
+      LocalAngle: 0
+  AttachmentPoints:
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: 0.5, y: 0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: -0.5, y: 0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: 0.5, y: -0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: -0.5, y: -0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
 --- !u!61 &1110838401043732958
 BoxCollider2D:
   m_ObjectHideFlags: 0

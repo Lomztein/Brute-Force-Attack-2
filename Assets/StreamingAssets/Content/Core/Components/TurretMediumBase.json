@@ -32,20 +32,100 @@
           "Mask": 256
         },
         "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "$Data": {
-            "Width": "Medium",
-            "Height": "Medium"
-          }
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
-        "LowerAttachmentPoints": {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "$Data": {
-            "Width": "Medium",
-            "Height": "Medium"
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
           }
-        },
+        ],
         "_name": "Medium Base",
         "_description": "Targets nearby hostiles.",
         "_uniqueIdentifier": "Core.MediumBase",
@@ -110,13 +190,13 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Components/Base.png",
-              "Texture": null,
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/Base.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
+                "Width": 32.0,
+                "Height": 32.0
               },
               "Pivot": {
                 "X": 0.5,

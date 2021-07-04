@@ -1,0 +1,155 @@
+{
+  "Name": "ExplosiveRoundsModule(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.PassiveTurretComponent",
+      "$Data": {
+        "BaseComplexity": 0.0,
+        "AttachmentSlots": {
+          "_attachmentPoints": []
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Module",
+            "Size": "Small",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
+          }
+        ],
+        "_name": "Explosive Rounds Module",
+        "_description": "",
+        "_uniqueIdentifier": "Core.ExplosiveRoundsModule",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 500
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Small",
+        "_height": "Small"
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ParentModBroadcaster",
+      "$Data": {
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+          "$Data": {
+            "DamageMultBase": 0.2,
+            "RangeBase": 1.0,
+            "DamageMultStack": 0.1,
+            "RangeStack": 0.2,
+            "ExplosionPrefab": {
+              "Path": "Core/Projectiles/Explosion.json"
+            },
+            "DestroyProjectile": true,
+            "_identifier": "ExplodeOnHitModule",
+            "_name": "Explosive Rounds",
+            "_description": "",
+            "RequiredAttributes": []
+          }
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Rotator",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/RedModule.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 4.0,
+                "Height": 8.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

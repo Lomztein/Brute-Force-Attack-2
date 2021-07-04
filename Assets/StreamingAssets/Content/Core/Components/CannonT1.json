@@ -41,14 +41,55 @@
         "BaseFirerate": 0.5,
         "Color": "Red",
         "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": null,
-        "LowerAttachmentPoints": {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "$Data": {
-            "Width": "Medium",
-            "Height": "Medium"
-          }
+        "AttachmentSlots": {
+          "_attachmentPoints": []
         },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          }
+        ],
         "_name": "Cannon",
         "_description": "Fires heavy slugs of molten metal.",
         "_uniqueIdentifier": "Core.HeavyCannonT1",
@@ -193,8 +234,8 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Components/CannonT1.png",
-              "Texture": null,
+              "Path": "",
+              "Texture": "$Path{Core/Sprites/Components/CannonT1.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1599087990944767672}
-  - component: {fileID: 6811395487144779323}
+  - component: {fileID: 3494895342300152229}
   m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 1599087991926430482}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6811395487144779323
+--- !u!114 &3494895342300152229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _applied: 0
   Reference:
-    Path: Core/Sprites/Components/CannonT1.png
+    Path: 
+    Texture: {fileID: 2800000, guid: dd741b9ca9cdf394fa11157248eda6eb, type: 3}
     Rect:
       serializedVersion: 2
       x: 0
@@ -144,10 +145,29 @@ MonoBehaviour:
   _width: 2
   _height: 2
   BaseComplexity: 0
-  UpperAttachmentPoints:
-    id: 0
-  LowerAttachmentPoints:
-    id: 1
+  AttachmentSlots:
+    _attachmentPoints: []
+  AttachmentPoints:
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: 0.5, y: 0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: -0.5, y: 0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: 0.5, y: -0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
+  - Type: 0
+    Size: 2
+    LocalPosition: {x: -0.5, y: -0.5, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 4
   ProjectilePrefab:
     Path: Resources/Projectiles/CannonProjectile
   FireTreshold: 1
@@ -160,16 +180,6 @@ MonoBehaviour:
   BaseSpeed: 100
   BaseFirerate: 0.5
   Color: 2
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
-    00000001:
-      type: {class: AutoAttachmentPointSet, ns: Lomztein.BFA2.Structures.Turrets.Attachment,
-        asm: Assembly-CSharp}
-      data:
-        Width: 2
-        Height: 2
 --- !u!114 &8441061706672402137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultSprite:
     Path: Core/Sprites/Components/CannonT1.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -195,6 +206,7 @@ MonoBehaviour:
   PlaySpeedMultiplier: 1
   AnimationSprites:
   - Path: Core/Sprites/Components/CannonT1.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 32
@@ -204,6 +216,7 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
   - Path: Core/Sprites/Components/CannonT1.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 64
@@ -213,6 +226,7 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
   - Path: Core/Sprites/Components/CannonT1.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 96
@@ -222,6 +236,7 @@ MonoBehaviour:
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
   - Path: Core/Sprites/Components/CannonT1.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0

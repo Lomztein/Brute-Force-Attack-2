@@ -9,50 +9,21 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Turrets.Attachment
 {
-    [Serializable]
+    [System.Serializable]
     public class AttachmentPoint
     {
         [ModelProperty]
-        public Vector2 LocalPosition;
+        public AttachmentType Type;
+        [ModelProperty]
         public Size Size;
+        [ModelProperty]
+        public Vector3 LocalPosition;
+        [ModelProperty]
+        public float LocalAngle;
+        [ModelProperty]
+        public int RequiredPoints;
 
-        public AttachmentPoint AttachedPoint { get; private set; }
-        public bool IsEmpty => AttachedPoint == null;
-
-        public AttachmentPoint ()
-        {
-        }
-
-        public AttachmentPoint (Vector2 localPosition, Size size)
-        {
-            LocalPosition = localPosition;
-            Size = size;
-        }
-
-        public void AttachTo(AttachmentPoint other) => AttachedPoint = other;
-
-        public void Detach() => AttachedPoint = null;
-
-        public Vector3 LocalToWorldPosition(Vector3 worldPosition)
-            => (Vector3)LocalPosition + worldPosition;
-    }
-
-    public static class AttachmentPointExtensions
-    {
-        public static Vector3[] LocalToWorldPosition(this IEnumerable<AttachmentPoint> points, Vector3 worldPosition)
-            => points.Select(x => x.LocalToWorldPosition(worldPosition)).ToArray();
-
-        public static AttachmentPoint GetPoint (this IEnumerable<AttachmentPoint> points, Vector3 worldPosition, Vector3 point, float margin = 0.1f)
-        {
-            foreach (AttachmentPoint ap in points)
-            {
-                float dist = Vector2.Distance(ap.LocalToWorldPosition(worldPosition), point);
-                if (dist < margin)
-                {
-                    return ap;
-                }
-            }
-            return null;
-        }
+        public Vector3 GetWorldPosition(Vector3 parentPosition, Quaternion parentRotation) => GetWorldRotation(parentRotation) * (parentPosition + LocalPosition);
+        public Quaternion GetWorldRotation(Quaternion parentRotation) => parentRotation * Quaternion.Euler(0f, 0f, LocalAngle);
     }
 }

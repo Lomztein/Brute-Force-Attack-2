@@ -17,17 +17,20 @@ using Util;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {
-    public abstract class TurretComponent : Structure, IModdable
+    public abstract class TurretComponent : Structure, IModdable, IAttachable
     {
         public override Sprite Sprite => GetComponentInChildren<SpriteRenderer>().sprite;
+
+        public Vector3 WorldPosition => transform.position;
+        public Quaternion WorldRotation => transform.rotation;
+
         [ModelProperty]
         public float BaseComplexity;
 
-        [ModelProperty, SerializeReference, SR]
-        protected IAttachmentPointSet UpperAttachmentPoints;
-        [ModelProperty, SerializeReference, SR]
-        protected IAttachmentPointSet LowerAttachmentPoints;
-
+        [ModelProperty]
+        public AttachmentSlotSet AttachmentSlots;
+        [ModelProperty]
+        public AttachmentPoint[] AttachmentPoints;
         protected TurretAssembly _assembly;
 
         protected override void Awake()
@@ -54,8 +57,6 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         private void InitComponent()
         {
-            AttachToParent();
-
             Init();
 
             StartCoroutine(DelayedPostInit());
@@ -76,7 +77,6 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             base.OnDestroy();
             End();
-            DetachAttachmentPoints();
         }
 
         public virtual void PreInit() { }
@@ -91,59 +91,20 @@ namespace Lomztein.BFA2.Structures.Turrets
             return $"{Name}\n\t{Stats}";
         }
 
-        private void AttachToParent ()
-        {
-            if (transform.parent != null)
-            {
-                TurretComponent parent = transform.parent.GetComponent<TurretComponent>();
-                if (parent != null)
-                {
-                    foreach (AttachmentPoint point in GetLowerAttachmentPoints())
-                    {
-                        AttachmentPoint pPoint = parent.GetUpperAttachmentPoints().GetPoint(transform.parent.position, point.LocalToWorldPosition(transform.position));
-                        if (pPoint != null)
-                        {
-                            point.AttachTo(pPoint);
-                            pPoint.AttachTo(point);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void DetachAttachmentPoints ()
-        {
-            foreach (AttachmentPoint point in GetLowerAttachmentPoints())
-            {
-                point.AttachedPoint?.Detach();
-                point.Detach();
-            }
-
-            foreach (AttachmentPoint point in GetUpperAttachmentPoints())
-            {
-                point.AttachedPoint?.Detach();
-                point.Detach();
-            }
-        }
-
-        public IEnumerable<AttachmentPoint> GetUpperAttachmentPoints()
-            => UpperAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
-
-        public IEnumerable<AttachmentPoint> GetLowerAttachmentPoints()
-            => LowerAttachmentPoints?.GetPoints() ?? new AttachmentPoint[0];
-
         public void OnDrawGizmosSelected()
         {
-            foreach (var point in GetUpperAttachmentPoints().LocalToWorldPosition(transform.position))
+            foreach (var point in AttachmentSlots.GetPoints().Select(x => x.GetWorldPosition(transform.position, transform.rotation)))
             {
                 Gizmos.DrawWireSphere(point, 0.25f);
             }
-            foreach (var point in GetLowerAttachmentPoints().LocalToWorldPosition(transform.position))
+            foreach (var point in GetPoints().Select(x => x.GetWorldPosition(transform.position, transform.rotation)))
             {
                 Gizmos.DrawSphere(point, 0.2f);
             }
         }
 
         public virtual float ComputeComplexity() => BaseComplexity;
+
+        public IEnumerable<AttachmentPoint> GetPoints() => AttachmentPoints;
     }
 }

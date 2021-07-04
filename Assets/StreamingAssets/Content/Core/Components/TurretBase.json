@@ -32,20 +32,34 @@
           "Mask": 256
         },
         "BaseComplexity": 0.0,
-        "UpperAttachmentPoints": {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "$Data": {
-            "Width": "Small",
-            "Height": "Small"
-          }
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
-        "LowerAttachmentPoints": {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.Attachment.AutoAttachmentPointSet",
-          "$Data": {
-            "Width": "Small",
-            "Height": "Small"
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Small",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
           }
-        },
+        ],
         "_name": "Small Base",
         "_description": "Targets nearby hostiles.",
         "_uniqueIdentifier": "Core.SmallBase",
@@ -110,13 +124,13 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Components/SmallBase.png",
-              "Texture": null,
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/SmallBase.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
+                "Width": 16.0,
+                "Height": 16.0
               },
               "Pivot": {
                 "X": 0.5,
