@@ -10,7 +10,7 @@ namespace Lomztein.BFA2.ContentSystem.References
     [Serializable]
     public class ContentSpriteReference
     {
-        [ModelProperty, Obsolete("Use ContentSpriteReference.Texture instead.")]
+        [ModelProperty]
         public string Path;
         [ModelAssetReference]
         public Texture2D Texture;

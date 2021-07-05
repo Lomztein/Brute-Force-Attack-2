@@ -2,6 +2,7 @@
 Damage Boost Base
 Firerate Boost Base
 Long Range Base
+Random Targeting Base
 Multi-targeter Base - Provides a different target each request. Not sure if possible, or even neccesary.
 Linked Base - Is linked to another base or perhaps a target relayer, and provides the same target.
 Mouse Target Provider, but like actually in the game
@@ -17,7 +18,7 @@ On Mouse Click targeters
  - Weapons/Mods - 
 Machine Gun / Increase firerate
 Laser Cannon / Reflective shots
-Missle Launcher / Explosive shots
+Missle Launcher / Increase damage
 SAM Launcher / Apply homing
 Heavy Cannon / Concussive blasts
 Sniper / Increase critical damage
@@ -28,19 +29,25 @@ Railgun / Increase piercing damage
 Tesla / Arc to nearby on hit
 Plasma Cannon / 
 Flamethrower / Damage over time
+Drone Hub
 
  - Other -
-Coolant Cell - Passively cools down assembly, can be placed anywhere.
+
 Flash Coolant Cell - Rapidly cools assembly if it becomes too hot, has some sort of cooldown
 Coolant Tank - Increases heat capacity
 Laser Targeter - Increases damage against targeted enemy
-Drone Hub
+Capacitator Bank - Place underneath weapon. Charges energy for a while where weapon is disabled. Once enough charged, enable weapon for short period with sagnificantly boosted fire rate.
+Target Relay - See Linked Base.
+Mod Proxy - Expensive and large and does nothing by itself. Mods applied to it are applied wirelessly to a selected 
 
- - Special Assemblies -
+ - Structures -
 Coolant Tower - Passively cools nearby assemblies, and enemies (allowing overclocking)
 Heating Tower - Passively heats up (slows down, thermal throttling) nearby enemies, and assemblies.
 Collector - Automatically collects loot
 Mod Beacons - Provides mods to nearby components
+Decompiler - Decompiles binaries into other resources.
+Dummy Terminal - Baits enemies to it, takes only a single hit of damage.
 
-
-
+ - Modules -
+Focus Module - Sets the base to focus particular color.
+Coolant Cell - Passively cools down assembly, increasing firerate a bit.

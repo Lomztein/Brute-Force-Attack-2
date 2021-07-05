@@ -93,7 +93,7 @@ namespace Lomztein.BFA2.World
         {
             ObjectModel obj = new ObjectModel(
                 new ObjectField("Name", new PrimitiveModel(Name)),
-                new ObjectField("Description", new PrimitiveModel("Junk")),
+                new ObjectField("Description", new PrimitiveModel(Description)),
                 new ObjectField("Identifier", new PrimitiveModel(Identifier)),
                 new ObjectField("Width", new PrimitiveModel(Width)),
                 new ObjectField("Height", new PrimitiveModel(Height)),

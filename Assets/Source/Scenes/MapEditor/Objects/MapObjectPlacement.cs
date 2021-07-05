@@ -21,7 +21,10 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         public void Delete ()
         {
-            _handle.Delete();
+            if (_handle)
+            {
+                _handle.Delete();
+            }
             Finish();
         }
 
@@ -32,8 +35,11 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         public bool Finish()
         {
-            _handle.OnDeselected();
-            _handle = null;
+            if (_handle)
+            {
+                _handle.OnDeselected();
+                _handle = null;
+            }
 
             OnFinished?.Invoke();
             return true;

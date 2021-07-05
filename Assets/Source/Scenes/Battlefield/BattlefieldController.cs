@@ -1,6 +1,7 @@
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
+using Lomztein.BFA2.UI.Displays.Dialog;
 using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -60,7 +61,7 @@ namespace Lomztein.BFA2.Battlefield
 
         private void SendStartingMessage()
         {
-            Message.Send("Defend the green shit.", 5, Message.Type.Major);
+            DialogDisplay.ShowDialog("Defend the green shit. To defend the green shit, you must construct weapons and structures.\nGood luck to your machine, it'll need it much more than you.\n\nThank you for playing this early version of Brute Force Attack 2.");
         }
 
         private void InitMap()

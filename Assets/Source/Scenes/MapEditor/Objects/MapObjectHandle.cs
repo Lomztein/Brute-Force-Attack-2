@@ -24,6 +24,9 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         private GameObject[] _handles;
 
+        public Sprite SelectSprite;
+        public Sprite DeleteSprite;
+
         public void Assign (GameObject obj, IEnumerable<GameObject> handles)
         {
             _object = obj;
@@ -39,6 +42,10 @@ namespace Lomztein.BFA2.MapEditor.Objects
             {
                 transform.position = _object.transform.position;
                 transform.rotation = _object.transform.rotation;
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
@@ -92,8 +99,8 @@ namespace Lomztein.BFA2.MapEditor.Objects
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption($"Select {gameObject.name}", "Select this object.", null, Select, () => true),
-                new ContextMenuOption($"Delete {gameObject.name}", "Delete this object.", null, Delete, () => true),
+                new ContextMenuOption($"Select {_object.name}", "Select this object.", SelectSprite, Select, () => true),
+                new ContextMenuOption($"Delete {_object.name}", "Delete this object.", DeleteSprite, Delete, () => true),
             };
         }
     }

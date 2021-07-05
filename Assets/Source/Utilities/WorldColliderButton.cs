@@ -6,17 +6,25 @@ namespace Lomztein.BFA2.Utilities
 {
     public class WorldColliderButton : MonoBehaviour
     {
-        public int MouseButton;
         public Collider Collider;
-
         public UnityEvent OnClick;
 
-        public void Update()
+        private void Start()
+        {
+            Input.PrimaryClickStarted += PrimaryClick;
+        }
+
+        private void OnDestroy()
+        {
+            Input.PrimaryClickStarted -= PrimaryClick;
+        }
+
+        private void PrimaryClick(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.ScreenMousePosition);
             if (Collider.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
-                if (MouseButton == 0 ? Input.PrimaryDown : Input.SecondaryDown)
+                if (Input.PrimaryPhase == UnityEngine.InputSystem.InputActionPhase.Started)
                 {
                     OnClick.Invoke();
                 }

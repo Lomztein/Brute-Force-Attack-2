@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Placement
 
         private void UpdateDrag (int mouse, DragListener.Drag drag)
         {
-            if (_current != null)
+            if (_current != null && !UIUtils.IsOverUI(drag.ScreenPosition))
             {
                 _current.Drag(mouse, Camera.main.ScreenToWorldPoint(drag.ScreenPosition));
             }
@@ -51,7 +51,7 @@ namespace Lomztein.BFA2.Placement
 
         private void EndDrag (int mouse, DragListener.Drag drag)
         {
-            if (_current != null)
+            if (_current != null && !UIUtils.IsOverUI(drag.ScreenPosition))
             {
                 _current.EndDrag(mouse, Camera.main.ScreenToWorldPoint(drag.ScreenPosition));
             }

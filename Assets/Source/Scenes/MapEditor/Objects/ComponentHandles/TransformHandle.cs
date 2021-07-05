@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lomztein.BFA2.Utilities;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,29 +12,44 @@ namespace Lomztein.BFA2.MapEditor.Objects.ComponentHandlers
 
         private float[] _transformMatrix = new float[3];
         private Vector3 TransformMatrix => new Vector3(_transformMatrix[0], _transformMatrix[1], _transformMatrix[2]);
-        private bool Snap => Input.Master.MapEditor.SnapToGrid.ReadValue<bool>();
+        private bool Snap => MapEditorController.Instance.GridSnapEnabled;
 
         public Transform _transform;
         private Vector3 _prevPosition;
         private Vector3 _targetVector;
+        private DragListener _drag;
 
         public override void Assign(Transform component)
         {
             _transform = component;
+            _drag = DragListener.Create(DragStart, DragUpdate, DragEnd);
+        }
+
+        private void DragStart(int button, DragListener.Drag drag)
+        {
+        }
+
+        private void DragUpdate(int button, DragListener.Drag drag)
+        {
+            Drag();
+        }
+
+        private void DragEnd(int button, DragListener.Drag drag)
+        {
+            Release();
         }
 
         public void Update()
         {
-            if (Input.PrimaryDown)
+            if (_transform)
             {
-                Drag();
+                transform.position = _transform.position;
+                transform.rotation = _transform.rotation;
             }
-            if (Input.PrimaryPhase == UnityEngine.InputSystem.InputActionPhase.Canceled)
+            else
             {
-                Release();
+                Destroy(gameObject);
             }
-            transform.position = _transform.position;
-            transform.rotation = _transform.rotation;
         }
 
         public void Release()

@@ -1,10 +1,13 @@
 ﻿using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.ContentSystem.Assemblers;
+using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.MapEditor.Objects;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Serializers;
+using Lomztein.BFA2.UI;
+using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.UI.Windows;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -18,14 +21,21 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Lomztein.BFA2.MapEditor
 {
     public class MapEditorController : MonoBehaviour
     {
+        private const string MAP_FOLDER = "Maps";
+        private const string PREVIEW_SUB_FOLDER = "Previews";
+        private const int PREVIEW_RENDER_SIZE = 1024;
+
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
 
         public static MapEditorController Instance;
+        public bool GridSnapEnabled;
+        public Toggle GridSnapToggle;
 
         public MapObjectHandleProvider HandleProvider;
         public ComponentHandleProvider ComponentHandleProvider;
@@ -35,21 +45,92 @@ namespace Lomztein.BFA2.MapEditor
         public int DefaultHeight;
 
         public MapData MapData;
+        public GameObject MapParent;
+
+        public InputField NameInput;
+        public InputField DescriptionInput;
 
         public void OpenSaveDialog ()
         {
-            SaveFileDialog.Create(Path.Combine (Content.CustomContentPath, "Maps"), ".json", SaveFile);
+            MapData.Name = NameInput.text;
+
+            string path = Path.Combine(Content.CustomContentPath, MAP_FOLDER, MapData.Name) + ".json";
+            if (File.Exists(path))
+            {
+                Confirm.Open("File already exists at location\n" + path + "\nSaving will overwrite this. Confirm?", () => SaveMapFile(path));
+            }
+            else
+            {
+                SaveMapFile(path);
+            }
         }
+
+        private void SaveMapFile (string path)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            MapData.Name = NameInput.text;
+            MapData.Description = DescriptionInput.text;
+            MapData.Identifier = Guid.NewGuid().ToString();
+            LazyTileFix(MapData.Tiles); // Lazy fix, probably should investigate why it happens. Shouldn't really matter though.
+
+            // These paths are so hardcoded, severely needs to be improved if we are to ever have variable save destinations.
+            Texture2D mapPreview = SnapMapPreview();
+            string previewPath = Path.Combine(Content.CustomContentPath, MAP_FOLDER, PREVIEW_SUB_FOLDER, MapData.Name) + ".png";
+            string previewContentPath = Path.Combine("Custom", MAP_FOLDER, PREVIEW_SUB_FOLDER, MapData.Name) + ".png";
+           
+            SaveMapPreview(mapPreview, previewPath);
+            MapData.MapImage = new ContentSpriteReference() { Path = previewContentPath };
+
+            MapData.Objects = DisassembleMapObjects();
+            var model = MapData.Disassemble(new Serialization.Assemblers.DisassemblyContext());
+
+            ValueModelSerializer serializer = new ValueModelSerializer();
+            File.WriteAllText(path, serializer.Serialize(model).ToString());
+
+            Alert.Open("Map succesfully saved.");
+        }
+
+        public void ToggleGridSnap ()
+        {
+            GridSnapEnabled = GridSnapToggle.isOn;
+        }
+
+        private void SaveMapPreview (Texture2D texture, string path)
+        {
+            Debug.Log(Path.GetDirectoryName(path));
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            byte[] raw = texture.EncodeToPNG();
+            File.WriteAllBytes(path, raw);
+        }
+
+        private Texture2D SnapMapPreview()
+            => Iconography.GenerateIcon(MapParent, PREVIEW_RENDER_SIZE);
 
         public void OpenLoadFileBrowser ()
         {
-            FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Maps"), ".json", LoadFile);
+            Confirm.Open("Loading a map will delete any currently unsaved progress.\nConfirm?", () =>
+            {
+                FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Maps"), ".json", LoadFile);
+            });
         }
 
         public void OpenMapResizer ()
         {
             MapResizer resizer = WindowManager.OpenWindowAboveOverlay(MapResizer).GetComponent<MapResizer>();
             resizer.Init(DefaultWidth, DefaultHeight, SetMapSize);
+        }
+
+        public void OnResizeMapButton ()
+        {
+            OpenMapResizer();
+        }
+
+        public void OnCreateNewMapButton()
+        {
+            Confirm.Open("Creating a new map will delete any currently unsaved progress.\nConfirm?", () =>
+            {
+                CreateNewMap();
+            });
         }
 
         private void Awake()
@@ -119,6 +200,20 @@ namespace Lomztein.BFA2.MapEditor
             MapData.Tiles.Height = height;
         }
 
+        private void LazyTileFix (TileData data)
+        {
+            for (int x = 0; x < data.Width; x++)
+            {
+                for (int y = 0; y < data.Height; y++)
+                {
+                    if (string.IsNullOrEmpty(data.GetTile(x, y).TileType))
+                    {
+                        data.SetTile(x, y, TileType.Empty);
+                    }
+                }
+            }
+        }
+
         public void AddMapObject(GameObject obj) => _mapController.IfExists(x => obj.transform.SetParent(x.MapObjectParent));
 
         public void CreateNewMap ()
@@ -139,19 +234,12 @@ namespace Lomztein.BFA2.MapEditor
             MapData = ObjectPipeline.BuildObject<MapData>(obj);
 
             _mapController.IfExists(x => x.ApplyMapData(MapData));
+
+            NameInput.text = MapData.Name;
+            DescriptionInput.text = MapData.Description;
         }
 
-        private void SaveFile (string name, string path)
-        {
-            MapData.Name = name;
-            MapData.Objects = AssembleMapObjects();
-            var model = MapData.Disassemble(new Serialization.Assemblers.DisassemblyContext());
-
-            ValueModelSerializer serializer = new ValueModelSerializer();
-            File.WriteAllText(path, serializer.Serialize(model).ToString());
-        }
-
-        private ObjectModel[] AssembleMapObjects ()
+        private ObjectModel[] DisassembleMapObjects ()
         {
             List<ObjectModel> models = new List<ObjectModel>();
             GameObjectAssembler assembler = new GameObjectAssembler();

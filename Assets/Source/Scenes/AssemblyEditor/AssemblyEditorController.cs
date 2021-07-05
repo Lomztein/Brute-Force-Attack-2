@@ -77,7 +77,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             if (!IsAssemblyEmpty())
             {
-                Confirm.Open("Creating a new assembly will trash unsaved progress.\nConfirm?", StartNewAssembly);
+                Confirm.Open("Creating a new assembly will trash unsaved progress on current assembly.\nConfirm?", StartNewAssembly);
             }
             else
             {
@@ -145,7 +145,10 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public void Load ()
         {
-            FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Assemblies"), ".json", LoadFile);
+            Confirm.Open("Loading an assembly will trash unsaved progress on current assembly.\nConfirm?", () =>
+            {
+                FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Assemblies"), ".json", LoadFile);
+            });
         }
 
         public void UpdateAssemblyName() => CurrentAsssembly.Name = NameText.text;

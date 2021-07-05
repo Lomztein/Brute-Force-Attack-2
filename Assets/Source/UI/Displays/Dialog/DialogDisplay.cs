@@ -14,23 +14,34 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         public static DialogDisplay Instance;
         public Text Text;
 
-        private const float DefaultTime = 0.035f;
-        private const float FullStopTime = 0.5f;
-        private const float CommaTime = 0.2f;
+        public float DialogStartWaitTime = 0.75f;
+        public float DefaultTime = 0.035f;
+        public float FullStopTime = 0.5f;
+        public float CommaTime = 0.2f;
+        public float DialogEndWaitTime = 3f;
+        
 
         private readonly static char[] FullStopChars = new char[] { '.', '!', '?' };
 
         private string _currentText;
 
+        public Transform DialogTransform;
+
+        public float LerpSpeed;
+        public Vector3 RelativeOpenPosition;
+        private Vector3 _closedPosition;
+        private bool _open;
 
         private void Awake()
         {
             Instance = this;
+            _closedPosition = transform.position;
         }
 
-        private void Start()
+        private void Update()
         {
-            ShowDialog("Do you even know why you're here? No? Well strap in lad, for this is about to get hot and heavy.\n\nWe're here to kill. In order to kill, you first need to place down turrets, then the turrets shoot the SHIT out of enemies!");
+            Vector3 target = _open ? (_closedPosition + RelativeOpenPosition) : _closedPosition;
+            transform.position = Vector3.Lerp(transform.position, target, LerpSpeed * Time.deltaTime);
         }
 
         public static void ShowDialog (string dialog)
@@ -41,6 +52,11 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         private IEnumerator AnimateDialog (string text)
         {
+            _currentText += string.Empty;
+            Text.text = _currentText;
+
+            _open = true;
+            yield return new WaitForSecondsRealtime(DialogStartWaitTime);
             for (int i = 0; i < text.Length; i++)
             {
                 char character = text[i];
@@ -49,6 +65,8 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
                 Text.text = _currentText;
                 yield return new WaitForSecondsRealtime(time);
             }
+            yield return new WaitForSecondsRealtime(DialogEndWaitTime);
+            _open = false;
         }
 
         private float GetCharacterTime (char character)

@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.UI
         private static int _index;
 
         private static Camera Camera => _instance.RenderCamera;
-        public const int RENDER_SIZE = 128;
+        public const int DEFAULT_RENDER_SIZE = 128;
 
         public Camera RenderCamera;
 
@@ -37,14 +37,16 @@ namespace Lomztein.BFA2.UI
             return UnityUtils.InstantiateMockGO(source);
         }
 
-        public static Sprite GenerateSprite (GameObject obj)
+        public static Sprite GenerateSprite (GameObject obj, int renderSize)
         {
             Texture2D tex = GenerateIcon(obj);
-            Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, RENDER_SIZE, RENDER_SIZE), Vector2.one / 2f);
+            Sprite sprite = Sprite.Create(tex, new Rect(0f, 0f, renderSize, renderSize), Vector2.one / 2f);
             return sprite;
         }
 
-        public static Texture2D GenerateIcon(GameObject obj)
+        public static Sprite GenerateSprite(GameObject go) => GenerateSprite(go, DEFAULT_RENDER_SIZE);
+
+        public static Texture2D GenerateIcon(GameObject obj, int renderSize)
         {
             _instance.gameObject.SetActive(true);
             _instance.transform.position = GetPosition();
@@ -57,7 +59,7 @@ namespace Lomztein.BFA2.UI
             model.transform.position = _instance.transform.position;
             model.SetActive(true);
 
-            RenderTexture renderTexture = RenderTexture.GetTemporary(RENDER_SIZE, RENDER_SIZE, 24);
+            RenderTexture renderTexture = RenderTexture.GetTemporary(renderSize, renderSize, 24);
 
             Bounds bounds = GetObjectBounds(model);
 
@@ -72,8 +74,8 @@ namespace Lomztein.BFA2.UI
             Camera.transform.LookAt(_instance.transform);
             Camera.Render();
 
-            Texture2D texture = new Texture2D(RENDER_SIZE, RENDER_SIZE, TextureFormat.ARGB32, false);
-            texture.ReadPixels(new Rect(0f, 0f, RENDER_SIZE, RENDER_SIZE), 0, 0);
+            Texture2D texture = new Texture2D(renderSize, renderSize, TextureFormat.ARGB32, false);
+            texture.ReadPixels(new Rect(0f, 0f, renderSize, renderSize), 0, 0);
             texture.Apply();
 
             RenderTexture.active = null;
@@ -88,6 +90,8 @@ namespace Lomztein.BFA2.UI
             DestroyImmediate(model);
             return texture;
         }
+
+        public static Texture2D GenerateIcon(GameObject go) => GenerateIcon(go, DEFAULT_RENDER_SIZE);
 
         public static Bounds GetObjectBounds(GameObject obj)
         {
