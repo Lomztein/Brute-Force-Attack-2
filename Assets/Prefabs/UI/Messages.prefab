@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Slot: 0
+  BlendColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!95 &7808910506948821769
 Animator:
   serializedVersion: 3
@@ -188,6 +190,7 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!114 &7808910507313099617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +281,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -308,7 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac8031c67d4dfe439ecb154a75ba4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: 0
+  Slot: 4
+  BlendColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7808910508009515260
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,18 +89,25 @@ namespace Lomztein.BFA2.ContentSystem
             return obj;
         }
 
-        public object GetContent(string path, Type type)
+        public object GetContent(string path, Type type, bool useCache)
         {
             path = OSAgnosticPath(path);
 
-            object cache = GetCache(path);
-            if (!IsCacheValid(cache))
+            if (useCache)
             {
-                return SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
+                object cache = GetCache(path);
+                if (!IsCacheValid(cache))
+                {
+                    return SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
+                }
+                else
+                {
+                    return cache;
+                }
             }
             else
             {
-                return cache;
+                return GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
             }
         }
 
@@ -121,6 +128,32 @@ namespace Lomztein.BFA2.ContentSystem
             return true;
         }
 
+        public void ClearCache (string path)
+        {
+            object cache = GetCache(path);
+            DisposeCacheObject(cache);
+            _cache.Remove(path);
+        }
+
+        private void DisposeCacheObject (object cacheObj)
+        {
+            if (cacheObj is object[] array)
+            {
+                foreach (object obj in array)
+                {
+                    DisposeCacheObject(obj);
+                }
+            } else if (cacheObj is IDisposableContent disposable)
+            {
+                disposable.Dispose();
+            }
+            
+            if (IsCacheValid(cacheObj))
+            {
+                throw new Exception("An object cache was disposed but is still considered valid. Plz fix.");
+            }
+        }
+
         private string GetPackFolder(string path)
         {
             return path.Split(Path.DirectorySeparatorChar).First();
@@ -131,14 +164,17 @@ namespace Lomztein.BFA2.ContentSystem
             return path.Substring(path.IndexOf(Path.DirectorySeparatorChar) +1);
         }
 
-        public object[] GetAllContent(string path, Type type)
+        public object[] GetAllContent(string path, Type type, bool useCache)
         {
             path = OSAgnosticPath(path);
 
-            object cache = GetCache(path);
-            if (IsCacheValid(cache))
+            if (useCache)
             {
-                return cache as object[];
+                object cache = GetCache(path);
+                if (IsCacheValid(cache))
+                {
+                    return cache as object[];
+                }
             }
 
             string packFolder = GetPackFolder(path);
@@ -153,11 +189,22 @@ namespace Lomztein.BFA2.ContentSystem
                 {
                     objects.AddRange(pack.GetAllContent(contentPath, type));
                 }
-                return SetCache (path, objects.ToArray()) as object[];
+
+                object[] array = objects.ToArray();
+                if (useCache)
+                {
+                    SetCache(path, array);
+                }
+                return array;
             }
             else
             {
-                return SetCache(path, GetPack(packFolder).GetAllContent(contentPath, type)) as object[];
+                object[] array = GetPack(packFolder).GetAllContent(contentPath, type);
+                if (useCache)
+                {
+                    SetCache(path, array);
+                }
+                return array;
             }
         }
 

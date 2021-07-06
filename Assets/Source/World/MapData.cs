@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.World
         public string Name;
         public string Description;
         public string Identifier;
-        public ContentSpriteReference MapImage;
+        public Texture2D Preview { get; private set; }
 
         public int Width;
         public int Height;
@@ -97,7 +97,6 @@ namespace Lomztein.BFA2.World
                 new ObjectField("Identifier", new PrimitiveModel(Identifier)),
                 new ObjectField("Width", new PrimitiveModel(Width)),
                 new ObjectField("Height", new PrimitiveModel(Height)),
-                new ObjectField("MapImage", ValueModelFactory.Create(MapImage, context)),
                 new ObjectField("Tiles", Tiles.Disassemble(context)),
                 new ObjectField("Objects", new ArrayModel(Objects))
                 );
@@ -116,10 +115,10 @@ namespace Lomztein.BFA2.World
             Height = obj.GetValue<int>("Height");
             Tiles = AssembleTileData(obj.GetArray("Tiles"), context);
             Objects = obj.GetArray("Objects").Elements.Cast<ObjectModel>().ToArray();
-
-            ObjectAssembler assembler = new ObjectAssembler();
-            MapImage = (ContentSpriteReference)assembler.Assemble (obj.GetObject("MapImage"), typeof(ContentSpriteReference), context);
         }
+
+        public void SetPreview (Texture2D preview)
+            => Preview = preview;
 
         private TileData AssembleTileData (ArrayModel array, AssemblyContext context)
         {

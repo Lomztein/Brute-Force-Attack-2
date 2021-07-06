@@ -15,7 +15,8 @@ namespace Lomztein.BFA2.UI.Style.Stylizers
 
         public override void ApplyStyle(UIStyle style)
         {
-            GetGraphic().color = style.GetColor(Slot) * BlendColor;
+            Color color = style.GetColor(Slot);
+            GetGraphic().color = color * BlendColor;
         }
     }
 }

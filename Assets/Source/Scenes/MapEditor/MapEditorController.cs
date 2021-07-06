@@ -76,10 +76,8 @@ namespace Lomztein.BFA2.MapEditor
             // These paths are so hardcoded, severely needs to be improved if we are to ever have variable save destinations.
             Texture2D mapPreview = SnapMapPreview();
             string previewPath = Path.Combine(Content.CustomContentPath, MAP_FOLDER, PREVIEW_SUB_FOLDER, MapData.Name) + ".png";
-            string previewContentPath = Path.Combine("Custom", MAP_FOLDER, PREVIEW_SUB_FOLDER, MapData.Name) + ".png";
            
             SaveMapPreview(mapPreview, previewPath);
-            MapData.MapImage = new ContentSpriteReference() { Path = previewContentPath };
 
             MapData.Objects = DisassembleMapObjects();
             var model = MapData.Disassemble(new Serialization.Assemblers.DisassemblyContext());
@@ -97,7 +95,6 @@ namespace Lomztein.BFA2.MapEditor
 
         private void SaveMapPreview (Texture2D texture, string path)
         {
-            Debug.Log(Path.GetDirectoryName(path));
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             byte[] raw = texture.EncodeToPNG();
             File.WriteAllBytes(path, raw);
@@ -226,6 +223,8 @@ namespace Lomztein.BFA2.MapEditor
         private void ApplyMapData ()
         {
             _mapController.IfExists(x => x.ApplyMapData(MapData));
+            NameInput.text = MapData.Name;
+            DescriptionInput.text = MapData.Description;
         }
 
         private void LoadFile (string file)

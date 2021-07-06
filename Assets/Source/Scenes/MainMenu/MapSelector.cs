@@ -23,7 +23,8 @@ namespace Lomztein.BFA2.MainMenu
 
         public Text MapName;
         public Text MapDescription;
-        public Image Mapimage;
+        public Image MapPreview;
+        public Text PreviewMissingText;
 
         private void Start()
         {
@@ -34,15 +35,34 @@ namespace Lomztein.BFA2.MainMenu
 
         private MapData[] LoadMaps ()
         {
-            return Content.GetAll("*/Maps", typeof(MapData)).Cast<MapData>().ToArray();
+            List<MapData> maps = Content.GetAll("*/Maps", typeof(MapData), false).Cast<MapData>().ToList();
+            maps.Sort((x, y) => (x.Width * x.Height) - (y.Width * y.Height));
+            return maps.ToArray();
         }
 
         private void SelectMap (int index)
         {
             MapName.text = _maps[index].Name;
             MapDescription.text = _maps[index].Description;
-            Mapimage.sprite = _maps[index].MapImage.Get();
+            SetMapPreview(index);
+
             BattlefieldSettings.CurrentSettings.MapIdentifier = _maps[index].Identifier;
+        }
+
+        private void SetMapPreview(int index)
+        {
+            Texture2D preview = _maps[index].Preview;
+            if (preview)
+            {
+                MapPreview.sprite = Sprite.Create(preview, new Rect(0, 0, preview.width, preview.height), Vector2.one / 2f);
+                MapPreview.gameObject.SetActive(true);
+                PreviewMissingText.gameObject.SetActive(false);
+            }
+            else
+            {
+                MapPreview.gameObject.SetActive(false);
+                PreviewMissingText.gameObject.SetActive(true);
+            }
         }
 
         public void InstantiateMapButtons ()

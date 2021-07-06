@@ -28,6 +28,8 @@ namespace Lomztein.BFA2.UI.Style
         public Color Detail;
         [ModelProperty]
         public Color Text;
+        [ModelProperty]
+        public Color Contrast;
 
         public static UIStyle Default() {
             UIStyle style = CreateInstance<UIStyle>();
@@ -39,11 +41,12 @@ namespace Lomztein.BFA2.UI.Style
             style.Highlight = new Color(0.2f, 1f, 1f);
             style.Detail = new Color(0.1f, 1f, 1f);
             style.Text = new Color(0.2f, 1f, 1f);
+            style.Contrast = new Color(0.8f, 0f, 0f);
 
             return style;
         }
 
-        public enum Slot { Primary, Secondary, Highlight, Detail, Text }
+        public enum Slot { Primary, Secondary, Highlight, Detail, Text, Contrast }
 
         public Color GetColor(Slot slot)
         {
@@ -54,6 +57,7 @@ namespace Lomztein.BFA2.UI.Style
                 case Slot.Highlight: return Highlight;
                 case Slot.Detail: return Detail;
                 case Slot.Text: return Text;
+                case Slot.Contrast: return Contrast;
                 default: return Color.white;
             }
         }
