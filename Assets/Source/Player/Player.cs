@@ -56,11 +56,6 @@ namespace Lomztein.BFA2.Player
             _unlocks = GetComponent<IUnlockList>();
             _resources = GetComponent<IResourceContainer>();
 
-            if (_health != null)
-            {
-                _health.ChangeHealth(0);
-            }
-
             if (_resources != null)
             {
                 _resources?.ChangeResource(Resource.Credits, 0);

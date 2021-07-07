@@ -10,6 +10,16 @@ namespace Lomztein.BFA2.World.Defendables
 
         private void Start()
         {
+            Init();
+        }
+
+        public void OnAssembled ()
+        {
+            Init();
+        }
+
+        private void Init ()
+        {
             _backgroundMaterial = transform.Find("Background").GetComponent<Renderer>().material;
         }
 

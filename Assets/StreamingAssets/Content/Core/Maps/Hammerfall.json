@@ -1599,6 +1599,71 @@
         }
       ],
       "Children": []
+    },
+    {
+      "Name": "GlobalStructureModMutator",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.EmbeddedMutator",
+          "$Data": {
+            "Mutator": {
+              "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.GlobalStructureModMutator",
+              "$Data": {
+                "_mod": {
+                  "_mod": {
+                    "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+                    "$Data": {
+                      "Stats": [
+                        {
+                          "Identifier": "Range",
+                          "Name": "Range",
+                          "Description": "",
+                          "Type": "Multiplicative",
+                          "Value": 1.0
+                        }
+                      ],
+                      "_identifier": "Core.Mutator.Range",
+                      "_name": "+100% Range",
+                      "_description": "Increases range of all structures.",
+                      "RequiredAttributes": [ "Ranged" ]
+                    }
+
+
+                  },
+                  "_filters": []
+                },
+                "Name": "Global Mod",
+                "Description": "Embedded global mod",
+                "Identifier": "Omegakek"
+              }
+            }
+          }
+        }
+      ],
+      "Children": []
     }
   ]
 }

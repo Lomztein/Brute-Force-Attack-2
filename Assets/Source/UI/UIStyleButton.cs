@@ -17,6 +17,7 @@ namespace Lomztein.BFA2.UI
         public Image Highlight;
         public Image Detail;
         public Image Text;
+        public Image Contrast;
 
         private UIStyle _style;
         private Action<UIStyle> _callback;
@@ -30,6 +31,7 @@ namespace Lomztein.BFA2.UI
             Highlight.color = _style.Highlight;
             Detail.color = _style.Detail;
             Text.color = _style.Text;
+            Contrast.color = _style.Contrast;
 
             _callback = callback;
 

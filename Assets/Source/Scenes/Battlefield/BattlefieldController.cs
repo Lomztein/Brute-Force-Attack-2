@@ -21,6 +21,8 @@ namespace Lomztein.BFA2.Battlefield
         public MapController MapController;
         public RoundController RoundController;
 
+        private InputMaster _master;
+
         private void Start()
         {
             InitMap();
@@ -32,9 +34,14 @@ namespace Lomztein.BFA2.Battlefield
 
             Invoke(nameof(SendStartingMessage), 2f);
 
-            InputMaster master = new InputMaster();
-            master.Battlefield.SetCallbacks(this);
-            master.Battlefield.Enable();
+            _master = new InputMaster();
+            _master.Battlefield.SetCallbacks(this);
+            _master.Battlefield.Enable();
+        }
+
+        private void OnDestroy()
+        {
+            _master.Battlefield.Disable();
         }
 
         public void InitializeBattlefield (BattlefieldSettings settings)

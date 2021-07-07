@@ -1,0 +1,48 @@
+{
+  "Name": "Unlock Heavy Cannon Tier 2",
+  "Description": "Unlock the second tier of the Heavy Cannon component.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/HeavyCannonT2.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Type": "Research",
+        "Value": 6
+      }
+    ]
+  },
+  "TimeCost": 3,
+  "Identifier": "Core.UnlockHeavyCannonT2",
+  "PrerequisiteIdentifiers": [
+    "Core.UnlockHeavyCannonT1"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.HeavyCannonT2"
+      }
+    }
+  ]
+}

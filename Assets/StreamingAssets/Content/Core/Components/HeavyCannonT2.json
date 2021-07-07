@@ -1,0 +1,524 @@
+{
+  "Name": "HeavyCannonT2(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Resources/Projectiles/CannonProjectile"
+        },
+        "FireTreshold": 1.0,
+        "HitLayer": {
+          "Mask": 256
+        },
+        "BaseDamage": 3000.0,
+        "BaseProjectileAmount": 1,
+        "BaseSpread": 0.0,
+        "BaseSpeed": 100.0,
+        "BaseFirerate": 0.5,
+        "Color": "Red",
+        "BaseComplexity": 0.0,
+        "AttachmentSlots": {
+          "_attachmentPoints": []
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          }
+        ],
+        "_name": "Twin Heavy Cannon",
+        "_description": "Fires two heavy slugs of molten metal in rapid succesion.",
+        "_uniqueIdentifier": "Core.HeavyCannonT2",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 5000
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Medium",
+        "_height": "Medium"
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "$Data": {
+        "AnimationSprites": [
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 32.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 64.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 96.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 128.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 160.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 192.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 224.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 256.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 288.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "Core/Sprites/Components/CannonT2.png",
+            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+            "Rect": {
+              "X": 320.0,
+              "Y": 0.0,
+              "Width": 32.0,
+              "Height": 32.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          }
+        ],
+        "DefaultSprite": {
+          "Path": "Core/Sprites/Components/CannonT2.png",
+          "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 32.0,
+            "Height": 32.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        },
+        "PlaySpeedMultiplier": 4.0
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Weaponary.FireControl.SequenceFireControl",
+      "$Data": {
+        "DelayDenominator": 0.05
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": "",
+              "Texture": "$Path{Core/Sprites/Components/HeavyCannonT2.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Muzzles",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 0.938,
+                  "Y": 0.303,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            }
+          ],
+          "Children": [
+            {
+              "Name": "FireParticle",
+              "Tag": "Untagged",
+              "Layer": 0,
+              "Static": false,
+              "Components": [
+                {
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "X": 0.0,
+                      "Y": 0.0,
+                      "Z": 0.0
+                    },
+                    "Rotation": {
+                      "X": 0.0,
+                      "Y": 90.0,
+                      "Z": 0.0
+                    },
+                    "Scale": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 1.0
+                    }
+                  }
+                },
+                {
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                  "$Data": {
+                    "Reference": {
+                      "Path": "Resources/Particles/FireEffects/CannonFireEffect"
+                    },
+                    "NameOverride": ""
+                  }
+                }
+              ],
+              "Children": []
+            }
+          ]
+        },
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 0.938,
+                  "Y": -0.303,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            }
+          ],
+          "Children": [
+            {
+              "Name": "FireParticle",
+              "Tag": "Untagged",
+              "Layer": 0,
+              "Static": false,
+              "Components": [
+                {
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "X": 0.0,
+                      "Y": 0.0,
+                      "Z": 0.0
+                    },
+                    "Rotation": {
+                      "X": 0.0,
+                      "Y": 90.0,
+                      "Z": 0.0
+                    },
+                    "Scale": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 1.0
+                    }
+                  }
+                },
+                {
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                  "$Data": {
+                    "Reference": {
+                      "Path": "Resources/Particles/FireEffects/CannonFireEffect"
+                    },
+                    "NameOverride": ""
+                  }
+                }
+              ],
+              "Children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

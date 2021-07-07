@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
+  m_Name: UnlockMachineGunT3
+  m_EditorClassIdentifier: 
+  Name: Unlock Machine Gun Tier 3
+  Description: Unlock the third tier of the Machine Gun component.
+  Sprite:
+    Path: Core/Sprites/Components/MachineGunT3.png
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 16
+      height: 16
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SpriteTint: {r: 1, g: 1, b: 1, a: 1}
+  ResourceCost:
+    Elements:
+    - Type: 1
+      Value: 3
+  TimeCost: 2
+  Identifier: Core.UnlockMachineGunT3
+  PrerequisiteIdentifiers:
+  - Core.UnlockMachineGunT2
+  PinIdentifier: 
+  UniquePrerequisites: []
+  Rewards:
+  - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
+      data:
+        Identifier: Core.MachineGunT3

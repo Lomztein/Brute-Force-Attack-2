@@ -1,0 +1,48 @@
+{
+  "Name": "Unlock Scatter Laser Tier 2",
+  "Description": "Unlock the second tier of the Scatter Laser component.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/ScatterLaserT2.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Type": "Research",
+        "Value": 6
+      }
+    ]
+  },
+  "TimeCost": 3,
+  "Identifier": "Core.UnlockScatterLaserT2",
+  "PrerequisiteIdentifiers": [
+    "Core.UnlockScatterLaserT1"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.ScatterLaserT2"
+      }
+    }
+  ]
+}

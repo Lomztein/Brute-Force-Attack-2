@@ -1,0 +1,383 @@
+{
+  "Name": "RocketLauncherT3(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Resources/Projectiles/ThiccRocketProjectile"
+        },
+        "FireTreshold": 30.0,
+        "HitLayer": {
+          "Mask": 256
+        },
+        "BaseDamage": 600.0,
+        "BaseProjectileAmount": 1,
+        "BaseSpread": 0.0,
+        "BaseSpeed": 20.0,
+        "BaseFirerate": 0.5,
+        "Color": "Red",
+        "BaseComplexity": 0.0,
+        "AttachmentSlots": {
+          "_attachmentPoints": []
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Small",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
+          }
+        ],
+        "_name": "Dual Heavy Rocket Launcher",
+        "_description": "FWO-FWOOOOOMPF",
+        "_uniqueIdentifier": "Core.RocketLauncherT3",
+        "_cost": {
+          "Elements": [
+            {
+              "Type": "Credits",
+              "Value": 2250
+            }
+          ]
+        },
+        "BaseAttributes": [],
+        "_width": "Small",
+        "_height": "Small"
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
+      "$Data": {
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+          "$Data": {
+            "DamageMultBase": 0.75,
+            "RangeBase": 1.5,
+            "DamageMultStack": 0.75,
+            "RangeStack": 0.75,
+            "ExplosionPrefab": {
+              "Path": "Core/Projectiles/Explosion.json"
+            },
+            "DestroyProjectile": true,
+            "_identifier": "Core.ExplosiveRounds",
+            "_name": "Explosive Rounds",
+            "_description": "This weapon has built-in explosive rounds.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
+      "$Data": {
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+          "$Data": {
+            "DamageMultBase": 75.0,
+            "RangeBase": 0.5,
+            "DamageMultStack": 0.75,
+            "RangeStack": 0.75,
+            "ExplosionPrefab": {
+              "Path": "Core/Projectiles/Explosion.json"
+            },
+            "DestroyProjectile": true,
+            "_identifier": "Core.ExplosiveRounds",
+            "_name": "Explosive Rounds",
+            "_description": "This weapon is provided with the explosive rounds of a nearby rocket launcher.",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        },
+        "_behavioursToDisable": [
+          "TurretWeapon"
+        ]
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+      "$Data": {
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "_mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": {
+            "Stats": [
+              {
+                "Identifier": "Damage",
+                "Name": "",
+                "Description": "",
+                "Type": "Multiplicative",
+                "Value": 0.75
+              }
+            ],
+            "_identifier": "Core.RocketLauncherDamageBoost",
+            "_name": "Heavy Impact",
+            "_description": "This weapons damage is boosted from a nearby rocket launcher",
+            "RequiredAttributes": [
+              "Weapon"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Animation.FireAnimations.SimpleFireAnimation",
+      "$Data": {
+        "AnimationSprites": [
+          {
+            "Path": "",
+            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+            "Rect": {
+              "X": 16.0,
+              "Y": 0.0,
+              "Width": 16.0,
+              "Height": 16.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "",
+            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+            "Rect": {
+              "X": 32.0,
+              "Y": 0.0,
+              "Width": 16.0,
+              "Height": 16.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "",
+            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+            "Rect": {
+              "X": 48.0,
+              "Y": 0.0,
+              "Width": 16.0,
+              "Height": 16.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "",
+            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+            "Rect": {
+              "X": 64.0,
+              "Y": 0.0,
+              "Width": 16.0,
+              "Height": 16.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          },
+          {
+            "Path": "",
+            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+            "Rect": {
+              "X": 80.0,
+              "Y": 0.0,
+              "Width": 16.0,
+              "Height": 16.0
+            },
+            "Pivot": {
+              "X": 0.5,
+              "Y": 0.5
+            },
+            "PixelsPerUnit": 16.0
+          }
+        ],
+        "DefaultSprite": {
+          "Path": "",
+          "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 16.0,
+            "Height": 16.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        },
+        "PlaySpeedMultiplier": 4.0
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": "",
+              "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 16.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Muzzles",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 0.282,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            }
+          ],
+          "Children": []
+        }
+      ]
+    }
+  ]
+}

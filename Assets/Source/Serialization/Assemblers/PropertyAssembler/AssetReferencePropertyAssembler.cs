@@ -49,6 +49,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
             if (obj == null)
             {
                 field.Model = new NullModel();
+                return;
             } else if (obj is UnityEngine.Object uObj)
             {
 #if UNITY_EDITOR 

@@ -17,27 +17,32 @@ namespace Lomztein.BFA2.Structures.Upgrading
         [ModelProperty]
         public string UpgradeName;
         [ModelProperty]
-        public string UpgradeDecsription;
+        public string UpgradeDescription;
         [ModelProperty]
         public ContentSpriteReference UpgradeSprite;
         [ModelProperty, SerializeReference, SR]
         public IResourceCost UpgradeCost;
 
         public string Name => UpgradeName;
-        public string Description => UpgradeDecsription;
+        public string Description => UpgradeDescription;
         public virtual IResourceCost Cost => UpgradeCost;
         public virtual Sprite Sprite => UpgradeSprite.Get();
 
         public abstract bool Upgrade();
         public abstract bool CanUpgrade();
+        public abstract bool ShowUpgrade();
+        public abstract string GetStatus();
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
-            if (CanUpgrade())
+            if (ShowUpgrade())
             {
+                string status = GetStatus(); // Bit hacky but it works for now. TODO: Implement proper status thing.
+                status = string.IsNullOrEmpty(status) ? string.Empty : "\n" + status; 
+
                 return new IContextMenuOption[]
                 {
-                new ContextMenuOption ("Upgrade - " + Cost.Format(), Description, Sprite, Upgrade, () => Player.Player.Resources.HasEnough(Cost))
+                    new ContextMenuOption ("Upgrade - " + Cost.Format() + status, Description, Sprite, Upgrade, CanUpgrade)
                 };
             }
             else

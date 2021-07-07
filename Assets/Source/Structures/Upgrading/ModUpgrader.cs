@@ -18,6 +18,16 @@ namespace Lomztein.BFA2.Structures.Upgrading
             return true;
         }
 
+        public override string GetStatus()
+        {
+            return string.Empty;
+        }
+
+        public override bool ShowUpgrade()
+        {
+            return true;
+        }
+
         public override bool Upgrade()
         {
             return true;

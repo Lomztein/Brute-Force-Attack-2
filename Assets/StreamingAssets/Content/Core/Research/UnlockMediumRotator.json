@@ -1,50 +1,50 @@
 {
-  "$Type": "Lomztein.BFA2.Research.ResearchOption",
-    "$Data": {
-        "Name": "Unlock Medium Rotator",
-        "Description": "Unlock the medium rotator turret component.",
-        "Sprite": {
-            "Path": "Core/Sprites/Components/Rotator.png",
-            "Rect": {
-                "X": 0.0,
-                "Y": 0.0,
-                "Width": 32.0,
-                "Height": 32.0
-            },
-            "Pivot": {
-                "X": 0.5,
-                "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-        },
-        "SpriteTint": {
-            "Red": 1.0,
-            "Green": 1.0,
-            "Blue": 1.0,
-            "Alpha": 1.0
-        },
-        "ResourceCost": {
-            "Elements": [
-                {
-                    "Type": "Research",
-                    "Value": 2
-                }
-            ]
-        },
-        "TimeCost": 0,
-        "Identifier": "Core.UnlockMediumRotator",
-        "PrerequisiteIdentifiers": ["Core.UnlockMediumBase"],
-        "PinIdentifier": null,
-        "UniquePrerequisites": [],
-        "Rewards": [
-            {
-                "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
-                "$Data": {
-                    "Identifier": "Core.MediumRotator",
-                    "UnlockList": "Components",
-                    "_description": "Unlock the medium rotator, on which more powerful weapons can be placed."
-                }
-            }
-        ]
+  "Name": "Unlock Medium Rotator",
+  "Description": "Unlock the Medium Rotator component, which can support much larger weapons.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/Rotator.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Type": "Research",
+        "Value": 2
+      }
+    ]
+  },
+  "TimeCost": 1,
+  "Identifier": "Core.UnlockMediumRotator",
+  "PrerequisiteIdentifiers": [
+    "Core.UnlockMachineGunT3",
+    "Core.UnlockPulseLaserT3",
+    "Core.UnlockRocketLauncherT3"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.MediumRotator"
+      }
     }
+  ]
 }

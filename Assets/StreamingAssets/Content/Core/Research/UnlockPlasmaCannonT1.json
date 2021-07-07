@@ -1,0 +1,50 @@
+{
+  "Name": "Unlock Plasma Cannon",
+  "Description": "Unlock the Plasma Cannon component.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/PlasmaCannonT1.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Type": "Research",
+        "Value": 4
+      }
+    ]
+  },
+  "TimeCost": 3,
+  "Identifier": "Core.UnlockPlasmaCannonT1",
+  "PrerequisiteIdentifiers": [
+    "Core.UnlockMachineGunT3",
+    "Core.UnlockMediumBase",
+    "Core.UnlockMediumRotator"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.PlasmaCannonT1"
+      }
+    }
+  ]
+}

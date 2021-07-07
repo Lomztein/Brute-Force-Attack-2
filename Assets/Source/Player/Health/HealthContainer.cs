@@ -24,12 +24,18 @@ namespace Lomztein.BFA2.Player.Health
             _health = StartingHealth;
         }
 
+        private void Start()
+        {
+            ChangeHealth(0);
+        }
+
         public float ChangeHealth(float amount)
         {
             float prev = _health;
             _health += amount;
             OnHealthChanged?.Invoke(prev, _health, MaxHealth);
 
+            Debug.Log(!_exhausted && _health <= 0f);
             if (!_exhausted && _health <= 0f)
             {
                 Die();
@@ -42,6 +48,7 @@ namespace Lomztein.BFA2.Player.Health
         private void Die ()
         {
             _exhausted = true;
+            Debug.Log("Die");
             OnHealthExhausted?.Invoke();
         }
 

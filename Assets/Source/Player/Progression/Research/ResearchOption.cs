@@ -20,11 +20,11 @@ namespace Lomztein.BFA2.Research
         [ModelProperty]
         public string Description = "Undescd";
         [ModelProperty]
-        public ContentSpriteReference Sprite = new ContentSpriteReference();
+        public ContentSpriteReference Sprite;
         [ModelProperty]
         public Color SpriteTint = Color.white;
         [ModelProperty]
-        public ResourceCost ResourceCost = new ResourceCost();
+        public ResourceCost ResourceCost;
         [ModelProperty]
         public int TimeCost;
         public int TimePayed { get; private set; }
