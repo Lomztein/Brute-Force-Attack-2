@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Scenes.MainMenu
 {
-    public class DifficultySelector : MonoBehaviour
+    public class DifficultySelector : MonoBehaviour, ICustomGameAspectController
     {
         public GameObject DifficultyButtonPrefab;
         public Transform DifficultyButtonParent;
@@ -21,28 +21,25 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         private Button _selectedButton;
 
         private IEnumerable<Difficulty> _difficulties;
+        private Dictionary<string, Button> _difficultyButtonMap = new Dictionary<string, Button>();
+
         private string DIFFICULTY_PATH = "*/Difficulty";
         private string DEFAULT_IDENTIFIER = "Core.Medium";
 
-        private void Start ()
+        private void Awake ()
         {
             _difficulties = LoadDifficulties();
             InstantiateDifficultyButtons();
-
-            Difficulty defaultDifficulty = _difficulties.FirstOrDefault(x => x.Identifier == DEFAULT_IDENTIFIER);
-            if (defaultDifficulty == null)
-            {
-                defaultDifficulty = _difficulties.First();
-            }
-
-            SelectDifficulty(defaultDifficulty);
-
             PropertyMenu.OnPropertyChanged += OnPropertyMenuPropertyChanged;
         }
 
         private void OnPropertyMenuPropertyChanged()
         {
-            _selectedButton.interactable = true;
+            if (_selectedButton)
+            {
+                _selectedButton.interactable = true;
+            }
+            BattlefieldSettings.CurrentSettings.Difficulty.IsModified = true;
         }
 
         private void InstantiateDifficultyButtons ()
@@ -58,14 +55,20 @@ namespace Lomztein.BFA2.Scenes.MainMenu
                 newButton.GetComponentInChildren<Text>().text = difficulty.Name;
                 Button button = newButton.GetComponentInChildren<Button>();
 
-                AddButtonListener(button, difficulty);
-                if (difficulty.Identifier == DEFAULT_IDENTIFIER)
+                if (_difficultyButtonMap.ContainsKey(difficulty.Identifier))
                 {
-                    button.interactable = false; // Kind of hacky but can't be bothered with the alternative. Will be fixed if it ever becomes a problem.
-                    _selectedButton = button;
+                    _difficultyButtonMap[difficulty.Identifier] = button;
                 }
+                else
+                {
+                    _difficultyButtonMap.Add(difficulty.Identifier, button);
+                }
+
+                AddButtonListener(button, difficulty);
             }
         }
+
+        private Button GetDifficultyButton(string identifier) => _difficultyButtonMap[identifier];
 
         private void AddButtonListener (Button button, Difficulty difficulty)
         {
@@ -74,7 +77,10 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         private void SelectDifficulty(Button button, Difficulty difficulty)
         {
-            _selectedButton.interactable = true;
+            if (_selectedButton)
+            {
+                _selectedButton.interactable = true;
+            }
             SelectDifficulty(difficulty);
             _selectedButton = button;
             _selectedButton.interactable = false;
@@ -102,6 +108,21 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
             result.Sort(new DifficultyComparer());
             return result;
+        }
+
+        public void ApplyBattlefieldSettings(BattlefieldSettings settings)
+        {
+            if (string.IsNullOrEmpty(settings.Difficulty.Identifier))
+            {
+                SelectDifficulty(GetDifficultyButton(DEFAULT_IDENTIFIER), _difficulties.First(x => x.Identifier == DEFAULT_IDENTIFIER));
+            }else if (settings.Difficulty.IsModified)
+            {
+                SelectDifficulty(settings.Difficulty);
+            }
+            else
+            {
+                SelectDifficulty(GetDifficultyButton(settings.Difficulty.Identifier), settings.Difficulty);
+            }
         }
     }
 }

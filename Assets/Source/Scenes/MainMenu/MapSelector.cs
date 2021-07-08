@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.MainMenu
+namespace Lomztein.BFA2.Scenes.MainMenu
 {
-    public class MapSelector : MonoBehaviour
+    public class MapSelector : MonoBehaviour, ICustomGameAspectController
     {
         private MapData[] _maps;
 
@@ -26,11 +26,10 @@ namespace Lomztein.BFA2.MainMenu
         public Image MapPreview;
         public Text PreviewMissingText;
 
-        private void Start()
+        private void Awake()
         {
             _maps = LoadMaps();
             InstantiateMapButtons();
-            SelectMap(0);
         }
 
         private MapData[] LoadMaps ()
@@ -85,6 +84,13 @@ namespace Lomztein.BFA2.MainMenu
         private void AddListener(Button button, int index)
         {
             button.onClick.AddListener(() => SelectMap(index));
+        }
+
+        public void ApplyBattlefieldSettings(BattlefieldSettings settings)
+        {
+            List<MapData> list = _maps.ToList();
+            MapData data = list.First(x => x.Identifier == settings.MapIdentifier);
+            SelectMap(list.IndexOf(data));
         }
     }
 }

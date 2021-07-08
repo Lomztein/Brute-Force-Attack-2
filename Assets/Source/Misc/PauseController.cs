@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.UI.Menus;
+﻿using Lomztein.BFA2.Player.Interrupt;
+using Lomztein.BFA2.UI.Menus;
 using Lomztein.BFA2.UI.Windows;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,25 @@ namespace Lomztein.BFA2.Misc
     public class PauseController : MonoBehaviour
     {
         public GameObject PauseMenuPrefeb;
+        public InterruptIfPlacementBusy Interrupt;
         private PauseMenu _currentPauseMenu;
 
         private void Start()
         {
-            InputMaster master = new InputMaster();
-            master.General.CancelPause.performed += OnPause;
-            master.General.Enable();
-            master.Enable();
+            Input.CancelPauseStarted += OnPause;
+        }
+
+        private void OnDestroy()
+        {
+            Input.CancelPauseStarted -= OnPause;
         }
 
         private void OnPause(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
-            Toggle();
+            if (!Interrupt.IsInterrupted())
+            {
+                Toggle();
+            }
         }
 
         public void Toggle ()
@@ -52,7 +59,7 @@ namespace Lomztein.BFA2.Misc
         {
             if (_currentPauseMenu != null)
             {
-                _currentPauseMenu.Resume();
+                _currentPauseMenu.Close();
             }
         }
     }

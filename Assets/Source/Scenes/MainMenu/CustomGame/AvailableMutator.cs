@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.MainMenu.CustomGame
+namespace Lomztein.BFA2.Scenes.MainMenu
 {
     public class AvailableMutator : MonoBehaviour, ITooltip
     {

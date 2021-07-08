@@ -1,5 +1,4 @@
-﻿using Lomztein.BFA2.MainMenu.CustomGame;
-using Lomztein.BFA2.Scenes.Battlefield.Mutators;
+﻿using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;
 using System;

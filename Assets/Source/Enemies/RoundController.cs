@@ -4,6 +4,7 @@ using Lomztein.BFA2.Enemies.Waves.Punishers;
 using Lomztein.BFA2.Enemies.Waves.Rewarders;
 using Lomztein.BFA2.Loot;
 using Lomztein.BFA2.Player.Health;
+using Lomztein.BFA2.Player.Interrupt;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;

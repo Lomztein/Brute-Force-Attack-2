@@ -8,9 +8,9 @@ using UnityEngine.Events;
 using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 
-namespace Lomztein.BFA2.MainMenu.CustomGame
+namespace Lomztein.BFA2.Scenes.MainMenu
 {
-    public class MutatorSelector : MonoBehaviour
+    public class MutatorSelector : MonoBehaviour, ICustomGameAspectController
     {
         public Transform EnabledParent;
         public Transform AvailableParent;
@@ -132,6 +132,17 @@ namespace Lomztein.BFA2.MainMenu.CustomGame
         private Mutator[] LoadMutators()
         {
             return Content.GetAll<Mutator>("*/Mutators");
+        }
+
+        public void ApplyBattlefieldSettings(BattlefieldSettings settings)
+        {
+            Mutator[] mutators = settings.Mutators;
+            foreach (Mutator mutator in mutators)
+            {
+                settings.RemoveMutator(mutator);
+                EnableMutator(mutator);
+            }
+            // It's not the cleanest but it works.
         }
     }
 }

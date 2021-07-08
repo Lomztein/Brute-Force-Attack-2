@@ -1,6 +1,7 @@
 using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Player.Interrupt;
 using Lomztein.BFA2.Player.Profile;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.UI.Displays.Dialog;
@@ -22,6 +23,7 @@ namespace Lomztein.BFA2.Battlefield
 
         public MapController MapController;
         public RoundController RoundController;
+        public InterruptIfDialogOpen StartWaveIntterupt;
 
         private InputMaster _master;
         public DialogTree Introduction;
@@ -100,7 +102,7 @@ namespace Lomztein.BFA2.Battlefield
 
         public void OnStartWave(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.performed && !StartWaveIntterupt.IsInterrupted())
             {
                 RoundController.BeginNextWave();
             }

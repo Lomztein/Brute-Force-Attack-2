@@ -15,9 +15,15 @@ namespace Lomztein.BFA2.UI.Menus
         {
             OnClosed?.Invoke();
             Destroy(gameObject);
+            Resume();
         }
 
         public void Init()
+        {
+            Pause();
+        }
+
+        public void Pause ()
         {
             Time.timeScale = 0f;
         }
@@ -25,7 +31,6 @@ namespace Lomztein.BFA2.UI.Menus
         public void Resume()
         {
             Time.timeScale = 1f;
-            Close();
         }
 
         public void Restart ()

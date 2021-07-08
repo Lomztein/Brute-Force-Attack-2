@@ -22,6 +22,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty
         public string GradeIdentifier;
         [ModelProperty]
         public string Identifier;
+        public bool IsModified;
 
         [ModelProperty, SerializeReference, SR]
         private IDifficultyAspect[] Aspects = new IDifficultyAspect[]

@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         public float LerpSpeed;
         public Vector3 RelativeOpenPosition;
         private Vector3 _closedPosition;
-        private bool _open;
+        public bool IsOpen { get; private set; }
 
         private void Awake()
         {
@@ -47,7 +47,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         private void Update()
         {
-            Vector3 target = _open ? (_closedPosition + RelativeOpenPosition) : _closedPosition;
+            Vector3 target = IsOpen ? (_closedPosition + RelativeOpenPosition) : _closedPosition;
             transform.position = Vector3.Lerp(transform.position, target, LerpSpeed * Time.deltaTime);
         }
 
@@ -69,12 +69,12 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
                 Instance.StopCoroutine(Instance._currentCoroutine);
                 Instance._currentCoroutine = null;
             }
-            Instance._open = false;
+            Instance.IsOpen = false;
         }
 
         private IEnumerator DisplayNodeCoroutine (DialogNode node)
         {
-            _open = true;
+            IsOpen = true;
             Texture2D avatar = node.GetAvatar();
             CharacterAvatar.sprite = Sprite.Create(avatar, new Rect(0f, 0f, avatar.width, avatar.height), Vector2.one / 2f);
             CharacterName.text = node.Character.Name;
@@ -88,7 +88,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             if (node.Options.Length == 0)
             {
                 yield return new WaitForSecondsRealtime(DialogEndWaitTime);
-                _open = false;
+                IsOpen = false;
             }
         }
 
