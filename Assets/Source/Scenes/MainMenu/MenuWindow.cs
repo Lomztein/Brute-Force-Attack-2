@@ -34,7 +34,6 @@ namespace Lomztein.BFA2.MainMenu
         public void SetHeader (string text, bool canReturn)
         {
             HeaderText.text = text;
-            ReturnButton.interactable = canReturn;
         }
     }
 }

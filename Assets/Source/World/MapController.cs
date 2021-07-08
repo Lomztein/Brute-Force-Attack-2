@@ -15,14 +15,14 @@ namespace Lomztein.BFA2.World
         public Transform BackgroundQuad;
         public Transform MapObjectParent;
 
-        private MapData _mapData;
-        public Graph MapGraph;
+        public MapData MapData { get; private set; }
+        public Graph MapGraph { get; private set; }
         private List<GameObject> _mapObjects = new List<GameObject>();
 
         public event Action<MapData> OnMapDataLoaded;
 
-        public int Width => _mapData.Width;
-        public int Height => _mapData.Height;
+        public int Width => MapData.Width;
+        public int Height => MapData.Height;
 
         public void Awake()
         {
@@ -31,21 +31,21 @@ namespace Lomztein.BFA2.World
 
         public void ApplyMapData (MapData mapData)
         {
-            _mapData = mapData;
-            MapGraph = _mapData.GenerateGraph();
+            MapData = mapData;
+            MapGraph = MapData.GenerateGraph();
 
             ApplyMapToBackground();
             InstantiateMapObjects();
 
-            OnMapDataLoaded?.Invoke(_mapData);
+            OnMapDataLoaded?.Invoke(MapData);
         }
 
         private void ApplyMapToBackground ()
         {
-            BackgroundQuad.localScale = new Vector3(_mapData.Width, _mapData.Height, 1);
+            BackgroundQuad.localScale = new Vector3(MapData.Width, MapData.Height, 1);
             Material material = BackgroundQuad.GetComponent<Renderer>().sharedMaterial;
 
-            material.mainTextureScale = new Vector2(_mapData.Width, _mapData.Height) / 2;
+            material.mainTextureScale = new Vector2(MapData.Width, MapData.Height) / 2;
         }
 
         private void InstantiateMapObjects ()
@@ -59,7 +59,7 @@ namespace Lomztein.BFA2.World
 
             // Assembly, duh.
             GameObjectAssembler assembler = new GameObjectAssembler();
-            foreach (var obj in _mapData.Objects)
+            foreach (var obj in MapData.Objects)
             {
                 _mapObjects.Add(assembler.Assemble(new RootModel (obj)));
             }
@@ -74,9 +74,9 @@ namespace Lomztein.BFA2.World
 
         public bool InInsideMap (Vector2 position)
         {
-            if (position.x < -_mapData.Width / 2f || position.x > _mapData.Width / 2f)
+            if (position.x < -MapData.Width / 2f || position.x > MapData.Width / 2f)
                 return false;
-            if (position.y < -_mapData.Height / 2f || position.y > _mapData.Height / 2f)
+            if (position.y < -MapData.Height / 2f || position.y > MapData.Height / 2f)
                 return false;
             return true;
         }
@@ -84,8 +84,8 @@ namespace Lomztein.BFA2.World
         public Vector2 ClampToMap (Vector2 position)
         {
             return new Vector2(
-                Mathf.Clamp(position.x, -_mapData.Width / 2f, _mapData.Width / 2f),
-                Mathf.Clamp(position.y, -_mapData.Height / 2f, _mapData.Height / 2f)
+                Mathf.Clamp(position.x, -MapData.Width / 2f, MapData.Width / 2f),
+                Mathf.Clamp(position.y, -MapData.Height / 2f, MapData.Height / 2f)
                 );
         }
     }

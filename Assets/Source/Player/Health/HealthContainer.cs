@@ -35,12 +35,10 @@ namespace Lomztein.BFA2.Player.Health
             _health += amount;
             OnHealthChanged?.Invoke(prev, _health, MaxHealth);
 
-            Debug.Log(!_exhausted && _health <= 0f);
             if (!_exhausted && _health <= 0f)
             {
                 Die();
             }
-
 
             return _health;
         }

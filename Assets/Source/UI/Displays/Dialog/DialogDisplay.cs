@@ -12,6 +12,9 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
     public class DialogDisplay : MonoBehaviour
     {
         public static DialogDisplay Instance;
+
+        public Image CharacterAvatar;
+        public Text CharacterName;
         public Text Text;
 
         public float DialogStartWaitTime = 0.75f;
@@ -24,8 +27,12 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         private readonly static char[] FullStopChars = new char[] { '.', '!', '?' };
 
         private string _currentText;
+        private Coroutine _currentCoroutine;
 
         public Transform DialogTransform;
+        public Transform DialogOptionsParent;
+        public Transform VastNothingness;
+        public GameObject DialogOptionPrefab;
 
         public float LerpSpeed;
         public Vector3 RelativeOpenPosition;
@@ -44,19 +51,80 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             transform.position = Vector3.Lerp(transform.position, target, LerpSpeed * Time.deltaTime);
         }
 
-        public static void ShowDialog (string dialog)
+        public static void DisplayDialog (DialogTree tree)
         {
-            Instance._currentText = string.Empty;
-            Instance.StartCoroutine(Instance.AnimateDialog(dialog));
+            DisplayDialogNode(tree.Root);
         }
 
-        private IEnumerator AnimateDialog (string text)
+        public static void DisplayDialogNode(DialogNode node)
         {
-            _currentText += string.Empty;
-            Text.text = _currentText;
+            EndDialog();
+            Instance._currentCoroutine = Instance.StartCoroutine(Instance.DisplayNodeCoroutine(node));
+        }
 
+        public static void EndDialog ()
+        {
+            if (Instance._currentCoroutine != null)
+            {
+                Instance.StopCoroutine(Instance._currentCoroutine);
+                Instance._currentCoroutine = null;
+            }
+            Instance._open = false;
+        }
+
+        private IEnumerator DisplayNodeCoroutine (DialogNode node)
+        {
             _open = true;
+            Texture2D avatar = node.GetAvatar();
+            CharacterAvatar.sprite = Sprite.Create(avatar, new Rect(0f, 0f, avatar.width, avatar.height), Vector2.one / 2f);
+            CharacterName.text = node.Character.Name;
+            ClearText();
+
+            GenerateButtons(node);
+
             yield return new WaitForSecondsRealtime(DialogStartWaitTime);
+            yield return AnimateText(node.Text);
+
+            if (node.Options.Length == 0)
+            {
+                yield return new WaitForSecondsRealtime(DialogEndWaitTime);
+                _open = false;
+            }
+        }
+
+        private void GenerateButtons (DialogNode node)
+        {
+            foreach (Transform child in DialogOptionsParent)
+            {
+                if (child != VastNothingness)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+            foreach (DialogNode.Option option in node.Options)
+            {
+                GameObject go = Instantiate(DialogOptionPrefab, DialogOptionsParent);
+                if (option.Result != null)
+                {
+                    go.GetComponentInChildren<Button>().onClick.AddListener(option.OnSelected);
+                }
+                else
+                {
+                    go.GetComponentInChildren<Button>().onClick.AddListener(EndDialog);
+                }
+                go.GetComponentInChildren<Text>().text = option.Text;
+            }
+        }
+
+        private void ClearText ()
+        {
+            _currentText = string.Empty;
+            Text.text = _currentText;
+        }
+
+        private IEnumerator AnimateText (string text)
+        {
+            ClearText();
             for (int i = 0; i < text.Length; i++)
             {
                 char character = text[i];
@@ -65,8 +133,6 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
                 Text.text = _currentText;
                 yield return new WaitForSecondsRealtime(time);
             }
-            yield return new WaitForSecondsRealtime(DialogEndWaitTime);
-            _open = false;
         }
 
         private float GetCharacterTime (char character)

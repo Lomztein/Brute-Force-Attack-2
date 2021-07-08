@@ -19,6 +19,8 @@ namespace Lomztein.BFA2.Player.Profile
         public UIStyle UIStyle = UIStyle.Default();
         [ModelProperty]
         public List<PlayerAchievementStatus> AchievementStatus = new List<PlayerAchievementStatus>();
+        [ModelProperty]
+        public bool HasDoneTutorial;
 
         public PlayerProfile() { }
 

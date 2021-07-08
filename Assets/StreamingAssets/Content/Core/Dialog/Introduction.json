@@ -1,0 +1,22 @@
+{
+  "Root": {
+    "Character": "$Path{Core/Characters/Hackerman/Hackerman.json}",
+    "Expression": "Neutral",
+    "Text": "Defend the green shit. Defending the green shit can be a daunting task, are you up for the challenge, or do you need a quick tutorial to get you going?",
+    "Options": [
+      {
+        "Text": "No thanks I'm good",
+        "Result": null
+      },
+      {
+        "Text": "Give it to me bby",
+        "Result": {
+          "$Type": "Lomztein.BFA2.UI.Displays.Dialog.OptionResults.StartNewDialogOptionResult",
+          "$Data": {
+            "Tree": "$Path{Core/Dialog/TutorialStep1.json}"
+          }
+        }
+      }
+    ]
+  }
+}

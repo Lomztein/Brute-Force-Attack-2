@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3153c8e9f0eee04db8f765a9eb36a49, type: 3}
+  m_Name: TutorialStep4
+  m_EditorClassIdentifier: 
+  Root:
+    Character: {fileID: 11400000, guid: 77b3d5dccfabce34a9ba5ee73838b07e, type: 2}
+    Expression: Pleased
+    Text: You can also upgrade your assemblies individually, by right-clicking one
+      and choosing the Upgrade Assembly option. When right-clicking you also have
+      the option to sell it for a 75% return value. Upgrading an assembly naturally
+      requires you to have all the upgraded versions components unlocked as well.
+    Options:
+    - Text: Alright
+      Result:
+        id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: StartNewDialogOptionResult, ns: Lomztein.BFA2.UI.Displays.Dialog.OptionResults,
+        asm: Assembly-CSharp}
+      data:
+        Tree: {fileID: 11400000, guid: 91d11998cffce024a82b78915bf2f448, type: 2}
