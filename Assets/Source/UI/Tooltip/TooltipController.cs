@@ -23,6 +23,7 @@ namespace Lomztein.BFA2.UI.Tooltip
         private void Awake()
         {
             _updaters = Updaters.Select(x => x.GetComponent<ITooltipUpdater>()).ToArray();
+            Debug.Log("Tooltip Awake");
         }
 
         private void Update()
@@ -39,6 +40,7 @@ namespace Lomztein.BFA2.UI.Tooltip
                     TooltipTitle.text = tooltip.Title;
                     TooltipDescription.text = tooltip.Description;
                     TooltipFooter.text = tooltip.Footnote;
+                    Debug.Log("Tooltip found tooltip: " + tooltip.Title + " and has pos " + TooltipTransform.position);
                     break;
                 }
             }
