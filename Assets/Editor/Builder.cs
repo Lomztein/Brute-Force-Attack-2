@@ -46,7 +46,7 @@ public class Builder : MonoBehaviour
     [MenuItem("BFA2/Build")]
     public static void BuildGame ()
     {
-        BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows");
+        BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows64");
     }
 
     public static void CDBuildGame ()
@@ -60,12 +60,12 @@ public class Builder : MonoBehaviour
         ContentCompiler.CompileAll();
 
         string buildDir = args[0];
-        DateTime lastMinorRelease = new DateTime(2020, 7, 16);
+        DateTime lastMinorRelease = new DateTime(2021, 7, 8);
 
         string patch = (DateTime.Now - lastMinorRelease).Days.ToString();
         string build = (DateTime.Now.Second + DateTime.Now.Minute * 60 + DateTime.Now.Hour * 3600).ToString();
 
-        PlayerSettings.bundleVersion = $"0.1.{patch}.{build}";
+        PlayerSettings.bundleVersion = $"0.2.{patch}.{build}";
 
         if (Directory.Exists(buildDir))
         {
