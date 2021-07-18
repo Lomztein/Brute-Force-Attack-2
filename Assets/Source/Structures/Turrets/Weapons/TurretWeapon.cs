@@ -116,6 +116,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         public override void PreInit()
         {
+            AddModdableAttribute(Modification.ModdableAttribute.Weapon);
+
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
             _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
             _fireSync = GetComponent<IFireSynchronization>() ?? new NoFireSynchronization();
@@ -142,8 +144,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Targeter = GetComponentInParent<ITargeter>();
             Provider = GetComponentInParent<ITargetProvider>();
             Ranger = GetComponentInParent<IRanger>();
-
-            AddModdableAttribute(Modification.ModdableAttribute.Weapon);
 
             if (isActiveAndEnabled)
             {
