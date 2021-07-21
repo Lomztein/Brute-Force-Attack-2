@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
     public interface IProjectile : IPoolObject
     {
         void Init();
+        void Deplete();
         void End();
 
         void Link(IProjectilePool weapon);

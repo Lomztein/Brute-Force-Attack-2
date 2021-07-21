@@ -79,13 +79,20 @@ namespace Lomztein.BFA2.Research.UI
             AvailableOptionsCount.text = $"{amount} available research option(s)";
         }
 
-        public void Open()
+        public void Toggle ()
         {
             if (IsOpen)
             {
                 Close();
             }
+            else
+            {
+                Open();
+            }
+        }
 
+        public void Open()
+        {
             ResearchOptionParent.gameObject.SetActive(true);
             RegenerateButtons();
         }

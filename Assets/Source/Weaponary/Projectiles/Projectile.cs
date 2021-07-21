@@ -162,6 +162,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             }
         }
 
+        public void Deplete ()
+        {
+            Damage = 0f;
+        }
+
         public void DisableSelf()
         {
             gameObject.SetActive(false);

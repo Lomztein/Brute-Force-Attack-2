@@ -22,15 +22,15 @@ namespace Lomztein.BFA2.Placement
         private void Awake()
         {
             Instance = this;
+            Input.PrimaryClick.performed += OnPrimaryClick;
+            Input.SecondaryClick.performed += OnSecondaryClick;
+            _quickPlace = Input.Master.Placement.QuickPlace;
+        }
 
-            InputMaster master = new InputMaster();
-
-            master.General.PrimaryClick.performed += OnPrimaryClick;
-            master.General.SecondaryClick.performed += OnSecondaryClick;
-            _quickPlace = master.Placement.QuickPlace;
-            master.Placement.Enable();
-            master.General.Enable();
-            master.Enable();
+        private void OnDestroy()
+        {
+            Input.PrimaryClick.performed -= OnPrimaryClick;
+            Input.SecondaryClick.performed -= OnSecondaryClick;
         }
 
         private void OnSecondaryClick(InputAction.CallbackContext obj)
@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Placement
         {
             if (!UIUtils.IsOverUI(Mouse.current.position.ReadValue()))
             {
-                if (!PlaceCurrent())
+                if (_currentPlaceable != null && !PlaceCurrent())
                 {
                     Message.Send("Cannot place here.", Message.Type.Minor);
                 }

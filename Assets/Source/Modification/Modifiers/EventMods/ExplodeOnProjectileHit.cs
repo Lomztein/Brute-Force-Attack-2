@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         [ModelProperty]
         public ContentPrefabReference ExplosionPrefab = new ContentPrefabReference();
         [ModelProperty]
-        public bool DestroyProjectile;
+        public bool DepleteProjectile;
 
         private IStatReference _damageMult;
         private IStatReference _range;
@@ -64,9 +64,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
             explosion.transform.position = args.Info.Point;
             explosion.Explode(damage, range);
 
-            if (DestroyProjectile)
+            if (DepleteProjectile)
             {
-                args.Info.Projectile.End();
+                args.Info.Projectile.Deplete();
             }
         }
 
