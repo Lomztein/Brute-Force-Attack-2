@@ -34,9 +34,14 @@
         "HitLayer": {
           "Mask": 256
         },
+        "DamageInfo": "$Path{Core/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
         "BaseDamage": 300.0,
         "BaseProjectileAmount": 1,
-        "BaseSpread": 2.0,
+        "BaseSpread": -2.0,
         "BaseSpeed": 100.0,
         "BaseFirerate": 4.0,
         "Color": "Blue",
@@ -461,8 +466,7 @@
                   "$Data": {
                     "Reference": {
                       "Path": "Resources/Particles/FireEffects/PlasmaCannonFireEffect"
-                    },
-                    "NameOverride": ""
+                    }
                   }
                 }
               ],
@@ -529,8 +533,7 @@
                   "$Data": {
                     "Reference": {
                       "Path": "Resources/Particles/FireEffects/PlasmaCannonFireEffect"
-                    },
-                    "NameOverride": ""
+                    }
                   }
                 }
               ],

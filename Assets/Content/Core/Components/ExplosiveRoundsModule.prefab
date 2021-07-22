@@ -105,9 +105,13 @@ MonoBehaviour:
         _name: Explosive Rounds
         _description: 
         RequiredAttributes: 
-        DamageMultBase: 0.2
+        ExplosionDamageFactorInfo: {fileID: 11400000, guid: b1465e5f39dfc42419fbbb9485853a07,
+          type: 2}
+        ExplosionRangeInfo: {fileID: 11400000, guid: 5b274ad9ffe327b4d8cb9d6e023cb178,
+          type: 2}
+        DamageFactorBase: 0.2
         RangeBase: 1
-        DamageMultStack: 0.1
+        DamageFactorStack: 0.1
         RangeStack: 0.2
         ExplosionPrefab:
           Path: Core/Projectiles/Explosion.json

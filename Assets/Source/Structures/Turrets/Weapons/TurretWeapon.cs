@@ -36,6 +36,17 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         [ModelProperty]
         public LayerMask HitLayer;
 
+        [ModelAssetReference]
+        public StatInfo DamageInfo;
+        [ModelAssetReference]
+        public StatInfo ProjectileAmountInfo;
+        [ModelAssetReference]
+        public StatInfo SpreadInfo;
+        [ModelAssetReference]
+        public StatInfo SpeedInfo;
+        [ModelAssetReference]
+        public StatInfo FirerateInfo;
+
         [ModelProperty]
         public float BaseDamage;
         [ModelProperty]
@@ -126,11 +137,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             _projectilePool = new ProjectilePool(_pool);
             _pool.OnNew += OnNewProjectile;
 
-            Damage = Stats.AddStat("Damage", "Damage", "The damage each projectile does.", BaseDamage);
-            ProjectileAmount = Stats.AddStat("ProjectileAmount", "Projectile Amount", "How many projectiles are fired at once.", BaseProjectileAmount);
-            Spread = Stats.AddStat("Spread", "Spread", "How much the projectiles spread.", BaseSpread);
-            Speed = Stats.AddStat("Speed", "Speed", "How fast the projectiles fly.", BaseSpeed);
-            Firerate = Stats.AddStat("Firerate", "Firerate", "How quickly the weapon fires.", BaseFirerate);
+            Damage = Stats.AddStat(DamageInfo, BaseDamage);
+            ProjectileAmount = Stats.AddStat(ProjectileAmountInfo, BaseProjectileAmount);
+            Spread = Stats.AddStat(SpreadInfo, BaseSpread);
+            Speed = Stats.AddStat(SpeedInfo, BaseSpeed);
+            Firerate = Stats.AddStat(FirerateInfo, BaseFirerate);
 
             OnHit = Events.AddEvent<HitEventArgs>("OnHit", "On Hit", "Executed when this weapon hits something.");
             OnKill = Events.AddEvent<HitEventArgs>("OnKill", "On Kill", "Executed when this weapon kills something.");

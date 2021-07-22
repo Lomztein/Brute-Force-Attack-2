@@ -56,18 +56,14 @@ MonoBehaviour:
   _width: 2
   _height: 2
   BaseComplexity: 0
-  UpperAttachmentPoints:
-    id: 0
-  LowerAttachmentPoints:
-    id: 0
+  AttachmentSlots:
+    _attachmentPoints: []
+  AttachmentPoints: []
+  RangeInfo: {fileID: 11400000, guid: 61ed24ad66405534e9dab80daced4889, type: 2}
   BaseRange: 666
   TargetLayer:
     serializedVersion: 2
     m_Bits: 4096
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
 --- !u!58 &1404248236314658493
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -142,6 +138,7 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Core/Sprites/Structures/ResearchCollectorBase.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -206,17 +203,12 @@ MonoBehaviour:
   _width: 2
   _height: 2
   BaseComplexity: 0
-  UpperAttachmentPoints:
-    id: 0
-  LowerAttachmentPoints:
-    id: 0
+  AttachmentSlots:
+    _attachmentPoints: []
+  AttachmentPoints: []
   AngleTreshold: 1
   _beamStart: {fileID: 0}
   _beam: {fileID: 0}
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
 --- !u!1 &3364392315202249461
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SellSprite:
     Path: 
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -324,6 +317,7 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
+  SellValueRatio: 0.75
 --- !u!1 &4435970178345369003
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +364,7 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Core/Sprites/Structures/ResearchCollector.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -434,15 +429,11 @@ MonoBehaviour:
   _width: 2
   _height: 2
   BaseComplexity: 0
-  UpperAttachmentPoints:
-    id: 0
-  LowerAttachmentPoints:
-    id: 0
+  AttachmentSlots:
+    _attachmentPoints: []
+  AttachmentPoints: []
+  TurnrateInfo: {fileID: 11400000, guid: 323095ad0ac69e74c91019c9a9e38e3e, type: 2}
   BaseTurnrate: 60
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
 --- !u!58 &6147988017373487014
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -505,6 +496,7 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Core/Sprites/Structures/ResearchCollectorRotator.png
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0

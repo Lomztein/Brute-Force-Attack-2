@@ -46,7 +46,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/MachineGunFireEffect
-  NameOverride: 
 --- !u!1 &4508876683697008210
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +92,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/MachineGunFireEffect
-  NameOverride: 
 --- !u!1 &5734023432755479258
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,9 +321,15 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+  DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
+  ProjectileAmountInfo: {fileID: 11400000, guid: 07388fecf73725f47bc055f75bf22b78,
+    type: 2}
+  SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
+  SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
+  FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
   BaseDamage: 10
   BaseProjectileAmount: 1
-  BaseSpread: 1.5
+  BaseSpread: -1.5
   BaseSpeed: 75
   BaseFirerate: 5
   Color: 0
@@ -487,10 +491,7 @@ MonoBehaviour:
         _description: Firerate increased by a nearby machine gun.
         RequiredAttributes: 06000000
         Stats:
-        - Identifier: Firerate
-          Name: 
-          Description: 
-          Type: 1
+        - Info: {fileID: 0}
           Value: 0.5
 --- !u!61 &-8691059170257681674
 BoxCollider2D:

@@ -15,9 +15,9 @@ namespace Lomztein.BFA2.Utilities
             typeof(ReflectionUtils).Assembly,
         };
 
-        public static void DynamicBroadcastInvoke(GameObject parent, string method)
+        public static void DynamicBroadcastInvoke(GameObject parent, string method, bool includeInactive)
         {
-            Component[] components = parent.GetComponentsInChildren<Component>();
+            Component[] components = parent.GetComponentsInChildren<Component>(includeInactive);
             foreach (Component component in components)
             {
                 DynamicInvoke(component, method);

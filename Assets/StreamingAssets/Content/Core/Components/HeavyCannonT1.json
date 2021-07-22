@@ -34,6 +34,11 @@
         "HitLayer": {
           "Mask": 256
         },
+        "DamageInfo": "$Path{Core/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
         "BaseDamage": 1500.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
@@ -361,8 +366,7 @@
                   "$Data": {
                     "Reference": {
                       "Path": "Resources/Particles/FireEffects/CannonFireEffect"
-                    },
-                    "NameOverride": ""
+                    }
                   }
                 }
               ],

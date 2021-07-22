@@ -56,10 +56,19 @@
           "$Data": {
             "Stats": [
               {
-                "Identifier": "Turnrate",
-                "Name": "",
-                "Description": "",
-                "Type": "Multiplicative",
+                "Info": {
+                  "Identifier": "Core.Turnrate",
+                  "Name": "Turnrate",
+                  "Description": "How fast this rotates.",
+                  "Function": {
+                    "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
+                    "$Data": {}
+                  },
+                  "Formatter": {
+                    "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
+                    "$Data": {}
+                  }
+                },
                 "Value": 0.5
               }
             ],
@@ -182,8 +191,7 @@
               "$Data": {
                 "Reference": {
                   "Path": "Resources/Particles/LubeParticles"
-                },
-                "NameOverride": ""
+                }
               }
             }
           ],
@@ -220,8 +228,7 @@
               "$Data": {
                 "Reference": {
                   "Path": "Resources/Particles/LubeParticles"
-                },
-                "NameOverride": ""
+                }
               }
             }
           ],

@@ -34,9 +34,14 @@
         "HitLayer": {
           "Mask": 256
         },
+        "DamageInfo": "$Path{Core/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
         "BaseDamage": 10.0,
         "BaseProjectileAmount": 1,
-        "BaseSpread": 1.5,
+        "BaseSpread": -1.5,
         "BaseSpeed": 75.0,
         "BaseFirerate": 5.0,
         "Color": "Blue",
@@ -265,10 +270,7 @@
           "$Data": {
             "Stats": [
               {
-                "Identifier": "Firerate",
-                "Name": "",
-                "Description": "",
-                "Type": "Multiplicative",
+                "Info": null,
                 "Value": 0.5
               }
             ],
@@ -439,8 +441,7 @@
                   "$Data": {
                     "Reference": {
                       "Path": "Resources/Particles/FireEffects/MachineGunFireEffect"
-                    },
-                    "NameOverride": ""
+                    }
                   }
                 }
               ],
@@ -507,8 +508,7 @@
                   "$Data": {
                     "Reference": {
                       "Path": "Resources/Particles/FireEffects/MachineGunFireEffect"
-                    },
-                    "NameOverride": ""
+                    }
                   }
                 }
               ],

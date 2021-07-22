@@ -162,6 +162,12 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+  DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
+  ProjectileAmountInfo: {fileID: 11400000, guid: 07388fecf73725f47bc055f75bf22b78,
+    type: 2}
+  SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
+  SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
+  FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
   BaseDamage: 75
   BaseProjectileAmount: 1
   BaseSpread: 0
@@ -208,7 +214,9 @@ MonoBehaviour:
         _name: Explosive Rounds
         _description: This weapon has built-in explosive rounds.
         RequiredAttributes: 06000000
-        DamageMultBase: 0.25
+        ExplosionDamageFactorInfo: {fileID: 0}
+        ExplosionRangeInfo: {fileID: 0}
+        DamageFactorBase: 0
         RangeBase: 1
         DamageMultStack: 0.25
         RangeStack: 0.25
@@ -242,7 +250,9 @@ MonoBehaviour:
         _description: This weapon is provided with the explosive rounds of a nearby
           rocket launcher.
         RequiredAttributes: 06000000
-        DamageMultBase: 0.25
+        ExplosionDamageFactorInfo: {fileID: 0}
+        ExplosionRangeInfo: {fileID: 0}
+        DamageFactorBase: 0
         RangeBase: 0.5
         DamageMultStack: 0.25
         RangeStack: 0.25
@@ -277,10 +287,7 @@ MonoBehaviour:
         _description: This weapons damage is boosted from a nearby rocket launcher
         RequiredAttributes: 06000000
         Stats:
-        - Identifier: Damage
-          Name: 
-          Description: 
-          Type: 1
+        - Info: {fileID: 0}
           Value: 0.25
 --- !u!114 &1558992252229091625
 MonoBehaviour:

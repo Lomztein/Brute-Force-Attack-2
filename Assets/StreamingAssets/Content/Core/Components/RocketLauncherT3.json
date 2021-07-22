@@ -34,6 +34,11 @@
         "HitLayer": {
           "Mask": 256
         },
+        "DamageInfo": "$Path{Core/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
         "BaseDamage": 600.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
@@ -91,9 +96,11 @@
         "_mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
           "$Data": {
-            "DamageMultBase": 0.75,
+            "ExplosionDamageFactorInfo": null,
+            "ExplosionRangeInfo": null,
+            "DamageFactorBase": 0.0,
             "RangeBase": 1.5,
-            "DamageMultStack": 0.75,
+            "DamageFactorStack": 0.0,
             "RangeStack": 0.75,
             "ExplosionPrefab": {
               "Path": "Core/Projectiles/Explosion.json"
@@ -115,9 +122,11 @@
         "_mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
           "$Data": {
-            "DamageMultBase": 75.0,
+            "ExplosionDamageFactorInfo": null,
+            "ExplosionRangeInfo": null,
+            "DamageFactorBase": 0.0,
             "RangeBase": 0.5,
-            "DamageMultStack": 0.75,
+            "DamageFactorStack": 0.0,
             "RangeStack": 0.75,
             "ExplosionPrefab": {
               "Path": "Core/Projectiles/Explosion.json"
@@ -148,10 +157,7 @@
           "$Data": {
             "Stats": [
               {
-                "Identifier": "Damage",
-                "Name": "",
-                "Description": "",
-                "Type": "Multiplicative",
+                "Info": null,
                 "Value": 0.75
               }
             ],

@@ -11,26 +11,22 @@ namespace Lomztein.BFA2.Modification.Stats
     {
         private List<IStat> _stats = new List<IStat>();
 
-        public IStatReference AddStat(string identifier, string name, string description, float baseValue)
+        public IStatReference AddStat(StatInfo info, float baseValue)
         {
-            if (HasStat(identifier))
+            if (HasStat(info.Identifier))
             {
-                RemoveStat(identifier);
+                RemoveStat(info.Identifier);
             }
-            _stats.Add(new Stat(identifier, name, description, baseValue));
-            return new StatReference(GetStatInternal(identifier));
+            _stats.Add(new Stat(info.Identifier, info.Name, info.Description, baseValue, info.Function, info.Formatter));
+            return new StatReference(GetStatInternal(info.Identifier));
         }
 
-        public void AddStatElement(string identifier, IStatElement element, Stat.Type type)
+        public void AddStatElement(string identifier, IStatElement element)
         {
             IStat stat = GetStatInternal(identifier);
             if (stat != null)
             {
-                stat.AddElement(element, type);
-            }
-            else
-            {
-                Debug.LogWarning("Tried to add stat element to non-existing stat: " + identifier);
+                stat.AddElement(element);
             }
         }
 
@@ -54,16 +50,12 @@ namespace Lomztein.BFA2.Modification.Stats
             _stats.RemoveAll(x => x.Identifier == identifier);
         }
 
-        public void RemoveStatElement(string identifier, object owner, Stat.Type type)
+        public void RemoveStatElement(string identifier, object owner)
         {
             IStat stat = GetStatInternal(identifier);
             if (stat != null)
             {
-                stat.RemoveElement(owner, type);
-            }
-            else
-            {
-                Debug.LogWarning("Tried to remove stat element to non-existing stat: " + identifier);
+                stat.RemoveElement(owner);
             }
         }
 

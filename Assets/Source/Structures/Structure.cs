@@ -90,8 +90,6 @@ namespace Lomztein.BFA2.Structures
             Destroyed?.Invoke(this);
         }
 
-        public void OnAssembled() => Awake();
-
         public void AddModdableAttribute (ModdableAttribute attribute)
         {
             _modAttributes.Add(attribute);

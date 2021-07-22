@@ -16,5 +16,7 @@ namespace Lomztein.BFA2.Modification.Stats
             Owner = owner;
             Value = value;
         }
+
+        public event Action OnChanged;
     }
 }

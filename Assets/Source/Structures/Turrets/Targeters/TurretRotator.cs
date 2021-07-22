@@ -15,6 +15,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
         private IWeapon _weapon;
         private float _startingAngle;
 
+        [ModelAssetReference]
+        public StatInfo TurnrateInfo;
         [ModelProperty]
         public float BaseTurnrate;
         public IStatReference Turnrate;
@@ -39,7 +41,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
         {
             _weapon = GetComponentInChildren<IWeapon>();
             AddModdableAttribute(Modification.ModdableAttribute.Rotator);
-            Turnrate = Stats.AddStat("Turnrate", "Rotation Speed", "The speed of which this rotator rotates.", BaseTurnrate);
+            Turnrate = Stats.AddStat(TurnrateInfo, BaseTurnrate);
         }
 
         public override void Init()

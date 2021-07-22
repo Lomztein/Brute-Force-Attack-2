@@ -12,10 +12,18 @@ namespace Lomztein.BFA2.Modification.Stats
         
         private IStatReference _reference;
 
+        public event Action OnChanged;
+
         public StatLinkElement (object owner, IStatReference reference)
         {
             Owner = owner;
             _reference = reference;
+            _reference.OnChanged += OnStatChanged;
+        }
+
+        private void OnStatChanged()
+        {
+            OnChanged?.Invoke();
         }
 
         public float Value => _reference.GetValue();

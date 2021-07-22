@@ -142,7 +142,12 @@ MonoBehaviour:
   _height: 1
   BaseComplexity: 0
   AttachmentSlots:
-    _attachmentPoints: []
+    _attachmentPoints:
+    - Type: 3
+      MinSupportedSize: 1
+      MaxSupportedSize: 1
+      LocalPosition: {x: -0.5, y: 0, z: 0}
+      LocalAngle: 0
   AttachmentPoints:
   - Type: 0
     Size: 1
@@ -155,9 +160,15 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
-  BaseDamage: 3.5
+  DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
+  ProjectileAmountInfo: {fileID: 11400000, guid: 07388fecf73725f47bc055f75bf22b78,
+    type: 2}
+  SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
+  SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
+  FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
+  BaseDamage: 5
   BaseProjectileAmount: 8
-  BaseSpread: 15
+  BaseSpread: -15
   BaseSpeed: 50
   BaseFirerate: 0.75
   Color: 4
@@ -380,4 +391,3 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ShotgunFireEffect
-  NameOverride: 

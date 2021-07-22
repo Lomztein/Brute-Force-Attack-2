@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +11,11 @@ namespace Lomztein.BFA2.Modification.Stats
         string Description { get; }
         string Identifier { get; }
 
-        void AddElement(IStatElement element, Stat.Type type);
-
-        void RemoveElement(object owner, Stat.Type type);
+        void AddElement(IStatElement element);
+        void RemoveElement(object owner);
         
         float GetValue();
+
+        event Action OnChanged;
     }
 }

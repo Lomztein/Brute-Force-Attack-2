@@ -25,15 +25,28 @@
       }
     },
     {
-      "$GUID": "def1632e-8df5-4172-9636-7dc1d62f73a9",
+      "$GUID": "04638fc1-22f9-4813-81ff-41fd69eb69ad",
       "$Type": "Lomztein.BFA2.Structures.SlowfieldGenerator",
       "$Data": {
+        "RangeInfo": {
+          "Identifier": "Core.Range",
+          "Name": "Range",
+          "Description": "The range at which targets can be reached.",
+          "Function": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Functions.LiniarFunction",
+            "$Data": {}
+          },
+          "Formatter": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
+            "$Data": {}
+          }
+        },
         "BaseRange": 2.5,
         "SlowFactor": 0.5,
         "Mask": {
           "Mask": 0
         },
-        "MeMyselfAndI": "$Ref{def1632e-8df5-4172-9636-7dc1d62f73a9}",
+        "MeMyselfAndI": "$Ref{04638fc1-22f9-4813-81ff-41fd69eb69ad}",
         "_name": "Slowfield Generator",
         "_description": "Generates slowing slowfield that slows nearby enemies.",
         "_uniqueIdentifier": "Core.SlowfieldGenerator",

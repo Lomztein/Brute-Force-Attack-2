@@ -17,6 +17,8 @@ namespace Lomztein.BFA2.Structures
     public class SlowfieldGenerator : Structure, IRanger, IModdable
     {
         [ModelProperty]
+        public StatInfo RangeInfo;
+        [ModelProperty]
         public float BaseRange;
         private IStatReference _range;
         [ModelProperty]
@@ -31,7 +33,7 @@ namespace Lomztein.BFA2.Structures
         protected override void Awake()
         {
             base.Awake();
-            _range = Stats.AddStat("Range", "Range", "The range of which this slowfield generator generates slowfields.", BaseRange);
+            _range = Stats.AddStat(RangeInfo, BaseRange);
         }
 
         private void FixedUpdate()

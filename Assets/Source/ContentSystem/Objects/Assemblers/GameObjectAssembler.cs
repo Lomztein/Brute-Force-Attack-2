@@ -16,15 +16,15 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         public GameObject Assemble(RootModel model)
         {
             AssemblyContext context = new AssemblyContext();
-            GameObject obj = RecursiveAssemble(model.Root as ObjectModel, context);
+            GameObject obj = RecursiveAssemble(model.Root as ObjectModel, context, null);
             context.ReturnReferenceRequests();
 
-            ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled");
-            ReflectionUtils.DynamicBroadcastInvoke(obj, "OnPostAssembled");
+            ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled", true);
+            ReflectionUtils.DynamicBroadcastInvoke(obj, "OnPostAssembled", true);
             return obj;
         }
 
-        private GameObject RecursiveAssemble (ObjectModel model, AssemblyContext context)
+        private GameObject RecursiveAssemble (ObjectModel model, AssemblyContext context, Transform parent)
         {
             GameObject obj = new GameObject(model.GetValue<string>("Name"))
             {
@@ -33,6 +33,17 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 isStatic = model.GetValue<bool>("Static")
             };
 
+            Vector3 pos = obj.transform.position;
+            Quaternion rot = obj.transform.rotation;
+            Vector3 scale = obj.transform.localScale;
+
+            obj.transform.SetParent(parent, true);
+
+            obj.transform.localPosition = pos;
+            obj.transform.localRotation = rot;
+            obj.transform.localScale = scale;
+
+            obj.SetActive(false);
             var components = model.GetArray("Components");
             foreach (var component in components)
             {
@@ -42,18 +53,9 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             var children = model.GetArray("Children");
             foreach (var child in children)
             {
-                GameObject childObj = RecursiveAssemble(child as ObjectModel, context);
-
-                Vector3 pos = childObj.transform.position;
-                Quaternion rot = childObj.transform.rotation;
-                Vector3 scale = childObj.transform.localScale;
-
-                childObj.transform.SetParent(obj.transform);
-
-                childObj.transform.localPosition = pos;
-                childObj.transform.localRotation = rot;
-                childObj.transform.localScale = scale;
+                GameObject childObj = RecursiveAssemble(child as ObjectModel, context, obj.transform);
             }
+            obj.SetActive(true);
 
             return context.MakeReferencable(obj, model.Guid);
         }

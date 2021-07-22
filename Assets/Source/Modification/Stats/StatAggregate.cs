@@ -8,16 +8,10 @@ namespace Lomztein.BFA2.Modification.Stats
 {
     public class StatAggregate
     {
-        public Stat.Type Type { get; private set; }
         private bool _hasChanged = true;
         private float _cache;
 
         private List<IStatElement> _elements = new List<IStatElement>();
-
-        public StatAggregate (Stat.Type type)
-        {
-            Type = type;
-        }
 
         public float GetValue()
         {
@@ -40,7 +34,7 @@ namespace Lomztein.BFA2.Modification.Stats
             _hasChanged = true;
         }
 
-        public void RemoveElement (object owner)
+        public IStatElement RemoveElement (object owner)
         {
             IStatElement element = _elements.FirstOrDefault(x => x.Owner == owner);
             if (element != null)
@@ -48,6 +42,7 @@ namespace Lomztein.BFA2.Modification.Stats
                 _elements.Remove(element);
                 _hasChanged = true;
             }
+            return element;
         }
 
     }

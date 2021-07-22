@@ -4,6 +4,7 @@ using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Player.Health;
 using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Purchasing.Resources;
+using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,13 @@ namespace Lomztein.BFA2.Player
 
         private readonly IStatContainer _stats = new StatContainer();
         private readonly IEventContainer _events = new EventContainer();
+
+        [ModelProperty]
+        public StatInfo CreditsEarningsMultInfo;
+        [ModelProperty]
+        public StatInfo ResearchEarningMult;
+        [ModelProperty]
+        public StatInfo BinariesEarningMult;
 
         private IModContainer _mods;
         IModContainer IModdable.Mods => Instance._mods;
@@ -42,11 +50,6 @@ namespace Lomztein.BFA2.Player
             Init();
         }
 
-        public void OnAssembled ()
-        {
-            Init();
-        }
-
         private void Init()
         {
             _mods = new ModContainer(_stats, _events);
@@ -63,9 +66,9 @@ namespace Lomztein.BFA2.Player
 
             ResourceEarningMultiplier = new IStatReference[]
             {
-                _stats.AddStat("CreditsEarningMult", "Credit Earnings Multiplier", "Multiplier for how many credits you earn.", 1f),
-                _stats.AddStat("ResearchEarningMult", "Research Earnings Multiplier", "Multiplier for how much research you earn.", 1f),
-                _stats.AddStat("BinariesEarningMult", "Binaries Earnings Multiplier", "Multiplier for how many binaries you earn.", 1f),
+                _stats.AddStat(CreditsEarningsMultInfo, 1f),
+                _stats.AddStat(ResearchEarningMult, 1f),
+                _stats.AddStat(BinariesEarningMult, 1f),
             };
 
             OnNewPlayerInstance?.Invoke(this);

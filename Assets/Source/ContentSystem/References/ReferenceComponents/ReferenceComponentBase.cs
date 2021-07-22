@@ -13,12 +13,7 @@ namespace Lomztein.BFA2.ContentSystem.References.ReferenceComponents
         [HideInInspector]
         private bool _applied = false;
 
-        public void OnAssembled()
-        {
-            TryApply();
-        }
-
-        private void Start()
+        private void Awake()
         {
             TryApply();
         }

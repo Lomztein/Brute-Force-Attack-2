@@ -17,6 +17,9 @@ namespace Lomztein.BFA2.Structures.UniqueStructures
 
     public class ResourceConverter : Structure
     {
+        public StatInfo ConversionSpeedInfo;
+        public StatInfo ConversionTargetInfo;
+
         public Resource ConsumingResource;
         public Resource ProducingResource;
 
@@ -47,8 +50,8 @@ namespace Lomztein.BFA2.Structures.UniqueStructures
 
         private void Start()
         {
-            _conversionSpeed = Stats.AddStat("ConversionSpeed", "Conversion Speed", "The speed at which this converter converts", BaseConversionSpeed);
-            _conversionTarget = Stats.AddStat("ConversionTarget", "Conversion Target", "Conversion time in seconds = Conversion Target / Conversion Speed", BaseConversionTarget);
+            _conversionSpeed = Stats.AddStat(ConversionSpeedInfo, BaseConversionSpeed);
+            _conversionTarget = Stats.AddStat(ConversionTargetInfo, BaseConversionTarget);
             _resourceContainer = GetComponent<IResourceContainer>();
 
             _roundController.IfExists(x =>

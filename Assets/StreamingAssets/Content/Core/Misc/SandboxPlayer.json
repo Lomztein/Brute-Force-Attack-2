@@ -1,5 +1,5 @@
 {
-  "Name": "SandboxPlayer",
+  "Name": "SandboxPlayer(Clone)",
   "Tag": "Untagged",
   "Layer": 0,
   "Static": false,
@@ -26,21 +26,61 @@
     },
     {
       "$Type": "Lomztein.BFA2.Player.Player",
-      "$Data": {}
+      "$Data": {
+        "CreditsEarningsMultInfo": {
+          "Identifier": "Core.CreditEarningsMult",
+          "Name": "Credit Earnings",
+          "Description": "How many additional credits are earned.",
+          "Function": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
+            "$Data": {}
+          },
+          "Formatter": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.PercentageFormatter",
+            "$Data": {}
+          }
+        },
+        "ResearchEarningMult": {
+          "Identifier": "Core.ResearchEarningsMult",
+          "Name": "Research Earnings",
+          "Description": "How much additional research is earned.",
+          "Function": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
+            "$Data": {}
+          },
+          "Formatter": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.PercentageFormatter",
+            "$Data": {}
+          }
+        },
+        "BinariesEarningMult": {
+          "Identifier": "Core.BinariesEarningsMult",
+          "Name": "Binaries Earnings",
+          "Description": "How many additional binaries are earned.",
+          "Function": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
+            "$Data": {}
+          },
+          "Formatter": {
+            "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.PercentageFormatter",
+            "$Data": {}
+          }
+        }
+      }
     },
     {
       "$Type": "Lomztein.BFA2.Player.Health.HealthContainer",
-        "$Data": {
-            "MaxHealth": 100,
-            "StartingHealth":  100
-        }
-    },
-    {
-      "$Type": "Lomztein.BFA2.Player.Progression.UnlockedUnlockList",
-      "$Data": {}
+      "$Data": {
+        "MaxHealth": 100.0,
+        "StartingHealth": 100.0
+      }
     },
     {
       "$Type": "Lomztein.BFA2.Purchasing.Resources.InfiniteResourceContainer",
+      "$Data": {}
+    },
+    {
+      "$Type": "Lomztein.BFA2.Player.Progression.UnlockedUnlockList",
       "$Data": {}
     }
   ],

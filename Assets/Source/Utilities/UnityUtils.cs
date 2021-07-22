@@ -15,13 +15,14 @@ namespace Lomztein.BFA2.Utilities
             // First create object and strip away all non-transform non-renderer components.
             GameObject model = UnityEngine.Object.Instantiate(original);
 
+            var transforms = model.GetComponentsInChildren<Transform>(true);
             List<Component> nonVitals = model.GetComponentsInChildren<Component>().Where(x => !(x is Transform) && !(x is Renderer) && !(x is MeshFilter)).ToList();
             foreach (Component comp in nonVitals)
             {
                 UnityEngine.Object.Destroy(comp); // Might not be neccesary, test sometime.
             }
-
             model.SetActive(true);
+
             return model;
         }
 

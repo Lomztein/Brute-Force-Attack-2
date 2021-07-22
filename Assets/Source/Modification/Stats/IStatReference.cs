@@ -9,5 +9,6 @@ namespace Lomztein.BFA2.Modification.Stats
     public interface IStatReference
     {
         float GetValue();
+        event Action OnChanged;
     }
 }

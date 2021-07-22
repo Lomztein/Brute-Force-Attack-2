@@ -44,11 +44,6 @@ namespace Lomztein.BFA2.Structures.Turrets
             InitComponent();
         }
 
-        public void OnInstantiated()
-        {
-            InitComponent();
-        }
-
         private void InitSelf ()
         {
             _assembly = GetComponentInParent<TurretAssembly>();
@@ -58,7 +53,6 @@ namespace Lomztein.BFA2.Structures.Turrets
         private void InitComponent()
         {
             Init();
-
             StartCoroutine(DelayedPostInit());
         }
 

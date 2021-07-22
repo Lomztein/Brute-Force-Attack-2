@@ -19,28 +19,16 @@ namespace Lomztein.BFA2.Modification.Modifiers
         public class Element
         {
             [ModelProperty]
-            public string Identifier = "StatIdentifier";
-            [ModelProperty]
-            public string Name = "StatName";
-            [ModelProperty]
-            public string Description = "StatDescription";
-
-            [ModelProperty]
-            public Stat.Type Type = Stat.Type.Multiplicative;
+            public StatInfo Info;
             [ModelProperty]
             public float Value = 0;
-
-            public override string ToString()
-            {
-                return "+" + (Type == Stat.Type.Multiplicative ? Mathf.RoundToInt(Value * 100f).ToString() + "%" : Value.ToString()) + " " + (string.IsNullOrEmpty(Name) ? Identifier : Name);
-            }
         }
 
         public override void ApplyBase(IStatContainer stats, IEventContainer events)
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Identifier, new StatElement(element, element.Value), element.Type);
+                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value));
             }
         }
 
@@ -48,7 +36,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Identifier, new StatElement(element, element.Value), element.Type);
+                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value));
             }
         }
 
@@ -56,7 +44,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.RemoveStatElement(element.Identifier, element, element.Type);
+                stats.RemoveStatElement(element.Info.Identifier, element);
             }
         }
 
@@ -64,7 +52,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.RemoveStatElement(element.Identifier, element, element.Type);
+                stats.RemoveStatElement(element.Info.Identifier, element);
             }
         }
 

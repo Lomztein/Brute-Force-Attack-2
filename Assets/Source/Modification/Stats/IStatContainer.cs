@@ -8,13 +8,13 @@ namespace Lomztein.BFA2.Modification.Stats
     {
         bool HasStat(string identifier);
 
-        IStatReference AddStat(string identifier, string name, string description, float baseValue);
+        IStatReference AddStat(StatInfo info, float baseValue);
 
         void RemoveStat(string identifier);
 
-        void AddStatElement(string identifier, IStatElement element, Stat.Type type);
+        void AddStatElement(string identifier, IStatElement element);
 
-        void RemoveStatElement(string identifier, object owner, Stat.Type type);
+        void RemoveStatElement(string identifier, object owner);
 
         IStatReference GetStat(string identifier);
     }

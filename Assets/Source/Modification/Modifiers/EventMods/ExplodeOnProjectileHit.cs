@@ -15,11 +15,15 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
     public class ExplodeOnProjectileHit : ModBase
     {
         [ModelProperty]
-        public float DamageMultBase;
+        public StatInfo ExplosionDamageFactorInfo;
+        [ModelProperty]
+        public StatInfo ExplosionRangeInfo;
+        [ModelProperty]
+        public float DamageFactorBase;
         [ModelProperty]
         public float RangeBase;
         [ModelProperty]
-        public float DamageMultStack;
+        public float DamageFactorStack;
         [ModelProperty]
         public float RangeStack;
         [ModelProperty]
@@ -34,14 +38,14 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         {
             events.GetEvent<HitEventArgs>("OnHit").Event.OnExecute += Explode;
 
-            _damageMult = stats.AddStat("ExplosionMultDamage", "Explosion Multiplier Damage", "The damage that the explosion does.", DamageMultBase);
-            _range = stats.AddStat("ExplosionRangeBase", "Explosion Range", "The range of the explosion.", RangeBase);
+            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase);
+            _range = stats.AddStat(ExplosionRangeInfo, RangeBase);
         }
 
         public override void ApplyStack(IStatContainer stats, IEventContainer events)
         {
-            stats.AddStatElement("ExplosionMultDamage", new StatElement(this, DamageMultStack), Stat.Type.Multiplicative);
-            stats.AddStatElement("ExplosionRangeBase", new StatElement(this, RangeStack), Stat.Type.Multiplicative);
+            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack));
+            stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack));
         }
 
         public override void RemoveBase(IStatContainer stats, IEventContainer events)
@@ -51,8 +55,8 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void RemoveStack(IStatContainer stats, IEventContainer events)
         {
-            stats.RemoveStatElement("ExplosionMultDamage", this, Stat.Type.Multiplicative);
-            stats.RemoveStatElement("ExplosionRangeBase", this, Stat.Type.Multiplicative);
+            stats.RemoveStatElement(ExplosionDamageFactorInfo.Identifier, this);
+            stats.RemoveStatElement(ExplosionRangeInfo.Identifier, this);
         }
 
         private void Explode(HitEventArgs args)
