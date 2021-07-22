@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Structures.Turrets.Weapons;
+using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.FireSynchronization;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
                 {
                     SequencedFireSynchronization sync = new SequencedFireSynchronization(Controller);
                     Controller.AddSync(sync);
-                    weapon.Synchronize(sync);
+                    (weapon.Weapon as Weapon).Synchronize(sync);
                 }
             }
         }

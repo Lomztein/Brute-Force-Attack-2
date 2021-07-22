@@ -6,6 +6,7 @@ using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Structures.Turrets.TargetProviders;
 using Lomztein.BFA2.Structures.Turrets.Weapons;
+using Lomztein.BFA2.Weaponary;
 
 namespace Lomztein.BFA2.Structures.Turrets.Targeters
 {
@@ -70,7 +71,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
                     if (_weapon != null)
                     {
                         float dist = (spos - tpos).magnitude;
-                        time = dist / _weapon.GetSpeed();
+                        time = dist / _weapon.Speed;
                     }
 
                     tpos += delta * time;
@@ -92,19 +93,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
             {
                 _angleToTarget = 180f;
                 _prevPos = null;
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (TargetProvider?.GetTarget() != null)
-            {
-                Gizmos.DrawLine(transform.position, _tpos);
-                Gizmos.DrawSphere(_tpos, 0.5f);
-                if (_prevPos.HasValue)
-                {
-                    Gizmos.DrawWireSphere(_prevPos.Value, 0.75f);
-                }
             }
         }
     }

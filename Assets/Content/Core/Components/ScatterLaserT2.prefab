@@ -46,7 +46,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ScatterLaserFireEffect
-  NameOverride: 
 --- !u!1 &1599087990944767679
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +146,7 @@ GameObject:
   - component: {fileID: 8441061706672402137}
   - component: {fileID: 4661830835334613040}
   - component: {fileID: -5296934786796289623}
+  - component: {fileID: 3799243229843664913}
   m_Layer: 9
   m_Name: ScatterLaserT2
   m_TagString: Untagged
@@ -216,12 +216,6 @@ MonoBehaviour:
     LocalPosition: {x: -0.5, y: -0.5, z: 0}
     LocalAngle: 0
     RequiredPoints: 4
-  ProjectilePrefab:
-    Path: Core/Projectiles/ScatterLaserProjectile.json
-  FireTreshold: 1
-  HitLayer:
-    serializedVersion: 2
-    m_Bits: 256
   DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
   ProjectileAmountInfo: {fileID: 11400000, guid: 07388fecf73725f47bc055f75bf22b78,
     type: 2}
@@ -233,6 +227,7 @@ MonoBehaviour:
   BaseSpread: 0
   BaseSpeed: 1337
   BaseFirerate: 0.5
+  FireTreshold: 1
   Color: 1
 --- !u!114 &8441061706672402137
 MonoBehaviour:
@@ -478,6 +473,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayDenominator: 0.125
+--- !u!114 &3799243229843664913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599087991926430481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  Color: 1
+  ProjectilePrefab:
+    Path: Core/Projectiles/ScatterLaserProjectile.json
+  HitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1750615681491273965
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +605,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ScatterLaserFireEffect
-  NameOverride: 
 --- !u!1 &3255887507253808473
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +682,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ScatterLaserFireEffect
-  NameOverride: 
 --- !u!1 &4420175306279350555
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +759,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ScatterLaserFireEffect
-  NameOverride: 
 --- !u!1 &5925614736522306766
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +867,6 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ScatterLaserFireEffect
-  NameOverride: 
 --- !u!1 &8161950058320041383
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,4 +913,3 @@ MonoBehaviour:
   _applied: 0
   Reference:
     Path: Resources/Particles/FireEffects/ScatterLaserFireEffect
-  NameOverride: 

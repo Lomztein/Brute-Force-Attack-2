@@ -27,13 +27,7 @@
     {
       "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
       "$Data": {
-        "ProjectilePrefab": {
-          "Path": "Resources/Projectiles/CannonProjectile"
-        },
         "FireTreshold": 3.0,
-        "HitLayer": {
-          "Mask": 256
-        },
         "DamageInfo": "$Path{Core/Stats/Damage.json}",
         "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
         "SpreadInfo": "$Path{Core/Stats/Spread.json}",
@@ -244,6 +238,17 @@
           0.05,
           0.0
         ]
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Weaponary.Weapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Resources/Projectiles/CannonProjectile"
+        },
+        "HitLayer": {
+          "Mask": 256
+        }
       }
     }
   ],

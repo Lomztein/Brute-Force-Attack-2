@@ -27,13 +27,7 @@
     {
       "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
       "$Data": {
-        "ProjectilePrefab": {
-          "Path": "Core/Projectiles/ScatterLaserProjectile.json"
-        },
         "FireTreshold": 1.0,
-        "HitLayer": {
-          "Mask": 256
-        },
         "DamageInfo": "$Path{Core/Stats/Damage.json}",
         "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
         "SpreadInfo": "$Path{Core/Stats/Spread.json}",
@@ -421,6 +415,17 @@
       "$Type": "Lomztein.BFA2.Weaponary.FireControl.SequenceFireControl",
       "$Data": {
         "DelayDenominator": 0.125
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Weaponary.Weapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Core/Projectiles/ScatterLaserProjectile.json"
+        },
+        "HitLayer": {
+          "Mask": 256
+        }
       }
     }
   ],

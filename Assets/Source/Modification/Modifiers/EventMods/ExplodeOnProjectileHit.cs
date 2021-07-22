@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void ApplyBase(IStatContainer stats, IEventContainer events)
         {
-            events.GetEvent<HitEventArgs>("OnHit").Event.OnExecute += Explode;
+            events.GetEvent<HitEventArgs>("OnProjectileHit").Event.OnExecute += Explode;
 
             _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase);
             _range = stats.AddStat(ExplosionRangeInfo, RangeBase);
@@ -50,7 +50,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void RemoveBase(IStatContainer stats, IEventContainer events)
         {
-            events.GetEvent<HitEventArgs>("OnHit").Event.OnExecute -= Explode;
+            events.GetEvent<HitEventArgs>("OnProjectileHit").Event.OnExecute -= Explode;
         }
 
         public override void RemoveStack(IStatContainer stats, IEventContainer events)

@@ -27,13 +27,7 @@
     {
       "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
       "$Data": {
-        "ProjectilePrefab": {
-          "Path": "Resources/Projectiles/CannonProjectile"
-        },
         "FireTreshold": 1.0,
-        "HitLayer": {
-          "Mask": 256
-        },
         "DamageInfo": "$Path{Core/Stats/Damage.json}",
         "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
         "SpreadInfo": "$Path{Core/Stats/Spread.json}",
@@ -47,7 +41,30 @@
         "Color": "Red",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
-          "_attachmentPoints": []
+          "_attachmentPoints": [
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.3,
+                "Y": 0.5625,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.3,
+                "Y": -0.5625,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
         "AttachmentPoints": [
           {
@@ -219,6 +236,17 @@
         "Size": {
           "X": 2.0,
           "Y": 2.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Weaponary.Weapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Resources/Projectiles/CannonProjectile"
+        },
+        "HitLayer": {
+          "Mask": 256
         }
       }
     }

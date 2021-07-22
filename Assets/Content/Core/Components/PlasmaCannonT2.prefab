@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4967721325241813617}
   - component: {fileID: 4661830835334613040}
   - component: {fileID: -5296934786796289623}
+  - component: {fileID: -6366833697619476846}
   m_Layer: 9
   m_Name: PlasmaCannonT2
   m_TagString: Untagged
@@ -170,12 +171,6 @@ MonoBehaviour:
     LocalPosition: {x: -0.5, y: -0.5, z: 0}
     LocalAngle: 0
     RequiredPoints: 4
-  ProjectilePrefab:
-    Path: Core/Projectiles/PlasmaCannonProjectile.json
-  FireTreshold: 5
-  HitLayer:
-    serializedVersion: 2
-    m_Bits: 256
   DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
   ProjectileAmountInfo: {fileID: 11400000, guid: 07388fecf73725f47bc055f75bf22b78,
     type: 2}
@@ -187,6 +182,7 @@ MonoBehaviour:
   BaseSpread: -2
   BaseSpeed: 100
   BaseFirerate: 4
+  FireTreshold: 5
   Color: 0
 --- !u!114 &4967721325241813617
 MonoBehaviour:
@@ -364,6 +360,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayDenominator: 0.5
+--- !u!114 &-6366833697619476846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599087991926430481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  Color: 0
+  ProjectilePrefab:
+    Path: Core/Projectiles/PlasmaCannonProjectile
+  HitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &1750615681491273965
 GameObject:
   m_ObjectHideFlags: 0

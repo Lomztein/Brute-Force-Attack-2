@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2338791239865876322}
   - component: {fileID: 3870789811142855495}
   - component: {fileID: 5265553164673719191}
+  - component: {fileID: -6639220870947749112}
   m_Layer: 9
   m_Name: FrejaGun
   m_TagString: Untagged
@@ -154,12 +155,6 @@ MonoBehaviour:
     LocalPosition: {x: 0, y: 0, z: 0}
     LocalAngle: 0
     RequiredPoints: 1
-  ProjectilePrefab:
-    Path: Core/Projectiles/ShotgunProjectile.json
-  FireTreshold: 15
-  HitLayer:
-    serializedVersion: 2
-    m_Bits: 256
   DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
   ProjectileAmountInfo: {fileID: 11400000, guid: 07388fecf73725f47bc055f75bf22b78,
     type: 2}
@@ -171,6 +166,7 @@ MonoBehaviour:
   BaseSpread: -15
   BaseSpeed: 50
   BaseFirerate: 0.75
+  FireTreshold: 15
   Color: 4
 --- !u!61 &3870789811142855495
 BoxCollider2D:
@@ -283,6 +279,25 @@ MonoBehaviour:
       height: 16
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
+--- !u!114 &-6639220870947749112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338791239865876320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  Color: 4
+  ProjectilePrefab:
+    Path: Core/Projectiles/ShotgunProjectile.json
+  HitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &2338791240901271013
 GameObject:
   m_ObjectHideFlags: 0

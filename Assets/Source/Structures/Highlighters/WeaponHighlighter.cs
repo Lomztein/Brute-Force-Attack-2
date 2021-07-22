@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Structures.Turrets.Weapons;
+﻿using Lomztein.BFA2.Weaponary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +23,8 @@ namespace Lomztein.BFA2.Structures.Highlighters
 
         public override void Tick(float deltaTime)
         {
-            float spread = _component.GetSpread();
-            float range = _component.GetRange();
+            float spread = _component.Spread;
+            float range = _component.Range;
 
             Vector3 l = new Vector3(1f, Mathf.Sin(Mathf.Deg2Rad * -spread), 0f) * range;
             Vector3 r = new Vector3(1f, Mathf.Sin(Mathf.Deg2Rad * spread), 0f) * range;

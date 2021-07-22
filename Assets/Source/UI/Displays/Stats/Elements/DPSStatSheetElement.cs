@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Structures.Turrets.Weapons;
+using Lomztein.BFA2.Weaponary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,8 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
 
         private float ComputeDPS (GameObject root)
         {
-            TurretWeapon[] weapons = root.GetComponentsInChildren<TurretWeapon>();
-            return weapons.Sum(x => x.enabled ? x.GetDamage() * x.GetFirerate() * x.GetProjectileAmount() * x.GetMuzzleAmount() : 0);
+            IWeapon[] weapons = root.GetComponentsInChildren<IWeapon>();
+            return weapons.Sum(x => (x as Behaviour).enabled ? x.Damage * x.Firerate * x.ProjectileAmount * x.MuzzleCount : 0);
         }
     }
 }

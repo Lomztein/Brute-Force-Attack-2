@@ -48,6 +48,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public event Action<HitInfo> OnHit;
         public event Action<HitInfo> OnKill;
+        public event Action<HitInfo> OnDepleted;
 
         public void Init()
         {
@@ -122,10 +123,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             if (Damage - damage.DamageDealt <= 0f)
             {
                 EmitHitEffect(position, normal);
+                OnDepleted?.Invoke(info);
             }
 
             OnHit?.Invoke(info);
-            if (life > 0f)
+            if (life <= 0.001f)
             {
                 OnKill?.Invoke(info);
             }
