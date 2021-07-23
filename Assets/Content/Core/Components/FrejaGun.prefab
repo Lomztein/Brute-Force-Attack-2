@@ -136,7 +136,7 @@ MonoBehaviour:
   _uniqueIdentifier: Core.ShotgunT1
   _cost:
     Elements:
-    - Type: 0
+    - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 350
   BaseAttributes: 0600000002000000
   _width: 1
@@ -166,8 +166,8 @@ MonoBehaviour:
   BaseSpread: -15
   BaseSpeed: 50
   BaseFirerate: 0.75
-  FireTreshold: 15
   Color: 4
+  FireTreshold: 15
 --- !u!61 &3870789811142855495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 4
   ProjectilePrefab:
     Path: Core/Projectiles/ShotgunProjectile.json

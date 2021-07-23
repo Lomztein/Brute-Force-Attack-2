@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
                 IResourceCost cost = purchasables.Select(x => x.Cost).Sum();
                 if (cost.GetCost().TryGetValue(Type, out int value))
                 {
-                    SetText($"{value} {ResourceInfo.Get(Type).Shorthand}");
+                    SetText($"{value} {Type.Shorthand}");
                     gameObject.SetActive(true);
                     return true;
                 }

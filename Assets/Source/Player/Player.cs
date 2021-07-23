@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Modification;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Player.Health;
@@ -22,12 +23,9 @@ namespace Lomztein.BFA2.Player
         private readonly IStatContainer _stats = new StatContainer();
         private readonly IEventContainer _events = new EventContainer();
 
+        public Resource CreditsResource;
         [ModelProperty]
-        public StatInfo CreditsEarningsMultInfo;
-        [ModelProperty]
-        public StatInfo ResearchEarningMult;
-        [ModelProperty]
-        public StatInfo BinariesEarningMult;
+        public StatInfo ResourceEarningMultiplierInfo;
 
         private IModContainer _mods;
         IModContainer IModdable.Mods => Instance._mods;
@@ -42,8 +40,8 @@ namespace Lomztein.BFA2.Player
         private IUnlockList _unlocks;
         public static IUnlockList Unlocks => Instance._unlocks;
 
-        private float[] _resourceFractionTrackers = new float[3];
-        public IStatReference[] ResourceEarningMultiplier;
+        private Dictionary<string, float> _resourceFractionTrackers;
+        public Dictionary<string, IStatReference> ResourceEarningMultiplier;
 
         private void Awake()
         {
@@ -61,28 +59,39 @@ namespace Lomztein.BFA2.Player
 
             if (_resources != null)
             {
-                _resources?.ChangeResource(Resource.Credits, 0);
+                _resources?.ChangeResource(CreditsResource, 0);
             }
 
-            ResourceEarningMultiplier = new IStatReference[]
+            ResourceEarningMultiplier = new Dictionary<string, IStatReference>();
+            _resourceFractionTrackers = new Dictionary<string, float>();
+
+            Resource[] resources = Content.GetAll<Resource>("*/Resources");
+            foreach (Resource resource in resources)
             {
-                _stats.AddStat(CreditsEarningsMultInfo, 1f),
-                _stats.AddStat(ResearchEarningMult, 1f),
-                _stats.AddStat(BinariesEarningMult, 1f),
-            };
+                ResourceEarningMultiplier.Add(resource.Identifier, _stats.AddStat(GenerateStatInfo(resource), 1f));
+                _resourceFractionTrackers.Add(resource.Identifier, 0f);
+            }
+
 
             OnNewPlayerInstance?.Invoke(this);
         }
 
+        private StatInfo GenerateStatInfo (Resource resource)
+        {
+            StatInfo instance = Instantiate(ResourceEarningMultiplierInfo);
+            instance.Identifier = resource.Identifier + "EarningsMultiplier";
+            instance.Name = resource.Name + " Earnings Multiplier";
+            return instance;
+        }
+
         public void Earn (Resource resource, float amount)
         {
-            int resourceIndex = (int)resource;
-            amount *= ResourceEarningMultiplier[resourceIndex].GetValue();
+            amount *= ResourceEarningMultiplier[resource.Identifier].GetValue();
 
-            _resourceFractionTrackers[resourceIndex] += amount;
-            int floored = Mathf.FloorToInt(_resourceFractionTrackers[resourceIndex]);
-            Resources.ChangeResource(Resource.Credits, floored);
-            _resourceFractionTrackers[resourceIndex] -= floored;
+            _resourceFractionTrackers[resource.Identifier] += amount;
+            int floored = Mathf.FloorToInt(_resourceFractionTrackers[resource.Identifier]);
+            Resources.ChangeResource(resource, floored);
+            _resourceFractionTrackers[resource.Identifier] -= floored;
         }
 
         public ModdableAttribute[] GetModdableAttributes()

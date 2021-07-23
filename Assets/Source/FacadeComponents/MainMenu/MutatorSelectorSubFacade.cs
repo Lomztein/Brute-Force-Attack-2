@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.FacadeComponents.MainMenu
             MutatorSelector selector = GetSelector();
             foreach (Mutator mutator in _addedMutators)
             {
-                selector.AddMutator(mutator.DeepClone());
+                selector.AddMutator(UnityEngine.Object.Instantiate(mutator));
             }
         }
 
@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.FacadeComponents.MainMenu
             _addedMutators.Add(mutator);
             if (Active)
             {
-                GetSelector().AddMutator(mutator.DeepClone());
+                GetSelector().AddMutator(UnityEngine.Object.Instantiate(mutator));
             }
         }
 

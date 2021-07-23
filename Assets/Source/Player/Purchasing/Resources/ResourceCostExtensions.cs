@@ -25,10 +25,10 @@ namespace Lomztein.BFA2.Purchasing.Resources
         {
             foreach (var element in cost.GetCost())
             {
-                ResourceCost.Element same = elements.FirstOrDefault(x => x.Type == element.Key);
+                ResourceCost.Element same = elements.FirstOrDefault(x => x.Resource == element.Key);
                 if (same == null)
                 {
-                    same = new ResourceCost.Element() { Type = element.Key };
+                    same = new ResourceCost.Element() { Resource = element.Key };
                     elements.Add(same);
                 }
                 same.Value += element.Value;
@@ -64,7 +64,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public static string Format(this IResourceCost cost)
         {
-            return string.Join("\n\t", cost.GetCost().Select(x => ResourceInfo.Get(x.Key).Shorthand + ": " + x.Value));
+            return string.Join("\n\t", cost.GetCost().Select(x => x.Key.Shorthand + ": " + x.Value));
         }
     }
 }

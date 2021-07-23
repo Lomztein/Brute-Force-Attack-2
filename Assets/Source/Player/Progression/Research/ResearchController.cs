@@ -75,7 +75,7 @@ namespace Lomztein.BFA2.Research
         }
 
         private IEnumerable<ResearchOption> LoadResearch()
-            => Content.GetAll<ResearchOption>(RESEARCH_PATH).Select(x => x.DeepClone());
+            => Content.GetAll<ResearchOption>(RESEARCH_PATH).Select(x => Instantiate(x));
 
         private void InitResearch (IEnumerable<ResearchOption> research) 
         {

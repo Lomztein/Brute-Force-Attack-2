@@ -446,9 +446,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7f572a66cfbeb7043affe042e48e45a0, type: 3}
     m_FontSize: 18
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 497787328}
-  Resource: 1
+  Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
   Text: {fileID: 497787334}
 --- !u!114 &497787334
 MonoBehaviour:
@@ -1647,7 +1647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 715582708}
-  Resource: 0
+  Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
   Text: {fileID: 715582711}
 --- !u!114 &715582711
 MonoBehaviour:
@@ -1827,8 +1827,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 61.447052, y: 0}
-  m_SizeDelta: {x: 110.894104, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &788066181
 MonoBehaviour:
@@ -2444,6 +2444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWaveIndex: 0
   State: 0
+  CreditsResource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
+  ResearchResource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
   _internalWaveCollection:
     Spawner:
       Path: Resources/Spawners/CompositeSpawner
@@ -3862,6 +3864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54382ffc7d038c544a41c30e33a68de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Font: {fileID: 12800000, guid: 7f572a66cfbeb7043affe042e48e45a0, type: 3}
 --- !u!114 &1282759382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4427,11 +4430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c7073796196334793d41fc9a6f85a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreditsEarningsMultInfo: {fileID: 11400000, guid: 96fe5bf9fc40edd4398822ae4fcda509,
-    type: 2}
-  ResearchEarningMult: {fileID: 11400000, guid: f92f37c38886c974092ca1319a308d27,
-    type: 2}
-  BinariesEarningMult: {fileID: 11400000, guid: 448c4379728d62d4ebf1c0ab8f555e77,
+  CreditsResource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
+  ResourceEarningMultiplierInfo: {fileID: 11400000, guid: f92f37c38886c974092ca1319a308d27,
     type: 2}
 --- !u!1 &1516892382
 GameObject:
@@ -4771,7 +4771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 1556893453}
-  Resource: 2
+  Resource: {fileID: 11400000, guid: a8f1c14068cc53644890d1a8dfec5af9, type: 2}
   Text: {fileID: 1556893459}
 --- !u!114 &1556893459
 MonoBehaviour:
@@ -4913,15 +4913,15 @@ MonoBehaviour:
   _uniqueIdentifier: Core.Decompiler
   _cost:
     Elements:
-    - Type: 0
+    - Resource: {fileID: 0}
       Value: 1000
   BaseAttributes: 
   _width: 2
   _height: 2
   ConversionSpeedInfo: {fileID: 0}
   ConversionTargetInfo: {fileID: 0}
-  ConsumingResource: 0
-  ProducingResource: 1
+  ConsumingResource: {fileID: 0}
+  ProducingResource: {fileID: 0}
   Paused: 0
   Automatic: 1
   BaseConversionTarget: 100

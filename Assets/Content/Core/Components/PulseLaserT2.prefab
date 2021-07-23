@@ -84,7 +84,7 @@ MonoBehaviour:
   _uniqueIdentifier: Core.PulseLaserT2
   _cost:
     Elements:
-    - Type: 0
+    - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 750
   BaseAttributes: 
   _width: 1
@@ -114,8 +114,8 @@ MonoBehaviour:
   BaseSpread: 0
   BaseSpeed: 1337
   BaseFirerate: 15
-  FireTreshold: 1
   Color: 1
+  FireTreshold: 1
 --- !u!114 &8579898881888915783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 1
   ProjectilePrefab:
     Path: Resources/Projectiles/LaserProjectile

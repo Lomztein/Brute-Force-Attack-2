@@ -142,8 +142,8 @@ namespace Lomztein.BFA2.Structures.UniqueStructures
                 _isConverting = true;
                 _conversionProgress = 0f;
 
-                GetBackgroundSprite().color = ResourceInfo.Get(ConsumingResource).Color;
-                GetConversionSprite().color = ResourceInfo.Get(ProducingResource).Color;
+                GetBackgroundSprite().color = ConsumingResource.Color;
+                GetConversionSprite().color = ProducingResource.Color;
 
                 return true;
             }
@@ -178,13 +178,13 @@ namespace Lomztein.BFA2.Structures.UniqueStructures
         }
 
         private bool TryClaimResource()
-            => _resourceContainer.TrySpend(new SingleResourceCost(ConsumingResource, ResourceInfo.Get(ConsumingResource).BinaryValue));
+            => _resourceContainer.TrySpend(new SingleResourceCost(ConsumingResource, ConsumingResource.BinaryValue));
 
         private void RefundResource ()
-            => _resourceContainer.AddResources(new SingleResourceCost(ConsumingResource, ResourceInfo.Get(ConsumingResource).BinaryValue));
+            => _resourceContainer.AddResources(new SingleResourceCost(ConsumingResource, ConsumingResource.BinaryValue));
 
 
         private void AddConvertedResource ()
-            => _resourceContainer.AddResources(new SingleResourceCost(ProducingResource, ResourceInfo.Get(ProducingResource).BinaryValue));
+            => _resourceContainer.AddResources(new SingleResourceCost(ProducingResource, ProducingResource.BinaryValue));
     }
 }

@@ -17,6 +17,7 @@ namespace Lomztein.BFA2.UI.Style.Stylizers
         {
             Color color = style.GetColor(Slot);
             GetGraphic().color = color * BlendColor;
+
         }
     }
 }

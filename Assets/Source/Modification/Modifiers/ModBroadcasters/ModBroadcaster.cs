@@ -16,7 +16,6 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         [SerializeField, SerializeReference, SR]
         protected IMod _mod;
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
-        private ObjectCloner _cloner = new ObjectCloner();
 
         protected virtual bool BroadcastPostAssembled => false;
 
@@ -81,7 +80,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         {
             if (_mod.IsCompatableWith(moddable))
             {
-                moddable.Mods.AddMod(_cloner.Clone(_mod));
+                moddable.Mods.AddMod(_mod.DeepClone());
                 return true;
             }
             return false;

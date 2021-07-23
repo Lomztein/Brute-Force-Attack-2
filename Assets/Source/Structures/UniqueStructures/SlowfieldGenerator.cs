@@ -25,8 +25,6 @@ namespace Lomztein.BFA2.Structures
         public float SlowFactor;
         [ModelProperty]
         public LayerMask Mask;
-        [ModelReference]
-        public SlowfieldGenerator MeMyselfAndI;
 
         public float GetRange() => _range.GetValue();
 

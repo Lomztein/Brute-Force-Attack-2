@@ -18,32 +18,39 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects
         public string CategoryIdentifier => "Core.Resources";
 
         [ModelProperty]
-        public int StartingCredits = 1000;
-        [ModelProperty]
-        public int StartingResearch = 0;
+        public ResourceAmount[] Amount;
 
         public void Apply()
         {
             var container = Player.Player.Resources;
-            container.ChangeResource(Resource.Credits, StartingCredits);
-            container.ChangeResource(Resource.Research, StartingResearch);
+            foreach (ResourceAmount amount in Amount)
+            {
+                Resource resource = Resource.GetResource(amount.ResourceIdentifier);
+                container.ChangeResource(resource, amount.Value);
+            }
         }
 
         public void AddPropertiesTo(PropertyMenu menu)
         {
-            menu.AddProperty(new NumberDefinition("Starting Credits", StartingCredits, true, 0, float.MaxValue)).OnValueChanged += StartingCreditsChanged;
-            menu.AddProperty(new NumberDefinition("Starting Research", StartingResearch, true, 0, float.MaxValue)).OnValueChanged += StartingResearchChanged; ;
+            foreach (ResourceAmount amount in Amount)
+            {
+                Resource resource = Resource.GetResource(amount.ResourceIdentifier);
+                menu.AddProperty(new NumberDefinition("Starting " + resource.Name, amount.Value, true, 0, float.MaxValue)).OnValueChanged += (x) => StartingResourceChanged(resource.Identifier, x);
+            }
         }
 
-        private void StartingResearchChanged(object obj)
+        private void StartingResourceChanged(string identifier, object value)
         {
-            StartingResearch = int.Parse(obj.ToString());
+            Amount.First(x => x.ResourceIdentifier == identifier).Value = int.Parse(value.ToString());
         }
 
-        private void StartingCreditsChanged(object obj)
+        [System.Serializable]
+        public class ResourceAmount
         {
-
-            StartingCredits = int.Parse(obj.ToString());
+            [ModelProperty]
+            public string ResourceIdentifier;
+            [ModelProperty]
+            public int Value;
         }
     }
 }

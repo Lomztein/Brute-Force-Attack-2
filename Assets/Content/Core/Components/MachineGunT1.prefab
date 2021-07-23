@@ -218,7 +218,7 @@ MonoBehaviour:
   _uniqueIdentifier: Core.MachineGunT1
   _cost:
     Elements:
-    - Type: 0
+    - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 250
   BaseAttributes: 0600000002000000
   _width: 1
@@ -248,8 +248,8 @@ MonoBehaviour:
   BaseSpread: -1.5
   BaseSpeed: 75
   BaseFirerate: 5
-  FireTreshold: 5
   Color: 0
+  FireTreshold: 5
 --- !u!114 &6588776079876450199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 0
   ProjectilePrefab:
     Path: Resources/Projectiles/MachineGunProjectile

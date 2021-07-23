@@ -37,6 +37,7 @@ namespace Lomztein.BFA2.Research.UI
             Controller.OnResearchProgressed += OnResearchProgressed;
 
             UpdateAvailableCount();
+            Close();
         }
 
         private void OnResourceChanged(Resource arg1, int arg2, int arg3)

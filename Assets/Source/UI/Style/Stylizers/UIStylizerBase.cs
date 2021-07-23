@@ -16,7 +16,15 @@ namespace Lomztein.BFA2.UI.Style.Stylizers
         public abstract void ApplyStyle(UIStyle style);
 
         public void ApplyStyle()
-            => ApplyStyle(GetController().GetCurrentStyle());
+        {
+            UIStyle style = GetController().GetCurrentStyle();
+            ApplyStyle(style);
+            Text text = GetComponent<Text>();
+            if (text)
+            {
+                text.font = GetController().Font;
+            }
+        }
 
         public void Start()
         {

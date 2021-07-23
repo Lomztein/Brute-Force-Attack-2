@@ -31,6 +31,9 @@ namespace Lomztein.BFA2.Enemies
 
         public RoundState State;
 
+        public Resource CreditsResource;
+        public Resource ResearchResource;
+
         [SerializeField] private GeneratorWaveCollection _internalWaveCollection = new GeneratorWaveCollection();
         private IWaveCollection _waveCollection;
 
@@ -179,7 +182,7 @@ namespace Lomztein.BFA2.Enemies
 
         private void RewardCredits (float credits)
         {
-            Player.Player.Instance.Earn(Resource.Credits, credits);
+            Player.Player.Instance.Earn(CreditsResource, credits);
         }
 
         private void EnemyFinished(IEnemy obj)
@@ -238,7 +241,7 @@ namespace Lomztein.BFA2.Enemies
             {
                 IWave ended = _waveCollection.GetWave(wave);
                 State = RoundState.Ready;
-                _resourceContainer.ChangeResource(Resource.Research, 1);
+                _resourceContainer.ChangeResource(ResearchResource, 1);
 
                 OnWaveFinished?.Invoke(wave, ended);
                 Debug.Log("Wave finished.");

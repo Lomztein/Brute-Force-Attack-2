@@ -88,7 +88,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         private void SelectDifficulty (Difficulty difficulty)
         {
-            Difficulty newDifficulty = difficulty.DeepClone();
+            Difficulty newDifficulty = Instantiate(difficulty);
             BattlefieldSettings.CurrentSettings.Difficulty = newDifficulty;
             PropertyMenu.Clear();
             newDifficulty.AddPropertiesTo(PropertyMenu);

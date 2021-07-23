@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.UI.Style
     public class UIStyleController : MonoBehaviour
     {
         public static UIStyleController Main;
+        public Font Font;
 
         private void Awake()
         {

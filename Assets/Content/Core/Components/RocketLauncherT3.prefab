@@ -143,7 +143,7 @@ MonoBehaviour:
   _uniqueIdentifier: Core.RocketLauncherT3
   _cost:
     Elements:
-    - Type: 0
+    - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 2250
   BaseAttributes: 
   _width: 1
@@ -168,8 +168,8 @@ MonoBehaviour:
   BaseSpread: 0
   BaseSpeed: 20
   BaseFirerate: 0.5
-  FireTreshold: 30
   Color: 2
+  FireTreshold: 30
 --- !u!58 &5813048448918230106
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -372,7 +372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 2
   ProjectilePrefab:
     Path: Resources/Projectiles/ThiccRocketProjectile

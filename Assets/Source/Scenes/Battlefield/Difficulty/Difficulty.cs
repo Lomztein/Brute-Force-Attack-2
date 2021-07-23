@@ -28,7 +28,17 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty
         [ModelProperty, SerializeReference, SR]
         private IDifficultyAspect[] Aspects = new IDifficultyAspect[]
         {
-            new ResourcesDifficultyAspect(),
+            new ResourcesDifficultyAspect()
+            {
+                Amount = new ResourcesDifficultyAspect.ResourceAmount[]
+                {
+                    new ResourcesDifficultyAspect.ResourceAmount()
+                    {
+                        ResourceIdentifier = "Core.Credits",
+                        Value = 750
+                    }
+                }
+            }
         };
 
         public IDifficultyAspect[] GetAspects() => Aspects.ToArray();

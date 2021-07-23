@@ -15,26 +15,37 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         private void Awake()
         {
-            var values = Enum.GetNames(typeof(Resource));
+            var values = Resource.GetResources();
             foreach (var value in values)
             {
-                this.SetResource((Resource)Enum.Parse(typeof(Resource), value), 0);
+                this.SetResource(value, 0);
             }
         }
 
         public int GetResource(Resource resource)
         {
-            return _resources.ContainsKey(resource) ? _resources[resource] : 0;
+            if (_resources.TryGetValue(resource, out int value))
+            {
+                return value;
+            }
+            return 0;
         }
 
         public void SetResource(Resource resource, int value, bool silent)
         {
             if (!_resources.ContainsKey(resource))
             {
-                _resources.Add(resource, value);
-                if (!silent)
+                if (_resources != null)
                 {
-                    OnResourceChanged?.Invoke(resource, 0, _resources[resource]);
+                    _resources.Add(resource, value);
+                    if (!silent)
+                    {
+                        OnResourceChanged?.Invoke(resource, 0, _resources[resource]);
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("Tried to spend a null resource.");
                 }
             }
             else

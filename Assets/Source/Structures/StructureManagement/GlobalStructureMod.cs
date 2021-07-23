@@ -17,8 +17,6 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         [ModelProperty]
         private IStructureFilter[] _filters;
 
-        private ObjectCloner _cloner = new ObjectCloner();
-
         public GlobalStructureMod ()
         {
             _filters = new IStructureFilter[0];
@@ -34,7 +32,7 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         {
             if (_filters.All(x => x.Check(structure)) && _mod.IsCompatableWith(structure))
             {
-                structure.Mods.AddMod(_cloner.Clone(_mod));
+                structure.Mods.AddMod(_mod.DeepClone());
                 return true;
             }
             return false;

@@ -14,31 +14,61 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
     public class StartingResourceMultiplierMutator : Mutator, IHasProperties
     {
         [ModelProperty]
-        public float CreditsMultiplier = 2f;
+        public float DefaultMultiplier = 2f;
         [ModelProperty]
-        public float ResearchMultiplier = 2f;
+        private List<Multiplier> _multipliers;
 
         public void AddPropertiesTo(PropertyMenu menu)
         {
-            menu.AddProperty(new NumberDefinition("Credits Mult", CreditsMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetCredits;
-            menu.AddProperty(new NumberDefinition("Research Mult", ResearchMultiplier, false, 0, float.MaxValue)).OnValueChanged += SetResearch;
+            foreach (Multiplier multiplier in GetMultipliers())
+            {
+                Resource resource = Resource.GetResource(multiplier.ResourceIdentifier);
+                menu.AddProperty(new NumberDefinition(resource.Shorthand + " Mult", multiplier.Value, false, 0, float.MaxValue)).OnValueChanged += (x) => SetResource(multiplier.ResourceIdentifier, x);
+            }
         }
 
-        private void SetResearch(object obj)
+        private void SetResource(string resourceIdentifier, object x)
         {
-            ResearchMultiplier = float.Parse(obj.ToString());
-        }
-
-        private void SetCredits(object obj)
-        {
-            CreditsMultiplier = float.Parse(obj.ToString());
+            GetMultipliers().Find(x => x.ResourceIdentifier == resourceIdentifier).Value = (float)x;
         }
 
         public override void Start()
         {
             IResourceContainer container = Player.Player.Resources;
-            container.SetResource(Resource.Credits, Mathf.RoundToInt(container.GetResource(Resource.Credits) * CreditsMultiplier));
-            container.SetResource(Resource.Research, Mathf.RoundToInt(container.GetResource(Resource.Research) * ResearchMultiplier));
+
+            foreach (Multiplier multiplier in GetMultipliers())
+            {
+                Resource resource = Resource.GetResource(multiplier.ResourceIdentifier);
+                container.SetResource(resource, Mathf.RoundToInt(container.GetResource(resource) * multiplier.Value));
+            }
+        }
+
+        private List<Multiplier> GetMultipliers ()
+        {
+            if (_multipliers == null)
+            {
+                _multipliers = new List<Multiplier>();
+                foreach (Resource resource in Resource.GetResources())
+                {
+                    _multipliers.Add(new Multiplier(resource.Identifier, DefaultMultiplier));
+                }
+            }
+            return _multipliers;
+        }
+
+        [System.Serializable]
+        public class Multiplier
+        {
+            [ModelProperty]
+            public string ResourceIdentifier;
+            [ModelProperty]
+            public float Value;
+
+            public Multiplier(string resourceIdentifier, float value)
+            {
+                ResourceIdentifier = resourceIdentifier;
+                Value = value;
+            }
         }
     }
 }

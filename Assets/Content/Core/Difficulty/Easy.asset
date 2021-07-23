@@ -27,8 +27,11 @@ MonoBehaviour:
       type: {class: ResourcesDifficultyAspect, ns: Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects,
         asm: Assembly-CSharp}
       data:
-        StartingCredits: 1000
-        StartingResearch: 2
+        Amount:
+        - ResourceIdentifier: Core.Credits
+          Value: 1000
+        - ResourceIdentifier: Core.Research
+          Value: 2
     00000001:
       type: {class: EnemyScalerDifficultyAspect, ns: Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects,
         asm: Assembly-CSharp}

@@ -1,14 +1,18 @@
 {
   "Name": "Brutal",
   "Description": "You will die.",
-  "Grade": "$Path{Core/Difficulty/Grades/Wimp.json}",
+  "Grade": "$Path{Core/Difficulty/Grades/Brutal.json}",
   "Identifier": "Core.Brutal",
   "Aspects": [
     {
       "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
       "$Data": {
-        "StartingCredits": 600,
-        "StartingResearch": 0
+        "Amount": [
+          {
+            "ResourceIdentifier": "Core.Credits",
+            "Value": 600
+          }
+        ]
       }
     },
     {

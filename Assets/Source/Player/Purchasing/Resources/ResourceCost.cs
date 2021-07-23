@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,8 @@ namespace Lomztein.BFA2.Purchasing.Resources
         [Serializable]
         public class Element
         {
-            [ModelProperty]
-            public Resource Type;
+            [ModelAssetReference]
+            public Resource Resource;
             [ModelProperty]
             public int Value;
 
@@ -26,9 +27,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
             {
             }
 
-            public Element (Resource type, int value)
+            public Element (Resource resource, int value)
             {
-                Type = type;
+                Resource = resource;
                 Value = value;
             }
         }
@@ -44,7 +45,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
 
         public Dictionary<Resource, int> GetCost()
         {
-            return Elements.ToDictionary(x => x.Type, y => y.Value);
+            return Elements.ToDictionary(x => x.Resource, y => y.Value);
         }
 
         public override string ToString()
