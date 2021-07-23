@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.UI.Menus.PropertyMenus;
 using System;
@@ -18,8 +19,8 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty
         public string Name;
         [ModelProperty, TextArea]
         public string Description;
-        [ModelProperty]
-        public string GradeIdentifier;
+        [ModelAssetReference, SerializeableObjectPopup("Difficulty/Grades")]
+        public DifficultyGrade Grade;
         [ModelProperty]
         public string Identifier;
         public bool IsModified;
@@ -70,8 +71,8 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty
     {
         public int Compare(Difficulty x, Difficulty y)
         {
-            int xGrade = DifficultyGrade.GetGrade(x.GradeIdentifier).DifficultyIndex;
-            int yGrade = DifficultyGrade.GetGrade(y.GradeIdentifier).DifficultyIndex;
+            int xGrade = x.Grade.DifficultyIndex;
+            int yGrade = y.Grade.DifficultyIndex;
             return xGrade - yGrade;
         }
     }

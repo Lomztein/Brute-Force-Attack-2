@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem
 {
-    public class ContentScriptableEnumAttribute : PropertyAttribute
+    public class SerializeableObjectPopupAttribute : PropertyAttribute
     {
         public string Path;
 
-        public ContentScriptableEnumAttribute(string path)
+        public SerializeableObjectPopupAttribute(string path)
         {
             Path = path;
         }
