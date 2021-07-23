@@ -33,7 +33,7 @@
         "SpreadInfo": "$Path{Core/Stats/Spread.json}",
         "SpeedInfo": "$Path{Core/Stats/Speed.json}",
         "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
-        "BaseDamage": 3000.0,
+        "BaseDamage": 4000.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
         "BaseSpeed": 100.0,
@@ -41,7 +41,52 @@
         "Color": "Red",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
-          "_attachmentPoints": []
+          "_attachmentPoints": [
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.4375,
+                "Y": 0.875,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.4375,
+                "Y": -0.875,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Module",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -1.0,
+                "Y": -0.375,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Module",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -1.0,
+                "Y": 0.375,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
         "AttachmentPoints": [
           {
@@ -96,7 +141,7 @@
           "Elements": [
             {
               "Type": "Credits",
-              "Value": 5000
+              "Value": 6000
             }
           ]
         },

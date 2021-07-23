@@ -142,13 +142,33 @@ MonoBehaviour:
   _cost:
     Elements:
     - Type: 0
-      Value: 5000
+      Value: 6000
   BaseAttributes: 
   _width: 2
   _height: 2
   BaseComplexity: 0
   AttachmentSlots:
-    _attachmentPoints: []
+    _attachmentPoints:
+    - Type: 2
+      MinSupportedSize: 1
+      MaxSupportedSize: 1
+      LocalPosition: {x: -0.4375, y: 0.875, z: 0}
+      LocalAngle: 0
+    - Type: 2
+      MinSupportedSize: 1
+      MaxSupportedSize: 1
+      LocalPosition: {x: -0.4375, y: -0.875, z: 0}
+      LocalAngle: 0
+    - Type: 3
+      MinSupportedSize: 1
+      MaxSupportedSize: 1
+      LocalPosition: {x: -1, y: -0.375, z: 0}
+      LocalAngle: 0
+    - Type: 3
+      MinSupportedSize: 1
+      MaxSupportedSize: 1
+      LocalPosition: {x: -1, y: 0.375, z: 0}
+      LocalAngle: 0
   AttachmentPoints:
   - Type: 0
     Size: 2
@@ -176,13 +196,13 @@ MonoBehaviour:
   SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
   SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
   FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
-  BaseDamage: 3000
+  BaseDamage: 4000
   BaseProjectileAmount: 1
   BaseSpread: 0
   BaseSpeed: 100
   BaseFirerate: 0.5
-  FireTreshold: 1
   Color: 2
+  FireTreshold: 1
 --- !u!58 &-4933678295721008529
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -349,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 2
   ProjectilePrefab:
     Path: Resources/Projectiles/CannonProjectile

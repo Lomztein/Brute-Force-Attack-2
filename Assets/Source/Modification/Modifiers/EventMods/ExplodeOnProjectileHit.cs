@@ -5,6 +5,7 @@ using Lomztein.BFA2.Modification.Modifiers;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Weaponary.Misc;
+using Lomztein.BFA2.Weaponary.Projectiles;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void ApplyBase(IStatContainer stats, IEventContainer events)
         {
-            events.GetEvent<HitEventArgs>("OnProjectileHit").Event.OnExecute += Explode;
+            events.GetEvent<EventArgs<HitInfo>>("OnProjectileHit").Event.OnExecute += Explode;
 
             _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase);
             _range = stats.AddStat(ExplosionRangeInfo, RangeBase);
@@ -50,7 +51,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void RemoveBase(IStatContainer stats, IEventContainer events)
         {
-            events.GetEvent<HitEventArgs>("OnProjectileHit").Event.OnExecute -= Explode;
+            events.GetEvent<EventArgs<HitInfo>>("OnProjectileHit").Event.OnExecute -= Explode;
         }
 
         public override void RemoveStack(IStatContainer stats, IEventContainer events)
@@ -59,18 +60,18 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
             stats.RemoveStatElement(ExplosionRangeInfo.Identifier, this);
         }
 
-        private void Explode(HitEventArgs args)
+        private void Explode(EventArgs<HitInfo> args)
         {
-            float damage = args.Info.DamageInfo.Damage * _damageMult.GetValue();
+            float damage = args.Object.DamageInfo.Damage * _damageMult.GetValue();
             float range = ComputeDiameter (_range.GetValue(), 1f);
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();
-            explosion.transform.position = args.Info.Point;
+            explosion.transform.position = args.Object.Point;
             explosion.Explode(damage, range);
 
             if (DepleteProjectile)
             {
-                args.Info.Projectile.Deplete();
+                args.Object.Projectile.Deplete();
             }
         }
 

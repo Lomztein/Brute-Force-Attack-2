@@ -143,7 +143,7 @@ MonoBehaviour:
   _cost:
     Elements:
     - Type: 0
-      Value: 3000
+      Value: 4000
   BaseAttributes: 
   _width: 2
   _height: 2
@@ -177,13 +177,13 @@ MonoBehaviour:
   SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
   SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
   FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
-  BaseDamage: 300
+  BaseDamage: 400
   BaseProjectileAmount: 1
   BaseSpread: -2
   BaseSpeed: 100
   BaseFirerate: 4
-  FireTreshold: 5
   Color: 0
+  FireTreshold: 5
 --- !u!114 &4967721325241813617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,10 +372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 0
   ProjectilePrefab:
-    Path: Core/Projectiles/PlasmaCannonProjectile
+    Path: Core/Projectiles/PlasmaCannonProjectile.json
   HitLayer:
     serializedVersion: 2
     m_Bits: 256

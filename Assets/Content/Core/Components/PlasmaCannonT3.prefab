@@ -142,7 +142,7 @@ MonoBehaviour:
   _cost:
     Elements:
     - Type: 0
-      Value: 5000
+      Value: 8000
   BaseAttributes: 
   _width: 2
   _height: 2
@@ -181,8 +181,8 @@ MonoBehaviour:
   BaseSpread: -4
   BaseSpeed: 100
   BaseFirerate: 12
-  FireTreshold: 15
   Color: 0
+  FireTreshold: 15
 --- !u!114 &8441061706672402137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,10 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 0
   ProjectilePrefab:
-    Path: Core/Projectiles/PlasmaCannonProjectile
+    Path: Core/Projectiles/PlasmaCannonProjectile.json
   HitLayer:
     serializedVersion: 2
     m_Bits: 256

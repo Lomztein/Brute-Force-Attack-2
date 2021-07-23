@@ -222,13 +222,13 @@ MonoBehaviour:
   SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
   SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
   FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
-  BaseDamage: 100
+  BaseDamage: 200
   BaseProjectileAmount: 1
   BaseSpread: 0
   BaseSpeed: 1337
   BaseFirerate: 0.5
-  FireTreshold: 1
   Color: 1
+  FireTreshold: 1
 --- !u!114 &8441061706672402137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Color: 1
   ProjectilePrefab:
     Path: Core/Projectiles/ScatterLaserProjectile.json
