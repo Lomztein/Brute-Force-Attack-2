@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEngine;
 using static Lomztein.BFA2.Serialization.Assemblers.ObjectPopulator;
 
 namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
@@ -59,11 +60,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                 return;
             } else if (obj is UnityEngine.Object uObj)
             {
+                string assetPath;
 #if UNITY_EDITOR 
                 // This code cannot function without the UnityEditor assemblies.
-                string assetPath = AssetDatabase.GetAssetPath(uObj);
+                assetPath = AssetDatabase.GetAssetPath(uObj);
 #else
-                string assetPath = _memoryReferences[uObj];
+                assetPath = _memoryReferences[uObj];
                 Debug.LogWarning("Cloning objects with an AssetReference is discouraged. If possible, make that object a ScriptableObject and clone using Instantiate instead.");
 #endif
                 foreach (string path in _assetPaths)
