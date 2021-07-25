@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec08cbde5b4ade4698ad456da3f5bc0, type: 3}
+  m_Name: ExplosiveRounds
+  m_EditorClassIdentifier: 
+  Identifier: Core.ExplosiveRounds
+  Name: Explosive Rounds
+  Description: The rounds of this weapon explodes on hit.
+  RequiredAttributes: 
+  ExplosionDamageFactorInfo: {fileID: 11400000, guid: b1465e5f39dfc42419fbbb9485853a07,
+    type: 2}
+  ExplosionRangeInfo: {fileID: 11400000, guid: 5b274ad9ffe327b4d8cb9d6e023cb178, type: 2}
+  DamageFactorBase: 0.2
+  RangeBase: 1
+  DamageFactorStack: 0.1
+  RangeStack: 0.2
+  ExplosionPrefab:
+    Path: Core/Projectiles/Explosion.json
+  DepleteProjectile: 1

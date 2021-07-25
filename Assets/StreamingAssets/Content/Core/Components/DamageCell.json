@@ -75,34 +75,9 @@
     {
       "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ParentModBroadcaster",
       "$Data": {
-        "_mod": {
+        "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "$Data": {
-            "Stats": [
-              {
-                "Info": {
-                  "Identifier": "Core.Damage",
-                  "Name": "Damage",
-                  "Description": "The damage dealt per projectile.",
-                  "Function": {
-                    "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
-                    "$Data": {}
-                  },
-                  "Formatter": {
-                    "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
-                    "$Data": {}
-                  }
-                },
-                "Value": 0.2
-              }
-            ],
-            "_identifier": "Core.LocalDamageCell",
-            "_name": "Damage Cell",
-            "_description": "A damage cell is attached, increasing weapon damage.",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
+          "$Data": "$Path{Core/Mods/DamageCell.json}"
         }
       }
     }

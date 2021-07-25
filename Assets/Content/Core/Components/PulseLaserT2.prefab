@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 1013188143988452828}
   - component: {fileID: 8579898881888915783}
   - component: {fileID: -5090018618559331163}
-  - component: {fileID: 6104099933961705374}
   - component: {fileID: -707865321132958930}
   m_Layer: 9
   m_Name: PulseLaserT2
@@ -187,36 +186,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6104099933961705374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013188143988452830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451d4412256c9c94ca906390f444a905, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mod:
-    id: 0
-  AdjacencyCheckLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  AdjacencyCheckRange: 0.75
-  references:
-    version: 1
-    00000000:
-      type: {class: StatMod, ns: Lomztein.BFA2.Modification.Modifiers, asm: Assembly-CSharp}
-      data:
-        _identifier: Core.PulseLaserSpeedBoost
-        _name: Lightning Speed
-        _description: This weapons projectile are speedboosted
-        RequiredAttributes: 06000000
-        Stats:
-        - Info: {fileID: 0}
-          Value: 1
 --- !u!114 &-707865321132958930
 MonoBehaviour:
   m_ObjectHideFlags: 0

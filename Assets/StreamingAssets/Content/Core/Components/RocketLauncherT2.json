@@ -87,56 +87,10 @@
     {
       "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
       "$Data": {
-        "_mod": {
+        "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-          "$Data": {
-            "ExplosionDamageFactorInfo": null,
-            "ExplosionRangeInfo": null,
-            "DamageFactorBase": 0.0,
-            "RangeBase": 1.5,
-            "DamageFactorStack": 0.0,
-            "RangeStack": 0.5,
-            "ExplosionPrefab": {
-              "Path": "Core/Projectiles/Explosion.json"
-            },
-            "DepleteProjectile": true,
-            "_identifier": "Core.ExplosiveRounds",
-            "_name": "Explosive Rounds",
-            "_description": "This weapon has built-in explosive rounds.",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
+          "$Data": "$Path{Core/Mods/ExplosiveRounds.json}"
         }
-      }
-    },
-    {
-      "$Type": "Lomztein.BFA2.Structures.Turrets.Connectors.ConnectorModProvider",
-      "$Data": {
-        "_mod": {
-          "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-          "$Data": {
-            "ExplosionDamageFactorInfo": null,
-            "ExplosionRangeInfo": null,
-            "DamageFactorBase": 0.0,
-            "RangeBase": 0.5,
-            "DamageFactorStack": 0.0,
-            "RangeStack": 0.5,
-            "ExplosionPrefab": {
-              "Path": "Core/Projectiles/Explosion.json"
-            },
-            "DepleteProjectile": false,
-            "_identifier": "Core.ExplosiveRounds",
-            "_name": "Explosive Rounds",
-            "_description": "This weapon is provided with the explosive rounds of a nearby rocket launcher.",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
-        },
-        "_behavioursToDisable": [
-          "TurretWeapon"
-        ]
       }
     },
     {
@@ -146,22 +100,9 @@
           "Mask": 512
         },
         "AdjacencyCheckRange": 0.75,
-        "_mod": {
+        "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "$Data": {
-            "Stats": [
-              {
-                "Info": null,
-                "Value": 0.5
-              }
-            ],
-            "_identifier": "Core.RocketLauncherDamageBoost",
-            "_name": "Heavy Impact",
-            "_description": "This weapons damage is boosted from a nearby rocket launcher",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
+          "$Data": "$Path{Core/Mods/DamageCell.json}"
         }
       }
     },

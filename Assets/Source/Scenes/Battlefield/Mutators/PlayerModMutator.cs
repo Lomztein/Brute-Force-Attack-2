@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
     public class PlayerModMutator : Mutator
     {
         [ModelProperty, SerializeReference, SR]
-        public IMod Mod;
+        public Mod Mod;
 
         public override void Start()
         {

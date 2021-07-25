@@ -51,34 +51,9 @@
         },
         "Range": 2.5,
         "IncludeSelf": false,
-        "_mod": {
+        "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "$Data": {
-            "Stats": [
-              {
-                "Info": {
-                  "Identifier": "Core.Turnrate",
-                  "Name": "Turnrate",
-                  "Description": "How fast this rotates.",
-                  "Function": {
-                    "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
-                    "$Data": {}
-                  },
-                  "Formatter": {
-                    "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
-                    "$Data": {}
-                  }
-                },
-                "Value": 0.5
-              }
-            ],
-            "_identifier": "Core.Lubrication",
-            "_name": "Lubricated",
-            "_description": "This rotator has been lubricated, it turns much quicker.",
-            "RequiredAttributes": [
-              "Rotator"
-            ]
-          }
+          "$Data": "$Path{Core/Mods/LubricatorBroadcast.json}"
         }
       }
     },

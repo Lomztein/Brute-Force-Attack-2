@@ -93,29 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0091838f2775821488e4bc8ae765e744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mod:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: ExplodeOnProjectileHit, ns: Lomztein.BFA2.Modification.Modifiers.EventMods,
-        asm: Assembly-CSharp}
-      data:
-        _identifier: ExplodeOnHitModule
-        _name: Explosive Rounds
-        _description: 
-        RequiredAttributes: 
-        ExplosionDamageFactorInfo: {fileID: 11400000, guid: b1465e5f39dfc42419fbbb9485853a07,
-          type: 2}
-        ExplosionRangeInfo: {fileID: 11400000, guid: 5b274ad9ffe327b4d8cb9d6e023cb178,
-          type: 2}
-        DamageFactorBase: 0.2
-        RangeBase: 1
-        DamageFactorStack: 0.1
-        RangeStack: 0.2
-        ExplosionPrefab:
-          Path: Core/Projectiles/Explosion.json
-        DepleteProjectile: 1
+  Mod: {fileID: 11400000, guid: 896fb9c0a620d1842a7500858c4271f5, type: 2}
 --- !u!1 &8239035314077101503
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 {
-    public class ExplodeOnProjectileHit : ModBase
+    public class ExplodeOnProjectileHit : Mod
     {
         [ModelProperty]
         public StatInfo ExplosionDamageFactorInfo;

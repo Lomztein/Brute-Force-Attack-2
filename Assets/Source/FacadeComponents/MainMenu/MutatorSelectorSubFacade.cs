@@ -45,6 +45,6 @@ namespace Lomztein.BFA2.FacadeComponents.MainMenu
             }
         }
 
-        private MutatorSelector GetSelector() => GameObject.Find("Mutators").GetComponent<MutatorSelector>();
+        private MutatorSelector GetSelector() => MutatorSelector.Instance;
     }
 }

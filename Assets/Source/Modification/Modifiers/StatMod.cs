@@ -10,7 +10,8 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers
 {
-    public class StatMod : ModBase, IMod
+    [CreateAssetMenu (fileName = "NewStatMod", menuName = "BFA2/Mods/Stat Mod")]
+    public class StatMod : Mod
     {
         [ModelProperty]
         public Element[] Stats = new Element[0];
@@ -18,7 +19,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         [Serializable]
         public class Element
         {
-            [ModelProperty]
+            [ModelAssetReference]
             public StatInfo Info;
             [ModelProperty]
             public float Value = 0;

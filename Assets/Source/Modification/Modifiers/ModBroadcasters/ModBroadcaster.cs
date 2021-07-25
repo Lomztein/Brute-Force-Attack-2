@@ -12,9 +12,8 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public abstract class ModBroadcaster : MonoBehaviour
     {
-        [ModelProperty]
-        [SerializeField, SerializeReference, SR]
-        protected IMod _mod;
+        [ModelAssetReference]
+        public Mod Mod;
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
 
         protected virtual bool BroadcastPostAssembled => false;
@@ -78,9 +77,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private bool AddMod(IModdable moddable)
         {
-            if (_mod.IsCompatableWith(moddable))
+            if (Mod.CanMod(moddable))
             {
-                moddable.Mods.AddMod(_mod.DeepClone());
+                moddable.Mods.AddMod(Instantiate(Mod));
                 return true;
             }
             return false;
@@ -88,7 +87,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private void RemoveMod (IModdable moddable)
         {
-            moddable.Mods.RemoveMod(_mod.Identifier);
+            moddable.Mods.RemoveMod(Mod.Identifier);
         }
 
         public abstract IEnumerable<IModdable> GetBroadcastTargets();

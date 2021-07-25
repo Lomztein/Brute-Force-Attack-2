@@ -13,11 +13,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
     public class ConnectorModProvider : MonoBehaviour
     {
         [SerializeField, ModelProperty, SerializeReference, SR]
-        private IMod _mod;
+        private Mod _mod;
         [ModelProperty] [SerializeField]
         private string[] _behavioursToDisable;
 
-        public IMod Mod => _mod; // Why? Because there are at least some of you who'd ree if I didn't. I'd probably ree too tbh.
+        public Mod Mod => _mod; // Why? Because there are at least some of you who'd ree if I didn't. I'd probably ree too tbh.
 
         private void SetBehaviourEnabled(bool state)
         {

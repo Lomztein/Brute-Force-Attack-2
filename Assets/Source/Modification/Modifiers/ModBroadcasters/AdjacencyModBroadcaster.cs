@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
                 if (IsAdjecent(sibling.gameObject))
                 {
                     IModdable moddable = sibling.GetComponent<IModdable>();
-                    if (moddable != null && _mod.IsCompatableWith(moddable))
+                    if (moddable != null && Mod.CanMod(moddable))
                     {
                         yield return moddable;
                     }

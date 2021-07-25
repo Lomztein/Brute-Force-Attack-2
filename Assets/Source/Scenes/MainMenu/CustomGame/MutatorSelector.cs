@@ -12,6 +12,8 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 {
     public class MutatorSelector : MonoBehaviour, ICustomGameAspectController
     {
+        public static MutatorSelector Instance;
+
         public Transform EnabledParent;
         public Transform AvailableParent;
 
@@ -42,6 +44,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         private void Awake()
         {
+            Instance = this;
             _allMutators.AddRange(LoadMutators());
         }
 

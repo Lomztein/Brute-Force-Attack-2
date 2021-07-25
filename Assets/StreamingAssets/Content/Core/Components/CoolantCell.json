@@ -75,34 +75,9 @@
     {
       "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ParentModBroadcaster",
       "$Data": {
-        "_mod": {
+        "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "$Data": {
-            "Stats": [
-              {
-                "Info": {
-                  "Identifier": "Core.Firerate",
-                  "Name": "Firerate",
-                  "Description": "The amount of times fired per second.",
-                  "Function": {
-                    "$Type": "Lomztein.BFA2.Modification.Stats.Functions.MultiplicativeFunction",
-                    "$Data": {}
-                  },
-                  "Formatter": {
-                    "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
-                    "$Data": {}
-                  }
-                },
-                "Value": 0.25
-              }
-            ],
-            "_identifier": "Core.LocalCoolantCell",
-            "_name": "Coolant Cell",
-            "_description": "A small coolant cell is attached, speeding up this weapons firerate.",
-            "RequiredAttributes": [
-              "Weapon"
-            ]
-          }
+          "$Data": "$Path{Core/Mods/CoolantCell.json}"
         }
       }
     }

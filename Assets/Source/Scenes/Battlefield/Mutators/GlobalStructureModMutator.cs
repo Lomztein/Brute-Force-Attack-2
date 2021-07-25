@@ -11,11 +11,11 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
     public class GlobalStructureModMutator : Mutator
     {
         [ModelProperty]
-        private GlobalStructureMod _mod;
+        public GlobalStructureMod Mod;
 
         public override void Start()
         {
-            GlobalStructureModManager.Instance.AddMod(_mod);
+            GlobalStructureModManager.Instance.AddMod(Mod);
         }
     }
 }

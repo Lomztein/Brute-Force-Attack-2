@@ -188,25 +188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2c0b65562c1664594e79296ceeba8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mod:
-    id: 0
+  Mod: {fileID: 11400000, guid: f1d4534573c78154cb09635c5647aa8e, type: 2}
   TargetLayer:
     serializedVersion: 2
     m_Bits: 512
   Range: 2.5
   IncludeSelf: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: StatMod, ns: Lomztein.BFA2.Modification.Modifiers, asm: Assembly-CSharp}
-      data:
-        _identifier: Core.Lubrication
-        _name: Lubricated
-        _description: This rotator has been lubricated, it turns much quicker.
-        RequiredAttributes: 01000000
-        Stats:
-        - Info: {fileID: 11400000, guid: 323095ad0ac69e74c91019c9a9e38e3e, type: 2}
-          Value: 0.5
 --- !u!58 &-8225169792250147463
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Modification
         private IStatContainer _stats;
         private IEventContainer _events;
 
-        private List<IMod> _mods = new List<IMod>();
+        private List<Mod> _mods = new List<Mod>();
 
         public ModContainer(IStatContainer stats, IEventContainer events)
         {
@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Modification
             _events = events;
         }
 
-        public void AddMod(IMod mod)
+        public void AddMod(Mod mod)
         {
             if (GetAmount(mod.Identifier) == 0)
             {
@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Modification
         {
             if (GetAmount(identifier) != 0)
             {
-                IMod mod = GetMod(identifier);
+                Mod mod = GetMod(identifier);
                 if (GetAmount(identifier) == 1)
                 {
                     mod.RemoveBase(_stats, _events);
@@ -50,10 +50,11 @@ namespace Lomztein.BFA2.Modification
                     mod.RemoveStack(_stats, _events);
                 }
                 _mods.Remove(mod);
+                UnityEngine.Object.Destroy(mod);
             }
         }
 
-        private IMod GetMod(string identifier) => _mods.FirstOrDefault(x => x.Identifier == identifier);
+        private Mod GetMod(string identifier) => _mods.FirstOrDefault(x => x.Identifier == identifier);
 
         private int GetAmount (string identifier)
         {

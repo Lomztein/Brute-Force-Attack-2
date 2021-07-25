@@ -6000,37 +6000,9 @@
             "Mutator": {
               "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.GlobalStructureModMutator",
               "$Data": {
-                "_mod": {
-                  "_mod": {
-                    "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-                    "$Data": {
-                      "Stats": [
-                        {
-                          "Info": {
-                            "Identifier": "Core.Range",
-                            "Name": "Range",
-                            "Description": "The range at which targets can be reached.",
-                            "Function": {
-                              "$Type": "Lomztein.BFA2.Modification.Stats.Functions.LiniarFunction",
-                              "$Data": {}
-                            },
-                            "Formatter": {
-                              "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
-                              "$Data": {}
-                            }
-                          },
-                          "Value":  10
-                        }
-                      ],
-                      "_identifier": "Core.Mutator.Range",
-                      "_name": "+100% Range",
-                      "_description": "Increases range of all structures.",
-                      "RequiredAttributes": [ "Ranged" ]
-                    }
-
-
-                  },
-                  "_filters": []
+                "Mod": {
+                  "Mod": "$Path{Core/Mods/SuperRange.json}",
+                  "Filters": []
                 },
                 "Name": "Global Mod",
                 "Description": "Embedded global mod",

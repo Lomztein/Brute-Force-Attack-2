@@ -7,7 +7,7 @@ namespace Lomztein.BFA2.Modification
 {
     public interface IModContainer
     {
-        void AddMod(IMod mod);
+        void AddMod(Mod mod);
 
         void RemoveMod(string identifier);
     }

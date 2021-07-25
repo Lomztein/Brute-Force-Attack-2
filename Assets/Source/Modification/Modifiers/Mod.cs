@@ -10,21 +10,18 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers
 {
-    public abstract class ModBase : IMod
+    public abstract class Mod : ScriptableObject
     {
-        [ModelProperty] [SerializeField] protected string _identifier;
-        public string Identifier => _identifier;
-
-        [ModelProperty] [SerializeField] protected string _name;
-        public string Name => _name;
-
-        [ModelProperty] [SerializeField] protected string _description;
-        public string Description => _description;
-
+        [ModelProperty, SerializeField]
+        public string Identifier;
+        [ModelProperty, SerializeField]
+        public string Name;
+        [ModelProperty, SerializeField]
+        public string Description;
         [ModelProperty]
         public ModdableAttribute[] RequiredAttributes;
 
-        public bool IsCompatableWith(IModdable moddable)
+        public bool CanMod(IModdable moddable)
         {
             var attributes = moddable.GetModdableAttributes();
             return RequiredAttributes.All(x => attributes.Contains(x));

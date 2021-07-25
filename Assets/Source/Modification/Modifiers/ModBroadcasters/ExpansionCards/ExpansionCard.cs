@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ModProviders
 {
     public class ExpansionCard : MonoBehaviour, IExpansionCard, IPurchasable
     {
-        public IMod Mod { get; private set; }
+        public Mod Mod { get; private set; }
 
         [SerializeField] [ModelProperty] private string _name;
         public string Name => _name;
@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ModProviders
 
         private void Awake()
         {
-            Mod = GetComponent<IMod>();
+            Mod = GetComponent<Mod>();
         }
 
         public override string ToString()

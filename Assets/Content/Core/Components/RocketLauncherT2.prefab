@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 8983164369808527840}
   - component: {fileID: 5813048448918230106}
   - component: {fileID: 5095898545452304208}
-  - component: {fileID: 5193027305774698955}
   - component: {fileID: -7490332593527863467}
   - component: {fileID: 6827943954652484628}
   - component: {fileID: -6719742715466241124}
@@ -198,63 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9eba5717c09c44a94caa3ea86f0005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mod:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: ExplodeOnProjectileHit, ns: Lomztein.BFA2.Modification.Modifiers.EventMods,
-        asm: Assembly-CSharp}
-      data:
-        _identifier: Core.ExplosiveRounds
-        _name: Explosive Rounds
-        _description: This weapon has built-in explosive rounds.
-        RequiredAttributes: 06000000
-        ExplosionDamageFactorInfo: {fileID: 0}
-        ExplosionRangeInfo: {fileID: 0}
-        DamageFactorBase: 0
-        RangeBase: 1.5
-        DamageFactorStack: 0
-        RangeStack: 0.5
-        ExplosionPrefab:
-          Path: Core/Projectiles/Explosion.json
-        DepleteProjectile: 1
---- !u!114 &5193027305774698955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8983164369808527842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7b4782af0b8dd418426fd606e503a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mod:
-    id: 0
-  _behavioursToDisable:
-  - TurretWeapon
-  references:
-    version: 1
-    00000000:
-      type: {class: ExplodeOnProjectileHit, ns: Lomztein.BFA2.Modification.Modifiers.EventMods,
-        asm: Assembly-CSharp}
-      data:
-        _identifier: Core.ExplosiveRounds
-        _name: Explosive Rounds
-        _description: This weapon is provided with the explosive rounds of a nearby
-          rocket launcher.
-        RequiredAttributes: 06000000
-        ExplosionDamageFactorInfo: {fileID: 0}
-        ExplosionRangeInfo: {fileID: 0}
-        DamageFactorBase: 0
-        RangeBase: 0.5
-        DamageFactorStack: 0
-        RangeStack: 0.5
-        ExplosionPrefab:
-          Path: Core/Projectiles/Explosion.json
-        DepleteProjectile: 0
+  Mod: {fileID: 11400000, guid: 896fb9c0a620d1842a7500858c4271f5, type: 2}
 --- !u!114 &-7490332593527863467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,24 +210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451d4412256c9c94ca906390f444a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mod:
-    id: 0
+  Mod: {fileID: 11400000, guid: cc4ce145faeda734e9c134ab3355962d, type: 2}
   AdjacencyCheckLayer:
     serializedVersion: 2
     m_Bits: 512
   AdjacencyCheckRange: 0.75
-  references:
-    version: 1
-    00000000:
-      type: {class: StatMod, ns: Lomztein.BFA2.Modification.Modifiers, asm: Assembly-CSharp}
-      data:
-        _identifier: Core.RocketLauncherDamageBoost
-        _name: Heavy Impact
-        _description: This weapons damage is boosted from a nearby rocket launcher
-        RequiredAttributes: 06000000
-        Stats:
-        - Info: {fileID: 0}
-          Value: 0.5
 --- !u!114 &6827943954652484628
 MonoBehaviour:
   m_ObjectHideFlags: 0
