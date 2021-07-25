@@ -47,7 +47,7 @@ namespace Lomztein.BFA2.Structures
         public IModContainer Mods { get; private set; }
 
         [ModelProperty]
-        public TagSet Tags;
+        public TagSet Tags = new TagSet();
 
         public virtual Sprite Sprite => Iconography.GenerateSprite(gameObject);
 

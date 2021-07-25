@@ -12,7 +12,7 @@ namespace Lomztein.BFA2
     public class TagSet : ITagged, IEnumerable<string>
     {
         [SerializeField]
-        private List<string> _tags;
+        private List<string> _tags = new List<string>();
 
         public IEnumerator<string> GetEnumerator()
         {
