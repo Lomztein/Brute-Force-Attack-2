@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Modification.Events;
-using Lomztein.BFA2.Modification.Events.EventArgs;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Serialization;
@@ -18,6 +17,8 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
     {
         [ModelAssetReference]
         public StatInfo RangeInfo;
+        [ModelAssetReference]
+        public EventInfo OnTargetAcquiredInfo;
         [ModelProperty]
         public float BaseRange;
         public IStatReference Range;
@@ -28,8 +29,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         private Transform _target;
 
         private ITargetFinder _targetFinder;
-
-        private IEventCaller<TargetEventArgs> _onTargetAcquired;
+        private IEventCaller _onTargetAcquired;
 
         public override StructureCategory Category => StructureCategories.TargetFinder;
 
@@ -49,8 +49,8 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void PreInit()
         {
-            AddModdableAttribute(Modification.ModdableAttribute.Ranged);
-            _onTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Executed whenever this base acquires a target.");
+            AddTag("Base");
+            _onTargetAcquired = Events.AddEvent(OnTargetAcquiredInfo);
             Range = Stats.AddStat(RangeInfo, BaseRange);
         }
 
@@ -67,7 +67,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
                 _target = _targetFinder.FindTarget (Physics2D.OverlapCircleAll(transform.position, range, TargetLayer));
                 if (_target != null)
                 {
-                    _onTargetAcquired.CallEvent(new TargetEventArgs() { Target = _target });
+                    _onTargetAcquired.CallEvent(new Modification.Events.EventArgs(this, _target));
                 }
             }
             else

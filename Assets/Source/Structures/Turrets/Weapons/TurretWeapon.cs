@@ -2,7 +2,6 @@
 using Lomztein.BFA2.Colorization;
 using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Modification.Events;
-using Lomztein.BFA2.Modification.Events.EventArgs;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;

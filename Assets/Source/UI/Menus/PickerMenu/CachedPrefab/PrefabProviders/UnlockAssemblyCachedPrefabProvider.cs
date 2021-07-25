@@ -47,9 +47,9 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
             }
         }
 
-        private bool ContainsComponent(TurretAssembly assembly, string identifier) => assembly.GetComponents().Any(x => x.UniqueIdentifier == identifier);
+        private bool ContainsComponent(TurretAssembly assembly, string identifier) => assembly.GetComponents().Any(x => x.Identifier == identifier);
 
-        private bool IsUnlocked(TurretAssembly assembly) => assembly.GetComponents().All(x => UnlockList.IsUnlocked(x.UniqueIdentifier));
+        private bool IsUnlocked(TurretAssembly assembly) => assembly.GetComponents().All(x => UnlockList.IsUnlocked(x.Identifier));
 
         private IContentCachedPrefab[] GetUnlocked ()
         {

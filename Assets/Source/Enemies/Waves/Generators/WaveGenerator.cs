@@ -71,7 +71,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         }
 
         private GeneratorEnemyData GetGeneratorEnemyData (IEnemy enemy)
-            => GetGeneratorEnemyDataCache().FirstOrDefault(x => x.EnemyIdentifier == enemy.UniqueIdentifier);
+            => GetGeneratorEnemyDataCache().FirstOrDefault(x => x.EnemyIdentifier == enemy.Identifier);
 
         private (IContentCachedPrefab enemy, int amount) GetRandomEnemy(float credits)
         {

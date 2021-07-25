@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Enemies
 
         [ModelProperty]
         public string _UniqueIdentifier;
-        public string UniqueIdentifier => _UniqueIdentifier;
+        public string Identifier => _UniqueIdentifier;
 
         [ModelProperty]
         public Color Color;

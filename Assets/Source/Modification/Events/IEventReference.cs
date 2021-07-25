@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Modification.Events
 {
-    public interface IEventReference<T> where T : IEventArgs
+    public interface IEventReference
     {
-        IEvent<T> Event { get; }
+        IEvent Event { get; }
     }
 }

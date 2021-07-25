@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
 
         private void OnUnlockChanged(string identifier, bool value)
         {
-            IContentCachedPrefab prefab = _prefabs.FirstOrDefault(x => x.GetCache().GetComponent<IIdentifiable>().UniqueIdentifier == identifier);
+            IContentCachedPrefab prefab = _prefabs.FirstOrDefault(x => x.GetCache().GetComponent<IIdentifiable>().Identifier == identifier);
             if (prefab != null)
             {
                 if (value == true)
@@ -60,6 +60,6 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
             OnAdded?.Invoke(prefabs);
         }
 
-        private bool IsUnlocked(IContentCachedPrefab prefab) => UnlockList.IsUnlocked(prefab.GetCache().GetComponent<IIdentifiable>().UniqueIdentifier);
+        private bool IsUnlocked(IContentCachedPrefab prefab) => UnlockList.IsUnlocked(prefab.GetCache().GetComponent<IIdentifiable>().Identifier);
     }
 }

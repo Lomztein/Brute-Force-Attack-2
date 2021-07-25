@@ -93,10 +93,5 @@ namespace Lomztein.BFA2.Player
             Resources.ChangeResource(resource, floored);
             _resourceFractionTrackers[resource.Identifier] -= floored;
         }
-
-        public ModdableAttribute[] GetModdableAttributes()
-        {
-            return Array.Empty<ModdableAttribute>();
-        }
     }
 }

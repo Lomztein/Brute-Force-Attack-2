@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Structures
         [SerializeField]
         [ModelProperty]
         public string _uniqueIdentifier;
-        public virtual string UniqueIdentifier => _uniqueIdentifier;
+        public virtual string Identifier => _uniqueIdentifier;
 
         public virtual string Description { get => _description; set => _description = value; }
         public virtual IResourceCost Cost => _cost;
@@ -46,8 +46,8 @@ namespace Lomztein.BFA2.Structures
         public IEventContainer Events = new EventContainer();
         public IModContainer Mods { get; private set; }
 
-        [ModelProperty] public ModdableAttribute[] BaseAttributes;
-        protected List<ModdableAttribute> _modAttributes = new List<ModdableAttribute>();
+        [ModelProperty]
+        public TagSet Tags;
 
         public virtual Sprite Sprite => Iconography.GenerateSprite(gameObject);
 
@@ -90,14 +90,14 @@ namespace Lomztein.BFA2.Structures
             Destroyed?.Invoke(this);
         }
 
-        public void AddModdableAttribute (ModdableAttribute attribute)
+        public bool AddTag (string tag)
         {
-            _modAttributes.Add(attribute);
+            return Tags.AddTag(tag);
         }
 
-        public ModdableAttribute[] GetModdableAttributes()
+        public string[] GetTags()
         {
-            return Enumerable.Concat(BaseAttributes, _modAttributes).ToArray();
+            return Tags.ToArray();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
 
         private void SynchronizeChildren ()
         {
-            var groups = GetChildWeapons().GroupBy(x => x.UniqueIdentifier);
+            var groups = GetChildWeapons().GroupBy(x => x.Identifier);
             if (groups.Count() == 1)
             {
                 var group = groups.First();

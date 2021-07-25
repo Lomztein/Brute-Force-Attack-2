@@ -10,20 +10,20 @@ namespace Lomztein.BFA2.Modification.Events
     {
         private List<IEvent> _events = new List<IEvent>();
 
-        public IEventCaller<T> AddEvent<T>(string identifier, string name, string description) where T : IEventArgs
+        public IEventCaller AddEvent(EventInfo info)
         {
-            if (!ContainsEvent (identifier))
+            if (!HasEvent (info.Identifier))
             {
-                _events.Add (new Event<T>(identifier, name, description));
+                _events.Add (new Event(info.Identifier, info.Name, info.Description));
             }
-            return new EventCaller<T>(FindEvent(identifier) as IEvent<T>);
+            return new EventCaller(FindEvent(info.Identifier) as IEvent);
         }
 
-        public IEventReference<T> GetEvent<T>(string identifier) where T : IEventArgs
+        public IEventReference GetEvent(string identifier)
         {
-            if (ContainsEvent(identifier))
+            if (HasEvent(identifier))
             {
-                return new EventReference<T>(FindEvent(identifier) as IEvent<T>);
+                return new EventReference(FindEvent(identifier));
             }
             return null;
         }
@@ -33,7 +33,7 @@ namespace Lomztein.BFA2.Modification.Events
             return _events.First(x => x.Identifier == identifier);
         }
 
-        private bool ContainsEvent (string identifier)
+        public bool HasEvent (string identifier)
         {
             return _events.Any(x => x.Identifier == identifier);
         }

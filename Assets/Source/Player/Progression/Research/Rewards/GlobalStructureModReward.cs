@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Research.Rewards
     public class GlobalStructureModReward : CompletionReward
     {
         [ModelProperty]
-        public GlobalStructureMod Mod = new GlobalStructureMod();
+        public GlobalStructureMod Mod;
 
         public override void ApplyReward()
         {

@@ -64,7 +64,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             IContentCachedPrefab prefab = null;
             for (int i = 0; i < _enemies.Length; i++)
             {
-                if (_enemyCache[i].UniqueIdentifier == obj.UniqueIdentifier)
+                if (_enemyCache[i].Identifier == obj.Identifier)
                 {
                     prefab = _enemies[i];
                 }

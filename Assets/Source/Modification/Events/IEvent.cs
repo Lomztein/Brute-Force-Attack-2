@@ -8,12 +8,12 @@ namespace Lomztein.BFA2.Modification.Events
         string Name { get; }
         string Description { get; }
 
-        event Action<IEventArgs> OnExecute;
+        event Action<EventArgs> OnExecute;
 
-        void Execute(IEventArgs args);
+        void Execute(EventArgs args);
     }
 
-    public interface IEvent<T> : IEvent where T : IEventArgs
+    public interface IEvent<T> : IEvent where T : EventArgs
     {
         new event Action<T> OnExecute;
 

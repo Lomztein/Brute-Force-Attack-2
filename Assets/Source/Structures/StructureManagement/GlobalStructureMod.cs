@@ -14,23 +14,15 @@ namespace Lomztein.BFA2.Structures.StructureManagement
     {
         [ModelAssetReference]
         public Mod Mod;
-        [ModelProperty]
-        public IStructureFilter[] Filters;
 
-        public GlobalStructureMod ()
-        {
-            Filters = new IStructureFilter[0];
-        }
-
-        public GlobalStructureMod(Mod mod, params IStructureFilter[] filters)
+        public GlobalStructureMod(Mod mod)
         {
             Mod = mod;
-            Filters = filters;
         }
 
         public bool TryApply (Structure structure)
         {
-            if (Filters.All(x => x.Check(structure)) && Mod.CanMod(structure))
+            if (Mod.CanMod(structure))
             {
                 structure.Mods.AddMod(UnityEngine.Object.Instantiate(Mod));
                 return true;
@@ -38,14 +30,9 @@ namespace Lomztein.BFA2.Structures.StructureManagement
             return false;
         }
 
-        public bool TryRemove(Structure structure)
+        public void RemoveFrom(Structure structure)
         {
-            if (Filters.All(x => x.Check(structure)))
-            {
-                structure.Mods.RemoveMod(Mod.Identifier);
-                return true;
-            }
-            return false;
+            structure.Mods.RemoveMod(Mod.Identifier);
         }
     }
 }

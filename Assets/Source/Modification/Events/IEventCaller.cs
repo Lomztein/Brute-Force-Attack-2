@@ -1,7 +1,7 @@
 ﻿namespace Lomztein.BFA2.Modification.Events
 {
-    public interface IEventCaller<T> where T : IEventArgs
+    public interface IEventCaller
     {
-        void CallEvent(T args);
+        void CallEvent(EventArgs args);
     }
 }

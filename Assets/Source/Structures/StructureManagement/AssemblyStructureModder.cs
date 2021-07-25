@@ -19,11 +19,11 @@ namespace Lomztein.BFA2.Structures.StructureManagement
 
         public void RemoveFrom(Structure structure, GlobalStructureMod mod)
         {
-            mod.TryRemove(structure);
+            mod.RemoveFrom(structure);
             TurretAssembly assembly = structure as TurretAssembly;
             foreach (var component in assembly.GetComponents())
             {
-                mod.TryRemove(component);
+                mod.RemoveFrom(component);
             }
         }
 

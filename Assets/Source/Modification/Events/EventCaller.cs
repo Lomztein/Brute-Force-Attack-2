@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Modification.Events
 {
-    public class EventCaller<T> : IEventCaller<T> where T : IEventArgs
+    public class EventCaller : IEventCaller
     {
-        private IEvent<T> _event;
+        private IEvent _event;
 
-        public EventCaller(IEvent<T> @event)
+        public EventCaller(IEvent @event)
         {
             _event = @event;
         }
 
-        public void CallEvent(T args)
+        public void CallEvent(EventArgs args)
         {
             _event.Execute(args);
         }

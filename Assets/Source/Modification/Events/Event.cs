@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Modification.Events
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        public event Action<IEventArgs> OnExecute;
+        public event Action<EventArgs> OnExecute;
 
         public Event (string identifier, string name, string description)
         {
@@ -20,17 +20,6 @@ namespace Lomztein.BFA2.Modification.Events
             Description = description;
         }
 
-        public void Execute(IEventArgs args) => OnExecute?.Invoke(args);
-    }
-
-    public class Event<T> : Event, IEvent<T> where T : IEventArgs
-    {
-        public Event(string identifier, string name, string description) : base(identifier, name, description)
-        {
-        }
-
-        public new event Action<T> OnExecute;
-
-        public void Execute(T args) => OnExecute?.Invoke(args);
+        public void Execute(EventArgs args) => OnExecute?.Invoke(args);
     }
 }

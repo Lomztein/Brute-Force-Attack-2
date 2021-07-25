@@ -1,6 +1,5 @@
 ﻿using Lomztein.BFA2.Colorization;
 using Lomztein.BFA2.Modification.Events;
-using Lomztein.BFA2.Modification.Events.EventArgs;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets.Rangers;
@@ -35,6 +34,17 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         [ModelAssetReference]
         public StatInfo FirerateInfo;
 
+        [ModelAssetReference]
+        public EventInfo OnFireInfo;
+        [ModelAssetReference]
+        public EventInfo OnProjectileInfo;
+        [ModelAssetReference]
+        public EventInfo OnProjectileDepletedInfo;
+        [ModelAssetReference]
+        public EventInfo OnProjectileHitInfo;
+        [ModelAssetReference]
+        public EventInfo OnProjectileKillInfo;
+
         [ModelProperty]
         public float BaseDamage;
         [ModelProperty]
@@ -52,11 +62,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public IStatReference Speed;
         public IStatReference Firerate;
 
-        public IEventCaller<EventArgs<IProjectile[]>> OnFire;
-        public IEventCaller<EventArgs<IProjectile>> OnProjectile;
-        public IEventCaller<EventArgs<HitInfo>> OnProjectileDepleted;
-        public IEventCaller<EventArgs<HitInfo>> OnProjectileHit;
-        public IEventCaller<EventArgs<HitInfo>> OnProjectileKill;
+        public IEventCaller OnFire;
+        public IEventCaller OnProjectile;
+        public IEventCaller OnProjectileDepleted;
+        public IEventCaller OnProjectileHit;
+        public IEventCaller OnProjectileKill;
 
         public override StructureCategory Category => StructureCategories.Weapon;
 
@@ -71,7 +81,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public override void PreInit()
         {
             Weapon = GetComponent<IWeapon>();
-            AddModdableAttribute(Modification.ModdableAttribute.Weapon);
+            AddTag("Weapon");
 
             Damage = Stats.AddStat(DamageInfo, BaseDamage);
             ProjectileAmount = Stats.AddStat(ProjectileAmountInfo, BaseProjectileAmount);
@@ -79,11 +89,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Speed = Stats.AddStat(SpeedInfo, BaseSpeed);
             Firerate = Stats.AddStat(FirerateInfo, BaseFirerate);
 
-            OnFire = Events.AddEvent<EventArgs<IProjectile[]>>("OnFire", "On Depleted", "Executed when the projectile depletes its damage.");
-            OnProjectile = Events.AddEvent<EventArgs<IProjectile>>("OnProjectile", "On Depleted", "Executed when the projectile depletes its damage.");
-            OnProjectileDepleted = Events.AddEvent<EventArgs<HitInfo>>("OnProjectileDepleted", "On Depleted", "Executed when the projectile depletes its damage.");
-            OnProjectileHit = Events.AddEvent<EventArgs<HitInfo>>("OnProjectileHit", "On Hit", "Executed when this weapon hits something.");
-            OnProjectileKill = Events.AddEvent<EventArgs<HitInfo>>("OnProjectileKill", "On Kill", "Executed when this weapon kills something.");
+            OnFire = Events.AddEvent(OnFireInfo);
+            OnProjectile = Events.AddEvent(OnProjectileInfo);
+            OnProjectileDepleted = Events.AddEvent(OnProjectileDepletedInfo);
+            OnProjectileHit = Events.AddEvent(OnProjectileHitInfo);
+            OnProjectileKill = Events.AddEvent(OnProjectileKillInfo);
 
             Weapon.OnFire += Weapon_OnFire;
             Weapon.OnProjectile += Weapon_OnProjectile;
@@ -118,27 +128,27 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         private void Weapon_OnFire(IProjectile[] projs)
         {
-            OnFire.CallEvent(new EventArgs<IProjectile[]>(projs));
+            OnFire.CallEvent(new Modification.Events.EventArgs(this, projs));
         }
 
         private void Weapon_OnProjectile(IProjectile proj)
         {
-            OnProjectile.CallEvent(new EventArgs<IProjectile>(proj));
+            OnProjectile.CallEvent(new Modification.Events.EventArgs(this, proj));
         }
 
         private void Weapon_OnProjectileDepleted(HitInfo obj)
         {
-            OnProjectileDepleted.CallEvent(new EventArgs<HitInfo>(obj));
+            OnProjectileDepleted.CallEvent(new Modification.Events.EventArgs(this, obj));
         }
 
         private void Weapon_OnProjectileKill(HitInfo obj)
         {
-            OnProjectileKill.CallEvent(new EventArgs<HitInfo>(obj));
+            OnProjectileKill.CallEvent(new Modification.Events.EventArgs(this, obj));
         }
 
         private void Weapon_OnProjectileHit(HitInfo obj)
         {
-            OnProjectileHit.CallEvent(new EventArgs<HitInfo>(obj));
+            OnProjectileHit.CallEvent(new Modification.Events.EventArgs(this, obj));
         }
 
         public bool TryFire()

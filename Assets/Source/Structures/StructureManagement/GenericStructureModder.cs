@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Structures.StructureManagement
 
         public void RemoveFrom(Structure structure, GlobalStructureMod mod)
         {
-            mod.TryRemove(structure);
+            mod.RemoveFrom(structure);
         }
 
         public bool CanMod(Structure structure) => true;

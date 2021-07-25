@@ -6,8 +6,10 @@ namespace Lomztein.BFA2.Modification.Events
 {
     public interface IEventContainer
     {
-        IEventCaller<T> AddEvent<T>(string identifier, string name, string description) where T : IEventArgs;
+        IEventCaller AddEvent(EventInfo info);
 
-        IEventReference<T> GetEvent<T>(string identifier) where T : IEventArgs;
+        IEventReference GetEvent(string identifier);
+
+        bool HasEvent(string identifier);
     }
 }

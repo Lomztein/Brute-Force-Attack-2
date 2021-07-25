@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 int amount = 0;
                 foreach (TurretWeapon weapon in syncer.GetComponentsInChildren<TurretWeapon>())
                 {
-                    if (!weapon.UniqueIdentifier.Contains(WeaponIdentifier))
+                    if (!weapon.Identifier.Contains(WeaponIdentifier))
                     {
                         allTrue = false;
                     }

@@ -28,11 +28,16 @@
       "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
       "$Data": {
         "FireTreshold": 30.0,
-        "DamageInfo": "$Path{Core/Stats/Damage.json}",
-        "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
-        "SpreadInfo": "$Path{Core/Stats/Spread.json}",
-        "SpeedInfo": "$Path{Core/Stats/Speed.json}",
-        "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
+        "DamageInfo": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Modifiers/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Modifiers/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Modifiers/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "OnFireInfo": "$Path{Core/Modifiers/Events/OnFire.json}",
+        "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
+        "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
+        "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
+        "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
         "BaseDamage": 300.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
@@ -89,7 +94,7 @@
       "$Data": {
         "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-          "$Data": "$Path{Core/Mods/ExplosiveRounds.json}"
+          "$Data": "$Path{Core/Modifiers/Mods/ExplosiveRounds.json}"
         }
       }
     },
@@ -102,7 +107,7 @@
         "AdjacencyCheckRange": 0.75,
         "Mod": {
           "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "$Data": "$Path{Core/Mods/DamageCell.json}"
+          "$Data": "$Path{Core/Modifiers/Mods/DamageCell.json}"
         }
       }
     },

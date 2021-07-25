@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Events
 {
-    public class EventReference<T> : IEventReference<T> where T : IEventArgs
+    public class EventReference : IEventReference
     {
-        public IEvent<T> Event { get; private set; }
+        public IEvent Event { get; private set; }
 
-        public EventReference(IEvent<T> @event)
+        public EventReference(IEvent @event)
         {
             Event = @event;
         }

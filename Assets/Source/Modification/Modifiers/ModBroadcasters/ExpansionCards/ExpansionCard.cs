@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ModProviders
         public Sprite Sprite => _sprite.Get();
 
         [SerializeField] [ModelProperty] private string _uniqueIdentifier;
-        public string UniqueIdentifier => _uniqueIdentifier;
+        public string Identifier => _uniqueIdentifier;
 
         private void Awake()
         {

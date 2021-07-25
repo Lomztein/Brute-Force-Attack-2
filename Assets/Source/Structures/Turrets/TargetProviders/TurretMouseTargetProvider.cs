@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lomztein.BFA2.Modification.Events;
-using Lomztein.BFA2.Modification.Events.EventArgs;
 using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
@@ -12,8 +11,9 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
     public class TurretMouseTargetProvider : TurretComponent, ITargetProvider
     {
         private Transform _mousePointer;
+        public EventInfo OnTargetAcquiredInfo;
 
-        public IEventCaller<TargetEventArgs> OnTargetAcquired { get; private set; }
+        public IEventCaller OnTargetAcquired { get; private set; }
 
         public override StructureCategory Category => StructureCategories.TargetFinder;
 
@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void Init()
         {
-            OnTargetAcquired = Events.AddEvent<TargetEventArgs>("OnTargetAcquired", "On Target Acquired", "Fires when the mouse pointer is initialized.");
+            OnTargetAcquired = Events.AddEvent(OnTargetAcquiredInfo);
             _mousePointer = new GameObject("MousePointer").transform;
         }
 

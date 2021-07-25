@@ -55,7 +55,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             }
 
             return new ObjectModel(
-                new ObjectField("UniqueIdentifier", ValueModelFactory.Create(component.UniqueIdentifier, context)),
+                new ObjectField("UniqueIdentifier", ValueModelFactory.Create(component.Identifier, context)),
                 new ObjectField("LocalPosition", ValueModelFactory.Create(obj.transform.localPosition, context)),
                 new ObjectField("Children", new ArrayModel(children))
                 );
@@ -72,7 +72,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
         public IContentCachedPrefab GetComponent (string identifier)
         {
-            return GetComponents().First(x => x.GetCache().GetComponent<TurretComponent>().UniqueIdentifier == identifier);
+            return GetComponents().First(x => x.GetCache().GetComponent<TurretComponent>().Identifier == identifier);
         }
     }
 }

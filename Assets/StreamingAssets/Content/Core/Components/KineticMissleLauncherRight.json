@@ -41,18 +41,24 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.FireOnKillAttachment",
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.FireOnEventTurretWeapon",
       "$Data": {
-        "RangeInfo": "$Path{Core/Stats/Range.json}",
+        "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
+        "EventInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
         "BaseRange": 100.0,
         "TargetLayerMask": {
           "Mask": 256
         },
-        "DamageInfo": "$Path{Core/Stats/Damage.json}",
-        "ProjectileAmountInfo": "$Path{Core/Stats/ProjectileAmount.json}",
-        "SpreadInfo": "$Path{Core/Stats/Spread.json}",
-        "SpeedInfo": "$Path{Core/Stats/Speed.json}",
-        "FirerateInfo": "$Path{Core/Stats/Firerate.json}",
+        "DamageInfo": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Modifiers/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Modifiers/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Modifiers/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "OnFireInfo": "$Path{Core/Modifiers/Events/OnFire.json}",
+        "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
+        "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
+        "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
+        "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
         "BaseDamage": 20.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 10.0,

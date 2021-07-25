@@ -6,22 +6,8 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification
 {
-    public enum ModdableAttribute
-    {
-        Ranged,
-        Rotator,
-        Projectile,
-        Hitscan,
-        Homing,
-        Assembly,
-        Weapon,
-        Base,
-    }
-
     public interface IModdable
     {
         IModContainer Mods { get; }
-
-        ModdableAttribute[] GetModdableAttributes();
     }
 }

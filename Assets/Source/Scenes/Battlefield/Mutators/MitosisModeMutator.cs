@@ -64,7 +64,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             
             for (int i = 0; i < _enemies.Length; i++)
             {
-                if (_enemyCache[i].UniqueIdentifier == prevIdentifier)
+                if (_enemyCache[i].Identifier == prevIdentifier)
                 {
                     return _enemies[i];
                 }
@@ -75,7 +75,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         private void OnEnemyKill(IEnemy obj)
         {
-            IContentCachedPrefab enemy = GetPreviousTier(obj.UniqueIdentifier);
+            IContentCachedPrefab enemy = GetPreviousTier(obj.Identifier);
             if (enemy != null)
             {
                 for (int i = 0; i < Clones; i++)

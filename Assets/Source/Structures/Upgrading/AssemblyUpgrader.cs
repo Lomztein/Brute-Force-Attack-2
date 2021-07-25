@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
         {
             TurretAssembly assembly = GetComponent<TurretAssembly>();
             TurretComponent[] components = assembly.GetComponents(assembly.CurrentTeir + 1);
-            return components.All(x => Player.Player.Unlocks.IsUnlocked(x.UniqueIdentifier));
+            return components.All(x => Player.Player.Unlocks.IsUnlocked(x.Identifier));
         }
 
         public override bool CanUpgrade()

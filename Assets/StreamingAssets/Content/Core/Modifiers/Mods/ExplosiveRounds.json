@@ -1,0 +1,44 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
+  "$Data": {
+    "ExplosionDamageFactorInfo": {
+      "Identifier": "Core.ExplosionDamageFactor",
+      "Name": "Explosion Damage Factor",
+      "Description": "The percentage of damage done in an area of affect compared to the parent projectile.",
+      "Function": {
+        "$Type": "Lomztein.BFA2.Modification.Stats.Functions.InverseHyperbolicFunction",
+        "$Data": {}
+      },
+      "Formatter": {
+        "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.PercentageFormatter",
+        "$Data": {}
+      }
+    },
+    "ExplosionRangeInfo": {
+      "Identifier": "Core.ExplosionRange",
+      "Name": "Explosion Range",
+      "Description": "The range of the explosion.",
+      "Function": {
+        "$Type": "Lomztein.BFA2.Modification.Stats.Functions.LiniarFunction",
+        "$Data": {}
+      },
+      "Formatter": {
+        "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
+        "$Data": {}
+      }
+    },
+    "EventInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
+    "DamageFactorBase": 0.2,
+    "RangeBase": 1.0,
+    "DamageFactorStack": 0.1,
+    "RangeStack": 0.2,
+    "ExplosionPrefab": {
+      "Path": "Core/Projectiles/Explosion.json"
+    },
+    "DepleteProjectile": true,
+    "RequiredAttributes": [],
+    "Identifier": "Core.ExplosiveRounds",
+    "Name": "Explosive Rounds",
+    "Description": "The rounds of this weapon explodes on hit."
+  }
+}
