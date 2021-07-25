@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Structures;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.Highlighters;
 using Lomztein.BFA2.Structures.StructureManagement;
 using Lomztein.BFA2.UI.Tooltip;
@@ -16,10 +17,12 @@ namespace Lomztein.BFA2.Placement
 {
     public class StructurePlacement : ISimplePlacement
     {
+        private const string HIGHLIGHTER_SET_PATH = "Core/HighlighterSets/Placement.json";
+
         private GameObject _obj;
         private GameObject _model;
         private IGridObject _placeable;
-        private LayerMask _blockingLayer;
+        private LayerMask _blockingLayer = LayerMask.GetMask("Structure");
 
         public event Action<GameObject> OnPlaced;
         public event Action OnFinished;
@@ -36,6 +39,8 @@ namespace Lomztein.BFA2.Placement
             _placeRequirements = placeRequirements;
         }
 
+        private HighlighterSet GetHighlighterSet() => Content.Get<HighlighterSet>(HIGHLIGHTER_SET_PATH);
+
         public bool Pickup(GameObject obj)
         {
             Structure objStructure = obj.GetComponent<Structure>();
@@ -44,7 +49,7 @@ namespace Lomztein.BFA2.Placement
                 GlobalStructureModManager.Instance.ApplyMods(objStructure);
             }
 
-            _highlighters = HighlighterCollection.Create(obj);
+            _highlighters = HighlighterCollection.Create(obj, GetHighlighterSet());
             _highlighters.Highlight();
 
             _obj = obj;
@@ -111,7 +116,7 @@ namespace Lomztein.BFA2.Placement
             Vector2 size = new Vector2(World.Grid.SizeOf (_placeable.Width), World.Grid.SizeOf(_placeable.Height));
 
 
-            if (Physics2D.OverlapBox(position, size * 0.9f, 0))
+            if (Physics2D.OverlapBox(position, size * 0.9f, 0, _blockingLayer))
             {
                 reasons.SpaceOccupied = true;
             }

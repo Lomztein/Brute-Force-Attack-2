@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Highlighters
 {
-    public interface IHighlighter
+    public interface IHighlighter : IIdentifiable
     {
         bool CanHighlight(Type componentType);
 

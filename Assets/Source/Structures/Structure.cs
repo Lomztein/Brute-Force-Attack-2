@@ -99,5 +99,20 @@ namespace Lomztein.BFA2.Structures
         {
             return Tags.ToArray();
         }
+
+        public bool OverlapsCircle (Vector3 position, float range)
+        {
+            float margin = 0.45f;
+            range += margin;
+            foreach (Vector2 point in World.Grid.GenerateGridPoints(transform.position, Width, Height))
+            {
+                float sqrDist = (position - (Vector3)point).sqrMagnitude;
+                if (sqrDist < range * range)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

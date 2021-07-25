@@ -26,15 +26,30 @@ namespace Lomztein.BFA2.World
             bool widthEven = IsEven(width);
             bool heightEven = IsEven(height);
 
-            Vector2 woffset = !widthEven ? new Vector2(size / 2f, size / 2f) : Vector2.zero;
-            Vector2 hoffset = !heightEven ? new Vector2(size / 2f, size / 2f) : Vector2.zero;
+            float woffset = !widthEven ? size / 2f : 0f;
+            float hoffset = !heightEven ? size / 2f : 0f;
 
-            float x = Mathf.Round((position.x - woffset.x) / size) * size + woffset.x;
-            float y = Mathf.Round((position.y - hoffset.y) / size) * size + hoffset.x;
+            float x = Mathf.Round((position.x - woffset) / size) * size + woffset;
+            float y = Mathf.Round((position.y - hoffset) / size) * size + hoffset;
 
             return new Vector2(x, y);
         }
 
         public static Vector2 SnapToGrid(Vector2 position, Size size) => SnapToGrid(position, size, size);
+
+        public static IEnumerable<Vector2> GenerateGridPoints (Vector2 position, Size width, Size height)
+        {
+            int w = (int)width;
+            int h = (int)height;
+            Vector3 offset = new Vector3(w - 1, h - 1) / 2f;
+
+            for (int x = 0; x < w; x++)
+            {
+                for (int y = 0; y < h; y++)
+                {
+                    yield return position + new Vector2(x - offset.x, y - offset.y) * CELL_SIZE;
+                }
+            }
+        }
     }
 }

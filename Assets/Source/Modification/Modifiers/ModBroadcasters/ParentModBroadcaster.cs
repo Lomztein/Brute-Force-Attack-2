@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public class ParentModBroadcaster : ModBroadcaster
     {
-        public override IEnumerable<IModdable> GetBroadcastTargets()
+        public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
             => transform.parent.GetComponentInChildren<IModdable>().ObjectToEnumerable();
 
         protected override void Start()

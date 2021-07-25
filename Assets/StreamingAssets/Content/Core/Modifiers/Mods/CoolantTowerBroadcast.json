@@ -7,7 +7,14 @@
         "Value": 0.5
       }
     ],
-    "RequiredAttributes": [],
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Firerate.json}"
+        }
+      }
+    ],
     "Identifier": "Core.CoolantTowerBroadcast",
     "Name": "Heavy Cooling",
     "Description": "This has been cooled by a nearby coolant tower."

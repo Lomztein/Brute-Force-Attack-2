@@ -14,76 +14,83 @@ namespace Lomztein.BFA2.Structures.Highlighters
         private const string PREFAB_PATH = "*/Highlighters";
         private const string COLLECTION_PREFAB_PATH = "Prefabs/HighlighterCollectionPrefab";
 
-        private IHighlighter[] _highlighters;
-        private Component[] _components;
+        private Dictionary<Component, IEnumerable<IHighlighter>> _highlighters;
 
-        public void Init (IHighlighter[] highlighters, Component[] components)
+        public void Init (Dictionary<Component, IEnumerable<IHighlighter>> highlighters)
         {
             _highlighters = highlighters;
-            _components = components;
         }
 
         public void Highlight ()
         {
-            for (int i = 0; i < _highlighters.Length; i++)
+            foreach (var pair in _highlighters)
             {
-                _highlighters[i].Highlight(_components[i]);
+                foreach (var highlighter in pair.Value)
+                {
+                    highlighter.Highlight(pair.Key);
+                }
             }
         }
 
         public void EndHighlight()
         {
-            for (int i = 0; i < _highlighters.Length; i++)
+            foreach (var pair in _highlighters)
             {
-                _highlighters[i].EndHighlight();
+                foreach (var highlighter in pair.Value)
+                {
+                    highlighter.EndHighlight();
+                }
             }
             Destroy(gameObject);
         }
 
         public void Tint (Color color)
         {
-            foreach (IHighlighter highlighter in _highlighters)
+            foreach (var pair in _highlighters)
             {
-                highlighter.Tint(color);
+                foreach (var highlighter in pair.Value)
+                {
+                    highlighter.Tint(color);
+                }
             }
         }
 
-        private static IContentCachedPrefab[] GetPrefabs ()
+        private static IEnumerable<IContentCachedPrefab> GetPrefabs (HighlighterSet set)
         {
             if (_highlighterPrefabs == null)
             {
                 _highlighterPrefabs = ContentSystem.Content.GetAll(PREFAB_PATH, typeof(IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
             }
-            return _highlighterPrefabs;
+            return _highlighterPrefabs.Where(x => set.Contains(x.GetCache().GetComponent<IHighlighter>().Identifier));
         }
 
-        public static HighlighterCollection Create (GameObject obj)
+        public static HighlighterCollection Create (GameObject obj, HighlighterSet set)
         {
             GameObject highlighterCollectionObj = Instantiate(Resources.Load<GameObject>(COLLECTION_PREFAB_PATH));
 
-            IContentCachedPrefab[] prefabs = GetPrefabs();
-            Component[] components = obj.GetComponentsInChildren<Component>();
-
-            List<Component> comps = new List<Component>();
-            List<IHighlighter> highs = new List<IHighlighter>();
+            var prefabs = GetPrefabs(set);
+            Component[] components = obj.GetComponentsInChildren<Component>(true);
+            Dictionary<Component, IEnumerable<IHighlighter>> highlighters = new Dictionary<Component, IEnumerable<IHighlighter>>();
 
             foreach (Component component in components)
             {
-                var cache = prefabs.FirstOrDefault(x => x.GetCache().GetComponent<IHighlighter>().CanHighlight(component.GetType()));
-                if (cache != null)
-                {
-                    comps.Add(component);
+                List<IHighlighter> list = new List<IHighlighter>();
 
+                var caches = prefabs.Where(x => x.GetCache().GetComponent<IHighlighter>().CanHighlight(component.GetType()));
+                foreach (var cache in caches)
+                {
                     GameObject highlighterObj = cache.Instantiate();
                     highlighterObj.transform.position = Vector3.zero;
                     highlighterObj.transform.SetParent(highlighterCollectionObj.transform, false);
 
-                    highs.Add(highlighterObj.GetComponent<IHighlighter>());
+                    list.Add(highlighterObj.GetComponent<IHighlighter>());
                 }
+
+                highlighters.Add(component, list);
             }
 
             HighlighterCollection highlighterCollection = highlighterCollectionObj.GetComponent<HighlighterCollection>();
-            highlighterCollection.Init(highs.ToArray(), comps.ToArray());
+            highlighterCollection.Init(highlighters);
             return highlighterCollection;
         }
     }

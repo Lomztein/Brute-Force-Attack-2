@@ -5,6 +5,7 @@ using Lomztein.BFA2.Structures.StructureManagement;
 using Lomztein.BFA2.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Util;
 
@@ -28,7 +29,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         protected void BroadcastMod()
         {
-            var newTargets = GetBroadcastTargets();
+            var newTargets = GetPotentialBroadcastTargets();
             var missed = new List<IModdable>(_currentBroadcastTargets);
 
             foreach (var target in newTargets)
@@ -90,7 +91,10 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             moddable.Mods.RemoveMod(Mod.Identifier);
         }
 
-        public abstract IEnumerable<IModdable> GetBroadcastTargets();
+        public IEnumerable<IModdable> GetBroadcastTargets() => GetPotentialBroadcastTargets().Where(x => Mod.CanMod(x));
+
+
+        public abstract IEnumerable<IModdable> GetPotentialBroadcastTargets();
 
         public void DelayedBroadcast ()
         {

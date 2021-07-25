@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             DelayedBroadcast();
         }
 
-        public override IEnumerable<IModdable> GetBroadcastTargets()
+        public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {
             foreach (Transform sibling in GetSiblings())
             {

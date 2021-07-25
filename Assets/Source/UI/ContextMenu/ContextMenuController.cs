@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
     {
         public GameObject MenuPrefab;
         public Transform MenuParent;
+        public HighlighterSet Highlighter;
 
         public LayerMask TargetLayer;
         private Dictionary<Object, Object> _activeMenus = new Dictionary<Object, Object>();
@@ -58,7 +59,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
             if (cur != null)
             {
-                _highlighters = HighlighterCollection.Create(cur.transform.root.gameObject);
+                _highlighters = HighlighterCollection.Create(cur.transform.root.gameObject, Highlighter);
                 _highlighters.Highlight();
                 _highlighters.Tint(Color.green);
             }
@@ -76,7 +77,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
                 GameObject menuObj = WindowManager.OpenWindow(MenuPrefab);
                 if (menuObj)
                 {
-                    HighlighterCollection highlighter = HighlighterCollection.Create(obj.transform.root.gameObject);
+                    HighlighterCollection highlighter = HighlighterCollection.Create(obj.transform.root.gameObject, Highlighter);
 
                     highlighter.Highlight();
                     highlighter.Tint(Color.green);

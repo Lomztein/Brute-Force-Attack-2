@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Structures.StructureManagement;
 using Lomztein.BFA2.Structures.Turrets.Rangers;
 using System;
 using System.Collections.Generic;
@@ -33,19 +34,18 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         public float GetRange() => Range;
 
-        public override IEnumerable<IModdable> GetBroadcastTargets()
+        public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, Range, TargetLayer);
-            var self = GetComponent<Collider2D>();
+            var parents = StructureManager.GetStructures();
+            var moddables = parents.Where(x => x.OverlapsCircle(transform.position, GetRange()))
+                .SelectMany(x => x.GetComponentsInChildren<IModdable>());
 
-            foreach (var collider in colliders)
+            foreach (var moddable in moddables)
             {
-                if (!IncludeSelf && collider == self)
+                if (!IncludeSelf && (UnityEngine.Object)moddable == this)
                     continue;
-
-                IModdable moddable = collider.GetComponent<IModdable>();
-                if (moddable != null)
-                    yield return moddable;
+                
+                yield return moddable;
             }
         }
     }

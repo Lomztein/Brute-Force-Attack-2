@@ -36,7 +36,14 @@
       "Path": "Core/Projectiles/Explosion.json"
     },
     "DepleteProjectile": true,
-    "RequiredAttributes": [],
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasEventFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Events/OnProjectileHit.json}"
+        }
+      }
+    ],
     "Identifier": "Core.ExplosiveRounds",
     "Name": "Explosive Rounds",
     "Description": "The rounds of this weapon explodes on hit."

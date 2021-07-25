@@ -15,7 +15,14 @@ MonoBehaviour:
   Identifier: Core.DamageCell
   Name: Heavy Rounds
   Description: The rounds of this weapon do more damage.
-  RequiredAttributes: 
+  Filters:
+  - id: 0
   Stats:
   - Info: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
     Value: 0.25
+  references:
+    version: 1
+    00000000:
+      type: {class: HasStatFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        Info: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}

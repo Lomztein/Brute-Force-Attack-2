@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6094629530807130616}
   - component: {fileID: 5563669402843524042}
-  - component: {fileID: -2768476238171883026}
   - component: {fileID: 4421234629336450257}
   - component: {fileID: 6232743743797018108}
+  - component: {fileID: 7469732029039671965}
   m_Layer: 10
   m_Name: AssemblyPrefab
   m_TagString: Untagged
@@ -51,26 +51,11 @@ MonoBehaviour:
   _uniqueIdentifier: 
   _cost:
     Elements: []
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 0
   _height: 0
   _tierParents: []
---- !u!58 &-2768476238171883026
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7641300259387924724}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &4421234629336450257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +79,7 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 32
+  SellValueRatio: 0.75
 --- !u!114 &6232743743797018108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeName: Upgrade Assembly
-  UpgradeDecsription: Upgrade assembly to the next tier.
+  UpgradeDescription: 
   UpgradeSprite:
     Path: Core/Sprites/UI/UpgradeArrow.png
     Texture: {fileID: 0}
@@ -127,3 +113,29 @@ MonoBehaviour:
       type: {class: ResourceCost, ns: Lomztein.BFA2.Purchasing.Resources, asm: Assembly-CSharp}
       data:
         Elements: []
+--- !u!61 &7469732029039671965
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7641300259387924724}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

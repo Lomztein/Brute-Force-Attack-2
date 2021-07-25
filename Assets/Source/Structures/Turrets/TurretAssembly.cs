@@ -73,5 +73,22 @@ namespace Lomztein.BFA2.Structures.Turrets
             CurrentTeir = tier;
             GetTierParent(CurrentTeir).gameObject.SetActive(true);
         }
+
+        public void Start()
+        {
+            Changed += TurretAssembly_Changed;
+            UpdateCollider();
+        }
+
+        private void TurretAssembly_Changed(Structure obj)
+        {
+            UpdateCollider();
+        }
+        
+        private void UpdateCollider ()
+        {
+            BoxCollider2D col = GetComponent<BoxCollider2D>();
+            col.size = new Vector2(World.Grid.SizeOf(Width), World.Grid.SizeOf(Height));
+        }
     }
 }

@@ -11,6 +11,9 @@ namespace Lomztein.BFA2.Structures.Highlighters
     {
         private Transform _parent;
 
+        [SerializeField] private string _identifier;
+        public string Identifier => _identifier;
+
         public bool CanHighlight(Type componentType)
         {
             return typeof (T).IsAssignableFrom (componentType);
