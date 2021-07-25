@@ -13,6 +13,18 @@ namespace Lomztein.BFA2.Modification.Modifiers
     [CreateAssetMenu(fileName = "NewStatMod", menuName = "BFA2/Mods/Composite Mod")]
     public class CompositeMod : Mod
     {
+        public override float Coeffecient { get => _coeffecient; set => SetCoeffecient(value); }
+        private float _coeffecient;
+
+        private void SetCoeffecient(float value)
+        {
+            _coeffecient = value;
+            foreach (Mod mod in InternalMods)
+            {
+                mod.Coeffecient = _coeffecient;
+            }
+        }
+
         [ModelProperty]
         public Mod[] InternalMods;
 
@@ -47,5 +59,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
                 mod.RemoveStack(stats, events);
             }
         }
-    }
+
+        public override bool CanMod(IModdable moddable) => InternalMods.All(x => x.CanMod(moddable));
+     }
 }

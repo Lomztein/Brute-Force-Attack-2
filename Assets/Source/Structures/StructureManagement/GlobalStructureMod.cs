@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         [ModelAssetReference]
         public Mod Mod;
         [ModelProperty]
-        private IStructureFilter[] Filters;
+        public IStructureFilter[] Filters;
 
         public GlobalStructureMod ()
         {

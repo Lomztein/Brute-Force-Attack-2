@@ -12,20 +12,15 @@ namespace Lomztein.BFA2.Modification.Modifiers
 {
     public abstract class Mod : ScriptableObject
     {
-        [ModelProperty, SerializeField]
-        public string Identifier;
-        [ModelProperty, SerializeField]
-        public string Name;
-        [ModelProperty, SerializeField]
-        public string Description;
         [ModelProperty]
-        public ModdableAttribute[] RequiredAttributes;
+        public string Identifier;
+        [ModelProperty]
+        public string Name;
+        [ModelProperty]
+        public string Description;
 
-        public bool CanMod(IModdable moddable)
-        {
-            var attributes = moddable.GetModdableAttributes();
-            return RequiredAttributes.All(x => attributes.Contains(x));
-        }
+        public abstract float Coeffecient { get; set; }
+        public abstract bool CanMod(IModdable moddable);
 
         public abstract void ApplyBase(IStatContainer stats, IEventContainer events);
         public abstract void ApplyStack(IStatContainer stats, IEventContainer events);

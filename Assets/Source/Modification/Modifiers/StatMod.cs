@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Lomztein.BFA2.Modification.Modifiers
 {
     [CreateAssetMenu (fileName = "NewStatMod", menuName = "BFA2/Mods/Stat Mod")]
-    public class StatMod : Mod
+    public class StatMod : ModBase
     {
         [ModelProperty]
         public Element[] Stats = new Element[0];
@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value));
+                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient));
             }
         }
 
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value));
+                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient));
             }
         }
 

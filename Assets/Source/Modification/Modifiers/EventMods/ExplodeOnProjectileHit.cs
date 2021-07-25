@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 {
-    public class ExplodeOnProjectileHit : Mod
+    public class ExplodeOnProjectileHit : ModBase
     {
         [ModelProperty]
         public StatInfo ExplosionDamageFactorInfo;
@@ -39,13 +39,13 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         {
             events.GetEvent<EventArgs<HitInfo>>("OnProjectileHit").Event.OnExecute += Explode;
 
-            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase);
+            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase * Coeffecient);
             _range = stats.AddStat(ExplosionRangeInfo, RangeBase);
         }
 
         public override void ApplyStack(IStatContainer stats, IEventContainer events)
         {
-            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack));
+            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack * Coeffecient));
             stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack));
         }
 
