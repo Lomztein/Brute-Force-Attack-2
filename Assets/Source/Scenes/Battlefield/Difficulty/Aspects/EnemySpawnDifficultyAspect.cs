@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects
 {
@@ -19,23 +20,28 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects
         [ModelProperty]
         public float AmountMultiplier = 1f;
         [ModelProperty]
-        public float FrequencyMultiplier = 1f;
+        public float WaveLengthMultiplier = 1f;
 
         public void Apply()
         {
-            RoundController.Instance.EnemyAmountMultiplier = AmountMultiplier;
-            RoundController.Instance.SpawnFrequencyMultiplier = FrequencyMultiplier;
+            RoundController.Instance.OnNewWave += OnNewWave;
+        }
+
+        private void OnNewWave(Enemies.Waves.WaveTimeline obj)
+        {
+            obj.ForEach(x => x.Amount = Mathf.RoundToInt(x.Amount * AmountMultiplier));
+            obj.ForEach(x => x.Length *= WaveLengthMultiplier);
         }
 
         public void AddPropertiesTo(PropertyMenu menu)
         {
             menu.AddProperty(new NumberDefinition("Enemy Amount Scalar", AmountMultiplier, false, 0.1f, 10f)).OnValueChanged += OnAmountMultChanged;
-            menu.AddProperty(new NumberDefinition("Enemy Frequency Scaler", FrequencyMultiplier, false, 0.1f, 10f)).OnValueChanged += OnFrequencyMultChanged;
+            menu.AddProperty(new NumberDefinition("Wave Length Scaler", WaveLengthMultiplier, false, 0.1f, 10f)).OnValueChanged += OnWaveLengthMultChanged;
         }
 
-        private void OnFrequencyMultChanged(object obj)
+        private void OnWaveLengthMultChanged(object obj)
         {
-            FrequencyMultiplier = float.Parse(obj.ToString());
+            WaveLengthMultiplier = float.Parse(obj.ToString());
         }
 
         private void OnAmountMultChanged(object obj)

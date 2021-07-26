@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Lomztein.BFA2.Enemies.Waves;
 
 namespace Lomztein.BFA2.Research
 {
@@ -62,7 +63,7 @@ namespace Lomztein.BFA2.Research
             _roundController.IfExists((x) => x.OnWaveFinished += OnWaveFinished);
         }
 
-        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
+        private void OnWaveFinished(int arg1, WaveHandler arg2)
         {
             List<ResearchOption> toTick = new List<ResearchOption>(_inProgress);
 

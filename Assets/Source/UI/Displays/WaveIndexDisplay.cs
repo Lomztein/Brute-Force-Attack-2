@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ namespace Lomztein.BFA2.UI.Displays
         public Text Text;
 
         public string DisplayText;
-        public string CurrentDisplayText;
 
         private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
@@ -24,19 +24,13 @@ namespace Lomztein.BFA2.UI.Displays
             _roundController.IfExists(x =>
             {
                 x.OnWaveStarted += OnWaveStarted;
-                x.OnWaveFinished += OnWaveFinished;
-                OnWaveFinished(x.CurrentWaveIndex, null);
+                OnWaveStarted(x.NextIndex - 1, null);
             });
         }
 
-        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
+        private void OnWaveStarted(int arg1, WaveHandler arg2)
         {
             Text.text = DisplayText.Replace("{0}", (arg1 + 1).ToString());
-        }
-
-        private void OnWaveStarted(int arg1, Enemies.Waves.IWave arg2)
-        {
-            Text.text = CurrentDisplayText.Replace("{0}", (arg1).ToString());
         }
     }
 }

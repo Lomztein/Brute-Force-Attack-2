@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Serialization;
+﻿using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             _onProgressedCallback();
         }
 
-        private void OnWaveCleared(int index, Enemies.Waves.IWave wave)
+        private void OnWaveCleared(int index, WaveHandler wave)
         {
             if (index > _amount)
             {

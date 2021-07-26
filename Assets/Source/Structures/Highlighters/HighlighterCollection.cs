@@ -69,7 +69,7 @@ namespace Lomztein.BFA2.Structures.Highlighters
             GameObject highlighterCollectionObj = Instantiate(Resources.Load<GameObject>(COLLECTION_PREFAB_PATH));
 
             var prefabs = GetPrefabs(set);
-            Component[] components = obj.GetComponentsInChildren<Component>(true);
+            Component[] components = obj.GetComponentsInChildren<Component>();
             Dictionary<Component, IEnumerable<IHighlighter>> highlighters = new Dictionary<Component, IEnumerable<IHighlighter>>();
 
             foreach (Component component in components)

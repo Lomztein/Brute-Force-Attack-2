@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
@@ -72,12 +73,12 @@ namespace Lomztein.BFA2.Structures.UniqueStructures
             });
         }
 
-        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
+        private void OnWaveFinished(int arg1, WaveHandler arg2)
         {
             SetPause(true);
         }
 
-        private void OnWaveStarted(int arg1, Enemies.Waves.IWave arg2)
+        private void OnWaveStarted(int arg1, WaveHandler arg2)
         {
             SetPause(false);
         }

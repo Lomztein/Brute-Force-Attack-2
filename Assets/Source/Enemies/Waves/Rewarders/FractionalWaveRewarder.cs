@@ -14,8 +14,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
         private float _totalKillReward;
         private int _totalCount;
 
-        private Action<float> _rewardCallback;
-
         public void OnFinished()
         {
             Earn (_finishReward);
@@ -28,15 +26,14 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
 
         private void Earn(float value)
         {
-            _rewardCallback(value);
+            Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), value); // Bit hardcoded but it's alright.
         }
 
-        public FractionalWaveRewarder(int total, float finishReward, float totalKillReward, Action<float> callback)
+        public FractionalWaveRewarder(int total, float finishReward, float totalKillReward)
         {
             _totalCount = total;
             _finishReward = finishReward;
             _totalKillReward = totalKillReward;
-            _rewardCallback = callback;
         }
     }
 }

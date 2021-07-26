@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         public override void Start()
         {
-            RoundController.Instance.CurrentWaveIndex = StartingWave;
+            RoundController.Instance.NextIndex = StartingWave;
         }
     }
 }

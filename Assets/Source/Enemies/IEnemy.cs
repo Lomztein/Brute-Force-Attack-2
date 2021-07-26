@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Misc;
+﻿using Lomztein.BFA2.Enemies.Waves;
+using Lomztein.BFA2.Misc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace Lomztein.BFA2.Enemies
 {
     public interface IEnemy : IIdentifiable
     {
-        void Init(Vector3 position, Vector3[] path);
+        void Init(Vector3 position, Vector3[] path, WaveHandler handler);
 
+        WaveHandler WaveHandler { get; set; }
         Vector3[] Path { get; set; }
         int PathIndex { get; set; }
 

@@ -21,249 +21,199 @@ using Random = UnityEngine.Random;
 
 namespace Lomztein.BFA2.Enemies
 {
-    public class RoundController : MonoBehaviour, IRoundController
+    public class RoundController : MonoBehaviour
     {
         public static RoundController Instance;
         public enum RoundState { Ready, Preparing, InProgress }
 
-        public int CurrentWaveIndex;
-        public IWave CurrentWave { get; private set; }
+        public int NextIndex = 1;
+        public WaveTimeline NextWave => GetWave(NextIndex);
+        private List<WaveHandler> _activeWaves = new List<WaveHandler>();
+        public WaveHandler[] ActiveWaves => _activeWaves.ToArray();
 
-        public RoundState State;
+        public RoundState State { get; private set; }
 
         public Resource CreditsResource;
         public Resource ResearchResource;
+        public GameObject WaveHandlerPrefab;
+        public EnemyPather Pather;
 
-        [SerializeField] private GeneratorWaveCollection _internalWaveCollection = new GeneratorWaveCollection();
-        private IWaveCollection _waveCollection;
-
-        public float EnemyAmountMultiplier;
-        public float SpawnFrequencyMultiplier;
-
-        public float StartingEarnedFromKills;
-        public float EarnedFromKillsPerWave;
-
-        public float StartingCompletionReward;
-        public float WaveFinishedRewardPerWave;
-
-
-        private ILootTable _commonLootTable;
-        public float LootChanceGrowthDenominator;
-
-        private IResourceContainer _resourceContainer;
-        private IHealthContainer _healthContainer;
-
-        private EnemySpawnPoint[] _spawnPoints;
-        private EnemyPoint[] _endPoints;
+        public WaveCollection WaveCollection;
 
         public event Action<int> OnWavePreparing;
-        public event Action<int, IWave> OnWaveStarted;
-        public event Action<int, IWave> OnWaveFinished;
-        public event Action<int, string> OnWaveCancelled;
+        public event Action<int, WaveHandler> OnWaveStarted;
+        public event Action<int, WaveHandler> OnWaveEnemiesSpawned;
+        public event Action<int, WaveHandler> OnWaveFinished;
         public event Action<int> OnWavesExhausted;
-        public event Action<int> OnWaveSet;
+        public event Action<int> OnNextWaveChanged;
 
-        public event Action<IEnemy> OnEnemySpawn;
-        public event Action<IEnemy> OnEnemyKill;
-        public event Action<IEnemy> OnEnemyFinish;
+        public event Action<IEnemy> OnEnemySpawned;
+        public event Action<IEnemy> OnEnemyAdded;
+        public event Action<IEnemy> OnEnemyKilled;
+        public event Action<IEnemy> OnEnemyFinished;
+
+        public event Action<RoundState> OnStateChanged;
+        
+        public event Action<WaveTimeline> OnNewWave; 
+        private Dictionary<int, bool> _waveKnown = new Dictionary<int, bool>(); // Bit of a weird solution but hey it works.
 
         private void Awake()
         {
             Instance = this;
-            _resourceContainer = GetComponent<IResourceContainer>();
-            _healthContainer = GetComponent<IHealthContainer>();
-            _commonLootTable = GetComponent<LootTableProvider>().GetLootTable();
-            SetWaveCollection(_internalWaveCollection);
         }
 
-        public void SetWaveCollection (IWaveCollection collection)
+        public void SetWaveCollection (WaveCollection collection)
         {
-            _waveCollection = collection;
+            WaveCollection = collection;
         }
 
-        private void Start()
+        public void BeginNextWave()
         {
-            _internalWaveCollection.Seed = Random.Range(int.MinValue / 2, int.MaxValue / 2);
-            CachePoints();
-        }
-
-        private void CachePoints ()
-        {
-            _spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint").Select(x => x.GetComponent<EnemySpawnPoint>()).ToArray();
-            _endPoints = GameObject.FindGameObjectsWithTag("EnemyEndPoint").Select(x => x.GetComponent<EnemyPoint>()).ToArray();
-        }
-
-        public void BeginNextWave ()
-        {
-            if (State == RoundState.Ready)
-            {
-                StartCoroutine(RunNextWave());
-            }
+            StartCoroutine(RunNextWave());
         }
 
         private IEnumerator RunNextWave()
         {
-            yield return PrepareWave();
-            if (AnyPathsAvailable())
+            if (State == RoundState.Ready)
             {
-                CurrentWaveIndex++;
-                if (!StartWave(CurrentWaveIndex))
+                yield return PrepareWave();
+            }
+
+            if (Pather.AnyPathsAvailable())
+            {
+                int wave = NextIndex;
+                NextIndex++;
+                if (!StartWave(wave))
                 {
-                    OnWavesExhausted?.Invoke(CurrentWaveIndex);
-                    CancelWave("Out of waves.");
+                    OnWavesExhausted?.Invoke(NextIndex);
+                    NextIndex--;
                 }
+            }
+        }
+
+        private bool IsWaveKnown(int wave)
+        {
+            if (_waveKnown.TryGetValue(wave, out bool value))
+            {
+                return value;
+            }
+            return false;
+        }
+
+        private void MarkWaveAsKnown (int wave, bool value)
+        {
+            if (_waveKnown.ContainsKey(wave))
+            {
+                _waveKnown[wave] = value;
             }
             else
             {
-                CancelWave("No paths are available.");
+                _waveKnown.Add(wave, value);
             }
         }
 
         private IEnumerator PrepareWave()
         {
-            OnWavePreparing?.Invoke(CurrentWaveIndex + 1);
-            State = RoundState.Preparing;
+            OnWavePreparing?.Invoke(NextIndex);
+            ChangeState (RoundState.Preparing);
+            Debug.Log("Preparing to begin waves.");
+            yield return Pather.ComputePaths();
+        }
 
-            Debug.Log("Preparing next wave.");
-
-            foreach (EnemySpawnPoint point in _spawnPoints)
+        public WaveTimeline GetWave(int index)
+        {
+            WaveTimeline timeline = WaveCollection.GetWave(index);
+            if (!IsWaveKnown(index))
             {
-                point.ComputePath(_endPoints);
-                yield return new WaitForFixedUpdate();
+                OnNewWave?.Invoke(timeline);
+                MarkWaveAsKnown(index, true);
             }
-        }
-
-        private void CancelWave (string reason)
-        {
-            OnWaveCancelled?.Invoke(CurrentWaveIndex, reason);
-            CurrentWaveIndex--;
-            CurrentWave = null;
-            State = RoundState.Ready;
-
-            Debug.Log("Wave cancelled. Reason: " + reason);
-        }
-
-        public IWave GetWave(int index)
-        {
-            IWave wave = _waveCollection.GetWave(index);
-            wave.SetScale(EnemyAmountMultiplier, SpawnFrequencyMultiplier);
-            return wave;
+            return timeline;
         }
 
         private bool StartWave(int wave)
         {
-            State = RoundState.InProgress;
-            IWave next = GetWave(wave);
+            ChangeState(RoundState.InProgress);
+            WaveTimeline timeline = GetWave(wave);
 
             Debug.Log("Starting next wave!");
 
-            if (next != null)
+            if (timeline != null)
             {
-                next.OnEnemySpawn += OnSpawn;
+                WaveHandler handler = Instantiate(WaveHandlerPrefab).GetComponent<WaveHandler>();
+                handler.Assign(wave, timeline);
+                AddWave(handler);
 
-                IWaveRewarder rewarder = new FractionalWaveRewarder(next.SpawnAmount, GetCompletionReward(wave), GetEarnedFromKills(wave), RewardCredits);
-                IWavePunisher punshier = new FractionalWavePunisher(next.SpawnAmount, _healthContainer);
-
-                next.OnEnemyKill += rewarder.OnKill;
-                next.OnEnemyFinish += punshier.Punish;
-
-                next.OnFinished += rewarder.OnFinished;
-                next.OnFinished += WaveFinished;
-
-
-                next.Start();
-                CurrentWave = next;
-
-                OnWaveStarted?.Invoke(wave, next);
+                handler.BeginWave();
+                OnWaveStarted?.Invoke(wave, handler);
             }
 
-            return next != null;
+            return timeline != null;
         }
 
-        private void RewardCredits (float credits)
+        private void WaveSpawnsFinished(WaveHandler handler)
         {
-            Player.Player.Instance.Earn(CreditsResource, credits);
+            Debug.Log("Wave spawns finished");
+            OnWaveEnemiesSpawned?.Invoke(handler.Wave, handler);
         }
 
-        private void EnemyFinished(IEnemy obj)
+        private void EnemySpawned(WaveHandler handler, IEnemy obj)
         {
-            OnEnemyFinish?.Invoke(obj);
-            RemoveEnemy(obj);
+            EnemySpawnPoint spawnpoint = Pather.GetRandomSpawnPoint();
+            obj.Init(spawnpoint.transform.position, spawnpoint.GetPath(), handler);
+            OnEnemySpawned?.Invoke(obj);
         }
 
-        private void EnemyKill(IEnemy obj)
+        private void EnemyAdded(WaveHandler handler, IEnemy obj) => OnEnemyAdded?.Invoke(obj);
+        private void EnemyKilled(WaveHandler handler, IEnemy obj) => OnEnemyKilled?.Invoke(obj);
+        private void EnemyFinished(WaveHandler handler, IEnemy obj) => OnEnemyFinished?.Invoke(obj);
+
+        private void ChangeState (RoundState newState)
         {
-            OnEnemyKill?.Invoke(obj);
-            RemoveEnemy(obj);
+            State = newState;
+            OnStateChanged?.Invoke(newState);
         }
 
-        private float GetEarnedFromKills(int wave) => StartingEarnedFromKills + EarnedFromKillsPerWave * (wave - 1);
-
-        private float GetCompletionReward(int wave) => StartingCompletionReward + WaveFinishedRewardPerWave * (wave - 1);
-
-        private bool AnyPathsAvailable() => _spawnPoints.Any(x => !x.PathBlocked);
-
-        private void OnSpawn(IEnemy obj)
+        private void WaveCompleted(WaveHandler handler)
         {
-            EnemySpawnPoint spawnpoint = GetSpawnPoint();
-            obj.Init(spawnpoint.transform.position, spawnpoint.GetPath());
-            AddEnemy(obj);
+            RemoveWave(handler);
 
-            OnEnemySpawn?.Invoke(obj);
-        }
+            Player.Player.Resources.ChangeResource(ResearchResource, 1);
+            OnWaveFinished?.Invoke(handler.Wave, handler);
 
-        public void AddEnemy (IEnemy enemy) // Should provide a good starting point for future jobified enemy movement system.
-        {
-            enemy.OnKilled += EnemyKill;
-            enemy.OnFinished += EnemyFinished;
-        }
-
-        public void RemoveEnemy (IEnemy enemy)
-        {
-            enemy.OnKilled -= EnemyKill;
-            enemy.OnFinished -= EnemyFinished;
-        }
-
-        private EnemySpawnPoint GetSpawnPoint()
-        {
-            EnemySpawnPoint[] available = _spawnPoints.Where(x => !x.PathBlocked).ToArray();
-            return available[Random.Range(0, available.Length)];
-        }
-
-        private void WaveFinished()
-        {
-            EndWave(CurrentWaveIndex);
-        }
-
-        private void EndWave(int wave)
-        {
-            if (State == RoundState.InProgress)
+            if (_activeWaves.Count == 0)
             {
-                IWave ended = _waveCollection.GetWave(wave);
-                State = RoundState.Ready;
-                _resourceContainer.ChangeResource(ResearchResource, 1);
-
-                OnWaveFinished?.Invoke(wave, ended);
-                Debug.Log("Wave finished.");
+                ChangeState(RoundState.Ready);
             }
         }
 
-        private void OnDrawGizmos()
+        private void AddWave (WaveHandler handler)
         {
-            if (_spawnPoints != null)
-            {
-                foreach (EnemySpawnPoint point in _spawnPoints)
-                {
-                    if (!point.PathBlocked)
-                    {
-                        Vector3[] path = point.GetPath();
-                        for (int i = 0; i < path.Length - 1; i++)
-                        {
-                            Gizmos.DrawLine(path[i], path[i + 1]);
-                        }
-                    }
-                }
-            }
+            _activeWaves.Add(handler);
+
+            handler.OnEnemySpawned += EnemySpawned;
+            handler.OnEnemyAdded += EnemyAdded;
+            handler.OnEnemyKilled += EnemyKilled;
+            handler.OnEnemyFinished += EnemyFinished;
+            handler.OnAllSpawnersFinished += WaveSpawnsFinished;
+            handler.OnAllEnemiesDone += WaveCompleted;
+
+            Debug.Log("Added wave " + handler.Wave);
+        }
+
+        private void RemoveWave(WaveHandler handler)
+        {
+            handler.OnEnemySpawned -= EnemySpawned;
+            handler.OnEnemyAdded -= EnemyAdded;
+            handler.OnEnemyKilled -= EnemyKilled;
+            handler.OnEnemyFinished -= EnemyFinished;
+            handler.OnAllSpawnersFinished -= WaveSpawnsFinished;
+            handler.OnAllEnemiesDone -= WaveCompleted;
+
+            _activeWaves.Remove(handler);
+            Debug.Log("Removed wave " + handler.Wave);
+
+            Destroy(handler.gameObject);
         }
     }
 }

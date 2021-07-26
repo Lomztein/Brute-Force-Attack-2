@@ -12,48 +12,32 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
 {
     public class UpcomingDisplay : MonoBehaviour
     {
+        public Transform TextTransform;
         public Text TitleText;
-        public Transform UpcomingParent;
 
-        public GameObject[] WaveDisplays;
+        public GameObject EnemyTypeDisplayPrefab;
+        public Transform EnemyTypeDisplayParent;
+        public int Wave;
 
-        private IWave _wave;
-
-        public void SetTitle (string title)
+        public void Display(int wave, WaveHandler handler, WaveTimeline timeline)
         {
-            TitleText.text = title;
-        }
-
-        public IWaveDisplay Display(IWave wave)
-        {
-            foreach (Transform child in UpcomingParent)
+            foreach (Transform child in transform)
             {
-                Destroy(child.gameObject);
-            }
-
-            _wave = wave;
-
-            GameObject go = GetWaveDisplay(_wave);
-            IWaveDisplay instantiated = Instantiate(go, UpcomingParent).GetComponent<IWaveDisplay>();
-            instantiated.Display(_wave);
-
-            (UpcomingParent as RectTransform).sizeDelta += Vector2.up; // Total hack but it works.
-
-            return instantiated;
-        }
-
-        private GameObject GetWaveDisplay (IWave wave)
-        {
-            foreach (GameObject go in WaveDisplays)
-            {
-                IWaveDisplay display = go.GetComponent<IWaveDisplay>();
-                if (display.CanDisplay(wave))
+                if (child != TextTransform)
                 {
-                    return go;
+                    Destroy(child.gameObject);
                 }
             }
 
-            return null;
+            Wave = wave;
+
+            TitleText.text = wave == -1 ? "Next wave" : $"Wave {wave}";
+            var dict = timeline.GetEnemySpawnAmount();
+            foreach (var pair in dict)
+            {
+                EnemyTypeDisplay display = Instantiate(EnemyTypeDisplayPrefab, EnemyTypeDisplayParent).GetComponent<EnemyTypeDisplay>();
+                display.Display(handler, pair.Value, pair.Key);
+            }
         }
     }
 }

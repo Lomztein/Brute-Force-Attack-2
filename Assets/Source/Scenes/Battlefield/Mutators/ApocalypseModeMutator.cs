@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,17 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
         {
             _roundController.IfExists(x =>
             {
-                x.OnWaveFinished += OnWaveFinished;
+                x.OnWaveEnemiesSpawned += OnWaveFinished;
             });
         }
 
-        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
+        private void OnWaveFinished(int arg1, WaveHandler arg2)
         {
-            _roundController.IfExists(x =>
+            RoundController controller = RoundController.Instance;
+            if (controller.ActiveWaves.Length < 2)
             {
-                x.BeginNextWave();
-            });
+                controller.BeginNextWave();
+            }
         }
     }
 }

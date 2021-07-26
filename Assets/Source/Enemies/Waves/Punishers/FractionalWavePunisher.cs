@@ -12,17 +12,14 @@ namespace Lomztein.BFA2.Enemies.Waves.Punishers
         private const float TotalDamage = 100f;
         private int _total;
 
-        private IHealthContainer _toPunish;
-
         public void Punish(IEnemy enemy)
         {
-            _toPunish.ChangeHealth(-TotalDamage / _total);
+            Player.Player.Health.ChangeHealth(-TotalDamage / _total);
         }
 
-        public FractionalWavePunisher(int total, IHealthContainer toPunish)
+        public FractionalWavePunisher(int total)
         {
             _total = total;
-            _toPunish = toPunish;
         }
     }
 }

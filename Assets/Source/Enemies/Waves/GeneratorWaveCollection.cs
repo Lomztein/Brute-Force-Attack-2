@@ -1,5 +1,7 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Enemies.Waves.Generators;
+using Lomztein.BFA2.Enemies.Waves.Punishers;
+using Lomztein.BFA2.Enemies.Waves.Rewarders;
 using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,11 +10,11 @@ using Random = UnityEngine.Random;
 
 namespace Lomztein.BFA2.Enemies.Waves
 {
-    [Serializable]
-    public class GeneratorWaveCollection : IWaveCollection
+    [CreateAssetMenu(fileName = "NewWaveCollection", menuName = "BFA2/Enemies/Waves/Generator Wave Collection")]
+    public class GeneratorWaveCollection : WaveCollection
     {
-        [ModelProperty]
-        public ContentPrefabReference Spawner;
+        private const float MaxSpawnFrequency = 200f;
+        private const float MinSpawnFrequency = 2f;
 
         [ModelProperty]
         public int Seed;
@@ -27,20 +29,35 @@ namespace Lomztein.BFA2.Enemies.Waves
         public float FrequencyCoeffecient;
 
         [ModelProperty]
-        public float MaxSequenceDenominator;
+        public float InitialLoCFromKills;
         [ModelProperty]
-        public float MaxParallelDenominator;
-        [ModelProperty]
-        public int MaxSequence = 5;
-        [ModelProperty]
-        public float MaxParallel = 3;
-
-        private readonly Dictionary<int, IWave> _waves = new Dictionary<int, IWave>();
+        public float LoCFromKillsPerWave;
 
         [ModelProperty]
-        public string Identifier { get; set; }
+        public float InitialLoCOnCompletion;
+        [ModelProperty]
+        public float LoCOnCompletionPerWave;
 
-        public IWave GetWave(int index)
+        [ModelProperty]
+        public int SequenceMax = 10;
+        [ModelProperty]
+        public int ParallelMax = 3;
+
+        [ModelProperty]
+        public float SequenceDenomenator = 5;
+        [ModelProperty]
+        public float ParallelDenomenator = 5;
+
+        [ModelProperty]
+        public Vector2 CreditsVariance;
+        public Vector2 FrequencyVariance;
+        public Vector2 TimeVariance;
+
+        private System.Random _random;
+
+        private readonly Dictionary<int, WaveTimeline> _waves = new Dictionary<int, WaveTimeline>();
+
+        public override WaveTimeline GetWave(int index)
         {
             if (_waves.ContainsKey(index))
             {
@@ -48,20 +65,70 @@ namespace Lomztein.BFA2.Enemies.Waves
             }
             else
             {
-                Seed = Random.Range(0, short.MaxValue);
-                //IWaveGenerator generator = new WaveGenerator(Spawner, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), 200, 0.5f);
-                IWaveGenerator generator = new CompositeWaveGenerator(Spawner, index, Seed + index, GetAvailableCredits(index), GetSpawnFrequency(index), GetMaxSequence(index), GetMaxParallel(index));
-                IWave wave = generator.GenerateWave();
+                WaveTimeline wave = GenerateWave(index);
                 _waves.Add(index, wave);
                 return wave;
             }
         }
 
         private float GetSpawnFrequency(int wave) => StartingFrequency * Mathf.Pow(FrequencyCoeffecient, wave - 1);
-
         private float GetAvailableCredits(int wave) => StartingCredits * Mathf.Pow(CreditsCoeffecient, wave - 1);
+        private int GetSequenceAmount(int wave) => Mathf.Min(GetRandom().Next(1, Mathf.FloorToInt(wave / SequenceDenomenator + 1)), SequenceMax);
+        private int GetParallelAmount(int wave) => Mathf.Min(GetRandom().Next(1, Mathf.FloorToInt(wave / ParallelDenomenator + 1)), ParallelMax);
 
-        private int GetMaxSequence(int wave) => (int)Mathf.Min (Mathf.Max(1, Mathf.Round(wave / MaxSequenceDenominator)), MaxSequence);
-        private int GetMaxParallel(int wave) => (int)Mathf.Min (Mathf.Max(1, Mathf.Round(wave / MaxParallelDenominator)), MaxParallel);
+        private float GetEarnedFromKills(int wave) => InitialLoCFromKills + LoCFromKillsPerWave * (wave - 1);
+        private float GetCompletionReward(int wave) => InitialLoCOnCompletion + LoCOnCompletionPerWave * (wave - 1);
+
+        private System.Random GetRandom()
+        {
+            if (_random == null)
+            {
+                _random = new System.Random(Seed);
+            }
+            return _random;
+        }
+
+        private WaveTimeline GenerateWave(int wave)
+        {
+            WaveTimeline timeline = new WaveTimeline();
+            AddSequentialWaves(wave, timeline);
+
+            timeline.Rewarder = new FractionalWaveRewarder(timeline.Amount, GetCompletionReward(wave), GetEarnedFromKills(wave));
+            timeline.Punisher = new FractionalWavePunisher(timeline.Amount);
+
+            return timeline;
+        }
+
+        private float RandomRange(float min, float max) => Mathf.Lerp(min, max, (float)_random.NextDouble());
+
+        private void AddSequentialWaves(int wave, WaveTimeline timeline)
+        {
+            float time = 0f;
+            int waves = GetSequenceAmount(wave);
+
+            float credits = GetAvailableCredits(wave);
+
+            for (int i = 0; i < waves; i++)
+            {
+                time = GenerateParallelWaves(timeline, time, wave, credits / waves, waves * i);
+            }
+        }
+
+        private float GenerateParallelWaves(WaveTimeline timeline, float startTime, int wave, float credits, int offset)
+        {
+            float frequency = GetSpawnFrequency(wave);
+
+            int waves = GetParallelAmount(wave);
+            for (int i = 0; i < waves; i++)
+            {
+                float waveFrequency = frequency * (1 + RandomRange(FrequencyVariance.x, FrequencyVariance.y));
+                float waveCredits = credits * (1 + RandomRange(CreditsVariance.x, CreditsVariance.y));
+
+                IWaveGenerator gen = new WaveGenerator(startTime, wave, Seed + waves * i + offset, waveCredits / waves, waveFrequency / waves, MaxSpawnFrequency / waves, MinSpawnFrequency / waves);
+                SpawnInterval interval = gen.Generate();
+                timeline.AddSpawn(interval);
+            }
+            return timeline.EndTime + RandomRange(TimeVariance.x, TimeVariance.y);
+        }
     }
 }

@@ -18,9 +18,6 @@ namespace Lomztein.BFA2.Battlefield
 {
     public class BattlefieldController : MonoBehaviour, InputMaster.IBattlefieldActions
     {
-        private static string DefaultMapPath = "Core/Maps/Classic.json";
-        private static string DefaultWaveCollection = "Core/WaveCollections/DefaultGenerator.json";
-
         public MapController MapController;
         public RoundController RoundController;
         public InterruptIfDialogOpen StartWaveIntterupt;
@@ -78,13 +75,13 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitMap()
         {
-            MapData mapData = ContentSystem.Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == BattlefieldSettings.CurrentSettings.MapIdentifier);
+            MapData mapData = Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == BattlefieldSettings.CurrentSettings.MapIdentifier);
             MapController.ApplyMapData(mapData.DeepClone());
         }
 
         private void InitWaves()
         {
-            IWaveCollection waves = ContentSystem.Content.GetAll<IWaveCollection>("*/WaveCollections").First(x => x.Identifier == BattlefieldSettings.CurrentSettings.WaveCollectionIdentifier);
+            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections").First(x => x.Identifier == BattlefieldSettings.CurrentSettings.WaveCollectionIdentifier);
             RoundController.SetWaveCollection(waves.DeepClone());
         }
 

@@ -1,4 +1,6 @@
 ﻿using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Enemies.Motors;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Purchasing.Resources;
@@ -16,6 +18,8 @@ namespace Lomztein.BFA2.Enemies
 {
     public class Enemy : MonoBehaviour, IEnemy, IDamagable
     {
+        public const string ENEMIES_CCONTENT_PATH = "*/Enemies";
+
         private const float CRITICAL_DAMAGE_MULT = 2f;
 
         [ModelProperty]
@@ -27,6 +31,7 @@ namespace Lomztein.BFA2.Enemies
         [ModelProperty]
         public float MaxSpeed;
 
+        public WaveHandler WaveHandler { get; set; }
         public Vector3[] Path { get => _motor.Path; set => _motor.Path = value; }
         public float Speed { get => _motor.Speed; set => _motor.Speed = value; }
         public int PathIndex { get => _motor.PathIndex; set => _motor.PathIndex = value; }
@@ -125,8 +130,9 @@ namespace Lomztein.BFA2.Enemies
             Destroy(_deathParticle.gameObject, DeathParticleLife);
         }
 
-        public void Init(Vector3 position, Vector3[] path)
+        public void Init(Vector3 position, Vector3[] path, WaveHandler handler)
         {
+            WaveHandler = handler;
             Health = MaxHealth;
             _motor = GetComponent<IEnemyMotor>();
             _deathParticle = transform.Find("DeathParticle").GetComponent<ParticleSystem>();
@@ -135,5 +141,8 @@ namespace Lomztein.BFA2.Enemies
             transform.position = position;
             _motor.Path = path;
         }
+
+        public static IContentCachedPrefab[] GetEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMIES_CCONTENT_PATH);
+        public static IContentCachedPrefab GetEnemy(string identifier) => GetEnemies().FirstOrDefault(x => x.GetCache().GetComponent<IEnemy>().Identifier == identifier);
     }
 }

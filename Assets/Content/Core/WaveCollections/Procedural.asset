@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d904172f3fe48548bed2d54c5ec0b86, type: 3}
+  m_Name: Procedural
+  m_EditorClassIdentifier: 
+  Identifier: Core.Procedural
+  Seed: 0
+  StartingCredits: 40
+  CreditsCoeffecient: 1.25
+  StartingFrequency: 2
+  FrequencyCoeffecient: 1.2
+  InitialLoCFromKills: 50
+  LoCFromKillsPerWave: 50
+  InitialLoCOnCompletion: 250
+  LoCOnCompletionPerWave: 0
+  SequenceMax: 10
+  ParallelMax: 3
+  SequenceDenomenator: 5
+  ParallelDenomenator: 5
+  CreditsVariance: {x: -0.25, y: 0.25}
+  FrequencyVariance: {x: -0.1, y: 0.1}
+  TimeVariance: {x: -10, y: 3}

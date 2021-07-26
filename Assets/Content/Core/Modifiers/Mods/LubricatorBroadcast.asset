@@ -15,7 +15,14 @@ MonoBehaviour:
   Identifier: Core.LubricatedBroadcast
   Name: Lubricated Gears
   Description: The gears have been sloppily lubricated.
-  RequiredAttributes: 
+  Filters:
+  - id: 0
   Stats:
   - Info: {fileID: 11400000, guid: 323095ad0ac69e74c91019c9a9e38e3e, type: 2}
     Value: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: HasStatFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        Info: {fileID: 11400000, guid: 323095ad0ac69e74c91019c9a9e38e3e, type: 2}

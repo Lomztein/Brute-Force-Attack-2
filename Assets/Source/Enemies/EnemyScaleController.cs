@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Enemies
             Instance = this;
             _roundController.IfExists(x =>
             {
-                x.OnEnemySpawn += OnEnemySpawn;
+                x.OnEnemyAdded += OnEnemySpawn;
             });
         }
 

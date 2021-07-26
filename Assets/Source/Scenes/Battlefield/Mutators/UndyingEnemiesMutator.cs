@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
         public override void Start()
         {
             LoadEnemies();
-            RoundController.Instance.OnEnemyKill += OnEnemyKill;
+            RoundController.Instance.OnEnemyKilled += OnEnemyKill;
         }
 
         private void OnEnemyKill(IEnemy obj)
@@ -74,9 +74,9 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             Enemy en = obj as Enemy; // flawless naming
 
             IEnemy enemy = enemyGO.GetComponent<IEnemy>();
-            enemy.Init(en.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path);
+            enemy.Init(en.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path, obj.WaveHandler);
             enemy.PathIndex = obj.PathIndex;
-            RoundController.Instance.AddEnemy(enemy);
+            enemy.WaveHandler.AddEnemy(enemy);
         }
 
         private bool Roll() => UnityEngine.Random.Range(0f, 1f) < _undyingChance;
@@ -96,6 +96,5 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
         {
             UndyingChancePercent = float.Parse(obj.ToString());
         }
-
     }
 }

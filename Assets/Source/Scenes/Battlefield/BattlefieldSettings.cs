@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Battlefield
         public static BattlefieldSettings CurrentSettings = new BattlefieldSettings();
 
         public string MapIdentifier = "Core.SnakinAbout";
-        public string WaveCollectionIdentifier = "Core.DefaultGenerator";
+        public string WaveCollectionIdentifier = "Core.Procedural";
         public Difficulty Difficulty = ScriptableObject.CreateInstance<Difficulty>();
         private List<Mutator> _mutatorsList = new List<Mutator>();
         public Mutator[] Mutators => _mutatorsList.ToArray();

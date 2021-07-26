@@ -15,7 +15,14 @@ MonoBehaviour:
   Identifier: Core.SuperRange
   Name: Super Range
   Description: This has heavily increased range.
-  RequiredAttributes: 
+  Filters:
+  - id: 0
   Stats:
   - Info: {fileID: 11400000, guid: 61ed24ad66405534e9dab80daced4889, type: 2}
     Value: 10
+  references:
+    version: 1
+    00000000:
+      type: {class: HasStatFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        Info: {fileID: 11400000, guid: 61ed24ad66405534e9dab80daced4889, type: 2}

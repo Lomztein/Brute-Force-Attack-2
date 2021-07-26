@@ -25,12 +25,12 @@ namespace Lomztein.BFA2.Research.UniquePrerequisites
 
         public override void Init()
         {
-            _roundController.IfExists((x) => x.OnEnemyKill += OnEnemyKill);
+            _roundController.IfExists((x) => x.OnEnemyKilled += OnEnemyKill);
         }
 
         public override void Stop()
         {
-            _roundController.IfExists((x) => x.OnEnemyKill -= OnEnemyKill);
+            _roundController.IfExists((x) => x.OnEnemyKilled -= OnEnemyKill);
         }
         private void OnEnemyKill(IEnemy enemy)
         {

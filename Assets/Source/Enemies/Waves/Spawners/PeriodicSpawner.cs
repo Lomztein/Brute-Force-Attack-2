@@ -25,7 +25,10 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
             for (int i = 0; i < amount; i++)
             {
                 OnSpawn?.Invoke(prefab.Instantiate());
-                yield return UnityUtils.WaitForFixedSeconds(delay);
+                if (i != amount - 1)
+                {
+                    yield return UnityUtils.WaitForFixedSeconds(delay);
+                }
             }
 
             OnFinished?.Invoke();

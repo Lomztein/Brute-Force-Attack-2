@@ -8,6 +8,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
 {
     public interface IWaveGenerator
     {
-        IWave GenerateWave();
+        SpawnInterval Generate();
     }
 }

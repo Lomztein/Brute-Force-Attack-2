@@ -1,6 +1,4 @@
 ﻿using Lomztein.BFA2.ContentSystem;
-using Lomztein.BFA2.ContentSystem.Objects;
-using Lomztein.BFA2.ContentSystem.References;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +11,12 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
     [Serializable]
     public class WaveGenerator : IWaveGenerator
     {
-        private const string ENEMY_CONTENT_PATH = "*/Enemies";
         private const string GENERATOR_ENEMY_DATA_PATH = "*/WaveCollections/GeneratorEnemyData";
 
-        private IContentCachedPrefab[] _enemies;
         private System.Random _random;
-
-        private ContentPrefabReference _spawner;
         private GeneratorEnemyData[] _enemyData;
 
+        private readonly float _startTime;
         private readonly int _seed;
         private readonly float _credits;
         private readonly float _frequency;
@@ -31,9 +26,9 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private readonly float _minSpawnFrequency;
 
 
-        public WaveGenerator (ContentPrefabReference spawner, int wave, int seed, float credits, float frequency, float maxFreq, float minFreq)
+        public WaveGenerator (float startTime, int wave, int seed, float credits, float frequency, float maxFreq, float minFreq)
         {
-            _spawner = spawner;
+            _startTime = startTime;
             _wave = wave;
             _seed = seed;
             _credits = credits;
@@ -41,15 +36,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
 
             _maxSpawnFrequency = maxFreq;
             _minSpawnFrequency = minFreq;
-        }
-
-        private IContentCachedPrefab[] GetEnemies()
-        {
-            if (_enemies == null)
-            {
-                _enemies = ContentSystem.Content.GetAll(ENEMY_CONTENT_PATH, typeof(IContentCachedPrefab)).Cast<IContentCachedPrefab>().ToArray();
-            }
-            return _enemies;
         }
 
         private GeneratorEnemyData[] GetGeneratorEnemyDataCache ()
@@ -70,40 +56,32 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             return _random;
         }
 
-        private GeneratorEnemyData GetGeneratorEnemyData (IEnemy enemy)
-            => GetGeneratorEnemyDataCache().FirstOrDefault(x => x.EnemyIdentifier == enemy.Identifier);
-
-        private (IContentCachedPrefab enemy, int amount) GetRandomEnemy(float credits)
+        private GeneratorEnemyData GetRandomEnemyGeneratorData ()
         {
-            var enemies = GetEnemies();
-            IContentCachedPrefab[] options = enemies.Where(x => ShouldSpawn(x.GetCache().GetComponent<IEnemy>())).ToArray();
-            IContentCachedPrefab enemy = options[GetRandom().Next(0, options.Length)];
-
-            GeneratorEnemyData data = GetGeneratorEnemyData(enemy.GetCache().GetComponent<IEnemy>());
-
-            return (enemy, Mathf.Max(Mathf.RoundToInt(credits / data.DifficultyValue), 1));
+            var cache = GetGeneratorEnemyDataCache();
+            var applicable = cache.Where(x => ShouldSpawn(x)).ToArray();
+            int index = GetRandom().Next(0, applicable.Length);
+            return applicable[index];
         }
 
-        private bool ShouldSpawn(IEnemy enemy)
+        private (GeneratorEnemyData data, int amount) GetRandomEnemy(float credits)
         {
-            GeneratorEnemyData data = GetGeneratorEnemyData(enemy);
-            if (data == null)
-                return false;
-
-            float frequency = _frequency / data.DifficultyValue;
-
-            return _wave >= data.EarliestWave && frequency <= _maxSpawnFrequency && frequency >= _minSpawnFrequency;
+            GeneratorEnemyData data = GetRandomEnemyGeneratorData();
+            return (data, Mathf.Max(Mathf.RoundToInt(credits / data.DifficultyValue), 1));
         }
 
-        public IWave GenerateWave()
+        private bool ShouldSpawn(GeneratorEnemyData enemy)
         {
-            (IContentCachedPrefab enemy, int amount) = GetRandomEnemy(_credits);
-            GeneratorEnemyData data = GetGeneratorEnemyData(enemy.GetCache().GetComponent<IEnemy>());
+            float frequency = _frequency / enemy.DifficultyValue;
+            return _wave >= enemy.EarliestWave && frequency <= _maxSpawnFrequency && frequency >= _minSpawnFrequency;
+        }
 
+        public SpawnInterval Generate()
+        {
+            (GeneratorEnemyData data, int amount) = GetRandomEnemy(_credits);
             float frequency = _frequency / data.DifficultyValue;
-
-            IWave newWave = new Wave(enemy, _spawner, amount, 1 / frequency);
-            return newWave;
+            float time = amount / frequency;
+            return new SpawnInterval(_startTime, time, data.EnemyIdentifier, amount);
         }
     }
 }

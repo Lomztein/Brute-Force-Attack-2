@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Enemies;
+using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -25,28 +26,31 @@ namespace Lomztein.BFA2.UI.Displays
         {
             _roundController.IfExists(x =>
             {
-                x.OnWavePreparing += OnWavePreparing;
-                x.OnWaveStarted += OnWaveStarted;
-                x.OnWaveFinished += OnWaveFinished;
+                x.OnStateChanged += OnStateChanged;
             });
         }
 
-        private void OnWaveFinished(int arg1, Enemies.Waves.IWave arg2)
+        private void OnStateChanged(RoundController.RoundState state)
         {
-            Image.color = ReadyColor;
-            Button.interactable = true;
-        }
+            switch (state)
+            {
+                case RoundController.RoundState.Ready:
+                    Image.color = ReadyColor;
+                    Button.interactable = true;
+                    break;
 
-        private void OnWaveStarted(int arg1, Enemies.Waves.IWave arg2)
-        {
-            Image.color = InProgressColor;
-            Button.interactable = false;
-        }
+                case RoundController.RoundState.Preparing:
+                    Image.color = PreparingColor;
+                    Button.interactable = false;
+                    break;
 
-        private void OnWavePreparing(int obj)
-        {
-            Image.color = PreparingColor;
-            Button.interactable = false;
+                case RoundController.RoundState.InProgress:
+                    Image.color = InProgressColor;
+                    Button.interactable = true;
+                    break;
+
+            }
+
         }
     }
 }

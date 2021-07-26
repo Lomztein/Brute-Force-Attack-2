@@ -39,7 +39,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
         public override void Start()
         {
             LoadEnemies();
-            RoundController.Instance.OnEnemyKill += OnEnemyKill;
+            RoundController.Instance.OnEnemyKilled += OnEnemyKill;
         }
 
         private string GetPreviousTierIdentifier (string enemyIdentifier)
@@ -82,10 +82,10 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
                 {
                     GameObject newEnemyGO = enemy.Instantiate();
                     IEnemy newEnemy = newEnemyGO.GetComponent<IEnemy>();
-                    newEnemy.Init((obj as Component).transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path);
+                    newEnemy.Init((obj as Component).transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path, obj.WaveHandler);
                     newEnemy.PathIndex = obj.PathIndex;
 
-                    RoundController.Instance.AddEnemy(newEnemy);
+                    newEnemy.WaveHandler.AddEnemy(newEnemy);
                 }
             }
         }

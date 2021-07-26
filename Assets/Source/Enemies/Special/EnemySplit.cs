@@ -30,8 +30,9 @@ namespace Lomztein.BFA2.Enemies.Special
                 Vector3 wpos = transform.position + (Vector3)pos;
                 GameObject newEnemyGO = ToSpawn.Instantiate();
                 IEnemy enemy = newEnemyGO.GetComponent<IEnemy>();
-                enemy.Init(wpos, obj.Path);
+                enemy.Init(wpos, obj.Path, obj.WaveHandler);
                 enemy.PathIndex = _enemy.PathIndex;
+                enemy.WaveHandler.AddEnemy(enemy);
             }
         }
 
