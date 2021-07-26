@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Enemies.Waves
     public class GeneratorWaveCollection : WaveCollection
     {
         private const float MaxSpawnFrequency = 200f;
-        private const float MinSpawnFrequency = 2f;
+        private const float MinSpawnFrequency = 1f;
 
         [ModelProperty]
         public int Seed;
@@ -54,6 +54,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         public Vector2 TimeVariance;
 
         private System.Random _random;
+        private int _offset;
 
         private readonly Dictionary<int, WaveTimeline> _waves = new Dictionary<int, WaveTimeline>();
 
@@ -91,7 +92,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         private WaveTimeline GenerateWave(int wave)
         {
             WaveTimeline timeline = new WaveTimeline();
-            AddSequentialWaves(wave, timeline);
+            AddSequentialWaves(wave, timeline, ref wave);
 
             timeline.Rewarder = new FractionalWaveRewarder(timeline.Amount, GetCompletionReward(wave), GetEarnedFromKills(wave));
             timeline.Punisher = new FractionalWavePunisher(timeline.Amount);
@@ -101,7 +102,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private float RandomRange(float min, float max) => Mathf.Lerp(min, max, (float)_random.NextDouble());
 
-        private void AddSequentialWaves(int wave, WaveTimeline timeline)
+        private void AddSequentialWaves(int wave, WaveTimeline timeline, ref int offset)
         {
             float time = 0f;
             int waves = GetSequenceAmount(wave);
@@ -110,11 +111,11 @@ namespace Lomztein.BFA2.Enemies.Waves
 
             for (int i = 0; i < waves; i++)
             {
-                time = GenerateParallelWaves(timeline, time, wave, credits / waves, waves * i);
+                time = GenerateParallelWaves(timeline, time, wave, credits / waves, ref offset);
             }
         }
 
-        private float GenerateParallelWaves(WaveTimeline timeline, float startTime, int wave, float credits, int offset)
+        private float GenerateParallelWaves(WaveTimeline timeline, float startTime, int wave, float credits, ref int offset)
         {
             float frequency = GetSpawnFrequency(wave);
 
@@ -124,7 +125,7 @@ namespace Lomztein.BFA2.Enemies.Waves
                 float waveFrequency = frequency * (1 + RandomRange(FrequencyVariance.x, FrequencyVariance.y));
                 float waveCredits = credits * (1 + RandomRange(CreditsVariance.x, CreditsVariance.y));
 
-                IWaveGenerator gen = new WaveGenerator(startTime, wave, Seed + waves * i + offset, waveCredits / waves, waveFrequency / waves, MaxSpawnFrequency / waves, MinSpawnFrequency / waves);
+                IWaveGenerator gen = new WaveGenerator(startTime, wave, Seed + offset++, waveCredits / waves, waveFrequency / waves, MaxSpawnFrequency / waves, MinSpawnFrequency / waves);
                 SpawnInterval interval = gen.Generate();
                 timeline.AddSpawn(interval);
             }

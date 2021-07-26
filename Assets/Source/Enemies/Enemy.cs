@@ -56,6 +56,10 @@ namespace Lomztein.BFA2.Enemies
 
         private void FixedUpdate()
         {
+            if (_motor == null)
+            {
+                Die(); // TODO: Fix me, appears that an enemy is sometimes spawned but not initialized at the end of a wave. This is a temporary workaround.
+            }
             _motor.Tick(Time.fixedDeltaTime);
             if (_motor.HasReachedEnd ())
             {
@@ -122,12 +126,14 @@ namespace Lomztein.BFA2.Enemies
         {
             Destroy(gameObject);
             OnKilled?.Invoke(this);
-
-            _deathParticle.transform.parent = null;
-            _deathParticle.Play();
             _isDead = true;
 
-            Destroy(_deathParticle.gameObject, DeathParticleLife);
+            if (_deathParticle)
+            {
+                _deathParticle.transform.parent = null;
+                _deathParticle.Play();
+                Destroy(_deathParticle.gameObject, DeathParticleLife);
+            }
         }
 
         public void Init(Vector3 position, Vector3[] path, WaveHandler handler)
