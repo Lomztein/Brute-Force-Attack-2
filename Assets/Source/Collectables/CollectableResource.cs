@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Collectables
 {
-    public class CollectableResource : CollectableBase
+    public class CollectableResource : Collectable
     {
+        [ModelAssetReference]
+        public Resource Resource;
         [ModelProperty]
-        public ResourceCost Resources;
+        public int Amount;
 
-        public override void Collect()
+        protected override void Collect()
         {
-            GetComponent<IResourceContainer>().AddResources(Resources);
+            Player.Player.Resources.ChangeResource(Resource, Amount);
         }
     }
 }

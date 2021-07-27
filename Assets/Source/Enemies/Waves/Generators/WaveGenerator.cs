@@ -74,10 +74,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         {
             float frequency = _frequency / enemy.DifficultyValue;
             bool shouldSpawn = _wave >= enemy.EarliestWave && frequency <= _maxSpawnFrequency && frequency >= _minSpawnFrequency;
-            if (_wave >= enemy.EarliestWave)
-            {
-                Debug.Log($"{enemy.EnemyIdentifier} {_wave} >= {enemy.EarliestWave} && {frequency} <= {_maxSpawnFrequency} && {frequency} >= {_minSpawnFrequency} = {shouldSpawn}");
-            }
             return shouldSpawn;
         }
 

@@ -21,13 +21,13 @@ namespace Lomztein.BFA2.Structures
 
         public Transform _beamStart;
         public LineRenderer _beam;
+        private ParticleSystemForceField _particleForceField;
 
         private ITargetProvider _targetProvider;
         private ITargeter _targeter;
 
         private Transform _target;
-        private ICollectable _collectable;
-        private float _currentProgress;
+        private Collectable _collectable;
 
         public override StructureCategory Category => StructureCategories.Misc;
 
@@ -42,16 +42,16 @@ namespace Lomztein.BFA2.Structures
 
             _beamStart = transform.Find("BeamStart");
             _beam = transform.Find("Beam").GetComponent<LineRenderer>();
+            _particleForceField = GetComponentInChildren<ParticleSystemForceField>();
         }
 
-        private void OnSwitchTarget (Transform newTarget)
+        private void SetTarget (Transform newTarget)
         {
             _target = newTarget;
-            _currentProgress = 0f;
          
             if (_target)
             {
-                _collectable = _target.GetComponent<ICollectable>();
+                _collectable = _target.GetComponent<Collectable>();
             }
         }
 
@@ -61,7 +61,7 @@ namespace Lomztein.BFA2.Structures
             Transform target = _targetProvider.GetTarget();
             if (target != _target)
             {
-                OnSwitchTarget(target);
+                SetTarget(target);
             }
             TickCollection(deltaTime);
         }
@@ -70,12 +70,11 @@ namespace Lomztein.BFA2.Structures
         {
             if (_target && _targeter.GetDistance() < AngleTreshold)
             {
-                UpdateBeam(true);
-                _currentProgress += deltaTime / _collectable.CollectionTime;
-                if (_currentProgress >= 1f)
+                if (_collectable.TickCollection(deltaTime))
                 {
-                    Collect();
+                    SetTarget(null);
                 }
+                UpdateBeam(true);
             }
             else
             {
@@ -83,20 +82,18 @@ namespace Lomztein.BFA2.Structures
             }
         }
 
-        private void Collect()
-        {
-            _collectable.Collect();
-            Destroy(_target.gameObject);
-            OnSwitchTarget(null);
-        }
-
         private void UpdateBeam(bool enable)
         {
             _beam.enabled = enable;
+            _particleForceField.gameObject.SetActive(enable);
             if (_target && enable)
             {
                 _beam.SetPosition(0, _beamStart.position);
                 _beam.SetPosition(1, _target.position);
+
+                float angle = Mathf.Atan2(_target.position.y - transform.position.y, _target.position.x - transform.position.x) * Mathf.Rad2Deg - 180f;
+                _particleForceField.transform.position = _target.position;
+                _particleForceField.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
         }
     }

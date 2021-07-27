@@ -52,7 +52,8 @@ MonoBehaviour:
   _uniqueIdentifier: 
   _cost:
     Elements: []
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   BaseComplexity: 0
@@ -181,6 +182,7 @@ Transform:
   - {fileID: 48312140349550697}
   - {fileID: 4066865463233475820}
   - {fileID: 4386809061362275140}
+  - {fileID: 3819490043789619648}
   m_Father: {fileID: 5877465769552950883}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -201,7 +203,8 @@ MonoBehaviour:
   _uniqueIdentifier: 
   _cost:
     Elements: []
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   BaseComplexity: 0
@@ -211,6 +214,52 @@ MonoBehaviour:
   AngleTreshold: 1
   _beamStart: {fileID: 0}
   _beam: {fileID: 0}
+--- !u!1 &3289635402291767203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3819490043789619648}
+  - component: {fileID: 6164991133800105977}
+  m_Layer: 12
+  m_Name: Forcefield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3819490043789619648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289635402291767203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6575595735115282103}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6164991133800105977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289635402291767203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f373f6aff46ae45bed0cef674da042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applied: 0
+  Reference:
+    Path: Resources/Prefabs/CollectorForcefield
 --- !u!1 &3364392315202249461
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +314,8 @@ MonoBehaviour:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 1000
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
 --- !u!58 &2103048408009964527
@@ -427,7 +477,8 @@ MonoBehaviour:
   _uniqueIdentifier: 
   _cost:
     Elements: []
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   BaseComplexity: 0

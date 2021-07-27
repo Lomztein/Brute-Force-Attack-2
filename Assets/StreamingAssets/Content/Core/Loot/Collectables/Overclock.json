@@ -1,0 +1,102 @@
+{
+  "Name": "Overclock(Clone)",
+  "Tag": "Untagged",
+  "Layer": 12,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Collectables.CollectableItem",
+      "$Data": {
+        "Item": {
+          "$Type": "Lomztein.BFA2.Inventory.Items.BoosterItem",
+          "$Data": {
+            "Mod": {
+              "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+              "$Data": "$Path{Core/Modifiers/Mods/CoolantCell.json}"
+            },
+            "Coeffecient": 1.0,
+            "Name": "Overclock",
+            "Description": "",
+            "Sprite": {
+              "Path": "",
+              "Texture": "$Path{Core/Sprites/Collectables/FirerateUpgrade.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 0.0,
+                "Height": 0.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "SpriteTint": {
+              "Red": 0.0,
+              "Green": 0.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        },
+        "CollectionTime": 3.0,
+        "Rarity": "$Path{Core/Rarities/Rare.json}",
+        "Sprite": {
+          "Path": "",
+          "Texture": "$Path{Core/Sprites/Collectables/FirerateUpgrade.png}",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        },
+        "SpriteTint": {
+          "Red": 0.0,
+          "Green": 0.0,
+          "Blue": 1.0,
+          "Alpha": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    }
+  ],
+  "Children": []
+}

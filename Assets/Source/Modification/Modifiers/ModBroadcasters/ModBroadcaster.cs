@@ -17,17 +17,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         public Mod Mod;
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
 
-        protected virtual bool BroadcastPostAssembled => false;
+        protected virtual bool BroadcastOnStart => false;
 
-        public void OnPostAssembled ()
-        {
-            if (BroadcastPostAssembled)
-            {
-                //BroadcastMod();
-            }
-        }
-
-        protected void BroadcastMod()
+        public void BroadcastMod()
         {
             var newTargets = GetPotentialBroadcastTargets();
             var missed = new List<IModdable>(_currentBroadcastTargets);
@@ -53,6 +45,11 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             StructureManager.OnStructureAdded += OnStructureChange;
             StructureManager.OnStructureChanged += OnStructureChange;
             StructureManager.OnStructureRemoved += OnStructureChange;
+
+            if (BroadcastOnStart)
+            {
+                DelayedBroadcast();
+            }
         }
 
         protected virtual void OnDestroy ()

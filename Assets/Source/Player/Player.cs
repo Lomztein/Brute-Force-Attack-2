@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Inventory;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
@@ -33,6 +34,8 @@ namespace Lomztein.BFA2.Player
 
         private IHealthContainer _health;
         public static IHealthContainer Health => Instance._health;
+        private IInventory _inventory;
+        public static IInventory Inventory => Instance._inventory;
 
         private IResourceContainer _resources;
         public static IResourceContainer Resources => Instance._resources;
@@ -56,6 +59,7 @@ namespace Lomztein.BFA2.Player
             _health = GetComponent<IHealthContainer>();
             _unlocks = GetComponent<IUnlockList>();
             _resources = GetComponent<IResourceContainer>();
+            _inventory = GetComponent<IInventory>();
 
             if (_resources != null)
             {

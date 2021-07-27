@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public class HierarchicalModBroadcaster : ModBroadcaster
     {
-        protected override bool BroadcastPostAssembled => true;
+        protected override bool BroadcastOnStart => true;
 
         [ModelProperty]
         public bool ProvideUpwards;

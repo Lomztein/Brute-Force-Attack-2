@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         public event Action<WaveHandler, IEnemy> OnEnemyKilled;
         public event Action<WaveHandler, IEnemy> OnEnemyFinished;
 
-        private int _totalAmount;
+        public int Amount { get; private set; }
         private int _done;
 
         private int _spawnerAmount;
@@ -54,7 +54,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         public void BeginWave ()
         {
-            _totalAmount = Timeline.Amount;
+            Amount = Timeline.Amount;
             _spawnerAmount = Timeline.IntervalAmount;
             foreach (SpawnInterval spawn in Timeline)
             {
@@ -108,7 +108,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         private void OnEnemyDone ()
         {
             _done++;
-            if (_done == _totalAmount)
+            if (_done == Amount)
             {
                 OnAllEnemiesDone?.Invoke(this);
                 Timeline.Rewarder.OnFinished();

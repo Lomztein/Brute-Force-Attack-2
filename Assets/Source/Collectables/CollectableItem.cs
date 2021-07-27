@@ -7,17 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Collectables
 {
-    public class CollectableItem : CollectableBase
+    public class CollectableItem : Collectable
     {
-        [ModelProperty]
-        public ContentPrefabReference Reference;
+        [ModelProperty, SerializeReference, SR]
+        public Item Item;
 
-        public override void Collect()
+        protected override void Collect()
         {
-            GetComponent<IInventory>().AddItem(Reference.Instantiate().GetComponent<Item>());
+            Player.Player.Inventory.AddItem(Item);
         }
     }
 }
