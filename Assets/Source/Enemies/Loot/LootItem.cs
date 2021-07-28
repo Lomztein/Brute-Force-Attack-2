@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Lomztein.BFA2.Enemies.Loot
 {
@@ -31,10 +32,9 @@ namespace Lomztein.BFA2.Enemies.Loot
             float chance = Mathf.Lerp(ChanceMinMax.x, ChanceMinMax.y, ChanceOverTime.Evaluate(pos));
             int fraction = Mathf.RoundToInt (1 / chance);
 
-            System.Random random = new System.Random();
-            if (random.Next(0, Mathf.RoundToInt(fraction / chanceScalar) + 1) == 0)
+            if (Random.Range(0, Mathf.RoundToInt(fraction / chanceScalar) + 1) == 0)
             {
-                return random.Next(Mathf.RoundToInt(AmountMinMax.x), Mathf.RoundToInt(AmountMinMax.y) + 1);
+                return Random.Range(Mathf.RoundToInt(AmountMinMax.x), Mathf.RoundToInt(AmountMinMax.y + 1));
             }
             return 0;
         }

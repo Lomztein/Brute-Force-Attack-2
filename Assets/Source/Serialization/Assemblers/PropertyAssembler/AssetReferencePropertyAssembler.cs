@@ -53,11 +53,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                 return;
             } else if (obj is UnityEngine.Object uObj)
             {
-                string assetPath;
 #if UNITY_EDITOR 
                 // This code cannot function without the UnityEditor assemblies.
-                assetPath = AssetDatabase.GetAssetPath(uObj);
-#endif
+                string assetPath = AssetDatabase.GetAssetPath(uObj);
                 foreach (string path in _assetPaths)
                 {
                     if (assetPath.StartsWith(path))
@@ -70,8 +68,9 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                 {
                     field.Model = new PathModel(Path.ChangeExtension(assetPath.Substring(7), null)); // Hardcoded length for "Assets/" so that only the part with and after Resources remains. Is there an easier way to do this?
                 }
-
-                
+#else
+                Debug.LogError("AssetReferenceProperty assembler is no good without editor assemblies. Please use a ContentObjectReference instead.");
+#endif
             }
             else
             {

@@ -32,8 +32,6 @@ namespace Lomztein.BFA2.Enemies
 
         public RoundState State { get; private set; }
 
-        public Resource CreditsResource;
-        public Resource ResearchResource;
         public GameObject WaveHandlerPrefab;
         public EnemyPather Pather;
 
@@ -177,7 +175,6 @@ namespace Lomztein.BFA2.Enemies
         {
             RemoveWave(handler);
 
-            Player.Player.Resources.ChangeResource(ResearchResource, 1);
             OnWaveFinished?.Invoke(handler.Wave, handler);
 
             if (_activeWaves.Count == 0)

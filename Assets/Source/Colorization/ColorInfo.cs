@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Colorization
     {
         private static ColorInfo[] _descriptors = new []
         {
-            new ColorInfo (Color.Blue, "Blue", "Blue is cold, calm, relaxing. Blue is sadness, blue is dispair.", UnityEngine.Color.blue),
+            new ColorInfo (Color.Blue, "Blue", "Blue is cold, calm, relaxing. Blue is sadness, blue is dispair.", UnityEngine.Color.cyan),
             new ColorInfo (Color.Yellow, "Yellow", "Yellow is speed, fast and unrelenting. Yellow is happiness, but deciet as well.", UnityEngine.Color.yellow),
             new ColorInfo (Color.Red, "Red", "Red is rage, passion and power. Death will follow where the blood flows.", UnityEngine.Color.red),
         };
