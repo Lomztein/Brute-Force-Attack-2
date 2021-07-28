@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,11 +15,15 @@ namespace Lomztein.BFA2.UI.Menus
 
         public GameObject TabButtonPrefab;
         public Transform TabButtonParent;
+        public bool SelfInit = true;
         private Button[] _tabButtons;
 
-        private void Awake()
+        private void Start()
         {
-            SetSubmenus(Submenus.Select(x => x.GetComponent<ITabMenuElement>()).ToArray());
+            if (SelfInit)
+            {
+                SetSubmenus(Submenus.Select(x => x.GetComponent<ITabMenuElement>()).ToArray());
+            }
 ;        }
 
         public void SetSubmenus (ITabMenuElement[] submenus)
@@ -46,8 +51,17 @@ namespace Lomztein.BFA2.UI.Menus
                 Button button = newButton.GetComponentInChildren<Button>();
                 AddButtonListener(button, i);
                 newButton.GetComponentInChildren<Text>().text = _subMenus[i].Name;
+
                 _tabButtons[i] = button;
+                _subMenus[i].OnNameChanged += UpdateButton;
+                _subMenus[i].Init();
             }
+        }
+
+        private void UpdateButton (ITabMenuElement submenu)
+        {
+            int index = Array.IndexOf(_subMenus, submenu);
+            _tabButtons[index].GetComponentInChildren<Text>().text = submenu.Name;
         }
 
         private void AddButtonListener (Button button, int index)

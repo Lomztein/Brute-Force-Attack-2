@@ -9,8 +9,8 @@ namespace Lomztein.BFA2.Structures.Turrets
 {
     public class TurretAssembly : Structure
     {
-        public override Size Width => GetRootComponent(CurrentTeir).Width;
-        public override Size Height => GetRootComponent(CurrentTeir).Height;
+        public override Size Width => GetRootComponent(CurrentTeir)?.Width ?? Size.Medium;
+        public override Size Height => GetRootComponent(CurrentTeir)?.Height ?? Size.Medium;
         public override IResourceCost Cost => GetCost(CurrentTeir);
 
         public int CurrentTeir { get; private set; }

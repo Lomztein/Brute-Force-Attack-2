@@ -15,5 +15,10 @@ namespace Lomztein.BFA2.Inventory.Items
         public Mod Mod;
         [ModelProperty]
         public float Coeffecient;
+
+        public override string Name => Mod.Name;
+        public override string Description => Mod.Description;
+        public override Sprite Sprite => Mod.Sprite.Get();
+        public override Color SpriteTint => Colorization.ColorInfo.Get(Mod.Color).DisplayColor;
     }
 }

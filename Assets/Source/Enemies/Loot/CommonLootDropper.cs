@@ -21,10 +21,15 @@ namespace Lomztein.BFA2.Enemies.Loot
 
         public void Start()
         {
-            RoundController.Instance.OnEnemyKilled += Instance_OnEnemyKilled;
+            RoundController.Instance.OnEnemySpawned += OnEnemySpawned;
         }
 
-        private void Instance_OnEnemyKilled(IEnemy obj)
+        private void OnEnemySpawned(IEnemy obj)
+        {
+            obj.OnKilled += OnEnemyKilled;
+        }
+
+        private void OnEnemyKilled(IEnemy obj)
         {
             if (obj.WaveHandler && obj is Component component)
             {
@@ -37,6 +42,7 @@ namespace Lomztein.BFA2.Enemies.Loot
                     }
                 }
             }
+            obj.OnKilled -= OnEnemyKilled;
         }
 
         private GameObject InstantiateLoot (ContentPrefabReference prefab, Vector3 position)

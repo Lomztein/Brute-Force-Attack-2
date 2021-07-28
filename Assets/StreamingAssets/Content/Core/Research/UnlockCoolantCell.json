@@ -1,0 +1,48 @@
+{
+  "Name": "Unlock Coolant Cell",
+  "Description": "Unlock the Coolant Cell",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/CoolantCell.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 2
+      }
+    ]
+  },
+  "TimeCost": 1,
+  "Identifier": "Core.UnlockCoolantCell",
+  "PrerequisiteIdentifiers": [
+    "Core.UnlockCoolantTower"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.CoolantCell"
+      }
+    }
+  ]
+}

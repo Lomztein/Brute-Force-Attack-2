@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9b06891d087c14da2f6c56b79c479e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Tiles
+  _name: Tiles (4)
 --- !u!114 &191332291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,6 +1553,7 @@ MonoBehaviour:
   MenuPrefab: {fileID: 3066231298972091071, guid: 766f5352148faa44b80eb1ffda8622c4,
     type: 3}
   MenuParent: {fileID: 352313735}
+  Highlighter: {fileID: 0}
   TargetLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1694,7 +1695,7 @@ MonoBehaviour:
   ButtonPrefab: {fileID: 3679529093035341646, guid: c3ad0f32ca4155448b89e1480ed05957,
     type: 3}
   ButtonParent: {fileID: 399962256}
-  _Name: 
+  _Name: Placeables
 --- !u!114 &399962259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5772,6 +5773,7 @@ MonoBehaviour:
   TabButtonPrefab: {fileID: 3679529093035341646, guid: eb499a2ca5813b9468148d8e89f4307b,
     type: 3}
   TabButtonParent: {fileID: 1472483923}
+  SelfInit: 1
 --- !u!1 &2068120069
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,7 +66,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
             HitInfo hitInfo = args.GetObject<HitInfo>();
 
             float damage = hitInfo.DamageInfo.Damage * _damageMult.GetValue();
-            float range = ComputeDiameter (_range.GetValue(), 1f);
+            float range = _range.GetValue();
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();
             explosion.transform.position = hitInfo.Point;
@@ -77,8 +77,5 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
                 hitInfo.Projectile.Deplete();
             }
         }
-
-        private float ComputeDiameter(float area, float scalar)
-            => Mathf.Max(Mathf.Log(Mathf.Sqrt(area * scalar) / Mathf.PI, 10f), 0.75f);
     }
 }

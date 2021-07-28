@@ -15,7 +15,21 @@ MonoBehaviour:
   Identifier: Core.CoolantCell
   Name: Overclocked
   Description: This fires faster due to overclocking.
-  RequiredAttributes: 
+  Color: 0
+  Sprite:
+    Path: Core/Sprites/Collectables/FirerateUpgrade.png
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Filters: []
   Stats:
   - Info: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
     Value: 0.2
+  references:
+    version: 1

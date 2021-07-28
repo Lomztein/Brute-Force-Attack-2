@@ -14,13 +14,9 @@ namespace Lomztein.BFA2.Inventory.Items
     [Serializable]
     public abstract class Item
     {
-        [ModelProperty]
-        public string Name;
-        [ModelProperty]
-        public string Description;
-        [ModelProperty]
-        public ContentSpriteReference Sprite;
-        [ModelProperty]
-        public Color SpriteTint = Color.white;
+        public abstract string Name { get; }
+        public abstract string Description { get; }
+        public abstract Sprite Sprite { get; }
+        public abstract Color SpriteTint { get; }
     }
 }

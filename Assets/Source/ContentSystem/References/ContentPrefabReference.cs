@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.ContentSystem.References
 
         private IContentCachedPrefab Get ()
         {
-            if (_cachedPrefab == null)
+            if (_cachedPrefab == null || _cachedPrefab.IsDisposed())
             {
                 _cachedPrefab = Content.Get(Path, typeof(IContentCachedPrefab)) as IContentCachedPrefab;
             }

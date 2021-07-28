@@ -1,4 +1,4 @@
-﻿namespace Lomztein.BFA2.Animation.FireAnimations
+﻿namespace Lomztein.BFA2.Visuals.FireAnimations
 {
     public interface IFireAnimation
     {

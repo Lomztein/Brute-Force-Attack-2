@@ -643,6 +643,7 @@ MonoBehaviour:
   TabButtonPrefab: {fileID: 3679529093035341646, guid: eb499a2ca5813b9468148d8e89f4307b,
     type: 3}
   TabButtonParent: {fileID: 1572487594}
+  SelfInit: 1
 --- !u!114 &416121144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,7 +1326,7 @@ PrefabInstance:
     - target: {fileID: 1287727199456782870, guid: 86dfb063f22cada42a163bca15b2ee23,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1287727199456782870, guid: 86dfb063f22cada42a163bca15b2ee23,
         type: 3}
@@ -2305,7 +2306,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &972623042
 GameObject:
@@ -2560,49 +2561,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996337147}
   m_CullTransparentMesh: 0
---- !u!1 &1014354816
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1014354818}
-  - component: {fileID: 1014354817}
-  m_Layer: 0
-  m_Name: PlayerInventory
-  m_TagString: PlayerInventory
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1014354817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014354816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f44d3acba4dc85345b635d0ad24d97aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1014354818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014354816}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -256.705}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1041238654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4960,7 +4918,7 @@ Transform:
   - {fileID: 943262056}
   - {fileID: 1886534040}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1585877403
 CircleCollider2D:
@@ -5962,7 +5920,7 @@ Transform:
   - {fileID: 1741334896}
   - {fileID: 750249970}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1993495816
 MonoBehaviour:
@@ -6352,7 +6310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &2122134600 stripped
 RectTransform:
@@ -7285,7 +7243,7 @@ PrefabInstance:
     - target: {fileID: 8585625548929641971, guid: bb71f38e4773fc74bb1465593a339346,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8585625548929641971, guid: bb71f38e4773fc74bb1465593a339346,
         type: 3}

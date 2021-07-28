@@ -3,7 +3,7 @@ using Lomztein.BFA2.Serialization;
 using System.Collections;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Animation.FireAnimations
+namespace Lomztein.BFA2.Visuals.FireAnimations
 {
     public abstract class FireAnimation : MonoBehaviour, IFireAnimation
     {

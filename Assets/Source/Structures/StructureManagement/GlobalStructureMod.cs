@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.StructureManagement
 {
+    [Serializable]
     public class GlobalStructureMod
     {
         [ModelAssetReference]
@@ -18,6 +19,10 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         public GlobalStructureMod(Mod mod)
         {
             Mod = mod;
+        }
+
+        public GlobalStructureMod()
+        {
         }
 
         public bool TryApply (Structure structure)

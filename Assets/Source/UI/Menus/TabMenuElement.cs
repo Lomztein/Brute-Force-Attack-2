@@ -12,9 +12,15 @@ namespace Lomztein.BFA2.UI.Menus
         [SerializeField] private string _name;
         public string Name => _name;
 
+        public event Action<ITabMenuElement> OnNameChanged;
+
         public void CloseMenu()
         {
             gameObject.SetActive(false);
+        }
+
+        public void Init()
+        {
         }
 
         public void OpenMenu()

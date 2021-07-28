@@ -1,0 +1,71 @@
+{
+  "Name": "1Res(Clone)",
+  "Tag": "Untagged",
+  "Layer": 12,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Collectables.CollectableResource",
+      "$Data": {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Amount": 1,
+        "CollectionTime": 1.0,
+        "Rarity": "$Path{Core/Rarities/Common.json}",
+        "Sprite": {
+          "Path": "",
+          "Texture": "$Path{Core/Sprites/Collectables/Research.png}",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        },
+        "SpriteTint": {
+          "Red": 0.0,
+          "Green": 1.0,
+          "Blue": 1.0,
+          "Alpha": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.5,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    }
+  ],
+  "Children": []
+}

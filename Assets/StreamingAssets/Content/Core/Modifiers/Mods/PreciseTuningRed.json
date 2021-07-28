@@ -1,0 +1,46 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "Value": 0.2
+      }
+    ],
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.StructureColorFilter",
+        "$Data": {
+          "ApplicableColors": [
+            "Red"
+          ]
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+        "$Data": {
+          "CategoryName": "Weapon"
+        }
+      }
+    ],
+    "Identifier": "Core.PreciseTuning",
+    "Name": "Precise Tuning",
+    "Description": "This has been tuned to fire faster",
+    "Color": "Blue",
+    "Sprite": {
+      "Path": "Core/Sprites/Collectables/FirerateUpgrade.png",
+      "Texture": null,
+      "Rect": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Width": 0.0,
+        "Height": 0.0
+      },
+      "Pivot": {
+        "X": 0.5,
+        "Y": 0.5
+      },
+      "PixelsPerUnit": 16.0
+    }
+  }
+}

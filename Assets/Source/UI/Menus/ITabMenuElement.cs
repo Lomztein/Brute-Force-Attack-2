@@ -12,5 +12,8 @@ namespace Lomztein.BFA2.UI.Menus
 
         void OpenMenu();
         void CloseMenu();
+        void Init();
+
+        event Action<ITabMenuElement> OnNameChanged;
     }
 }

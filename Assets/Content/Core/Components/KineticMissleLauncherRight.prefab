@@ -141,12 +141,13 @@ MonoBehaviour:
   _name: Side Mounted Kinetic Rocket Launcher (Right)
   _description: Small attachment that fires a rocket each time it's parent weapon
     gets a kill.
-  _uniqueIdentifier: Core.SideRocketLauncherRight
+  _uniqueIdentifier: Core.KineticMissleRight
   _cost:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 400
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 1
   _height: 1
   BaseComplexity: 0
@@ -155,12 +156,12 @@ MonoBehaviour:
     - Type: 3
       MinSupportedSize: 1
       MaxSupportedSize: 1
-      LocalPosition: {x: 0, y: 0.125, z: 0}
+      LocalPosition: {x: 0, y: -0.25, z: 0}
       LocalAngle: 0
   AttachmentPoints:
   - Type: 2
     Size: 1
-    LocalPosition: {x: 0, y: 0.5, z: 0}
+    LocalPosition: {x: 0, y: 0.1875, z: 0}
     LocalAngle: 0
     RequiredPoints: 1
   DamageInfo: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}

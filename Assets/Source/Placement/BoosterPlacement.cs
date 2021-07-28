@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.Placement
 
         private GameObject _obj;
         private BoosterModBroadcaster _booster;
+        private SpriteRenderer _spriteRenderer;
 
         private GameObject _target;
         private LayerMask _layerMask = LayerMask.GetMask("Structure");
@@ -31,6 +32,13 @@ namespace Lomztein.BFA2.Placement
         {
             _obj = obj;
             _booster = obj.GetComponent<BoosterModBroadcaster>();
+            _obj.SetActive(false);
+
+            GameObject renderer = new GameObject("BoosterSprite");
+            _spriteRenderer = renderer.AddComponent<SpriteRenderer>();
+            _spriteRenderer.sprite = _booster.Mod.Sprite.Get();
+            _spriteRenderer.color = Colorization.ColorInfo.Get(_booster.Mod.Color).DisplayColor;
+
             return _booster != null;
         }
 
@@ -42,6 +50,8 @@ namespace Lomztein.BFA2.Placement
                 {
                     GameObject cardGO = UnityEngine.Object.Instantiate(_obj, _target.transform.root);
                     BoosterModBroadcaster card = cardGO.GetComponent<BoosterModBroadcaster>();
+                    card.gameObject.SetActive(true);
+
                     OnPlaced?.Invoke(cardGO);
                     PlacementController.Instance.CancelAll();
                     return true;
@@ -57,10 +67,12 @@ namespace Lomztein.BFA2.Placement
             if (options.Length == 1)
             {
                 _target = options.First().transform.root.gameObject;
+                _spriteRenderer.transform.position = (Vector3)(Vector2)_target.transform.position + Vector3.back * 9f;
             }
             else
             {
                 _target = null;
+                _spriteRenderer.transform.position = (Vector3)position + Vector3.back * 9f;
             }
             return true;
         }
@@ -80,6 +92,8 @@ namespace Lomztein.BFA2.Placement
         public bool Finish()
         {
             UnityEngine.Object.Destroy(_obj);
+            UnityEngine.Object.Destroy(_spriteRenderer.gameObject);
+
             OnFinished?.Invoke();
             return true;
         }

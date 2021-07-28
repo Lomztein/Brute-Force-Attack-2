@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Animation.FireAnimations;
+﻿using Lomztein.BFA2.Visuals.FireAnimations;
 using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;

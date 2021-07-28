@@ -1,0 +1,54 @@
+{
+  "Name": "Unlock Kinetic Missles",
+  "Description": "Unlock the Kinetic Missles attachment.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/SideMountedRocketLauncher.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 3
+      }
+    ]
+  },
+  "TimeCost": 2,
+  "Identifier": "Core.UnlockKineticMissles",
+  "PrerequisiteIdentifiers": [
+    "Core.UnlockRocketLauncherT2"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.KineticMissleRight"
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Identifier": "Core.KineticMissleLeft"
+      }
+    }
+  ]
+}

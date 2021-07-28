@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Animation.FireAnimations
+namespace Lomztein.BFA2.Visuals.FireAnimations
 {
     public class NoFireAnimation : IFireAnimation
     {
