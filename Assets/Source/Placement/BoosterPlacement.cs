@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
+﻿using Lomztein.BFA2.Modification;
+using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
 using Lomztein.BFA2.Structures;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,10 @@ namespace Lomztein.BFA2.Placement
 
         public bool ToPosition(Vector2 position, Quaternion rotation)
         {
-            var options = Physics2D.OverlapPointAll(position, _layerMask);
+            var options = Physics2D.OverlapPointAll(position, _layerMask)
+                .Select(x => x.transform.root)
+                .Where(x => x.GetComponentsInChildren<IModdable>().Any(y => _booster.Mod.CanMod(y)))
+                .ToArray();
 
             if (options.Length == 1)
             {
