@@ -9,19 +9,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public class ParentModBroadcaster : ModBroadcaster
     {
+        protected override bool BroadcastOnStart => true;
+
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
             => transform.parent.GetComponentInChildren<IModdable>().ObjectToEnumerable();
-
-        protected override void Start()
-        {
-            base.Start();
-            DelayedBroadcast();
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            ClearMod();
-        }
     }
 }

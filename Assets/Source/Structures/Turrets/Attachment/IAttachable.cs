@@ -13,15 +13,4 @@ namespace Lomztein.BFA2.Structures.Turrets.Attachment
         Quaternion WorldRotation { get; }
         IEnumerable<AttachmentPoint> GetPoints();
     }
-
-    public static class AttachableExtensions
-    {
-        public static IEnumerable<Vector3> GetPointsWorldPositions (this IAttachable attachable)
-        {
-            foreach (AttachmentPoint point in attachable.GetPoints())
-            {
-                yield return point.GetWorldPosition(attachable.WorldPosition, attachable.WorldRotation);
-            }
-        }
-    }
 }

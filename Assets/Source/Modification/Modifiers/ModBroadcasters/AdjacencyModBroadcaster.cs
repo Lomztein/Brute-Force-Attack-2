@@ -15,12 +15,6 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         [ModelProperty]
         public float AdjacencyCheckRange;
 
-        protected override void Start()
-        {
-            base.Start();
-            DelayedBroadcast();
-        }
-
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {
             foreach (Transform sibling in GetSiblings())

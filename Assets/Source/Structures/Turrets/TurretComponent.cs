@@ -87,11 +87,11 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public void OnDrawGizmosSelected()
         {
-            foreach (var point in AttachmentSlots.GetPoints().Select(x => x.GetWorldPosition(transform.position, transform.rotation)))
+            foreach (var point in AttachmentSlots.GetPoints().Select(x => x.GetWorldPosition(transform)))
             {
                 Gizmos.DrawWireSphere(point, 0.25f);
             }
-            foreach (var point in GetPoints().Select(x => x.GetWorldPosition(transform.position, transform.rotation)))
+            foreach (var point in GetPoints().Select(x => x.GetWorldPosition(transform)))
             {
                 Gizmos.DrawSphere(point, 0.2f);
             }

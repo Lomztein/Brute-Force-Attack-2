@@ -87,10 +87,13 @@
     {
       "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.HierarchicalModBroadcaster",
       "$Data": {
-        "ProvideUpwards": false,
-        "ProvideDownwards": true,
+        "ProvideUpwards": true,
+        "ProvideDownwards": false,
         "ProvideSelf": false,
-        "Mod": null
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/AuxProcessor.json}"
+        }
       }
     }
   ],

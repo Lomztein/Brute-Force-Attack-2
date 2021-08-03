@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
         [ModelProperty]
         public Vector2 LocalTargetPosition;
 
-        public override StructureCategory Category => StructureCategories.Connector;
+        public override StructureCategory Category => StructureCategories.Utility;
 
         private IModdable GetTarget ()
         {

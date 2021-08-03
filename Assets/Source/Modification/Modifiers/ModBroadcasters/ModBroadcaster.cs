@@ -57,6 +57,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             StructureManager.OnStructureAdded -= OnStructureChange;
             StructureManager.OnStructureChanged -= OnStructureChange;
             StructureManager.OnStructureRemoved -= OnStructureChange;
+            ClearMod();
         }
 
         private void OnStructureChange(Structure obj)
@@ -85,7 +86,10 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private void RemoveMod (IModdable moddable)
         {
-            moddable.Mods.RemoveMod(Mod.Identifier);
+            if (moddable != null)
+            {
+                moddable.Mods.RemoveMod(Mod.Identifier);
+            }
         }
 
         public IEnumerable<IModdable> GetBroadcastTargets() => GetPotentialBroadcastTargets().Where(x => Mod.CanMod(x));

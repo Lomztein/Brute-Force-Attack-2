@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
     public class AreaModBroadcaster : ModBroadcaster, IRanger
     {
+        protected override bool BroadcastOnStart => true;
         [ModelProperty]
         public LayerMask TargetLayer;
         [ModelProperty]
@@ -24,12 +25,6 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         {
             base.Start();
             DelayedBroadcast();
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            ClearMod();
         }
 
         public float GetRange() => Range;

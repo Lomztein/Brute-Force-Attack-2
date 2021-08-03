@@ -20,12 +20,14 @@ namespace Lomztein.BFA2.AssemblyEditor
         private GameObject _model;
         private IAttachable _attachable;
         private Match _currentMatch;
+        private Transform _probe;
 
         public bool Finish()
         {
             OnFinished?.Invoke();
             UnityEngine.Object.Destroy(_model);
             UnityEngine.Object.Destroy(_obj);
+            UnityEngine.Object.Destroy(_probe.gameObject);
             return true;
         }
 
@@ -39,6 +41,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             _model = UnityUtils.InstantiateMockGO(_obj);
             _attachable = _obj.GetComponent<IAttachable>();
             _obj.SetActive(false);
+            _probe = new GameObject().transform;
             return _attachable != null;
         }
 
@@ -48,7 +51,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             {
                 GameObject placed = UnityEngine.Object.Instantiate(_obj);
                 placed.SetActive(true);
-                placed.transform.position = _currentMatch.Position;
+                placed.transform.position = _currentMatch.Position + Vector3.back * 0.1f;
                 placed.transform.rotation = _currentMatch.Rotation;
                 placed.transform.parent = _currentMatch.Component.transform;
 
@@ -65,33 +68,55 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         private IEnumerable<Match> GetMatches(Vector3 position)
         {
-            var groups = _attachable.GetPoints().GroupBy(x => x.Type); // Group by type.
+            var points = _attachable.GetPoints(); // Group by type.
+            _probe.transform.position = position;
 
-            foreach (var group in groups)
+            foreach (var point in points)
             {
-                TurretComponent[] components = Physics2D.OverlapPointAll(position).Select(x => x.GetComponent<TurretComponent>()).Where(x => x != null).ToArray();
-                AttachmentPoint checkPoint = group.First();
-
-                if (checkPoint == null)
-                {
-                    yield break;
-                }
+                TurretComponent[] components = Physics2D.OverlapCircleAll(position, 1f).Select(x => x.GetComponent<TurretComponent>()).Where(x => x != null).ToArray();
 
                 foreach (TurretComponent component in components)
                 {
-                    IEnumerable<AttachmentSlot> points = component.AttachmentSlots.GetSupportingPoints(checkPoint);
-                    foreach (var point in points)
+                    IEnumerable<AttachmentSlot> compatables = component.AttachmentSlots.GetSupportingPoints(point).Where(x => x.IsEmpty());
+                    foreach (var compatable in compatables)
                     {
-                        Vector2 offset = point.LocalPosition - checkPoint.LocalPosition;
-                        var mappings = MapPointsToSlots(points, group, checkPoint.RequiredPoints, component.transform.position, component.transform.rotation, offset, _attachable.WorldRotation);
-                        if (mappings.Count == checkPoint.RequiredPoints)
+                        Vector2 diff = point.GetWorldPosition(_probe) - compatable.GetWorldPosition(component.transform);
+                        _probe.transform.position -= (Vector3)diff;
+
+                        var pointsToTry = points.Where(x => x.Type == point.Type && x.Size == point.Size);
+                        var matchingPoints = new Dictionary<AttachmentSlot, AttachmentPoint>();
+
+                        foreach (var toTry in pointsToTry)
                         {
-                            Quaternion rot = point.GetWorldRotation(component.transform.rotation);
-                            yield return new Match(component, component.transform.position + (Vector3)offset + Vector3.back, rot, mappings);
+                            var toTryPosition = toTry.GetWorldPosition(_probe);
+                            var slotAtPosition = FindSlotAtPosition(compatables, component.transform, toTryPosition);
+                            if (slotAtPosition != null)
+                            {
+                                matchingPoints.Add(slotAtPosition, toTry);
+                            }
+                        }
+
+                        if (matchingPoints.Count >= point.RequiredPoints)
+                        {
+                            yield return new Match(component, _probe.position + Vector3.forward * component.transform.position.z, _probe.rotation, matchingPoints);
                         }
                     }
                 }
             }
+        }
+
+        private AttachmentSlot FindSlotAtPosition (IEnumerable<AttachmentSlot> slots, Transform parent, Vector3 position)
+        {
+            float epsilon = 0.1f;
+            foreach (var slot in slots)
+            {
+                Vector3 pos = slot.GetWorldPosition(parent);
+                if (Vector2.Distance(pos, position) < epsilon)
+                {
+                    return slot;
+                }
+            }
+            return null;
         }
 
         private Match GetClosestMatch(IEnumerable<Match> matches, Vector3 position)
@@ -112,39 +137,6 @@ namespace Lomztein.BFA2.AssemblyEditor
             return curr;
         }
 
-        private Dictionary<AttachmentSlot, AttachmentPoint> MapPointsToSlots(IEnumerable<AttachmentSlot> parentSlots, IEnumerable<AttachmentPoint> childPoints, int targetCount, Vector3 parentPos, Quaternion parentRot, Vector3 childPos, Quaternion childRot)
-        {
-            var mappings = new Dictionary<AttachmentSlot, AttachmentPoint>();
-            foreach (AttachmentPoint point in childPoints)
-            {
-                AttachmentSlot slot = GetSlot (parentSlots, point, parentPos, parentRot, childPos, childRot);
-                if (slot != null)
-                {
-                    mappings.Add(slot, point);
-                }
-            }
-            return mappings;
-        }
-
-        private AttachmentSlot GetSlot(IEnumerable<AttachmentSlot> parentSlots, AttachmentPoint point, Vector3 parentPos, Quaternion parentRot, Vector3 childPos, Quaternion childRot)
-        {
-            var p = GetSlotAtPosition(parentSlots, parentPos, parentRot, point.GetWorldPosition(childPos, childRot));
-            return p != null && p.IsEmpty() ? p : null;
-        }
-
-        private AttachmentSlot GetSlotAtPosition(IEnumerable<AttachmentSlot> set, Vector3 parentPos, Quaternion parentRot, Vector3 pointWorldPos, float sqrEpsilon = 0.1f)
-        {
-            foreach (AttachmentSlot slot in set)
-            {
-                Vector3 slotPos = slot.GetWorldPosition(parentPos, parentRot);
-                if (Vector2.SqrMagnitude((parentPos + pointWorldPos) - slotPos) < sqrEpsilon)
-                {
-                    return slot;
-                }
-            }
-            return null;
-        }
-
         public bool ToPosition(Vector2 position, Quaternion rotation)
         {
             var matches = GetMatches(position);
@@ -156,7 +148,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             else
             {
                 _currentMatch = GetClosestMatch(matches, position);
-                _model.transform.position = _currentMatch.Position;
+                _model.transform.position = _currentMatch.Position + Vector3.back * 0.1f;
                 _model.transform.rotation = _currentMatch.Rotation;
                 return true;
             }

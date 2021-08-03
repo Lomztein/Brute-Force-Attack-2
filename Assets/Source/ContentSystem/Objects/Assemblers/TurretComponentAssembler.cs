@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.Structures.Turrets.Attachment;
 using Lomztein.BFA2.Turrets;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,22 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             IContentCachedPrefab component = GetComponent(model.GetValue<string>("UniqueIdentifier"));
             ValueAssembler assembler = new ValueAssembler();
             GameObject obj = component.Instantiate();
+            TurretComponent newComponent = obj.GetComponent<TurretComponent>();
 
             if (parent != null)
             {
                 obj.transform.SetParent(parent.transform);
                 obj.transform.localPosition = (Vector3)assembler.Assemble (model.GetObject("LocalPosition"), typeof (Vector3), context);
+
+                TurretComponent parentComponent = parent.GetComponent<TurretComponent>();
+                foreach (var point in newComponent.AttachmentPoints)
+                {
+                    AttachmentSlot slot = FindSlotForPoint(parentComponent.AttachmentSlots.GetSupportingPoints(point), point, obj.transform, parent.transform);
+                    if (slot != null)
+                    {
+                        slot.Attach(newComponent);
+                    }
+                }
             }
             else
             {
@@ -32,13 +44,26 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 obj.transform.localPosition = Vector3.zero;
             }
 
-            TurretComponent newComponent = obj.GetComponent<TurretComponent>();
             foreach (ValueModel child in model.GetArray("Children"))
             {
                 Assemble(child as ObjectModel, newComponent.transform, assembly, context);
             }
 
             return newComponent;
+        }
+
+        private AttachmentSlot FindSlotForPoint(IEnumerable<AttachmentSlot> slots, AttachmentPoint point, Transform pointParent, Transform slotParent)
+        {
+            Vector3 pointPos = point.GetWorldPosition(pointParent);
+            foreach (var slot in slots)
+            {
+                Vector3 slotPos = slot.GetWorldPosition(slotParent);
+                if (Vector2.Distance(pointPos, slotPos) < 0.1f)
+                {
+                    return slot;
+                }
+            }
+            return null;
         }
 
         public ObjectModel Dissassemble (TurretComponent component, DisassemblyContext context)

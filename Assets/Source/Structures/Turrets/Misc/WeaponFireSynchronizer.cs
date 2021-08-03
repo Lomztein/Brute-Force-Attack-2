@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
     public class WeaponFireSynchronizer : TurretComponent
     {
         public SequencedFireSyncronizationController Controller { get; private set; }
+        public override StructureCategory Category => StructureCategories.Utility;
 
         public override void End()
         {

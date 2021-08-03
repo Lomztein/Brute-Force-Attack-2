@@ -111,18 +111,6 @@
       }
     },
     {
-      "$Type": "UnityEngine.CircleCollider2D",
-      "$Data": {
-        "Radius": 0.5,
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "IsTrigger": false,
-        "UsedByEffector": false
-      }
-    },
-    {
       "$Type": "Lomztein.BFA2.Visuals.FireAnimations.SimpleFireAnimation",
       "$Data": {
         "AnimationSprites": [
@@ -253,6 +241,19 @@
         },
         "HitLayer": {
           "Mask": 256
+        }
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 2.0,
+          "Y": 2.0
         }
       }
     }

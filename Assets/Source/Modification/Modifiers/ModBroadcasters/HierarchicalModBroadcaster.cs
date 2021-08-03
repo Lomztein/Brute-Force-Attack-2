@@ -20,13 +20,6 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         [ModelProperty]
         public bool ProvideSelf;
 
-        private readonly List<IModdable> _lastModified = new List<IModdable>();
-
-        protected override void Start()
-        {
-            DelayedBroadcast();
-        }
-
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {
             List<IModdable> moddables = new List<IModdable>();
@@ -48,11 +41,6 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             }
 
             return moddables;
-        }
-
-        protected override void OnDestroy()
-        {
-            ClearMod();
         }
     }
 }

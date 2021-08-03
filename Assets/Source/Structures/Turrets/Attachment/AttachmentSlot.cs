@@ -37,7 +37,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Attachment
             return type;
         }
 
-        public Vector3 GetWorldPosition(Vector3 parentPosition, Quaternion parentRotation) => GetWorldRotation(parentRotation) * (parentPosition + LocalPosition);
-        public Quaternion GetWorldRotation(Quaternion parentRotation) => parentRotation * Quaternion.Euler(0f, 0f, LocalAngle);
+        public Vector3 GetWorldPosition(Transform parent) => parent.TransformPoint(LocalPosition);
     }
 }

@@ -97,10 +97,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1599087991926430482}
   - component: {fileID: 1599087991926430483}
-  - component: {fileID: -4933678295721008529}
   - component: {fileID: 8441061706672402137}
   - component: {fileID: 2059517578295061690}
   - component: {fileID: 7665311169303258462}
+  - component: {fileID: -4656148539772172496}
   m_Layer: 9
   m_Name: HeavyCannonT2
   m_TagString: Untagged
@@ -143,7 +143,8 @@ MonoBehaviour:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 6000
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   BaseComplexity: 0
@@ -211,22 +212,6 @@ MonoBehaviour:
   BaseFirerate: 0.5
   Color: 2
   FireTreshold: 1
---- !u!58 &-4933678295721008529
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1599087991926430481}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &8441061706672402137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +368,32 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!61 &-4656148539772172496
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599087991926430481}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &1750615681491273965
 GameObject:
   m_ObjectHideFlags: 0

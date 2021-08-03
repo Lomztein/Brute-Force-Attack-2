@@ -30,7 +30,10 @@ namespace Lomztein.BFA2.UI.Messages
             GameObject messageObj = Instantiate(MessagePrefab, MessageParent);
             messageObj.GetComponent<Text>().text = message.Content;
             yield return message.Wait();
-            Destroy(messageObj);
+            if (messageObj)
+            {
+                Destroy(messageObj);
+            }
         }
     }
 }
