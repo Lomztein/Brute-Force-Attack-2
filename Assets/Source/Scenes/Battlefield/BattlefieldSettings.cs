@@ -36,8 +36,7 @@ namespace Lomztein.BFA2.Battlefield
             "Core.OneToTwoConnector",
             "Core.SmallQuadFireSynchronizer",
             "Core.SmallTwinFireSynchronizer",
-            "Core.SideMountLeft",
-            "Core.SideMountRight",
+            "Core.SideMount",
         };
         public string[] DefaultUnlockedStructures =
         {

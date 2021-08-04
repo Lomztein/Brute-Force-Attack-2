@@ -9,7 +9,9 @@ namespace Lomztein.BFA2.Placement
 {
     public interface ISimplePlacement : IPlacement
     {
-        bool ToPosition(Vector2 position, Quaternion rotation);
+        bool ToPosition(Vector2 position);
+        bool ToRotation(Quaternion rotation);
+        bool Flip();
 
         bool Place();
         event Action<GameObject> OnPlaced;

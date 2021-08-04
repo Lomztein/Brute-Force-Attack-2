@@ -144,6 +144,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Flip"",
+                    ""type"": ""Button"",
+                    ""id"": ""86f17e38-4665-4ee6-a9a0-2e9f16e9013e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -166,6 +174,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Default"",
                     ""action"": ""QuickPlace"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67a3a9bb-d611-422b-ba99-e0eeed24c2d6"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""Flip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -362,6 +381,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Placement = asset.FindActionMap("Placement", throwIfNotFound: true);
         m_Placement_Rotate = m_Placement.FindAction("Rotate", throwIfNotFound: true);
         m_Placement_QuickPlace = m_Placement.FindAction("QuickPlace", throwIfNotFound: true);
+        m_Placement_Flip = m_Placement.FindAction("Flip", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
@@ -516,12 +536,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private IPlacementActions m_PlacementActionsCallbackInterface;
     private readonly InputAction m_Placement_Rotate;
     private readonly InputAction m_Placement_QuickPlace;
+    private readonly InputAction m_Placement_Flip;
     public struct PlacementActions
     {
         private @InputMaster m_Wrapper;
         public PlacementActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotate => m_Wrapper.m_Placement_Rotate;
         public InputAction @QuickPlace => m_Wrapper.m_Placement_QuickPlace;
+        public InputAction @Flip => m_Wrapper.m_Placement_Flip;
         public InputActionMap Get() { return m_Wrapper.m_Placement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -537,6 +559,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @QuickPlace.started -= m_Wrapper.m_PlacementActionsCallbackInterface.OnQuickPlace;
                 @QuickPlace.performed -= m_Wrapper.m_PlacementActionsCallbackInterface.OnQuickPlace;
                 @QuickPlace.canceled -= m_Wrapper.m_PlacementActionsCallbackInterface.OnQuickPlace;
+                @Flip.started -= m_Wrapper.m_PlacementActionsCallbackInterface.OnFlip;
+                @Flip.performed -= m_Wrapper.m_PlacementActionsCallbackInterface.OnFlip;
+                @Flip.canceled -= m_Wrapper.m_PlacementActionsCallbackInterface.OnFlip;
             }
             m_Wrapper.m_PlacementActionsCallbackInterface = instance;
             if (instance != null)
@@ -547,6 +572,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @QuickPlace.started += instance.OnQuickPlace;
                 @QuickPlace.performed += instance.OnQuickPlace;
                 @QuickPlace.canceled += instance.OnQuickPlace;
+                @Flip.started += instance.OnFlip;
+                @Flip.performed += instance.OnFlip;
+                @Flip.canceled += instance.OnFlip;
             }
         }
     }
@@ -715,6 +743,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnQuickPlace(InputAction.CallbackContext context);
+        void OnFlip(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

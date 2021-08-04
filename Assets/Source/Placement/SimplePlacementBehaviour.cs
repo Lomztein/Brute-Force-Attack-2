@@ -1,10 +1,5 @@
 ﻿using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +13,7 @@ namespace Lomztein.BFA2.Placement
         public override bool Busy => _currentPlaceable != null;
 
         private InputAction _quickPlace;
+        private float _angle;
 
         private void Awake()
         {
@@ -25,6 +21,26 @@ namespace Lomztein.BFA2.Placement
             Input.PrimaryClick.performed += OnPrimaryClick;
             Input.SecondaryClick.performed += OnSecondaryClick;
             _quickPlace = Input.Master.Placement.QuickPlace;
+
+            Input.Master.Placement.Flip.performed += Flip;
+            Input.Master.Placement.Rotate.performed += Rotate;
+        }
+
+        private void Rotate(InputAction.CallbackContext obj)
+        {
+            if (_currentPlaceable != null && obj.phase == InputActionPhase.Performed)
+            {
+                _angle += 90f;
+                _currentPlaceable.ToRotation(Quaternion.Euler(0f, 0f, _angle));
+            }
+        }
+
+        private void Flip(InputAction.CallbackContext obj)
+        {
+            if (_currentPlaceable != null && obj.phase == InputActionPhase.Performed)
+            {
+                _currentPlaceable.Flip();
+            }
         }
 
         private void OnDestroy()
@@ -54,7 +70,7 @@ namespace Lomztein.BFA2.Placement
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             if (_currentPlaceable != null)
             {
-                _currentPlaceable.ToPosition(mousePos, Quaternion.identity);
+                _currentPlaceable.ToPosition(mousePos);
             }
         }
 
@@ -69,6 +85,7 @@ namespace Lomztein.BFA2.Placement
         public override void TakePlacement(ISimplePlacement placeable)
         {
             _currentPlaceable = placeable;
+            _currentPlaceable.ToRotation(Quaternion.Euler(0f, 0f, _angle));
         }
 
         public bool PlaceCurrent()

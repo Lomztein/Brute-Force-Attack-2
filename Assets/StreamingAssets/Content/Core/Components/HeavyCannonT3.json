@@ -46,7 +46,52 @@
         "Color": "Red",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
-          "_attachmentPoints": []
+          "_attachmentPoints": [
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.4375,
+                "Y": 0.9375,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.4375,
+                "Y": -0.9375,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Module",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -1.0,
+                "Y": -0.375,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Module",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -1.0,
+                "Y": 0.375,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
         "AttachmentPoints": [
           {
@@ -544,6 +589,61 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "HeavyCannonT3_0",
+      "Tag": "Untagged",
+      "Layer": 0,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
     }
   ]
 }

@@ -59,6 +59,8 @@ namespace Lomztein.BFA2.Structures
         [ModelProperty]
         public Size _height;
         public virtual Size Height => _height;
+        public bool Flipped => transform.localScale.y < 0f;
+
         public virtual StructureCategory Category { get; } = StructureCategories.Misc;
 
         string ITooltip.Title => Name;
@@ -76,6 +78,18 @@ namespace Lomztein.BFA2.Structures
         protected virtual void Awake()
         {
             Mods = new ModContainer(Stats, Events);
+        }
+
+        public void Flip ()
+        {
+            if (Flipped)
+            {
+                transform.localScale = Vector3.one;
+            }
+            else
+            {
+                transform.localScale = new Vector3(1f, -1f, 1f);
+            }
         }
 
         public void InvokeChanged()

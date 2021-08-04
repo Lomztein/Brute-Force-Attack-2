@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             if (!AssemblyEditorController.Instance.IsTierEmpty(AssemblyEditorController.Instance.WorkingTier))
             {
-                var placement = new AttachablePlacement();
+                var placement = new ComponentPlacement();
                 GameObject obj = pick.Instantiate();
                 ReflectionUtils.DynamicBroadcastInvoke(obj, "OnInstantiated", true);
                 placement.Pickup(obj);

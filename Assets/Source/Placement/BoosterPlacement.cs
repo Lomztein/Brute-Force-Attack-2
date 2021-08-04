@@ -61,7 +61,7 @@ namespace Lomztein.BFA2.Placement
             return false;
         }
 
-        public bool ToPosition(Vector2 position, Quaternion rotation)
+        public bool ToPosition(Vector2 position)
         {
             var options = Physics2D.OverlapPointAll(position, _layerMask)
                 .Select(x => x.transform.root)
@@ -104,6 +104,16 @@ namespace Lomztein.BFA2.Placement
 
         public void Init()
         {
+        }
+
+        public bool ToRotation(Quaternion rotation)
+        {
+            return true;
+        }
+
+        public bool Flip()
+        {
+            return true;
         }
     }
 }

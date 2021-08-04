@@ -74,6 +74,9 @@ namespace Lomztein.BFA2.Serialization.Models
 
         public ObjectModel GetObject(string name)
             => GetProperty<ObjectModel>(name);
+
+        public bool HasProperty(string name)
+            => GetField(name) != null;
     }
 
     [Serializable]

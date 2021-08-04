@@ -32,7 +32,6 @@ namespace Lomztein.BFA2.Placement
 
         private const string SpawnPointTag = "EnemySpawnPoint";
         private Transform[] _enemySpawnPoints;
-        private bool _manualRotationOverride;
 
         public StructurePlacement (params Func<string>[] placeRequirements)
         {
@@ -87,15 +86,12 @@ namespace Lomztein.BFA2.Placement
             return false;
         }
 
-        public bool ToPosition(Vector2 position, Quaternion rotation)
+        public bool ToPosition(Vector2 position)
         {
             position = World.Grid.SnapToGrid(position, _placeable.Width, _placeable.Height);
-            rotation = _manualRotationOverride ? rotation : Quaternion.Euler(0f, 0f, GetAngleToNearestSpawnPoint(position, 90));
             _obj.transform.position = position;
-            _obj.transform.rotation = rotation;
             _model.transform.position = position;
-            _model.transform.rotation = rotation;
-            string canPlace = CanPlace(position, rotation);
+            string canPlace = CanPlace(_model.transform.position, _model.transform.rotation);
             if (string.IsNullOrEmpty(canPlace)) {
                 _highlighters.Tint(Color.green);
                 TintObject(_model, Color.green);
@@ -229,6 +225,18 @@ namespace Lomztein.BFA2.Placement
         public void Init()
         {
             SetNoBuildTiles(true);
+        }
+
+        public bool ToRotation(Quaternion rotation)
+        {
+            _obj.transform.rotation = rotation;
+            _model.transform.rotation = rotation;
+            return true;
+        }
+
+        public bool Flip()
+        {
+            return true;
         }
 
         private struct CannotPlaceReasons

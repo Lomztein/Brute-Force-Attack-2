@@ -25,8 +25,23 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
             if (parent != null)
             {
+
                 obj.transform.SetParent(parent.transform);
-                obj.transform.localPosition = (Vector3)assembler.Assemble (model.GetObject("LocalPosition"), typeof (Vector3), context);
+                var position = (Vector2)assembler.Assemble(model.GetObject("LocalPosition"), typeof(Vector2), context);
+
+                obj.transform.localPosition = (Vector3)position + Vector3.back * 0.1f;
+
+                if (model.HasProperty("Angle"))
+                {
+                    obj.transform.localRotation = Quaternion.Euler(0f, 0f, model.GetValue<float>("Angle"));
+                }
+                if (model.HasProperty("Flipped"))
+                {
+                    if (model.GetValue<bool>("Flipped"))
+                    {
+                        newComponent.Flip();
+                    }
+                }
 
                 TurretComponent parentComponent = parent.GetComponent<TurretComponent>();
                 foreach (var point in newComponent.AttachmentPoints)
@@ -81,7 +96,9 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
             return new ObjectModel(
                 new ObjectField("UniqueIdentifier", ValueModelFactory.Create(component.Identifier, context)),
-                new ObjectField("LocalPosition", ValueModelFactory.Create(obj.transform.localPosition, context)),
+                new ObjectField("LocalPosition", ValueModelFactory.Create((Vector2)obj.transform.localPosition, context)),
+                new ObjectField("Angle", ValueModelFactory.Create(obj.transform.localRotation.eulerAngles.z, context)),
+                new ObjectField("Flipped", ValueModelFactory.Create(component.Flipped, context)),
                 new ObjectField("Children", new ArrayModel(children))
                 );
         }
