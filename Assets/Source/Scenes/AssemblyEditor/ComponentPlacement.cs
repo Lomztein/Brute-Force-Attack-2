@@ -85,19 +85,9 @@ namespace Lomztein.BFA2.AssemblyEditor
                         Vector2 diffPos = point.GetWorldPosition(_probe) - compatable.GetWorldPosition(component.transform);
                         _probe.transform.position -= (Vector3)diffPos;
 
-                        Quaternion rotation = _probe.rotation;
-                        float angles = compatable.LocalAngle + point.LocalAngle;
+                        Quaternion rotation = Quaternion.Euler(0f, 0f, compatable.LocalAngle + point.LocalAngle + _angleOffset);
+                        _probe.transform.rotation = component.transform.rotation * rotation;
 
-                        if (Mathf.Abs(angles) > 0.1f)
-                        {
-                            rotation = Quaternion.Euler(0f, 0f, angles);
-                        }
-                        else
-                        {
-                            rotation = Quaternion.Euler(0f, 0f, _angleOffset);
-                        }
-
-                        _probe.transform.rotation = rotation;
                         var pointsToTry = points.Where(x => x.Type == point.Type && x.Size == point.Size);
                         var matchingPoints = new Dictionary<AttachmentSlot, AttachmentPoint>();
 

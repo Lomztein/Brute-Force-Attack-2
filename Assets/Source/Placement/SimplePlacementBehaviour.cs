@@ -47,6 +47,9 @@ namespace Lomztein.BFA2.Placement
         {
             Input.PrimaryClick.performed -= OnPrimaryClick;
             Input.SecondaryClick.performed -= OnSecondaryClick;
+
+            Input.Master.Placement.Flip.performed -= Flip;
+            Input.Master.Placement.Rotate.performed -= Rotate;
         }
 
         private void OnSecondaryClick(InputAction.CallbackContext obj)
