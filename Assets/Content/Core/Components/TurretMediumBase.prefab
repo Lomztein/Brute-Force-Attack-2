@@ -53,7 +53,8 @@ MonoBehaviour:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 500
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   BaseComplexity: 0
@@ -107,6 +108,14 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
+  EvaluatorOptions:
+  - {fileID: 11400000, guid: a9572d6aa8a56dc4394bde03f3258138, type: 2}
+  - {fileID: 11400000, guid: 10b5ef6d788d1f04db1a5dc4885ac4ec, type: 2}
+  - {fileID: 11400000, guid: a1d85a3791469e340b8e571327d4d836, type: 2}
+  - {fileID: 11400000, guid: e81120d6241553c448edc23215e0d388, type: 2}
+  - {fileID: 11400000, guid: ba71c790e1344cc41a1276a389dabecf, type: 2}
+  - {fileID: 11400000, guid: d48e480e8ed24e44aa860c306eb07940, type: 2}
+  - {fileID: 11400000, guid: 5f1a30fa03f40a147b88e4262a1c1c49, type: 2}
 --- !u!114 &5191529570489633430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,9 +125,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5246017201175003115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c4f08a83e0c16428c8071f5fe520b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0085c4a098d948948adb9904b5212c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _evalutator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!58 &-3377766451071044650
 CircleCollider2D:
   m_ObjectHideFlags: 0

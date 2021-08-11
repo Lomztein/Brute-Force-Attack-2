@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
                 return new IContextMenuOption[]
                 {
-                    new ContextMenuOption ("Upgrade - " + Cost.Format() + status, Description, Sprite, Upgrade, CanUpgrade)
+                    new ContextMenuOption (() => "Upgrade - " + Cost.Format() + status, () => Description, () => Sprite, () => Color.white, () => UI.ContextMenu.ContextMenu.Side.Right, Upgrade, CanUpgrade),
                 };
             }
             else

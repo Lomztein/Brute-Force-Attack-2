@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5563669402843524042}
   - component: {fileID: 4421234629336450257}
   - component: {fileID: 6232743743797018108}
+  - component: {fileID: 2723898593846935114}
   - component: {fileID: 7469732029039671965}
   m_Layer: 10
   m_Name: AssemblyPrefab
@@ -113,6 +114,26 @@ MonoBehaviour:
       type: {class: ResourceCost, ns: Lomztein.BFA2.Purchasing.Resources, asm: Assembly-CSharp}
       data:
         Elements: []
+--- !u!114 &2723898593846935114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7641300259387924724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a16aa07f1402445a5150c145c15905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EvaluatorOptions:
+  - {fileID: 11400000, guid: 63608a68677268e47b3d941ee7c8e6b6, type: 2}
+  - {fileID: 11400000, guid: 183e900ca4a0aa4409e27321cb41707f, type: 2}
+  - {fileID: 11400000, guid: b732450b5521b9e48ba0c2eb9caf6634, type: 2}
+  - {fileID: 11400000, guid: ed2ec095d87bd20418878972c0884883, type: 2}
+  - {fileID: 11400000, guid: d1118ea823d09944480010922a13be86, type: 2}
+  - {fileID: 11400000, guid: db90d791c4163c74d8216cc048d04040, type: 2}
+  - {fileID: 11400000, guid: 386ecf402a743a64094891ddd2486ea1, type: 2}
 --- !u!61 &7469732029039671965
 BoxCollider2D:
   m_ObjectHideFlags: 0

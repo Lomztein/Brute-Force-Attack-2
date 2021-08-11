@@ -1,5 +1,4 @@
 ﻿using Lomztein.BFA2.Structures.Highlighters;
-using Lomztein.BFA2.UI.ContextMenu.Menus;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
 using Lomztein.BFA2.UI.Windows;
 using System.Collections.Generic;
@@ -66,7 +65,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
         }
 
         private bool HasActiveWindow(GameObject obj) => _activeMenus.ContainsKey(obj) && _activeMenus[obj] != null;
-        private void AddActiveWindow(GameObject obj, IContextMenu menu)
+        private void AddActiveWindow(GameObject obj, ContextMenu menu)
                 => _activeMenus.Add(obj, menu as Object);
         private void RemoveActiveWindow(GameObject obj) => _activeMenus.Remove(obj);
 
@@ -84,7 +83,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
                     menuObj.transform.position = position;
 
-                    IContextMenu menu = menuObj.GetComponent<IContextMenu>();
+                    ContextMenu menu = menuObj.GetComponent<ContextMenu>();
                     menu.Open(options);
                     menu.StickTo(obj.transform);
                     AddActiveWindow(obj, menu);

@@ -5,18 +5,20 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Targeting
 {
-    public class TargetEvaluator<T> : ITargetEvaluator<T>
+    public abstract class TargetEvaluator
     {
-        Func<T, float> _function;
+        public bool Invert;
 
-        public TargetEvaluator (Func<T, float> function)
+        public float Evaluate (GameObject source, Collider2D target)
         {
-            _function = function;
+            float value = DoEvaluate(source, target);
+            if (Invert)
+            {
+                value *= -1;
+            }
+            return value;
         }
 
-        public float Evaluate(T target)
-        {
-            return _function(target);
-        }
+        protected abstract float DoEvaluate(GameObject source, Collider2D target);
     }
 }

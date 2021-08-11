@@ -4,6 +4,8 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets.Rangers;
 using Lomztein.BFA2.Targeting;
+using Lomztein.BFA2.UI.ContextMenu;
+using Lomztein.BFA2.UI.ContextMenu.Providers;
 using Lomztein.BFA2.UI.Tooltip;
 using System;
 using System.Collections;
@@ -27,8 +29,8 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         public LayerMask TargetLayer;
 
         private Transform _target;
+        private TargetFinder _targetFinder;
 
-        private ITargetFinder _targetFinder;
         private IEventCaller _onTargetAcquired;
 
         public override StructureCategory Category => StructureCategories.TargetFinder;
@@ -56,27 +58,28 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void Init()
         {
-            _targetFinder = GetComponent<ITargetFinder>();
+            _targetFinder = GetComponent<TargetFinder>();
         }
-            
+
+        public void SetEvaluator(TargetEvaluator evaluator) => _targetFinder.SetEvaluator(evaluator);
+
         public override void Tick(float deltaTime)
         {
             float range = GetRange();
             if (_target == null)
             {
-                _target = _targetFinder.FindTarget (Physics2D.OverlapCircleAll(transform.position, range, TargetLayer));
+                _target = _targetFinder.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, range, TargetLayer));
                 if (_target != null)
                 {
                     _onTargetAcquired.CallEvent(new Modification.Events.EventArgs(this, _target));
                 }
             }
-            else
+            if (_target && (_target.position - transform.position).sqrMagnitude > range * range)
             {
-                if ((_target.position - transform.position).sqrMagnitude > range * range)
-                {
-                    _target = null;
-                }
+                _target = null;
             }
         }
+
+
     }
 }

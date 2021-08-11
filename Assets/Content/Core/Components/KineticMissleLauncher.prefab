@@ -40,13 +40,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5246017201175003112}
-  - component: {fileID: 5191529570489633430}
   - component: {fileID: -3377766451071044650}
   - component: {fileID: 5847391838459812295}
   - component: {fileID: 3420593008956469200}
   - component: {fileID: 1461665225392347632}
   m_Layer: 9
-  m_Name: KineticMissleLauncherLeft
+  m_Name: KineticMissleLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,18 +67,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5191529570489633430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5246017201175003115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c4f08a83e0c16428c8071f5fe520b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &-3377766451071044650
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -189,9 +176,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5246017201175003115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7c4f08a83e0c16428c8071f5fe520b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0085c4a098d948948adb9904b5212c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _evalutator: {fileID: 0}
 --- !u!1 &5246017202535924015
 GameObject:
   m_ObjectHideFlags: 0

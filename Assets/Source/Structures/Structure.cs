@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures
 {
-    public class Structure : MonoBehaviour, IPurchasable, IGridObject, IIdentifiable, IModdable, ITooltip
+    public class Structure : MonoBehaviour, INamed, IPurchasable, IGridObject, IIdentifiable, IModdable, ITooltip
     {
         [SerializeField]
         [ModelProperty]

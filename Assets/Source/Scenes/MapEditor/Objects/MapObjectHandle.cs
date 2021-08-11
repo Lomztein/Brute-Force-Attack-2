@@ -99,8 +99,8 @@ namespace Lomztein.BFA2.MapEditor.Objects
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption($"Select {_object.name}", "Select this object.", SelectSprite, Select, () => true),
-                new ContextMenuOption($"Delete {_object.name}", "Delete this object.", DeleteSprite, Delete, () => true),
+                new ContextMenuOption(() => $"Select {_object.name}", () => "Select this object.", () => SelectSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Select, () => true),
+                new ContextMenuOption(() => $"Delete {_object.name}", () => "Delete this object.", () => DeleteSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Right, Delete, () => true),
             };
         }
     }

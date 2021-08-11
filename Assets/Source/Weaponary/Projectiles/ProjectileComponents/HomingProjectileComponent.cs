@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
         public Vector2 RotateMinMax;
         public AnimationCurve RotateCurve;
 
-        private ITargetFinder _retargeter;
+        private TargetFinder _retargeter;
         private bool Retarget => _retargeter != null;
 
         public void End()
@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 
         private void Awake()
         {
-            _retargeter = GetComponent<ITargetFinder>();
+            _retargeter = GetComponent<TargetFinder>();
         }
 
         public void Init(Projectile parent)
@@ -51,7 +51,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
             }
             if (Retarget && _parent != null && _parent.Target == null)
             {
-                _parent.Target = _retargeter.FindTarget(Physics2D.OverlapCircleAll(transform.position, _parent.Range, _parent.Layer));
+                _parent.Target = _retargeter.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, _parent.Range, _parent.Layer));
             }
         }
 
