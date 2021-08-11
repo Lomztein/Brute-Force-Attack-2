@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Targeting
             _evalutator = evaluator;
         }
 
-        public Transform FindTarget(GameObject source, Collider2D[] options)
+        public Transform FindTarget(GameObject source, IEnumerable<Collider2D> options)
         {
             Collider2D best = options.FirstOrDefault();
             float bestValue = -Mathf.Infinity;

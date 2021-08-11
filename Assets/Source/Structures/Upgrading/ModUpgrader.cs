@@ -13,22 +13,22 @@ namespace Lomztein.BFA2.Structures.Upgrading
 {
     public class ModUpgrader : Upgrader
     {
-        public override bool CanUpgrade()
+        protected override bool CanUpgrade()
         {
             return true;
         }
 
-        public override string GetStatus()
+        protected override string GetStatus()
         {
             return string.Empty;
         }
 
-        public override bool ShowUpgrade()
+        protected override bool ShowUpgrade()
         {
             return true;
         }
 
-        public override bool Upgrade()
+        protected override bool Upgrade()
         {
             return true;
         }

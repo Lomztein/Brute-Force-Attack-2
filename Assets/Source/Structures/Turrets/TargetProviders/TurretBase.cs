@@ -61,20 +61,24 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             _targetFinder = GetComponent<TargetFinder>();
         }
 
-        public void SetEvaluator(TargetEvaluator evaluator) => _targetFinder.SetEvaluator(evaluator);
+        public void SetEvaluator(TargetEvaluator evaluator)
+            => _targetFinder.SetEvaluator(evaluator);
+        private bool IsWithinRange(Transform trans, float range)
+            => (trans.position - transform.position).sqrMagnitude < range * range;
 
         public override void Tick(float deltaTime)
         {
             float range = GetRange();
+            
             if (_target == null)
             {
-                _target = _targetFinder.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, range, TargetLayer));
+                _target = _targetFinder.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, range, TargetLayer).Where(x => IsWithinRange(x.transform, range)));
                 if (_target != null)
                 {
                     _onTargetAcquired.CallEvent(new Modification.Events.EventArgs(this, _target));
                 }
             }
-            if (_target && (_target.position - transform.position).sqrMagnitude > range * range)
+            if (_target && !IsWithinRange(_target, range))
             {
                 _target = null;
             }

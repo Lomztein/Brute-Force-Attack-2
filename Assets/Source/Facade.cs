@@ -37,13 +37,11 @@ namespace Lomztein.BFA2
 
         public static T GetComponent<T>() where T : IFacadeComponent
         {
-            foreach (IFacadeComponent component in GetInstance()._components)
+            foreach (var component in GetInstance()._components.OfType<T>())
             {
-                if (component is T)
-                {
-                    return (T)component;
-                }
+                return component;
             }
+
             throw new InvalidOperationException("The requested FacadeComponent was not found, please ensure that the FacadeComponent is added to the Facade during preloading.");
         }
 

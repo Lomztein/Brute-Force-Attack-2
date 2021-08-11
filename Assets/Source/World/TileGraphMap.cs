@@ -10,10 +10,10 @@ namespace Lomztein.BFA2.World
 {
     public class TileGraphMap : IGraphMap
     {
-        private int _width;
-        private int _height;
+        private readonly int _width;
+        private readonly int _height;
 
-        private Graph.Node[,] _nodes;
+        private readonly Graph.Node[,] _nodes;
 
         public TileGraphMap(int width, int height, Graph.Node[,] nodes)
         {

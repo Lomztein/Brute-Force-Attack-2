@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Purchasing;
@@ -28,10 +29,10 @@ namespace Lomztein.BFA2.Structures.Upgrading
         public virtual IResourceCost Cost => UpgradeCost;
         public virtual Sprite Sprite => UpgradeSprite.Get();
 
-        public abstract bool Upgrade();
-        public abstract bool CanUpgrade();
-        public abstract bool ShowUpgrade();
-        public abstract string GetStatus();
+        protected abstract bool Upgrade();
+        protected abstract bool CanUpgrade();
+        protected abstract bool ShowUpgrade();
+        protected abstract string GetStatus();
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
@@ -47,7 +48,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
             }
             else
             {
-                return new IContextMenuOption[0];
+                return Array.Empty<IContextMenuOption>();
             }
         }
     }

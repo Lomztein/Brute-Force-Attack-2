@@ -40,10 +40,10 @@ namespace Lomztein.BFA2.Structures.Upgrading
             return components.All(x => Player.Player.Unlocks.IsUnlocked(x.Identifier));
         }
 
-        public override bool CanUpgrade()
+        protected override bool CanUpgrade()
             => Player.Player.Resources.HasEnough(Cost) && IsNextTierUnlocked();
 
-        public override bool Upgrade()
+        protected override bool Upgrade()
         {
             TurretAssembly assembly = GetComponent<TurretAssembly>();
             if (Player.Player.Resources.TrySpend(Cost))
@@ -58,13 +58,13 @@ namespace Lomztein.BFA2.Structures.Upgrading
             }
         }
 
-        public override bool ShowUpgrade()
+        protected override bool ShowUpgrade()
         {
             TurretAssembly assembly = GetComponent<TurretAssembly>();
             return assembly.CurrentTeir < assembly.TierAmount - 1;
         }
 
-        public override string GetStatus()
+        protected override string GetStatus()
         {
             if (!IsNextTierUnlocked())
             {

@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override int GetHashCode()
         {
-            return VariantIndex * TierIndex + VariantIndex - TierIndex;
+            return base.GetHashCode();
         }
 
         public override string ToString()
