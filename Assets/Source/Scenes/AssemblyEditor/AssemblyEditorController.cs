@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         public GameObject AssemblyPrefab;
 
         public TurretAssembly CurrentAsssembly;
-        public int WorkingTier => CurrentAsssembly.CurrentTeir;
+        public Tier WorkingTier => CurrentAsssembly.CurrentTeir;
 
         public Transform TierDisplayParent;
         public GameObject TierDisplayPrefab;
@@ -70,7 +70,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 DeleteCurrentAssembly();
             }
             SetAssembly(InstantiateNewAssembly());
-            SetTier(AddTier());
+            SetTier(AddTier(Tier.Initial));
         }
 
         public void OnClickNewAssembly ()
@@ -134,12 +134,6 @@ namespace Lomztein.BFA2.AssemblyEditor
                 comp.transform.rotation = Quaternion.identity;
             }
 
-            for (int i = 0; i < CurrentAsssembly.TierAmount; i++)
-            {
-                Transform tierParent = GetTierParent(i);
-                CreateNewTierDisplay(tierParent, i);
-            }
-
             NameText.text = CurrentAsssembly.Name;
             DescriptionText.text = CurrentAsssembly.Description;
         }
@@ -155,98 +149,36 @@ namespace Lomztein.BFA2.AssemblyEditor
         public void UpdateAssemblyName() => CurrentAsssembly.Name = NameText.text;
         public void UpdateAssemblyDescription() => CurrentAsssembly.Description = DescriptionText.text;
 
-        public bool IsTierEmpty(int tier) => CurrentAsssembly.GetRootComponent(tier) == null;
-        public bool IsAssemblyEmpty() => Enumerable.Range(0, CurrentAsssembly.TierAmount).All(x => IsTierEmpty(x));
+        public bool IsTierEmpty(Tier tier) => CurrentAsssembly.GetRootComponent(tier) == null;
+        public bool IsAssemblyEmpty() => CurrentAsssembly.transform.childCount == 0;
 
-        public void SetTier (int tier)
+        public void SetTier (Tier tier)
         {
             CurrentAsssembly.SetTier(tier);
-            UpdateAllTierDisplays();
             StatDisplay.SetTarget(GetWorkingTierParent().gameObject);
         }
 
-        public Transform GetTierParent(int tier) => CurrentAsssembly.GetTierParent(tier);
+        public Transform GetTierParent(Tier tier) => CurrentAsssembly.GetTierParent(tier);
         public Transform GetWorkingTierParent() => GetTierParent(WorkingTier);
 
-        public int AddTier ()
+        public Tier AddTier (Tier tier)
         {
             GameObject newTier = new GameObject();
-            CurrentAsssembly.AddTier(newTier.transform);
+            CurrentAsssembly.AddTier(newTier.transform, tier);
             newTier.transform.SetParent(CurrentAsssembly.transform);
-            int tier = CurrentAsssembly.TierAmount - 1;
-            CreateNewTierDisplay(newTier.transform, tier);
-            UpdateAllTierDisplays();
             return tier;
         }
 
-        public void RemoveTier (int tier)
+        public void RemoveTier (Tier tier)
         {
-            if (tier == WorkingTier)
+            if (tier.Equals(WorkingTier))
             {
-                SetTier(0);
+                SetTier(tier);
             }
 
             Transform parent = CurrentAsssembly.GetTierParent(tier);
             CurrentAsssembly.RemoveTier(tier);
             Destroy(parent.gameObject);
-            TierDisplay td = GetTierDisplay(tier);
-
-            Destroy (td.gameObject);
-            _tierDisplays.Remove(td);
-
-            foreach (TierDisplay display in _tierDisplays)
-            {
-                if (display.TierIndex > tier)
-                {
-                    display.SetTier(GetTierParent(display.TierIndex - 1), display.TierIndex - 1);
-                }
-            }
-
-            UpdateAllTierDisplays();
-        }
-
-        public TierDisplay GetTierDisplay(int tier) => _tierDisplays.Find(x => x.TierIndex == tier);
-        public void UpdateTierDisplay(int tier) => GetTierDisplay(tier).UpdateAll();
-        public void UpdateAllTierDisplays() => _tierDisplays.ForEach(x => x.UpdateAll());
-
-        public void AddTierFromButton ()
-        {
-            int newTier = AddTier();
-            SetTier(newTier);
-        }
-
-        public TierDisplay CreateNewTierDisplay(Transform tierParent, int tier)
-        {
-            GameObject newObject = Instantiate(TierDisplayPrefab, TierDisplayParent);
-            TierDisplay newDisplay = newObject.GetComponent<TierDisplay>();
-            _tierDisplays.Add(newDisplay);
-            newDisplay.Assign(tier);
-            return newDisplay;
-        }
-
-        public void SwapTiers (int tier0, int tier1)
-        {
-            Transform tier0Parent = CurrentAsssembly.GetTierParent(tier0);
-            Transform tier1Parent = CurrentAsssembly.GetTierParent(tier1);
-
-            if (tier0 < tier1)
-            {
-                CurrentAsssembly.InsertTier(tier1, tier0Parent);
-                CurrentAsssembly.RemoveTier(tier1 + 1);
-                CurrentAsssembly.RemoveTier(tier0);
-                CurrentAsssembly.InsertTier(tier0, tier1Parent);
-            }
-            else
-            {
-                CurrentAsssembly.RemoveTier(tier0);
-                CurrentAsssembly.InsertTier(tier0, tier1Parent);
-                CurrentAsssembly.RemoveTier(tier1);
-                CurrentAsssembly.InsertTier(tier1, tier0Parent);
-            }
-
-            UpdateAllTierDisplays();
-            // ..idk
-            // could probably be a part of TurretAssembly.
         }
     }
 }

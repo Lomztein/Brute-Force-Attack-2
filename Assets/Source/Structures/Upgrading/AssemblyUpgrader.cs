@@ -1,6 +1,8 @@
 ﻿using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.UI;
+using Lomztein.BFA2.UI.ContextMenu;
+using Lomztein.BFA2.UI.ContextMenu.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,71 +12,51 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Upgrading
 {
-    public class AssemblyUpgrader : Upgrader
+    public class AssemblyUpgrader : MonoBehaviour, IContextMenuOptionProvider
     {
-        public override IResourceCost Cost => ComputeCost();
-        public override Sprite Sprite => GetSprite();
+        private TurretAssembly _assembly;
 
-        private Sprite GetSprite ()
+        private void Start()
         {
-            TurretAssembly assembly = GetComponent<TurretAssembly>();
-            int next = assembly.CurrentTeir + 1;
-            return Iconography.GenerateSprite(assembly.GetTierParent(next).gameObject);
+            _assembly = GetComponent<TurretAssembly>();            
         }
 
-        private IResourceCost ComputeCost()
+        public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
-            TurretAssembly assembly = GetComponent<TurretAssembly>();
-            int prev = assembly.CurrentTeir;
-            int next = prev + 1;
-
-            IResourceCost prevCost = assembly.GetCost(prev);
-            IResourceCost nextCost = assembly.GetCost(next);
-            return nextCost.Subtract(prevCost);
-        }
-
-        private bool IsNextTierUnlocked ()
-        {
-            TurretAssembly assembly = GetComponent<TurretAssembly>();
-            TurretComponent[] components = assembly.GetComponents(assembly.CurrentTeir + 1);
-            return components.All(x => Player.Player.Unlocks.IsUnlocked(x.Identifier));
-        }
-
-        protected override bool CanUpgrade()
-            => Player.Player.Resources.HasEnough(Cost) && IsNextTierUnlocked();
-
-        protected override bool Upgrade()
-        {
-            TurretAssembly assembly = GetComponent<TurretAssembly>();
-            if (Player.Player.Resources.TrySpend(Cost))
+            IEnumerable<Tier> next = _assembly.UpgradeMap.GetNext(_assembly.CurrentTeir);
+            foreach (Tier tier in next)
             {
-                assembly.SetTier(assembly.CurrentTeir + 1);
-                assembly.InvokeChanged();
-                return true;
-            }
-            else
-            {
-                return false;
+                yield return GenerateOption(new Tier(tier.TierIndex, tier.VariantIndex)); // This is probably being straight up abuse to memory lol.
             }
         }
 
-        protected override bool ShowUpgrade()
+        private IContextMenuOption GenerateOption (Tier tier)
         {
-            TurretAssembly assembly = GetComponent<TurretAssembly>();
-            return assembly.CurrentTeir < assembly.TierAmount - 1;
+            return new ContextMenuOption(() => "Upgrade to " + tier.ToString(),
+                    () => GetCost(tier).Format(),
+                    () => Iconography.GenerateSprite(_assembly.GetTierParent(tier).gameObject),
+                    () => null,
+                    () => UI.ContextMenu.ContextMenu.Side.Right,
+                    () => UpgradeTo(tier),
+                    () => CanUpgradeTo(tier));
         }
 
-        protected override string GetStatus()
+        private IResourceCost GetCost (Tier tier)
+            => _assembly.GetCost(tier).Subtract(_assembly.GetCost(_assembly.CurrentTeir));
+
+        private bool UpgradeTo (Tier tier)
         {
-            if (!IsNextTierUnlocked())
-            {
-                return "Needs research.";
+            var cost = GetCost(tier);
+            if (Player.Player.Resources.TrySpend(cost)) {
+                _assembly.SetTier(tier);
             }
-            if (!Player.Player.Resources.HasEnough(Cost))
-            {
-                return "Not enough resources.";
-            }
-            return string.Empty;
+            return true;
+        }
+
+        private bool CanUpgradeTo (Tier tier)
+        {
+            var cost = GetCost(tier);
+            return Player.Player.Resources.HasEnough(cost) && _assembly.GetComponents(tier).All(x => Player.Player.Unlocks.IsUnlocked(x.Identifier));
         }
     }
 }

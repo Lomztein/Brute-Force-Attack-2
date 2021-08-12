@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
 {
     public class WeaponFireSynchronizer : TurretComponent
     {
-        public SequencedFireSyncronizationController Controller { get; private set; }
+        public SequencedFireControlSynchronizer Controller { get; private set; }
         public override StructureCategory Category => StructureCategories.Utility;
 
         public override void End()
@@ -40,11 +40,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
                 var group = groups.First();
                 TurretWeapon first = group.First();
 
-                Controller = new SequencedFireSyncronizationController(1 / first.Firerate.GetValue());
+                Controller = new SequencedFireControlSynchronizer(1 / first.Firerate.GetValue());
 
                 foreach (var weapon in group)
                 {
-                    SequencedFireSynchronization sync = new SequencedFireSynchronization(Controller);
+                    SequencedFireControl sync = new SequencedFireControl(Controller);
                     Controller.AddSync(sync);
                     (weapon.Weapon as Weapon).Synchronize(sync);
                 }

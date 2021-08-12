@@ -33,13 +33,11 @@ namespace Lomztein.BFA2.AssemblyEditor
                 baseComponent.transform.position = tier.position;
                 baseComponent.transform.rotation = tier.rotation;
                 baseComponent.transform.parent = tier;
-                AssemblyEditorController.Instance.UpdateTierDisplay(AssemblyEditorController.Instance.WorkingTier);
             }
         }
 
         private void OnPlaced(GameObject obj)
         {
-            AssemblyEditorController.Instance.UpdateTierDisplay(AssemblyEditorController.Instance.WorkingTier);
         }
     }
 }

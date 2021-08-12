@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Weaponary.FireControl
+namespace Lomztein.BFA2.Weaponary.FireSynchronization
 {
     public interface IFireControl
     {
-        void Fire(int amount, float duration, Action<int> callback);
+        bool TryFire();
+    }
+
+    public class NoFireControl : IFireControl
+    {
+        public bool TryFire() => true;
     }
 }

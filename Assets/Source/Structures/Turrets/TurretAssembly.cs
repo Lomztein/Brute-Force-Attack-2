@@ -13,44 +13,66 @@ namespace Lomztein.BFA2.Structures.Turrets
         public override Size Height => GetRootComponent(CurrentTeir)?.Height ?? Size.Medium;
         public override IResourceCost Cost => GetCost(CurrentTeir);
 
-        public int CurrentTeir { get; private set; }
-        [SerializeField] private List<Transform> _tierParents;
+        public Tier CurrentTeir { get; private set; } = Tier.Initial;
+        public UpgradeMap UpgradeMap;
 
         public float Complexity => GetComponents(CurrentTeir).Sum(x => x.ComputeComplexity());
 
-        public IResourceCost GetCost(int tier)
+        public IResourceCost GetCost(Tier tier)
         {
             IEnumerable<IPurchasable> children = GetComponents(tier).Select (x => x as IPurchasable).Where (x => x != null);
             return children.Select(x => x.Cost).Sum();
         }
 
-        public TurretComponent[] GetComponents(int tier)
+        public IEnumerable<TurretComponent> GetComponents(Tier tier)
         {
             return GetTierParent(tier).GetComponentsInChildren<TurretComponent>();
         }
-        public TurretComponent[] GetComponents() => GetComponents(CurrentTeir);
+        public IEnumerable<TurretComponent> GetComponents() => GetComponents(CurrentTeir);
 
         public override string ToString()
         {
             return $"{string.Join("\n", GetComponents(CurrentTeir).Select(x => x.ToString()))}";
         }
 
-        public TurretComponent GetRootComponent(int tier)
+        public TurretComponent GetRootComponent(Tier tier)
         {
             return GetTierParent(tier).GetComponentInChildren<TurretComponent>();
         }
         public TurretComponent GetRootComponent() => GetRootComponent(CurrentTeir);
 
-        public void AddTier(Transform parent) => _tierParents.Add(parent);
-        public void InsertTier(int tier, Transform parent) => _tierParents.Insert(tier, parent);
-        public void RemoveTier(int tier) => _tierParents.RemoveAt(tier);
-        public Transform GetTierParent(int tier) => _tierParents[tier];
-        public Transform[] GetTiers() => _tierParents.ToArray();
-        public int TierAmount => _tierParents.Count();
-
-        public void SetTier (int tier)
+        public void AddTier(Transform parent, Tier tier)
         {
-            if (CurrentTeir < TierAmount) // In case a higher tier was removed.
+            parent.gameObject.name = tier.ToString();
+            parent.SetParent(transform);
+            parent.transform.position = transform.position;
+        }
+
+        public void RemoveTier(Tier tier)
+        {
+            Transform parent = GetTierParent(tier);
+            if (parent)
+            {
+                Destroy(parent.gameObject);
+            }
+        }
+
+        public bool HasTier(Tier tier) => GetTierParent(tier) != null;
+
+        public Transform GetTierParent(Tier tier)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.gameObject.name.Equals(tier.ToString()))
+                    return child;
+            }
+
+            return null;
+        }
+
+        public void SetTier (Tier tier)
+        {
+            if (HasTier(CurrentTeir))
             {
                 GetTierParent(CurrentTeir).gameObject.SetActive(false);
             }
@@ -68,7 +90,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             UpdateCollider();
         }
-        
+
         private void UpdateCollider ()
         {
             BoxCollider2D col = GetComponent<BoxCollider2D>();

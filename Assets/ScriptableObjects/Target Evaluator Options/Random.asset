@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f22aded01e634fa8817b96d73f4bf, type: 3}
   m_Name: Random
   m_EditorClassIdentifier: 
-  Name: Weakest
+  Name: Random
   Description: 
   Evaluator:
     id: 0
@@ -30,12 +30,6 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: ColoredTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
+      type: {class: RandomTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
       data:
         Invert: 0
-        Evaluator:
-          id: 1
-    00000001:
-      type: {class: EnemyHealthTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
-      data:
-        Invert: 1

@@ -11,7 +11,7 @@ using Lomztein.BFA2.Structures.Turrets.Targeters;
 using Lomztein.BFA2.Structures.Turrets.TargetProviders;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Weaponary;
-using Lomztein.BFA2.Weaponary.FireControl;
+using Lomztein.BFA2.Weaponary.FireSequence;
 using Lomztein.BFA2.Weaponary.FireSynchronization;
 using Lomztein.BFA2.Weaponary.Projectiles;
 using Lomztein.BFA2.World;

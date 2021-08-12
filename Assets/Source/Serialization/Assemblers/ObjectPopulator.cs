@@ -95,12 +95,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             
             foreach (var field in fields)
             {
-                yield return CreateMemberInfo(field);
+                string customName = field.GetCustomAttribute<ModelPropertyAttribute>().Name;
+                yield return CreateMemberInfo(field, customName);
             }
 
             foreach (var property in properties)
             {
-                yield return CreateMemberInfo(property);
+                string customName = property.GetCustomAttribute<ModelPropertyAttribute>().Name;
+                yield return CreateMemberInfo(property, customName);
             }
 
             // That CreateMemberInfo factory method didn't really end up neccesary.
@@ -121,12 +123,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         {
             private readonly FieldInfo _info;
 
-            public FieldAssignableMemberInfo (FieldInfo info)
+            public FieldAssignableMemberInfo (FieldInfo info, string name)
             {
                 _info = info;
+                _name = name;
             }
 
-            public string Name => _info.Name;
+            private string _name;
+            public string Name => _name;
             public Type ValueType => _info.FieldType;
             public Type AttributeType => _info.GetCustomAttribute<ModelPropertyAttribute>().GetType();
 
@@ -145,12 +149,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         {
             private readonly PropertyInfo _info;
 
-            public PropertyAssignableMemberInfo(PropertyInfo info)
+            public PropertyAssignableMemberInfo(PropertyInfo info, string name)
             {
                 _info = info;
+                _name = name;
             }
 
-            public string Name => _info.Name;
+            private string _name;
+            public string Name => _name;
             public Type ValueType => _info.PropertyType;
             public Type AttributeType => _info.GetCustomAttribute<ModelPropertyAttribute>().GetType();
 
@@ -165,12 +171,12 @@ namespace Lomztein.BFA2.Serialization.Assemblers
             }
         }
 
-        private static IAssignableMemberInfo CreateMemberInfo (MemberInfo info)
+        private static IAssignableMemberInfo CreateMemberInfo (MemberInfo info, string customName)
         {
             if (info is FieldInfo field)
-                return new FieldAssignableMemberInfo(field);
+                return new FieldAssignableMemberInfo(field, string.IsNullOrEmpty(customName) ? info.Name : customName);
             if (info is PropertyInfo property)
-                return new PropertyAssignableMemberInfo(property);
+                return new PropertyAssignableMemberInfo(property, string.IsNullOrEmpty(customName) ? info.Name : customName);
             return null;
         }
     }

@@ -3,7 +3,7 @@ using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;
-using Lomztein.BFA2.Weaponary.FireControl;
+using Lomztein.BFA2.Weaponary.FireSequence;
 using Lomztein.BFA2.Weaponary.FireSynchronization;
 using Lomztein.BFA2.Weaponary.Projectiles;
 using System;
@@ -35,8 +35,8 @@ namespace Lomztein.BFA2.Weaponary
         private IObjectPool<IProjectile> _pool;
         private IProjectilePool _projectilePool;
         private IFireAnimation _fireAnimation;
-        private IFireControl _fireControl;
-        private IFireSynchronization _fireSync;
+        private IFireSequence _fireControl;
+        private IFireControl _fireSync;
 
         private Transform[] _muzzles;
         private ParticleSystem[] _fireParticles;
@@ -59,8 +59,8 @@ namespace Lomztein.BFA2.Weaponary
             _fireParticles = GetFireParticles(_muzzles);
 
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
-            _fireControl = GetComponent<IFireControl>() ?? new NoFireControl();
-            _fireSync = GetComponent<IFireSynchronization>() ?? new NoFireSynchronization();
+            _fireControl = GetComponent<IFireSequence>() ?? new InstantFireSequence();
+            _fireSync = GetComponent<IFireControl>() ?? new NoFireControl();
 
             _pool = new NoGameObjectPool<IProjectile>(ProjectilePrefab);
             _projectilePool = new ProjectilePool(_pool);
@@ -148,7 +148,7 @@ namespace Lomztein.BFA2.Weaponary
             obj.OnDepleted += OnProjectileDepleted;
         }
 
-        public void Synchronize(IFireSynchronization sync)
+        public void Synchronize(IFireControl sync)
         {
             _fireSync = sync;
         }
