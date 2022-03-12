@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Structures.Turrets
     {
         public int TierIndex;
         public int VariantIndex;
-        public static Tier Initial => new Tier(0, 0);
+        public static Tier Initial => new(0, 0);
 
         public Tier(int tierIndex, int variantIndex)
         {
@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override string ToString()
         {
-            return $"{TierIndex.ToString()}-{VariantIndex.ToString()}";
+            return $"{TierIndex}-{VariantIndex}";
         }
 
         public static Tier Parse(string input)
