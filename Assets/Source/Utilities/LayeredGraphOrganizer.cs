@@ -84,7 +84,7 @@ namespace Lomztein.BFA2.Utilities
                 }
             }
 
-            AssignCoordinates(layers);
+            AssignCoordinatesBasedOnLayers(layers);
             int iters = 10;
 
             // Step #3: Permutate nodes within single layers to reduce crossings between previous layer.
@@ -97,13 +97,13 @@ namespace Lomztein.BFA2.Utilities
                     {
                         for (int j = 0; j < layer.Value.Count; j++)
                         {
-                            AssignCoordinates(layers);
+                            AssignCoordinateBasedOnParents(layers);
 
                             // Try swap, reverse if crossings are not reduced.
                             int intersections = CountIntersectionsBelow(l, layers);
 
                             Swap(layer.Value, i, j);
-                            AssignCoordinates(layers);
+                            AssignCoordinateBasedOnParents(layers);
 
                             int newIntersections = CountIntersectionsBelow(l, layers);
 
@@ -112,14 +112,14 @@ namespace Lomztein.BFA2.Utilities
                                 Swap(layer.Value, i, j); // Reverse the swap.
                             }
 
-                            AssignCoordinates(layers);
+                            AssignCoordinateBasedOnParents(layers);
                         }
                     }
                 }
             }
 
             // Step #4: Assign coordinates.
-            AssignCoordinateBasedOfChildren(layers);
+            AssignCoordinateBasedOnParents(layers);
 
             foreach (var layer in layers)
             {
@@ -148,7 +148,7 @@ namespace Lomztein.BFA2.Utilities
             return intersections;
         }
 
-        private static void AssignCoordinates(Dictionary<int, List<Node>> layers) 
+        private static void AssignCoordinatesBasedOnLayers(Dictionary<int, List<Node>> layers) 
         {
             for (int l = layers.Count - 1; l >= 0; l--)
             {
@@ -162,22 +162,31 @@ namespace Lomztein.BFA2.Utilities
 
         }
 
-        private static void AssignCoordinateBasedOfChildren(Dictionary<int, List<Node>> layers)
+        private static void AssignCoordinateBasedOnParents(Dictionary<int, List<Node>> layers)
         {
             foreach (var pair in layers)
             {
                 for (int j = 0; j < pair.Value.Count; j++)
                 {
                     Node node = pair.Value[j];
-
-                    float mean = 0f;
-                    foreach (var parent in node.Parents)
+                    if (node.Parents.Count() > 1)
                     {
-                        mean += parent.X;
-                    }
-                    mean /= Mathf.Max (1, node.Parents.Count());
+                        float min = node.Parents.Min(x => x.X);
+                        float max = node.Parents.Max(x => x.X);
+                        float mean = 0f;
+                        foreach (var parent in node.Parents)
+                        {
+                            mean += parent.X;
+                        }
+                        mean /= Mathf.Max(1, node.Parents.Count());
 
-                    node.X = (mean + (j - (pair.Value.Count / 2f)));
+                        //node.X = (mean + (j - (pair.Value.Count / 2f)));
+                        node.X = Mathf.Lerp(min, max, 0.5f) + j;
+                    }
+                    else 
+                    {
+                        node.X = 0;
+                    }
                 }
             }
         } 
