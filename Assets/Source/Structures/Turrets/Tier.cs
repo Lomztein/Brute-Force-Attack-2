@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Structures.Turrets
     {
         public int TierIndex;
         public int VariantIndex;
-        public static Tier Initial => new(0, 0);
+        public static Tier Initial => new Tier(0, 0);
 
         public Tier(int tierIndex, int variantIndex)
         {

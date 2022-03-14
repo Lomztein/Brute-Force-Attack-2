@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lomztein.BFA2.Utilities;
 
-namespace Lomztein.BFA2
+namespace Lomztein.BFA2.Tests
 {
     [ExecuteAlways]
     public class LayeredGraphDrawingTester : MonoBehaviour
     {
         public bool DoGenerate;
-        private SugiyamaGraphOrganizer _graph;
+        private LayeredGraphOrganizer _graph;
 
         // Update is called once per frame
         void Update()
@@ -22,22 +23,30 @@ namespace Lomztein.BFA2
 
         void Generate()
         {
-            _graph = new SugiyamaGraphOrganizer();
-            var root = _graph.AddNode();
-            var r = _graph.AddNode();
-            var l = _graph.AddNode();
-            var rr = _graph.AddNode();
-            var ll = _graph.AddNode();
-            var c = _graph.AddNode();
-            var cr = _graph.AddNode();
-            var rrr = _graph.AddNode();
-            var rrl = _graph.AddNode();
-            var rrll = _graph.AddNode();
+            _graph = new LayeredGraphOrganizer();
+            var root = _graph.AddNode("Root");
+            var root2 = _graph.AddNode("Root2");
+            var r = _graph.AddNode("R");
+            var r2 = _graph.AddNode("R2");
+            var l2 = _graph.AddNode("L2");
+            var l = _graph.AddNode("L");
+            var rr = _graph.AddNode("RR");
+            var ll = _graph.AddNode("LL");
+            var c = _graph.AddNode("C");
+            var cr = _graph.AddNode("CR");
+            var rrr = _graph.AddNode("RRR");
+            var rrl = _graph.AddNode("RRL");
+            var rrll = _graph.AddNode("RRLL");
 
             _graph.AddEdge(root, r);
             _graph.AddEdge(root, l);
+            _graph.AddEdge(root, r2);
+            _graph.AddEdge(root, l2);
+            _graph.AddEdge(root2, r2);
             _graph.AddEdge(r, rr);
             _graph.AddEdge(l, ll);
+            _graph.AddEdge(l2, rrr);
+            _graph.AddEdge(l2, rr);
             _graph.AddEdge(rr, c);
             _graph.AddEdge(ll, c);
             _graph.AddEdge(c, cr);
@@ -54,12 +63,13 @@ namespace Lomztein.BFA2
         {
             if (_graph != null)
             {
-                foreach (var node in _graph)
+                foreach (var pair in _graph)
                 {
-                    Gizmos.DrawCube(new Vector3(node.X, node.Y), Vector3.one);
+                    var node = pair.Value;
+                    Gizmos.DrawCube(new Vector3(node.X, node.Layer) * 1.5f, Vector3.one);
                     foreach (var child in node.ChildEdges)
                     {
-                        Gizmos.DrawLine(new Vector3(node.X, node.Y), new Vector3(child.ChildNode.X, child.ChildNode.Y));
+                        Gizmos.DrawLine(new Vector3(node.X, node.Layer) * 1.5f, new Vector3(child.ChildNode.X, child.ChildNode.Layer) * 1.5f);
                     }
                 }
             }
