@@ -16,6 +16,23 @@ namespace Lomztein.BFA2.Utilities
             return node;
         }
 
+        public void RemoveNode(string key)
+        {
+            Node node = _nodes[key];
+            RemoveNode(node);
+        }
+
+        private void RemoveNode (Node node)
+        {
+            DisconnectEdges(node.ParentEdges);
+            DisconnectEdges(node.ChildEdges);
+        }
+
+        private void DisconnectEdges(IEnumerable<Edge> edges)
+        {
+
+        }
+
         public void AddEdge(Node from, Node to) {
             Edge edge = new Edge();
             to.ConnectTo(from, edge, false);
@@ -63,8 +80,11 @@ namespace Lomztein.BFA2.Utilities
                     if (child.Layer <= pair.Value.Layer + 1)
                         break;
 
+                    pair.Value.DisconnectNode(child, true);
+                    child.DisconnectNode(pair.Value, false);
+
                     Node prevNode = pair.Value;
-                    for (int i = pair.Value.Layer + 1; i < child.Layer; i++)
+                    for (int index = pair.Value.Layer + 1; index < child.Layer; index++)
                     {
                         Node node = new Node("DUMMY");
                         Edge edge = new Edge();
@@ -74,7 +94,7 @@ namespace Lomztein.BFA2.Utilities
 
                         prevNode = node;
 
-                        SetLayer(node, i, layers);
+                        SetLayer(node, index, layers);
                         dummyNodes.Add(node);
                     }
 
@@ -85,41 +105,30 @@ namespace Lomztein.BFA2.Utilities
             }
 
             AssignCoordinatesBasedOnLayers(layers);
-            int iters = 10;
 
             // Step #3: Permutate nodes within single layers to reduce crossings between previous layer.
-            for (int a = 0; a < iters; a++)
+            int iters = 24;
+            int n = layers.Count;
+            
+            for (int i = 0; i < iters; i++)
             {
-                for (int l = layers.Count - 1; l >= 0; l--)
+                bool improved = false;
+                for (int l = n - 1; l > 1; l--)
                 {
-                    var layer = layers.ElementAt(l);
-                    for (int i = 0; i < layer.Value.Count; i++)
-                    {
-                        for (int j = 0; j < layer.Value.Count; j++)
-                        {
-                            AssignCoordinateBasedOnParents(layers);
-
-                            // Try swap, reverse if crossings are not reduced.
-                            int intersections = CountIntersectionsBelow(l, layers);
-
-                            Swap(layer.Value, i, j);
-                            AssignCoordinateBasedOnParents(layers);
-
-                            int newIntersections = CountIntersectionsBelow(l, layers);
-
-                            if (newIntersections >= intersections) // If there are now more or equal intersections..
-                            {
-                                Swap(layer.Value, i, j); // Reverse the swap.
-                            }
-
-                            AssignCoordinateBasedOnParents(layers);
-                        }
-                    }
+                    if (ReduceCrossings(layers[l], layers[l - 1]))
+                        improved = true;
                 }
+                for (int l = 0; l < n - 1; l++)
+                {
+                    if (ReduceCrossings(layers[l], layers[l + 1]))
+                        improved = true;
+                }
+                if (improved == false)
+                    break;
             }
 
             // Step #4: Assign coordinates.
-            AssignCoordinateBasedOnParents(layers);
+            AssignCoordinateBasedOnNeightbors(layers);
 
             foreach (var layer in layers)
             {
@@ -134,18 +143,33 @@ namespace Lomztein.BFA2.Utilities
             }
         }
 
-        private int CountIntersectionsBelow (int layer, Dictionary<int, List<Node>> layers)
+        private bool ReduceCrossings (List<Node> l1, List<Node> l2)
         {
-            int intersections = 0;
-            if (layer < layers.Count - 1)
+            bool improved = false;
+            int length = l2.Count;
+
+            for (int n1 = 0; n1 < length; n1++)
             {
-                intersections += CountIntersections(layers[layer], layers[layer + 1]);
+                for (int n2 = 0; n2 < length; n2++)
+                {
+                    if (n1 == n2) continue;
+
+                    int crossings = CountIntersections(l1, l2);
+                    SwapNodes(l2, n1, n2);
+                    int newCrossings = CountIntersections(l1, l2);
+
+                    if (newCrossings >= crossings)
+                    {
+                        SwapNodes(l2, n1, n2);
+                    }
+                    else
+                    {
+                        improved = true;
+                    }
+                }
             }
-            if (layer > 1)
-            {
-                intersections += CountIntersections(layers[layer], layers[layer - 1]);
-            }
-            return intersections;
+
+            return improved;
         }
 
         private static void AssignCoordinatesBasedOnLayers(Dictionary<int, List<Node>> layers) 
@@ -162,41 +186,65 @@ namespace Lomztein.BFA2.Utilities
 
         }
 
-        private static void AssignCoordinateBasedOnParents(Dictionary<int, List<Node>> layers)
+        private static void AssignCoordinateBasedOnNeightbors(Dictionary<int, List<Node>> layers)
         {
-            foreach (var pair in layers)
-            {
-                for (int j = 0; j < pair.Value.Count; j++)
-                {
-                    Node node = pair.Value[j];
-                    if (node.Parents.Count() > 1)
-                    {
-                        float min = node.Parents.Min(x => x.X);
-                        float max = node.Parents.Max(x => x.X);
-                        float mean = 0f;
-                        foreach (var parent in node.Parents)
-                        {
-                            mean += parent.X;
-                        }
-                        mean /= Mathf.Max(1, node.Parents.Count());
+            int ln = layers.Count;
 
-                        //node.X = (mean + (j - (pair.Value.Count / 2f)));
-                        node.X = Mathf.Lerp(min, max, 0.5f) + j;
-                    }
-                    else 
+            for (int i = ln - 1; i < 1; i--)
+            {
+                for (int j = 0; j < layers[i + 1].Count; j++)
+                {
+                    float s1 = 0f;
+                    float s2 = 0f;
+
+                    for (int k = 0; k < layers[i].Count; k++)
                     {
-                        node.X = 0;
+                        s1 += IsConnectedToFloat(layers[i][k], layers[i + 1][j]) * layers[i][k].X;
+                        s2 += IsConnectedToFloat(layers[i][k], layers[i + 1][j]);
                     }
+
+                    layers[i + 1][j].X = s1 / s2;
                 }
             }
-        } 
+        }
+
+
+        
+        private static float[,] ToAdjacencyMatrix (Node[] nodes)
+        {
+            int count = nodes.Length;
+
+            var result = new float[count, count];
+            for (int i = 0; i < count; i++)
+            {
+                for (int j = 0; j < count; j++)
+                {
+                    float value = IsConnected(nodes[i], nodes[j]) ? 1 : 0;
+                    result[i, j] = value;
+                }
+            }
+            return result;
+        }
+
+        private static bool IsConnected (Node n1, Node n2)
+            => n1.Children.Contains(n2) || n1.Parents.Contains(n2);
+
+        private static float IsConnectedToFloat(Node n1, Node n2)
+            => IsConnected(n1, n2) ? 1f : 0f;
 
         // Yoinked from https://stackoverflow.com/questions/2094239/swap-two-items-in-listt because I was lazy.
-        public static void Swap<T>(IList<T> list, int indexA, int indexB)
+        private static void Swap<T>(IList<T> list, int indexA, int indexB)
         {
-            T tmp = list[indexA];
-            list[indexA] = list[indexB];
-            list[indexB] = tmp;
+            (list[indexB], list[indexA]) = (list[indexA], list[indexB]);
+        }
+
+        private static void SwapNodes(List<Node> nodes, int n1, int n2)
+        {
+            float temp = nodes[n2].X;
+            nodes[n2].X = nodes[n1].X;
+            nodes[n1].X = temp;
+
+            Swap(nodes, n1, n2);
         }
 
         private static int CountIntersections (List<Node> layer1, List<Node> layer2)
@@ -293,6 +341,23 @@ namespace Lomztein.BFA2.Utilities
                 }
             }
 
+            public void DisconnectEdge(Edge edge, bool child)
+            {
+                if (child) _childEdges.Remove(edge);
+                else _parentEdges.Remove(edge);
+            }
+
+            public void DisconnectNode (Node node, bool child)
+            {
+                DisconnectEdge(GetEdge(node, child), child);
+            }
+
+            public Edge GetEdge(Node node, bool child)
+            {
+                if (child) return _childEdges.FirstOrDefault(x => x.ChildNode == node);
+                else return _parentEdges.FirstOrDefault(x => x.ParentNode == node);
+            }
+
             private List<Edge> _childEdges = new List<Edge>();
             private List<Edge> _parentEdges = new List<Edge>();
 
@@ -317,6 +382,12 @@ namespace Lomztein.BFA2.Utilities
 
             public Node ChildNode { get; private set; }
             public Node ParentNode { get; private set; }
+
+            public void Disconnect ()
+            {
+                ChildNode = null;
+                ParentNode = null;
+            }
         }
     }
 }
