@@ -16,21 +16,38 @@ namespace Lomztein.BFA2.Utilities
             return node;
         }
 
+        public Node GetNode(string key) => _nodes[key];
+
         public void RemoveNode(string key)
         {
             Node node = _nodes[key];
-            RemoveNode(node);
+            DisconnectNode(node);
         }
 
-        private void RemoveNode (Node node)
+        private void DisconnectNode (Node node)
         {
-            DisconnectEdges(node.ParentEdges);
-            DisconnectEdges(node.ChildEdges);
+            foreach (var parent in node.Parents)
+            {
+                parent.DisconnectNode(node, true);
+            }
+
+            foreach (var child in node.Children)
+            {
+                child.DisconnectNode(node, false);
+            }
+
+            DisconnectEdges(node, node.ParentEdges, false);
+            DisconnectEdges(node, node.ChildEdges, true);
+
         }
 
-        private void DisconnectEdges(IEnumerable<Edge> edges)
+        private void DisconnectEdges(Node node, IEnumerable<Edge> edges, bool child)
         {
-
+            var copy = edges.ToList();
+            foreach (var edge in copy)
+            {
+                node.DisconnectEdge(edge, child);
+            }
         }
 
         public void AddEdge(Node from, Node to) {
@@ -55,13 +72,13 @@ namespace Lomztein.BFA2.Utilities
             while (untravelled.Count != 0)
             {
                 var node = untravelled.Dequeue();
-                if (node.ParentEdges.Count() == 0)
+                if (node.Parents.Count() == 0)
                 {
                     SetLayer(node, 0, layers);
                 }
                 else
                 {
-                    int layer = Mathf.Max(node.Layer, node.ParentEdges.Max(x => x.ParentNode.Layer) + 1);
+                    int layer = Mathf.Max(node.Layer, node.Parents.Max(x => x.Layer) + 1);
                     SetLayer(node, layer, layers);
                 }
                 foreach (var child in node.ChildEdges)
@@ -130,16 +147,19 @@ namespace Lomztein.BFA2.Utilities
             // Step #4: Assign coordinates.
             AssignCoordinateBasedOnNeightbors(layers);
 
-            foreach (var layer in layers)
+            // Step #5: Remove dummies
+            foreach (var node in dummyNodes)
             {
-                if (layers.ContainsKey(layer.Key - 1))
+                foreach (var child in node.Children)
                 {
-                    var l1 = layer.Value;
-                    var l2 = layers[layer.Key - 1];
-
-                    int intersections = CountIntersections(l1, l2);
-                    Debug.Log($"There are {intersections} intersections between layer {layer.Key} and {layer.Key - 1}");
+                    foreach (var parent in node.Parents)
+                    {
+                        Edge edge = new Edge();
+                        child.ConnectTo(parent, edge, false);
+                        parent.ConnectTo(child, edge, true);
+                    }
                 }
+                DisconnectNode(node);
             }
         }
 
@@ -188,27 +208,66 @@ namespace Lomztein.BFA2.Utilities
 
         private static void AssignCoordinateBasedOnNeightbors(Dictionary<int, List<Node>> layers)
         {
-            int ln = layers.Count;
-
-            for (int i = ln - 1; i < 1; i--)
+            int iters = 24;
+            for (int i = 0; i < iters; i++)
             {
-                for (int j = 0; j < layers[i + 1].Count; j++)
+                int n = layers.Count;
+                for (int l = 0; l < n; l++)
                 {
-                    float s1 = 0f;
-                    float s2 = 0f;
-
-                    for (int k = 0; k < layers[i].Count; k++)
-                    {
-                        s1 += IsConnectedToFloat(layers[i][k], layers[i + 1][j]) * layers[i][k].X;
-                        s2 += IsConnectedToFloat(layers[i][k], layers[i + 1][j]);
-                    }
-
-                    layers[i + 1][j].X = s1 / s2;
+                    BarymetricSweepLayer(layers[l], true);
+                }
+                for (int l = n - 1; l >= 0; l--)
+                {
+                    BarymetricSweepLayer(layers[l], false);
                 }
             }
         }
 
+        // Code stolen from here https://github.com/fluffy-mods/ResearchTree/blob/b88a9d8820ebecfffdca179dbfcfd6736b55e817/Source/Graph/Tree.cs#L830
+        private static void BarymetricSweepLayer (List<Node> layer, bool parents)
+        {
+            var means = layer
+                       .ToDictionary(n => n, n => GetMeanCoordinate(parents ? n.Parents : n.Children))
+                       .OrderBy(n => n.Value);
 
+            // create groups of nodes at similar means
+            var cur = float.MinValue;
+            var groups = new Dictionary<float, List<Node>>();
+            float epsilon = 0.01f;
+            foreach (var mean in means)
+            {
+                if (Math.Abs(mean.Value - cur) > epsilon)
+                {
+                    cur = mean.Value;
+                    groups[cur] = new List<Node>();
+                }
+
+                groups[cur].Add(mean.Key);
+            }
+
+            // position nodes as close to their desired mean as possible
+            var X = 1f;
+            foreach (var group in groups)
+            {
+                var mean = group.Key;
+                var N = group.Value.Count;
+                X = Mathf.Max(X, mean - (N - 1f) / 2f);
+
+                foreach (var node in group.Value)
+                    node.X = X++;
+            }
+        }
+
+        private static float GetMeanCoordinate(IEnumerable<Node> nodes)
+        {
+            if (!nodes.Any())
+            {
+                return 0f;
+            }
+            float min = nodes.Min(x => x.X);
+            float max = nodes.Max(x => x.X);
+            return Mathf.Lerp(min, max, 0.5f);
+        }
         
         private static float[,] ToAdjacencyMatrix (Node[] nodes)
         {
@@ -250,9 +309,9 @@ namespace Lomztein.BFA2.Utilities
         private static int CountIntersections (List<Node> layer1, List<Node> layer2)
         {
             int intersections = 0;
-            foreach (var pair1 in GetPairsBetweenLayers(layer1, layer2))
+            foreach (var pair1 in GetPairsBetweenLayers(layer1, layer2, true))
             {
-                foreach (var pair2 in GetPairsBetweenLayers(layer1, layer2))
+                foreach (var pair2 in GetPairsBetweenLayers(layer1, layer2, true))
                 {
                     if (pair1.Item1 == pair2.Item1 && pair1.Item2 == pair2.Item2) continue; // Skip when they're the same.
                     if (LineIntersection.LinesIntersect(
@@ -268,18 +327,52 @@ namespace Lomztein.BFA2.Utilities
             return intersections / 2; // Each intersection will be counted twice.
         }
 
-        private static IEnumerable<Tuple<Node, Node>> GetPairsBetweenLayers (List<Node> layer1, List<Node> layer2)
+        private static int CountIntersections (Dictionary<int, List<Node>> layers)
         {
-            int count = 0;
+            int intersections = 0;
+            var nodes = layers.SelectMany(x => x.Value);
+            foreach (var pair1 in GetAllPairs(nodes, true))
+            {
+                foreach (var pair2 in GetAllPairs(nodes, false))
+                {
+                    if (pair1.Item1 == pair2.Item1 && pair1.Item2 == pair2.Item2) continue; // Skip when they're the same.
+                    if (LineIntersection.LinesIntersect(
+                        new Vector2(pair1.Item1.X, pair1.Item1.Layer),
+                        new Vector2(pair1.Item2.X, pair1.Item2.Layer),
+                        new Vector2(pair2.Item1.X, pair2.Item1.Layer),
+                        new Vector2(pair2.Item2.X, pair2.Item2.Layer), 0.1f))
+                    {
+                        intersections++;
+                    }
+                }
+            }
+
+            return intersections / 2; // Each intersection will be counted twice.
+        }
+
+        private static IEnumerable<Tuple<Node, Node>> GetPairsBetweenLayers (List<Node> layer1, List<Node> layer2, bool children)
+        {
             foreach (Node n in layer1)
             {
-                foreach (var parent in n.Parents)
+                var list = children ? n.Children : n.Parents;
+                foreach (var neighbor in list)
                 {
-                    if (layer2.Contains(parent))
+                    if (layer2.Contains(neighbor))
                     {
-                        count++;
-                        yield return new Tuple<Node, Node>(n, parent);
+                        yield return new Tuple<Node, Node>(n, neighbor);
                     }
+                }
+            }
+        }
+
+        private static IEnumerable<Tuple<Node, Node>> GetAllPairs (IEnumerable<Node> nodes, bool children)
+        {
+            foreach (Node node in nodes)
+            {
+                var list = children ? node.Children : node.Parents;
+                foreach (var neighbor in list)
+                {
+                    yield return new Tuple<Node, Node>(node, neighbor);
                 }
             }
         }
