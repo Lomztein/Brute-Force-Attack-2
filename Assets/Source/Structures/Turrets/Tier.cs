@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override string ToString()
         {
-            return $"{TierIndex.ToString()}-{VariantIndex.ToString()}";
+            return $"{TierIndex}-{VariantIndex}";
         }
 
         public static Tier Parse(string input)

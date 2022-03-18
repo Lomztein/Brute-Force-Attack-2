@@ -49,6 +49,8 @@ namespace Lomztein.BFA2.Research
                 .ToArray();
         }
 
+        public ResearchOption[] GetAll() => _all.ToArray();
+
         private void Awake()
         {
             Instance = this;

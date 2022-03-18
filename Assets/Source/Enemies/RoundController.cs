@@ -207,8 +207,6 @@ namespace Lomztein.BFA2.Enemies
             handler.OnAllEnemiesDone -= WaveCompleted;
 
             _activeWaves.Remove(handler);
-            Debug.Log("Removed wave " + handler.Wave);
-
             Destroy(handler.gameObject);
         }
     }
