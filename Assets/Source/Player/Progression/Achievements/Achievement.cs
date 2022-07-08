@@ -51,7 +51,10 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         {
             if (!_completed)
             {
-                Reward?.Apply();
+                if (Reward != null)
+                {
+                    Reward.Apply();
+                }
                 OnCompleted?.Invoke(this);
                 _completed = true;
             }

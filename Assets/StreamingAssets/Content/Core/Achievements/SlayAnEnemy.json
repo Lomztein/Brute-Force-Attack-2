@@ -1,6 +1,6 @@
 {
   "Name": "One down, thousands to go",
-  "Description": "Slay but a single enemy. Don't worry, there are MANY more where that came from. Unlocks the Undying Enemies mutator, with which enemies have a chance to revive on death.",
+  "Description": "Slay but a single enemy. Don't worry, there are MANY more where that came from.",
   "Identifier": "Core.SlayOneEnemy",
   "Sprite": {
     "Path": "Core\\Sprites\\Enemies\\BasicEnemyT1.png",
@@ -33,19 +33,5 @@
       ]
     }
   },
-  "Reward": {
-    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Rewards.AddMutatorReward",
-    "$Data": {
-      "Mutator": {
-        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.UndyingEnemiesMutator",
-        "$Data": {
-          "UndyingChancePercent": 25.0,
-          "RerollOnSuccess": false,
-          "Name": "Undying Enemies",
-          "Description": "When killed, enemies have a chance to immidiately revive, maybe even with clones.",
-          "Identifier": "Core.UndyingEnemies"
-        }
-      }
-    }
-  }
+  "Reward": null
 }

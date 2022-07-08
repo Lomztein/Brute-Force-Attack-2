@@ -1,0 +1,13 @@
+{
+  "Character": "$Path{Core/Characters/Hackerman/Hackerman.json}",
+  "Expression": "Neutral",
+  "Text": "Just so you are aware, the next wave includes cluster enemies, which split into multiple smaller enemies that can quickly overwhelm your defences if you lack anything that can deal with groups of enemies. Area of effect weapons highly recommended.",
+  "Predicate": {
+    "$Type": "Lomztein.BFA2.UI.Displays.Dialog.FirstApperanceOfEnemyPredicate",
+    "$Data": {
+      "EnemyIdentifiers": [
+        "Core.ClusterEnemy"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "Character": "$Path{Core/Characters/Hackerman/Hackerman.json}",
+  "Expression": "Neutral",
+  "Text": "Beware, you are about to meet the yellow enemy. These buggers are super fast, but have a reduced amount of health. Rockets are next to useless against them, but lasers can do wonders.",
+  "Predicate": {
+    "$Type": "Lomztein.BFA2.UI.Displays.Dialog.FirstApperanceOfEnemyPredicate",
+    "$Data": {
+      "EnemyIdentifiers": [
+        "Core.FastEnemy"
+      ]
+    }
+  }
+}

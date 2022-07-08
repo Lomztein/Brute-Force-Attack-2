@@ -1,0 +1,13 @@
+{
+  "Character": "$Path{Core/Characters/Hackerman/Hackerman.json}",
+  "Expression": "Neutral",
+  "Text": "Heads up, you will face heavy enemies next round. These ones are slow, but very tanky, and even comes with a bit of flat damage reduction, meaning that high single-shot damage weapons such as rocket launchers are highly recommended.",
+  "Predicate": {
+    "$Type": "Lomztein.BFA2.UI.Displays.Dialog.FirstApperanceOfEnemyPredicate",
+    "$Data": {
+      "EnemyIdentifiers": [
+        "Core.HeavyEnemy"
+      ]
+    }
+  }
+}

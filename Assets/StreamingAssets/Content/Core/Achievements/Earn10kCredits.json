@@ -21,7 +21,19 @@
   "Requirement": {
     "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.EarnResourceRequirement",
     "$Data": {
-      "Type": null,
+      "Type": {
+        "Name": "Lines of Code",
+        "Shorthand": "LoC",
+        "Identifier": "Core.Credits",
+        "Description": "The credits used for purchasing turrets and upgrades.",
+        "Color": {
+          "Red": 0.0,
+          "Green": 1.0,
+          "Blue": 0.0,
+          "Alpha": 1.0
+        },
+        "BinaryValue": 250
+      },
       "Amount": 10000,
       "CrossGames": false
     }
@@ -46,7 +58,7 @@
               "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingResourceMultiplierMutator",
               "$Data": {
                 "DefaultMultiplier": 2.0,
-                "_multipliers": [],
+                "_multipliers": null,
                 "Name": "",
                 "Description": "",
                 "Identifier": ""
