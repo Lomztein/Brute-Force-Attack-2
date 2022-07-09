@@ -28,8 +28,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
 
             foreach (Collider2D col in colliders)
             {
-                IDamagable damagable = col.GetComponent<IDamagable>();
-                if (damagable != null)
+                if (col.TryGetComponent<IDamagable>(out var damagable))
                 {
                     damagable.TakeDamage(new DamageInfo(damage, Colorization.Color.Red));
                 }

@@ -27,12 +27,10 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public TurretAssembly CurrentAsssembly;
         public Tier WorkingTier => CurrentAsssembly.CurrentTeir;
-
-        public Transform TierDisplayParent;
-        public GameObject TierDisplayPrefab;
-        private List<TierDisplay> _tierDisplays = new List<TierDisplay>();
+        public TierDisplay TierDisplay;
 
         public InputField NameText;
+        public InputField TierText;
         public InputField DescriptionText;
         public StatSheet StatDisplay;
 
@@ -48,12 +46,11 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public void DeleteCurrentAssembly ()
         {
-            foreach (TierDisplay display in _tierDisplays)
+            TierDisplay.Clear();
+            if (CurrentAsssembly)
             {
-                Destroy(display.gameObject);
+                Destroy(CurrentAsssembly.gameObject);
             }
-            _tierDisplays.Clear();
-            Destroy((CurrentAsssembly as Component).gameObject);
             CurrentAsssembly = null;
         }
 
@@ -117,10 +114,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         private void LoadFile(string path)
         {
-            if (CurrentAsssembly)
-            {
-                DeleteCurrentAssembly();
-            }
+            DeleteCurrentAssembly();
 
             var json = JObject.Parse(File.ReadAllText(path));
             var model = ObjectPipeline.DeserializeObject(json);
@@ -128,14 +122,19 @@ namespace Lomztein.BFA2.AssemblyEditor
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
             CurrentAsssembly = assembler.Assemble(model);
 
-            if (CurrentAsssembly is Component comp)
-            {
-                comp.transform.position = Vector3.zero;
-                comp.transform.rotation = Quaternion.identity;
-            }
+            CurrentAsssembly.transform.position = Vector3.zero;
+            CurrentAsssembly.transform.rotation = Quaternion.identity;
 
             NameText.text = CurrentAsssembly.Name;
             DescriptionText.text = CurrentAsssembly.Description;
+
+            foreach (Transform tierParent in CurrentAsssembly.transform)
+            {
+                TierDisplay.AddTierButton(tierParent, Tier.Parse(tierParent.name));
+            }
+
+            TierDisplay.UpdateUpgradePaths();
+            SetTier(Tier.Initial);
         }
 
         public void Load ()
@@ -147,6 +146,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         }
 
         public void UpdateAssemblyName() => CurrentAsssembly.Name = NameText.text;
+        public void UpdateTierName() => CurrentAsssembly.SetTierName(CurrentAsssembly.CurrentTeir, TierText.text);
         public void UpdateAssemblyDescription() => CurrentAsssembly.Description = DescriptionText.text;
 
         public bool IsTierEmpty(Tier tier) => CurrentAsssembly.GetRootComponent(tier) == null;
@@ -156,6 +156,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             CurrentAsssembly.SetTier(tier);
             StatDisplay.SetTarget(GetWorkingTierParent().gameObject);
+            TierText.text = tier.Name;
         }
 
         public Transform GetTierParent(Tier tier) => CurrentAsssembly.GetTierParent(tier);
@@ -166,7 +167,51 @@ namespace Lomztein.BFA2.AssemblyEditor
             GameObject newTier = new GameObject();
             CurrentAsssembly.AddTier(newTier.transform, tier);
             newTier.transform.SetParent(CurrentAsssembly.transform);
+            TierDisplay.AddTierButton(newTier.transform, tier);
             return tier;
+        }
+
+        public void MoveTier (Tier from, Tier to)
+        {
+
+        }
+
+        public void AddUpgradeOption(Tier from, Tier to)
+        {
+            CurrentAsssembly.UpgradeMap.AddTierToUpgradeOptions(from, to);
+            TierDisplay.UpdateUpgradePaths();
+        }
+
+        public void RemoveUpgradeOption(Tier from, Tier to)
+        {
+            CurrentAsssembly.UpgradeMap.RemoveTierFromUpgradeOptions(from, to);
+            TierDisplay.UpdateUpgradePaths();
+        }
+
+        public void ClearDeadUpgradeOptions ()
+        {
+            foreach (var option in CurrentAsssembly.UpgradeMap.Options)
+            {
+                var copy = new List<Tier>(option.NextTiers);
+
+                // If current tier doesn't exist, then remove all outgoing upgrades.
+                if (!CurrentAsssembly.HasTier(option.Tier))
+                {
+                    foreach (Tier tier in copy)
+                    {
+                        option.RemoveTier(tier);
+                    }
+                }
+
+                // If outgoing tier doesn't exist, remove outgoing upgrade.
+                foreach (Tier tier in copy)
+                {
+                    if (!CurrentAsssembly.HasTier(tier))
+                    {
+                        option.RemoveTier(tier);
+                    }
+                }
+            }
         }
 
         public void RemoveTier (Tier tier)
@@ -176,8 +221,13 @@ namespace Lomztein.BFA2.AssemblyEditor
                 SetTier(tier);
             }
 
+            TierDisplay.RemoveTierButton(tier);
             Transform parent = CurrentAsssembly.GetTierParent(tier);
             CurrentAsssembly.RemoveTier(tier);
+
+            ClearDeadUpgradeOptions();
+            TierDisplay.UpdateUpgradePaths();
+
             Destroy(parent.gameObject);
         }
     }

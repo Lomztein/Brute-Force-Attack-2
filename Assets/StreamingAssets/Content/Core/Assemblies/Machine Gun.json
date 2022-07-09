@@ -1,0 +1,599 @@
+{
+  "Name": "Machine Gun",
+  "Description": "Your trusty Machine Gun. Decent damage and firerate, capable all-rounder, but it last long alone.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Twin Machine Gun",
+      "Tier": 1,
+      "Variant": -1
+    },
+    {
+      "Name": "Dual Machine Gun",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Cooled Machine Gun",
+      "Tier": 1,
+      "Variant": 1
+    },
+    {
+      "Name": "Tri-Barrelled Machine Gun",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Twin Dual Machine Gun",
+      "Tier": 2,
+      "Variant": -1
+    },
+    {
+      "Name": "Twin Tri-Barrelled Machine Gun",
+      "Tier": 3,
+      "Variant": 0
+    },
+    {
+      "Name": "Cooled Dual Machine Gun",
+      "Tier": 2,
+      "Variant": 1
+    },
+    {
+      "Name": "Cooled Tri-Barrelled Machine Gun",
+      "Tier": 3,
+      "Variant": 1
+    },
+    {
+      "Name": "Cooled Twin Tri-Barrelled Machine Gun",
+      "Tier": 4,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_-1",
+          "1_0",
+          "1_1"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0"
+        ]
+      },
+      {
+        "Tier": "1_-1",
+        "NextTiers": [
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "2_-1",
+        "NextTiers": [
+          "3_0"
+        ]
+      },
+      {
+        "Tier": "2_0",
+        "NextTiers": [
+          "3_0"
+        ]
+      },
+      {
+        "Tier": "1_1",
+        "NextTiers": [
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "2_1",
+        "NextTiers": [
+          "3_1"
+        ]
+      },
+      {
+        "Tier": "3_0",
+        "NextTiers": [
+          "4_0"
+        ]
+      },
+      {
+        "Tier": "3_1",
+        "NextTiers": [
+          "4_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MachineGunT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "1_-1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallTwinFireSynchronizer",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    },
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": -0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MachineGunT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "1_1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MachineGunT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -0.625,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MachineGunT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "2_-1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallTwinFireSynchronizer",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT2",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": -0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    },
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT2",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2_1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MachineGunT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -0.625,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3_1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MachineGunT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -0.625,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "4_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.CoolantCell",
+                      "LocalPosition": {
+                        "X": -0.625,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.CoolantCell",
+                      "LocalPosition": {
+                        "X": -0.625,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

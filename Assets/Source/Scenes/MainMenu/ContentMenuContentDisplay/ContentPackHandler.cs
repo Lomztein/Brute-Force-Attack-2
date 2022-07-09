@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace Lomztein.BFA2.Scenes.MainMenu.ContentMenuContentDisplay
 {
-    public abstract class ContentPackHandler
+    public abstract class ContentPackHandler : MonoBehaviour
     {
         public GameObject ContentElementPrefab;
 

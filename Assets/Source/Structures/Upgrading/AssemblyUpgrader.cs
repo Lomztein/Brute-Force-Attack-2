@@ -23,16 +23,16 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
-            IEnumerable<Tier> next = _assembly.UpgradeMap.GetNext(_assembly.CurrentTeir);
+            IEnumerable<Tier> next = _assembly.Tiers.Where(x => _assembly.UpgradeMap.GetUpgradeOptions(_assembly.CurrentTeir).NextTiers.Any(y => x.Equals(y)));
             foreach (Tier tier in next)
             {
-                yield return GenerateOption(new Tier(tier.TierIndex, tier.VariantIndex)); // This is probably being straight up abuse to memory lol.
+                yield return GenerateOption(new Tier(tier.Name, tier.TierIndex, tier.VariantIndex)); // This is probably being straight up abuse to memory lol.
             }
         }
 
         private IContextMenuOption GenerateOption (Tier tier)
         {
-            return new ContextMenuOption(() => "Upgrade to " + tier.ToString(),
+            return new ContextMenuOption(() => "Upgrade to " + tier.Name,
                     () => GetCost(tier).Format(),
                     () => Iconography.GenerateSprite(_assembly.GetTierParent(tier).gameObject),
                     () => null,

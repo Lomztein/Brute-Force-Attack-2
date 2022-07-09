@@ -11,6 +11,7 @@ namespace Lomztein.BFA2.Placement
     public class PlacementController : MonoBehaviour
     {
         public static PlacementController Instance;
+        private InputMaster _inputMaster;
 
         [SerializeField] private IPlacementBehaviour[] _behaviours;
 
@@ -21,10 +22,16 @@ namespace Lomztein.BFA2.Placement
             Instance = this;
             _behaviours = GetComponents<IPlacementBehaviour>();
 
+            _inputMaster = new InputMaster();
+            _inputMaster.General.CancelPause.performed += Cancel;
+            _inputMaster.General.Enable();
+            _inputMaster.Enable();
+        }
+
+        private void OnDestroy()
+        {
             InputMaster master = new InputMaster();
-            master.General.CancelPause.performed += Cancel;
-            master.General.Enable();
-            master.Enable();
+            _inputMaster.General.CancelPause.performed -= Cancel;
         }
 
         private void Cancel(UnityEngine.InputSystem.InputAction.CallbackContext obj)

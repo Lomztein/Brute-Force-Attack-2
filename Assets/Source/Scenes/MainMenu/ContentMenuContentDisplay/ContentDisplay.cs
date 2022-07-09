@@ -11,7 +11,6 @@ namespace Lomztein.BFA2.Scenes.MainMenu.ContentMenuContentDisplay
 {
     public class ContentDisplay : MonoBehaviour
     {
-        [SerializeReference, SR]
         public ContentPackHandler[] Handlers;
         public Transform ListParent;
 

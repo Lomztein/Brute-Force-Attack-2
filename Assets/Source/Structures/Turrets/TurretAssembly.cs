@@ -14,6 +14,9 @@ namespace Lomztein.BFA2.Structures.Turrets
         public override IResourceCost Cost => GetCost(CurrentTeir);
 
         public Tier CurrentTeir { get; private set; } = Tier.Initial;
+        [SerializeField] private List<Tier> _tiers = new List<Tier>();
+        public IEnumerable<Tier> Tiers => _tiers;
+
         public UpgradeMap UpgradeMap;
 
         public float Complexity => GetComponents(CurrentTeir).Sum(x => x.ComputeComplexity());
@@ -39,13 +42,21 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             return GetTierParent(tier).GetComponentInChildren<TurretComponent>();
         }
+
         public TurretComponent GetRootComponent() => GetRootComponent(CurrentTeir);
+
+        public void SetTiers(IEnumerable<Tier> tiers)
+        {
+            _tiers.Clear();
+            _tiers.AddRange(tiers);
+        }
 
         public void AddTier(Transform parent, Tier tier)
         {
             parent.gameObject.name = tier.ToString();
             parent.SetParent(transform);
             parent.transform.position = transform.position;
+            _tiers.Add(tier);
         }
 
         public void RemoveTier(Tier tier)
@@ -55,15 +66,16 @@ namespace Lomztein.BFA2.Structures.Turrets
             {
                 Destroy(parent.gameObject);
             }
+            _tiers.Remove(tier);
         }
 
-        public bool HasTier(Tier tier) => GetTierParent(tier) != null;
+        public bool HasTier(Tier tier) => Tiers.Any(x => x.Equals(tier));
 
         public Transform GetTierParent(Tier tier)
         {
             foreach (Transform child in transform)
             {
-                if (child.gameObject.name.Equals(tier.ToString()))
+                if (Tier.Parse(child.gameObject.name).Equals(tier))
                     return child;
             }
 
@@ -78,6 +90,11 @@ namespace Lomztein.BFA2.Structures.Turrets
             }
             CurrentTeir = tier;
             GetTierParent(CurrentTeir).gameObject.SetActive(true);
+        }
+
+        public void SetTierName(Tier tier, string name)
+        {
+            tier.Name = name;
         }
 
         public void Start()

@@ -1,8 +1,75 @@
 {
-  "Name": "Machine Gun",
-  "Description": "",
-  "Tiers": {
-    "0-0": {
+  "Name": "Rocket Launcher",
+  "Description": "Large rockets are launched from this heavy hitting turret, which in turn can demolish even heavier foes.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Rocket Battery",
+      "Tier": 1,
+      "Variant": -1
+    },
+    {
+      "Name": "Heavy Rocket Launcher",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Super-Heavy Rocket Launcher",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Heavy Rocket Battery",
+      "Tier": 2,
+      "Variant": -1
+    },
+    {
+      "Name": "Super-Heavy Rocket Battery",
+      "Tier": 3,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_-1",
+          "1_0"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0"
+        ]
+      },
+      {
+        "Tier": "1_-1",
+        "NextTiers": [
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "2_-1",
+        "NextTiers": [
+          "3_0"
+        ]
+      },
+      {
+        "Tier": "2_0",
+        "NextTiers": [
+          "3_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
       "UniqueIdentifier": "Core.SmallBase",
       "LocalPosition": {
         "X": 0.0,
@@ -21,7 +88,7 @@
           "Flipped": false,
           "Children": [
             {
-              "UniqueIdentifier": "Core.MachineGunT1",
+              "UniqueIdentifier": "Core.RocketLauncherT1",
               "LocalPosition": {
                 "X": 0.0,
                 "Y": 0.0
@@ -34,71 +101,7 @@
         }
       ]
     },
-    "1-0": {
-      "UniqueIdentifier": "Core.SmallBase",
-      "LocalPosition": {
-        "X": 0.0,
-        "Y": 0.0
-      },
-      "Angle": 0.0,
-      "Flipped": false,
-      "Children": [
-        {
-          "UniqueIdentifier": "Core.SmallRotator",
-          "LocalPosition": {
-            "X": 0.0,
-            "Y": 0.0
-          },
-          "Angle": 0.0,
-          "Flipped": false,
-          "Children": [
-            {
-              "UniqueIdentifier": "Core.MachineGunT2",
-              "LocalPosition": {
-                "X": 0.0,
-                "Y": 0.0
-              },
-              "Angle": 0.0,
-              "Flipped": false,
-              "Children": []
-            }
-          ]
-        }
-      ]
-    },
-    "2-0": {
-      "UniqueIdentifier": "Core.SmallBase",
-      "LocalPosition": {
-        "X": 0.0,
-        "Y": 0.0
-      },
-      "Angle": 0.0,
-      "Flipped": false,
-      "Children": [
-        {
-          "UniqueIdentifier": "Core.SmallRotator",
-          "LocalPosition": {
-            "X": 0.0,
-            "Y": 0.0
-          },
-          "Angle": 0.0,
-          "Flipped": false,
-          "Children": [
-            {
-              "UniqueIdentifier": "Core.MachineGunT3",
-              "LocalPosition": {
-                "X": 0.0,
-                "Y": 0.0
-              },
-              "Angle": 0.0,
-              "Flipped": false,
-              "Children": []
-            }
-          ]
-        }
-      ]
-    },
-    "1-1": {
+    "1_-1": {
       "UniqueIdentifier": "Core.SmallBase",
       "LocalPosition": {
         "X": 0.0,
@@ -135,20 +138,20 @@
                   "Flipped": false,
                   "Children": [
                     {
-                      "UniqueIdentifier": "Core.MachineGunT1",
+                      "UniqueIdentifier": "Core.RocketLauncherT1",
                       "LocalPosition": {
                         "X": 0.0,
-                        "Y": 0.5
+                        "Y": -0.5
                       },
                       "Angle": 0.0,
                       "Flipped": false,
                       "Children": []
                     },
                     {
-                      "UniqueIdentifier": "Core.MachineGunT1",
+                      "UniqueIdentifier": "Core.RocketLauncherT1",
                       "LocalPosition": {
                         "X": 0.0,
-                        "Y": -0.5
+                        "Y": 0.5
                       },
                       "Angle": 0.0,
                       "Flipped": false,
@@ -162,7 +165,71 @@
         }
       ]
     },
-    "2-1": {
+    "1_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.RocketLauncherT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.RocketLauncherT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "2_-1": {
       "UniqueIdentifier": "Core.SmallBase",
       "LocalPosition": {
         "X": 0.0,
@@ -199,20 +266,20 @@
                   "Flipped": false,
                   "Children": [
                     {
-                      "UniqueIdentifier": "Core.MachineGunT2",
+                      "UniqueIdentifier": "Core.RocketLauncherT2",
                       "LocalPosition": {
                         "X": 0.0,
-                        "Y": 0.5
+                        "Y": -0.5
                       },
                       "Angle": 0.0,
                       "Flipped": false,
                       "Children": []
                     },
                     {
-                      "UniqueIdentifier": "Core.MachineGunT2",
+                      "UniqueIdentifier": "Core.RocketLauncherT2",
                       "LocalPosition": {
                         "X": 0.0,
-                        "Y": -0.5
+                        "Y": 0.5
                       },
                       "Angle": 0.0,
                       "Flipped": false,
@@ -226,7 +293,7 @@
         }
       ]
     },
-    "3-0": {
+    "3_0": {
       "UniqueIdentifier": "Core.SmallBase",
       "LocalPosition": {
         "X": 0.0,
@@ -254,20 +321,20 @@
               "Flipped": false,
               "Children": [
                 {
-                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "UniqueIdentifier": "Core.RocketLauncherT3",
                   "LocalPosition": {
                     "X": 0.0,
-                    "Y": 0.5
+                    "Y": -0.5
                   },
                   "Angle": 0.0,
                   "Flipped": false,
                   "Children": []
                 },
                 {
-                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "UniqueIdentifier": "Core.RocketLauncherT3",
                   "LocalPosition": {
                     "X": 0.0,
-                    "Y": -0.5
+                    "Y": 0.5
                   },
                   "Angle": 0.0,
                   "Flipped": false,
@@ -279,77 +346,5 @@
         }
       ]
     }
-  },
-  "UpgradeMap": {
-    "Options": [
-      {
-        "Tier": {
-          "Tier": 0,
-          "Variant": 0
-        },
-        "Next": [
-          {
-            "Tier": 1,
-            "Variant": 0
-          },
-          {
-            "Tier": 1,
-            "Variant": 1
-          }
-        ]
-      },
-      {
-        "Tier": {
-          "Tier": 1,
-          "Variant": 0
-        },
-        "Next": [
-          {
-            "Tier": 2,
-            "Variant": 0
-          },
-          {
-            "Tier": 2,
-            "Variant": 1
-          }
-        ]
-      },
-      {
-        "Tier": {
-          "Tier": 2,
-          "Variant": 0
-        },
-        "Next": [
-          {
-            "Tier": 3,
-            "Variant": 0
-          }
-        ]
-      },
-      {
-        "Tier": {
-          "Tier": 1,
-          "Variant": 1
-        },
-        "Next": [
-          {
-            "Tier": 2,
-            "Variant": 1
-          }
-        ]
-      },
-      {
-        "Tier": {
-          "Tier": 2,
-          "Variant": 1
-        },
-        "Next": [
-          {
-            "Tier": 3,
-            "Variant": 0
-          }
-        ]
-      }
-    ]
   }
 }

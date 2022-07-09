@@ -19,20 +19,21 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             ObjectModel obj = model.Root as ObjectModel;
             assembly.Name = obj.GetValue<string>("Name");
             assembly.Description = obj.GetValue<string>("Description");
-            ObjectModel tiers = obj.GetObject("Tiers");
+            ArrayModel tiers = obj.GetArray("Tiers");
+            ObjectModel children = obj.GetObject("Children");
             UpgradeMap upgrades = _valueAssembler.Assemble(obj.GetObject("UpgradeMap"), typeof(UpgradeMap), new AssemblyContext()) as UpgradeMap;
 
-            foreach (var tierProperty in tiers.GetProperties())
+            foreach (var tierProperty in children.GetProperties())
             {
-                Transform tierObj = AssembleTier(tierProperty.Model as ObjectModel, assembly).transform;
+                Transform childObj = AssembleTier(tierProperty.Model as ObjectModel, assembly).transform;
                 Tier tier = Tier.Parse(tierProperty.Name);
 
-                tierObj.gameObject.SetActive(false);
-                tierObj.gameObject.name = tier.ToString();
-                
-                assembly.AddTier(tierObj, tier);
+                childObj.gameObject.SetActive(false);
+                childObj.gameObject.name = tier.ToString();
             }
 
+            ArrayModelAssembler assembler = new ArrayModelAssembler();
+            assembly.SetTiers(assembler.Assemble(tiers, typeof(Tier[]), new AssemblyContext()) as Tier[]);
             assembly.UpgradeMap = upgrades;
             assembly.SetTier(Tier.Initial);
             return assembly;
@@ -46,18 +47,19 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         public RootModel Disassemble (TurretAssembly assembly)
         {
             DisassemblyContext context = new DisassemblyContext();
-            List<ObjectField> tiers = new List<ObjectField>();
-            foreach (Transform tier in assembly.transform)
+            List<ObjectField> children = new List<ObjectField>();
+            foreach (Tier tier in assembly.Tiers)
             {
-                tiers.Add(new ObjectField (tier.name, DisassembleTier(assembly, Tier.Parse(tier.gameObject.name), context)));
+                children.Add(new ObjectField (tier.ToString(), DisassembleTier(assembly, tier, context)));
             }
 
             return new RootModel(new ObjectModel(
                 new ObjectField("Name", ValueModelFactory.Create(assembly.Name, context)),
                 new ObjectField("Description", ValueModelFactory.Create(assembly.Description, context)),
-                new ObjectField("Tiers", new ObjectModel(tiers.ToArray())),
-                new ObjectField("UpgradeMap", _valueAssembler.Disassemble(assembly.UpgradeMap, typeof(UpgradeMap), new DisassemblyContext())
-                )));
+                new ObjectField("Tiers", ValueModelFactory.Create(assembly.Tiers, context)),
+                new ObjectField("UpgradeMap", _valueAssembler.Disassemble(assembly.UpgradeMap, typeof(UpgradeMap), context)),
+                new ObjectField("Children", new ObjectModel(children.ToArray()))
+                ));
         }
 
         private ObjectModel DisassembleTier (TurretAssembly assembly, Tier tier, DisassemblyContext context)

@@ -1,0 +1,657 @@
+{
+  "Name": "Pulse Laser Cannon",
+  "Description": "The rapid and powerful pulses of lasers emitted from this turret will quickly cut down dangerous speedsters.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Long Range Pulse Laser Cannon",
+      "Tier": 1,
+      "Variant": 1
+    },
+    {
+      "Name": "Long Range Twin Pulse Laser Cannon",
+      "Tier": 2,
+      "Variant": 1
+    },
+    {
+      "Name": "Twin Pulse Laser Cannon",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Twin Pulse Laser Cannon",
+      "Tier": 1,
+      "Variant": -1
+    },
+    {
+      "Name": "Heavy Pulse Laser Cannon",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Quad Pulse Laser Cannon",
+      "Tier": 2,
+      "Variant": -1
+    },
+    {
+      "Name": "Twin Heavy Pulse Laser Cannon",
+      "Tier": 3,
+      "Variant": 0
+    },
+    {
+      "Name": "Long Range Twin Heavy Pulse Laser Cannon",
+      "Tier": 4,
+      "Variant": 0
+    },
+    {
+      "Name": "Long Range Heavy Pulse Laser Cannon",
+      "Tier": 3,
+      "Variant": 1
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_1",
+          "1_0",
+          "1_-1"
+        ]
+      },
+      {
+        "Tier": "1_1",
+        "NextTiers": [
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0",
+          "2_-1",
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "1_-1",
+        "NextTiers": [
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "2_0",
+        "NextTiers": [
+          "3_0",
+          "3_1"
+        ]
+      },
+      {
+        "Tier": "2_-1",
+        "NextTiers": [
+          "3_0"
+        ]
+      },
+      {
+        "Tier": "3_0",
+        "NextTiers": [
+          "4_0"
+        ]
+      },
+      {
+        "Tier": "2_1",
+        "NextTiers": [
+          "3_1"
+        ]
+      },
+      {
+        "Tier": "3_1",
+        "NextTiers": [
+          "4_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PulseLaserT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "1_1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.AuxProcessor",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallRotator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.PulseLaserT1",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2_1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.AuxProcessor",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallRotator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.PulseLaserT2",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PulseLaserT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "1_-1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallRotator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "UniqueIdentifier": "Core.SmallRotator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PulseLaserT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": []
+            }
+          ]
+        }
+      ]
+    },
+    "2_-1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallRotator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT2",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "UniqueIdentifier": "Core.SmallRotator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT2",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoConnector",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallRotator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -0.4999999
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT3",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                },
+                {
+                  "UniqueIdentifier": "Core.SmallRotator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT3",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "4_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.AuxProcessor",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallRotator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.OneToTwoConnector",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallRotator",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": -0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.PulseLaserT3",
+                          "LocalPosition": {
+                            "X": 0.0,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": []
+                        }
+                      ]
+                    },
+                    {
+                      "UniqueIdentifier": "Core.SmallRotator",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.PulseLaserT3",
+                          "LocalPosition": {
+                            "X": 0.0,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3_1": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.AuxProcessor",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallRotator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.PulseLaserT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
