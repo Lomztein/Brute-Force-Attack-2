@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.UI.Displays
         public Color ReadyColor;
         public Color PreparingColor;
         public Color InProgressColor;
+        public Color WavesExhaustedColor;
 
         public Image Image;
         public Button Button;
@@ -47,6 +48,11 @@ namespace Lomztein.BFA2.UI.Displays
                 case RoundController.RoundState.InProgress:
                     Image.color = InProgressColor;
                     Button.interactable = true;
+                    break;
+
+                case RoundController.RoundState.WavesExhausted:
+                    Image.color = WavesExhaustedColor;
+                    Button.interactable = false;
                     break;
 
             }

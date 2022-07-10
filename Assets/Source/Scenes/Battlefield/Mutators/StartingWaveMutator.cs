@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         public void AddPropertiesTo(PropertyMenu menu)
         {
-            menu.AddProperty(new NumberDefinition("Staring Wave", StartingWave, true, 0, 1024)).OnValueChanged += OnStartingWaveChanged; ;
+            menu.AddProperty(new NumberDefinition("Staring Wave", StartingWave, true, 1, 1024)).OnValueChanged += OnStartingWaveChanged; ;
         }
 
         private void OnStartingWaveChanged(object obj)
@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         public override void Start()
         {
-            RoundController.Instance.NextIndex = StartingWave;
+            RoundController.Instance.SetWave(StartingWave);
         }
     }
 }

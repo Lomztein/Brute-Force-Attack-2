@@ -24,8 +24,21 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
 
         public void Start()
         {
+            RoundController.OnNextWaveChanged += OnNextWaveChanged;
             RoundController.OnWaveStarted += OnWaveStarted;
             RoundController.OnWaveFinished += OnWaveFinished;
+            NextDisplay.Display(-1, null, RoundController.NextWave);
+        }
+
+        private void OnDestroy()
+        {
+            RoundController.OnNextWaveChanged -= OnNextWaveChanged;
+            RoundController.OnWaveStarted -= OnWaveStarted;
+            RoundController.OnWaveFinished -= OnWaveFinished;
+        }
+
+        private void OnNextWaveChanged (int index)
+        {
             NextDisplay.Display(-1, null, RoundController.NextWave);
         }
 

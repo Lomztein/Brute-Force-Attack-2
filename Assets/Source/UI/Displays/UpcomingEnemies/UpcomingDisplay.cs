@@ -32,11 +32,18 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
             Wave = wave;
 
             TitleText.text = wave == -1 ? "Next wave" : $"Wave {wave}";
-            var dict = timeline.GetEnemySpawnAmount();
-            foreach (var pair in dict)
+            if (timeline == null)
             {
-                EnemyTypeDisplay display = Instantiate(EnemyTypeDisplayPrefab, EnemyTypeDisplayParent).GetComponent<EnemyTypeDisplay>();
-                display.Display(handler, pair.Value, pair.Key);
+                TitleText.text = "The end";
+            }
+            else
+            {
+                var dict = timeline.GetEnemySpawnAmount();
+                foreach (var pair in dict)
+                {
+                    EnemyTypeDisplay display = Instantiate(EnemyTypeDisplayPrefab, EnemyTypeDisplayParent).GetComponent<EnemyTypeDisplay>();
+                    display.Display(handler, pair.Value, pair.Key);
+                }
             }
         }
     }

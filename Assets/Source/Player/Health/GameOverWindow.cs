@@ -23,6 +23,11 @@ namespace Lomztein.BFA2.Player.Health
             SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
+        public void MainMenu ()
+        {
+            SceneManager.LoadScene(0);
+        }
+
         public void HurrDurr ()
         {
             Destroy(gameObject);

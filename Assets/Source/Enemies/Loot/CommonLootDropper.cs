@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Enemies.Loot
     public class CommonLootDropper : MonoBehaviour
     {
         public const string COMMON_LOOT_PATH = "*/Loot/Common";
-        public const int BASE_FRACTION = 100;
+        public const int BASE_FRACTION = 1;
 
         private static LootTable _commonLootTable;
 

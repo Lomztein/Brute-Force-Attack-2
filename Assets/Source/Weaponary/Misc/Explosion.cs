@@ -21,7 +21,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
         public void Explode (float damage, float range)
         {
             var particles = GetComponentInChildren<ParticleSystem>();
-            particles.Scale(range / ParticleBaseRange);
+            particles.transform.localScale = Vector3.one * range / ParticleBaseRange;
             particles.Play();
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range, Layer);

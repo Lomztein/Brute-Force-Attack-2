@@ -16,28 +16,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         private System.Random _random;
         private GeneratorEnemyData[] _enemyData;
 
-        private readonly float _startTime;
-        private readonly int _seed;
-        private readonly float _credits;
-        private readonly float _frequency;
-        private readonly int _wave;
-
-        private readonly float _maxSpawnFrequency;
-        private readonly float _minSpawnFrequency;
-
-
-        public WaveGenerator (float startTime, int wave, int seed, float credits, float frequency, float maxFreq, float minFreq)
-        {
-            _startTime = startTime;
-            _wave = wave;
-            _seed = seed;
-            _credits = credits;
-            _frequency = frequency;
-
-            _maxSpawnFrequency = maxFreq;
-            _minSpawnFrequency = minFreq;
-        }
-
         private GeneratorEnemyData[] GetGeneratorEnemyDataCache ()
         {
             if (_enemyData == null)
@@ -47,42 +25,50 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             return _enemyData;
         }
 
-        private System.Random GetRandom()
-        {
-            if (_random == null)
-            {
-                _random = new System.Random(_seed);
-            }
-            return _random;
-        }
-
-        private GeneratorEnemyData GetRandomEnemyGeneratorData ()
+        private GeneratorEnemyData GetRandomEnemyGeneratorData (int wave)
         {
             var cache = GetGeneratorEnemyDataCache();
-            var applicable = cache.Where(x => ShouldSpawn(x)).ToArray();
-            int index = GetRandom().Next(0, applicable.Length);
+            var applicable = cache.Where(x => ShouldSpawn(x, wave)).ToArray();
+            if (applicable.Length == 0)
+            {
+                return null;
+            }
+            int index = _random.Next(0, applicable.Length);
             return applicable[index];
         }
 
-        private (GeneratorEnemyData data, int amount) GetRandomEnemy(float credits)
+        private (GeneratorEnemyData data, int amount) GetRandomEnemy(float credits, int wave)
         {
-            GeneratorEnemyData data = GetRandomEnemyGeneratorData();
-            return (data, Mathf.Max(Mathf.RoundToInt(credits / data.DifficultyValue), 1));
+            GeneratorEnemyData data = GetRandomEnemyGeneratorData(wave);
+            if (data != null)
+            {
+                return (data, Mathf.Max(Mathf.RoundToInt(credits / data.DifficultyValue), 1));
+            }
+            else
+            {
+                return (null, 0);
+            }
         }
 
-        private bool ShouldSpawn(GeneratorEnemyData enemy)
+        private bool ShouldSpawn(GeneratorEnemyData enemy, float wave)
         {
-            float frequency = _frequency / enemy.DifficultyValue;
-            bool shouldSpawn = _wave >= enemy.EarliestWave && frequency <= _maxSpawnFrequency && frequency >= _minSpawnFrequency;
+            bool shouldSpawn = wave >= enemy.EarliestWave && wave <= enemy.LastWave;
             return shouldSpawn;
         }
 
-        public SpawnInterval Generate()
+        public SpawnInterval Generate(float startTime, int wave, int seed, float credits, float baseFrequency)
         {
-            (GeneratorEnemyData data, int amount) = GetRandomEnemy(_credits);
-            float frequency = _frequency / data.DifficultyValue;
-            float time = amount / frequency;
-            return new SpawnInterval(_startTime, time, data.EnemyIdentifier, amount);
+            _random = new System.Random(seed);
+            (GeneratorEnemyData data, int amount) = GetRandomEnemy(credits, wave);
+            if (data != null)
+            {
+                float frequency = baseFrequency / data.DifficultyValue;
+                float time = amount / frequency;
+                return new SpawnInterval(startTime, time, data.EnemyIdentifier, amount);
+            }
+            else return null;
         }
+
+        public bool CanGenerate(int wave) => GetGeneratorEnemyDataCache().Any(x => ShouldSpawn(x, wave));
     }
 }

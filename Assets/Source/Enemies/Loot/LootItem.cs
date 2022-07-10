@@ -18,21 +18,13 @@ namespace Lomztein.BFA2.Enemies.Loot
         public ContentPrefabReference Prefab;
 
         [ModelProperty]
-        public Vector2Int WaveMinMax;
-        [ModelProperty]
         public Vector2Int AmountMinMax;
         [ModelProperty]
-        public Vector2 ChanceMinMax;
-        [ModelProperty]
-        public AnimationCurve ChanceOverTime;
+        public float Denominator;
 
         public int Roll (float chanceScalar, int wave)
         {
-            float pos = (wave - WaveMinMax.x) / (float)(WaveMinMax.y - WaveMinMax.x);
-            float chance = Mathf.Lerp(ChanceMinMax.x, ChanceMinMax.y, ChanceOverTime.Evaluate(pos));
-            int fraction = Mathf.RoundToInt (1 / chance);
-
-            if (Random.Range(0, Mathf.RoundToInt(fraction / chanceScalar) + 1) == 0)
+            if (Random.Range(0, Mathf.CeilToInt(Denominator / chanceScalar)) == 0)
             {
                 return Random.Range(Mathf.RoundToInt(AmountMinMax.x), Mathf.RoundToInt(AmountMinMax.y + 1));
             }

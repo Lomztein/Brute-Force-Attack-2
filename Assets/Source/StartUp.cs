@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Lomztein.BFA2
 {
@@ -35,6 +36,8 @@ namespace Lomztein.BFA2
             SerializationFileAccess.SetAccessor(new ContentFileAccessor());
             Input.Init();
             Facade.Init();
+
+            Cursor.lockState = CursorLockMode.Confined;
 
             ContentManager.LoadPlugins();
             ContentManager.InitializeContent();

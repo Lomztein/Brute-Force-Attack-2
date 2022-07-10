@@ -9,5 +9,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         public string Identifier;
 
         public abstract WaveTimeline GetWave(int index);
+
+        public abstract int GetWaveCount();
     }
 }

@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
-            IEnumerable<Tier> next = _assembly.Tiers.Where(x => _assembly.UpgradeMap.GetUpgradeOptions(_assembly.CurrentTeir).NextTiers.Any(y => x.Equals(y)));
+            IEnumerable<Tier> next = _assembly.Tiers.Where(x => _assembly.UpgradeMap.GetNext(_assembly.CurrentTeir).Any(y => x.Equals(y)));
             foreach (Tier tier in next)
             {
                 yield return GenerateOption(new Tier(tier.Name, tier.TierIndex, tier.VariantIndex)); // This is probably being straight up abuse to memory lol.

@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Enemies
     public class RoundController : MonoBehaviour
     {
         public static RoundController Instance;
-        public enum RoundState { Ready, Preparing, InProgress }
+        public enum RoundState { Ready, Preparing, InProgress, WavesExhausted }
 
         public int NextIndex = 1;
         public WaveTimeline NextWave => GetWave(NextIndex);
@@ -69,21 +69,37 @@ namespace Lomztein.BFA2.Enemies
             StartCoroutine(RunNextWave());
         }
 
+        public void SetWave (int wave)
+        {
+            NextIndex = wave;
+            OnNextWaveChanged?.Invoke(wave);
+            if (_activeWaves.Count != 0)
+            {
+                ChangeState(RoundState.InProgress);
+            }else
+            {
+                ChangeState(RoundState.Ready);
+            }
+        }
+
         private IEnumerator RunNextWave()
         {
-            if (State == RoundState.Ready)
+            if (State != RoundState.WavesExhausted)
             {
-                yield return PrepareWave();
-            }
-
-            if (Pather.AnyPathsAvailable())
-            {
-                int wave = NextIndex;
-                NextIndex++;
-                if (!StartWave(wave))
+                if (State == RoundState.Ready)
                 {
-                    OnWavesExhausted?.Invoke(NextIndex);
-                    NextIndex--;
+                    yield return PrepareWave();
+                }
+
+                if (Pather.AnyPathsAvailable())
+                {
+                    int wave = NextIndex;
+                    SetWave(wave + 1);
+                    if (!StartWave(wave) && _activeWaves.Count == 0)
+                    {
+                        SetWave(wave);
+                        WavesExhausted();
+                    }
                 }
             }
         }
@@ -130,19 +146,23 @@ namespace Lomztein.BFA2.Enemies
 
         private bool StartWave(int wave)
         {
-            ChangeState(RoundState.InProgress);
             WaveTimeline timeline = GetWave(wave);
-
-            Debug.Log("Starting next wave!");
 
             if (timeline != null)
             {
+                Debug.Log("Starting next wave!");
+                ChangeState(RoundState.InProgress);
+
                 WaveHandler handler = Instantiate(WaveHandlerPrefab).GetComponent<WaveHandler>();
                 handler.Assign(wave, timeline);
                 AddWave(handler);
 
                 handler.BeginWave();
                 OnWaveStarted?.Invoke(wave, handler);
+            }
+            else
+            {
+                Debug.Log("No more waves!");
             }
 
             return timeline != null;
@@ -176,11 +196,20 @@ namespace Lomztein.BFA2.Enemies
             RemoveWave(handler);
 
             OnWaveFinished?.Invoke(handler.Wave, handler);
-
-            if (_activeWaves.Count == 0)
+            if (WaveCollection.GetWave(handler.Wave + 1) == null)
+            {
+                WavesExhausted();
+            }
+            else if (_activeWaves.Count == 0)
             {
                 ChangeState(RoundState.Ready);
             }
+        }
+
+        private void WavesExhausted ()
+        {
+            ChangeState(RoundState.WavesExhausted);
+            OnWavesExhausted?.Invoke(NextIndex);
         }
 
         private void AddWave (WaveHandler handler)

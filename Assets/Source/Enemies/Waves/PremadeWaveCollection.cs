@@ -18,5 +18,10 @@ namespace Lomztein.BFA2.Enemies.Waves
         {
             return Waves[index];
         }
+
+        public override int GetWaveCount()
+        {
+            return Waves.Length;
+        }
     }
 }

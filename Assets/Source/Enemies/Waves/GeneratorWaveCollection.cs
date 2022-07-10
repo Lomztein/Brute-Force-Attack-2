@@ -13,9 +13,6 @@ namespace Lomztein.BFA2.Enemies.Waves
     [CreateAssetMenu(fileName = "NewWaveCollection", menuName = "BFA2/Enemies/Waves/Generator Wave Collection")]
     public class GeneratorWaveCollection : WaveCollection
     {
-        private const float MaxSpawnFrequency = 200f;
-        private const float MinSpawnFrequency = 1f;
-
         [ModelProperty]
         public int Seed;
         [ModelProperty]
@@ -50,8 +47,12 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         [ModelProperty]
         public Vector2 CreditsVariance;
+        [ModelProperty]
         public Vector2 FrequencyVariance;
+        [ModelProperty]
         public Vector2 TimeVariance;
+
+        private IWaveGenerator _generator = new WaveGenerator();
 
         private System.Random _random;
         private int _offset;
@@ -64,12 +65,13 @@ namespace Lomztein.BFA2.Enemies.Waves
             {
                 return _waves[index];
             }
-            else
+            else if (_generator.CanGenerate(index))
             {
                 WaveTimeline wave = GenerateWave(index);
                 _waves.Add(index, wave);
                 return wave;
             }
+            else return null;
         }
 
         private float GetSpawnFrequency(int wave) => StartingFrequency * Mathf.Pow(FrequencyCoeffecient, wave - 1);
@@ -125,11 +127,20 @@ namespace Lomztein.BFA2.Enemies.Waves
                 float waveFrequency = frequency * (1 + RandomRange(FrequencyVariance.x, FrequencyVariance.y));
                 float waveCredits = credits * (1 + RandomRange(CreditsVariance.x, CreditsVariance.y));
 
-                IWaveGenerator gen = new WaveGenerator(startTime, wave, Seed + offset++, waveCredits / waves, waveFrequency / waves, MaxSpawnFrequency / waves, MinSpawnFrequency / waves);
-                SpawnInterval interval = gen.Generate();
+                SpawnInterval interval = _generator.Generate(startTime, wave, Seed + offset++, waveCredits, waveFrequency);
                 timeline.AddSpawn(interval);
             }
             return timeline.EndTime + RandomRange(TimeVariance.x, TimeVariance.y);
+        }
+
+        public override int GetWaveCount()
+        {
+            int wave = 0;
+            while (GetWave(wave) != null)
+            {
+                wave++;
+            }
+            return wave;
         }
     }
 }

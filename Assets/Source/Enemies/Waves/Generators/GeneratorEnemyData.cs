@@ -14,5 +14,7 @@ namespace Lomztein.BFA2
         public float DifficultyValue;
         [ModelProperty]
         public int EarliestWave;
+        [ModelProperty]
+        public int LastWave;
     }
 }

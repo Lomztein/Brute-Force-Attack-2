@@ -23,14 +23,14 @@ namespace Lomztein.BFA2.UI.Displays
         {
             _roundController.IfExists(x =>
             {
-                x.OnWaveStarted += OnWaveStarted;
-                OnWaveStarted(x.NextIndex - 1, null);
+                x.OnNextWaveChanged += OnWaveStarted;
+                OnWaveStarted(x.NextIndex);
             });
         }
 
-        private void OnWaveStarted(int arg1, WaveHandler arg2)
+        private void OnWaveStarted(int arg1)
         {
-            Text.text = DisplayText.Replace("{0}", (arg1 + 1).ToString());
+            Text.text = DisplayText.Replace("{0}", (arg1).ToString());
         }
     }
 }

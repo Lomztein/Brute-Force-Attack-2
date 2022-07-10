@@ -65,7 +65,7 @@ namespace Lomztein.BFA2.World.CameraControllers
 
             if (Application.isFocused)
             {
-                transform.Translate(new Vector3(x, y) * Speed * Time.deltaTime);
+                transform.Translate((new Vector2(x, y) + _movement) * Speed * Time.deltaTime);
                 transform.position = Clamp(transform.position);
 
                 Camera.orthographicSize += _zoom * ZoomSensitivity * Camera.orthographicSize;

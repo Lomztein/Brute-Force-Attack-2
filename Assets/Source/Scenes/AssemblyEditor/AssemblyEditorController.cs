@@ -85,6 +85,10 @@ namespace Lomztein.BFA2.AssemblyEditor
         public void SetAssembly (TurretAssembly assembly)
         {
             CurrentAsssembly = assembly;
+
+            NameText.text = CurrentAsssembly.Name;
+            DescriptionText.text = CurrentAsssembly.Description;
+            TierText.text = WorkingTier.Name;
         }
 
         public void SaveAssembly ()
