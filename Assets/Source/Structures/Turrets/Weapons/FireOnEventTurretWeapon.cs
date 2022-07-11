@@ -32,18 +32,18 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             base.End();
             if (Parent)
             {
-                Parent.Events.GetEvent(EventInfo.Identifier).Event.OnExecute -= OnParentKill;
+                Parent.Events.GetEvent(EventInfo.Identifier).Event.RemoveListener(OnParentKill, this);
             }
         }
 
         public override void Init()
         {
             base.Init();
-            Range = Stats.AddStat(RangeInfo, BaseRange);
+            Range = Stats.AddStat(RangeInfo, BaseRange, this);
             Parent = transform.parent.GetComponent<TurretWeaponBase>();
             if (Parent)
             {
-                Parent.Events.GetEvent(EventInfo.Identifier).Event.OnExecute += OnParentKill;
+                Parent.Events.GetEvent(EventInfo.Identifier).Event.AddListener(OnParentKill, this);
             }
         }
 

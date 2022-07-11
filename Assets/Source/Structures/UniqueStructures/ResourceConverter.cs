@@ -51,8 +51,8 @@ namespace Lomztein.BFA2.Structures.UniqueStructures
 
         private void Start()
         {
-            _conversionSpeed = Stats.AddStat(ConversionSpeedInfo, BaseConversionSpeed);
-            _conversionTarget = Stats.AddStat(ConversionTargetInfo, BaseConversionTarget);
+            _conversionSpeed = Stats.AddStat(ConversionSpeedInfo, BaseConversionSpeed, this);
+            _conversionTarget = Stats.AddStat(ConversionTargetInfo, BaseConversionTarget, this);
             _resourceContainer = GetComponent<IResourceContainer>();
 
             _roundController.IfExists(x =>

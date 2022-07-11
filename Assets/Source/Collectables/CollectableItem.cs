@@ -14,8 +14,14 @@ namespace Lomztein.BFA2.Collectables
 {
     public class CollectableItem : Collectable
     {
-        [ModelProperty, SerializeReference, SR]
+        [ModelAssetReference]
         public Item Item;
+
+        protected override void Start()
+        {
+            Sprite = Item.Sprite;
+            base.Start();
+        }
 
         protected override void Collect()
         {

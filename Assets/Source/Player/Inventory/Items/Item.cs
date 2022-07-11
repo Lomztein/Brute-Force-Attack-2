@@ -12,11 +12,19 @@ using Util;
 namespace Lomztein.BFA2.Inventory.Items
 {
     [Serializable]
-    public abstract class Item
+    public abstract class Item : ScriptableObject
     {
-        public abstract string Name { get; }
-        public abstract string Description { get; }
-        public abstract Sprite Sprite { get; }
-        public abstract Color SpriteTint { get; }
+        [ModelProperty]
+        public string Identifier;
+        [ModelProperty]
+        public string Name;
+        [ModelProperty]
+        public string Description;
+        [ModelProperty]
+        public Colorization.Color Color;
+        [ModelProperty]
+        public ContentSpriteReference Sprite;
+        [ModelProperty]
+        public Color SpriteTint;
     }
 }

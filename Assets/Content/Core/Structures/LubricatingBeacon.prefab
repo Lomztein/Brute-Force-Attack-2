@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 1360839022094297525}
   - component: {fileID: 1360839022094297524}
   - component: {fileID: -8225169792250147463}
+  - component: {fileID: 7411639635971450901}
   m_Layer: 10
   m_Name: LubricatingBeacon
   m_TagString: Untagged
@@ -173,7 +174,8 @@ MonoBehaviour:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 500
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
 --- !u!114 &1360839022094297524
@@ -210,6 +212,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &7411639635971450901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360839022094297526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330a06ec59cef63469ed8dec49b6c89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SellSprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SellValueRatio: 0.75
 --- !u!1 &4012354533942212104
 GameObject:
   m_ObjectHideFlags: 0

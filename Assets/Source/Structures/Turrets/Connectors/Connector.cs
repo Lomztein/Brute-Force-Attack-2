@@ -62,13 +62,13 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
         {
             if (_assembly)
             {
-                _assembly.Changed += OnAssemblyChanged;
+                _assembly.HierarchyChanged += _assembly_HierarchyChanged;
             }
 
             ApplyMods();
         }
 
-        private void OnAssemblyChanged(Structure obj)
+        private void _assembly_HierarchyChanged(Structure arg1, GameObject arg2, object arg3)
         {
             Refresh();
         }
@@ -113,7 +113,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
         {
             if (_assembly)
             {
-                _assembly.Changed -= OnAssemblyChanged;
+                _assembly.HierarchyChanged -= _assembly_HierarchyChanged;
             }
             RemoveMods();
         }

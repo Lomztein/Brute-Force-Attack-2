@@ -11,23 +11,30 @@ namespace Lomztein.BFA2.Modification.Stats
     {
         private List<IStat> _stats = new List<IStat>();
 
-        public IStatReference AddStat(StatInfo info, float baseValue)
+        public event Action<IStatReference, object> OnStatAdded;
+        public event Action<IStatReference, object> OnStatRemoved;
+        public event Action<IStatReference, object> OnStatChanged;
+
+        public IStatReference AddStat(StatInfo info, float baseValue, object source)
         {
             if (HasStat(info.Identifier))
             {
-                RemoveStat(info.Identifier);
+                RemoveStat(info.Identifier, source);
             }
             _stats.Add(new Stat(info.Identifier, info.Name, info.Description, baseValue, info.Function, info.Formatter));
-            return new StatReference(GetStatInternal(info.Identifier));
+            IStatReference reference = new StatReference(GetStatInternal(info.Identifier));
+            OnStatAdded?.Invoke(reference, source);
+            return reference;
         }
 
-        public void AddStatElement(string identifier, IStatElement element)
+        public void AddStatElement(string identifier, IStatElement element, object source)
         {
             IStat stat = GetStatInternal(identifier);
             if (stat != null)
             {
                 stat.AddElement(element);
             }
+            OnStatChanged?.Invoke(new StatReference(stat), source);
         }
 
         private IStat GetStatInternal(string identifier) 
@@ -45,18 +52,21 @@ namespace Lomztein.BFA2.Modification.Stats
             return _stats.Any(x => x.Identifier == identifier);
         }
 
-        public void RemoveStat(string identifier)
+        public void RemoveStat(string identifier, object source)
         {
+            IStat stat = GetStatInternal(identifier);
             _stats.RemoveAll(x => x.Identifier == identifier);
+            OnStatRemoved?.Invoke(new StatReference(stat), source);
         }
 
-        public void RemoveStatElement(string identifier, object owner)
+        public void RemoveStatElement(string identifier, object owner, object source)
         {
             IStat stat = GetStatInternal(identifier);
             if (stat != null)
             {
                 stat.RemoveElement(owner);
             }
+            OnStatChanged?.Invoke(new StatReference(stat), source);
         }
 
         public override string ToString()

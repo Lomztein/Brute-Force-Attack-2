@@ -28,14 +28,8 @@
       "$Type": "Lomztein.BFA2.Collectables.CollectableItem",
       "$Data": {
         "Item": {
-          "$Type": "Lomztein.BFA2.Inventory.Items.BoosterItem",
-          "$Data": {
-            "Mod": {
-              "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ExplodeOnProjectileHit",
-              "$Data": "$Path{Core/Modifiers/Mods/ExplosiveRounds.json}"
-            },
-            "Coeffecient": 1.0
-          }
+          "$Type": "Lomztein.BFA2.Inventory.Items.ModuleItem",
+          "$Data": "$Path{Core/Items/Modules/ExplosiveRoundsModuleItem.json}"
         },
         "CollectionTime": 5.0,
         "Rarity": "$Path{Core/Rarities/Epic.json}",

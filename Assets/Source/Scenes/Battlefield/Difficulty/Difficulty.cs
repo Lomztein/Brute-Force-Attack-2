@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Difficulty
         public string Name;
         [ModelProperty, TextArea]
         public string Description;
-        [ModelAssetReference, SerializeableObjectPopup("Difficulty/Grades")]
+        [ModelAssetReference]
         public DifficultyGrade Grade;
         [ModelProperty]
         public string Identifier;

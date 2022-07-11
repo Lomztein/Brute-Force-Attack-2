@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
         {
             _weapon = GetComponentInChildren<IWeapon>();
             AddTag("Rotator");
-            Turnrate = Stats.AddStat(TurnrateInfo, BaseTurnrate);
+            Turnrate = Stats.AddStat(TurnrateInfo, BaseTurnrate, this);
         }
 
         public override void Init()

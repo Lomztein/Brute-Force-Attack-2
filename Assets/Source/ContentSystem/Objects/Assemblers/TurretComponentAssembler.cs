@@ -22,6 +22,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             ValueAssembler assembler = new ValueAssembler();
             GameObject obj = component.Instantiate();
             TurretComponent newComponent = obj.GetComponent<TurretComponent>();
+            newComponent.AssembleData(model.GetProperty("Data"), context);
 
             if (parent != null)
             {
@@ -99,7 +100,8 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 new ObjectField("LocalPosition", ValueModelFactory.Create((Vector2)obj.transform.localPosition, context)),
                 new ObjectField("Angle", ValueModelFactory.Create(obj.transform.localRotation.eulerAngles.z, context)),
                 new ObjectField("Flipped", ValueModelFactory.Create(component.Flipped, context)),
-                new ObjectField("Children", new ArrayModel(children))
+                new ObjectField("Children", new ArrayModel(children)),
+                new ObjectField("Data", component.DisassembleData(context))
                 );
         }
 

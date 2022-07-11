@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.LocalizationSystem;
+using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
 using Lomztein.BFA2.UI.Tooltip;
 using Lomztein.BFA2.World;
@@ -45,7 +46,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             MapDescription.text = _maps[index].Description;
             SetMapPreview(index);
 
-            BattlefieldSettings.CurrentSettings.MapIdentifier = _maps[index].Identifier;
+            BattlefieldInitializeInfo.NewSettings.MapIdentifier = _maps[index].Identifier;
         }
 
         private void SetMapPreview(int index)

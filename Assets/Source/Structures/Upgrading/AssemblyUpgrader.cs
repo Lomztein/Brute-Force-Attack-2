@@ -49,7 +49,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
             var cost = GetCost(tier);
             if (Player.Player.Resources.TrySpend(cost)) {
                 _assembly.SetTier(tier);
-                _assembly.InvokeChanged();
+                _assembly.InvokeHierarchyChanged(_assembly.gameObject, this);
             }
             return true;
         }

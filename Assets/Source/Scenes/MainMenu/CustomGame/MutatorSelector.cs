@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
+using Lomztein.BFA2.Scenes.Battlefield;
 
 namespace Lomztein.BFA2.Scenes.MainMenu
 {
@@ -120,7 +121,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         {
             Destroy(GetAvailableMutator(obj.Identifier).gameObject);
             CreateEnabledButton(obj).Assign(obj, DisableMutator);
-            BattlefieldSettings.CurrentSettings.AddMutator(obj);
+            BattlefieldInitializeInfo.NewSettings.AddMutator(obj);
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(EnabledParent as RectTransform);
         }
@@ -129,7 +130,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         {
             Destroy(GetEnabledMutator(obj.Identifier).gameObject);
             CreateAvailableButton(obj).Assign(obj, EnableMutator);
-            BattlefieldSettings.CurrentSettings.RemoveMutator(obj);
+            BattlefieldInitializeInfo.NewSettings.RemoveMutator(obj);
         }
 
         private Mutator[] LoadMutators()
@@ -139,7 +140,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         public void ApplyBattlefieldSettings(BattlefieldSettings settings)
         {
-            Mutator[] mutators = settings.Mutators;
+            List<Mutator> mutators = new List<Mutator>(settings.Mutators);
             foreach (Mutator mutator in mutators)
             {
                 settings.RemoveMutator(mutator);

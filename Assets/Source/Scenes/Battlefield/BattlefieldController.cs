@@ -3,6 +3,7 @@ using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Player.Interrupt;
 using Lomztein.BFA2.Player.Profile;
+using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.UI.Displays.Dialog;
 using Lomztein.BFA2.UI.Messages;
@@ -27,18 +28,15 @@ namespace Lomztein.BFA2.Battlefield
 
         private void Start()
         {
-            InitMap();
-            InitWaves();
-            InitDefaultUnlocks();
-            InitStartingItems();
-            InitDifficulty();
-            InitMutators();
+            if (BattlefieldInitializeInfo.InitType == BattlefieldInitializeInfo.InitializeType.New)
+            {
+                InitializeBattlefield(BattlefieldInitializeInfo.NewSettings);
+            }
 
-            Invoke(nameof(SendStartingMessage), 2f);
-
-            _master = new InputMaster();
-            _master.Battlefield.SetCallbacks(this);
-            _master.Battlefield.Enable();
+            if (BattlefieldInitializeInfo.InitType == BattlefieldInitializeInfo.InitializeType.Load)
+            {
+                InitializeBattlefield(BattlefieldSave.LoadFromFile(BattlefieldInitializeInfo.LoadFileName));
+            }
         }
 
         private void OnDestroy()
@@ -48,24 +46,44 @@ namespace Lomztein.BFA2.Battlefield
 
         public void InitializeBattlefield (BattlefieldSettings settings)
         {
-            // TODO: Refactor so battlefield initialization starts here.
+            InitMap(settings);
+            InitWaves(settings);
+            InitDefaultUnlocks(settings);
+            InitStartingItems(settings);
+            InitDifficulty(settings);
+            InitMutators(settings);
+
+            Invoke(nameof(SendStartingMessage), 2f);
+
+            _master = new InputMaster();
+            _master.Battlefield.SetCallbacks(this);
+            _master.Battlefield.Enable();
         }
 
-        private void InitMutators()
+        public void InitializeBattlefield(BattlefieldSave save)
         {
-            foreach (Mutator mutator in BattlefieldSettings.CurrentSettings.Mutators)
+            BattlefieldSave.LoadToBattlefield(save, this);
+        }
+
+        private void InitMutators(BattlefieldSettings settings)
+        {
+            foreach (Mutator mutator in settings.Mutators)
             {
                 mutator.Start();
             }
         }
 
-        private void InitDifficulty()
+        private void InitDifficulty(BattlefieldSettings settings)
         {
-            BattlefieldSettings.CurrentSettings.Difficulty.Apply();
+            settings.Difficulty.Apply();
         }
 
-        private void InitStartingItems()
+        private void InitStartingItems(BattlefieldSettings settings)
         {
+            foreach (var item in settings.StartingItems)
+            {
+                Player.Player.Inventory.AddItem(Instantiate(item));
+            }
         }
 
         private void SendStartingMessage()
@@ -73,27 +91,23 @@ namespace Lomztein.BFA2.Battlefield
             DialogDisplay.DisplayDialog(Introduction);
         }
 
-        private void InitMap()
+        private void InitMap(BattlefieldSettings settings)
         {
-            MapData mapData = Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == BattlefieldSettings.CurrentSettings.MapIdentifier);
+            MapData mapData = Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == settings.MapIdentifier);
             MapController.ApplyMapData(mapData.DeepClone());
         }
 
-        private void InitWaves()
+        private void InitWaves(BattlefieldSettings settings)
         {
-            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections").First(x => x.Identifier == BattlefieldSettings.CurrentSettings.WaveCollectionIdentifier);
+            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections").First(x => x.Identifier == settings.WaveCollectionIdentifier);
             RoundController.SetWaveCollection(waves.DeepClone());
         }
 
-        private void InitDefaultUnlocks()
+        private void InitDefaultUnlocks(BattlefieldSettings settings)
         {
-            foreach (string comp in BattlefieldSettings.CurrentSettings.DefaultUnlockedComponents)
+            foreach (string comp in settings.StartingUnlocks)
             {
                 Player.Player.Unlocks.SetUnlocked(comp, true);
-            }
-            foreach (string structure in BattlefieldSettings.CurrentSettings.DefaultUnlockedStructures)
-            {
-                Player.Player.Unlocks.SetUnlocked(structure, true);
             }
         }
 

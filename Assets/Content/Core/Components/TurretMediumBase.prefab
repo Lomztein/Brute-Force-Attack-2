@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5246017201175003113}
   - component: {fileID: 5191529570489633430}
   - component: {fileID: -3377766451071044650}
+  - component: {fileID: -8123114331550448105}
   m_Layer: 9
   m_Name: TurretMediumBase
   m_TagString: Untagged
@@ -108,14 +109,6 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
-  EvaluatorOptions:
-  - {fileID: 11400000, guid: a9572d6aa8a56dc4394bde03f3258138, type: 2}
-  - {fileID: 11400000, guid: 10b5ef6d788d1f04db1a5dc4885ac4ec, type: 2}
-  - {fileID: 11400000, guid: a1d85a3791469e340b8e571327d4d836, type: 2}
-  - {fileID: 11400000, guid: e81120d6241553c448edc23215e0d388, type: 2}
-  - {fileID: 11400000, guid: ba71c790e1344cc41a1276a389dabecf, type: 2}
-  - {fileID: 11400000, guid: d48e480e8ed24e44aa860c306eb07940, type: 2}
-  - {fileID: 11400000, guid: 5f1a30fa03f40a147b88e4262a1c1c49, type: 2}
 --- !u!114 &5191529570489633430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +143,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &-8123114331550448105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246017201175003115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95950ddb902159c42a1fc1d4e1ce65f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mod: {fileID: 11400000, guid: 5273cce6c556d89429e3228b12fb4381, type: 2}
 --- !u!1 &5246017202535924015
 GameObject:
   m_ObjectHideFlags: 0

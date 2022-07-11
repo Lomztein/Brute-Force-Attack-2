@@ -35,8 +35,8 @@ namespace Lomztein.BFA2.Weaponary
         private IObjectPool<IProjectile> _pool;
         private IProjectilePool _projectilePool;
         private IFireAnimation _fireAnimation;
-        private IFireSequence _fireControl;
-        private IFireControl _fireSync;
+        private IFireSequence _fireSequence;
+        private readonly List<IFireControl> _fireControl = new List<IFireControl>();
 
         private Transform[] _muzzles;
         private ParticleSystem[] _fireParticles;
@@ -59,8 +59,12 @@ namespace Lomztein.BFA2.Weaponary
             _fireParticles = GetFireParticles(_muzzles);
 
             _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
-            _fireControl = GetComponent<IFireSequence>() ?? new InstantFireSequence();
-            _fireSync = GetComponent<IFireControl>() ?? new NoFireControl();
+            _fireSequence = GetComponent<IFireSequence>() ?? new InstantFireSequence();
+            
+            if (TryGetComponent(out IFireControl ctrl))
+            {
+                AddFireControl(ctrl);
+            }
 
             _pool = new NoGameObjectPool<IProjectile>(ProjectilePrefab);
             _projectilePool = new ProjectilePool(_pool);
@@ -89,7 +93,7 @@ namespace Lomztein.BFA2.Weaponary
 
         public bool TryFire()
         {
-            if (CanFire() && _fireSync.TryFire())
+            if (CanFire() && _fireControl.All(x => x.TryFire()))
             {
                 Fire();
                 _chambered = false;
@@ -105,7 +109,7 @@ namespace Lomztein.BFA2.Weaponary
         private void Fire()
         {
             _fireAnimation.Play(Cooldown);
-            _fireControl.Fire(_muzzles.Length, Cooldown, (i) =>
+            _fireSequence.Fire(_muzzles.Length, Cooldown, (i) =>
             {
                 IProjectile[] projs = _projectilePool.Get(_muzzles[i].position, _muzzles[i].rotation, GetSpread(), GetProjectileAmount());
 
@@ -148,9 +152,19 @@ namespace Lomztein.BFA2.Weaponary
             obj.OnDepleted += OnProjectileDepleted;
         }
 
-        public void Synchronize(IFireControl sync)
+        public void AddFireControl(IFireControl ctrl)
         {
-            _fireSync = sync;
+            _fireControl.Add(ctrl);
+        }
+
+        public void RemoveFireControl(IFireControl ctrl)
+        {
+            _fireControl.Remove(ctrl);
+        }
+
+        public void RemoveFireControl(Predicate<IFireControl> predicate)
+        {
+            _fireControl.RemoveAll(predicate);
         }
 
         private Transform[] GetMuzzles()

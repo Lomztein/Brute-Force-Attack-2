@@ -83,17 +83,17 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Weapon = GetComponent<IWeapon>();
             AddTag("Weapon");
 
-            Damage = Stats.AddStat(DamageInfo, BaseDamage);
-            ProjectileAmount = Stats.AddStat(ProjectileAmountInfo, BaseProjectileAmount);
-            Spread = Stats.AddStat(SpreadInfo, BaseSpread);
-            Speed = Stats.AddStat(SpeedInfo, BaseSpeed);
-            Firerate = Stats.AddStat(FirerateInfo, BaseFirerate);
+            Damage = Stats.AddStat(DamageInfo, BaseDamage, this);
+            ProjectileAmount = Stats.AddStat(ProjectileAmountInfo, BaseProjectileAmount, this);
+            Spread = Stats.AddStat(SpreadInfo, BaseSpread, this);
+            Speed = Stats.AddStat(SpeedInfo, BaseSpeed, this);
+            Firerate = Stats.AddStat(FirerateInfo, BaseFirerate, this);
 
-            OnFire = Events.AddEvent(OnFireInfo);
-            OnProjectile = Events.AddEvent(OnProjectileInfo);
-            OnProjectileDepleted = Events.AddEvent(OnProjectileDepletedInfo);
-            OnProjectileHit = Events.AddEvent(OnProjectileHitInfo);
-            OnProjectileKill = Events.AddEvent(OnProjectileKillInfo);
+            OnFire = Events.AddEvent(OnFireInfo, this);
+            OnProjectile = Events.AddEvent(OnProjectileInfo, this);
+            OnProjectileDepleted = Events.AddEvent(OnProjectileDepletedInfo, this);
+            OnProjectileHit = Events.AddEvent(OnProjectileHitInfo, this);
+            OnProjectileKill = Events.AddEvent(OnProjectileKillInfo, this);
 
             Weapon.OnFire += Weapon_OnFire;
             Weapon.OnProjectile += Weapon_OnProjectile;
@@ -106,16 +106,21 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Spread.OnChanged += UpdateStats;
             Speed.OnChanged += UpdateStats;
             Firerate.OnChanged += UpdateStats;
+
+            UpdateStats();
         }
 
         private void UpdateStats()
         {
-            Weapon.Damage = Damage.GetValue();
-            Weapon.ProjectileAmount = (int)ProjectileAmount.GetValue();
-            Weapon.Spread = Spread.GetValue();
-            Weapon.Speed = Speed.GetValue();
-            Weapon.Firerate = Firerate.GetValue();
-            Weapon.Range = GetRange();
+            if (PreInitialized)
+            {
+                Weapon.Damage = Damage.GetValue();
+                Weapon.ProjectileAmount = (int)ProjectileAmount.GetValue();
+                Weapon.Spread = Spread.GetValue();
+                Weapon.Speed = Speed.GetValue();
+                Weapon.Firerate = Firerate.GetValue();
+                Weapon.Range = GetRange();
+            }
         }
 
         public override void Init()
@@ -123,6 +128,16 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Targeter = GetComponentInParent<ITargeter>();
             Provider = GetComponentInParent<ITargetProvider>();
             Ranger = GetComponentInParent<IRanger>();
+            UpdateStats();
+        }
+
+        public virtual void OnHierarchyChanged ()
+        {
+            UpdateStats();
+        }
+
+        public virtual void OnStatChanged()
+        {
             UpdateStats();
         }
 

@@ -26,10 +26,10 @@ namespace Lomztein.BFA2.Structures.Turrets
             {
                 EvaluatorOptions[i] = Instantiate(EvaluatorOptions[i]); // Clone each to avoid weird shit.
             }
-            GetComponent<Structure>().Changed += TargetEvaluatorChanger_Changed;
+            GetComponent<Structure>().HierarchyChanged += TargetEvaluatorChanger_Changed;
         }
 
-        private void TargetEvaluatorChanger_Changed(Structure obj)
+        private void TargetEvaluatorChanger_Changed(Structure structure, GameObject obj, object source)
         {
             StartCoroutine(DelayedUpdateEvaluator());
         }

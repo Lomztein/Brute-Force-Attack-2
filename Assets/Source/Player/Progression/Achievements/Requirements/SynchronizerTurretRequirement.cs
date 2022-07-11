@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         private void OnStructureAdded(Structures.Structure obj)
         {
-            WeaponFireSynchronizer syncer = obj.GetComponentInChildren<WeaponFireSynchronizer>();
+            TurretWeaponFireSynchronizer syncer = obj.GetComponentInChildren<TurretWeaponFireSynchronizer>();
             if (syncer)
             {
                 bool allTrue = true;

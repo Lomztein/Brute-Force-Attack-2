@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Structures
         protected override void Awake()
         {
             base.Awake();
-            _range = Stats.AddStat(RangeInfo, BaseRange);
+            _range = Stats.AddStat(RangeInfo, BaseRange, this);
         }
 
         private void FixedUpdate()

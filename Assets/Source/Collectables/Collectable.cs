@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Collectables
 
         public event Action<Collectable> OnCollected;
 
-        private void Start()
+        protected virtual void Start()
         {
             CreateRarityEffect();
         }

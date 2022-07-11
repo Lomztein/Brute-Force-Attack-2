@@ -10,13 +10,35 @@ namespace Lomztein.BFA2.Modification.Events
     {
         private List<IEvent> _events = new List<IEvent>();
 
-        public IEventCaller AddEvent(EventInfo info)
+        public event Action<IEventReference, object> OnEventAdded;
+        public event Action<IEventReference, object> OnEventChanged;
+
+        public IEventCaller AddEvent(EventInfo info, object source)
         {
+            IEvent eve = null;
             if (!HasEvent (info.Identifier))
             {
-                _events.Add (new Event(info.Identifier, info.Name, info.Description));
+                eve = new Event(info.Identifier, info.Name, info.Description);
+                eve.OnListenerAdded += Eve_OnListenerAdded;
+                eve.OnListenerRemoved += Eve_OnListenerRemoved;
+                OnEventAdded?.Invoke(new EventReference(eve), source);
+                _events.Add (eve);
             }
-            return new EventCaller(FindEvent(info.Identifier) as IEvent);
+            else
+            {
+                eve = FindEvent(info.Identifier);
+            }
+            return new EventCaller(eve);
+        }
+
+        private void Eve_OnListenerRemoved(IEvent arg1, object arg2)
+        {
+            OnEventChanged?.Invoke(new EventReference(arg1), arg2);
+        }
+
+        private void Eve_OnListenerAdded(IEvent arg1, object arg2)
+        {
+            OnEventChanged?.Invoke(new EventReference(arg1), arg2);
         }
 
         public IEventReference GetEvent(string identifier)

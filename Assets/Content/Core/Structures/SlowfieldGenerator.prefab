@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 798396987433758394}
   - component: {fileID: 7707500597687005230}
-  m_Layer: 0
+  - component: {fileID: 7968225331030494297}
+  - component: {fileID: 362585772150623349}
+  m_Layer: 10
   m_Name: SlowfieldGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +54,8 @@ MonoBehaviour:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 1500
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   RangeInfo: {fileID: 11400000, guid: 61ed24ad66405534e9dab80daced4889, type: 2}
@@ -61,6 +64,46 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &7968225331030494297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537247384864940703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330a06ec59cef63469ed8dec49b6c89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SellSprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SellValueRatio: 0.75
+--- !u!58 &362585772150623349
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537247384864940703}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &6193041054272958238
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +115,7 @@ GameObject:
   - component: {fileID: 1409085594094803297}
   - component: {fileID: 1387965795505039264}
   - component: {fileID: 6163771214689214693}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlowFieldModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8112760790517061555}
   - component: {fileID: 9156605903663018673}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlowfieldModuleSmallThingie
   m_TagString: Untagged
   m_Icon: {fileID: 0}

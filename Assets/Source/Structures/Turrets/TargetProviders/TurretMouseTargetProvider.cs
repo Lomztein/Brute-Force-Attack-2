@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void Init()
         {
-            OnTargetAcquired = Events.AddEvent(OnTargetAcquiredInfo);
+            OnTargetAcquired = Events.AddEvent(OnTargetAcquiredInfo, this);
             _mousePointer = new GameObject("MousePointer").transform;
         }
 

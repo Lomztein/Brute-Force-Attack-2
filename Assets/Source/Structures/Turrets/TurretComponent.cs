@@ -7,12 +7,15 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets.Attachment;
 using Lomztein.BFA2.World;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Util;
 
 namespace Lomztein.BFA2.Structures.Turrets
@@ -33,6 +36,9 @@ namespace Lomztein.BFA2.Structures.Turrets
         public AttachmentPoint[] AttachmentPoints;
         protected TurretAssembly _assembly;
 
+        public bool PreInitialized { get; private set; }
+        public bool Initialized { get; private set; }
+
         protected override void Awake()
         {
             base.Awake();
@@ -48,6 +54,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             _assembly = GetComponentInParent<TurretAssembly>();
             PreInit();
+            PreInitialized = true;
         }
 
         private void InitComponent()
@@ -59,7 +66,9 @@ namespace Lomztein.BFA2.Structures.Turrets
         private IEnumerator DelayedPostInit ()
         {
             yield return new WaitForEndOfFrame();
+            Assert.IsTrue(PreInitialized, "Post-init run before pre-init.");
             PostInit();
+            Initialized = true;
         }
 
         public void FixedUpdate()
@@ -100,5 +109,9 @@ namespace Lomztein.BFA2.Structures.Turrets
         public virtual float ComputeComplexity() => BaseComplexity;
 
         public IEnumerable<AttachmentPoint> GetPoints() => AttachmentPoints;
+
+        public virtual ValueModel DisassembleData (DisassemblyContext context) { return null; }
+
+        public virtual void AssembleData(ValueModel data, AssemblyContext context) { }
     }
 }

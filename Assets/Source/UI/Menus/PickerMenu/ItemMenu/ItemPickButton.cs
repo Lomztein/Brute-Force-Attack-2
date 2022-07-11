@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
         public void Assign(Item pickable, Action onPickedCallback)
         {
             Button.onClick.AddListener(() => onPickedCallback());
-            Sprite.sprite = pickable.Sprite;
+            Sprite.sprite = pickable.Sprite.Get();
             Sprite.color = pickable.SpriteTint;
 
             Title = pickable.Name;

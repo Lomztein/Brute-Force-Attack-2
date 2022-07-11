@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Battlefield;
 using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
 using Lomztein.BFA2.UI.Menus.PropertyMenus;
 using Lomztein.BFA2.Utilities;
@@ -39,7 +40,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             {
                 _selectedButton.interactable = true;
             }
-            BattlefieldSettings.CurrentSettings.Difficulty.IsModified = true;
+            BattlefieldInitializeInfo.NewSettings.Difficulty.IsModified = true;
         }
 
         private void InstantiateDifficultyButtons ()
@@ -89,7 +90,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         private void SelectDifficulty (Difficulty difficulty)
         {
             Difficulty newDifficulty = Instantiate(difficulty);
-            BattlefieldSettings.CurrentSettings.Difficulty = newDifficulty;
+            BattlefieldInitializeInfo.NewSettings.Difficulty = newDifficulty;
             PropertyMenu.Clear();
             newDifficulty.AddPropertiesTo(PropertyMenu);
         }

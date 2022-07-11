@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient));
+                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient), this);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient));
+                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient), this);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.RemoveStatElement(element.Info.Identifier, element);
+                stats.RemoveStatElement(element.Info.Identifier, element, this);
             }
         }
 
@@ -53,7 +53,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.RemoveStatElement(element.Info.Identifier, element);
+                stats.RemoveStatElement(element.Info.Identifier, element, this);
             }
         }
 

@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         protected virtual void Start()
         {
             StructureManager.OnStructureAdded += OnStructureChange;
-            StructureManager.OnStructureChanged += OnStructureChange;
+            StructureManager.OnStructureHierarchyChanged += StructureManager_OnStructureHierarchyChanged;
             StructureManager.OnStructureRemoved += OnStructureChange;
 
             if (BroadcastOnStart)
@@ -52,10 +52,15 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             }
         }
 
+        private void StructureManager_OnStructureHierarchyChanged(Structure arg1, GameObject arg2, object arg3)
+        {
+            OnStructureChange(arg1);
+        }
+
         protected virtual void OnDestroy ()
         {
             StructureManager.OnStructureAdded -= OnStructureChange;
-            StructureManager.OnStructureChanged -= OnStructureChange;
+            StructureManager.OnStructureHierarchyChanged -= StructureManager_OnStructureHierarchyChanged;
             StructureManager.OnStructureRemoved -= OnStructureChange;
             ClearMod();
         }

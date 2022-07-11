@@ -1,8 +1,10 @@
-﻿using Lomztein.BFA2.Enemies.Scalers;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Enemies.Scalers;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory.Items;
 using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
+using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;
@@ -13,20 +15,32 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Battlefield
 {
-    public class BattlefieldSettings
+    [CreateAssetMenu(menuName = "BFA2/BattlefieldSettings", fileName = "New Battlefield Settings")]
+    public class BattlefieldSettings : ScriptableObject
     {
-        public static BattlefieldSettings CurrentSettings = new BattlefieldSettings();
+        public const string DEFAULT_SETTINGS_PATH = "Resources/DefaultBattlefieldSettings";
 
+        [ModelProperty]
         public string MapIdentifier = "Core.SnakinAbout";
+        [ModelProperty]
         public string WaveCollectionIdentifier = "Core.Procedural";
-        public Difficulty Difficulty = ScriptableObject.CreateInstance<Difficulty>();
+        [ModelProperty]
+        public Difficulty Difficulty;
+        [ModelProperty, SerializeField]
         private List<Mutator> _mutatorsList = new List<Mutator>();
-        public Mutator[] Mutators => _mutatorsList.ToArray();
+        public IEnumerable<Mutator> Mutators => _mutatorsList;
+        [ModelProperty, SerializeField]
+        private List<Item> _startingItems;
+        public IEnumerable<Item> StartingItems => _startingItems;
 
         public void AddMutator(Mutator mutator) => _mutatorsList.Add(mutator);
         public void RemoveMutator(Mutator mutator) => _mutatorsList.RemoveAll (x => x.Identifier == mutator.Identifier);
 
-        public string[] DefaultUnlockedComponents =
+        public void AddStartingItem(Item item) => _startingItems.Add(item);
+        public void RemoveStartingItem(Item item) => _startingItems.RemoveAll(x => x.Identifier == item.Identifier);
+
+        [ModelProperty]
+        public string[] StartingUnlocks =
         {
             "Core.SmallBase",
             "Core.SmallRotator",
@@ -37,11 +51,11 @@ namespace Lomztein.BFA2.Battlefield
             "Core.SmallQuadFireSynchronizer",
             "Core.SmallTwinFireSynchronizer",
             "Core.SideMount",
+            "Core.Lubricator",
+            "Core.Collector"
         };
-        public string[] DefaultUnlockedStructures =
-        {
-            "Core.Collector",
-            "Core.Lubricator"
-        };
+
+        public static BattlefieldSettings LoadDefaults() =>
+            Instantiate(Content.Get<BattlefieldSettings>(DEFAULT_SETTINGS_PATH));
     }
 }

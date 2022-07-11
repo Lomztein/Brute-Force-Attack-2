@@ -2,6 +2,8 @@
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets.Rangers;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.UI.ContextMenu;
@@ -30,6 +32,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         private Transform _target;
         private TargetFinder _targetFinder;
+        private TargetEvaluator _targetEvaluator;
 
         private IEventCaller _onTargetAcquired;
 
@@ -52,8 +55,8 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         public override void PreInit()
         {
             AddTag("Base");
-            _onTargetAcquired = Events.AddEvent(OnTargetAcquiredInfo);
-            Range = Stats.AddStat(RangeInfo, BaseRange);
+            _onTargetAcquired = Events.AddEvent(OnTargetAcquiredInfo, this);
+            Range = Stats.AddStat(RangeInfo, BaseRange, this);
         }
 
         public override void Init()
@@ -62,7 +65,10 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         }
 
         public void SetEvaluator(TargetEvaluator evaluator)
-            => _targetFinder.SetEvaluator(evaluator);
+        {
+            _targetEvaluator = evaluator;
+            _targetFinder.SetEvaluator(_targetEvaluator);
+        }
         private bool IsWithinRange(Transform trans, float range)
             => (trans.position - transform.position).sqrMagnitude < range * range;
 
@@ -84,6 +90,20 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             }
         }
 
+        public override ValueModel DisassembleData(DisassemblyContext context)
+        {
+            ObjectAssembler assembler = new ObjectAssembler();
+            return assembler.Disassemble(_targetEvaluator, typeof(TargetEvaluator), context);
+        }
+
+        public override void AssembleData(ValueModel model, AssemblyContext context)
+        {
+            ObjectAssembler assembler = new ObjectAssembler();
+            if (!ValueModel.IsNull(model))
+            {
+                SetEvaluator(assembler.Assemble(model, typeof(TargetEvaluator), context) as TargetEvaluator);
+            }
+        }
 
     }
 }

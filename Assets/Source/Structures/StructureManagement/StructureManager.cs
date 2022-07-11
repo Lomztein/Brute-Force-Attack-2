@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.UI.Messages;
+﻿using Lomztein.BFA2.Modification.Events;
+using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections;
@@ -15,7 +17,9 @@ namespace Lomztein.BFA2.Structures.StructureManagement
 
         // Beware of potential event leaks.
         public static event Action<Structure> OnStructureAdded;
-        public static event Action<Structure> OnStructureChanged;
+        public static event Action<Structure, GameObject, object> OnStructureHierarchyChanged;
+        public static event Action<Structure, IStatReference, object> OnStructureStatChanged;
+        public static event Action<Structure, IEventReference, object> OnStructureEventChanged;
         public static event Action<Structure> OnStructureRemoved;
 
         public void Awake()
@@ -35,11 +39,31 @@ namespace Lomztein.BFA2.Structures.StructureManagement
             _structures.Add(structure);
 
             structure.Destroyed += RemoveStructure;
-            structure.Changed += StructureChanged;
+            structure.HierarchyChanged += Structure_HierarchyChanged;
+            structure.StatChanged += Structure_StatChanged;
+            structure.EventChanged += Structure_EventChanged;
 
             OnStructureAdded?.Invoke(structure);
 
             Message.Send($"Placed structure '{structure.Name}'", Message.Type.Minor);
+        }
+
+        private static void Structure_EventChanged(Structure arg1, IEventReference arg2, object arg3)
+        {
+            OnStructureEventChanged?.Invoke(arg1, arg2, arg3);
+            Debug.Log($"Structure '{arg1.Name}' event '{arg2.Event.Identifier}' changed from '{arg3}'.");
+        }
+
+        private static void Structure_StatChanged(Structure arg1, IStatReference arg2, object arg3)
+        {
+            OnStructureStatChanged?.Invoke(arg1, arg2, arg3);
+            Debug.Log($"Structure '{arg1.Name}' stat '{arg2}' changed from '{arg3}'.");
+        }
+
+        private static void Structure_HierarchyChanged(Structure arg1, GameObject arg2, object arg3)
+        {
+            OnStructureHierarchyChanged?.Invoke(arg1, arg2, arg3);
+            Debug.Log($"Structure '{arg1.Name}' hierarchy changed with '{arg2}' from '{arg3}'.");
         }
 
         public static void RemoveStructure (Structure structure)
@@ -47,18 +71,13 @@ namespace Lomztein.BFA2.Structures.StructureManagement
             _structures.Remove(structure);
             
             structure.Destroyed -= RemoveStructure;
-            structure.Changed -= StructureChanged;
+            structure.HierarchyChanged -= Structure_HierarchyChanged;
+            structure.StatChanged -= Structure_StatChanged;
+            structure.EventChanged -= Structure_EventChanged;
 
             OnStructureRemoved?.Invoke(structure);
 
             Message.Send($"Removed structure '{structure.Name}'", Message.Type.Minor);
-        }
-
-        private static void StructureChanged (Structure structure)
-        {
-            OnStructureChanged?.Invoke(structure);
-
-            Debug.Log($"Structure '{structure.Name}' has changed.");
         }
     }
 }

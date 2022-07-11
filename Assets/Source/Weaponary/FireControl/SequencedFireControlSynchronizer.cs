@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Weaponary.FireSynchronization
     public class SequencedFireControlSynchronizer
     {
         private List<SequencedFireControl> _syncs = new List<SequencedFireControl>();
+        public IEnumerable<SequencedFireControl> Syncs => _syncs;
 
         private int _currentIndex;
         private SequencedFireControl _next;

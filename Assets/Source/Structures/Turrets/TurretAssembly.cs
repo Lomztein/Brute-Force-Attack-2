@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Lomztein.BFA2.World;
+using Lomztein.BFA2.Modification.Stats;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {
@@ -18,6 +19,12 @@ namespace Lomztein.BFA2.Structures.Turrets
         public IEnumerable<Tier> Tiers => _tiers;
 
         public UpgradeMap UpgradeMap;
+
+        public StatInfo ModuleSlotsStatInfo;
+        public IStatReference ModuleSlots;
+
+        private readonly List<TurretAssemblyModule> _modules = new List<TurretAssemblyModule>();
+        public IEnumerable<TurretAssemblyModule> Modules => _modules;
 
         public float Complexity => GetComponents(CurrentTeir).Sum(x => x.ComputeComplexity());
 
@@ -35,7 +42,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override string ToString()
         {
-            return $"{string.Join("\n", GetComponents(CurrentTeir).Select(x => x.ToString()))}";
+            return $"Free Module Slots: {FreeModuleSlots()}\n{string.Join("\n", GetComponents(CurrentTeir).Select(x => x.ToString()))}";
         }
 
         public TurretComponent GetRootComponent(Tier tier)
@@ -97,13 +104,39 @@ namespace Lomztein.BFA2.Structures.Turrets
             tier.Name = name;
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            ModuleSlots = Stats.AddStat(ModuleSlotsStatInfo, 0, this);
+        }
+
+        public int FreeModuleSlots ()
+        {
+            return Mathf.RoundToInt(ModuleSlots.GetValue()) - _modules.Sum(x => x.Item.ModuleSlots);
+        }
+
+        public bool HasRoomFor (int requiredModuleSlots)
+        {
+            return FreeModuleSlots() >= requiredModuleSlots;
+        }
+
+        public void AddModule(TurretAssemblyModule module)
+        {
+            _modules.Add(module);
+        }
+
+        public void RemoveModule(TurretAssemblyModule module)
+        {
+            _modules.Remove(module);
+        }
+
         public void Start()
         {
-            Changed += TurretAssembly_Changed;
+            HierarchyChanged += TurretAssembly_Changed;
             UpdateCollider();
         }
 
-        private void TurretAssembly_Changed(Structure obj)
+        private void TurretAssembly_Changed(Structure structure, GameObject obj, object source)
         {
             UpdateCollider();
         }

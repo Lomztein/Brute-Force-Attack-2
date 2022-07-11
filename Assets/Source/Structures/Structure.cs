@@ -67,7 +67,9 @@ namespace Lomztein.BFA2.Structures
         string ITooltip.Description => ToString();
         string ITooltip.Footnote => string.Empty;
 
-        public event Action<Structure> Changed;
+        public event Action<Structure, IStatReference, object> StatChanged;
+        public event Action<Structure, IEventReference, object> EventChanged;
+        public event Action<Structure, GameObject, object> HierarchyChanged;
         public event Action<Structure> Destroyed;
 
         public override string ToString()
@@ -78,6 +80,23 @@ namespace Lomztein.BFA2.Structures
         protected virtual void Awake()
         {
             Mods = new ModContainer(Stats, Events);
+
+            Stats.OnStatChanged += Stats_OnStatChanged;
+            Stats.OnStatAdded += Stats_OnStatChanged;
+            Stats.OnStatRemoved += Stats_OnStatChanged;
+
+            Events.OnEventChanged += Events_OnEventChanged;
+            Events.OnEventAdded += Events_OnEventChanged;
+        }
+
+        private void Events_OnEventChanged(IEventReference arg1, object arg2)
+        {
+            InvokeEventChanged(arg1, arg2);
+        }
+
+        private void Stats_OnStatChanged(IStatReference arg1, object arg2)
+        {
+            InvokeStatChanged(arg1, arg2);
         }
 
         public void Flip ()
@@ -92,10 +111,22 @@ namespace Lomztein.BFA2.Structures
             }
         }
 
-        public void InvokeChanged()
+        public void InvokeHierarchyChanged(GameObject changedObj, object source)
         {
-            BroadcastMessage("OnStructureChanged", SendMessageOptions.DontRequireReceiver);
-            Changed?.Invoke(this);
+            BroadcastMessage("OnHierarchyChanged", SendMessageOptions.DontRequireReceiver);
+            HierarchyChanged?.Invoke(this, changedObj, source);
+        }
+
+        public void InvokeStatChanged (IStatReference stat, object source)
+        {
+            BroadcastMessage("OnStatChanged", SendMessageOptions.DontRequireReceiver);
+            StatChanged?.Invoke(this, stat, source);
+        }
+
+        public void InvokeEventChanged (IEventReference eventRef, object source)
+        {
+            BroadcastMessage("OnEventChanged", SendMessageOptions.DontRequireReceiver);
+            EventChanged?.Invoke(this, eventRef, source);
         }
 
         protected virtual void OnDestroy ()

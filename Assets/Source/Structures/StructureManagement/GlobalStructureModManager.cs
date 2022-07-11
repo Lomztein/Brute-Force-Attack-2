@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Utilities;
+﻿using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,14 +32,33 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         private void AttachToStructureManager()
         {
             StructureManager.OnStructureAdded += OnStructureAdded;
-            StructureManager.OnStructureChanged += OnStructureChanged;
+            StructureManager.OnStructureHierarchyChanged += StructureManager_OnStructureHierarchyChanged;
+            //StructureManager.OnStructureStatChanged += StructureManager_OnStructureStatChanged;
+            //StructureManager.OnStructureEventChanged += StructureManager_OnStructureEventChanged;
             StructureManager.OnStructureRemoved += OnStructureRemoved;
+        }
+
+        private void StructureManager_OnStructureEventChanged(Structure arg1, Modification.Events.IEventReference arg2, object arg3)
+        {
+            OnStructureChanged(arg1);
+        }
+
+        private void StructureManager_OnStructureHierarchyChanged(Structure arg1, GameObject arg2, object arg3)
+        {
+            OnStructureChanged(arg1);
+        }
+
+        private void StructureManager_OnStructureStatChanged(Structure arg1, IStatReference arg2, object arg3)
+        {
+            OnStructureChanged(arg1);
         }
 
         private void OnDestroy()
         {
             StructureManager.OnStructureAdded -= OnStructureAdded;
-            StructureManager.OnStructureChanged -= OnStructureChanged;
+            StructureManager.OnStructureHierarchyChanged -= StructureManager_OnStructureHierarchyChanged;
+            //StructureManager.OnStructureStatChanged -= StructureManager_OnStructureStatChanged;
+            //StructureManager.OnStructureEventChanged -= StructureManager_OnStructureEventChanged;
             StructureManager.OnStructureRemoved -= OnStructureRemoved;
         }
 

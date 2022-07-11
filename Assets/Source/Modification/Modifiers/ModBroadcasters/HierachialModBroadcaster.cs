@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 {
@@ -32,7 +33,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
                 moddables.AddRange(upwards);
             }else if (ProvideUpwards == ProvideBehaviour.Single)
             {
-                moddables.Add(GetComponentInParent<IModdable>());
+                moddables.Add(transform.parent.GetComponent<IModdable>());
             }
 
             if (ProvideDownwards == ProvideBehaviour.All)
@@ -42,7 +43,14 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             }
             else if (ProvideDownwards == ProvideBehaviour.Single)
             {
-                moddables.Add(GetComponentInChildren<IModdable>());
+                foreach (Transform child in transform)
+                {
+                    IModdable childModdable = child.GetComponent<IModdable>();
+                    if (childModdable != null)
+                    {
+                        moddables.Add(childModdable);
+                    }
+                }
             }
 
             if (ProvideSelf)

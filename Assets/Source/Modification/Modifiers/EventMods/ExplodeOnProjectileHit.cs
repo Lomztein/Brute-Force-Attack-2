@@ -38,27 +38,27 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         public override void ApplyBase(IStatContainer stats, IEventContainer events)
         {
-            events.GetEvent(EventInfo.Identifier).Event.OnExecute += Explode;
+            events.GetEvent(EventInfo.Identifier).Event.AddListener(Explode, this);
 
-            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase * Coeffecient);
-            _range = stats.AddStat(ExplosionRangeInfo, RangeBase);
+            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase * Coeffecient, this);
+            _range = stats.AddStat(ExplosionRangeInfo, RangeBase, this);
         }
 
         public override void ApplyStack(IStatContainer stats, IEventContainer events)
         {
-            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack * Coeffecient));
-            stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack));
+            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack * Coeffecient), this);
+            stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack), this);
         }
 
         public override void RemoveBase(IStatContainer stats, IEventContainer events)
         {
-            events.GetEvent(EventInfo.Identifier).Event.OnExecute -= Explode;
+            events.GetEvent(EventInfo.Identifier).Event.RemoveListener(Explode, this);
         }
 
         public override void RemoveStack(IStatContainer stats, IEventContainer events)
         {
-            stats.RemoveStatElement(ExplosionDamageFactorInfo.Identifier, this);
-            stats.RemoveStatElement(ExplosionRangeInfo.Identifier, this);
+            stats.RemoveStatElement(ExplosionDamageFactorInfo.Identifier, this, this);
+            stats.RemoveStatElement(ExplosionRangeInfo.Identifier, this, this);
         }
 
         private void Explode(Events.EventArgs args)

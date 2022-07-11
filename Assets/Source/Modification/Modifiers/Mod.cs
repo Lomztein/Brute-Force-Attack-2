@@ -19,10 +19,6 @@ namespace Lomztein.BFA2.Modification.Modifiers
         public string Name;
         [ModelProperty]
         public string Description;
-        [ModelProperty]
-        public Colorization.Color Color;
-        [ModelProperty]
-        public ContentSpriteReference Sprite;
 
         public abstract float Coeffecient { get; set; }
         public abstract bool CanMod(IModdable moddable);
