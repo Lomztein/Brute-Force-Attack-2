@@ -28,35 +28,35 @@ namespace Lomztein.BFA2.Modification.Modifiers
         [ModelProperty]
         public Mod[] InternalMods;
 
-        public override void ApplyBase(IStatContainer stats, IEventContainer events)
+        public override void ApplyBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Mod mod in InternalMods)
             {
-                mod.ApplyBase(stats, events);
+                mod.ApplyBase(moddable, stats, events);
             }
         }
 
-        public override void ApplyStack(IStatContainer stats, IEventContainer events)
+        public override void ApplyStack(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Mod mod in InternalMods)
             {
-                mod.ApplyStack(stats, events);
+                mod.ApplyStack(moddable, stats, events);
             }
         }
 
-        public override void RemoveBase(IStatContainer stats, IEventContainer events)
+        public override void RemoveBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Mod mod in InternalMods)
             {
-                mod.RemoveBase(stats, events);
+                mod.RemoveBase(moddable, stats, events);
             }
         }
 
-        public override void RemoveStack(IStatContainer stats, IEventContainer events)
+        public override void RemoveStack(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Mod mod in InternalMods)
             {
-                mod.RemoveStack(stats, events);
+                mod.RemoveStack(moddable, stats, events);
             }
         }
 

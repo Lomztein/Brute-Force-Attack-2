@@ -79,7 +79,7 @@ namespace Lomztein.BFA2.Structures
         {
             if (!_initialized)
             {
-                Mods = new ModContainer(Stats, Events);
+                Mods = new ModContainer(this, Stats, Events);
 
                 Stats.OnStatChanged += Stats_OnStatChanged;
                 Stats.OnStatAdded += Stats_OnStatChanged;

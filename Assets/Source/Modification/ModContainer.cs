@@ -14,11 +14,13 @@ namespace Lomztein.BFA2.Modification
     {
         private IStatContainer _stats;
         private IEventContainer _events;
+        private IModdable _parent;
 
         private List<Mod> _mods = new List<Mod>();
 
-        public ModContainer(IStatContainer stats, IEventContainer events)
+        public ModContainer(IModdable parent, IStatContainer stats, IEventContainer events)
         {
+            _parent = parent;
             _stats = stats;
             _events = events;
         }
@@ -27,11 +29,11 @@ namespace Lomztein.BFA2.Modification
         {
             if (GetAmount(mod.Identifier) == 0)
             {
-                mod.ApplyBase(_stats, _events);
+                mod.ApplyBase(_parent, _stats, _events);
             }
             else
             {
-                mod.ApplyStack(_stats, _events);
+                mod.ApplyStack(_parent, _stats, _events);
             }
             _mods.Add(mod);
         }
@@ -43,11 +45,11 @@ namespace Lomztein.BFA2.Modification
                 Mod mod = GetMod(identifier);
                 if (GetAmount(identifier) == 1)
                 {
-                    mod.RemoveBase(_stats, _events);
+                    mod.RemoveBase(_parent, _stats, _events);
                 }
                 else
                 {
-                    mod.RemoveStack(_stats, _events);
+                    mod.RemoveStack(_parent, _stats, _events);
                 }
                 _mods.Remove(mod);
                 UnityEngine.Object.Destroy(mod);

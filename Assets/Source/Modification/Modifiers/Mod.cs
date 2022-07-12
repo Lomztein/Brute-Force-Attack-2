@@ -23,9 +23,9 @@ namespace Lomztein.BFA2.Modification.Modifiers
         public abstract float Coeffecient { get; set; }
         public abstract bool CanMod(IModdable moddable);
 
-        public abstract void ApplyBase(IStatContainer stats, IEventContainer events);
-        public abstract void ApplyStack(IStatContainer stats, IEventContainer events);
-        public abstract void RemoveBase(IStatContainer stats, IEventContainer events);
-        public abstract void RemoveStack(IStatContainer stats, IEventContainer events);
+        public abstract void ApplyBase(IModdable moddable, IStatContainer stats, IEventContainer events);
+        public abstract void ApplyStack(IModdable moddable, IStatContainer stats, IEventContainer events);
+        public abstract void RemoveBase(IModdable moddable, IStatContainer stats, IEventContainer events);
+        public abstract void RemoveStack(IModdable moddable, IStatContainer stats, IEventContainer events);
     }
 }

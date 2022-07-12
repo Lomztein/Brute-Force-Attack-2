@@ -53,7 +53,7 @@ namespace Lomztein.BFA2.Player
 
         private void Init()
         {
-            _mods = new ModContainer(_stats, _events);
+            _mods = new ModContainer(this, _stats, _events);
             Instance = this;
 
             _health = GetComponent<IHealthContainer>();

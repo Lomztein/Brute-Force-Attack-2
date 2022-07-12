@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         private IStatReference _damageMult;
         private IStatReference _range;
 
-        public override void ApplyBase(IStatContainer stats, IEventContainer events)
+        public override void ApplyBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             events.GetEvent(EventInfo.Identifier).Event.AddListener(Explode, this);
 
@@ -44,18 +44,18 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
             _range = stats.AddStat(ExplosionRangeInfo, RangeBase * Coeffecient, this);
         }
 
-        public override void ApplyStack(IStatContainer stats, IEventContainer events)
+        public override void ApplyStack(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack), this);
             stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack * Coeffecient), this);
         }
 
-        public override void RemoveBase(IStatContainer stats, IEventContainer events)
+        public override void RemoveBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             events.GetEvent(EventInfo.Identifier).Event.RemoveListener(Explode, this);
         }
 
-        public override void RemoveStack(IStatContainer stats, IEventContainer events)
+        public override void RemoveStack(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             stats.RemoveStatElement(ExplosionDamageFactorInfo.Identifier, this, this);
             stats.RemoveStatElement(ExplosionRangeInfo.Identifier, this, this);

@@ -27,12 +27,11 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
             RootModBroadcaster broadcaster = Instantiate(ModulePrefab).GetComponent<RootModBroadcaster>();
             TurretAssemblyModule module = broadcaster.GetComponent<TurretAssemblyModule>();
 
-            Mod mod = Instantiate(expItem.Mod);
-            mod.Coeffecient = expItem.Coeffecient;
+            Mod mod = expItem.Mod;
             module.Item = expItem;
-
             broadcaster.Mod = mod;
-            
+            broadcaster.ModCoeffecient = expItem.Coeffecient;
+
             placement.Pickup(module.gameObject);
 
             PlacementController.Instance.TakePlacement(placement);

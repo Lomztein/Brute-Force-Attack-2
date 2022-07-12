@@ -173,6 +173,7 @@ namespace Lomztein.BFA2.Enemies
                 Destroy(gameObject);
                 _isDead = true;
                 OnFinished?.Invoke(this);
+                ClearBuffs();
             }
         }
 
@@ -218,10 +219,15 @@ namespace Lomztein.BFA2.Enemies
                 Destroy(_deathParticle.gameObject, DeathParticleLife);
             }
 
+            ClearBuffs();
+        }
+
+        private void ClearBuffs ()
+        {
             foreach (EnemyBuff buff in _buffs)
             {
                 buff.End();
-                Destroy(buff);
+                _toRemove.Enqueue(buff);
             }
         }
 

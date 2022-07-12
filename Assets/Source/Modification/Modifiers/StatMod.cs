@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
             public float Value = 0;
         }
 
-        public override void ApplyBase(IStatContainer stats, IEventContainer events)
+        public override void ApplyBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Element element in Stats)
             {
@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
             }
         }
 
-        public override void ApplyStack(IStatContainer stats, IEventContainer events)
+        public override void ApplyStack(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Element element in Stats)
             {
@@ -49,7 +49,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
             }
         }
 
-        public override void RemoveBase(IStatContainer stats, IEventContainer events)
+        public override void RemoveBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Element element in Stats)
             {
@@ -57,7 +57,7 @@ namespace Lomztein.BFA2.Modification.Modifiers
             }
         }
 
-        public override void RemoveStack(IStatContainer stats, IEventContainer events)
+        public override void RemoveStack(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
             foreach (Element element in Stats)
             {

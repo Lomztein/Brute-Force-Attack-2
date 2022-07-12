@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Enemies.Buffs
         public float Coeffecient = 1f;
         public Enemy Target;
 
-        public bool Ended => Time > 0;
+        public bool Ended => Time < 0;
         private bool _timoutTriggered;
 
         public string Identifier => _identifier;
