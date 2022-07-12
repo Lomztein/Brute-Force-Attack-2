@@ -11,6 +11,6 @@ namespace Lomztein.BFA2.Targeting
     public class EnemyProgressTargetEvaluator : TargetEvaluator
     {
         protected override float DoEvaluate(GameObject source, Collider2D target)
-            => target.GetComponent<IEnemy>().PathIndex;
+            => target.GetComponent<Enemy>().PathIndex;
     }
 }

@@ -18,6 +18,28 @@ namespace Lomztein.BFA2.Modification.Events
         }
 
         public T GetOrigin<T>() => (T)Origin;
-        public T GetObject<T>() => (T)Args;
+        public T GetArgs<T>() => (T)Args;
+
+        public bool TryGetOrigin<T>(out T origin)
+        {
+            if (Origin is T)
+            {
+                origin = (T)Origin;
+                return true;
+            }
+            origin = default;
+            return false;
+        }
+
+        public bool TryGetArgs<T>(out T obj)
+        {
+            if (Args is T)
+            {
+                obj = (T)Args;
+                return true;
+            }
+            obj = default;
+            return false;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
 using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,19 +68,28 @@ namespace Lomztein.BFA2.Placement
         public bool ToPosition(Vector2 position)
         {
             var options = Physics2D.OverlapPointAll(position, _layerMask)
-                .Select(x => x.transform.root).Where(x => x.TryGetComponent(out TurretAssembly assembly) && assembly.HasRoomFor(_module.Item.ModuleSlots)) // Limit modules to only turret assemblies for the time being. 
-                .Where(x => x.GetComponentsInChildren<IModdable>().Any(y => _module.Item.Mod.CanMod(y)))
-                .ToArray();
+                .Select(x => x.transform.root).Where(x => x.TryGetComponent(out TurretAssembly assembly)) // Limit modules to only turret assemblies for the time being. 
+                .Where(x => x.GetComponentsInChildren<IModdable>().Any(y => _module.Item.Mod.CanMod(y)));
 
-            if (options.Length == 1)
+            var optionsWithRoom = options.Where(x => x.GetComponent<TurretAssembly>().HasRoomFor(_module.Item.ModuleSlots));
+
+            if (optionsWithRoom.Count() == 1)
             {
                 _target = options.First().transform.root.gameObject;
                 _spriteRenderer.transform.position = (Vector3)(Vector2)_target.transform.position + Vector3.back * 9f;
+                ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip(_module.Item.Name + " -> " + _target.GetComponent<TurretAssembly>().Name), "OptionWithRoom");
+            }
+            else if (options.Count() == 1)
+            {
+                _target = options.First().transform.root.gameObject;
+                var assembly = _target.GetComponent<TurretAssembly>();
+                ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot insert into " + assembly.Name, $"Not enough module slots. {_module.Item.ModuleSlots} needed, {assembly.FreeModuleSlots()} available."), "OptionsWithoutRoom");
             }
             else
             {
                 _target = null;
                 _spriteRenderer.transform.position = (Vector3)position + Vector3.back * 9f;
+                ForcedTooltipUpdater.ResetTooltip();
             }
             return true;
         }
@@ -100,6 +110,7 @@ namespace Lomztein.BFA2.Placement
         {
             UnityEngine.Object.Destroy(_obj);
             UnityEngine.Object.Destroy(_spriteRenderer.gameObject);
+            ForcedTooltipUpdater.ResetTooltip();
 
             OnFinished?.Invoke();
             return true;

@@ -15,21 +15,21 @@ namespace Lomztein.BFA2.Enemies.Special
         public ContentPrefabReference ToSpawn;
         [ModelProperty]
         public Vector2[] SpawnPositions;
-        private IEnemy _enemy;
+        private Enemy _enemy;
 
         private void Start()
         {
-            _enemy = GetComponent<IEnemy>();
+            _enemy = GetComponent<Enemy>();
             _enemy.OnKilled += Enemy_OnKilled;
         }
 
-        private void Enemy_OnKilled(IEnemy obj)
+        private void Enemy_OnKilled(Enemy obj)
         {
             foreach (Vector2 pos in SpawnPositions)
             {
                 Vector3 wpos = transform.position + (Vector3)pos;
                 GameObject newEnemyGO = ToSpawn.Instantiate();
-                IEnemy enemy = newEnemyGO.GetComponent<IEnemy>();
+                Enemy enemy = newEnemyGO.GetComponent<Enemy>();
                 enemy.Init(wpos, obj.Path, obj.WaveHandler);
                 enemy.PathIndex = _enemy.PathIndex;
                 enemy.WaveHandler.AddEnemy(enemy);

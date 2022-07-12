@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             Facade.Battlefield.Enemies.OnEnemyKill += OnEnemySpawn;
         }
 
-        private void OnEnemySpawn(IEnemy obj)
+        private void OnEnemySpawn(Enemy obj)
         {
             if (obj is Enemy enemy)
             {

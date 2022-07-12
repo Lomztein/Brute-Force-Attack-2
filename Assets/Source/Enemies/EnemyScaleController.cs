@@ -25,9 +25,9 @@ namespace Lomztein.BFA2.Enemies
             });
         }
 
-        private void OnEnemySpawn(IEnemy obj)
+        private void OnEnemySpawn(Enemy obj)
         {
-            GetEnemyScaler(obj)?.Scale(obj);
+            _scalers.ForEach(x => x.Scale(obj));
         }
 
         public void AddEnemyScalers(params IEnemyScaler[] scalers)
@@ -39,7 +39,5 @@ namespace Lomztein.BFA2.Enemies
         {
             _scalers.AddRange(scalers);
         }
-
-        private IEnemyScaler GetEnemyScaler(IEnemy enemy) => _scalers.FirstOrDefault(x => x.CanScale(enemy));
     }
 }

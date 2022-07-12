@@ -24,16 +24,16 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         private const string ENEMY_CONTENT_PATH = "*/Enemies"; // At this point I should litteraly just make an EnemyCache class that does all this for me.
         private IContentCachedPrefab[] _enemies;
-        private IEnemy[] _enemyCache;
+        private Enemy[] _enemyCache;
 
         private void LoadEnemies()
         {
             _enemies = Content.GetAll<IContentCachedPrefab>(ENEMY_CONTENT_PATH);
-            _enemyCache = new IEnemy[_enemies.Length];
+            _enemyCache = new Enemy[_enemies.Length];
 
             for (int i = 0; i < _enemies.Length; i++)
             {
-                _enemyCache[i] = _enemies[i].GetCache().GetComponent<IEnemy>();
+                _enemyCache[i] = _enemies[i].GetCache().GetComponent<Enemy>();
             }
         }
 
@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             RoundController.Instance.OnEnemyKilled += OnEnemyKill;
         }
 
-        private void OnEnemyKill(IEnemy obj)
+        private void OnEnemyKill(Enemy obj)
         {
             if (Roll())
             {
@@ -59,7 +59,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             }
         }
 
-        private void SpawnClone(IEnemy obj)
+        private void SpawnClone(Enemy obj)
         {
             IContentCachedPrefab prefab = null;
             for (int i = 0; i < _enemies.Length; i++)
@@ -73,7 +73,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             GameObject enemyGO = prefab.Instantiate();
             Enemy en = obj as Enemy; // flawless naming
 
-            IEnemy enemy = enemyGO.GetComponent<IEnemy>();
+            Enemy enemy = enemyGO.GetComponent<Enemy>();
             enemy.Init(en.transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path, obj.WaveHandler);
             enemy.PathIndex = obj.PathIndex;
             enemy.WaveHandler.AddEnemy(enemy);

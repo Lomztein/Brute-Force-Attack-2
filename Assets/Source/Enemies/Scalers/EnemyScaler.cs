@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Enemies.Scalers
 {
-    public class EnemyScaler : EnemyScalerBase<Enemy>
+    public class EnemyScaler : EnemyScalerBase
     {
         public float HealthMult = 1f;
         public float ArmorMult = 1f;

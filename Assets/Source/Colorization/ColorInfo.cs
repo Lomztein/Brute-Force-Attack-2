@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Colorization
 {
     public enum Color
     {
-        Blue, Yellow, Red, Pink, Magenta, Green, Orange
+        Blue, Yellow, Red, Purple, Orange, Green, White, Black
     }
 
     public class ColorInfo
@@ -18,6 +18,9 @@ namespace Lomztein.BFA2.Colorization
             new ColorInfo (Color.Blue, "Blue", "Blue is cold, calm, relaxing. Blue is sadness, blue is dispair.", UnityEngine.Color.cyan),
             new ColorInfo (Color.Yellow, "Yellow", "Yellow is speed, fast and unrelenting. Yellow is happiness, but deciet as well.", UnityEngine.Color.yellow),
             new ColorInfo (Color.Red, "Red", "Red is rage, passion and power. Death will follow where the blood flows.", UnityEngine.Color.red),
+            new ColorInfo (Color.Purple, "Purple", "Purple ambition and riches, nobility and power.", UnityEngine.Color.magenta),
+            new ColorInfo (Color.Orange, "Orange", "Orange is protecting warmth, sorrounding you as a pleasent aura.", new UnityEngine.Color(1f, 0.5f, 1f)),
+            new ColorInfo (Color.Green, "Green", "Green is nature, fresh and vibrant. Jealousy will never gain you anything.", UnityEngine.Color.green),
         };
 
         public static ColorInfo Get(Color color)

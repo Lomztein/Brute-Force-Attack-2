@@ -26,10 +26,10 @@ namespace Lomztein.BFA2.Enemies.Waves
         public event Action<WaveHandler> OnAllSpawnersFinished;
         public event Action<WaveHandler> OnAllEnemiesDone;
 
-        public event Action<WaveHandler, IEnemy> OnEnemySpawned;
-        public event Action<WaveHandler, IEnemy> OnEnemyAdded;
-        public event Action<WaveHandler, IEnemy> OnEnemyKilled;
-        public event Action<WaveHandler, IEnemy> OnEnemyFinished;
+        public event Action<WaveHandler, Enemy> OnEnemySpawned;
+        public event Action<WaveHandler, Enemy> OnEnemyAdded;
+        public event Action<WaveHandler, Enemy> OnEnemyKilled;
+        public event Action<WaveHandler, Enemy> OnEnemyFinished;
 
         public int Amount { get; private set; }
         private int _done;
@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 
 
         private IContentCachedPrefab[] LoadEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMY_PATH);
-        private IContentCachedPrefab GetPrefab(string identifier) => _enemies.FirstOrDefault(x => x.GetCache().GetComponent<IEnemy>().Identifier == identifier);
+        private IContentCachedPrefab GetPrefab(string identifier) => _enemies.FirstOrDefault(x => x.GetCache().GetComponent<Enemy>().Identifier == identifier);
 
         public void Assign (int wave, WaveTimeline timeline)
         {
@@ -77,27 +77,27 @@ namespace Lomztein.BFA2.Enemies.Waves
 
         private void Spawner_OnSpawn(GameObject obj)
         {
-            IEnemy enemy = obj.GetComponent<IEnemy>();
+            Enemy enemy = obj.GetComponent<Enemy>();
 
             AddEnemy(enemy);
             OnEnemySpawned?.Invoke(this, enemy);
             enemy.OnKilled += Enemy_OnKilled;
         }
 
-        public void AddEnemy (IEnemy enemy)
+        public void AddEnemy (Enemy enemy)
         {
             enemy.OnFinished += Enemy_OnFinished;
             OnEnemyAdded?.Invoke(this, enemy);
         }
 
-        private void Enemy_OnFinished(IEnemy obj)
+        private void Enemy_OnFinished(Enemy obj)
         {
             OnEnemyDone();
             Timeline.Punisher.Punish(obj);
             OnEnemyFinished?.Invoke(this, obj);
         }
 
-        private void Enemy_OnKilled(IEnemy obj)
+        private void Enemy_OnKilled(Enemy obj)
         {
             OnEnemyDone();
             obj.OnKilled -= Enemy_OnKilled;

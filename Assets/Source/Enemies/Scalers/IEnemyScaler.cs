@@ -2,7 +2,6 @@
 {
     public interface IEnemyScaler
     {
-        bool CanScale(IEnemy enemy);
-        void Scale(IEnemy enemy);
+        void Scale(Enemy enemy);
     }
 }

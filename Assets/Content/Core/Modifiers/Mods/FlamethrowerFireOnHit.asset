@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36653203b6005284da5418dfa2b532de, type: 3}
+  m_Name: FlamethrowerFireOnHit
+  m_EditorClassIdentifier: 
+  Identifier: Core.FlamethrowerFire
+  Name: Flamethrower Fire
+  Description: Lights enemies ablaze on hit.
+  Filters: []
+  Event: {fileID: 11400000, guid: 8f35ed2b445d1b445937df6a62a5f992, type: 2}
+  Buff: {fileID: 11400000, guid: 54b63af71543a4344b540174d531b581, type: 2}
+  BuffTimeInfo: {fileID: 11400000, guid: b2c40ef1775f0c043b8e9cfcecf26e32, type: 2}
+  BuffStacksInfo: {fileID: 11400000, guid: cf9b7569b525efe43954eb482942e9d8, type: 2}
+  BuffTime: 10
+  BuffTimePerStack: 2
+  BuffStacks: 1
+  BuffStacksPerStack: 1
+  references:
+    version: 1

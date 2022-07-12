@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
     {
         private const string ENEMY_CONTENT_PATH = "*/Enemies";
         private IContentCachedPrefab[] _enemies;
-        private IEnemy[] _enemyCache;
+        private Enemy[] _enemyCache;
 
         private Regex _enemyTierRegex = new Regex("T[1-9]+", RegexOptions.Compiled);
 
@@ -28,11 +28,11 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
         private void LoadEnemies()
         {
             _enemies = Content.GetAll<IContentCachedPrefab>(ENEMY_CONTENT_PATH);
-            _enemyCache = new IEnemy[_enemies.Length];
+            _enemyCache = new Enemy[_enemies.Length];
 
             for (int i = 0; i < _enemies.Length; i++)
             {
-                _enemyCache[i] = _enemies[i].GetCache().GetComponent<IEnemy>();
+                _enemyCache[i] = _enemies[i].GetCache().GetComponent<Enemy>();
             }
         }
 
@@ -73,7 +73,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
             return null;
         }
 
-        private void OnEnemyKill(IEnemy obj)
+        private void OnEnemyKill(Enemy obj)
         {
             IContentCachedPrefab enemy = GetPreviousTier(obj.Identifier);
             if (enemy != null)
@@ -81,7 +81,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
                 for (int i = 0; i < Clones; i++)
                 {
                     GameObject newEnemyGO = enemy.Instantiate();
-                    IEnemy newEnemy = newEnemyGO.GetComponent<IEnemy>();
+                    Enemy newEnemy = newEnemyGO.GetComponent<Enemy>();
                     newEnemy.Init((obj as Component).transform.position + (Vector3)UnityEngine.Random.insideUnitCircle, obj.Path, obj.WaveHandler);
                     newEnemy.PathIndex = obj.PathIndex;
 

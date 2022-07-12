@@ -44,10 +44,10 @@ namespace Lomztein.BFA2.Enemies
         public event Action<int> OnWavesExhausted;
         public event Action<int> OnNextWaveChanged;
 
-        public event Action<IEnemy> OnEnemySpawned;
-        public event Action<IEnemy> OnEnemyAdded;
-        public event Action<IEnemy> OnEnemyKilled;
-        public event Action<IEnemy> OnEnemyFinished;
+        public event Action<Enemy> OnEnemySpawned;
+        public event Action<Enemy> OnEnemyAdded;
+        public event Action<Enemy> OnEnemyKilled;
+        public event Action<Enemy> OnEnemyFinished;
 
         public event Action<RoundState> OnStateChanged;
         
@@ -174,16 +174,16 @@ namespace Lomztein.BFA2.Enemies
             OnWaveEnemiesSpawned?.Invoke(handler.Wave, handler);
         }
 
-        private void EnemySpawned(WaveHandler handler, IEnemy obj)
+        private void EnemySpawned(WaveHandler handler, Enemy obj)
         {
             EnemySpawnPoint spawnpoint = Pather.GetRandomSpawnPoint();
             obj.Init(spawnpoint.transform.position, spawnpoint.GetPath(), handler);
             OnEnemySpawned?.Invoke(obj);
         }
 
-        private void EnemyAdded(WaveHandler handler, IEnemy obj) => OnEnemyAdded?.Invoke(obj);
-        private void EnemyKilled(WaveHandler handler, IEnemy obj) => OnEnemyKilled?.Invoke(obj);
-        private void EnemyFinished(WaveHandler handler, IEnemy obj) => OnEnemyFinished?.Invoke(obj);
+        private void EnemyAdded(WaveHandler handler, Enemy obj) => OnEnemyAdded?.Invoke(obj);
+        private void EnemyKilled(WaveHandler handler, Enemy obj) => OnEnemyKilled?.Invoke(obj);
+        private void EnemyFinished(WaveHandler handler, Enemy obj) => OnEnemyFinished?.Invoke(obj);
 
         private void ChangeState (RoundState newState)
         {

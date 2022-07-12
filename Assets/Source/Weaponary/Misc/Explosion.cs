@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
         [ModelProperty]
         public float Life;
 
-        public void Explode (float damage, float range)
+        public void Explode (float damage, float range, Action<Collider2D> onHit)
         {
             var particles = GetComponentInChildren<ParticleSystem>();
             particles.transform.localScale = Vector3.one * range / ParticleBaseRange;
@@ -31,6 +31,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
                 if (col.TryGetComponent<IDamagable>(out var damagable))
                 {
                     damagable.TakeDamage(new DamageInfo(damage, Colorization.Color.Red));
+                    onHit(col);
                 }
             }
 

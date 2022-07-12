@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.UI.Displays.UpcomingEnemies
             handler.OnAllEnemiesDone -= OnWaveFinished;
         }
 
-        private void OnEnemyKilled(WaveHandler handler, IEnemy enemy)
+        private void OnEnemyKilled(WaveHandler handler, Enemy enemy)
         {
             if (enemy.Identifier == _identifier)
             {

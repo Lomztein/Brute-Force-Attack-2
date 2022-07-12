@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
             Earn (_finishReward);
         }
 
-        public void OnKill(IEnemy enemy)
+        public void OnKill(Enemy enemy)
         {
             Earn(_totalKillReward / _totalCount);
         }

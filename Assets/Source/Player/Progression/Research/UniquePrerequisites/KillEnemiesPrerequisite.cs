@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Research.UniquePrerequisites
         {
             _roundController.IfExists((x) => x.OnEnemyKilled -= OnEnemyKill);
         }
-        private void OnEnemyKill(IEnemy enemy)
+        private void OnEnemyKill(Enemy enemy)
         {
             if (IsTargetColor(enemy))
             {
@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Research.UniquePrerequisites
             }
         }
 
-        private bool IsTargetColor (IEnemy enemy)
+        private bool IsTargetColor (Enemy enemy)
         {
             if (TargetColors == null || TargetColors.Length == 0)
             {

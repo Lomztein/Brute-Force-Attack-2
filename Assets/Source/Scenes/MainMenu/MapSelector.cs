@@ -18,6 +18,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
     public class MapSelector : MonoBehaviour, ICustomGameAspectController
     {
         private MapData[] _maps;
+        private List<Button> _mapButtons = new List<Button>();
 
         public GameObject MapButtonPrefab;
         public Transform MapButtonParent;
@@ -47,6 +48,11 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             SetMapPreview(index);
 
             BattlefieldInitializeInfo.NewSettings.MapIdentifier = _maps[index].Identifier;
+
+            for (int i = 0; i < _mapButtons.Count; i++)
+            {
+                _mapButtons[i].interactable = i != index;
+            }
         }
 
         private void SetMapPreview(int index)
@@ -71,6 +77,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             {
                 Destroy(child);
             }
+            _mapButtons.Clear();
 
             for (int i = 0; i < _maps.Length; i++)
             {
@@ -78,6 +85,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
                 GameObject newButton = Instantiate(MapButtonPrefab, MapButtonParent);
                 newButton.GetComponentInChildren<Text>().text = data.Name;
                 Button button = newButton.GetComponentInChildren<Button>();
+                _mapButtons.Add(button);
                 AddListener(button, i);
             }
         }

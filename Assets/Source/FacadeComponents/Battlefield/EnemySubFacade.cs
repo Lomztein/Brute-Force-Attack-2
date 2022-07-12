@@ -10,9 +10,9 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
 {
     public class EnemySubFacade : SceneFacadeSubComponent<BattlefieldFacade>
     {
-        public event Action<IEnemy> OnEnemySpawn;
-        public event Action<IEnemy> OnEnemyFinish;
-        public event Action<IEnemy> OnEnemyKill;
+        public event Action<Enemy> OnEnemySpawn;
+        public event Action<Enemy> OnEnemyFinish;
+        public event Action<Enemy> OnEnemyKill;
 
         public event Action<int, WaveHandler> OnWaveStarted;
         public event Action<int, WaveHandler> OnWaveEnemiesSpawned;

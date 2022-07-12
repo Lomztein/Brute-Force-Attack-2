@@ -63,14 +63,13 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
         private void Explode(Events.EventArgs args)
         {
-            HitInfo hitInfo = args.GetObject<HitInfo>();
+            HitInfo hitInfo = args.GetArgs<HitInfo>();
 
             float damage = hitInfo.DamageInfo.Damage * _damageMult.GetValue();
             float range = _range.GetValue();
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();
             explosion.transform.position = hitInfo.Point;
-            explosion.Explode(damage, range);
 
             if (DepleteProjectile)
             {

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39019913ce184f847a2bfcafa584f1d1, type: 3}
+  m_Name: OnFireEnemyBuff
+  m_EditorClassIdentifier: Assembly-CSharp:Lomztein.BFA2.Enemies.Buffs:DamageOverTimeEnemyBuff
+  _identifier: Core.OnFire
+  _name: On Fire
+  _description: This enemy is on fire!
+  Time: 5
+  Target: {fileID: 0}
+  CurrentStack: 0
+  MaxStack: 5
+  Effect:
+    Path: 
+  EffectPostLife: 1
+  DPSPerStack: 1
+  DamageColor: 3

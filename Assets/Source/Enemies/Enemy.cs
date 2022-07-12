@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Colorization;
 using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.ContentSystem.Objects;
+using Lomztein.BFA2.Enemies.Buffs;
 using Lomztein.BFA2.Enemies.Motors;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Purchasing.Resources;
@@ -16,7 +17,7 @@ using Color = Lomztein.BFA2.Colorization.Color;
 
 namespace Lomztein.BFA2.Enemies
 {
-    public class Enemy : MonoBehaviour, IEnemy, IDamagable
+    public class Enemy : MonoBehaviour, IIdentifiable, IDamagable
     {
         public const string ENEMIES_CCONTENT_PATH = "*/Enemies";
 
@@ -51,8 +52,13 @@ namespace Lomztein.BFA2.Enemies
         public float DeathParticleLife;
         private ParticleSystem _deathParticle;
 
-        public event Action<IEnemy> OnKilled;
-        public event Action<IEnemy> OnFinished;
+        public event Action<Enemy> OnKilled;
+        public event Action<Enemy> OnFinished;
+
+        private List<EnemyBuff> _buffs = new List<EnemyBuff>();
+        private Queue<EnemyBuff> _toRemove = new Queue<EnemyBuff>();
+
+        public IEnumerable<EnemyBuff> Buffs => _buffs;
 
         private void FixedUpdate()
         {
@@ -61,6 +67,18 @@ namespace Lomztein.BFA2.Enemies
                 Die(); // TODO: Fix me, appears that an enemy is sometimes spawned but not initialized at the end of a wave. This is a temporary workaround.
             }
             _motor.Tick(Time.fixedDeltaTime);
+
+            foreach (EnemyBuff buff in _buffs)
+            {
+                buff.Tick(Time.fixedDeltaTime);
+            }
+            while (_toRemove.Count > 0)
+            {
+                EnemyBuff toRemove = _toRemove.Dequeue();
+                toRemove.End();
+                _buffs.Remove(toRemove);
+            }
+
             if (_motor.HasReachedEnd ())
             {
                 DoDamage();
@@ -70,6 +88,71 @@ namespace Lomztein.BFA2.Enemies
                 Accelerate(Time.fixedDeltaTime);
             }
         }
+
+        public bool TryAddBuff(EnemyBuff buff, int stackSize = 1) => TryAddBuff(buff, buff.Time, stackSize);
+
+        public bool TryAddBuff (EnemyBuff buff, float buffTime, int stackSize = 1)
+        {
+            if (HasBuff(buff.Identifier) > 0)
+            {
+                EnemyBuff existing = GetBuff(buff.Identifier);
+                int room = existing.CanAddStack(stackSize);
+                if (room > 0)
+                {
+                    // Reset buff time to the highest of it's current or the time given here. 
+                    // Individual timers for inidivual stacks could be nice, but I reckon this will work just fine.
+                    existing.Time = Mathf.Max(buffTime, buff.Time);
+                    existing.AddStack(Mathf.Min(room, stackSize));
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                _buffs.Add(buff);
+                int room = buff.CanAddStack(stackSize);
+                buff.OnTimeOut += Buff_OnTimeOut;
+                buff.Begin(this, Mathf.Min(room, stackSize), buffTime);
+                return true;
+            }
+        }
+
+        private void Buff_OnTimeOut(EnemyBuff obj)
+        {
+            RemoveBuffInternal(obj, obj.CurrentStack);
+        }
+
+        private bool RemoveBuffInternal (EnemyBuff buff, int stackSize)
+        {
+            if (buff != null)
+            {
+                if (buff.CurrentStack > stackSize)
+                {
+                    buff.RemoveStack(stackSize);
+                }
+                else
+                {
+                    _toRemove.Enqueue(buff);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public bool RemoveBuff(string identifier, int stackSize = 1)
+        {
+            EnemyBuff buff = GetBuff(identifier);
+            return RemoveBuffInternal(buff, stackSize);
+        }
+
+        public int HasBuff (string buffIdentifier)
+        {
+            EnemyBuff buff = GetBuff(buffIdentifier);
+            if (buff == null) return 0;
+            return buff.CurrentStack;
+        }
+
+        public EnemyBuff GetBuff(string buffIdentifier) => _buffs.FirstOrDefault(x => x.Identifier == buffIdentifier);
 
         private void Accelerate(float deltaTime)
         {
@@ -134,6 +217,12 @@ namespace Lomztein.BFA2.Enemies
                 _deathParticle.Play();
                 Destroy(_deathParticle.gameObject, DeathParticleLife);
             }
+
+            foreach (EnemyBuff buff in _buffs)
+            {
+                buff.End();
+                Destroy(buff);
+            }
         }
 
         public void Init(Vector3 position, Vector3[] path, WaveHandler handler)
@@ -149,6 +238,6 @@ namespace Lomztein.BFA2.Enemies
         }
 
         public static IContentCachedPrefab[] GetEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMIES_CCONTENT_PATH);
-        public static IContentCachedPrefab GetEnemy(string identifier) => GetEnemies().FirstOrDefault(x => x.GetCache().GetComponent<IEnemy>().Identifier == identifier);
+        public static IContentCachedPrefab GetEnemy(string identifier) => GetEnemies().FirstOrDefault(x => x.GetCache().GetComponent<Enemy>().Identifier == identifier);
     }
 }

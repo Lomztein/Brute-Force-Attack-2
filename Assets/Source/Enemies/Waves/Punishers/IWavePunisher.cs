@@ -8,6 +8,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Punishers
 {
     public interface IWavePunisher
     {
-        void Punish(IEnemy enemy);
+        void Punish(Enemy enemy);
     }
 }

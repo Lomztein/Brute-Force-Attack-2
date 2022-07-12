@@ -11,12 +11,12 @@ namespace Lomztein.BFA2.Enemies.Special
         public Vector2 JumpMinMax;
         [ModelProperty]
         public int JumpChanceDenominator;
-        private IEnemy _enemy;
+        private Enemy _enemy;
 
         // Start is called before the first frame update
         void Start()
         {
-            _enemy = GetComponent<IEnemy>();
+            _enemy = GetComponent<Enemy>();
         }
 
         void FixedUpdate ()

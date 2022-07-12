@@ -24,12 +24,12 @@ namespace Lomztein.BFA2.Enemies.Loot
             RoundController.Instance.OnEnemySpawned += OnEnemySpawned;
         }
 
-        private void OnEnemySpawned(IEnemy obj)
+        private void OnEnemySpawned(Enemy obj)
         {
             obj.OnKilled += OnEnemyKilled;
         }
 
-        private void OnEnemyKilled(IEnemy obj)
+        private void OnEnemyKilled(Enemy obj)
         {
             if (obj.WaveHandler && obj is Component component)
             {

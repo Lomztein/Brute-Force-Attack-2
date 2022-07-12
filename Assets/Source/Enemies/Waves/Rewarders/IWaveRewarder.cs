@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
 {
     public interface IWaveRewarder
     {
-        void OnKill(IEnemy enemy);
+        void OnKill(Enemy enemy);
 
         void OnFinished();
     }

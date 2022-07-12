@@ -18,5 +18,10 @@ namespace Lomztein.BFA2.Inventory.Items
         public float Coeffecient;
         [ModelProperty]
         public int ModuleSlots;
+
+        private void Awake()
+        {
+            Name = Name + " (" + (Mod.Coeffecient * 100f).ToString("0") + "%)";
+        }
     }
 }
