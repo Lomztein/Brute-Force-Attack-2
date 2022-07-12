@@ -53,28 +53,42 @@ namespace Lomztein.BFA2.Weaponary
         public LayerMask HitLayer;
         private bool _chambered;
 
+        private bool _initialized;
+
         private void Awake()
         {
-            _muzzles = GetMuzzles();
-            _fireParticles = GetFireParticles(_muzzles);
+            Init();
+        }
 
-            _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
-            _fireSequence = GetComponent<IFireSequence>() ?? new InstantFireSequence();
-            
-            if (TryGetComponent(out IFireControl ctrl))
+        public void Init()
+        {
+            if (!_initialized)
             {
-                AddFireControl(ctrl);
-            }
+                _muzzles = GetMuzzles();
+                _fireParticles = GetFireParticles(_muzzles);
 
-            _pool = new NoGameObjectPool<IProjectile>(ProjectilePrefab);
-            _projectilePool = new ProjectilePool(_pool);
-            _pool.OnNew += OnNewProjectile;
+                _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
+                _fireSequence = GetComponent<IFireSequence>() ?? new InstantFireSequence();
 
+                if (TryGetComponent(out IFireControl ctrl))
+                {
+                    AddFireControl(ctrl);
+                }
 
-            if (isActiveAndEnabled)
-            {
-                _chambered = false;
-                StartCoroutine(Rechamber(Cooldown));
+                _pool = new NoGameObjectPool<IProjectile>(ProjectilePrefab);
+                _projectilePool = new ProjectilePool(_pool);
+                _pool.OnNew += OnNewProjectile;
+
+                if (isActiveAndEnabled)
+                {
+                    _chambered = false;
+                    StartCoroutine(Rechamber(Cooldown));
+                }
+                else
+                {
+                    _chambered = true;
+                }
+                _initialized = true;
             }
         }
 

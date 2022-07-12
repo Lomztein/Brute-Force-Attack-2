@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.UI.Tooltip
+namespace Lomztein.BFA2.UI.ToolTip
 {
     public interface ITooltipUpdater
     {
-        ITooltip GetTooltip();
+        IHasToolTip GetTooltip();
     }
 }

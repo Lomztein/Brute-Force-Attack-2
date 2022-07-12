@@ -40,14 +40,14 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         {
             events.GetEvent(EventInfo.Identifier).Event.AddListener(Explode, this);
 
-            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase * Coeffecient, this);
-            _range = stats.AddStat(ExplosionRangeInfo, RangeBase, this);
+            _damageMult = stats.AddStat(ExplosionDamageFactorInfo, DamageFactorBase, this);
+            _range = stats.AddStat(ExplosionRangeInfo, RangeBase * Coeffecient, this);
         }
 
         public override void ApplyStack(IStatContainer stats, IEventContainer events)
         {
-            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack * Coeffecient), this);
-            stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack), this);
+            stats.AddStatElement(ExplosionDamageFactorInfo.Identifier, new StatElement(this, DamageFactorStack), this);
+            stats.AddStatElement(ExplosionRangeInfo.Identifier, new StatElement(this, RangeStack * Coeffecient), this);
         }
 
         public override void RemoveBase(IStatContainer stats, IEventContainer events)

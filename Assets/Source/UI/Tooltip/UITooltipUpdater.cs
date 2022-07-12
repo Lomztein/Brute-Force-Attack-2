@@ -8,11 +8,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.UI.Tooltip
+namespace Lomztein.BFA2.UI.ToolTip
 {
     public class UITooltipUpdater : MonoBehaviour, ITooltipUpdater
     {
-        public ITooltip GetTooltip()
+        public IHasToolTip GetTooltip()
         {
             GraphicRaycaster raycaster = UIController.Instance.GraphicRaycaster;
             EventSystem eventSystem = UIController.Instance.EventSystem;
@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.UI.Tooltip
 
             foreach (RaycastResult result in results)
             {
-                ITooltip tooltip = result.gameObject.GetComponent<ITooltip>();
+                IHasToolTip tooltip = result.gameObject.GetComponent<IHasToolTip>();
                 if (tooltip != null)
                 {
                     return tooltip;

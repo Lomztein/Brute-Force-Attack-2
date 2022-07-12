@@ -9,7 +9,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections;
@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures
 {
-    public class Structure : MonoBehaviour, INamed, IPurchasable, IGridObject, IIdentifiable, IModdable, ITooltip
+    public class Structure : MonoBehaviour, INamed, IPurchasable, IGridObject, IIdentifiable, IModdable
     {
         [SerializeField]
         [ModelProperty]
@@ -46,6 +46,8 @@ namespace Lomztein.BFA2.Structures
         public IEventContainer Events = new EventContainer();
         public IModContainer Mods { get; private set; }
 
+        private bool _initialized;
+
         [ModelProperty]
         public TagSet Tags = new TagSet();
 
@@ -63,10 +65,6 @@ namespace Lomztein.BFA2.Structures
 
         public virtual StructureCategory Category { get; } = StructureCategories.Misc;
 
-        string ITooltip.Title => Name;
-        string ITooltip.Description => ToString();
-        string ITooltip.Footnote => string.Empty;
-
         public event Action<Structure, IStatReference, object> StatChanged;
         public event Action<Structure, IEventReference, object> EventChanged;
         public event Action<Structure, GameObject, object> HierarchyChanged;
@@ -77,17 +75,31 @@ namespace Lomztein.BFA2.Structures
             return Name + "\n\n" + Stats.ToString();
         }
 
-        protected virtual void Awake()
+        private void InternalInit ()
         {
-            Mods = new ModContainer(Stats, Events);
+            if (!_initialized)
+            {
+                Mods = new ModContainer(Stats, Events);
 
-            Stats.OnStatChanged += Stats_OnStatChanged;
-            Stats.OnStatAdded += Stats_OnStatChanged;
-            Stats.OnStatRemoved += Stats_OnStatChanged;
+                Stats.OnStatChanged += Stats_OnStatChanged;
+                Stats.OnStatAdded += Stats_OnStatChanged;
+                Stats.OnStatRemoved += Stats_OnStatChanged;
 
-            Events.OnEventChanged += Events_OnEventChanged;
-            Events.OnEventAdded += Events_OnEventChanged;
+                Events.OnEventChanged += Events_OnEventChanged;
+                Events.OnEventAdded += Events_OnEventChanged;
+
+                AwakeInit();
+
+                _initialized = true;
+            }
         }
+
+        private void Awake() => InternalInit();
+        public void OnInstantiated() => InternalInit();
+        public void OnAssembled() => InternalInit();
+
+        protected virtual void AwakeInit() { }
+
 
         private void Events_OnEventChanged(IEventReference arg1, object arg2)
         {

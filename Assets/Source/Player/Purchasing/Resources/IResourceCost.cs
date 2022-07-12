@@ -15,7 +15,6 @@ namespace Lomztein.BFA2.Purchasing.Resources
     {
         public int Compare(IResourceCost x, IResourceCost y)
             => Math.Sign(CalculateValue(x) - CalculateValue(y));
-
         private float CalculateValue(IResourceCost cost)
             => cost.GetCost().Sum(x => x.Key.BinaryValue * x.Value);
     }

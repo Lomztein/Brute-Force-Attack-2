@@ -28,9 +28,8 @@ namespace Lomztein.BFA2.Structures
 
         public float GetRange() => _range.GetValue();
 
-        protected override void Awake()
+        protected override void AwakeInit()
         {
-            base.Awake();
             _range = Stats.AddStat(RangeInfo, BaseRange, this);
         }
 

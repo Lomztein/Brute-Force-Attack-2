@@ -68,6 +68,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public IEventCaller OnProjectileHit;
         public IEventCaller OnProjectileKill;
 
+        private bool _statsInitialized;
+
         public override StructureCategory Category => StructureCategories.Weapon;
 
         [ModelProperty]
@@ -88,6 +90,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Spread = Stats.AddStat(SpreadInfo, BaseSpread, this);
             Speed = Stats.AddStat(SpeedInfo, BaseSpeed, this);
             Firerate = Stats.AddStat(FirerateInfo, BaseFirerate, this);
+            _statsInitialized = true;
 
             OnFire = Events.AddEvent(OnFireInfo, this);
             OnProjectile = Events.AddEvent(OnProjectileInfo, this);
@@ -108,11 +111,13 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Firerate.OnChanged += UpdateStats;
 
             UpdateStats();
+
+            Weapon.Init();
         }
 
         private void UpdateStats()
         {
-            if (PreInitialized)
+            if (_statsInitialized)
             {
                 Weapon.Damage = Damage.GetValue();
                 Weapon.ProjectileAmount = (int)ProjectileAmount.GetValue();

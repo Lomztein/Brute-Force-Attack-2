@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     public class SelfModBroadcaster : ModBroadcaster
     {
         protected override bool BroadcastOnStart => true;
+        protected override bool BroadcastPostAwake => true;
 
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {

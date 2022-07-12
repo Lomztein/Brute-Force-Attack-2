@@ -1,13 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.ContentSystem.Objects
 {
     public class SceneCachedGameObject : IContentCachedPrefab, IDisposableContent
     {
-        private const string CACHE_OBJ_NAME = "_GO_CACHE";
-        private static GameObject _cacheObj;
-
         private readonly GameObject _cache;
 
         public SceneCachedGameObject(GameObject cache)
@@ -19,16 +17,7 @@ namespace Lomztein.BFA2.ContentSystem.Objects
         private void CacheCache ()
         {
             _cache.SetActive(false);
-            _cache.transform.SetParent(GetCacheObject().transform);
-        }
-
-        private static GameObject GetCacheObject ()
-        {
-            if (_cacheObj == null)
-            {
-                _cacheObj = new GameObject(CACHE_OBJ_NAME);
-            }
-            return _cacheObj;
+            UnityEngine.Object.DontDestroyOnLoad(_cache);
         }
 
         public void Dispose()
@@ -39,14 +28,6 @@ namespace Lomztein.BFA2.ContentSystem.Objects
         public override string ToString()
         {
             return GetCache().ToString();
-        }
-
-        public static void Clear ()
-        {
-            foreach (Transform child in GetCacheObject().transform)
-            {
-                UnityEngine.Object.Destroy(child);
-            }
         }
 
         public GameObject GetCache()

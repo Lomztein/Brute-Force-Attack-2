@@ -177,9 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Resize Map
-  _Description: 
-  _Footnote: 
+  Title: Resize Map
+  Description: 
+  Footer: 
 --- !u!114 &1484446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -418,27 +418,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 340774504}
     m_Modifications:
-    - target: {fileID: 1781708336432064120, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 329f2f0adaa77b44aa233826f3e4b429,
-        type: 3}
-    - target: {fileID: 1781708336432064120, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.4909445
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781708336432064120, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781708336432064120, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.2196078
-      objectReference: {fileID: 0}
     - target: {fileID: 1781708336959441108, guid: 4d68b79cd019e0143ba15f1c16caaa83,
         type: 3}
       propertyPath: m_Name
@@ -548,21 +527,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781708336959441113, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.2688679
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781708336959441113, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1781708336959441113, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.2688679
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d68b79cd019e0143ba15f1c16caaa83, type: 3}
@@ -777,6 +741,7 @@ GameObject:
   - component: {fileID: 210042278}
   - component: {fileID: 210042280}
   - component: {fileID: 210042279}
+  - component: {fileID: 210042281}
   m_Layer: 5
   m_Name: SnapToggle
   m_TagString: Untagged
@@ -884,6 +849,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &210042281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210042277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Title: Toggle Grid Snapping
+  Description: 
+  Footer: 
 --- !u!1001 &215834654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1292,9 +1272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Placeable Walls
-  _Description: Walls not placeable by the player, but players can build upon them.
-  _Footnote: 
+  Title: Placeable Walls
+  Description: Walls that the player cannot edit, but can place structures upon.
+  Footer: 
 --- !u!1 &340774503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1478,7 +1458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.003575325, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1846,7 +1826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.003575325, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1945,7 +1925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2298,9 +2278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Player Wall
-  _Description: Walls placeable by the player.
-  _Footnote: 
+  Title: Player Wall
+  Description: Walls editable by the player, that the player can also place structures
+    on.
+  Footer: 
 --- !u!1 &602614883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
     type: 3}
   m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
@@ -2455,7 +2437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2571,7 +2553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2656,9 +2638,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Delete Tool
-  _Description: 
-  _Footnote: 
+  Title: Delete
+  Description: 
+  Footer: 
 --- !u!114 &821558486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2762,7 +2744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2966,9 +2948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Handle Tool
-  _Description: 
-  _Footnote: 
+  Title: Select
+  Description: 
+  Footer: 
 --- !u!114 &1046435451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3222,7 +3204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3259,9 +3241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Save Map
-  _Description: 
-  _Footnote: 
+  Title: Save Map
+  Description: 
+  Footer: 
 --- !u!114 &1101235115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3445,7 +3427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3535,7 +3517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3631,7 +3613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3721,7 +3703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3772,9 +3754,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: No Build
-  _Description: Tiles where players cannot build, but enemies can pass through.
-  _Footnote: 
+  Title: No Build Zone
+  Description: Area that enemies can pass through, but the player cannot build in.
+  Footer: 
 --- !u!1001 &1424259213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4132,7 +4114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4225,7 +4207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4262,9 +4244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Toggle Snap To Grid
-  _Description: 
-  _Footnote: 
+  Title: 
+  Description: 
+  Footer: 
 --- !u!1 &1522332185
 GameObject:
   m_ObjectHideFlags: 0
@@ -4390,7 +4372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4427,9 +4409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Load Map
-  _Description: 
-  _Footnote: 
+  Title: Load Map
+  Description: 
+  Footer: 
 --- !u!114 &1522332192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4515,7 +4497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4594,9 +4576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Create New Map
-  _Description: 
-  _Footnote: 
+  Title: New Map
+  Description: 
+  Footer: 
 --- !u!114 &1532633674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4700,7 +4682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4930,9 +4912,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Title: Blocking Wall
-  _Description: Walls not built by players, nor can players build upon them.
-  _Footnote: 
+  Title: Blocking Wall
+  Description: Walls that the player cannot edit, nor place structures upon.
+  Footer: 
 --- !u!1 &1658580279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,7 +4980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5023,53 +5005,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658580279}
   m_CullTransparentMesh: 0
---- !u!1 &1665576449 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1781708336959441108, guid: 4d68b79cd019e0143ba15f1c16caaa83,
-    type: 3}
-  m_PrefabInstance: {fileID: 140408963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1665576450 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1781708336959441109, guid: 4d68b79cd019e0143ba15f1c16caaa83,
     type: 3}
   m_PrefabInstance: {fileID: 140408963}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1665576451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665576449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d14fb1ec224104f9691b26cbcdbf8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Title: Return to Main Menu
-  _Description: 
-  _Footnote: 
---- !u!114 &1665576452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665576449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreLayout: 0
-  m_MinWidth: -1
-  m_MinHeight: -1
-  m_PreferredWidth: 64
-  m_PreferredHeight: 64
-  m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
-  m_LayoutPriority: 1
 --- !u!1 &1739235472
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,7 +5191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5341,7 +5282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5431,7 +5372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5636,7 +5577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5730,7 +5671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6031,7 +5972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2688679, g: 1, b: 0.2688679, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6121,7 +6062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.003575325, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6195,7 +6136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6340,7 +6281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6568,7 +6509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6713,7 +6654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8, a: 1}
+  m_Color: {r: 0.2196078, g: 1, b: 0.4909445, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

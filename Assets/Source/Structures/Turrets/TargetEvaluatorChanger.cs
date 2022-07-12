@@ -3,6 +3,7 @@ using Lomztein.BFA2.Structures.Turrets.Weapons;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -90,7 +91,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption(() => $"Targeting: {CurrentEvaluator.Name}", () => CurrentEvaluator.Description, CurrentEvaluator.Sprite.Get, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, NextEvaluator, () => true)
+                new ContextMenuOption(CurrentEvaluator.Sprite.Get, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, NextEvaluator, () => true, () => SimpleToolTip.InstantiateToolTip($"Targeting: {CurrentEvaluator.Name}", CurrentEvaluator.Description))
             };
         }
     }

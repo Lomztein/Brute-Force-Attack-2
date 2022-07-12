@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.UI.Tooltip;
+﻿using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,79 +9,71 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.UI.Displays
 {
-    public class DatastreamHealthSlider : HealthSlider, ITooltip
+    public class DatastreamHealthSlider : HealthSlider, IHasToolTip
     {
         public Text Text;
         public string HealthText;
 
-        public string Title {get; private set;}
-
-        public string Description => null;
-        public string Footnote => null;
+        public GameObject GetToolTip()
+        {
+            return SimpleToolTip.InstantiateToolTip(GetTooltip(_healthContainer.GetCurrentHealth()));
+        }
 
         protected override void OnHealthChanged(float prev, float cur, float max)
         {
             base.OnHealthChanged(prev, cur, max);
             Text.text = HealthText.Replace("{0}", Mathf.RoundToInt(_healthContainer.GetMaxHealth () - cur).ToString());
-            SetTooltip(cur);
+            GetTooltip(cur);
         }
 
-        private void SetTooltip(float health)
+        private string GetTooltip(float health)
         {
+            string title = null;
             if (health >= 99.9f)
             {
-                Title = "Lookin' good!";
-                return;
+                title = "Lookin' good!";
             }
             if (health >= 95f)
             {
-                Title = "You've taken a hit but it's cool.";
-                return;
+                title = "You've taken a hit but it's cool.";
             }
             if (health >= 80f)
             {
-                Title = "Bit rough but still going strong!";
-                return;
+                title = "Bit rough but still going strong!";
             }
             if (health >= 65f)
             {
-                Title = "Perhaps you should start to worry a little.";
-                return;
+                title = "Perhaps you should start to worry a little.";
             }
             if (health >= 50f)
             {
-                Title = "It's getting a bit too precarious for comfort.";
-                return;
+                title = "It's getting a bit too precarious for comfort.";
             }
             if (health >= 30f)
             {
-                Title = "Do you ever feel like a plastic bag?.";
-                return;
+                title = "Do you ever feel like a plastic bag?.";
             }
             if (health >= 29)
             {
-                Title = "Please improve your defenses NOW.";
-                return;
+                title = "Please improve your defenses NOW.";
             }
             if (health >= 10)
             {
-                Title = "Prayin' to ROBO-JESUS!";
-                return;
+                title = "Prayin' to ROBO-JESUS!";
             }
             if (health >= 5f)
             {
-                Title = "AAAAAAAAAAAAAAAAAAAAAAA";
-                return;
+                title = "AAAAAAAAAAAAAAAAAAAAAAA";
             }
             if (health >= 1f)
             {
-                Title = "Ah you did well mate, but it's the end for us.";
-                return;
+                title = "Ah you did well mate, but it's the end for us.";
             }
             if (health > 0f)
             {
-                Title = "YOU ARE DEAD, NOT BIG SURPRISE.";
+                title = "YOU ARE DEAD, NOT BIG SURPRISE.";
             }
+            return title;
         }
     }
 }

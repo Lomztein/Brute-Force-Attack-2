@@ -1,5 +1,5 @@
 ﻿using Lomztein.BFA2.UI.Style.Stylizers;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.UI.Windows;
 using System;
 using System.Collections;
@@ -102,8 +102,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
             {
                 // Not really great to do every frame but there shouldn't be so many that it matters. Optimize if neccesary.
                 _buttons[i].transform.GetChild(0).GetComponent<Image>().sprite = arr[i].Sprite();
-                _buttons[i].GetComponent<Tooltip.Tooltip>()._Title = arr[i].Name();
-                _buttons[i].GetComponent<Tooltip.Tooltip>()._Description = arr[i].Description();
+                _buttons[i].GetComponent<AssignableToolTip>().SetToolTip(arr[i].ToolTip);
 
                 Color? color = arr[i].Tint();
                 if (color.HasValue)

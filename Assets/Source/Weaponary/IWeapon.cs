@@ -21,6 +21,7 @@ namespace Lomztein.BFA2.Weaponary
         float Range { get; set; }
         int MuzzleCount { get; }
 
+        void Init();
         bool TryFire();
         bool CanFire();
 

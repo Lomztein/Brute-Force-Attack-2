@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,10 @@ namespace Lomztein.BFA2.Purchasing.Resources
         public string Description;
         [ModelProperty]
         public Color Color;
-        /// <summary>
-        /// How much is one binary worth this resource?
-        /// </summary>
         [ModelProperty]
         public int BinaryValue;
+        [ModelProperty]
+        public ContentSpriteReference Sprite;
 
         public static Resource[] GetResources() => Content.GetAll<Resource>("*/Resources");
         public static Resource GetResource(string identifier) => GetResources().FirstOrDefault(x => x.Identifier == identifier);

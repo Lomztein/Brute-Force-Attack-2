@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.UI.Menus.PropertyMenus;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Scenes.MainMenu
 {
-    public class EnabledMutator : MonoBehaviour, ITooltip
+    public class EnabledMutator : MonoBehaviour, IHasToolTip
     {
         public Text Label;
         public Mutator Mutator { get; set;}
@@ -45,6 +45,11 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         public void ToggleExpand ()
         {
             Properties.gameObject.SetActive(!Properties.gameObject.activeSelf);
+        }
+
+        public GameObject GetToolTip()
+        {
+            return SimpleToolTip.InstantiateToolTip(Title, Description, Footnote);
         }
     }
 }

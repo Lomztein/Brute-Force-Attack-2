@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
 
         public override bool UpdateDisplay(GameObject target)
         {
-            IPurchasable[] purchasables = target.GetComponentsInChildren<IPurchasable>();
+            IPurchasable[] purchasables = target.GetComponentsInChildren<IPurchasable>(true);
             
             if (purchasables.Length > 0)
             {

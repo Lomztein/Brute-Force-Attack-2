@@ -16,8 +16,16 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         [ModelAssetReference]
         public Mod Mod;
         private List<IModdable> _currentBroadcastTargets = new List<IModdable>();
+        [ModelProperty]
+        public float ModCoeffecient = 1f;
 
         protected virtual bool BroadcastOnStart => false;
+        protected virtual bool BroadcastOnAwake => false;
+
+        /// <summary>
+        /// Indicates whether or not the broadcaster should broadcast on OnPostAssembled and OnInstantiated messages.
+        /// </summary>
+        protected virtual bool BroadcastPostAwake => false;
 
         public void BroadcastMod()
         {
@@ -52,6 +60,30 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             }
         }
 
+        private void Awake()
+        {
+            if (BroadcastOnAwake)
+            {
+                BroadcastMod();
+            }
+        }
+
+        public void OnPostInstantiated()
+        {
+            if (BroadcastPostAwake)
+            {
+                BroadcastMod();
+            }
+        }
+
+        public void OnPostAssembled ()
+        {
+            if (BroadcastPostAwake)
+            {
+                BroadcastMod();
+            }
+        }
+
         private void StructureManager_OnStructureHierarchyChanged(Structure arg1, GameObject arg2, object arg3)
         {
             OnStructureChange(arg1);
@@ -83,7 +115,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         {
             if (Mod.CanMod(moddable))
             {
-                moddable.Mods.AddMod(Instantiate(Mod));
+                var copy = Instantiate(Mod);
+                copy.Coeffecient = ModCoeffecient;
+                moddable.Mods.AddMod(copy);
                 return true;
             }
             return false;

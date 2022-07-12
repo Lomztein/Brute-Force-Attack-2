@@ -15,6 +15,8 @@ namespace Lomztein.BFA2.Modification.Modifiers
     {
         [ModelProperty]
         public Element[] Stats = new Element[0];
+        [ModelProperty]
+        public bool AddStatIfMissing;
 
         [Serializable]
         public class Element
@@ -29,7 +31,13 @@ namespace Lomztein.BFA2.Modification.Modifiers
         {
             foreach (Element element in Stats)
             {
-                stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient), this);
+                if (stats.HasStat(element.Info.Identifier))
+                {
+                    stats.AddStatElement(element.Info.Identifier, new StatElement(element, element.Value * Coeffecient), this);
+                }else if (AddStatIfMissing)
+                {
+                    stats.AddStat(element.Info, element.Value * Coeffecient, this);
+                }
             }
         }
 

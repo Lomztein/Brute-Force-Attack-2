@@ -1,5 +1,5 @@
 ﻿using Lomztein.BFA2.Purchasing.Resources;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +10,12 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Purchasing.UI
 {
-    public class ResourceDisplay : MonoBehaviour, ITooltip
+    public class ResourceDisplay : MonoBehaviour
     {
         public GameObject ResourceContainer;
         private IResourceContainer _container;
         public Resource Resource;
         public Text Text;
-
-        public string Title => "Shorthand: " + Resource.Shorthand;
-        public string Description => null;
-        public string Footnote => null;
 
         private void Awake()
         {

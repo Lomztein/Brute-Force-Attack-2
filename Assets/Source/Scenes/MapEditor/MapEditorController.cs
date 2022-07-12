@@ -7,7 +7,7 @@ using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Serialization.Serializers;
 using Lomztein.BFA2.UI;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.UI.Windows;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;

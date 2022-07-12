@@ -1,7 +1,7 @@
 ﻿using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,15 +12,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.MapEditor.Objects
 {
-    public class MapObjectHandle : MonoBehaviour, ITooltip, IContextMenuOptionProvider
+    public class MapObjectHandle : MonoBehaviour, IContextMenuOptionProvider, IHasToolTip
     {
         private GameObject _object;
         public BoxCollider2D Collider;
         public Bounds Bounds => Collider.bounds;
-
-        public string Title => _object.name;
-        public string Description => null;
-        public string Footnote => null;
 
         private GameObject[] _handles;
 
@@ -99,9 +95,16 @@ namespace Lomztein.BFA2.MapEditor.Objects
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption(() => $"Select {_object.name}", () => "Select this object.", () => SelectSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Select, () => true),
-                new ContextMenuOption(() => $"Delete {_object.name}", () => "Delete this object.", () => DeleteSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Right, Delete, () => true),
+                new ContextMenuOption(() => SelectSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Select, () => true, () => SimpleToolTip.InstantiateToolTip($"Select {_object.name}", "Select this object.")),
+                new ContextMenuOption(() => DeleteSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Right, Delete, () => true, () => SimpleToolTip.InstantiateToolTip($"Delete {_object.name}", "Delete this object.")),
             };
+        }
+
+        public GameObject GetToolTip()
+        {
+            if (_object.TryGetComponent(out INamed named))
+                return SimpleToolTip.InstantiateToolTip(named.Name, named.Description);
+            return SimpleToolTip.InstantiateToolTip(_object.name);
         }
     }
 }

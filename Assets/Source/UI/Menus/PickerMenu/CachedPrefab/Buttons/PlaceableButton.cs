@@ -2,7 +2,7 @@
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 {
-    public class PlaceableButton : MonoBehaviour, IPickableButton<IContentCachedPrefab>, ITooltip
+    public class PlaceableButton : MonoBehaviour, IPickableButton<IContentCachedPrefab>
     {
         private IContentCachedPrefab _prefab;
         private Action _onSelected;
@@ -21,9 +21,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         public Button Button;
         public Image Image;
 
-        public string Title { get; private set; }
-        public string Description => string.Empty;
-        public string Footnote => string.Empty;
+        public string Title;
 
         private void Awake()
         {
@@ -48,6 +46,10 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
             _prefab = prefab;
             _onSelected = onSelected;
             Title = GetName(_prefab);
+
+            SimpleToolTip toolTip = GetComponent<SimpleToolTip>();
+            toolTip.Title = Title;
+
             UpdateGraphics();
         }
 

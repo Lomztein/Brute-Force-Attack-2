@@ -3,7 +3,7 @@ using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.LocalizationSystem;
 using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Difficulty;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.World;
 using System;
 using System.Collections.Generic;

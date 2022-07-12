@@ -29,6 +29,7 @@ namespace Lomztein.BFA2
                 GameObject startup = Instantiate(Resources.Load<GameObject>(UNIVERSAL_RESOURCE_PATH));
                 startup.GetComponentInChildren<StartUp>().InitializeGame();
                 DontDestroyOnLoad(startup);
+                _hasStartedUp = true;
             }
         }
 
@@ -46,8 +47,6 @@ namespace Lomztein.BFA2
             ContentManager.LoadPlugins();
             ContentManager.InitializeContent();
             InterceptLogs();
-
-            _hasStartedUp = true;
         }
 
         private void InterceptLogs()

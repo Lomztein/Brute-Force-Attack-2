@@ -11,6 +11,8 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
 {
     public class DPSStatSheetElement : StatSheetElementBase
     {
+        public bool IncludeInactive;
+
         public override bool UpdateDisplay(GameObject target)
         {
             float dps = ComputeDPS(target);
@@ -29,8 +31,8 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
 
         private float ComputeDPS (GameObject root)
         {
-            IWeapon[] weapons = root.GetComponentsInChildren<IWeapon>();
-            return weapons.Sum(x => (x as Behaviour).enabled ? x.Damage * x.Firerate * x.ProjectileAmount * x.MuzzleCount : 0);
+            IWeapon[] weapons = root.GetComponentsInChildren<IWeapon>(IncludeInactive);
+            return weapons.Sum(x => x.Damage * x.Firerate * x.ProjectileAmount * x.MuzzleCount);
         }
     }
 }

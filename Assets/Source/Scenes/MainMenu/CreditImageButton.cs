@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.UI.Tooltip;
+﻿using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +9,13 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Scenes.MainMenu
 {
-    public class CreditImageButton : MonoBehaviour, ITooltip
+    public class CreditImageButton : MonoBehaviour, IHasToolTip
     {
         public string Name;
         public string Description;
         public string WebsiteUrl;
         public string DisplayedWebsiteUrl;
-
-        public string Title => Name;
-        string ITooltip.Description => Description;
-        public string Footnote => String.IsNullOrEmpty(DisplayedWebsiteUrl) ? WebsiteUrl : DisplayedWebsiteUrl;
+        public string Footnote => string.IsNullOrEmpty(DisplayedWebsiteUrl) ? WebsiteUrl : DisplayedWebsiteUrl;
 
         private void Start()
         {
@@ -29,6 +26,11 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         private void OpenUrl ()
         {
             Application.OpenURL(WebsiteUrl);
+        }
+
+        public GameObject GetToolTip()
+        {
+            return SimpleToolTip.InstantiateToolTip(Name, Description, Footnote);
         }
     }
 }

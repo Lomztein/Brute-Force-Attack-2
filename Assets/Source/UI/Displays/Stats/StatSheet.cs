@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.UI.Displays.Stats
         public bool AutoUpdate;
         private List<IStatSheetElement> _elements = new List<IStatSheetElement>();
 
-        private void Start()
+        private void Awake()
         {
             _elements.AddRange(GetComponentsInChildren<IStatSheetElement>());
         }

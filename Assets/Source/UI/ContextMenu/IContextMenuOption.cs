@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Lomztein.BFA2.UI.ToolTip;
+using System;
 using UnityEngine;
 
 namespace Lomztein.BFA2.UI.ContextMenu
 {
-    public interface IContextMenuOption
+    public interface IContextMenuOption : IHasToolTip
     {
-        Func<string> Description { get; }
-        Func<string> Name { get; }
         Func<Sprite> Sprite { get; }
         Func<Color?> Tint { get; }
         Func<ContextMenu.Side> Side { get; }
+        Func<GameObject> ToolTip { get; }
 
         bool Click();
         bool Interactable();

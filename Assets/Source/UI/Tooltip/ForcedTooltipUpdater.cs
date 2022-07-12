@@ -5,38 +5,53 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.UI.Tooltip
+namespace Lomztein.BFA2.UI.ToolTip
 {
     public class ForcedTooltipUpdater : MonoBehaviour, ITooltipUpdater
     {
-        private static ForcedTooltip _tooltip = new ForcedTooltip();
+        private static ForcedTooltip _toolTip;
 
-        public static void SetTooltip (string title, string desc, string footer)
+        public static void SetTooltip (Func<GameObject> callback, object marker)
         {
-            _tooltip.Title = title;
-            _tooltip.Description = desc;
-            _tooltip.Footnote = footer;
+            ForcedTooltip newToolTip = new ForcedTooltip();
+            newToolTip.Marker = marker;
+            newToolTip.Callback = callback;
+            _toolTip = newToolTip;
         }
 
         public static void ResetTooltip()
         {
-            _tooltip.Title = string.Empty;
-            _tooltip.Description = string.Empty;
-            _tooltip.Footnote = string.Empty;
+            _toolTip = null;
         }
 
-        public ITooltip GetTooltip()
+        public IHasToolTip GetTooltip()
         {
-            return _tooltip.IsEmpty () ? null : _tooltip;
+            return _toolTip;
         }
 
-        private class ForcedTooltip : ITooltip
+        private class ForcedTooltip : IHasToolTip
         {
-            public string Title { get; set; }
-            public string Description { get; set; }
-            public string Footnote { get; set; }
+            public object Marker;
+            public Func<GameObject> Callback;
 
-            public bool IsEmpty() => string.IsNullOrEmpty(Title) && string.IsNullOrEmpty(Description) && string.IsNullOrEmpty(Footnote);
+            public GameObject GetToolTip()
+            {
+                return Callback();
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is ForcedTooltip tooltip)
+                {
+                    return tooltip.Marker.Equals(Marker);
+                }
+                return base.Equals(obj);
+            }
+
+            public override int GetHashCode()
+            {
+                return Marker.GetHashCode();
+            }
         }
     }
 }

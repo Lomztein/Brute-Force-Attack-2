@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.Utilities;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,10 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             assembly.SetTiers(assembler.Assemble(tiers, typeof(Tier[]), new AssemblyContext()) as Tier[]);
             assembly.UpgradeMap = upgrades;
             assembly.SetTier(Tier.Initial);
+
+            ReflectionUtils.DynamicBroadcastInvoke(assembly.gameObject, "OnAssembled", true);
+            ReflectionUtils.DynamicBroadcastInvoke(assembly.gameObject, "OnPostAssembled", true);
+
             return assembly;
         }
 

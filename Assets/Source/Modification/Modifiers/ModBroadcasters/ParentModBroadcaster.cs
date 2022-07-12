@@ -10,8 +10,14 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     public class ParentModBroadcaster : ModBroadcaster
     {
         protected override bool BroadcastOnStart => true;
+        protected override bool BroadcastPostAwake => true;
 
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
-            => transform.parent.GetComponentInChildren<IModdable>().ObjectToEnumerable();
+        {
+            if (transform.parent)
+            {
+                return transform.parent.GetComponentInChildren<IModdable>().ObjectToEnumerable();
+            } return new IModdable[0];
+        }
     }
 }

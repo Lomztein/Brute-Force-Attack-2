@@ -8,7 +8,7 @@ using Lomztein.BFA2.Structures.Turrets.Rangers;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections;
 using System.Collections.Generic;

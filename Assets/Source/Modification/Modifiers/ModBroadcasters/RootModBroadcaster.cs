@@ -14,6 +14,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     public class RootModBroadcaster : ModBroadcaster
     {
         protected override bool BroadcastOnStart => true;
+        protected override bool BroadcastPostAwake => true;
 
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {

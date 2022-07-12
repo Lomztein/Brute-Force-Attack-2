@@ -1,15 +1,12 @@
-﻿using System;
+using Lomztein.BFA2.Purchasing;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
-namespace Lomztein.BFA2.UI.Tooltip
+namespace Lomztein.BFA2.UI.ToolTip
 {
-    public interface ITooltip
+    public interface IPurchasableToolTip
     {
-        string Title { get; }
-        string Description { get; }
-        string Footnote { get; }
+        public void Assign(IPurchasable obj);
     }
 }

@@ -80,7 +80,10 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
                     {
                         // Remove fire control that was part of previous syncronizer.
                         // Yes, this is horribly ineffecient, but it works just fine.
-                        (weapon.Weapon as Weapon).RemoveFireControl(x => oldController.Syncs.Contains(x));
+                        if (oldController != null)
+                        {
+                            (weapon.Weapon as Weapon).RemoveFireControl(x => oldController.Syncs.Contains(x));
+                        }
                         SequencedFireControl sync = new SequencedFireControl(Controller);
                         Controller.AddSync(sync);
                         (weapon.Weapon as Weapon).AddFireControl(sync);

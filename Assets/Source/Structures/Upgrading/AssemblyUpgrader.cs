@@ -3,6 +3,7 @@ using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.UI;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
     public class AssemblyUpgrader : MonoBehaviour, IContextMenuOptionProvider
     {
         private TurretAssembly _assembly;
+        public GameObject ToolTip;
 
         private void Start()
         {
@@ -32,13 +34,21 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
         private IContextMenuOption GenerateOption (Tier tier)
         {
-            return new ContextMenuOption(() => "Upgrade to " + tier.Name,
-                    () => GetCost(tier).Format(),
+            return new ContextMenuOption(
                     () => Iconography.GenerateSprite(_assembly.GetTierParent(tier).gameObject),
                     () => null,
                     () => UI.ContextMenu.ContextMenu.Side.Right,
                     () => UpgradeTo(tier),
-                    () => CanUpgradeTo(tier));
+                    () => CanUpgradeTo(tier),
+                    () => GetToolTip(tier)
+                    );
+        }
+
+        private GameObject GetToolTip (Tier tier)
+        {
+            GameObject newToolTip = Instantiate(ToolTip);
+            newToolTip.GetComponent<StructureToolTip>().AssignAssemblyUpgrade(_assembly, tier);
+            return newToolTip;
         }
 
         private IResourceCost GetCost (Tier tier)

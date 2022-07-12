@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.UI.Tooltip;
+﻿using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +18,8 @@ namespace Lomztein.BFA2.UI.Displays.Debug
         {
             try
             {
-                Text.text = "Title: " + Controller.TooltipTitle.text +
-                    "\nDescription: " + Controller.TooltipDescription.text +
-                    "\nFooter: " + Controller.TooltipFooter.text +
-                    "\nOffset: " + Controller.Offset.ToString() +
+                Text.text = 
+                    "Offset: " + Controller.Offset.ToString() +
                     "\nUpdaters: " + Controller.Updaters.Length + "\n\t" + string.Join("\n\t", Controller.Updaters.Select(x => x.name));
             }catch (Exception e)
             {

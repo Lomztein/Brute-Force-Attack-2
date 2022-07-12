@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.UI.Style.Stylizers;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +11,8 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Research.UI
 {
-    public class ResearchOptionButton : MonoBehaviour, ITooltip
+    public class ResearchOptionButton : MonoBehaviour
     {
-        public string Title => Research.Name;
-        public string Description => Research.Description;
-        public string Footnote => null;
-
         public Image Image;
         public Text Name;
         public Text Cost;

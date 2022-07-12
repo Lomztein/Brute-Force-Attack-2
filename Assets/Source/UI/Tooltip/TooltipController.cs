@@ -7,18 +7,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Lomztein.BFA2.UI.Tooltip
+namespace Lomztein.BFA2.UI.ToolTip
 {
     public class TooltipController : MonoBehaviour
     {
         public RectTransform TooltipTransform;
-        public Text TooltipTitle;
-        public Text TooltipDescription;
-        public Text TooltipFooter;
         public Vector2 Offset;
 
         public GameObject[] Updaters;
         private ITooltipUpdater[] _updaters;
+
+        private IHasToolTip _currentToolTip;
 
         private void Awake()
         {
@@ -27,25 +26,41 @@ namespace Lomztein.BFA2.UI.Tooltip
 
         private void Update()
         {
-            TooltipTitle.text = string.Empty;
-            TooltipDescription.text = string.Empty;
-            TooltipFooter.text = string.Empty;
+            bool hasChanged = false;
+            bool any = false;
 
             foreach (ITooltipUpdater updater in _updaters)
             {
-                ITooltip tooltip = updater.GetTooltip();
+                IHasToolTip tooltip = updater.GetTooltip();
                 if (tooltip != null)
                 {
-                    TooltipTitle.text = tooltip.Title;
-                    TooltipDescription.text = tooltip.Description;
-                    TooltipFooter.text = tooltip.Footnote;
+                    any = true;
+                    if (!tooltip.Equals(_currentToolTip))
+                    {
+                        hasChanged = true;
+                        ClearTooltip();
+                    }
+                    _currentToolTip = tooltip;
                     break;
                 }
             }
 
-            TooltipTransform.gameObject.SetActive(!string.IsNullOrEmpty(TooltipTitle.text));
-            TooltipDescription.gameObject.SetActive(!string.IsNullOrEmpty(TooltipDescription.text));
-            TooltipFooter.gameObject.SetActive(!string.IsNullOrEmpty(TooltipFooter.text));
+            if (any == false)
+            {
+                _currentToolTip = null;
+            }
+
+            if (_currentToolTip == null)
+            {
+                TooltipTransform.gameObject.SetActive(false);
+                ClearTooltip();
+            }
+            else if (hasChanged)
+            {
+                GameObject newTooltip = _currentToolTip.GetToolTip();
+                newTooltip.transform.SetParent(TooltipTransform);
+                TooltipTransform.gameObject.SetActive(true);
+            }
 
             Vector2 flip = new Vector2();
             Vector2 pos = MousePosition.ScreenPosition;
@@ -61,6 +76,26 @@ namespace Lomztein.BFA2.UI.Tooltip
             }
 
             TooltipTransform.position = pos + Offset + flip;
+        }
+
+        private void ClearTooltip()
+        {
+            foreach (Transform child in TooltipTransform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        private static bool HasChanged (List<GameObject> prevToolTips, List<GameObject> currentToolTips)
+        {
+            if (prevToolTips.Count != currentToolTips.Count) return true;
+
+            for (int i = 0; i < prevToolTips.Count; i++)
+            {
+                if (prevToolTips[i] != currentToolTips[i]) return true;
+            }
+
+            return false;
         }
     }
 }

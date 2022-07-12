@@ -1,7 +1,8 @@
 ﻿using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 {
-    public class PurchaseButton : MonoBehaviour, IPickableButton<IContentCachedPrefab>, ITooltip
+    public class PurchaseButton : MonoBehaviour, IPickableButton<IContentCachedPrefab>, IHasToolTip
     {
         protected IContentCachedPrefab _prefab;
         protected IPurchasable _purchasable;
@@ -23,9 +24,18 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         public Button Button;
         public Image Image;
 
+        public GameObject ToolTipPrefab;
+
         public string Title => _purchasable.Name + " - " + _purchasable.Cost.Format();
         public string Description => _purchasable.Description;
         public string Footnote => string.Empty;
+
+        public GameObject GetToolTip()
+        {
+            GameObject newToolTip = Instantiate(ToolTipPrefab);
+            newToolTip.GetComponent<IPurchasableToolTip>().Assign(_purchasable);
+            return newToolTip;
+        }
 
         private void Start()
         {

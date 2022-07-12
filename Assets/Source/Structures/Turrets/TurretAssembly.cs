@@ -19,9 +19,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         public IEnumerable<Tier> Tiers => _tiers;
 
         public UpgradeMap UpgradeMap;
-
         public StatInfo ModuleSlotsStatInfo;
-        public IStatReference ModuleSlots;
 
         private readonly List<TurretAssemblyModule> _modules = new List<TurretAssemblyModule>();
         public IEnumerable<TurretAssemblyModule> Modules => _modules;
@@ -36,7 +34,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public IEnumerable<TurretComponent> GetComponents(Tier tier)
         {
-            return GetTierParent(tier).GetComponentsInChildren<TurretComponent>();
+            return GetTierParent(tier).GetComponentsInChildren<TurretComponent>(true);
         }
         public IEnumerable<TurretComponent> GetComponents() => GetComponents(CurrentTeir);
 
@@ -104,15 +102,16 @@ namespace Lomztein.BFA2.Structures.Turrets
             tier.Name = name;
         }
 
-        protected override void Awake()
-        {
-            base.Awake();
-            ModuleSlots = Stats.AddStat(ModuleSlotsStatInfo, 0, this);
-        }
-
         public int FreeModuleSlots ()
         {
-            return Mathf.RoundToInt(ModuleSlots.GetValue()) - _modules.Sum(x => x.Item.ModuleSlots);
+            return GetModuleSlots() - _modules.Sum(x => x.Item.ModuleSlots);
+        }
+
+        public int GetModuleSlots ()
+        {
+            // I find humor in suffering..
+            int slots = Mathf.RoundToInt(GetComponents(CurrentTeir).Where(x => x.Stats.HasStat(ModuleSlotsStatInfo.Identifier)).Sum(x => x.Stats.GetStat(ModuleSlotsStatInfo.Identifier).GetValue()));
+            return slots;
         }
 
         public bool HasRoomFor (int requiredModuleSlots)

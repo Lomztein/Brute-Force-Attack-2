@@ -1,7 +1,7 @@
 ﻿using Lomztein.BFA2.Serialization;
 using UnityEngine;
 using Lomztein.BFA2.Modification.Stats;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Structures.Turrets.TargetProviders;

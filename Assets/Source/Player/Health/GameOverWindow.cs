@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Player.Health
 
         public void Restart ()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         public void MainMenu ()

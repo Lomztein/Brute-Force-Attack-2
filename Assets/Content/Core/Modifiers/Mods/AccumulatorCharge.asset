@@ -10,29 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
-  m_Name: AccumulatorFirerate
+  m_Name: AccumulatorCharge
   m_EditorClassIdentifier: 
-  Identifier: Core.AccumulatorFirerate
+  Identifier: Core.AccumulatorCharge
   Name: Accumulator Charge
   Description: Supercharges the weapon, but requires time between charges to recharge.
-  Color: 0
-  Sprite:
-    Path: 
-    Texture: {fileID: 0}
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
   Filters:
   - id: 0
   - id: 1
+  - id: 2
   Stats:
   - Info: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
-    Value: 3
+    Value: 2
+  - Info: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
+    Value: 1.5
+  AddStatIfMissing: 0
   references:
     version: 1
     00000000:
@@ -46,3 +38,7 @@ MonoBehaviour:
       type: {class: HasStatFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
       data:
         Info: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
+    00000002:
+      type: {class: HasStatFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        Info: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}

@@ -13,6 +13,8 @@ namespace Lomztein.BFA2.Turrets
 {
     public class TurretSeller : MonoBehaviour, IContextMenuOptionProvider
     {
+        private const string TOOLTIP_RESOURCE = "ToolTips/SellToolTip";
+
         [ModelProperty]
         public ContentSpriteReference SellSprite = new ContentSpriteReference();
         public float SellValueRatio = 0.75f;
@@ -21,15 +23,17 @@ namespace Lomztein.BFA2.Turrets
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption(() => "Sell", GetSellValueString, SellSprite.Get, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Sell, () => true)
+                new ContextMenuOption(SellSprite.Get, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Sell, () => true, GetToolTip)
             };
         }
 
-        private string GetSellValueString ()
+        private GameObject GetToolTip ()
         {
             Structure structure = GetComponent<Structure>();
             IResourceCost sellValue = structure.Cost.Scale(SellValueRatio);
-            return sellValue.Format();
+            GameObject toolTip = Instantiate(Resources.Load<GameObject>(TOOLTIP_RESOURCE));
+            toolTip.GetComponentInChildren<CostSheetDisplay>().Display(sellValue);
+            return toolTip;
         }
 
         private bool Sell ()

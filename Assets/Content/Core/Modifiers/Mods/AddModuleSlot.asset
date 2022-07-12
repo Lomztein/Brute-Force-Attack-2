@@ -15,14 +15,10 @@ MonoBehaviour:
   Identifier: Core.AddModuleSlot
   Name: Module Slot
   Description: Add a module slot.
-  Filters:
-  - id: 0
+  Filters: []
   Stats:
   - Info: {fileID: 11400000, guid: 8f74b4d691be8f24d82ecd5c05e2bba8, type: 2}
     Value: 1
+  AddStatIfMissing: 1
   references:
     version: 1
-    00000000:
-      type: {class: HasStatFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
-      data:
-        Info: {fileID: 11400000, guid: 8f74b4d691be8f24d82ecd5c05e2bba8, type: 2}

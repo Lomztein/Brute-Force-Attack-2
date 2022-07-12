@@ -17,6 +17,9 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
         public string StatName;
 
         public Behaviour DisplayBehaviour;
+        public bool GatherFromRoot;
+        public bool IncludeInactive;
+        public string Format = "0.0";
 
         public override bool UpdateDisplay(GameObject target)
         {
@@ -28,9 +31,9 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
 
         private string ComputeResultString (GameObject target)
         {
-            Structure[] structures = target.GetComponentsInChildren<Structure>();
-            IEnumerable<IStatReference> references = structures.Where(x => x.Stats.HasStat(StatIdentifier)).Select(x => x.Stats.GetStat(StatIdentifier));
-            if (references.Count() == 0)
+            Structure[] structures = GatherFromRoot ? target.transform.root.GetComponentsInChildren<Structure>(IncludeInactive) : target.GetComponentsInChildren<Structure>(IncludeInactive);
+            List<IStatReference> references = structures.Where(x => x.Stats.HasStat(StatIdentifier)).Select(x => x.Stats.GetStat(StatIdentifier)).ToList();
+            if (references.Count == 0)
             {
                 return string.Empty;
             }
@@ -39,15 +42,15 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
                 switch (DisplayBehaviour)
                 {
                     case Behaviour.Sum:
-                        return references.Sum(x => x.GetValue()).ToString("0.0");
+                        return references.Sum(x => x.GetValue()).ToString(Format);
 
                     case Behaviour.First:
-                        return references.First().GetValue().ToString("0.0");
+                        return references.First().GetValue().ToString(Format);
 
                     case Behaviour.Range:
                         float min = references.Min(x => x.GetValue());
                         float max = references.Max(x => x.GetValue());
-                        return Mathf.Approximately (min, max) ? min.ToString("0.0") : min.ToString("0.0") + " - " + max.ToString("0.0");
+                        return Mathf.Approximately (min, max) ? min.ToString(Format) : min.ToString(Format) + " - " + max.ToString(Format);
 
                     default:
                         return "n/a";

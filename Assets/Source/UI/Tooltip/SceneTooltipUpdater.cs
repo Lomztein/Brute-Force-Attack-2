@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Lomztein.BFA2.UI.Tooltip
+namespace Lomztein.BFA2.UI.ToolTip
 {
     public class SceneTooltipUpdater : MonoBehaviour, ITooltipUpdater
     {
         public LayerMask TargetLayers;
 
-        public ITooltip GetTooltip()
+        public IHasToolTip GetTooltip()
         {
             Vector2 position = Input.WorldMousePosition;
             var colliders = Physics2D.OverlapPointAll(position, TargetLayers);
-            IEnumerable<ITooltip> tooltips = colliders.SelectMany (x => x.GetComponents<ITooltip>()).Where(x => x != null);
+            IEnumerable<IHasToolTip> tooltips = colliders.SelectMany (x => x.GetComponents<IHasToolTip>()).Where(x => x != null);
             return tooltips.FirstOrDefault();
         }
     }

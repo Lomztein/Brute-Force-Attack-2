@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     public class AdjacencyModBroadcaster : ModBroadcaster
     {
         protected override bool BroadcastOnStart => true;
+        protected override bool BroadcastPostAwake => true;
 
         [ModelProperty]
         public LayerMask AdjacencyCheckLayer;

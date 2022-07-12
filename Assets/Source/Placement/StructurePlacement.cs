@@ -2,7 +2,7 @@
 using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.Highlighters;
 using Lomztein.BFA2.Structures.StructureManagement;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
 using Lomztein.BFA2.World.Tiles;
@@ -79,6 +79,10 @@ namespace Lomztein.BFA2.Placement
             if (string.IsNullOrEmpty(CanPlace (_model.transform.position, _model.transform.rotation)))
             {
                 GameObject go = UnityEngine.Object.Instantiate(_obj,_model.transform.position, _model.transform.rotation);
+
+                ReflectionUtils.DynamicBroadcastInvoke(go, "OnInstantiated", true);
+                ReflectionUtils.DynamicBroadcastInvoke(go, "OnPostInstantiated", true);
+
                 go.SetActive(true);
                 OnPlaced?.Invoke(go);
                 return true;
@@ -101,7 +105,7 @@ namespace Lomztein.BFA2.Placement
             else {
                 _highlighters.Tint(Color.red);
                 TintObject(_model, Color.red);
-                ForcedTooltipUpdater.SetTooltip("Cannot place here", canPlace, null);
+                ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot place here", canPlace, null), canPlace);
                 return false;
             }
         }

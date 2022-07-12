@@ -7,7 +7,7 @@ using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using UnityEngine;
 using Util;
 
@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
                 return new IContextMenuOption[]
                 {
-                    new ContextMenuOption (() => "Upgrade - " + Cost.Format() + status, () => Description, () => Sprite, () => Color.white, () => UI.ContextMenu.ContextMenu.Side.Right, Upgrade, CanUpgrade),
+                    new ContextMenuOption (() => Sprite, () => Color.white, () => UI.ContextMenu.ContextMenu.Side.Right, Upgrade, CanUpgrade, () => SimpleToolTip.InstantiateToolTip("Upgrade - " + Cost.Format() + status, Description)),
                 };
             }
             else

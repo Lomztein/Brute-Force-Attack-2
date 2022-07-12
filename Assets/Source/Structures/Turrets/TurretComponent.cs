@@ -39,9 +39,8 @@ namespace Lomztein.BFA2.Structures.Turrets
         public bool PreInitialized { get; private set; }
         public bool Initialized { get; private set; }
 
-        protected override void Awake()
+        protected override void AwakeInit()
         {
-            base.Awake();
             InitSelf();
         }
 

@@ -1,5 +1,5 @@
 ﻿using Lomztein.BFA2.Inventory.Items;
-using Lomztein.BFA2.UI.Tooltip;
+using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
 {
-    public class ItemPickButton : MonoBehaviour, IPickableButton<Item>, ITooltip
+    public class ItemPickButton : MonoBehaviour, IPickableButton<Item>, IHasToolTip
     {
         public Button Button;
         public Image Sprite;
@@ -27,6 +27,11 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
 
             Title = pickable.Name;
             Description = pickable.Description;
+        }
+
+        public GameObject GetToolTip()
+        {
+            return SimpleToolTip.InstantiateToolTip(Title, Description, Footnote);
         }
     }
 }

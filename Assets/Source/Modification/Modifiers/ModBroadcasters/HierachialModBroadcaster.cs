@@ -14,6 +14,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
     {
         public enum ProvideBehaviour { None, Single, All }
         protected override bool BroadcastOnStart => true;
+        protected override bool BroadcastPostAwake => true;
 
         [ModelProperty]
         public ProvideBehaviour ProvideUpwards;
@@ -31,7 +32,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             {
                 IEnumerable<IModdable> upwards = GetComponentsInParent<IModdable>().Where(x => x != self);
                 moddables.AddRange(upwards);
-            }else if (ProvideUpwards == ProvideBehaviour.Single)
+            }else if (ProvideUpwards == ProvideBehaviour.Single && transform.parent)
             {
                 moddables.Add(transform.parent.GetComponent<IModdable>());
             }

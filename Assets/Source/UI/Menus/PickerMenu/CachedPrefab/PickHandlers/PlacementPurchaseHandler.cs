@@ -23,7 +23,6 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PickHandlers
             if (resources.HasEnough(purchasable.Cost))
             {
                 GameObject instance = prefab.Instantiate();
-                ReflectionUtils.DynamicBroadcastInvoke(instance, "OnInstantiated", true); // Definitively hacky, but better than immidiate alternative.
                 instance.SetActive(true);
 
                 ISimplePlacement placement = GetPlacement(purchasable, resources);
@@ -31,6 +30,9 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PickHandlers
 
                 placement.OnPlaced += (obj) => resources.TrySpend(purchasable.Cost);
                 PlacementController.Instance.TakePlacement(placement);
+
+                ReflectionUtils.DynamicBroadcastInvoke(instance, "OnInstantiated", true); // Definitively hacky, but better than immidiate alternative.
+                ReflectionUtils.DynamicBroadcastInvoke(instance, "OnPostInstantiated", true);
             }
         }
 

@@ -1,3 +1,4 @@
+using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.World;
 using Lomztein.BFA2.World.Tiles;
 using System.Collections;
@@ -31,6 +32,11 @@ namespace Lomztein.BFA2.UI.Menus.Buttons
                 }
             }
             Button.interactable = canBuildWalls;
+
+            if (!canBuildWalls)
+            {
+                GetComponent<SimpleToolTip>().Description = "Unavailable on this map.";
+            }
         }
     }
 }
