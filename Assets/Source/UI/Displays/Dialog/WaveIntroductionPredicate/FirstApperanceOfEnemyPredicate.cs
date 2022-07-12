@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.UI.Displays.Dialog
@@ -11,7 +12,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
     public class FirstApperanceOfEnemyPredicate : IWaveIntroductionPredicate
     {
         [ModelProperty]
-        public string[] EnemyIdentifiers;
+        public string[] EnemyIdentifiersRegex;
 
         public bool ShouldShow(int forWave)
         {
@@ -39,7 +40,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         private bool MatchesIdentifiers(string enemyIdentifier)
         {
-            return EnemyIdentifiers.Any(x => enemyIdentifier.StartsWith(x));
+            return EnemyIdentifiersRegex.Any(x => Regex.IsMatch(enemyIdentifier, x));
         }
     }
 }

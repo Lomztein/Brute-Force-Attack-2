@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ae21fc2c3437b545b1fcebe3b1ecbd5, type: 3}
-  m_Name: FastEnemyIntroduction
+  m_Name: T3Enemies
   m_EditorClassIdentifier: 
   Character: {fileID: 11400000, guid: 77b3d5dccfabce34a9ba5ee73838b07e, type: 2}
   Expression: Neutral
-  Text: Beware, you are about to meet the yellow enemy. These buggers are super fast,
-    but have a reduced amount of health. Rockets are next to useless against them,
-    but lasers can do wonders.
+  Text: Oh shoot, next wave comes with Tier 3 enemies! You should not underestimate
+    these, they will break your defenses if you don't go hard on them.
   Predicate:
     id: 0
   references:
@@ -26,4 +25,4 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         EnemyIdentifiersRegex:
-        - Core\.FastEnemy
+        - .*T[^12]

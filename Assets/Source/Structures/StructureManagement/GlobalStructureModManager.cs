@@ -33,33 +33,47 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         {
             StructureManager.OnStructureAdded += OnStructureAdded;
             StructureManager.OnStructureHierarchyChanged += StructureManager_OnStructureHierarchyChanged;
-            //StructureManager.OnStructureStatChanged += StructureManager_OnStructureStatChanged;
-            //StructureManager.OnStructureEventChanged += StructureManager_OnStructureEventChanged;
+            StructureManager.OnStructureStatChanged += StructureManager_OnStructureStatChanged;
+            StructureManager.OnStructureEventChanged += StructureManager_OnStructureEventChanged;
             StructureManager.OnStructureRemoved += OnStructureRemoved;
         }
 
         private void StructureManager_OnStructureEventChanged(Structure arg1, Modification.Events.IEventReference arg2, object arg3)
         {
-            OnStructureChanged(arg1);
+            if (!IsGlobalMod(arg3))
+            {
+                OnStructureChanged(arg1);
+            }
         }
 
         private void StructureManager_OnStructureHierarchyChanged(Structure arg1, GameObject arg2, object arg3)
         {
-            OnStructureChanged(arg1);
+            if (!IsGlobalMod(arg3))
+            {
+                OnStructureChanged(arg1);
+            }
         }
 
         private void StructureManager_OnStructureStatChanged(Structure arg1, IStatReference arg2, object arg3)
         {
-            OnStructureChanged(arg1);
+            if (!IsGlobalMod(arg3))
+            {
+                OnStructureChanged(arg1);
+            }
         }
 
         private void OnDestroy()
         {
             StructureManager.OnStructureAdded -= OnStructureAdded;
             StructureManager.OnStructureHierarchyChanged -= StructureManager_OnStructureHierarchyChanged;
-            //StructureManager.OnStructureStatChanged -= StructureManager_OnStructureStatChanged;
-            //StructureManager.OnStructureEventChanged -= StructureManager_OnStructureEventChanged;
+            StructureManager.OnStructureStatChanged -= StructureManager_OnStructureStatChanged;
+            StructureManager.OnStructureEventChanged -= StructureManager_OnStructureEventChanged;
             StructureManager.OnStructureRemoved -= OnStructureRemoved;
+        }
+
+        private bool IsGlobalMod (object obj)
+        {
+            return _mods.Any(x => x.Mod.Equals(obj));
         }
 
         public void AddMod (GlobalStructureMod mod)

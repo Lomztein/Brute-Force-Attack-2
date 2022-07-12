@@ -33,8 +33,8 @@ namespace Lomztein.BFA2.Modification.Stats
             if (stat != null)
             {
                 stat.AddElement(element);
+                OnStatChanged?.Invoke(new StatReference(stat), source);
             }
-            OnStatChanged?.Invoke(new StatReference(stat), source);
         }
 
         private IStat GetStatInternal(string identifier) 
@@ -55,8 +55,10 @@ namespace Lomztein.BFA2.Modification.Stats
         public void RemoveStat(string identifier, object source)
         {
             IStat stat = GetStatInternal(identifier);
-            _stats.RemoveAll(x => x.Identifier == identifier);
-            OnStatRemoved?.Invoke(new StatReference(stat), source);
+            if (_stats.RemoveAll(x => x.Identifier == identifier) > 0)
+            {
+                OnStatRemoved?.Invoke(new StatReference(stat), source);
+            }
         }
 
         public void RemoveStatElement(string identifier, object owner, object source)
@@ -65,8 +67,8 @@ namespace Lomztein.BFA2.Modification.Stats
             if (stat != null)
             {
                 stat.RemoveElement(owner);
+                OnStatChanged?.Invoke(new StatReference(stat), source);
             }
-            OnStatChanged?.Invoke(new StatReference(stat), source);
         }
 
         public override string ToString()

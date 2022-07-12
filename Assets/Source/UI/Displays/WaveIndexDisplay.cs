@@ -19,18 +19,18 @@ namespace Lomztein.BFA2.UI.Displays
 
         private LooseDependancy<RoundController> _roundController = new LooseDependancy<RoundController>();
 
-        private void Awake()
+        private void Start()
         {
             _roundController.IfExists(x =>
             {
-                x.OnNextWaveChanged += OnWaveStarted;
-                OnWaveStarted(x.NextIndex);
+                x.OnNextWaveChanged += (y) => OnWaveStarted(y, RoundController.Instance.WaveCollection.GetWaveCount());
+                OnWaveStarted(x.NextIndex, RoundController.Instance.WaveCollection.GetWaveCount());
             });
         }
 
-        private void OnWaveStarted(int arg1)
+        private void OnWaveStarted(int wave, int total)
         {
-            Text.text = DisplayText.Replace("{0}", (arg1).ToString());
+            Text.text = DisplayText.Replace("{0}", wave.ToString()).Replace("{1}", total.ToString());
         }
     }
 }

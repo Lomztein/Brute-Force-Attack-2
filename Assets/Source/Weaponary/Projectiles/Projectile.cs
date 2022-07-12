@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles
 {
-    public class Projectile : MonoBehaviour, IProjectile, IColorProvider
+    public class Projectile : MonoBehaviour, IProjectile, IColored
     {
         public bool Ready => !gameObject.activeSelf && !AreEffectsActive();
 

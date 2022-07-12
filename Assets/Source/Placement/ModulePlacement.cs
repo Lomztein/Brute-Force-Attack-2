@@ -81,8 +81,8 @@ namespace Lomztein.BFA2.Placement
             }
             else if (options.Count() == 1)
             {
-                _target = options.First().transform.root.gameObject;
-                var assembly = _target.GetComponent<TurretAssembly>();
+                var assembly = options.First().GetComponent<TurretAssembly>();
+                _spriteRenderer.transform.position = (Vector3)position + Vector3.back * 9f;
                 ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot insert into " + assembly.Name, $"Not enough module slots. {_module.Item.ModuleSlots} needed, {assembly.FreeModuleSlots()} available."), "OptionsWithoutRoom");
             }
             else

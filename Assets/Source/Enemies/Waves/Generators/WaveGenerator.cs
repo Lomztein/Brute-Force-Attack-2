@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
 
         private bool ShouldSpawn(GeneratorEnemyData enemy, float wave)
         {
-            bool shouldSpawn = wave >= enemy.EarliestWave && wave <= enemy.LastWave;
+            bool shouldSpawn = wave >= enemy.EarliestWave && wave < enemy.LastWave;
             return shouldSpawn;
         }
 

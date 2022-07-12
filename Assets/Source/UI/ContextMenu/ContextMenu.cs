@@ -131,7 +131,6 @@ namespace Lomztein.BFA2.UI.ContextMenu
         {
             float start = GetStartingAngle(side);
             float end = GetEndingAngle(side);
-            float delta = start - end;
 
             int count = GetAmountOnSide(side);
             float index = (indexOnSide + 1) / (count + 1f);

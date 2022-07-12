@@ -84,6 +84,7 @@ namespace Lomztein.BFA2.Structures.Turrets
             _evaluatorIndex++;
             _evaluatorIndex %= EvaluatorOptions.Length;
             UpdateEvaluator();
+            TooltipController.ForceResetToolTip();
             return false;
         }
 

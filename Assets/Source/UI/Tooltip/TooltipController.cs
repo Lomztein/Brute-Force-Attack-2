@@ -11,6 +11,8 @@ namespace Lomztein.BFA2.UI.ToolTip
 {
     public class TooltipController : MonoBehaviour
     {
+        public static TooltipController Instance { get; private set; }
+
         public RectTransform TooltipTransform;
         public Vector2 Offset;
 
@@ -22,6 +24,7 @@ namespace Lomztein.BFA2.UI.ToolTip
         private void Awake()
         {
             _updaters = Updaters.Select(x => x.GetComponent<ITooltipUpdater>()).ToArray();
+            Instance = this;
         }
 
         private void Update()
@@ -76,6 +79,11 @@ namespace Lomztein.BFA2.UI.ToolTip
             }
 
             TooltipTransform.position = pos + Offset + flip;
+        }
+
+        public static void ForceResetToolTip ()
+        {
+            Instance._currentToolTip = null;
         }
 
         private void ClearTooltip()

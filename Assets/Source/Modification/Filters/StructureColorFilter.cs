@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Modification.Filters
 
         public override bool Check(Structure structure)
         {
-            if (structure is IColorProvider provider)
+            if (structure is IColored provider)
             {
                 return ApplicableColors.Contains(provider.GetColor());
             }

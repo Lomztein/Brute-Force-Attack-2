@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Structures.Turrets.Weapons
 {
-    public class TurretWeaponBase : TurretComponent
+    public class TurretWeaponBase : TurretComponent, IColored
     {
         public IWeapon Weapon;
 
