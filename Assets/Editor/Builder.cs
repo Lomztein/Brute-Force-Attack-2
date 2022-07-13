@@ -46,12 +46,24 @@ public class Builder : MonoBehaviour
     [MenuItem("BFA2/Build")]
     public static void BuildGame ()
     {
+        SetBuildVersion();
         BuildGame(Directory.GetParent(Application.dataPath) + "\\Build\\", "StandaloneWindows64");
     }
 
     public static void CDBuildGame ()
     {
+        SetBuildVersion();
         BuildGame("./build/", Environment.GetEnvironmentVariable("BUILD_TARGET"));
+    }
+
+    private static void SetBuildVersion ()
+    {
+        DateTime lastMinorRelease = new DateTime(2021, 7, 8);
+
+        string patch = (DateTime.Now - lastMinorRelease).Days.ToString();
+        string build = (DateTime.Now.Second + DateTime.Now.Minute * 60 + DateTime.Now.Hour * 3600).ToString();
+
+        PlayerSettings.bundleVersion = $"0.2.{patch}.{build}";
     }
 
     public static void BuildGame(params string[] args)
@@ -60,12 +72,6 @@ public class Builder : MonoBehaviour
         ContentCompiler.CompileAll();
 
         string buildDir = args[0];
-        DateTime lastMinorRelease = new DateTime(2021, 7, 8);
-
-        string patch = (DateTime.Now - lastMinorRelease).Days.ToString();
-        string build = (DateTime.Now.Second + DateTime.Now.Minute * 60 + DateTime.Now.Hour * 3600).ToString();
-
-        PlayerSettings.bundleVersion = $"0.2.{patch}.{build}";
 
         if (Directory.Exists(buildDir))
         {
@@ -78,7 +84,7 @@ public class Builder : MonoBehaviour
             string dir = Path.Combine(buildDir, target.ToString());
             Directory.CreateDirectory(dir);
 
-                BuildPlayerOptions options = new BuildPlayerOptions()
+            BuildPlayerOptions options = new BuildPlayerOptions()
             {
                 targetGroup = BuildTargetGroup.Standalone,
                 target = target,
