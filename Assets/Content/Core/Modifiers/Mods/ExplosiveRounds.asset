@@ -15,20 +15,9 @@ MonoBehaviour:
   Identifier: Core.ExplosiveRounds
   Name: Explosive Rounds
   Description: The rounds of this weapon explodes on hit.
-  Color: 2
-  Sprite:
-    Path: Core/Sprites/Collectables/RangeUpgrade.png
-    Texture: {fileID: 0}
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
   Filters:
   - id: 0
+  - id: 1
   ExplosionDamageFactorInfo: {fileID: 11400000, guid: b1465e5f39dfc42419fbbb9485853a07,
     type: 2}
   ExplosionRangeInfo: {fileID: 11400000, guid: 5b274ad9ffe327b4d8cb9d6e023cb178, type: 2}
@@ -46,3 +35,13 @@ MonoBehaviour:
       type: {class: HasEventFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
       data:
         Info: {fileID: 11400000, guid: 8f35ed2b445d1b445937df6a62a5f992, type: 2}
+    00000001:
+      type: {class: NotFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        ToInvert:
+          id: 2
+    00000002:
+      type: {class: HasTagFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        Tags:
+        - ChannelingHitscan

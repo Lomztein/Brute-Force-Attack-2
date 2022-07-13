@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Structures
 {
-    public class Structure : MonoBehaviour, INamed, IPurchasable, IGridObject, IIdentifiable, IModdable
+    public class Structure : MonoBehaviour, INamed, IPurchasable, IGridObject, IIdentifiable, IModdable, ITagged
     {
         [SerializeField]
         [ModelProperty]
@@ -170,6 +170,11 @@ namespace Lomztein.BFA2.Structures
                 }
             }
             return false;
+        }
+
+        public bool HasTag(string tag)
+        {
+            return Tags.HasTag(tag);
         }
     }
 }

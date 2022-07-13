@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Structures.Turrets.Attachment
 {
-    public enum AttachmentType { Lower, Upper, Side, Module }
+    public enum AttachmentType { Lower, Upper, Side, Extension }
 
     public class Attachment
     {

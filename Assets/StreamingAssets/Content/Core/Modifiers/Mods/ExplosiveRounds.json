@@ -42,6 +42,19 @@
         "$Data": {
           "Info": "$Path{Core/Modifiers/Events/OnProjectileHit.json}"
         }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.NotFilter",
+        "$Data": {
+          "ToInvert": {
+            "$Type": "Lomztein.BFA2.Modification.Filters.HasTagFilter",
+            "$Data": {
+              "Tags": [
+                "ChannelingHitscan"
+              ]
+            }
+          }
+        }
       }
     ],
     "Identifier": "Core.ExplosiveRounds",

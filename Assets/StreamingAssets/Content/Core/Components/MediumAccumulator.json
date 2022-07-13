@@ -31,7 +31,7 @@
         "ChargeTimeBase": 15.0,
         "FireTime": "$Path{Core/Modifiers/Stats/AccumulatorFireTime.json}",
         "FireTimeBase": 6.0,
-        "BaseComplexity": 0.0,
+        "BaseComplexity": 0.25,
         "AttachmentSlots": {
           "_attachmentPoints": [
             {
@@ -126,7 +126,7 @@
             "RequiredPoints": 4
           }
         ],
-        "_name": "Medium Accumulatoir",
+        "_name": "Medium Accumulator",
         "_description": "Changes weapons placed upon this to fire in rapid bursts, with a long cooldown between bursts.",
         "_uniqueIdentifier": "Core.MediumAccumulator",
         "_cost": {
@@ -137,7 +137,9 @@
             }
           ]
         },
-        "Tags": {},
+        "Tags": {
+          "_tags": []
+        },
         "_width": "Medium",
         "_height": "Medium"
       }

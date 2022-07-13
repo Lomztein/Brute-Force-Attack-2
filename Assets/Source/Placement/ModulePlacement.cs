@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Modification;
+using Lomztein.BFA2.Modification.Modifiers;
 using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
 using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.Turrets;
@@ -65,30 +66,42 @@ namespace Lomztein.BFA2.Placement
             return false;
         }
 
+        private bool CanModAnyChild(Mod mod, GameObject root)
+        {
+            return root.GetComponentsInChildren<IModdable>().Any(x => mod.CanMod(x));
+        }
+
         public bool ToPosition(Vector2 position)
         {
             var options = Physics2D.OverlapPointAll(position, _layerMask)
-                .Select(x => x.transform.root).Where(x => x.TryGetComponent(out TurretAssembly assembly)) // Limit modules to only turret assemblies for the time being. 
-                .Where(x => x.GetComponentsInChildren<IModdable>().Any(y => _module.Item.Mod.CanMod(y)));
+                .Select(x => x.transform.root).Where(x => x.TryGetComponent(out TurretAssembly assembly)); // Limit modules to only turret assemblies for the time being. 
+                
+            _spriteRenderer.transform.position = (Vector3)position + Vector3.back * 9f;
 
-            var optionsWithRoom = options.Where(x => x.GetComponent<TurretAssembly>().HasRoomFor(_module.Item.ModuleSlots));
-
-            if (optionsWithRoom.Count() == 1)
+            if (options.Count() == 1)
             {
-                _target = options.First().transform.root.gameObject;
-                _spriteRenderer.transform.position = (Vector3)(Vector2)_target.transform.position + Vector3.back * 9f;
-                ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip(_module.Item.Name + " -> " + _target.GetComponent<TurretAssembly>().Name), "OptionWithRoom");
-            }
-            else if (options.Count() == 1)
-            {
-                var assembly = options.First().GetComponent<TurretAssembly>();
-                _spriteRenderer.transform.position = (Vector3)position + Vector3.back * 9f;
-                ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot insert into " + assembly.Name, $"Not enough module slots. {_module.Item.ModuleSlots} needed, {assembly.FreeModuleSlots()} available."), "OptionsWithoutRoom");
+                var option = options.FirstOrDefault().GetComponent<TurretAssembly>();
+                if (CanModAnyChild(_module.Item.Mod, option.transform.root.gameObject)) {
+                    
+                    if (option.HasRoomFor(_module.Item.ModuleSlots))
+                    {
+                        _target = option.transform.root.gameObject;
+                        _spriteRenderer.transform.position = (Vector3)(Vector2)_target.transform.position + Vector3.back * 9f;
+                        ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip(_module.Item.Name + " -> " + _target.GetComponent<TurretAssembly>().Name), "OptionWithRoom");
+                    }
+                    else
+                    {
+                        ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot insert into " + option.Name, $"Not enough module slots. {_module.Item.ModuleSlots} needed, {option.FreeModuleSlots()} available."), "OptionsWithoutRoom");
+                    }
+                }
+                else
+                {
+                    ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot insert into " + option.Name, $"Module is incompatable."), "OptionIncompatable");
+                }
             }
             else
             {
                 _target = null;
-                _spriteRenderer.transform.position = (Vector3)position + Vector3.back * 9f;
                 ForcedTooltipUpdater.ResetTooltip();
             }
             return true;

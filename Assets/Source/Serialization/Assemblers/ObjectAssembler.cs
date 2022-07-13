@@ -28,6 +28,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
 
         public ValueModel Disassemble(object obj, Type type, DisassemblyContext context)
         {
+            if (obj == null) return new NullModel();
             return _populator.Extract(obj, context);
         }
 

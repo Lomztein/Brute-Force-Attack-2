@@ -31,7 +31,7 @@
         "ChargeTimeBase": 10.0,
         "FireTime": "$Path{Core/Modifiers/Stats/AccumulatorFireTime.json}",
         "FireTimeBase": 4.0,
-        "BaseComplexity": 0.0,
+        "BaseComplexity": 0.15,
         "AttachmentSlots": {
           "_attachmentPoints": [
             {
@@ -60,7 +60,7 @@
             "RequiredPoints": 1
           }
         ],
-        "_name": "Small Accumulatoir",
+        "_name": "Small Accumulator",
         "_description": "Changes weapons placed upon this to fire in rapid bursts, with a long cooldown between bursts.",
         "_uniqueIdentifier": "Core.SmallAccumulator",
         "_cost": {
@@ -71,7 +71,9 @@
             }
           ]
         },
-        "Tags": {},
+        "Tags": {
+          "_tags": []
+        },
         "_width": "Small",
         "_height": "Small"
       }

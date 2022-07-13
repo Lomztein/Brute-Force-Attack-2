@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Lomztein.BFA2
     [Serializable]
     public class TagSet : ITagged, IEnumerable<string>
     {
-        [SerializeField]
+        [SerializeField, ModelProperty]
         private List<string> _tags = new List<string>();
 
         public IEnumerator<string> GetEnumerator()

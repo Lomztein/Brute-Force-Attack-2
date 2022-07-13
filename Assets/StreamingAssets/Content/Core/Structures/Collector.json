@@ -28,7 +28,7 @@
       "$Type": "Lomztein.BFA2.Structures.Structure",
       "$Data": {
         "_name": "Collector",
-        "_description": "\"I am Dehaka, one who collects.\"",
+        "_description": "Collects loot dropped from enemies in range.",
         "_uniqueIdentifier": "Core.Collector",
         "_cost": {
           "Elements": [
@@ -38,7 +38,9 @@
             }
           ]
         },
-        "Tags": {},
+        "Tags": {
+          "_tags": []
+        },
         "_width": "Medium",
         "_height": "Medium"
       }
@@ -112,7 +114,7 @@
           "$Data": {
             "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
             "OnTargetAcquiredInfo": "$Path{Core/Modifiers/Events/OnTargetAcquired.json}",
-            "BaseRange": 666.0,
+            "BaseRange": 20.0,
             "TargetLayer": {
               "Mask": 4096
             },
@@ -127,7 +129,9 @@
             "_cost": {
               "Elements": []
             },
-            "Tags": {},
+            "Tags": {
+              "_tags": []
+            },
             "_width": "Medium",
             "_height": "Medium"
           }
@@ -252,7 +256,9 @@
                 "_cost": {
                   "Elements": []
                 },
-                "Tags": {},
+                "Tags": {
+                  "_tags": []
+                },
                 "_width": "Medium",
                 "_height": "Medium"
               }
@@ -367,7 +373,9 @@
                     "_cost": {
                       "Elements": []
                     },
-                    "Tags": {},
+                    "Tags": {
+                      "_tags": []
+                    },
                     "_width": "Medium",
                     "_height": "Medium"
                   }

@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         public IResourceCost GetCost(Tier tier)
         {
             IEnumerable<IPurchasable> children = GetComponents(tier).Select (x => x as IPurchasable).Where (x => x != null);
-            return children.Select(x => x.Cost).Sum();
+            return children.Select(x => x.Cost).Sum().Scale(1f + Complexity);
         }
 
         public IEnumerable<TurretComponent> GetComponents(Tier tier)
