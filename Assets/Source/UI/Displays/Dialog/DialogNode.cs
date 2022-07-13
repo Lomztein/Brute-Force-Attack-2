@@ -31,6 +31,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             public string Text;
             [ModelProperty, SerializeReference, SR]
             public IDialogOptionResult Result;
+            public bool HasResult => Result != null;
 
             public void OnSelected() => Result.OnSelected();
         }

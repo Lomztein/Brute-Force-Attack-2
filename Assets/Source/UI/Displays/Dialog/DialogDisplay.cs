@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Lomztein.BFA2.UI.Displays.Dialog
 {
-    public class DialogDisplay : MonoBehaviour
+    public class DialogDisplay : MonoBehaviour, IPointerDownHandler
     {
         public static DialogDisplay Instance;
 
@@ -28,6 +29,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         private string _currentText;
         private Coroutine _currentCoroutine;
+        private DialogNode _currentNode;
 
         public Transform DialogTransform;
         public Transform DialogOptionsParent;
@@ -37,6 +39,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         public float LerpSpeed;
         public Vector3 RelativeOpenPosition;
         private Vector3 _closedPosition;
+
         public bool IsOpen { get; private set; }
 
         private void Awake()
@@ -59,6 +62,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         public static void DisplayDialogNode(DialogNode node)
         {
             EndDialog();
+            Instance._currentNode = node;
             Instance._currentCoroutine = Instance.StartCoroutine(Instance.DisplayNodeCoroutine(node));
         }
 
@@ -68,6 +72,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             {
                 Instance.StopCoroutine(Instance._currentCoroutine);
                 Instance._currentCoroutine = null;
+                Instance._currentNode = null;
             }
             Instance.IsOpen = false;
         }
@@ -104,7 +109,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             foreach (DialogNode.Option option in node.Options)
             {
                 GameObject go = Instantiate(DialogOptionPrefab, DialogOptionsParent);
-                if (option.Result != null)
+                if (option.HasResult)
                 {
                     go.GetComponentInChildren<Button>().onClick.AddListener(option.OnSelected);
                 }
@@ -135,6 +140,31 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             }
         }
 
+        public static void InstantFinishCurrentNode()
+        {
+            Instance.StopCoroutine(Instance._currentCoroutine);
+            Instance.Text.text = Instance._currentNode.Text;
+        }
+
+        public static bool TryAutoSelectSingleOptionOrEnd ()
+        {
+            var cur = Instance._currentNode;
+            if (cur.Options.Length == 1)
+            {
+                var option = cur.Options[0];
+                if (option.HasResult)
+                    option.Result.OnSelected();
+                else EndDialog();
+                return true;
+            }else if (cur.Options.Length == 0)
+            {
+                EndDialog();
+                return true;
+            }
+            
+            return false;
+        }
+
         private float GetCharacterTime (char character)
         {
             if (FullStopChars.Contains(character))
@@ -145,6 +175,11 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
                 return CommaTime;
             }
             return DefaultTime;
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            InstantFinishCurrentNode();
         }
     }
 }
