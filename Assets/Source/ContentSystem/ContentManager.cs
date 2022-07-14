@@ -95,13 +95,16 @@ namespace Lomztein.BFA2.ContentSystem
         public object GetContent(string path, Type type, bool useCache)
         {
             path = OSAgnosticPath(path);
+            var start = DateTime.Now;
 
             if (useCache)
             {
                 object cache = GetCache(path);
                 if (!IsCacheValid(cache))
                 {
-                    return SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
+                    var obj = SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
+                    Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
+                    return obj;
                 }
                 else
                 {
@@ -110,7 +113,9 @@ namespace Lomztein.BFA2.ContentSystem
             }
             else
             {
-                return GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
+                var obj = GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
+                Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
+                return obj;
             }
         }
 
@@ -180,6 +185,8 @@ namespace Lomztein.BFA2.ContentSystem
                 }
             }
 
+            var start = DateTime.Now;
+
             string packFolder = GetPackFolder(path);
             bool wildcard = packFolder == WILDCARD;
 
@@ -198,6 +205,8 @@ namespace Lomztein.BFA2.ContentSystem
                 {
                     SetCache(path, array);
                 }
+                Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
+
                 return array;
             }
             else
@@ -207,6 +216,8 @@ namespace Lomztein.BFA2.ContentSystem
                 {
                     SetCache(path, array);
                 }
+                Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
+
                 return array;
             }
         }

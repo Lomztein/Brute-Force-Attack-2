@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Research
 {
     public class ResearchController : MonoBehaviour
     {
-        private const string RESEARCH_PATH = "*/Research/";
+        private const string RESEARCH_PATH = "*/Research";
 
         public static ResearchController Instance;
 

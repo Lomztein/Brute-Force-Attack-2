@@ -35,12 +35,10 @@ namespace Lomztein.BFA2.ContentSystem
             foreach (var preload in preloads)
             {
                 CurrentPreload = preload;
-                var start = DateTime.Now;
                 string[] split = preload.Split(' ');
                 string path = split[0];
                 Type type = Type.GetType(split[1]);
                 Content.GetAll(path, type);
-                Debug.Log($"Loaded '{preload}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
                 current++;
                 PreloadProgress = (float)current / total;
                 yield return null;

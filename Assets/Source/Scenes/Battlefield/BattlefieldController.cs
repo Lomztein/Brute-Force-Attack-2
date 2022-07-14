@@ -93,7 +93,7 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitMap(BattlefieldSettings settings)
         {
-            MapData mapData = Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == settings.MapIdentifier);
+            MapData mapData = Content.GetAll<MapData>("*/Maps").First(x => x.Identifier == settings.MapIdentifier);
             MapController.ApplyMapData(mapData.DeepClone());
         }
 
