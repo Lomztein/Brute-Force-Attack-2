@@ -48,6 +48,7 @@ namespace Lomztein.BFA2.ContentSystem
                 }
             }
 
+
             if (_pluginManager.LoadedCount > 0)
             {
                 Message.Send("Loaded " + _pluginManager.LoadedCount + " plugin assemblies.", Message.Type.Minor);

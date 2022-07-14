@@ -12,8 +12,8 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentPack : IContentPack
     {
-        private const string IGNORE_PREFIX = "IGNORE_"; // Any files suffixed with this will be ignored.
-        private const string JSON_FILE_EXTENSION = ".json"; // Any files prefixed with this will be ignored.
+        private const string IGNORE_PREFIX = "IGNORE_"; // Any files prefixed with this will be ignored.
+        private const string IGNORE_SUFFIX = ".meta"; // Any files suffixed with this will be ignored.
         private const string ASSET_BUNDLE_RELATIVE_PATH = "Assets";
         private const string PLUGINS_RELATIVE_PATH = "Plugins";
 
@@ -47,7 +47,7 @@ namespace Lomztein.BFA2.ContentSystem
         }
 
         private bool ShouldLoadFromBundle (string path)
-            => Path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
+            => path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
 
         public object GetContent(string path, Type type)
         {
@@ -73,7 +73,7 @@ namespace Lomztein.BFA2.ContentSystem
 
             if (Directory.Exists(spath))
             {
-                string[] files = Directory.GetFiles(spath, $"*{JSON_FILE_EXTENSION}");
+                IEnumerable<string> files = Directory.GetFiles(spath).Where(x => System.IO.Path.GetExtension(x) != IGNORE_SUFFIX);
                 foreach (string file in files)
                 {
                     if (!System.IO.Path.GetFileName(file).StartsWith(IGNORE_PREFIX))
