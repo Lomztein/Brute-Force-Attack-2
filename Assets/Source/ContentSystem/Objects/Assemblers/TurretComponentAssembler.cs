@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 {
     public class TurretComponentAssembler
     {
-        private static readonly string COMPONENTS_CONTENT_PATH = "*/Components";
+        private static readonly string COMPONENTS_CONTENT_PATH = "*/Components/*";
         private IContentCachedPrefab[] _allComponents;
 
         public TurretComponent Assemble (ObjectModel model, Transform parent, TurretAssembly assembly, AssemblyContext context)

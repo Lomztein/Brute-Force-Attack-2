@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.UI
 {
     public class UIStyleMenu : MonoBehaviour
     {
-        private const string STYLE_PATH = "*/UIStyles";
+        private const string STYLE_PATH = "*/UIStyles/*";
 
         private List<UIStyle> _styles = new List<UIStyle>();
 

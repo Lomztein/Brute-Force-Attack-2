@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Structures.Highlighters
     public class HighlighterCollection : MonoBehaviour
     {
         private static IContentCachedPrefab[] _highlighterPrefabs;
-        private const string PREFAB_PATH = "*/Highlighters";
+        private const string PREFAB_PATH = "*/Highlighters/*";
         private const string COLLECTION_PREFAB_PATH = "Prefabs/HighlighterCollectionPrefab";
 
         private Dictionary<Component, IEnumerable<IHighlighter>> _highlighters;

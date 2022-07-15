@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.LocalizationSystem
     {
         public IEnumerable<KeyValuePair<string, string>> GetTranslations(string cultureName)
         {
-            var localizations = Content.GetAll<LocalizationData>("*/Localizations");
+            var localizations = Content.GetAll<LocalizationData>("*/Localizations/*");
 
             foreach (LocalizationData data in localizations)
             {

@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         private void Start ()
         {
-            _introductions = Content.GetAll<WaveIntroduction>("*/Dialog/WaveIntroduction");
+            _introductions = Content.GetAll<WaveIntroduction>("*/Dialog/WaveIntroduction/*");
             RoundController.Instance.OnWaveStarted += Instance_OnNextWaveChanged;
         }
 

@@ -22,13 +22,13 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         private float _undyingChance => UndyingChancePercent / 100f;
 
-        private const string ENEMY_CONTENT_PATH = "*/Enemies"; // At this point I should litteraly just make an EnemyCache class that does all this for me.
+        private const string ENEMY_CONTENT_PATH = "*/Enemies/*"; // At this point I should litteraly just make an EnemyCache class that does all this for me.
         private IContentCachedPrefab[] _enemies;
         private Enemy[] _enemyCache;
 
         private void LoadEnemies()
         {
-            _enemies = Content.GetAll<IContentCachedPrefab>(ENEMY_CONTENT_PATH);
+            _enemies = Content.GetAll<IContentCachedPrefab>(ENEMY_CONTENT_PATH).ToArray();
             _enemyCache = new Enemy[_enemies.Length];
 
             for (int i = 0; i < _enemies.Length; i++)

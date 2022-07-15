@@ -1,3 +1,4 @@
+using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.ContentSystem.Assemblers;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
@@ -31,8 +32,20 @@ namespace Lomztein.BFA2.Editor.Content
             }
         }
 
+        [MenuItem("BFA2/Index Resources")]
+        public static void IndexResources ()
+        {
+            string root = Path.Combine(Application.dataPath, "Resources");
+            string[] files = Directory.GetFiles(root, "*", SearchOption.AllDirectories)
+                .Where(x => Path.GetExtension(x) != ".meta")
+                .Select(x => x.Substring(root.Length + 1)).ToArray();
+            File.WriteAllLines(ResourcesContentPack.GetResourcesIndexPath(), files);
+        }
+
         public static void CompileFolder (string folderPath, string targetPath, bool recursive)
         {
+            IndexResources();
+
             string[] compilationTypeSearch = AssetDatabase.FindAssets("t:CompilationTypeReference", new string[] { folderPath });
             string[] compilationTypeFiles = compilationTypeSearch.Select(x => AssetDatabase.GUIDToAssetPath(x)).ToArray();
             Dictionary<string, CompilationTypeReference> folderCompilationType = compilationTypeFiles.ToDictionary(x => Path.GetDirectoryName(x.Substring(folderPath.Length + 1)), y => AssetDatabase.LoadAssetAtPath<CompilationTypeReference>(y));

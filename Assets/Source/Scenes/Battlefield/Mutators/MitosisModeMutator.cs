@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 {
     public class MitosisModeMutator : Mutator, IHasProperties
     {
-        private const string ENEMY_CONTENT_PATH = "*/Enemies";
+        private const string ENEMY_CONTENT_PATH = "*/Enemies/*";
         private IContentCachedPrefab[] _enemies;
         private Enemy[] _enemyCache;
 
@@ -27,7 +27,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.Mutators
 
         private void LoadEnemies()
         {
-            _enemies = Content.GetAll<IContentCachedPrefab>(ENEMY_CONTENT_PATH);
+            _enemies = Content.GetAll<IContentCachedPrefab>(ENEMY_CONTENT_PATH).ToArray();
             _enemyCache = new Enemy[_enemies.Length];
 
             for (int i = 0; i < _enemies.Length; i++)

@@ -31,7 +31,7 @@ namespace Lomztein.BFA2.ContentSystem.References
         {
             if (_cache == null)
             {
-                _cache = Content.GetAll<T>(Path);
+                _cache = Content.GetAll<T>(Path).ToArray();
             }
             return _cache;
         }

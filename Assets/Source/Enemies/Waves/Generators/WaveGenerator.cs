@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
     [Serializable]
     public class WaveGenerator : IWaveGenerator
     {
-        private const string GENERATOR_ENEMY_DATA_PATH = "*/WaveCollections/GeneratorEnemyData";
+        private const string GENERATOR_ENEMY_DATA_PATH = "*/WaveCollections/GeneratorEnemyData/*";
 
         private System.Random _random;
         private GeneratorEnemyData[] _enemyData;
@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         {
             if (_enemyData == null)
             {
-                _enemyData = Content.GetAll<GeneratorEnemyData>(GENERATOR_ENEMY_DATA_PATH);
+                _enemyData = Content.GetAll<GeneratorEnemyData>(GENERATOR_ENEMY_DATA_PATH).ToArray();
             }
             return _enemyData;
         }

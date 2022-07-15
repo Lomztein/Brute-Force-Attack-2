@@ -93,13 +93,13 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitMap(BattlefieldSettings settings)
         {
-            MapData mapData = Content.GetAll<MapData>("*/Maps/").First(x => x.Identifier == settings.MapIdentifier);
+            MapData mapData = Content.GetAll<MapData>("*/Maps/*").First(x => x.Identifier == settings.MapIdentifier);
             MapController.ApplyMapData(mapData.DeepClone());
         }
 
         private void InitWaves(BattlefieldSettings settings)
         {
-            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections").First(x => x.Identifier == settings.WaveCollectionIdentifier);
+            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections/*").First(x => x.Identifier == settings.WaveCollectionIdentifier);
             RoundController.SetWaveCollection(waves.DeepClone());
         }
 

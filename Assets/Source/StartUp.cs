@@ -35,9 +35,7 @@ namespace Lomztein.BFA2
 
         internal void InitializeGame()
         {
-            Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
             SerializationFileAccess.SetAccessor(new ContentFileAccessor());
-            BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
 
             Input.Init();
             Facade.Init();
@@ -46,6 +44,10 @@ namespace Lomztein.BFA2
 
             ContentManager.LoadPlugins();
             ContentManager.InitializeContent();
+
+            Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
+            BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
+
             InterceptLogs();
         }
 

@@ -69,7 +69,7 @@ namespace Lomztein.BFA2.Player
             ResourceEarningMultiplier = new Dictionary<string, IStatReference>();
             _resourceFractionTrackers = new Dictionary<string, float>();
 
-            Resource[] resources = Content.GetAll<Resource>("*/Resources");
+            Resource[] resources = Content.GetAll<Resource>("*/Resources/*").ToArray();
             foreach (Resource resource in resources)
             {
                 ResourceEarningMultiplier.Add(resource.Identifier, _stats.AddStat(GenerateStatInfo(resource), 1f, this));

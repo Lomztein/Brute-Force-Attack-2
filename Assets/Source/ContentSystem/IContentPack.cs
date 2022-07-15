@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem
@@ -16,7 +17,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         void Init();
 
-        object GetContent(string path, Type type);
-        object[] GetAllContent(string path, Type type);
+        object LoadContent(string path, Type asType);
+        string[] GetContentPaths();
     }
 }

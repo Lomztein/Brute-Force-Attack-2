@@ -11,9 +11,17 @@ namespace Lomztein.BFA2.ContentSystem
     {
         public bool BeginOnAwake;
 
-        public float PreloadProgress { get; private set; }
-        public string CurrentPreload { get; private set; }
         public bool Done { get; private set; }
+
+        public int CurrentStep { get; private set; }
+        public int TotalSteps { get; private set; }
+        public int StepLoadTimeMillis { get; private set; }
+        public string StepName { get; private set; }
+
+        public int CurrentPiece { get; private set; }
+        public int TotalPieces { get; private set; }
+        public int PieceLoadTimeMillis { get; private set; }
+        public string PieceName { get; private set; }
 
         private void Awake()
         {
@@ -21,7 +29,7 @@ namespace Lomztein.BFA2.ContentSystem
         }
 
         private static IEnumerable<string> GetPreloadPaths()
-            => Content.GetAll<string>("*/Preloads").SelectMany(x => Regex.Split(x, "\r\n|\r|\n")).Distinct();
+            => Content.GetAll<string>("*/Preloads/*.txt").SelectMany(x => Regex.Split(x, "\r\n|\r|\n")).Distinct();
 
         public void BeginPreload ()
         {
@@ -30,20 +38,31 @@ namespace Lomztein.BFA2.ContentSystem
 
         private IEnumerator Preload(IEnumerable<string> preloads)
         {
-            int total = preloads.Count();
-            int current = 0;
+            TotalSteps = preloads.Count();
+            CurrentStep = 0;
             foreach (var preload in preloads)
             {
-                CurrentPreload = preload;
+                StepName = preload;
                 var start = DateTime.Now;
                 string[] split = preload.Split(' ');
                 string path = split[0];
                 Type type = Type.GetType(split[1]);
-                Content.GetAll(path, type);
+
+                var pieces = Content.QueryContentIndex(path).ToArray();
+                TotalPieces = pieces.Length;
+                CurrentPiece = 0;
+                var currentEnumerator = Content.LoadAll(path, type).GetEnumerator();
+
+                while (currentEnumerator.MoveNext())
+                {
+                    PieceName = pieces[CurrentPiece];
+                    yield return currentEnumerator.Current;
+                    CurrentPiece++;
+                }
+
+                yield return Content.LoadAll(path, type).GetEnumerator();
                 Debug.Log($"Loaded '{preload}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
-                current++;
-                PreloadProgress = (float)current / total;
-                yield return null;
+                CurrentStep++;
             }
             Done = true;
         }

@@ -9,20 +9,29 @@ namespace Lomztein.BFA2
     public class PreloadDisplay : MonoBehaviour
     {
         public Preloader Preloader;
+        public Text MainText;
 
-        public Slider ProgressBar;
-        public Text CurrentText;
+        public Slider StepBar;
+        public Slider PieceBar;
+
+        public Text StepText;
+        public Text PieceText;
 
         private void LateUpdate()
         {
-            ProgressBar.value = Preloader.PreloadProgress;
+            StepBar.value = (float)Preloader.CurrentStep / Preloader.TotalSteps;
+            PieceBar.value = (float)Preloader.CurrentPiece / Preloader.TotalPieces;
+
+            StepText.text = $"{Preloader.CurrentStep} / {Preloader.TotalSteps}";
+            PieceText.text = $"{Preloader.CurrentPiece} / {Preloader.TotalPieces}";
+
             if (!Preloader.Done)
             {
-                CurrentText.text = "Preloading: " + Preloader.CurrentPreload.Split()[0];
+                MainText.text = $"Preloading..)\n{Preloader.StepName.Split(' ')[0]}\n{Preloader.PieceName}";
             }
             else
             {
-                CurrentText.text = "Preloading complete!";
+                MainText.text = "Preloading complete!";
             }
 
             if (Preloader.Done && !IsInvoking())

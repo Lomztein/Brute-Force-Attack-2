@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Enemies
 {
     public class Enemy : MonoBehaviour, IIdentifiable, IDamagable
     {
-        public const string ENEMIES_CCONTENT_PATH = "*/Enemies";
+        public const string ENEMIES_CCONTENT_PATH = "*/Enemies/*";
 
         private const float CRITICAL_DAMAGE_MULT = 2f;
 
@@ -243,7 +243,7 @@ namespace Lomztein.BFA2.Enemies
             _motor.Path = path;
         }
 
-        public static IContentCachedPrefab[] GetEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMIES_CCONTENT_PATH);
+        public static IContentCachedPrefab[] GetEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMIES_CCONTENT_PATH).ToArray();
         public static IContentCachedPrefab GetEnemy(string identifier) => GetEnemies().FirstOrDefault(x => x.GetCache().GetComponent<Enemy>().Identifier == identifier);
     }
 }

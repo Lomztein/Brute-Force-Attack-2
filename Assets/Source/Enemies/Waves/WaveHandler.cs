@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Enemies.Waves
 {
     public class WaveHandler : MonoBehaviour
     {
-        public const string ENEMY_PATH = "*/Enemies";
+        public const string ENEMY_PATH = "*/Enemies/*";
         public GameObject SpawnerPrefab;
         public WaveTimeline Timeline;
         public int Wave;
@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Enemies.Waves
         }
 
 
-        private IContentCachedPrefab[] LoadEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMY_PATH);
+        private IContentCachedPrefab[] LoadEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMY_PATH).ToArray();
         private IContentCachedPrefab GetPrefab(string identifier) => _enemies.FirstOrDefault(x => x.GetCache().GetComponent<Enemy>().Identifier == identifier);
 
         public void Assign (int wave, WaveTimeline timeline)
