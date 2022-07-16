@@ -29,8 +29,13 @@ namespace Lomztein.BFA2.ContentSystem
 
         internal IEnumerable<string> Query(string pattern)
         {
+            return Query(_index, pattern);
+        }
+
+        public static IEnumerable<string> Query(IEnumerable<string> against, string pattern)
+        {
             Glob glob = Glob.Parse(pattern);
-            return _index.Where(x => glob.IsMatch(x));
+            return against.Where(x => glob.IsMatch(x));
         }
 
         internal void ClearIndex() => _index.Clear();
