@@ -9,6 +9,8 @@ namespace Lomztein.BFA2
     public class PreloadDisplay : MonoBehaviour
     {
         public Preloader Preloader;
+        public RectTransform DisplayParent;
+
         public Text MainText;
 
         public Slider StepBar;
@@ -19,30 +21,17 @@ namespace Lomztein.BFA2
 
         private void LateUpdate()
         {
-            StepBar.value = (float)Preloader.CurrentStep / Preloader.TotalSteps;
-            PieceBar.value = (float)Preloader.CurrentPiece / Preloader.TotalPieces;
-
-            StepText.text = $"{Preloader.CurrentStep} / {Preloader.TotalSteps}";
-            PieceText.text = $"{Preloader.CurrentPiece} / {Preloader.TotalPieces}";
-
+            DisplayParent.gameObject.SetActive(!Preloader.Done);
             if (!Preloader.Done)
             {
-                MainText.text = $"Preloading..)\n{Preloader.StepName.Split(' ')[0]}\n{Preloader.PieceName}";
-            }
-            else
-            {
-                MainText.text = "Preloading complete!";
-            }
+                StepBar.value = (float)Preloader.CurrentStep / Preloader.TotalSteps;
+                PieceBar.value = (float)Preloader.CurrentPiece / Preloader.TotalPieces;
 
-            if (Preloader.Done && !IsInvoking())
-            {
-                Invoke(nameof(Hide), 3f);
-            }
-        }
+                StepText.text = $"{Preloader.CurrentStep} / {Preloader.TotalSteps}";
+                PieceText.text = $"{Preloader.CurrentPiece} / {Preloader.TotalPieces}";
 
-        private void Hide ()
-        {
-            gameObject.SetActive(false);
+                MainText.text = $"Preloading..\n{Preloader.StepName.Split(' ')[0]}\n{Preloader.PieceName}";
+            }
         }
     }
 }

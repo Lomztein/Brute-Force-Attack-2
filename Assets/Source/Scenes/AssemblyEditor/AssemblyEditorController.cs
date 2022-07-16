@@ -93,7 +93,8 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public void SaveAssembly ()
         {
-            string path = Path.Combine(Content.CustomContentPath, "Assemblies", CurrentAsssembly.Name) + ".json";
+            CustomContentUtils.CreateDirectory("Assemblies");
+            string path = CustomContentUtils.ToAbsolutePath("Assemblies/" + CurrentAsssembly.Name + ".json");
             if (File.Exists(path))
             {
                 Confirm.Open("Saving will overwrite assembly file\n" + path + "\nConfirm?", () =>
@@ -145,7 +146,8 @@ namespace Lomztein.BFA2.AssemblyEditor
         {
             Confirm.Open("Loading an assembly will trash unsaved progress on current assembly.\nConfirm?", () =>
             {
-                FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Assemblies"), ".json", LoadFile);
+                CustomContentUtils.CreateDirectory("Assemblies");
+                FileBrowser.Create(CustomContentUtils.ToAbsolutePath("Assemblies"), ".json", LoadFile);
             });
         }
 

@@ -9,7 +9,12 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class Preloader : MonoBehaviour
     {
-        public bool BeginOnAwake;
+        public static Preloader Instance { get; private set; }
+
+        public bool PreloadOnContentReload;
+        public bool PreloadOnAwake;
+
+        private static bool _hasPreloaded;
 
         public bool Done { get; private set; }
 
@@ -25,7 +30,26 @@ namespace Lomztein.BFA2.ContentSystem
 
         private void Awake()
         {
-            if (BeginOnAwake) BeginPreload();
+            Instance = this;
+            ContentManager.OnPostContentReload += ContentManager_OnPostContentReload;
+            if (PreloadOnAwake)
+            {
+                BeginPreload();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            ContentManager.OnPostContentReload -= ContentManager_OnPostContentReload;
+        }
+
+        private void ContentManager_OnPostContentReload(IEnumerable<IContentPack> obj)
+        {
+            _hasPreloaded = false;
+            if (PreloadOnContentReload)
+            {
+                BeginPreload();
+            }
         }
 
         private static IEnumerable<string> GetPreloadPaths()
@@ -33,7 +57,16 @@ namespace Lomztein.BFA2.ContentSystem
 
         public void BeginPreload ()
         {
-            StartCoroutine(Preload(GetPreloadPaths()));
+            Done = false;
+            if (!_hasPreloaded)
+            {
+                StartCoroutine(Preload(GetPreloadPaths()));
+                _hasPreloaded = true;
+            }
+            else
+            {
+                Done = true;
+            }
         }
 
         private IEnumerator Preload(IEnumerable<string> preloads)
@@ -51,7 +84,7 @@ namespace Lomztein.BFA2.ContentSystem
                 var pieces = Content.QueryContentIndex(path).ToArray();
                 TotalPieces = pieces.Length;
                 CurrentPiece = 0;
-                var currentEnumerator = Content.LoadAll(path, type).GetEnumerator();
+                var currentEnumerator = Content.GetAll(path, type).GetEnumerator();
 
                 while (currentEnumerator.MoveNext())
                 {

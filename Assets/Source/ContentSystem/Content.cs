@@ -9,8 +9,7 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public static class Content
     {
-        public static string CustomContentPath => Paths.PersistantData + "/Content/Custom/";
-
+        public static string CustomContentPath => CustomContentUtils.CustomContentPath;
         private const string CONTENT_MANAGER_TAG = "ContentManager";
         public const string PACK_WILDCARD = "*";
 

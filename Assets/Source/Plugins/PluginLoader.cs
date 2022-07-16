@@ -8,7 +8,7 @@ namespace Lomztein.BFA2.Plugins
 {
     public static class PluginLoader
     {
-        public static Assembly LoadAssembly(string path)
+        public static Assembly LoadAssemblyIntoMemory(string path)
         {
             return Assembly.LoadFrom(path);
         }
@@ -32,6 +32,6 @@ namespace Lomztein.BFA2.Plugins
             }
         }
 
-        public static IEnumerable<IPlugin> InstantiatePlugins(string path) => InstantiatePlugins(LoadAssembly(path));
+        public static IEnumerable<IPlugin> InstantiatePlugins(string path) => InstantiatePlugins(LoadAssemblyIntoMemory(path));
     }
 }

@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.ContentSystem
     {
         private List<string> _index = new List<string>();
 
-        public void AddIndices (IEnumerable<string> indices)
+        internal void AddIndices (IEnumerable<string> indices)
         {
             foreach (var index in indices)
             {
@@ -22,27 +22,17 @@ namespace Lomztein.BFA2.ContentSystem
             }
         }
 
-        public void AddIndex (string path)
+        internal void AddIndex (string path)
         {
             _index.Add(path);
         }
 
-        public IEnumerable<string> Query(string pattern)
+        internal IEnumerable<string> Query(string pattern)
         {
             Glob glob = Glob.Parse(pattern);
             return _index.Where(x => glob.IsMatch(x));
         }
 
-        private string GetContentPack(string path)
-        {
-            int contentPackNameLength = path.IndexOf(Path.DirectorySeparatorChar);
-            return path.Substring(0, contentPackNameLength);
-        }
-
-        private string GetContentPath(string path)
-        {
-            int contentPackNameLength = path.IndexOf(Path.DirectorySeparatorChar);
-            return path.Substring(contentPackNameLength + 1);
-        }
+        internal void ClearIndex() => _index.Clear();
     }
 }

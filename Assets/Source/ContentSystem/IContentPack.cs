@@ -13,8 +13,6 @@ namespace Lomztein.BFA2.ContentSystem
         string Version { get; }
         Texture2D Image { get; }
 
-        bool RequireReload { get; }
-
         void Init();
 
         object LoadContent(string path, Type asType);

@@ -18,53 +18,139 @@ namespace Lomztein.BFA2.ContentSystem
     public class ContentManager : MonoBehaviour
     {
         public static ContentManager Instance;
-        readonly IContentPackSource _source = new ContentPackSource();
+        public static bool NeedsContentReload { get; private set; }
+        public static bool NeedsApplicationReload => PluginManager.PluginsCleared;
+        public static int LoadedContentPackCount => Instance._loadedAndActivePacks.Count;
 
-        private List<IContentPack> _activePacks;
-        private PluginManager _pluginManager = new PluginManager();
+        readonly IContentPackSource _source = new ContentPackSource();
+        private readonly List<IContentPack> _loadedAndActivePacks = new List<IContentPack>();
 
         private ContentIndex _index = new ContentIndex();
         private ContentCache _cache = new ContentCache();
 
-        public IEnumerable<IContentPack> GetContentPacks()
+        public static event Action<IEnumerable<IContentPack>> OnPreContentReload;
+        public static event Action<IEnumerable<IContentPack>> OnPostContentReload;
+
+        private void Awake()
         {
-            if (_activePacks == null)
-            {
-                _activePacks = new List<IContentPack>();
-                IEnumerable<IContentPack> loaded = _source.GetPacks();
-                Message.Send("Loaded " + loaded.Count() + " content packs.", Message.Type.Minor);
-                _activePacks.AddRange(loaded);
-            }
-            return _activePacks;
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
         }
 
-        internal void LoadPlugins ()
+        internal static void SaveEnabledContentPackIdentifiers(IEnumerable<string> enabledPlugins)
         {
-            foreach (IContentPack pack in GetContentPacks())
+            PlayerPrefs.SetString("EnabledContentPacks", string.Join("\n", enabledPlugins));
+        }
+
+        public static IEnumerable<string> GetEnabledContentPackIdentifiers ()
+        {
+            return PlayerPrefs.GetString("EnabledContentPacks", string.Join("\n", GetDefaultContentPacks())).Split('\n');
+        }
+
+        private static IEnumerable<string> GetDefaultContentPacks ()
+        {
+            yield return "Brute Force Attack 2-Core";
+            yield return "Brute Force Attack 2-Resources";
+            yield return "You-Custom";
+        }
+
+        internal void ReloadContent ()
+        {
+            OnPreContentReload?.Invoke(_loadedAndActivePacks);
+
+            Debug.Log("Stopping plugins..");
+            PluginManager.StopPlugins();
+            PluginManager.ClearPlugins();
+
+            Debug.Log("Clearing index..");
+            _index.ClearIndex();
+
+            Debug.Log("Clearing cache..");
+            _cache.ClearCache();
+
+            Debug.Log("Loading enabled content packs..");
+            // Only load enabled packs.
+            _loadedAndActivePacks.Clear();
+            var allPacks = FindContentPacks();
+            var shouldLoad = allPacks.Where(x => GetEnabledContentPackIdentifiers().Any(y => ContentPackUtils.MatchesUniqueIdentifier(x.GetUniqueIdentifier(), y, false)));
+            _loadedAndActivePacks.AddRange(shouldLoad);
+
+            Debug.Log("Setting up index..");
+            foreach (var pack in _loadedAndActivePacks)
+            {
+                _index.AddIndices(pack.GetContentPaths().Select(y => pack.Name + Path.DirectorySeparatorChar + y));
+            }
+            
+            Debug.Log("Loading assemblies into memory..");
+            LoadPluginAssembliesIntoMemory(_loadedAndActivePacks);
+
+            Debug.Log("Starting plugins..");
+            PluginManager.StartPlugins();
+
+            NeedsContentReload = false;
+            OnPostContentReload?.Invoke(_loadedAndActivePacks);
+        }
+
+        internal void EnableContentPack(string identifier)
+        {
+            if (!IsContentPackEnabled(identifier))
+            {
+                var enabled = GetEnabledContentPackIdentifiers().ToList();
+                enabled.Add(identifier);
+                SaveEnabledContentPackIdentifiers(enabled);
+                NeedsContentReload = true;
+            }
+        }
+
+        internal bool DisableContentPack(string identifier)
+        {
+            var enabled = GetEnabledContentPackIdentifiers().ToList();
+            bool removed = enabled.Remove(identifier);
+            SaveEnabledContentPackIdentifiers(enabled);
+            NeedsContentReload = true;
+            return removed;
+        }
+
+        internal bool SetContentPackEnabled(string identifier, bool enable)
+        {
+            if (enable)
+            {
+                EnableContentPack(identifier);
+            }
+            else
+            {
+                DisableContentPack(identifier);
+            }
+            return IsContentPackEnabled(identifier);
+        }
+
+        internal bool ToggleContentPackEnabled(string identifier)
+            => SetContentPackEnabled(identifier, !IsContentPackEnabled(identifier));
+
+        private void LoadPluginAssembliesIntoMemory(IEnumerable<IContentPack> from)
+        {
+            foreach (IContentPack pack in from)
             {
                 if (pack is ContentPack contentPack)
                 {
-                    _pluginManager.LoadAllPlugins(contentPack.GetPluginAssemblies());
+                    PluginManager.LoadPluginsIntoMemory(contentPack.GetPluginAssemblies());
                 }
             }
 
-            if (_pluginManager.LoadedCount > 0)
+            if (PluginManager.AnyLoadedPlugins)
             {
-                Message.Send("Loaded " + _pluginManager.LoadedCount + " plugin assemblies.", Message.Type.Minor);
+                Message.Send("Loaded " + PluginManager.LoadedPluginCount + " plugin assemblies.", Message.Type.Minor);
             }
-
-            _pluginManager.StartPlugins();
         }
 
-        internal void InitializeContent ()
+        public IEnumerable<IContentPack> FindContentPacks()
         {
-            GetContentPacks();
-            foreach (var pack in _activePacks)
-            {
-                _index.AddIndices(pack.GetContentPaths().Select(y => pack.Name + Path.DirectorySeparatorChar + y));
-            } 
-            Instance = this;
+            IEnumerable<IContentPack> loaded = _source.GetPacks();
+            return loaded;
         }
+
+        public  static bool IsContentPackEnabled(string identifier)
+            => GetEnabledContentPackIdentifiers().Any(x => ContentPackUtils.MatchesUniqueIdentifier(x, identifier, false));
 
         private string OSAgnosticPath(string path)
         {
@@ -130,7 +216,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         private IContentPack GetPack(string name)
         {
-            IContentPack pack = GetContentPacks().FirstOrDefault(x => x.Name == name);
+            IContentPack pack = _loadedAndActivePacks.FirstOrDefault(x => x.Name == name);
             if (pack == null)
             {
                 throw new ArgumentException($"Content Pack '{name}' not found.");

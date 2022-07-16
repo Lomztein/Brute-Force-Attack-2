@@ -7,6 +7,7 @@ namespace Lomztein.BFA2.ContentSystem.Objects
     public class SceneCachedGameObject : IContentCachedPrefab, IDisposableContent
     {
         private readonly GameObject _cache;
+        private bool _disposed = false;
 
         public SceneCachedGameObject(GameObject cache)
         {
@@ -23,6 +24,7 @@ namespace Lomztein.BFA2.ContentSystem.Objects
         public void Dispose()
         {
             UnityEngine.Object.Destroy(_cache);
+            _disposed = true;
         }
 
         public override string ToString()
@@ -43,6 +45,6 @@ namespace Lomztein.BFA2.ContentSystem.Objects
         }
 
         public bool IsDisposed()
-            => _cache == null;
+            => _disposed;
     }
 }

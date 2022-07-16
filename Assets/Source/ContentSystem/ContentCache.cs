@@ -11,7 +11,7 @@ namespace Lomztein.BFA2
     {
         private readonly Dictionary<string, object> _cache = new Dictionary<string, object>();
 
-        public static bool IsCacheValid(object cacheObj)
+        internal static bool IsCacheValid(object cacheObj)
         {
             if (cacheObj == null)
             {
@@ -24,7 +24,7 @@ namespace Lomztein.BFA2
             return true;
         }
 
-        public object GetCache(string key)
+        internal object GetCache(string key)
         {
             if (_cache.TryGetValue(key, out object cache) && !IsCacheValid(cache))
             {
@@ -33,7 +33,7 @@ namespace Lomztein.BFA2
             return cache;
         }
 
-        public bool TryGetCache(string key, out object cache)
+        internal bool TryGetCache(string key, out object cache)
         {
             if (_cache.TryGetValue(key, out cache) && IsCacheValid(cache))
             {
@@ -42,7 +42,7 @@ namespace Lomztein.BFA2
             return false;
         }
 
-        public void SetCache(string key, object obj)
+        internal void SetCache(string key, object obj)
         {
             if (!_cache.ContainsKey(key))
             {
@@ -54,16 +54,17 @@ namespace Lomztein.BFA2
             }
         }
 
-        public void ClearCache()
+        internal void ClearCache()
         {
             var toRemove = _cache.ToArray();
             foreach (var pair in toRemove)
             {
                 ClearCache(pair.Key);
             }
+            _cache.Clear();
         }
 
-        public void ClearCache(string key)
+        internal void ClearCache(string key)
         {
             if (_cache.ContainsKey(key))
             {
@@ -75,18 +76,17 @@ namespace Lomztein.BFA2
 
         private void DisposeCacheObject(object cacheObj)
         {
-            if (cacheObj is UnityEngine.Object uobj)
-            {
-                UnityEngine.Object.Destroy(uobj);
-            }
+            bool checkValidity = false;
+
             if (cacheObj is IDisposableContent disposable)
             {
                 disposable.Dispose();
+                checkValidity = true;
             }
 
-            if (IsCacheValid(cacheObj))
+            if (checkValidity && IsCacheValid(cacheObj))
             {
-                throw new Exception("An object cache was disposed but is still considered valid. Plz fix.");
+                throw new Exception($"An object cache of type {cacheObj.GetType()} was disposed but is still considered valid. Plz fix.");
             }
         }
     }

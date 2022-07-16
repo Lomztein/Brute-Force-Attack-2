@@ -40,10 +40,9 @@ namespace Lomztein.BFA2
             Input.Init();
             Facade.Init();
 
-            Cursor.lockState = CursorLockMode.Confined;
-
-            ContentManager.LoadPlugins();
-            ContentManager.InitializeContent();
+            Cursor.lockState = CursorLockMode.None; // TODO: Implement as setting
+            CustomContentUtils.TryGenerateCustomContentPack();
+            ContentManager.ReloadContent();
 
             Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
             BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
