@@ -1,17 +1,14 @@
 ﻿using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
+using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.Structures.StructureManagement;
-using Lomztein.BFA2.Structures.Turrets.Rangers;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Structures.Highlighters
+namespace Lomztein.BFA2.ObjectVisualizers
 {
-    public class AreaModBroadcasterRecieverHighlighter : HighlighterBase<IModdable>
+    public class AreaModBroadcasterRecieverVisualizer : ObjectVisualizerBase<IModdable>
     {
         public GameObject RangerPrefab;
         public GameObject StructurePrefab;
@@ -21,9 +18,13 @@ namespace Lomztein.BFA2.Structures.Highlighters
 
         private Dictionary<AreaModBroadcaster, LocalHighlighter> _localHighlighters = new Dictionary<AreaModBroadcaster, LocalHighlighter>();
 
-        public override void Highlight(IModdable component)
+        public override void Visualize(IModdable component)
         {
             _component = component;
+            if (_component is Component comp)
+            {
+                Follow(comp.transform);
+            }
 
             IEnumerable<AreaModBroadcaster> broadcasters = StructureManager.GetStructures().Select(x => x.GetComponentInChildren<AreaModBroadcaster>()).Where(x => x != null);
             foreach (AreaModBroadcaster broadcaster in broadcasters)
@@ -31,10 +32,10 @@ namespace Lomztein.BFA2.Structures.Highlighters
                 bool show = OnlyShowWithinRange ? IsWithinRange(broadcaster) : true;
                 if (broadcaster.Mod.CanMod(component) && show)
                 {
-                    RangerHighlighter rh = Instantiate(RangerPrefab, broadcaster.transform.position, Quaternion.identity, transform).GetComponent<RangerHighlighter>();
-                    StructureHighlighter sh = Instantiate(StructurePrefab, broadcaster.transform.position, Quaternion.identity, transform).GetComponent<StructureHighlighter>();
+                    RangerVisualizer rh = Instantiate(RangerPrefab, broadcaster.transform.position, Quaternion.identity, transform).GetComponent<RangerVisualizer>();
+                    StructureVisualizer sh = Instantiate(StructurePrefab, broadcaster.transform.position, Quaternion.identity, transform).GetComponent<StructureVisualizer>();
                     LocalHighlighter highlighter = new LocalHighlighter(rh, sh);
-                    highlighter.Highlight(broadcaster);
+                    highlighter.Visualize(broadcaster);
                     _localHighlighters.Add(broadcaster, highlighter);
                 }
             }
@@ -62,12 +63,12 @@ namespace Lomztein.BFA2.Structures.Highlighters
             }
         }
 
-        public override void EndHighlight()
+        public override void EndVisualization()
         {
-            base.EndHighlight();
+            base.EndVisualization();
             foreach (var pair in _localHighlighters)
             {
-                pair.Value.EndHighlight();
+                pair.Value.EndVisualization();
             }
         }
 
@@ -81,27 +82,27 @@ namespace Lomztein.BFA2.Structures.Highlighters
 
         private class LocalHighlighter
         {
-            public RangerHighlighter Range;
-            public StructureHighlighter Structure;
+            public RangerVisualizer Range;
+            public StructureVisualizer Structure;
 
-            public LocalHighlighter(RangerHighlighter range, StructureHighlighter structure)
+            public LocalHighlighter(RangerVisualizer range, StructureVisualizer structure)
             {
                 Range = range;
                 Structure = structure;
             }
 
-            public void Highlight (AreaModBroadcaster broadcaster)
+            public void Visualize (AreaModBroadcaster broadcaster)
             {
-                Range.Highlight((Component)broadcaster);
-                Structure.Highlight((Component)broadcaster.GetComponent<Structure>());
+                Range.Visualize((Component)broadcaster);
+                Structure.Visualize((Component)broadcaster.GetComponent<Structure>());
             }
 
             public void SetStructureActive(bool value) => Structure.gameObject.SetActive(value);
 
-            public void EndHighlight ()
+            public void EndVisualization ()
             {
-                Range.EndHighlight();
-                Structure.EndHighlight();
+                Range.EndVisualization();
+                Structure.EndVisualization();
             }
 
             public void Tint(Color color)

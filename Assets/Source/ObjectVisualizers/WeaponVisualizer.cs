@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Structures.Highlighters
+namespace Lomztein.BFA2.ObjectVisualizers
 {
-    public class WeaponHighlighter : HighlighterBase<IWeapon>
+    public class WeaponVisualizer : ObjectVisualizerBase<IWeapon>
     {
         public LineRenderer LeftSide;
         public LineRenderer RightSide;
@@ -16,9 +16,13 @@ namespace Lomztein.BFA2.Structures.Highlighters
         private IWeapon _component;
 
         // Could be refactored so that Highlight merely assigns the component to a varaible, while all the highlighting is done in Tick().
-        public override void Highlight(IWeapon component)
+        public override void Visualize(IWeapon component)
         {
             _component = component;
+            if (_component is Component comp)
+            {
+                Follow(comp.transform);
+            }
         }
 
         public override void Tick(float deltaTime)

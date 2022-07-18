@@ -16,9 +16,14 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         public GameObject Assemble(RootModel model)
         {
             AssemblyContext context = new AssemblyContext();
-            GameObject obj = RecursiveAssemble(model.Root as ObjectModel, context, null);
+            var gameObject = Assemble(model.Root as ObjectModel, context);
             context.ReturnReferenceRequests();
+            return gameObject;
+        }
 
+        public GameObject Assemble(ObjectModel model, AssemblyContext context)
+        {
+            GameObject obj = RecursiveAssemble(model, context, null);
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnAssembled", true);
             ReflectionUtils.DynamicBroadcastInvoke(obj, "OnPostAssembled", true);
             return obj;
@@ -63,9 +68,15 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         public RootModel Disassemble(GameObject gameObject)
         {
             DisassemblyContext context = new DisassemblyContext();
-            GameObject copy = Object.Instantiate(gameObject);
-            RootModel model = new RootModel (RecursiveDisassemble(copy, context));
+            RootModel model = new RootModel (Disassemble(gameObject, context));
             context.ReturnGuidRequests();
+            return model;
+        }
+
+        public ObjectModel Disassemble(GameObject gameObject, DisassemblyContext context)
+        {
+            GameObject copy = Object.Instantiate(gameObject);
+            ObjectModel model = RecursiveDisassemble(copy, context);
             Object.DestroyImmediate(copy);
             return model;
         }

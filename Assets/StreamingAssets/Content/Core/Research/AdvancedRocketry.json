@@ -1,8 +1,8 @@
 {
-  "Name": "Unlock Machine Gun Tier 2",
-  "Description": "Unlock the second tier of the Machine Gun component.",
+  "Name": "Advanced Rocketry",
+  "Description": "Unlock more advanced rocketry that you can strap onto other weapons.",
   "Sprite": {
-    "Path": "Core/Sprites/Components/MachineGunT2.png",
+    "Path": "Core/Sprites/Components/RocketLauncherT3.png",
     "Texture": null,
     "Rect": {
       "X": 0.0,
@@ -26,20 +26,22 @@
     "Elements": [
       {
         "Resource": "$Path{Core/Resources/Research.json}",
-        "Value": 1
+        "Value": 3
       }
     ]
   },
   "TimeCost": 2,
-  "Identifier": "Core.UnlockMachineGunT2",
-  "PrerequisiteIdentifiers": [],
+  "Identifier": "Core.AdvancedRocketry",
+  "PrerequisiteIdentifiers": [
+    "Core.IntermediateRocketry"
+  ],
   "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
-        "Unlocks": null
+        "Unlocks": []
       }
     }
   ]

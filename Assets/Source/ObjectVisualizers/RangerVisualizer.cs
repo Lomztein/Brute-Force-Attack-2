@@ -6,18 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Structures.Highlighters
+namespace Lomztein.BFA2.ObjectVisualizers
 {
-    public class RangerHighlighter : HighlighterBase<IRanger>
+    public class RangerVisualizer : ObjectVisualizerBase<IRanger>
     {
         public float ScaleMultiplier;
 
         private GameObject _instance;
         private IRanger _component;
 
-        public override void Highlight(IRanger component)
+        public override void Visualize(IRanger component)
         {
             _component = component;
+            if (component is Component comp)
+            {
+                Follow(comp.transform);
+            }
             _instance = transform.GetChild(0).gameObject;
         }
 

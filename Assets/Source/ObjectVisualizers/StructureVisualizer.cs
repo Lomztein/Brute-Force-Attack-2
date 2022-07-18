@@ -1,20 +1,23 @@
-﻿using System;
+﻿using Lomztein.BFA2.Structures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Structures.Highlighters
+namespace Lomztein.BFA2.ObjectVisualizers
 {
-    public class StructureHighlighter : HighlighterBase<Structure>
+    public class StructureVisualizer : ObjectVisualizerBase<Structure>
     {
         public Transform HighlighterTransform;
         public SpriteRenderer HighlighterSprite;
+        public SpriteRenderer DirectionSprite;
         public float MarginFactor = 1.5f;
 
-        public override void Highlight(Structure component)
+        public override void Visualize(Structure component)
         {
+            Follow(component.transform);
             if (component.transform.parent == null)
             {
                 HighlighterTransform.gameObject.SetActive(true);
@@ -31,6 +34,7 @@ namespace Lomztein.BFA2.Structures.Highlighters
         public override void Tint(Color color)
         {
             HighlighterSprite.color = color;
+            DirectionSprite.color = color;
         }
     }
 }

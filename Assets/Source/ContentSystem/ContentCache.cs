@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Lomztein.BFA2
+namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentCache
     {
@@ -52,6 +52,10 @@ namespace Lomztein.BFA2
             {
                 _cache[key] = obj;
             }
+            if (obj is UnityEngine.Object uObj)
+            {
+                ContentCacheUnityObjectTracker.AddObject(uObj);
+            }
         }
 
         internal void ClearCache()
@@ -62,6 +66,7 @@ namespace Lomztein.BFA2
                 ClearCache(pair.Key);
             }
             _cache.Clear();
+            ContentCacheUnityObjectTracker.ClearCache();
         }
 
         internal void ClearCache(string key)

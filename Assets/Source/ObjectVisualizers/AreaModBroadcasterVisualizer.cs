@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
+using Lomztein.BFA2.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Structures.Highlighters
+namespace Lomztein.BFA2.ObjectVisualizers
 {
-    public class AreaModBroadcasterHighlighter : HighlighterBase<AreaModBroadcaster>
+    public class AreaModBroadcasterVisualizer : ObjectVisualizerBase<AreaModBroadcaster>
     {
         public GameObject IndicatorPrefab;
         private List<GameObject> _currentRenderers = new List<GameObject>();
@@ -17,8 +18,9 @@ namespace Lomztein.BFA2.Structures.Highlighters
         private ModBroadcaster _component;
         private Color _tint;
 
-        public override void Highlight(AreaModBroadcaster component)
+        public override void Visualize(AreaModBroadcaster component)
         {
+            Follow(component.transform);
             _component = component;
         }
 
@@ -47,9 +49,9 @@ namespace Lomztein.BFA2.Structures.Highlighters
             }
         }
 
-        public override void EndHighlight()
+        public override void EndVisualization()
         {
-            base.EndHighlight();
+            base.EndVisualization();
             ClearLineRenderers();
         }
 

@@ -1,9 +1,9 @@
 {
-  "Name": "Unlock Machine Gun Tier 2",
-  "Description": "Unlock the second tier of the Machine Gun component.",
+  "Name": "Basic Rocketry",
+  "Description": "Unlocks basic rocket launchers.",
   "Sprite": {
-    "Path": "Core/Sprites/Components/MachineGunT2.png",
-    "Texture": null,
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/RocketLauncherT1.png}",
     "Rect": {
       "X": 0.0,
       "Y": 0.0,
@@ -23,15 +23,10 @@
     "Alpha": 1.0
   },
   "ResourceCost": {
-    "Elements": [
-      {
-        "Resource": "$Path{Core/Resources/Research.json}",
-        "Value": 1
-      }
-    ]
+    "Elements": []
   },
-  "TimeCost": 2,
-  "Identifier": "Core.UnlockMachineGunT2",
+  "TimeCost": 0,
+  "Identifier": "Core.BasicRocketry",
   "PrerequisiteIdentifiers": [],
   "PinIdentifier": "",
   "UniquePrerequisites": [],
@@ -39,7 +34,9 @@
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
-        "Unlocks": null
+        "Unlocks": [
+          ""
+        ]
       }
     }
   ]

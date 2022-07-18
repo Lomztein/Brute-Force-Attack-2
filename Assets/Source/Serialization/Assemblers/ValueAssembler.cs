@@ -18,10 +18,14 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         {
             if (_assemblers == null)
             {
+                // Add all specific assemblers first.
                 _assemblers = ReflectionUtils.InstantiateAllOfTypeFromGameAssemblies<IValueAssembler>(typeof(ValueAssembler), typeof (ArrayModelAssembler), typeof (ObjectAssembler), typeof (PrimitiveModelAssembler)).ToList();
+
+                // Add "generic" assemblers as fallbacks.
                 _assemblers.Add(new ArrayModelAssembler());
                 _assemblers.Add(new ObjectAssembler());
                 _assemblers.Add(new PrimitiveModelAssembler());
+                
             }
         }
 
