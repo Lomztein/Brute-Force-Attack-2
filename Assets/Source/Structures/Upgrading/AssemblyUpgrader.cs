@@ -47,7 +47,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
         private GameObject GetToolTip (Tier tier)
         {
             GameObject newToolTip = Instantiate(ToolTip);
-            newToolTip.GetComponent<StructureToolTip>().AssignAssemblyUpgrade(_assembly, tier);
+            newToolTip.GetComponent<AssemblyUpgradeToolTip>().AssignAssemblyUpgrade(_assembly, tier);
             return newToolTip;
         }
 

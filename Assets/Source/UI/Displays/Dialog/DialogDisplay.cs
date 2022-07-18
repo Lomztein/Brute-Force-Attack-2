@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace Lomztein.BFA2.UI.Displays.Dialog
 {
@@ -23,7 +24,6 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         public float FullStopTime = 0.5f;
         public float CommaTime = 0.2f;
         public float DialogEndWaitTime = 3f;
-        
 
         private readonly static char[] FullStopChars = new char[] { '.', '!', '?' };
 
@@ -39,13 +39,32 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         public float LerpSpeed;
         public Vector3 RelativeOpenPosition;
         private Vector3 _closedPosition;
+        private bool _isTypingOut;
 
         public bool IsOpen { get; private set; }
+
+        private InputMaster _master;
 
         private void Awake()
         {
             Instance = this;
             _closedPosition = transform.position;
+            _master = new InputMaster();
+            _master.Battlefield.StartWave.performed += StartWave_performed;
+            _master.Enable();
+        }
+
+        private void StartWave_performed(InputAction.CallbackContext obj)
+        {
+            if (obj.phase == InputActionPhase.Performed)
+            {
+                QuickContinue();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            _master.Battlefield.StartWave.performed -= StartWave_performed;
         }
 
         private void Update()
@@ -73,8 +92,8 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
                 Instance.StopCoroutine(Instance._currentCoroutine);
                 Instance._currentCoroutine = null;
                 Instance._currentNode = null;
+                Instance.Invoke(nameof(Close), 0.1f); // Simple hack that ensures wave doesn't start on last auto continue using space.
             }
-            Instance.IsOpen = false;
         }
 
         private IEnumerator DisplayNodeCoroutine (DialogNode node)
@@ -93,8 +112,13 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
             if (node.Options.Length == 0)
             {
                 yield return new WaitForSecondsRealtime(DialogEndWaitTime);
-                IsOpen = false;
+                EndDialog();
             }
+        }
+
+        private void Close ()
+        {
+            IsOpen = false;
         }
 
         private void GenerateButtons (DialogNode node)
@@ -130,6 +154,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
         private IEnumerator AnimateText (string text)
         {
             ClearText();
+            _isTypingOut = true;
             for (int i = 0; i < text.Length; i++)
             {
                 char character = text[i];
@@ -138,31 +163,48 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
                 Text.text = _currentText;
                 yield return new WaitForSecondsRealtime(time);
             }
+            _isTypingOut = false;
+        }
+
+        public void QuickContinue ()
+        {
+            if (_isTypingOut)
+            {
+                InstantFinishCurrentNode();
+            }
+            else
+            {
+                AutoSelectFirstOptionOrEnd();
+            }
         }
 
         public static void InstantFinishCurrentNode()
         {
-            Instance.StopCoroutine(Instance._currentCoroutine);
-            Instance.Text.text = Instance._currentNode.Text;
+            if (Instance._currentCoroutine != null)
+            {
+                Instance.StopCoroutine(Instance._currentCoroutine);
+                Instance.Text.text = Instance._currentNode.Text;
+                Instance._isTypingOut = false;
+            }
         }
 
-        public static bool TryAutoSelectSingleOptionOrEnd ()
+        public static void AutoSelectFirstOptionOrEnd ()
         {
-            var cur = Instance._currentNode;
-            if (cur.Options.Length == 1)
+            if (Instance._currentNode != null)
             {
-                var option = cur.Options[0];
-                if (option.HasResult)
-                    option.Result.OnSelected();
-                else EndDialog();
-                return true;
-            }else if (cur.Options.Length == 0)
-            {
-                EndDialog();
-                return true;
+                var cur = Instance._currentNode;
+                var option = cur.Options.FirstOrDefault();
+                if (option != null)
+                {
+                    if (option.HasResult)
+                        option.Result.OnSelected();
+                    else EndDialog();
+                }
+                else
+                {
+                    EndDialog();
+                }
             }
-            
-            return false;
         }
 
         private float GetCharacterTime (char character)
@@ -179,7 +221,7 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            InstantFinishCurrentNode();
+            QuickContinue();
         }
     }
 }

@@ -32,12 +32,5 @@ namespace Lomztein.BFA2.UI.ToolTip
                 StatSheet.SetTarget((obj as Component).gameObject);
             }
         }
-
-        public void AssignAssemblyUpgrade(TurretAssembly assembly, Tier tier)
-        {
-            Assign(assembly.GetTierParent(tier).GetComponent<Structure>());
-            Description.gameObject.SetActive(false);
-            Title.text = "Upgrade to " + tier.Name;
-        }
     }
 }

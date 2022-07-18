@@ -61,12 +61,14 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu
 
         private void OnAdded(IEnumerable<T> objs)
         {
-            AddPickables(objs);
+            SetPickables(_provider.Get());
+            UpdateButtons();
         }
 
         private void OnRemoved(IEnumerable<T> objs)
         {
-            RemovePickables(objs);
+            SetPickables(_provider.Get());
+            UpdateButtons();
         }
 
         public virtual void AddPickables (IEnumerable<T> pickables)
