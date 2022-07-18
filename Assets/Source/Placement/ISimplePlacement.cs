@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Placement
 {
+    // TODO: Rename to IStructurePlacement, 
     public interface ISimplePlacement : IPlacement
     {
         bool ToPosition(Vector2 position);

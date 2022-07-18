@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         internal static bool TryGenerateCustomContentPack()
         {
-            if (Directory.Exists(CustomContentPath)) return false;
+            if (Directory.Exists(CustomContentPath) && File.Exists(Path.Combine(CustomContentPath, "About.json"))) return false;
             ContentPackInfo info = new ContentPackInfo();
 
             info.Name = "Custom";

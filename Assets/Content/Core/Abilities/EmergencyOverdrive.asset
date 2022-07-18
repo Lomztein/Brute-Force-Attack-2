@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e34709bbde8b64ca59bd9d509faa85, type: 3}
+  m_Name: EmergencyOverdrive
+  m_EditorClassIdentifier: 
+  _name: Emergency Charge
+  _description: Supercharges a small group of turrets for a short while.
+  _identifier: Core.EmergencyCharge
+  Sprite:
+    Path: 
+    Texture: {fileID: 2800000, guid: 2dd9a22126afa074fa1e8a49ee16372d, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  MaxCharges: 3
+  MaxCooldown: 3
+  Visualizer:
+    Path: Core/Abilities/Visualizers/EmergencyOverdrive.json
+  CurrentCooldown: 0
+  CurrentCharges: 3
+  Mod: {fileID: 11400000, guid: 8da183f6976954748918ad8fab60c4f4, type: 2}
+  Range: 3.5
+  Time: 6
+  Layer:
+    serializedVersion: 2
+    m_Bits: 512

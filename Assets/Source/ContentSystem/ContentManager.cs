@@ -33,7 +33,6 @@ namespace Lomztein.BFA2.ContentSystem
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
             Instance = this;
         }
 

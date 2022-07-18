@@ -9,11 +9,14 @@ namespace Lomztein.BFA2.Research.Rewards
     public class UnlockReward : CompletionReward
     {
         [ModelProperty]
-        public string Identifier;
+        public string[] Unlocks;
 
         public override void ApplyReward()
         {
-            Player.Player.Unlocks.SetUnlocked(Identifier, true);
+            foreach (var unlock in Unlocks)
+            {
+                Player.Player.Unlocks.SetUnlocked(unlock, true);
+            }
         }
     }
 }

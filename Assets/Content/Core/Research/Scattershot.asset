@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
+  m_Name: Scattershot
+  m_EditorClassIdentifier: 
+  Name: Scattershot
+  Description: Reveal the secrets of shooting very tiny pellets at things.
+  Sprite:
+    Path: Core/Sprites/Components/sprite_sheet2.png
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 16
+      height: 16
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SpriteTint: {r: 1, g: 1, b: 1, a: 1}
+  ResourceCost:
+    Elements:
+    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+      Value: 1
+  TimeCost: 2
+  Identifier: Core.Scattershot
+  PrerequisiteIdentifiers: []
+  PinIdentifier: 
+  UniquePrerequisites: []
+  Rewards:
+  - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
+      data:
+        Unlocks: []

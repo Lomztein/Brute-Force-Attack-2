@@ -1,3 +1,4 @@
+using Lomztein.BFA2.Abilities;
 using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
@@ -49,6 +50,7 @@ namespace Lomztein.BFA2.Battlefield
             InitMap(settings);
             InitWaves(settings);
             InitDefaultUnlocks(settings);
+            InitStartingAbilities(settings);
             InitStartingItems(settings);
             InitDifficulty(settings);
             InitMutators(settings);
@@ -83,6 +85,14 @@ namespace Lomztein.BFA2.Battlefield
             foreach (var item in settings.StartingItems)
             {
                 Player.Player.Inventory.AddItem(Instantiate(item));
+            }
+        }
+
+        private void InitStartingAbilities(BattlefieldSettings settings)
+        {
+            foreach (var ability in settings.StartingAbilities)
+            {
+                AbilityManager.Instance.AddAbility(Instantiate(ability), this);
             }
         }
 
