@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.Modification.Filters
     [System.Serializable]
     public class StructureClassFilter : StructureFilter
     {
-        [ModelProperty]
+        [ModelProperty, SerializeField]
         private string _typeName = "";
 
         public override bool Check(Structure structure)

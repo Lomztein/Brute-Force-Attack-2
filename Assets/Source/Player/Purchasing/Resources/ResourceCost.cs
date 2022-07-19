@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
     public class ResourceCost : IResourceCost
     {
         [ModelProperty]
-        public Element[] Elements;
+        public Element[] Elements = new Element[0];
 
         [Serializable]
         public class Element

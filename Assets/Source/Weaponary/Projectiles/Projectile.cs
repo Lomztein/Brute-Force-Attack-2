@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         [ModelProperty]
         public float Speed;
         [ModelProperty]
-        public float Damage;
+        public double Damage;
         [ModelProperty]
         public float Range;
         [ModelProperty]
@@ -116,7 +116,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public DamageInfo Hit (IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal)
         {
             DamageInfo damage = new DamageInfo(Damage, Color);
-            float life = damagable.TakeDamage(damage);
+            double life = damagable.TakeDamage(damage);
 
             HitInfo info = new HitInfo(damage, col, position, normal, this, _weapon, Damage <= 0f);
 

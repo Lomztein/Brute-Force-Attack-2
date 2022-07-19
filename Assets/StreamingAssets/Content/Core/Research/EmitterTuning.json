@@ -1,0 +1,53 @@
+{
+  "Name": "Emitter Tuning",
+  "Description": "+20% yellow weapon firerate",
+  "Sprite": {
+    "Path": "Core/Sprites/Collectables/FirerateUpgrade.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 0.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 3
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.EmitterTuning",
+  "PrerequisiteIdentifiers": [
+    "Core.CompactRecievers"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.GlobalStructureModReward",
+      "$Data": {
+        "Mod": {
+          "Mod": {
+            "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+            "$Data": "$Path{Core/Modifiers/Mods/PreciseTuningYellow.json}"
+          }
+        }
+      }
+    }
+  ]
+}

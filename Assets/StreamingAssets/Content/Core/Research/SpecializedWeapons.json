@@ -1,6 +1,6 @@
 {
-  "Name": "Unnamed",
-  "Description": "Undescd",
+  "Name": "Specialized Weapons",
+  "Description": "Unlocks the [REDACTED] components (Seriously they're not implemented yet)",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -23,12 +23,19 @@
     "Alpha": 1.0
   },
   "ResourceCost": {
-    "Elements": []
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 3
+      }
+    ]
   },
   "TimeCost": 0,
   "Identifier": "",
-  "PrerequisiteIdentifiers": [],
+  "PrerequisiteIdentifiers": [
+    "Core.Scattershot",
+    "Core.CompactRecievers"
+  ],
   "PinIdentifier": "",
-  "UniquePrerequisites": [],
-  "Rewards": []
+  "UniquePrerequisites": []
 }

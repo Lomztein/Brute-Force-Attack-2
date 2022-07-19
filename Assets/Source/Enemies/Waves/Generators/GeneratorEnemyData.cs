@@ -11,7 +11,7 @@ namespace Lomztein.BFA2
         [ModelProperty]
         public string EnemyIdentifier;
         [ModelProperty]
-        public float DifficultyValue;
+        public double DifficultyValue;
         [ModelProperty]
         public int EarliestWave;
         [ModelProperty]

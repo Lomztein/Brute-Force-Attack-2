@@ -24,7 +24,6 @@ namespace Lomztein.BFA2.Enemies.Scalers
         public override void Scale (Enemy enemy)
         {
             enemy.MaxHealth *= HealthMult;
-            enemy.Health *= HealthMult;
             enemy.Armor *= ArmorMult;
             enemy.Shields = ShieldMult;
         }

@@ -1,0 +1,52 @@
+{
+  "Name": "Compact Recievers",
+  "Description": "Unlock second tier Machine Gun, Pulse Laser Cannon, and Rocket Launcher",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/MachineGunT2.png",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 16.0,
+      "Height": 16.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 4
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.CompactRecievers",
+  "PrerequisiteIdentifiers": [
+    "Core.BasicRocketry"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          "Core.MachineGunT2",
+          "Core.PulseLaserT2",
+          "Core.RocketLauncherT2"
+        ]
+      }
+    }
+  ]
+}

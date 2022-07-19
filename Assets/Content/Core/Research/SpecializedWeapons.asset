@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
   m_Name: SpecializedWeapons
   m_EditorClassIdentifier: 
-  Name: Unnamed
-  Description: Undescd
+  Name: Specialized Weapons
+  Description: Unlocks the [REDACTED] components (Seriously they're not implemented
+    yet)
   Sprite:
     Path: 
     Texture: {fileID: 0}
@@ -27,12 +28,17 @@ MonoBehaviour:
     PixelsPerUnit: 16
   SpriteTint: {r: 1, g: 1, b: 1, a: 1}
   ResourceCost:
-    Elements: []
+    Elements:
+    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+      Value: 3
   TimeCost: 0
   Identifier: 
-  PrerequisiteIdentifiers: []
+  PrerequisiteIdentifiers:
+  - Core.Scattershot
+  - Core.CompactRecievers
   PinIdentifier: 
   UniquePrerequisites: []
   Rewards: []
   references:
-    version: 1
+    version: 2
+    RefIds: []

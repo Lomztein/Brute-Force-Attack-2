@@ -15,32 +15,22 @@ MonoBehaviour:
   Identifier: Core.PreciseTuning
   Name: Precise Tuning
   Description: This has been tuned to fire faster
-  Color: 0
-  Sprite:
-    Path: Core/Sprites/Collectables/FirerateUpgrade.png
-    Texture: {fileID: 0}
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
   Filters:
-  - id: 0
-  - id: 1
+  - rid: 0
+  - rid: 1
   Stats:
-  - Info: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
-    Value: 0.2
+  - Info: {fileID: 11400000, guid: 8c564ad88c4da83419a069fef4b727d5, type: 2}
+    Value: 0.15
+  AddStatIfMissing: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: StructureColorFilter, ns: Lomztein.BFA2.Modification.Filters,
         asm: Assembly-CSharp}
       data:
         ApplicableColors: 02000000
-    00000001:
+    - rid: 1
       type: {class: CategoryStructureFilter, ns: Lomztein.BFA2.Modification.Filters,
         asm: Assembly-CSharp}
       data:

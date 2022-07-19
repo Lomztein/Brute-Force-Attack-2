@@ -26,14 +26,15 @@
     "Elements": [
       {
         "Resource": "$Path{Core/Resources/Research.json}",
-        "Value": 3
+        "Value": 6
       }
     ]
   },
-  "TimeCost": 2,
+  "TimeCost": 0,
   "Identifier": "Core.AdvancedRocketry",
   "PrerequisiteIdentifiers": [
-    "Core.IntermediateRocketry"
+    "Core.NanoRecievers",
+    "Core.BasicRocketry"
   ],
   "PinIdentifier": "",
   "UniquePrerequisites": [],
@@ -41,7 +42,9 @@
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
-        "Unlocks": []
+        "Unlocks": [
+          "Core.KineticMissleLauncher"
+        ]
       }
     }
   ]

@@ -1,0 +1,51 @@
+{
+  "Name": "Slowfields",
+  "Description": "Unlock the slowfield technology, coming first with the Slowfield Generator, that can slow nearby enemies.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Structures/SlowFieldModule.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 12
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.Slowfields",
+  "PrerequisiteIdentifiers": [
+    "Core.WirelessCoolant",
+    "Core.ScalableComputing"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          "Core.SlowfieldGenerator"
+        ]
+      }
+    }
+  ]
+}

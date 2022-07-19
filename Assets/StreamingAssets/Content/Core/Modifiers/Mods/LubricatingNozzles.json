@@ -1,0 +1,23 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Turnrate.json}",
+        "Value": 0.25
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Turnrate.json}"
+        }
+      }
+    ],
+    "Identifier": "Core.LubricatingNozzles",
+    "Name": "Lubricating Nozzles",
+    "Description": "Lube-spewing nozzles have been installed on this rotator, increasing it's turn rate."
+  }
+}

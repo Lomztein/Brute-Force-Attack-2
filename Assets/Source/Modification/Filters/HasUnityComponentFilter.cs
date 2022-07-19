@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Modification.Filters
 {
+    [System.Serializable]
     public class HasUnityComponentFilter : IModdableFilter
     {
         [ModelProperty]

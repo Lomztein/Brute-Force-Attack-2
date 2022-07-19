@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             GeneratorEnemyData data = GetRandomEnemyGeneratorData(wave);
             if (data != null)
             {
-                return (data, Mathf.Max(Mathf.RoundToInt(credits / data.DifficultyValue), 1));
+                return (data, Math.Max((int)Math.Round(credits / data.DifficultyValue), 1));
             }
             else
             {
@@ -62,9 +62,9 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             (GeneratorEnemyData data, int amount) = GetRandomEnemy(credits, wave);
             if (data != null)
             {
-                float frequency = baseFrequency / data.DifficultyValue;
-                float time = amount / frequency;
-                return new SpawnInterval(startTime, time, data.EnemyIdentifier, amount);
+                double frequency = baseFrequency / data.DifficultyValue;
+                double time = amount / frequency;
+                return new SpawnInterval(startTime, (float)time, data.EnemyIdentifier, amount);
             }
             else return null;
         }

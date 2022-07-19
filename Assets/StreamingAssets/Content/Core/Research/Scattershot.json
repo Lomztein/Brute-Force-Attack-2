@@ -26,20 +26,21 @@
     "Elements": [
       {
         "Resource": "$Path{Core/Resources/Research.json}",
-        "Value": 1
+        "Value": 2
       }
     ]
   },
-  "TimeCost": 2,
+  "TimeCost": 0,
   "Identifier": "Core.Scattershot",
   "PrerequisiteIdentifiers": [],
   "PinIdentifier": "",
-  "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
-        "Unlocks": []
+        "Unlocks": [
+          "Core.ShotgunT1"
+        ]
       }
     }
   ]
