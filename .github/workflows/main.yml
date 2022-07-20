@@ -36,7 +36,7 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           buildMethod: Builder.CDBuildGame
-          unityVersion: 2020.3.13f1
+          unityVersion: 2021.3.6f1
           targetPlatform: ${{ matrix.targetPlatform }}
 
       - uses: actions/upload-artifact@v2
