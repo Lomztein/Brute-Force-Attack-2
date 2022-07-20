@@ -1,0 +1,252 @@
+{
+  "Name": "Supercharged Machine Gun",
+  "Description": "This machine gun has been charged beyond reason, and can rapidly dispatch enemies in bursts.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Supercharged Double-Barrelled Machine Gun",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Supercharged Tri-Barrelled Machine Gun",
+      "Tier": 2,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumAccumulator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.MediumPowerConverger",
+                  "LocalPosition": {
+                    "X": 2.980232E-08,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.CoolantCell",
+                          "LocalPosition": {
+                            "X": -0.625,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumAccumulator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.MediumPowerConverger",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT2",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.CoolantCell",
+                          "LocalPosition": {
+                            "X": -0.625,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumAccumulator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.MediumPowerConverger",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.MachineGunT3",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.CoolantCell",
+                          "LocalPosition": {
+                            "X": -0.625,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    }
+  }
+}

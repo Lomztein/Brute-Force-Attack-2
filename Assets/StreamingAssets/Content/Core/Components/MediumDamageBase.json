@@ -1,0 +1,248 @@
+{
+  "Name": "MediumDamageBase(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
+      "$Data": {
+        "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
+        "OnTargetAcquiredInfo": "$Path{Core/Modifiers/Events/OnTargetAcquired.json}",
+        "BaseRange": 10.0,
+        "TargetLayer": {
+          "Mask": 256
+        },
+        "BaseComplexity": 0.15,
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          }
+        ],
+        "_name": "Damage Booster Base",
+        "_description": "Targets nearby hostiles. Diverts weapon power from their clock to their rounds, increasing damage at the cost of a smaller amount of firerate.",
+        "_uniqueIdentifier": "Core.MediumDamageBase",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 800
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Medium",
+        "_height": "Medium"
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
+      "$Data": {
+        "_evalutator": null
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 1.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
+      "$Data": {
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/AddModuleSlot.json}"
+        },
+        "ModCoeffecient": 1.0
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.HierachialModBroadcaster",
+      "$Data": {
+        "ProvideUpwards": "None",
+        "ProvideDownwards": "All",
+        "ProvideSelf": false,
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/RoundsPower.json}"
+        },
+        "ModCoeffecient": 1.0
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Base",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/DamageBoostBase.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

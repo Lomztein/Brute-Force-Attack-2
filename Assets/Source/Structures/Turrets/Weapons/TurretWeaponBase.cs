@@ -125,6 +125,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
                 Weapon.Speed = Speed.GetValue();
                 Weapon.Firerate = Firerate.GetValue();
                 Weapon.Range = GetRange();
+                Weapon.Color = Color;
             }
         }
 

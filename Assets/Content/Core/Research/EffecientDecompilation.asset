@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
+  m_Name: EffecientDecompilation
+  m_EditorClassIdentifier: 
+  Name: Effecient Decompilation
+  Description: Increases credits recieved from waves.
+  Sprite:
+    Path: 
+    Texture: {fileID: 2800000, guid: 2dd9a22126afa074fa1e8a49ee16372d, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 16
+      height: 16
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SpriteTint: {r: 1, g: 1, b: 1, a: 1}
+  ResourceCost:
+    Elements:
+    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+      Value: 5
+  TimeCost: 0
+  Identifier: Core.EffecientDecompilation
+  PrerequisiteIdentifiers: []
+  PinIdentifier: 
+  UniquePrerequisites: []
+  Rewards:
+  - rid: 2982705019609154302
+  references:
+    version: 2
+    RefIds:
+    - rid: 2982705019609154302
+      type: {class: PlayerModResearchReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
+      data:
+        Mod: {fileID: 11400000, guid: ca12ec78dafd6324b9ecebe2ced962ab, type: 2}

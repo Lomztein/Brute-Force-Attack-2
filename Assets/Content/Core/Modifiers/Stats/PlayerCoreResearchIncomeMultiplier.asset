@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9552e73618286844e8e31db9dfbc6360, type: 3}
+  m_Name: PlayerCoreResearchIncomeMultiplier
+  m_EditorClassIdentifier: 
+  Identifier: Core.PlayerResearchIncomeMultiplier
+  Name: Research Income Multiplier
+  Description: How much additional of this resource is earned.
+  Function:
+    rid: 0
+  Formatter:
+    rid: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 0
+      type: {class: MultiplicativeFunction, ns: Lomztein.BFA2.Modification.Stats.Functions,
+        asm: Assembly-CSharp}
+    - rid: 1
+      type: {class: PercentageFormatter, ns: Lomztein.BFA2.Modification.Stats.Formatters,
+        asm: Assembly-CSharp}

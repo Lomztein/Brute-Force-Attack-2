@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Weaponary
         public int MuzzleCount => _muzzles.Length;
 
         public Transform Target { get; set; }
-        public Colorization.Color Color;
+        public Colorization.Color Color { get; set; }
         public float Cooldown => 1f / Firerate;
 
         private IObjectPool<IProjectile> _pool;

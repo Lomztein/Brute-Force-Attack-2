@@ -15,7 +15,7 @@ namespace Lomztein.BFA2
 
         public int Display(IUnlockList list, IEnumerable<string> identifiers)
         {
-            var missingResearch = list.GetRequiredResearchToUnlock(ResearchController.Instance.GetAll(), identifiers);
+            var missingResearch = list.GetRequiredResearchToUnlock(ResearchController.Instance.GetAll(), identifiers).Distinct();
             foreach (var research in missingResearch)
             {
                 GameObject newObj = Instantiate(Prefab, Parent);

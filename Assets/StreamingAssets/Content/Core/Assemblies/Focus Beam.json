@@ -1,0 +1,216 @@
+{
+  "Name": "Focus Beam",
+  "Description": "Focuses down enemies from afar, but takes time to recharge.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Twin Focus Beam",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Heavy Focus Beam",
+      "Tier": 2,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallAccumulator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.PulseLaserT1",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.AuxProcessor",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallRotator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallAccumulator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT2",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.AuxProcessor",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.SmallRotator",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallAccumulator",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.PulseLaserT3",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.CoolantCell",
+                          "LocalPosition": {
+                            "X": -0.625,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "Name": "MediumPowerConverger(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.PassiveTurretComponent",
+      "$Data": {
+        "BaseComplexity": 0.75,
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 4
+          }
+        ],
+        "_name": "Medium Power Converger",
+        "_description": "Converges all of the power onto a single target, increasing the targets damage output fourfold.",
+        "_uniqueIdentifier": "Core.MediumPowerConverger",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 500
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Medium",
+        "_height": "Medium"
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
+      "$Data": {
+        "_evalutator": null
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 1.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.HierachialModBroadcaster",
+      "$Data": {
+        "ProvideUpwards": "None",
+        "ProvideDownwards": "Single",
+        "ProvideSelf": false,
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/PowerConvergence.json}"
+        },
+        "ModCoeffecient": 1.0
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Base",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/4To1Focuser.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

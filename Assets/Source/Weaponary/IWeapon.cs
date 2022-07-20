@@ -19,6 +19,7 @@ namespace Lomztein.BFA2.Weaponary
         float Speed { get; set; }
         float Spread { get; set; }
         float Range { get; set; }
+        Colorization.Color Color { get; set; }
         int MuzzleCount { get; }
 
         void Init();

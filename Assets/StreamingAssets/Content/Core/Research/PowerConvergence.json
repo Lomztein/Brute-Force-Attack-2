@@ -1,0 +1,51 @@
+{
+  "Name": "Power Convergence",
+  "Description": "Allows the convergence of power to individual targets. Unlocks the Medium Power Converger component.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/Base.png",
+    "Texture": "$Path{Core/Sprites/Components/4To1Focuser.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 7
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "",
+  "PrerequisiteIdentifiers": [
+    "Core.Screws",
+    "Core.HeavierMunitions"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          "Core.MediumPowerConverger"
+        ]
+      }
+    }
+  ]
+}

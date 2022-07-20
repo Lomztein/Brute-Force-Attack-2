@@ -1,0 +1,42 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "Value": 0.4
+      },
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "Value": -0.2
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasUnityComponentFilter",
+        "$Data": {
+          "ApplicableComponentClassNames": [
+            "Weapon"
+          ],
+          "RequireAll": false
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Damage.json}"
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Firerate.json}"
+        }
+      }
+    ],
+    "Identifier": "Core.RoundsPower",
+    "Name": "Rounds Power",
+    "Description": "Some of this weapons power has been diverted to empowering it's rounds, increasing damage but decreasing fire-rate by a smaller amount."
+  }
+}

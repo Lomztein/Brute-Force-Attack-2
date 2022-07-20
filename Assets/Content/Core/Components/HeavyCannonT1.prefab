@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599087991926430482}
   m_RootOrder: 0
@@ -82,6 +83,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 292358184125278825}
   m_Father: {fileID: 4486793738625452215}
@@ -117,6 +119,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1599087990944767672}
   - {fileID: 4486793738625452215}
@@ -142,7 +145,8 @@ MonoBehaviour:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
       Value: 2500
-  BaseAttributes: 
+  Tags:
+    _tags: []
   _width: 2
   _height: 2
   BaseComplexity: 0
@@ -198,7 +202,7 @@ MonoBehaviour:
     type: 2}
   OnProjectileKillInfo: {fileID: 11400000, guid: 0f2f8fe425805474ea140d6cb72be164,
     type: 2}
-  BaseDamage: 2000
+  BaseDamage: 4000
   BaseProjectileAmount: 1
   BaseSpread: 0
   BaseSpeed: 100
@@ -318,7 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Color: 2
   ProjectilePrefab:
     Path: Resources/Projectiles/CannonProjectile
   HitLayer:
@@ -350,6 +353,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1599087991583226261}
   m_Father: {fileID: 1599087991926430482}
@@ -382,6 +386,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1599087991583226261}
   m_RootOrder: 0

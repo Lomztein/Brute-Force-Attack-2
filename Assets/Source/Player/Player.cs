@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Lomztein.BFA2.Player
 {
@@ -72,7 +73,7 @@ namespace Lomztein.BFA2.Player
             Resource[] resources = Content.GetAll<Resource>("*/Resources/*").ToArray();
             foreach (Resource resource in resources)
             {
-                ResourceEarningMultiplier.Add(resource.Identifier, _stats.AddStat(GenerateStatInfo(resource), 1f, this));
+                ResourceEarningMultiplier.Add(resource.Identifier, _stats.AddStat(LoadStatInfo(resource), 1f, this));
                 _resourceFractionTrackers.Add(resource.Identifier, 0f);
             }
 
@@ -80,12 +81,11 @@ namespace Lomztein.BFA2.Player
             OnNewPlayerInstance?.Invoke(this);
         }
 
-        private StatInfo GenerateStatInfo (Resource resource)
+        private StatInfo LoadStatInfo (Resource resource)
         {
-            StatInfo instance = Instantiate(ResourceEarningMultiplierInfo);
-            instance.Identifier = resource.Identifier + "EarningsMultiplier";
-            instance.Name = resource.Name + " Earnings Multiplier";
-            return instance;
+            StatInfo info = Content.GetAll<StatInfo>($"*/Modifiers/Stats/Player{resource.Identifier.Replace(".", "")}IncomeMultiplier.json").FirstOrDefault();
+            Assert.IsNotNull(info, "Unable to find player resource multiplier for " + resource.Name);
+            return info;
         }
 
         public void Earn (Resource resource, float amount)
