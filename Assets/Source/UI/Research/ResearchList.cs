@@ -77,7 +77,14 @@ namespace Lomztein.BFA2.Research.UI
         private void UpdateAvailableCount ()
         {
             int amount = Controller.GetAvailable().Where(x => _resourceContainer.HasEnough(x.ResourceCost)).Count();
-            AvailableOptionsCount.text = $"{amount} available research option(s)";
+            if (amount == 0)
+            {
+                AvailableOptionsCount.text = "No Research Available";
+            }
+            else
+            {
+                AvailableOptionsCount.text = $"Research Available ({amount})";
+            }
         }
 
         public void Toggle ()

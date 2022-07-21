@@ -18,35 +18,82 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         public override IEnumerable<IModdable> GetPotentialBroadcastTargets()
         {
-            foreach (Transform sibling in GetSiblings())
+            var transforms = FindAdjacentTransforms(transform, AdjacencyCheckRange, AdjacencyCheckLayer).ToArray();
+            foreach (var adjacent in transforms)
             {
-                if (IsAdjecent(sibling.gameObject))
+                if (adjacent.TryGetComponent(out IModdable moddable))
                 {
-                    IModdable moddable = sibling.GetComponent<IModdable>();
-                    if (moddable != null && Mod.CanMod(moddable))
-                    {
-                        yield return moddable;
-                    }
-                }
-            } 
-        }
-
-        private IEnumerable<Transform> GetSiblings ()
-        {
-            if (transform.parent)
-            {
-                List<Transform> siblings = new List<Transform>(transform.parent.childCount);
-                foreach (Transform child in transform.parent)
-                {
-                    if (child != transform)
-                    {
-                        yield return child;
-                    }
+                    yield return moddable;
                 }
             }
         }
 
-        private bool IsAdjecent(GameObject go) // Terribly wasteful in terms of performance, but easy and should be infrequent enough not to matter.
-            => Physics2D.OverlapCircleAll(transform.position, AdjacencyCheckRange, AdjacencyCheckLayer).Any(x => x.gameObject == go);
+        public static IEnumerable<Transform> FindAdjacentTransforms (Transform trans, float range, LayerMask layerMask)
+        {
+            /* Rules of adjacency:
+            R1: Objects must share common ancestor.
+            R2: Objects must be on the same level in the hierarchy
+            R3: If there are any rotating ancestors between the common, all ancestors between object and roting ancestor must be on local position (0, 0, 0)
+            R4: Objects must be within a very close range.
+            R5: If objects have no parents, then current ancestor is the scene.
+            */
+
+            // Under R4, find all potential targets within range
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(trans.position, range, layerMask);
+            foreach (var collider in colliders)
+            {
+                if (TryFindCommonAncestor(trans, collider.transform, out Transform _))
+                {
+                    yield return collider.transform;
+                }
+            }
+        }
+
+        private static bool TryFindCommonAncestor(Transform rhs, Transform lhs, out Transform common)
+        {
+            // Under R1 and R2, we can step-by-step move down through parents untill we find the same for both.
+            Transform rhsCurrent = rhs;
+            Transform lhsCurrent = lhs;
+
+            // Under R3, we can track if any has been off-center, and if they have and we encounter a rotator, then return false.
+            bool rhsOffCenter = false;
+            bool lhsOffCenter = false;
+
+            // Under R5, we return true if neither has parents, however the common is null.
+            if (rhsCurrent.parent == null && lhsCurrent.parent == null)
+            {
+                common = null;
+                return true;
+            }
+
+            while (rhsCurrent != lhsCurrent)
+            {
+                if (Vector3.SqrMagnitude(rhsCurrent.localPosition) > 0.1f) rhsOffCenter = true;
+                if (Vector3.SqrMagnitude(lhsCurrent.localPosition) > 0.1f) lhsOffCenter = true;
+
+                // Under R3m if either is off-center, and we encounter a rotator, then return false.
+                if ((rhsOffCenter && rhsCurrent.GetComponent<IRotator>() != null)
+                    || (lhsOffCenter && lhsCurrent.GetComponent<IRotator>() != null))
+                {
+                    common = null;
+                    return false;
+                }
+
+                if (rhsCurrent.parent && lhsCurrent.parent)
+                {
+                    rhsCurrent = rhsCurrent.parent;
+                    lhsCurrent = lhsCurrent.parent;
+                }
+                else
+                {
+                    common = null;
+                    return false;
+                }
+            }
+
+            common = rhsCurrent;
+            return true;
+        }
+
     }
 }

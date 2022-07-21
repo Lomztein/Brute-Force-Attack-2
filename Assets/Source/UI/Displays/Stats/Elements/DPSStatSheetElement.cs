@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.UI.Displays.Stats.Elements
             float dps = ComputeDPS(target);
             if (dps > 0.01)
             {
-                SetText($"{Mathf.RoundToInt(dps)} DPS");
+                SetText($"{Mathf.RoundToInt(dps)} Damage / Second");
                 gameObject.SetActive(true);
                 return true;
             }

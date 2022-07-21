@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.ObjectVisualizers;
+using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Lomztein.BFA2.ObjectVisualizers
     {
         private Transform _target;
 
-        [SerializeField] private string _identifier;
+        [SerializeField, ModelProperty] private string _identifier;
         public string Identifier => _identifier;
 
         public bool CanVisualize(object obj)

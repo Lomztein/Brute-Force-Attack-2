@@ -2,6 +2,7 @@ using Lomztein.BFA2.Player.Progression;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Structures.Turrets;
+using Lomztein.BFA2.UI.Displays.Stats;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Lomztein.BFA2.UI.ToolTip
         public Text Title;
         public Text ResearchRequired;
         public CostSheetDisplay CostDisplay;
+        public StatSheet StatSheet;
         public MissingResearchDisplay ResearchDisplay;
 
         private IUnlockList List => Player.Player.Unlocks;
@@ -24,6 +26,7 @@ namespace Lomztein.BFA2.UI.ToolTip
             Title.text = "Upgrade to " + tier.Name;
             var cost = assembly.GetCost(tier).Subtract(assembly.GetCost(assembly.CurrentTeir));
             CostDisplay.Display(cost);
+            StatSheet.SetTarget(assembly.GetTierParent(tier).gameObject);
             if (ResearchDisplay.Display(List, assembly.GetComponents(tier).Select(x => x.Identifier)) == 0)
             {
                 ResearchRequired.gameObject.SetActive(false);

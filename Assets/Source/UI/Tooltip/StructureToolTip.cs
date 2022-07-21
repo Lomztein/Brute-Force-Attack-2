@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.UI.ToolTip
     {
         public Text Title;
         public Text Description;
+        public CostSheetDisplay CostSheet;
         public StatSheet StatSheet;
 
         public void Assign(IPurchasable obj)
@@ -26,10 +27,12 @@ namespace Lomztein.BFA2.UI.ToolTip
             if (obj is TurretAssembly assembly)
             {
                 StatSheet.SetTarget(assembly.GetTierParent(assembly.CurrentTeir).gameObject);
+                CostSheet.Display(assembly.GetCost(Tier.Initial));
             }
             else
             {
                 StatSheet.SetTarget((obj as Component).gameObject);
+                CostSheet.Display(obj.Cost);
             }
         }
     }

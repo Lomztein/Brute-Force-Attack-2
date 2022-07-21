@@ -75,9 +75,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
             return new ResourceCost(elements.ToArray());
         }
 
-        public static string Format(this IResourceCost cost)
+        public static string Format(this IResourceCost cost, bool useShorthand)
         {
-            return string.Join(", ", cost.GetCost().Select(x => x.Key.Shorthand + ": " + x.Value));
+            return string.Join(", ", cost.GetCost().Select(x => (useShorthand ? x.Key.Shorthand : x.Key.Name) + ": " + x.Value));
         }
     }
 }

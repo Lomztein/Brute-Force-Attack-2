@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Structures.Upgrading
 
                 return new IContextMenuOption[]
                 {
-                    new ContextMenuOption (() => Sprite, () => Color.white, () => UI.ContextMenu.ContextMenu.Side.Right, Upgrade, CanUpgrade, () => SimpleToolTip.InstantiateToolTip("Upgrade - " + Cost.Format() + status, Description)),
+                    new ContextMenuOption (() => Sprite, () => Color.white, () => UI.ContextMenu.ContextMenu.Side.Right, Upgrade, CanUpgrade, () => SimpleToolTip.InstantiateToolTip("Upgrade - " + Cost.Format(false) + status, Description)),
                 };
             }
             else

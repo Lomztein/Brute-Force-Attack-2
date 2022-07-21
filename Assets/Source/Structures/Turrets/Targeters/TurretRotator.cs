@@ -10,7 +10,7 @@ using Lomztein.BFA2.Weaponary;
 
 namespace Lomztein.BFA2.Structures.Turrets.Targeters
 {
-    public class TurretRotator : TurretComponent, ITargeter
+    public class TurretRotator : TurretComponent, ITargeter, IRotator
     {
         public ITargetProvider TargetProvider;
         private IWeapon _weapon;
@@ -94,6 +94,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
                 _angleToTarget = 180f;
                 _prevPos = null;
             }
+        }
+
+        public float GetAngle()
+        {
+            return transform.rotation.eulerAngles.z;
         }
     }
 }

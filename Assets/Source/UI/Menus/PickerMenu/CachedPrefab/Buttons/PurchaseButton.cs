@@ -26,10 +26,6 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 
         public GameObject ToolTipPrefab;
 
-        public string Title => _purchasable.Name + " - " + _purchasable.Cost.Format();
-        public string Description => _purchasable.Description;
-        public string Footnote => string.Empty;
-
         public virtual GameObject GetToolTip()
         {
             GameObject newToolTip = Instantiate(ToolTipPrefab);

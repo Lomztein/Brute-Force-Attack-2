@@ -47,10 +47,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
         {
             return Elements.ToDictionary(x => x.Resource, y => y.Value);
         }
-
         public override string ToString()
         {
-            return this.Format();
+            return this.Format(true);
         }
     }
 }
