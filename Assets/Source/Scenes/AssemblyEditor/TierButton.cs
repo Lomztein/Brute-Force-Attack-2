@@ -51,11 +51,19 @@ namespace Lomztein.BFA2.Scenes.AssemblyEditor
         private void Update()
         {
             Image.sprite = RenderSprite();
+            Image.gameObject.SetActive(Image.sprite);
         }
 
         private Sprite RenderSprite ()
         {
-            return Iconography.GenerateSprite(TierParent.gameObject);
+            if (TierParent)
+            {
+                return Iconography.GenerateSprite(TierParent.gameObject);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)

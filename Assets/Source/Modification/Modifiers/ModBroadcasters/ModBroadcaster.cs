@@ -106,14 +106,17 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         {
             foreach (var target in _currentBroadcastTargets)
             {
-                RemoveMod(target);
+                if (target != null)
+                {
+                    RemoveMod(target);
+                }
             }
             _currentBroadcastTargets.Clear();
         }
 
         private bool AddMod(IModdable moddable)
         {
-            if (Mod.CanMod(moddable))
+            if (UnityUtils.IsNullOrDestroyed(moddable) && Mod.CanMod(moddable))
             {
                 var copy = Instantiate(Mod);
                 copy.Coeffecient = ModCoeffecient;
@@ -125,7 +128,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
         private void RemoveMod (IModdable moddable)
         {
-            if (moddable != null)
+            if (UnityUtils.IsNullOrDestroyed(moddable))
             {
                 moddable.Mods.RemoveMod(Mod.Identifier);
             }

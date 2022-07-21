@@ -10,43 +10,58 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
     public class TurretAssemblyAssembler
     {
         private const string ASSEMBLY_PREFAB_PATH = "Prefabs/AssemblyPrefab";
-        private TurretComponentAssembler _assembler = new TurretComponentAssembler();
+        private TurretComponentAssembler _componentAssembler = new TurretComponentAssembler();
         private ValueAssembler _valueAssembler = new ValueAssembler();
 
         public TurretAssembly Assemble (RootModel model)
         {
-            GameObject assemblyObject = UnityEngine.Object.Instantiate(Resources.Load<GameObject>(ASSEMBLY_PREFAB_PATH));
+            GameObject assemblyObject = Object.Instantiate(Resources.Load<GameObject>(ASSEMBLY_PREFAB_PATH));
             TurretAssembly assembly = assemblyObject.GetComponent<TurretAssembly>();
-            ObjectModel obj = model.Root as ObjectModel;
-            assembly.Name = obj.GetValue<string>("Name");
-            assembly.Description = obj.GetValue<string>("Description");
-            ArrayModel tiers = obj.GetArray("Tiers");
-            ObjectModel children = obj.GetObject("Children");
-            UpgradeMap upgrades = _valueAssembler.Assemble(obj.GetObject("UpgradeMap"), typeof(UpgradeMap), new AssemblyContext()) as UpgradeMap;
-
-            foreach (var tierProperty in children.GetProperties())
+            try
             {
-                Transform childObj = AssembleTier(tierProperty.Model as ObjectModel, assembly).transform;
-                Tier tier = Tier.Parse(tierProperty.Name);
+                ObjectModel obj = model.Root as ObjectModel;
+                assembly.Name = obj.GetValue<string>("Name");
+                assembly.Description = obj.GetValue<string>("Description");
+                ArrayModel tiers = obj.GetArray("Tiers");
+                ObjectModel children = obj.GetObject("Children");
+                UpgradeMap upgrades = _valueAssembler.Assemble(obj.GetObject("UpgradeMap"), typeof(UpgradeMap), new AssemblyContext()) as UpgradeMap;
 
-                childObj.gameObject.SetActive(false);
-                childObj.gameObject.name = tier.ToString();
+                foreach (var tierProperty in children.GetProperties())
+                {
+                    Tier tier = Tier.Parse(tierProperty.Name);
+
+                    GameObject tierParent = new GameObject(tier.ToString());
+                    tierParent.transform.SetParent(assembly.transform);
+                    tierParent.transform.localPosition = Vector3.zero;
+                    tierParent.gameObject.SetActive(false);
+
+                    Transform childObj = AssembleTier(tierProperty.Model as ObjectModel, assembly).transform;
+
+                    childObj.transform.SetParent(tierParent.transform);
+                    childObj.transform.localPosition = Vector3.zero;
+                }
+
+                ArrayModelAssembler assembler = new ArrayModelAssembler();
+                assembly.SetTiers(assembler.Assemble(tiers, typeof(Tier[]), new AssemblyContext()) as Tier[]);
+                assembly.UpgradeMap = upgrades;
+                assembly.SetTier(Tier.Initial);
+
+                ReflectionUtils.DynamicBroadcastInvoke(assembly.gameObject, "OnAssembled", true);
+                ReflectionUtils.DynamicBroadcastInvoke(assembly.gameObject, "OnPostAssembled", true);
+
+                assembly.RebuildComponentAttachments();
+
+                return assembly;
+            }catch (System.Exception exc)
+            {
+                Debug.LogException(exc);
+                throw new TurretAssemblyException($"Something went wrong during turret assembly of '{assembly.Name}'.", exc);
             }
-
-            ArrayModelAssembler assembler = new ArrayModelAssembler();
-            assembly.SetTiers(assembler.Assemble(tiers, typeof(Tier[]), new AssemblyContext()) as Tier[]);
-            assembly.UpgradeMap = upgrades;
-            assembly.SetTier(Tier.Initial);
-
-            ReflectionUtils.DynamicBroadcastInvoke(assembly.gameObject, "OnAssembled", true);
-            ReflectionUtils.DynamicBroadcastInvoke(assembly.gameObject, "OnPostAssembled", true);
-
-            return assembly;
         }
 
         private TurretComponent AssembleTier (ObjectModel model, TurretAssembly assembly)
         {
-            return _assembler.Assemble(model, null, assembly, new AssemblyContext());
+            return _componentAssembler.Assemble(model, null, assembly, new AssemblyContext());
         }
 
         public RootModel Disassemble (TurretAssembly assembly)
@@ -69,7 +84,12 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 
         private ObjectModel DisassembleTier (TurretAssembly assembly, Tier tier, DisassemblyContext context)
         {
-            return _assembler.Dissassemble(assembly.GetRootComponent(tier), context);
+            return _componentAssembler.Dissassemble(assembly.GetRootComponent(tier), context);
         }
+    }
+
+    public class TurretAssemblyException : System.Exception
+    {
+        public TurretAssemblyException(string message, System.Exception inner) : base(message, inner) { }
     }
 }

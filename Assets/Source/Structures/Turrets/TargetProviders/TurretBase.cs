@@ -69,6 +69,9 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             _targetEvaluator = evaluator;
             _targetFinder.SetEvaluator(_targetEvaluator);
         }
+        public TargetEvaluator GetEvaluator()
+            => _targetEvaluator;
+
         private bool IsWithinRange(Transform trans, float range)
             => (trans.position - transform.position).sqrMagnitude < range * range;
 
@@ -93,7 +96,11 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         public override ValueModel DisassembleData(DisassemblyContext context)
         {
             ObjectAssembler assembler = new ObjectAssembler();
-            return assembler.Disassemble(_targetEvaluator, typeof(TargetEvaluator), context);
+            if (_targetEvaluator == null)
+            {
+                return null;
+            }
+            return assembler.Disassemble(_targetEvaluator, typeof(TargetEvaluator), context).MakeExplicit(_targetEvaluator.GetType());
         }
 
         public override void AssembleData(ValueModel model, AssemblyContext context)
@@ -101,6 +108,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             ObjectAssembler assembler = new ObjectAssembler();
             if (!ValueModel.IsNull(model))
             {
+                var assembly = GetComponentInChildren<TurretAssembly>(true);
                 SetEvaluator(assembler.Assemble(model, typeof(TargetEvaluator), context) as TargetEvaluator);
             }
         }

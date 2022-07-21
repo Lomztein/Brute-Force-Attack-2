@@ -79,7 +79,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
                 foreach (TurretComponent component in components)
                 {
-                    IEnumerable<AttachmentSlot> compatables = component.AttachmentSlots.GetSupportingPoints(point).Where(x => x.IsEmpty());
+                    IEnumerable<AttachmentSlot> compatables = component.AttachmentSlots.GetSupportingSlots(point).Where(x => x.IsEmpty());
                     foreach (var compatable in compatables)
                     {
                         Vector2 diffPos = point.GetWorldPosition(_probe) - compatable.GetWorldPosition(component.transform);

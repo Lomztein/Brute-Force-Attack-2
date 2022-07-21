@@ -35,6 +35,13 @@ namespace Lomztein.BFA2.Utilities
             }
         }
 
+        public static bool IsNullOrDestroyed(object obj)
+        {
+            if (obj is UnityEngine.Object unityObj)
+                return unityObj == null;
+            return obj == null;
+        }
+
         public static void Scale(this ParticleSystem system, float scale)
         {
             system.transform.localScale = Vector3.one * scale;
