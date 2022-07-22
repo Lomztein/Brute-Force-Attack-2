@@ -58,7 +58,7 @@ public class Builder : MonoBehaviour
 
     private static void SetBuildVersion ()
     {
-        DateTime lastMinorRelease = new DateTime(2022, 22, 7);
+        DateTime lastMinorRelease = new DateTime(2022, 7, 22);
 
         string patch = (DateTime.Now - lastMinorRelease).Days.ToString();
         string build = (DateTime.Now.Second + DateTime.Now.Minute * 60 + DateTime.Now.Hour * 3600).ToString();
