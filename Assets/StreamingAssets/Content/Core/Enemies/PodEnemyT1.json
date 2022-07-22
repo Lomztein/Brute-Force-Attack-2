@@ -27,12 +27,12 @@
     {
       "$Type": "Lomztein.BFA2.Enemies.Enemy",
       "$Data": {
-        "MaxHealth": 7.0,
+        "MaxHealth": 5.0,
         "Armor": 0.0,
         "Shields": 0.0,
         "MaxSpeed": 5.0,
         "_UniqueIdentifier": "Core.PodEnemyT1",
-        "Color": "Orange",
+        "Color": "Purple",
         "DeathParticleLife": 1.0
       }
     },
@@ -57,7 +57,7 @@
   ],
   "Children": [
     {
-      "Name": "BasicEnemy",
+      "Name": "Sprite",
       "Tag": "Untagged",
       "Layer": 8,
       "Static": false,
@@ -87,7 +87,7 @@
           "$Data": {
             "Reference": {
               "Path": null,
-              "Texture": "$Path{Core/Sprites/Enemies/SplitterEnemyMinion.png}",
+              "Texture": "$Path{Core/Sprites/Enemies/SplitterMinionT1.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,

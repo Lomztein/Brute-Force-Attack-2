@@ -64,7 +64,10 @@ namespace Lomztein.BFA2.Abilities
             {
                 CurrentCooldown = MaxCooldown;
             }
-            CurrentCharges--;
+            if (MaxCooldown != 0)
+            {
+                CurrentCharges--;
+            }
         }
 
         public virtual void Cooldown(int amount)

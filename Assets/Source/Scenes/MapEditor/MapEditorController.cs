@@ -84,6 +84,7 @@ namespace Lomztein.BFA2.MapEditor
 
             ValueModelSerializer serializer = new ValueModelSerializer();
             File.WriteAllText(path, serializer.Serialize(model).ToString());
+            Content.ResetIndex();
 
             Alert.Open("Map succesfully saved.");
         }

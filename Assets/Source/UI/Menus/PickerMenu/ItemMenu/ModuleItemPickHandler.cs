@@ -40,7 +40,6 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
         private void OnPlaced(Item item)
         {
             GetComponent<IInventory>().RemoveItem(item);
-            Player.Player.Inventory.RemoveItem(item);
         }
     }
 }

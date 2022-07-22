@@ -52,7 +52,9 @@ MonoBehaviour:
   _description: Searches for collectables.
   _uniqueIdentifier: Core.CollectorBase
   _cost:
-    Elements: []
+    Elements:
+    - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
+      Value: 1000
   Tags:
     _tags: []
   _width: 2
@@ -359,9 +361,7 @@ MonoBehaviour:
   _description: Collects loot dropped from enemies in range.
   _uniqueIdentifier: Core.Collector
   _cost:
-    Elements:
-    - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
-      Value: 1000
+    Elements: []
   Tags:
     _tags: []
   _width: 2

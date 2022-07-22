@@ -114,6 +114,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
             var model = assembler.Disassemble(assembly);
             File.WriteAllText(path, ObjectPipeline.SerializeObject(model).ToString());
+            Content.ResetIndex();
             Alert.Open("Assembly has been saved.");
         }
 

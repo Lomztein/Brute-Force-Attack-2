@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Collectables
 
         protected override void Collect()
         {
-            Player.Player.Inventory.AddItem(Item);
+            Player.Player.Inventory.AddItem(Instantiate(Item));
         }
     }
 }

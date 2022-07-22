@@ -37,5 +37,6 @@ namespace Lomztein.BFA2.ContentSystem
         public static void ClearCache(string path) => GetManager().ClearCache(path);
 
         public static IEnumerable<string> QueryContentIndex(string pattern) => GetManager().QueryContentIndex(pattern);
+        public static void ResetIndex() => GetManager().ResetIndex();
     }
 }

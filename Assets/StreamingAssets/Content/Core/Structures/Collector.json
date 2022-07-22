@@ -31,16 +31,9 @@
         "_description": "Collects loot dropped from enemies in range.",
         "_uniqueIdentifier": "Core.Collector",
         "_cost": {
-          "Elements": [
-            {
-              "Resource": "$Path{Core/Resources/Credits.json}",
-              "Value": 1000
-            }
-          ]
+          "Elements": []
         },
-        "Tags": {
-          "_tags": []
-        },
+        "Tags": {},
         "_width": "Medium",
         "_height": "Medium",
         "Category": "$Path{Core/StructureCategories/Structure.json}"
@@ -152,7 +145,14 @@
                 "_name": "Collector Base",
                 "_description": "Searches for collectables.",
                 "_uniqueIdentifier": "Core.CollectorBase",
-                "_cost": {},
+                "_cost": {
+                  "Elements": [
+                    {
+                      "Resource": "$Path{Core/Resources/Credits.json}",
+                      "Value": 1000
+                    }
+                  ]
+                },
                 "Tags": {},
                 "_width": "Medium",
                 "_height": "Medium",

@@ -80,18 +80,26 @@ namespace Lomztein.BFA2.UI.Displays.Dialog
 
         public static void DisplayDialogNode(DialogNode node)
         {
-            EndDialog();
+            EndCurrentNode();
             Instance._currentNode = node;
             Instance._currentCoroutine = Instance.StartCoroutine(Instance.DisplayNodeCoroutine(node));
         }
 
-        public static void EndDialog ()
+        private static bool EndCurrentNode()
         {
             if (Instance._currentCoroutine != null)
             {
                 Instance.StopCoroutine(Instance._currentCoroutine);
                 Instance._currentCoroutine = null;
                 Instance._currentNode = null;
+                return true;
+            }
+            return false;
+        }
+
+        public static void EndDialog ()
+        {
+            if (EndCurrentNode()) {
                 Instance.Invoke(nameof(Close), 0.1f); // Simple hack that ensures wave doesn't start on last auto continue using space.
             }
         }

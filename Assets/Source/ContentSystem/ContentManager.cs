@@ -61,9 +61,6 @@ namespace Lomztein.BFA2.ContentSystem
             PluginManager.StopPlugins();
             PluginManager.ClearPlugins();
 
-            Debug.Log("Clearing index..");
-            _index.ClearIndex();
-
             Debug.Log("Clearing cache..");
             _cache.ClearCache();
 
@@ -74,11 +71,8 @@ namespace Lomztein.BFA2.ContentSystem
             var shouldLoad = allPacks.Where(x => GetEnabledContentPackIdentifiers().Any(y => ContentPackUtils.MatchesUniqueIdentifier(x.GetUniqueIdentifier(), y, false)));
             _loadedAndActivePacks.AddRange(shouldLoad);
 
-            Debug.Log("Setting up index..");
-            foreach (var pack in _loadedAndActivePacks)
-            {
-                _index.AddIndices(pack.GetContentPaths().Select(y => pack.Name + Path.DirectorySeparatorChar + y));
-            }
+            Debug.Log("Clearing and setting up index..");
+            ResetIndex();
             
             Debug.Log("Loading assemblies into memory..");
             LoadPluginAssembliesIntoMemory(_loadedAndActivePacks);
@@ -226,5 +220,13 @@ namespace Lomztein.BFA2.ContentSystem
         public void ClearCache() => _cache.ClearCache();
         public void ClearCache(string path) => _cache.ClearCache(path);
         public IEnumerable<string> QueryContentIndex(string pattern) => _index.Query(pattern);
+        public void ResetIndex()
+        {
+            _index.ClearIndex();
+            foreach (var pack in _loadedAndActivePacks)
+            {
+                _index.AddIndices(pack.GetContentPaths().Select(y => pack.Name + Path.DirectorySeparatorChar + y));
+            }
+        }
     }
 }

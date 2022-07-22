@@ -90,9 +90,38 @@ namespace Lomztein.BFA2.Placement
             return false;
         }
 
+        // Returns width with rotation taken into consideration.
+        private static Size GetWidth (IGridObject structure)
+        {
+            int rotIndex = GetRotationIndex(structure);
+            if (rotIndex == 0 || rotIndex == 2) return structure.Width;
+            if (rotIndex == 1 || rotIndex == 3) return structure.Height;
+            throw new InvalidOperationException("RotIndex somehow not between 0-4");
+        }
+
+        // Returns height with rotation taken into consideration.
+        private static Size GetHeight(IGridObject structure)
+        {
+            int rotIndex = GetRotationIndex(structure);
+            if (rotIndex == 0 || rotIndex == 2) return structure.Height;
+            if (rotIndex == 1 || rotIndex == 3) return structure.Width;
+            throw new InvalidOperationException("RotIndex somehow not between 0-4");
+        }
+
+        // Returns 0 for pointing right, 1 for up, 2 for right, 3 for down.
+        private static int GetRotationIndex(IGridObject structure)
+        {
+            if (structure is Component component)
+            {
+                float angle = component.transform.eulerAngles.z;
+                return Mathf.RoundToInt(angle / 90f);
+            }
+            return 0;
+        }
+
         public bool ToPosition(Vector2 position)
         {
-            position = World.Grid.SnapToGrid(position, _placeable.Width, _placeable.Height);
+            position = World.Grid.SnapToGrid(position, GetWidth(_placeable), GetHeight(_placeable));
             _obj.transform.position = position;
             _model.transform.position = position;
             string canPlace = CanPlace(_model.transform.position, _model.transform.rotation);
@@ -113,8 +142,7 @@ namespace Lomztein.BFA2.Placement
         private string CanPlace (Vector2 position, Quaternion rotation)
         {
             CannotPlaceReasons reasons = new CannotPlaceReasons();
-            Vector2 size = new Vector2(World.Grid.SizeOf (_placeable.Width), World.Grid.SizeOf(_placeable.Height));
-
+            Vector2 size = new Vector2(World.Grid.SizeOf(GetWidth(_placeable)), World.Grid.SizeOf(GetHeight(_placeable)));
 
             if (Physics2D.OverlapBox(position, size * 0.9f, 0, _blockingLayer))
             {
