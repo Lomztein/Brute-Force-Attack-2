@@ -58,12 +58,12 @@ public class Builder : MonoBehaviour
 
     private static void SetBuildVersion ()
     {
-        DateTime lastMinorRelease = new DateTime(2021, 7, 8);
+        DateTime lastMinorRelease = new DateTime(2022, 22, 7);
 
         string patch = (DateTime.Now - lastMinorRelease).Days.ToString();
         string build = (DateTime.Now.Second + DateTime.Now.Minute * 60 + DateTime.Now.Hour * 3600).ToString();
 
-        PlayerSettings.bundleVersion = $"0.2.{patch}.{build}";
+        PlayerSettings.bundleVersion = $"0.3.{patch}.{build}";
     }
 
     public static void BuildGame(params string[] args)
