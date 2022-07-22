@@ -1,0 +1,52 @@
+{
+  "Name": "Volatile Fuel",
+  "Description": "Unlock the secrets of fire. Unlocks the Flamethrower (not yet) and Fuel Tank components.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/ModularBase.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 6
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.VolatileFuel",
+  "PrerequisiteIdentifiers": [
+    "Core.BallBearings",
+    "Core.SpecializedWeapons"
+  ],
+  "PinIdentifier": "",
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          "Core.Flamethrower",
+          "Core.SmallFuelTank"
+        ]
+      }
+    }
+  ]
+}

@@ -27,8 +27,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Targeters
         private Vector3 _tpos;
         public string Text => "Turnrate: " + Turnrate.GetValue();
 
-        public override StructureCategory Category => StructureCategories.Targeter;
-
         public override void End()
         {
         }

@@ -27,8 +27,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Misc
 
         private bool Charged => _chargeCooldown <= 0f;
         private bool CanFire => _fireCooldown > 0f;
-        public override StructureCategory Category => StructureCategories.Utility;
-
         public override void End()
         {
         }

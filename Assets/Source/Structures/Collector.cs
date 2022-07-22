@@ -29,8 +29,6 @@ namespace Lomztein.BFA2.Structures
         private Transform _target;
         private Collectable _collectable;
 
-        public override StructureCategory Category => StructureCategories.Misc;
-
         public override void End()
         {
         }

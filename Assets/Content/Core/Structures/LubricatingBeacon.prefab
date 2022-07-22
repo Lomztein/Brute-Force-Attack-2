@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0.00000032992222, y: 0.70710677, z: 0.00000042258634, w: -0.7071068}
   m_LocalPosition: {x: -1, y: -0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1360839020451159048}
   m_RootOrder: 1
@@ -74,6 +75,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8874186758297807717}
   - {fileID: 7251624782465251683}
@@ -148,6 +150,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1360839020451159048}
   - {fileID: 7926948893607894874}
@@ -178,6 +181,7 @@ MonoBehaviour:
     _tags: []
   _width: 2
   _height: 2
+  Category: {fileID: 11400000, guid: d9d30c1c6b7de9e46bec07e0a4fc88d7, type: 2}
 --- !u!114 &1360839022094297524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mod: {fileID: 11400000, guid: f1d4534573c78154cb09635c5647aa8e, type: 2}
+  ModCoeffecient: 1
   TargetLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -263,6 +268,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0.0000003961601, z: -0.70710677, w: -0.00000027439208}
   m_LocalPosition: {x: 1, y: -0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1360839020451159048}
   m_RootOrder: 0
@@ -309,6 +315,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1360839022094297522}
   m_RootOrder: 1

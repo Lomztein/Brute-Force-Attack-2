@@ -36,8 +36,6 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         private IEventCaller _onTargetAcquired;
 
-        public override StructureCategory Category => StructureCategories.TargetFinder;
-
         public override void End()
         {
         }
@@ -66,6 +64,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public void SetEvaluator(TargetEvaluator evaluator)
         {
+            _targetFinder = GetComponent<TargetFinder>();
             _targetEvaluator = evaluator;
             _targetFinder.SetEvaluator(_targetEvaluator);
         }

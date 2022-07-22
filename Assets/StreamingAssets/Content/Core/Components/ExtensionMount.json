@@ -1,5 +1,5 @@
 {
-  "Name": "DamageCell(Clone)",
+  "Name": "ExtensionMount(Clone)",
   "Tag": "Untagged",
   "Layer": 9,
   "Static": false,
@@ -10,7 +10,7 @@
         "Position": {
           "X": 0.0,
           "Y": 0.0,
-          "Z": -1.0
+          "Z": 0.0
         },
         "Rotation": {
           "X": 0.0,
@@ -27,59 +27,87 @@
     {
       "$Type": "Lomztein.BFA2.Structures.Turrets.PassiveTurretComponent",
       "$Data": {
-        "BaseComplexity": 0.2,
+        "BaseComplexity": 0.0,
         "AttachmentSlots": {
-          "_attachmentPoints": []
+          "_attachmentPoints": [
+            {
+              "Type": "Extension",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": -0.4375,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Extension",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
+              "LocalPosition": {
+                "X": -0.4375,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
         },
         "AttachmentPoints": [
           {
-            "Type": "Extension",
-            "Size": "Small",
+            "Type": "Lower",
+            "Size": "Medium",
             "LocalPosition": {
-              "X": 0.1875,
-              "Y": 0.0,
+              "X": 0.0,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
+          },
+          {
+            "Type": "Lower",
+            "Size": "Medium",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": -0.5,
               "Z": 0.0
             },
             "LocalAngle": 0.0,
             "RequiredPoints": 1
           }
         ],
-        "_name": "Damage Cell",
-        "_description": "",
-        "_uniqueIdentifier": "Core.DamageCell",
+        "_name": "Extension Mount",
+        "_description": "Mount with attachment slots for a medium-sized extension.",
+        "_uniqueIdentifier": "Core.ExtensionMount",
         "_cost": {
           "Elements": [
             {
               "Resource": "$Path{Core/Resources/Credits.json}",
-              "Value": 200
+              "Value": 400
             }
           ]
         },
-        "Tags": {},
+        "Tags": {
+          "_tags": []
+        },
         "_width": "Small",
-        "_height": "Small"
+        "_height": "Medium",
+        "Category": "$Path{Core/StructureCategories/Structural.json}"
       }
     },
     {
-      "$Type": "UnityEngine.CircleCollider2D",
+      "$Type": "UnityEngine.BoxCollider2D",
       "$Data": {
-        "Radius": 0.5,
         "Offset": {
           "X": 0.0,
           "Y": 0.0
         },
-        "IsTrigger": false,
-        "UsedByEffector": false
-      }
-    },
-    {
-      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ParentModBroadcaster",
-      "$Data": {
-        "Mod": {
-          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-          "$Data": "$Path{Core/Modifiers/Mods/DamageCell.json}"
-        },
-        "ModCoeffecient": 1.0
+        "Size": {
+          "X": 1.0,
+          "Y": 2.0
+        }
       }
     }
   ],
@@ -94,7 +122,7 @@
           "$Type": "UnityEngine.Transform",
           "$Data": {
             "Position": {
-              "X": 0.0,
+              "X": -0.0625,
               "Y": 0.0,
               "Z": 0.0
             },
@@ -115,12 +143,12 @@
           "$Data": {
             "Reference": {
               "Path": null,
-              "Texture": "$Path{Core/Sprites/Components/DamageCell.png}",
+              "Texture": "$Path{Core/Sprites/Components/ExtensionMount.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Width": 8.0,
-                "Height": 10.0
+                "Width": 20.0,
+                "Height": 32.0
               },
               "Pivot": {
                 "X": 0.5,

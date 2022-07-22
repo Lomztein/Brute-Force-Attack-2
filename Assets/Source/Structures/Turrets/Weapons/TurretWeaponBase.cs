@@ -70,8 +70,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         private bool _statsInitialized;
 
-        public override StructureCategory Category => StructureCategories.Weapon;
-
         [ModelProperty]
         public Color Color;
 

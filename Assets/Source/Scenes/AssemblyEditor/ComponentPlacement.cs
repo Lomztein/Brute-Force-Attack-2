@@ -67,6 +67,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 placed.transform.position = _currentMatch.Position + Vector3.back * 0.1f;
                 placed.transform.rotation = _currentMatch.Rotation;
                 placed.transform.parent = _currentMatch.Component.transform;
+                placed.GetComponentInParent<TurretAssembly>().InvokeHierarchyChanged(placed, this);
 
                 foreach (var pair in _currentMatch.SlotPointMappings)
                 {

@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Misc;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification;
 using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Modification.Stats;
@@ -62,8 +63,9 @@ namespace Lomztein.BFA2.Structures
         public Size _height;
         public virtual Size Height => _height;
         public bool Flipped => transform.localScale.y < 0f;
-
-        public virtual StructureCategory Category { get; } = StructureCategories.Misc;
+        
+        [ModelAssetReference]
+        public StructureCategory Category;
 
         public event Action<Structure, IStatReference, object> StatChanged;
         public event Action<Structure, IEventReference, object> EventChanged;

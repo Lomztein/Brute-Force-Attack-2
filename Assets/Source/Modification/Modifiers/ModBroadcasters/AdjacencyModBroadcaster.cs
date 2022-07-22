@@ -42,7 +42,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
             Collider2D[] colliders = Physics2D.OverlapCircleAll(trans.position, range, layerMask);
             foreach (var collider in colliders)
             {
-                if (TryFindCommonAncestor(trans, collider.transform, out Transform _))
+                if (trans != collider.transform && TryFindCommonAncestor(trans, collider.transform, out Transform _))
                 {
                     yield return collider.transform;
                 }
@@ -68,9 +68,6 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
 
             while (rhsCurrent != lhsCurrent)
             {
-                if (Vector3.SqrMagnitude(rhsCurrent.localPosition) > 0.1f) rhsOffCenter = true;
-                if (Vector3.SqrMagnitude(lhsCurrent.localPosition) > 0.1f) lhsOffCenter = true;
-
                 // Under R3m if either is off-center, and we encounter a rotator, then return false.
                 if ((rhsOffCenter && rhsCurrent.GetComponent<IRotator>() != null)
                     || (lhsOffCenter && lhsCurrent.GetComponent<IRotator>() != null))
@@ -78,6 +75,9 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
                     common = null;
                     return false;
                 }
+
+                if (Vector3.SqrMagnitude(rhsCurrent.localPosition) > 0.1f) rhsOffCenter = true;
+                if (Vector3.SqrMagnitude(lhsCurrent.localPosition) > 0.1f) lhsOffCenter = true;
 
                 if (rhsCurrent.parent && lhsCurrent.parent)
                 {

@@ -19,8 +19,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Connectors
         [ModelProperty]
         public Vector2 LocalTargetPosition;
 
-        public override StructureCategory Category => StructureCategories.Utility;
-
         private IModdable GetTarget ()
         {
             foreach (Transform child in transform)
