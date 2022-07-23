@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
         public T MakeReferencable<T>(object obj, T model) where T : ValueModel
         {
             Guid id = Guid.NewGuid();
-            _objectMap.Add(obj, new Tuple<Guid, ValueModel>(id, model));
+            _objectMap.TryAdd(obj, new Tuple<Guid, ValueModel>(id, model));
             return model;
         }
 

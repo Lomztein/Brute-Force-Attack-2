@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8579898881888915783}
   - component: {fileID: -5090018618559331163}
   - component: {fileID: -707865321132958930}
+  - component: {fileID: 8193023053469508371}
   m_Layer: 9
   m_Name: PulseLaserT2
   m_TagString: Untagged
@@ -216,6 +217,24 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &8193023053469508371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013188143988452830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451d4412256c9c94ca906390f444a905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mod: {fileID: 11400000, guid: 7fadb26497e0f7a4dabc87e95617ff67, type: 2}
+  ModCoeffecient: 1.25
+  AdjacencyCheckLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  AdjacencyCheckRange: 0.75
 --- !u!1 &1013188144953337968
 GameObject:
   m_ObjectHideFlags: 0

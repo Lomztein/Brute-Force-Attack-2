@@ -32,19 +32,30 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.HeatTreatment",
-  "PrerequisiteIdentifiers": [
-    "Core.Screws",
-    "Core.VolatileFuel"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.Screws",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.VolatileFuel",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.ExtensionMount",
-          "Core.OneToThreeFrame"
+          {
+            "Identifier": "Core.ExtensionMount",
+            "Prerequisites": []
+          },
+          {
+            "Identifier": "Core.OneToThreeFrame",
+            "Prerequisites": []
+          }
         ]
       }
     }

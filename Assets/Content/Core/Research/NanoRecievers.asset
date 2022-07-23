@@ -33,9 +33,9 @@ MonoBehaviour:
       Value: 8
   TimeCost: 0
   Identifier: Core.NanoRecievers
-  PrerequisiteIdentifiers:
-  - Core.CompactRecievers
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.CompactRecievers
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -46,6 +46,11 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.MachineGunT3
-        - Core.PulseLaserT3
-        - Core.RocketLauncherT3
+        - Identifier: Core.MachineGunT3
+          Prerequisites: []
+        - Identifier: Core.PulseLaserT3
+          Prerequisites: []
+        - Identifier: Core.RocketLauncherT3
+          Prerequisites:
+          - Identifier: Core.BasicRocketry
+            Required: 1

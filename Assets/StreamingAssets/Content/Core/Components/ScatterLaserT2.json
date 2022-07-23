@@ -38,9 +38,9 @@
         "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
         "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
         "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
-        "BaseDamage": 600.0,
-        "BaseProjectileAmount": 1,
-        "BaseSpread": 0.0,
+        "BaseDamage": 300.0,
+        "BaseProjectileAmount": 4,
+        "BaseSpread": 4.0,
         "BaseSpeed": 1337.0,
         "BaseFirerate": 0.5,
         "Color": "Yellow",
@@ -105,7 +105,9 @@
             }
           ]
         },
-        "Tags": {},
+        "Tags": {
+          "_tags": []
+        },
         "_width": "Medium",
         "_height": "Medium",
         "Category": "$Path{Core/StructureCategories/Weapon.json}"

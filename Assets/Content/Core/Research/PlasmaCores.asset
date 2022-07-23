@@ -31,12 +31,14 @@ MonoBehaviour:
     - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
       Value: 6
   TimeCost: 0
-  Identifier: Core.UnlockPlasmaCannonT1
-  PrerequisiteIdentifiers:
-  - Core.ScalableComputing
-  - Core.BallBearings
-  - Core.IntegratedCoolant
-  PinIdentifier: 
+  Identifier: Core.PlasmaCores
+  Prerequisites:
+  - Identifier: Core.IntegratedCoolant
+    Required: 1
+  - Identifier: Core.BallBearings
+    Required: 1
+  - Identifier: Core.ScalableComputing
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -47,4 +49,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.PlasmaCannonT1
+        - Identifier: Core.PlasmaCannonT1
+          Prerequisites: []

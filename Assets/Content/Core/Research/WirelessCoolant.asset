@@ -33,9 +33,9 @@ MonoBehaviour:
       Value: 10
   TimeCost: 0
   Identifier: Core.WirelessCoolant
-  PrerequisiteIdentifiers:
-  - Core.IntegratedCoolant
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.IntegratedCoolant
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -46,4 +46,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.CoolantTower
+        - Identifier: Core.CoolantTower
+          Prerequisites: []

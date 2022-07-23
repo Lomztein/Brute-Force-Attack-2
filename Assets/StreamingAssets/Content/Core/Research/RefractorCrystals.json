@@ -31,20 +31,31 @@
     ]
   },
   "TimeCost": 0,
-  "Identifier": "Core.UnlockScatterLaserT1",
-  "PrerequisiteIdentifiers": [
-    "Core.ScalableComputing",
-    "Core.BallBearings",
-    "Core.EmitterTuning"
+  "Identifier": "Core.RefractorCrystals",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.EmitterTuning",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.ScatterLaserT1"
+          {
+            "Identifier": "Core.ScatterLaserT1",
+            "Prerequisites": []
+          }
         ]
       }
     }

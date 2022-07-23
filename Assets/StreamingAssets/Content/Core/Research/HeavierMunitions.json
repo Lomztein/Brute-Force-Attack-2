@@ -32,10 +32,12 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.HeavierMunitions",
-  "PrerequisiteIdentifiers": [
-    "Core.NanoRecievers"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.NanoRecievers",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {

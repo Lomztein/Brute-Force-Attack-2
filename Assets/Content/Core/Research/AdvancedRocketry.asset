@@ -32,10 +32,11 @@ MonoBehaviour:
       Value: 6
   TimeCost: 0
   Identifier: Core.AdvancedRocketry
-  PrerequisiteIdentifiers:
-  - Core.NanoRecievers
-  - Core.BasicRocketry
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.NanoRecievers
+    Required: 1
+  - Identifier: Core.BasicRocketry
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -46,4 +47,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.KineticMissle
+        - Identifier: Core.KineticMissile
+          Prerequisites: []

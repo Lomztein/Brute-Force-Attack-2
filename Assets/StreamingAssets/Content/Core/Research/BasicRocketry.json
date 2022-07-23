@@ -32,14 +32,17 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.BasicRocketry",
-  "PrerequisiteIdentifiers": [],
-  "PinIdentifier": "",
+  "Prerequisites": [],
+  "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.RocketLauncherT1"
+          {
+            "Identifier": "Core.RocketLauncherT1",
+            "Prerequisites": []
+          }
         ]
       }
     }

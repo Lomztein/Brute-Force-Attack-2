@@ -32,9 +32,9 @@ MonoBehaviour:
       Value: 5
   TimeCost: 0
   Identifier: Core.RefinedOptics
-  PrerequisiteIdentifiers:
-  - Core.ScalableComputing
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.ScalableComputing
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -45,4 +45,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.ScoutBase
+        - Identifier: Core.ScoutBase
+          Prerequisites: []

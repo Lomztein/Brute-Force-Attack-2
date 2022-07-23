@@ -32,10 +32,12 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.EmitterTuning",
-  "PrerequisiteIdentifiers": [
-    "Core.CompactRecievers"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.CompactRecievers",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {

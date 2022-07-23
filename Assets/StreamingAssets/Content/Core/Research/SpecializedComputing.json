@@ -32,18 +32,26 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.SpecializedComputing",
-  "PrerequisiteIdentifiers": [
-    "Core.ScalableComputing"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.MediumFirerateBase",
-          "Core.MediumDamageBase"
+          {
+            "Identifier": "Core.MediumFirerateBase",
+            "Prerequisites": []
+          },
+          {
+            "Identifier": "Core.MediumDamageBase",
+            "Prerequisites": []
+          }
         ]
       }
     }

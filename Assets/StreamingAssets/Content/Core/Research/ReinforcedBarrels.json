@@ -31,20 +31,31 @@
     ]
   },
   "TimeCost": 0,
-  "Identifier": "Core.UnlockHeavyCannonT1",
-  "PrerequisiteIdentifiers": [
-    "Core.HeavierMunitions",
-    "Core.ScalableComputing",
-    "Core.BallBearings"
+  "Identifier": "Core.ReinforcedBarrels",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.HeavierMunitions",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.HeavyCannonT1"
+          {
+            "Identifier": "Core.HeavyCannonT1",
+            "Prerequisites": []
+          }
         ]
       }
     }

@@ -33,9 +33,9 @@ MonoBehaviour:
       Value: 6
   TimeCost: 0
   Identifier: Core.SelfLubricatingRotators
-  PrerequisiteIdentifiers:
-  - Core.LubricantNozzle
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.LubricantNozzle
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 2982704995944104058

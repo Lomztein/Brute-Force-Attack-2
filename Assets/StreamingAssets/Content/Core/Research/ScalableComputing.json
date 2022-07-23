@@ -32,14 +32,17 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.ScalableComputing",
-  "PrerequisiteIdentifiers": [],
-  "PinIdentifier": "",
+  "Prerequisites": [],
+  "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.MediumBase"
+          {
+            "Identifier": "Core.MediumBase",
+            "Prerequisites": []
+          }
         ]
       }
     }

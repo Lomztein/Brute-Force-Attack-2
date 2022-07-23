@@ -33,9 +33,9 @@ MonoBehaviour:
       Value: 3
   TimeCost: 0
   Identifier: Core.Screws
-  PrerequisiteIdentifiers:
-  - Core.BallBearings
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.BallBearings
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -46,5 +46,7 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.SideMount
-        - Core.MediumTFrame
+        - Identifier: Core.SideMount
+          Prerequisites: []
+        - Identifier: Core.MediumTFrame
+          Prerequisites: []

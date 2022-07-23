@@ -184,6 +184,20 @@
           "Mask": 256
         }
       }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.AdjacencyModBroadcaster",
+      "$Data": {
+        "AdjacencyCheckLayer": {
+          "Mask": 512
+        },
+        "AdjacencyCheckRange": 0.75,
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/GrainIncrease.json}"
+        },
+        "ModCoeffecient": 1.25
+      }
     }
   ],
   "Children": [

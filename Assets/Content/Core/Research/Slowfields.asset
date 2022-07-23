@@ -33,10 +33,11 @@ MonoBehaviour:
       Value: 12
   TimeCost: 0
   Identifier: Core.Slowfields
-  PrerequisiteIdentifiers:
-  - Core.WirelessCoolant
-  - Core.ScalableComputing
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.WirelessCoolant
+    Required: 1
+  - Identifier: Core.ScalableComputing
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -47,4 +48,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.SlowfieldGenerator
+        - Identifier: Core.SlowfieldGenerator
+          Prerequisites: []

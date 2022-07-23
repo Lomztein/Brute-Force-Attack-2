@@ -32,10 +32,12 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.SelfLubricatingRotators",
-  "PrerequisiteIdentifiers": [
-    "Core.LubricantNozzle"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.LubricantNozzle",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {

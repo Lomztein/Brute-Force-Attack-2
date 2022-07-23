@@ -32,9 +32,9 @@ MonoBehaviour:
       Value: 5
   TimeCost: 0
   Identifier: Core.HeavierMunitions
-  PrerequisiteIdentifiers:
-  - Core.NanoRecievers
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.NanoRecievers
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0

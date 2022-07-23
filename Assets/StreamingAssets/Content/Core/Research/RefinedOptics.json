@@ -32,17 +32,22 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.RefinedOptics",
-  "PrerequisiteIdentifiers": [
-    "Core.ScalableComputing"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.ScoutBase"
+          {
+            "Identifier": "Core.ScoutBase",
+            "Prerequisites": []
+          }
         ]
       }
     }

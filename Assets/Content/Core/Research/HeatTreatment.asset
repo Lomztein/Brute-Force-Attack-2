@@ -33,10 +33,11 @@ MonoBehaviour:
       Value: 3
   TimeCost: 0
   Identifier: Core.HeatTreatment
-  PrerequisiteIdentifiers:
-  - Core.Screws
-  - Core.VolatileFuel
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.Screws
+    Required: 1
+  - Identifier: Core.VolatileFuel
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -47,5 +48,7 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.ExtensionMount
-        - Core.OneToThreeFrame
+        - Identifier: Core.ExtensionMount
+          Prerequisites: []
+        - Identifier: Core.OneToThreeFrame
+          Prerequisites: []

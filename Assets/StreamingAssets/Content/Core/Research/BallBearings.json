@@ -32,17 +32,22 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.BallBearings",
-  "PrerequisiteIdentifiers": [
-    "Core.ScalableComputing"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.MediumRotator"
+          {
+            "Identifier": "Core.MediumRotator",
+            "Prerequisites": []
+          }
         ]
       }
     }

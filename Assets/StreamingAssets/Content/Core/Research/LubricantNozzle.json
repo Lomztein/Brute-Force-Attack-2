@@ -32,17 +32,22 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.LubricantNozzle",
-  "PrerequisiteIdentifiers": [
-    "Core.BallBearings"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.Lubricator"
+          {
+            "Identifier": "Core.Lubricator",
+            "Prerequisites": []
+          }
         ]
       }
     }

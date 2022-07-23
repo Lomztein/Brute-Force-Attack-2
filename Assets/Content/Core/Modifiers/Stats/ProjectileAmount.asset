@@ -16,14 +16,15 @@ MonoBehaviour:
   Name: Projectile Amount
   Description: The amount of projectiles fired per shot.
   Function:
-    id: 0
+    rid: 2982705087844974715
   Formatter:
-    id: 1
+    rid: 1
   references:
-    version: 1
-    00000000:
-      type: {class: LiniarFunction, ns: Lomztein.BFA2.Modification.Stats.Functions,
-        asm: Assembly-CSharp}
-    00000001:
+    version: 2
+    RefIds:
+    - rid: 1
       type: {class: DefaultFormatter, ns: Lomztein.BFA2.Modification.Stats.Formatters,
+        asm: Assembly-CSharp}
+    - rid: 2982705087844974715
+      type: {class: MultiplicativeFunction, ns: Lomztein.BFA2.Modification.Stats.Functions,
         asm: Assembly-CSharp}

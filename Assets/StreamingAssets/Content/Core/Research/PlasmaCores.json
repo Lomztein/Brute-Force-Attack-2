@@ -31,20 +31,31 @@
     ]
   },
   "TimeCost": 0,
-  "Identifier": "Core.UnlockPlasmaCannonT1",
-  "PrerequisiteIdentifiers": [
-    "Core.ScalableComputing",
-    "Core.BallBearings",
-    "Core.IntegratedCoolant"
+  "Identifier": "Core.PlasmaCores",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.IntegratedCoolant",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.PlasmaCannonT1"
+          {
+            "Identifier": "Core.PlasmaCannonT1",
+            "Prerequisites": []
+          }
         ]
       }
     }

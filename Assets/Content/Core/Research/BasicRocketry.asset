@@ -32,8 +32,7 @@ MonoBehaviour:
       Value: 1
   TimeCost: 0
   Identifier: Core.BasicRocketry
-  PrerequisiteIdentifiers: []
-  PinIdentifier: 
+  Prerequisites: []
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -44,4 +43,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.RocketLauncherT1
+        - Identifier: Core.RocketLauncherT1
+          Prerequisites: []

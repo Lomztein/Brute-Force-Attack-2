@@ -33,9 +33,9 @@ MonoBehaviour:
       Value: 6
   TimeCost: 0
   Identifier: Core.SpecializedComputing
-  PrerequisiteIdentifiers:
-  - Core.ScalableComputing
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.ScalableComputing
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -46,5 +46,7 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.MediumFirerateBase
-        - Core.MediumDamageBase
+        - Identifier: Core.MediumFirerateBase
+          Prerequisites: []
+        - Identifier: Core.MediumDamageBase
+          Prerequisites: []

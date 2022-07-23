@@ -1,0 +1,23 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Speed.json}",
+        "Value": 0.5
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Speed.json}"
+        }
+      }
+    ],
+    "Identifier": "Core.GrainIncrease",
+    "Name": "Grain Increase",
+    "Description": "The grain is increased the rounds of this weapon, increasing projectile speeds."
+  }
+}

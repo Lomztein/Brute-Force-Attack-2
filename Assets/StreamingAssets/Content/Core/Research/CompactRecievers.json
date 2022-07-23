@@ -32,19 +32,30 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.CompactRecievers",
-  "PrerequisiteIdentifiers": [
-    "Core.BasicRocketry"
-  ],
-  "PinIdentifier": "",
+  "Prerequisites": [],
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.MachineGunT2",
-          "Core.PulseLaserT2",
-          "Core.RocketLauncherT2"
+          {
+            "Identifier": "Core.MachineGunT2",
+            "Prerequisites": []
+          },
+          {
+            "Identifier": "Core.PulseLaserT2",
+            "Prerequisites": []
+          },
+          {
+            "Identifier": "Core.RocketLauncherT2",
+            "Prerequisites": [
+              {
+                "Identifier": "Core.BasicRocketry",
+                "Required": true
+              }
+            ]
+          }
         ]
       }
     }

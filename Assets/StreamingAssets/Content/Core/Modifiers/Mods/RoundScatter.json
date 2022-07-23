@@ -1,0 +1,27 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/ProjectileAmount.json}",
+        "Value": 1.0
+      },
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "Value": -0.3
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/ProjectileAmount.json}"
+        }
+      }
+    ],
+    "Identifier": "Core.RoundScatter",
+    "Name": "Round Scatter",
+    "Description": "The rounds fired from this are scattered into more, smaller pieces."
+  }
+}

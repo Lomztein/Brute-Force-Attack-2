@@ -36,17 +36,22 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.Recompilation",
-  "PrerequisiteIdentifiers": [
-    "Core.EffecientDecompilation"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.EffecientDecompilation",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.Recompiler"
+          {
+            "Identifier": "Core.Decompiler",
+            "Prerequisites": []
+          }
         ]
       }
     }

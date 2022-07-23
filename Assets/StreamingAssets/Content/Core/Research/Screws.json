@@ -32,18 +32,26 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.Screws",
-  "PrerequisiteIdentifiers": [
-    "Core.BallBearings"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.SideMount",
-          "Core.MediumTFrame"
+          {
+            "Identifier": "Core.SideMount",
+            "Prerequisites": []
+          },
+          {
+            "Identifier": "Core.MediumTFrame",
+            "Prerequisites": []
+          }
         ]
       }
     }

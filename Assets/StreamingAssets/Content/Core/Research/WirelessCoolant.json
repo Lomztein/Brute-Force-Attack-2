@@ -32,17 +32,22 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.WirelessCoolant",
-  "PrerequisiteIdentifiers": [
-    "Core.IntegratedCoolant"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.IntegratedCoolant",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.CoolantTower"
+          {
+            "Identifier": "Core.CoolantTower",
+            "Prerequisites": []
+          }
         ]
       }
     }

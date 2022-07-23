@@ -32,8 +32,7 @@ MonoBehaviour:
       Value: 2
   TimeCost: 0
   Identifier: Core.Scattershot
-  PrerequisiteIdentifiers: []
-  PinIdentifier: 
+  Prerequisites: []
   UniquePrerequisites: []
   Rewards:
   - rid: 0
@@ -44,4 +43,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Core.ShotgunT1
+        - Identifier: Core.ShotgunT1
+          Prerequisites: []

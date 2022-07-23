@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Research
             return _all
                 .Where(x => !_inProgress.Exists(y => y.Identifier == x.Identifier)) // Filter in progress.
                 .Where(x => !_completed.Exists(y => y.Identifier == x.Identifier)) // Filter completed.
-                .Where(x => PrerequisitesCompleted(x)) // Filter unfinished prerequisites.
+                .Where(x => ArePrerequisitesResearched(x)) // Filter unfinished prerequisites.
                 .Where(x => x.UniquePrerequisitesCompleted) // Filter with own unfinished prerequisites.
                 .ToArray();
         }
@@ -64,6 +64,9 @@ namespace Lomztein.BFA2.Research
         {
             _roundController.IfExists((x) => x.OnWaveFinished += OnWaveFinished);
         }
+
+        public bool IsCompleted(string identifier)
+            => _completed.Any(x => x.Identifier == identifier);
 
         private void OnWaveFinished(int arg1, WaveHandler arg2)
         {
@@ -91,9 +94,16 @@ namespace Lomztein.BFA2.Research
             }
         }
 
-        private bool PrerequisitesCompleted (ResearchOption option)
+        public bool ArePrerequisitesResearched(ResearchOption option)
+            => ArePrerequisitesResearched(option.Prerequisites);
+
+        public bool ArePrerequisitesResearched(IEnumerable<Prerequisite> prerequisite)
         {
-            return option.PrerequisiteIdentifiers.All(x => _completed.Exists(y => y.Identifier == x));
+            var required = prerequisite.Where(x => x.Required);
+            var optional = prerequisite.Where(x => !x.Required);
+            bool allRequired = required.All(x => IsCompleted(x.Identifier)) || required.Count() == 0;
+            bool anyOptional = optional.Any(x => IsCompleted(x.Identifier)) || optional.Count() == 0;
+            return allRequired && anyOptional;
         }
 
         public void AddResearchOption (ResearchOption option)

@@ -123,7 +123,10 @@ namespace Lomztein.BFA2.Structures.Turrets
                 {
                     // Find the corrosponding slot on the parent and attach to it.
                     AttachmentSlot slot = parent.AttachmentSlots.GetNearestSupportingSlot(point, parent.transform, transform);
-                    slot.Attach(this);
+                    if (slot != null)
+                    {
+                        slot.Attach(this);
+                    }
                 }
             }
         }

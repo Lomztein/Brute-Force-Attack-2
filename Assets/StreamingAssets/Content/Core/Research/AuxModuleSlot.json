@@ -32,11 +32,16 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.AuxModuleSlot",
-  "PrerequisiteIdentifiers": [
-    "Core.ScalableComputing",
-    "Core.ModularComputing"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.ModularComputing",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {

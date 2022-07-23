@@ -32,10 +32,12 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.SpecializedWeapons",
-  "PrerequisiteIdentifiers": [
-    "Core.Scattershot",
-    "Core.CompactRecievers"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.Scattershot",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
-  "UniquePrerequisites": []
+  "UniquePrerequisites": [],
+  "Rewards": []
 }

@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Player.Progression
                     {
                         foreach (var reward in option.Rewards)
                         {
-                            if (reward is UnlockReward unlockReward && unlockReward.Unlocks.Contains(identifier))
+                            if (reward is UnlockReward unlockReward && unlockReward.Unlocks.Any(x => x.Identifier == identifier))
                             {
                                 yield return new KeyValuePair<string, ResearchOption>(identifier, option);
                             }

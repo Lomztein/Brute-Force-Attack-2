@@ -32,10 +32,11 @@ MonoBehaviour:
       Value: 5
   TimeCost: 0
   Identifier: Core.AuxModuleSlot
-  PrerequisiteIdentifiers:
-  - Core.ScalableComputing
-  - Core.ModularComputing
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.ScalableComputing
+    Required: 1
+  - Identifier: Core.ModularComputing
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0

@@ -32,9 +32,9 @@ MonoBehaviour:
       Value: 3
   TimeCost: 0
   Identifier: Core.EmitterTuning
-  PrerequisiteIdentifiers:
-  - Core.CompactRecievers
-  PinIdentifier: 
+  Prerequisites:
+  - Identifier: Core.CompactRecievers
+    Required: 1
   UniquePrerequisites: []
   Rewards:
   - rid: 0

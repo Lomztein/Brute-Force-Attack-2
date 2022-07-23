@@ -32,18 +32,26 @@
   },
   "TimeCost": 0,
   "Identifier": "Core.Accumulation",
-  "PrerequisiteIdentifiers": [
-    "Core.IntegratedCoolant",
-    "Core.EmitterTuning"
+  "Prerequisites": [
+    {
+      "Identifier": "Core.IntegratedCoolant",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.EmitterTuning",
+      "Required": true
+    }
   ],
-  "PinIdentifier": "",
   "UniquePrerequisites": [],
   "Rewards": [
     {
       "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
       "$Data": {
         "Unlocks": [
-          "Core.SmallAccumulator"
+          {
+            "Identifier": "Core.SmallAccumulator",
+            "Prerequisites": []
+          }
         ]
       }
     }
