@@ -3,16 +3,16 @@ using Lomztein.BFA2.Serialization;
 using System.Collections;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Visuals.FireAnimations
+namespace Lomztein.BFA2.Animation
 {
-    public class TileableFireAnimation : FireAnimation
+    public class TilableAnimation : AnimationBase
     {
         [ModelProperty]
-        public ContentSpriteReference[] StartAnimationSprites;
+        public Vector2Int[] StartAnimationIndecies;
         [ModelProperty]
-        public ContentSpriteReference[] MidAnimationSprites;
+        public Vector2Int[] MidAnimationIndecies;
         [ModelProperty]
-        public ContentSpriteReference[] EndAnimationSprites;
+        public Vector2Int[] EndAnimationIndecies;
 
         private Coroutine _coroutine;
         private bool _continue;
@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Visuals.FireAnimations
                 StopCoroutine(_coroutine);
             }
 
-            float delay = GetAnimationDelay(MidAnimationSprites, animSpeed);
+            float delay = GetAnimationDelay(StartAnimationIndecies.Length, animSpeed);
             _coroutine = StartCoroutine(PlayInternal(delay));
         }
 
@@ -46,17 +46,17 @@ namespace Lomztein.BFA2.Visuals.FireAnimations
 
         private IEnumerator StartAnimation(float delay)
         {
-            yield return Animate(StartAnimationSprites, delay);
+            yield return Animate(SpriteSheet.GetSprites(StartAnimationIndecies), delay);
         }
 
         private IEnumerator ContinueAnimation(float delay)
         {
-            yield return Animate(MidAnimationSprites, delay);
+            yield return Animate(SpriteSheet.GetSprites(MidAnimationIndecies), delay);
         }
 
         private IEnumerator EndAnimation (float delay)
         {
-            yield return Animate(EndAnimationSprites, delay);
+            yield return Animate(SpriteSheet.GetSprites(EndAnimationIndecies), delay);
             ResetSprite();
         }
     }

@@ -1,15 +1,18 @@
 ﻿using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Serialization;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Visuals.FireAnimations
+namespace Lomztein.BFA2.Animation
 {
-    public abstract class FireAnimation : MonoBehaviour, IFireAnimation
+    public abstract class AnimationBase : MonoBehaviour, IAnimation
     {
         private SpriteRenderer _spriteRenderer;
         [ModelProperty]
-        public ContentSpriteReference DefaultSprite;
+        public SpriteSheet SpriteSheet;
+        [ModelProperty]
+        public Vector2Int DefaultSpriteIndex;
         [ModelProperty]
         public float PlaySpeedMultiplier = 1f;
 
@@ -17,16 +20,16 @@ namespace Lomztein.BFA2.Visuals.FireAnimations
 
         public abstract void Play(float animSpeed);
 
-        protected float GetAnimationDelay(ContentSpriteReference[] sprites, float animationLength)
+        protected float GetAnimationDelay(int spriteCount, float animationTime)
         {
-            return animationLength / sprites.Length;
+            return animationTime / spriteCount;
         }
 
-        protected IEnumerator Animate(ContentSpriteReference[] sprites, float delay)
+        protected IEnumerator Animate(IEnumerable<Sprite> sprites, float delay)
         {
-            for (int i = 0; i < sprites.Length; i++)
+            foreach (Sprite sprite in sprites)
             {
-                GetSpriteRenderer().sprite = sprites[i].Get();
+                GetSpriteRenderer().sprite = sprite;
                 yield return new WaitForSeconds(delay / PlaySpeedMultiplier);
             }
         }
@@ -42,7 +45,7 @@ namespace Lomztein.BFA2.Visuals.FireAnimations
 
         protected void ResetSprite()
         {
-            GetSpriteRenderer().sprite = DefaultSprite.Get();
+            GetSpriteRenderer().sprite = SpriteSheet.GetSprite(DefaultSpriteIndex.x, DefaultSpriteIndex.y);
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Visuals.FireAnimations
+namespace Lomztein.BFA2.Animation
 {
-    public class NoFireAnimation : IFireAnimation
+    public class NoAnimation : IAnimation
     {
         public bool IsPlaying => false;
 

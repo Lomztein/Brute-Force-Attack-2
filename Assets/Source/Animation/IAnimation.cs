@@ -1,6 +1,6 @@
-﻿namespace Lomztein.BFA2.Visuals.FireAnimations
+﻿namespace Lomztein.BFA2.Animation
 {
-    public interface IFireAnimation
+    public interface IAnimation
     {
         void Play(float animSpeed);
 

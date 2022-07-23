@@ -148,99 +148,23 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Visuals.FireAnimations.SimpleFireAnimation",
+      "$Type": "Lomztein.BFA2.Animation.SimpleAnimation",
       "$Data": {
-        "AnimationSprites": [
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
-            "Rect": {
-              "X": 128.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
-            "Rect": {
-              "X": 160.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        ],
-        "DefaultSprite": {
-          "Path": "",
-          "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 32.0,
-            "Height": 32.0
-          },
-          "Pivot": {
+        "HorStart": 0,
+        "HorEnd": -1,
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 32,
+          "SpriteHeight": 32,
+          "SpritePivot": {
             "X": 0.5,
             "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
         },
         "PlaySpeedMultiplier": 4.0
       }
@@ -301,7 +225,7 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "",
+              "Path": null,
               "Texture": "$Path{Core/Sprites/Components/HeavyCannonT1.png}",
               "Rect": {
                 "X": 0.0,

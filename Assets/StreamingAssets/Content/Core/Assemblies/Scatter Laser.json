@@ -1,0 +1,376 @@
+{
+  "Name": "Scatter Laser",
+  "Description": "Powerful beams of light scattered through rare crystals result in the beams shot out of this, which is super rad.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "High Energy Scatter Laser",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Heavy High Energy Scatter Laser",
+      "Tier": 1,
+      "Variant": -1
+    },
+    {
+      "Name": "Fast High Energy Scatter Laser",
+      "Tier": 1,
+      "Variant": 1
+    },
+    {
+      "Name": "Mega-Energy Scatter Laser",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Heavy Mega-Energy Scatter Laser",
+      "Tier": 2,
+      "Variant": -1
+    },
+    {
+      "Name": "Fast Mega-Energy Scatter Laser",
+      "Tier": 2,
+      "Variant": 1
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0",
+          "1_-1",
+          "1_1"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0",
+          "2_1",
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "1_-1",
+        "NextTiers": [
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "1_1",
+        "NextTiers": [
+          "2_1"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_-1": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT2",
+              "LocalPosition": {
+                "X": -3.72529E-09,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_-1": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT3",
+              "LocalPosition": {
+                "X": -3.72529E-09,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ScatterLaserT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,866 @@
+{
+  "Name": "Plasma Cannon",
+  "Description": "Capable of rapidly firing balls of burning plasma, this is an excellent choice against tougher blue enemies.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Unnamed Tier",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Unnamed Tier",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Rapid Plasma Cannon",
+      "Tier": 1,
+      "Variant": -1
+    },
+    {
+      "Name": "Modular Plasma Cannon",
+      "Tier": 1,
+      "Variant": 1
+    },
+    {
+      "Name": "Rapid Heavy Plasma Cannon",
+      "Tier": 2,
+      "Variant": -1
+    },
+    {
+      "Name": "Modular Heavy Plasma Cannon",
+      "Tier": 2,
+      "Variant": 1
+    },
+    {
+      "Name": "Supreme Spamalot",
+      "Tier": 3,
+      "Variant": -1
+    },
+    {
+      "Name": "Supreme Heavy Plasma Cannon",
+      "Tier": 3,
+      "Variant": 0
+    },
+    {
+      "Name": "Supreme Modular Heavy Plasma Cannon",
+      "Tier": 3,
+      "Variant": 1
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0",
+          "1_-1",
+          "1_1"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0",
+          "2_-1",
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "1_-1",
+        "NextTiers": [
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "1_1",
+        "NextTiers": [
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "2_-1",
+        "NextTiers": [
+          "3_-1"
+        ]
+      },
+      {
+        "Tier": "2_0",
+        "NextTiers": [
+          "3_0"
+        ]
+      },
+      {
+        "Tier": "2_1",
+        "NextTiers": [
+          "3_1"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_-1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_1": {
+      "UniqueIdentifier": "Core.MediumModularBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT2",
+              "LocalPosition": {
+                "X": -3.72529E-09,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_-1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -1.0625,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_1": {
+      "UniqueIdentifier": "Core.MediumModularBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.PlasmaCannonT3",
+              "LocalPosition": {
+                "X": -1.490116E-08,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_-1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 3.576279E-07,
+            "Y": 3.576279E-07
+          },
+          "Angle": 4.007165E-05,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumTFrame",
+              "LocalPosition": {
+                "X": -3.576281E-07,
+                "Y": -3.576276E-07
+              },
+              "Angle": 4.007165E-05,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.PlasmaCannonT3",
+                  "LocalPosition": {
+                    "X": -3.576284E-07,
+                    "Y": -3.576274E-07
+                  },
+                  "Angle": 4.007164E-05,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.CoolantCell",
+                      "LocalPosition": {
+                        "X": -1.0625,
+                        "Y": -3.569596E-08
+                      },
+                      "Angle": 5.465957E-06,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.OneToTwoFrame",
+                  "LocalPosition": {
+                    "X": -1.136868E-13,
+                    "Y": -1.5
+                  },
+                  "Angle": 89.99997,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallRotator",
+                      "LocalPosition": {
+                        "X": -2.980234E-08,
+                        "Y": 0.4999999
+                      },
+                      "Angle": 270.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.MachineGunT3",
+                          "LocalPosition": {
+                            "X": 5.960463E-08,
+                            "Y": -3.197442E-14
+                          },
+                          "Angle": 6.830189E-06,
+                          "Flipped": false,
+                          "Children": [
+                            {
+                              "UniqueIdentifier": "Core.CoolantCell",
+                              "LocalPosition": {
+                                "X": -0.6249996,
+                                "Y": 1.341104E-07
+                              },
+                              "Angle": 0.0,
+                              "Flipped": false,
+                              "Children": [],
+                              "Data": null
+                            }
+                          ],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.SmallRotator",
+                      "LocalPosition": {
+                        "X": 2.980234E-08,
+                        "Y": -0.4999999
+                      },
+                      "Angle": 270.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.MachineGunT3",
+                          "LocalPosition": {
+                            "X": -5.960464E-08,
+                            "Y": 3.197442E-14
+                          },
+                          "Angle": 6.830189E-06,
+                          "Flipped": false,
+                          "Children": [
+                            {
+                              "UniqueIdentifier": "Core.CoolantCell",
+                              "LocalPosition": {
+                                "X": -0.6249998,
+                                "Y": 7.450575E-08
+                              },
+                              "Angle": 0.0,
+                              "Flipped": false,
+                              "Children": [],
+                              "Data": null
+                            }
+                          ],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.OneToTwoFrame",
+                  "LocalPosition": {
+                    "X": 1.198396E-08,
+                    "Y": 1.5
+                  },
+                  "Angle": 270.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallRotator",
+                      "LocalPosition": {
+                        "X": -5.960468E-08,
+                        "Y": 0.5000001
+                      },
+                      "Angle": 89.99989,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.MachineGunT3",
+                          "LocalPosition": {
+                            "X": 1.192093E-07,
+                            "Y": 2.060575E-13
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [
+                            {
+                              "UniqueIdentifier": "Core.CoolantCell",
+                              "LocalPosition": {
+                                "X": -0.6250002,
+                                "Y": 1.192091E-07
+                              },
+                              "Angle": 0.0,
+                              "Flipped": false,
+                              "Children": [],
+                              "Data": null
+                            }
+                          ],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.SmallRotator",
+                      "LocalPosition": {
+                        "X": 5.960468E-08,
+                        "Y": -0.5000001
+                      },
+                      "Angle": 89.99989,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.MachineGunT3",
+                          "LocalPosition": {
+                            "X": -1.192093E-07,
+                            "Y": -2.060574E-13
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [
+                            {
+                              "UniqueIdentifier": "Core.CoolantCell",
+                              "LocalPosition": {
+                                "X": -0.6250004,
+                                "Y": 5.960486E-08
+                              },
+                              "Angle": 0.0,
+                              "Flipped": false,
+                              "Children": [],
+                              "Data": null
+                            }
+                          ],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumTFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.PlasmaCannonT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.CoolantCell",
+                      "LocalPosition": {
+                        "X": -1.0625,
+                        "Y": -2.980232E-08
+                      },
+                      "Angle": 2.003582E-05,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallFuelTank",
+                      "LocalPosition": {
+                        "X": -0.6875,
+                        "Y": -1.192093E-07
+                      },
+                      "Angle": 2.003582E-05,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallFuelTank",
+                      "LocalPosition": {
+                        "X": -0.6875,
+                        "Y": -1.192093E-07
+                      },
+                      "Angle": 2.003582E-05,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_1": {
+      "UniqueIdentifier": "Core.MediumModularBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 2.980232E-08,
+            "Y": -5.960464E-08
+          },
+          "Angle": 5.465963E-06,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumTFrame",
+              "LocalPosition": {
+                "X": -2.980233E-08,
+                "Y": -5.960464E-08
+              },
+              "Angle": 5.465963E-06,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -1.5
+                  },
+                  "Angle": 5.465962E-06,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallFuelTank",
+                      "LocalPosition": {
+                        "X": -0.6874999,
+                        "Y": 3.040054E-07
+                      },
+                      "Angle": 5.465963E-06,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": -1.18261E-08,
+                    "Y": 1.5
+                  },
+                  "Angle": 5.465962E-06,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.SmallFuelTank",
+                      "LocalPosition": {
+                        "X": -0.6874999,
+                        "Y": 3.040054E-07
+                      },
+                      "Angle": 5.465963E-06,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.PlasmaCannonT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 5.465962E-06,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    }
+  }
+}

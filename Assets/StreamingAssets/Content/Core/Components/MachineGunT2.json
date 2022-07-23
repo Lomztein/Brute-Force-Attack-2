@@ -93,163 +93,59 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Visuals.FireAnimations.TileableFireAnimation",
+      "$Type": "Lomztein.BFA2.Animation.TilableAnimation",
       "$Data": {
-        "StartAnimationSprites": [
+        "StartAnimationIndecies": [
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 16.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 1,
+            "Y": 0
           },
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 48.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 2,
+            "Y": 0
           }
         ],
-        "MidAnimationSprites": [
+        "MidAnimationIndecies": [
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 80.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 3,
+            "Y": 0
           },
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 4,
+            "Y": 0
           },
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 5,
+            "Y": 0
+          },
+          {
+            "X": 6,
+            "Y": 0
           }
         ],
-        "EndAnimationSprites": [
+        "EndAnimationIndecies": [
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 80.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 7,
+            "Y": 0
           },
           {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-            "Rect": {
-              "X": 128.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
+            "X": 8,
+            "Y": 0
           }
         ],
-        "DefaultSprite": {
-          "Path": "",
-          "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 16.0,
-            "Height": 16.0
-          },
-          "Pivot": {
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 16,
+          "SpriteHeight": 16,
+          "SpritePivot": {
             "X": 0.5,
             "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
         },
         "PlaySpeedMultiplier": 1.0
       }
@@ -330,7 +226,7 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "",
+              "Path": null,
               "Texture": "$Path{Core/Sprites/Components/MachineGunT2.png}",
               "Rect": {
                 "X": 0.0,

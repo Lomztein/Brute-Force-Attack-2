@@ -40,13 +40,36 @@
         "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
         "BaseDamage": 200.0,
         "BaseProjectileAmount": 3,
-        "BaseSpread": 4.0,
+        "BaseSpread": -4.0,
         "BaseSpeed": 1337.0,
         "BaseFirerate": 0.4,
         "Color": "Yellow",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
-          "_attachmentPoints": []
+          "_attachmentPoints": [
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.25,
+                "Y": 0.5625,
+                "Z": 0.0
+              },
+              "LocalAngle": -90.0
+            },
+            {
+              "Type": "Side",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": -0.25,
+                "Y": -0.5625,
+                "Z": 0.0
+              },
+              "LocalAngle": 90.0
+            }
+          ]
         },
         "AttachmentPoints": [
           {
@@ -114,209 +137,6 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Visuals.FireAnimations.SimpleFireAnimation",
-      "$Data": {
-        "AnimationSprites": [
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        ],
-        "DefaultSprite": {
-          "Path": "",
-          "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 32.0,
-            "Height": 32.0
-          },
-          "Pivot": {
-            "X": 0.5,
-            "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
-        },
-        "PlaySpeedMultiplier": 2.0
-      }
-    },
-    {
       "$Type": "UnityEngine.BoxCollider2D",
       "$Data": {
         "Offset": {
@@ -344,6 +164,76 @@
         "HitLayer": {
           "Mask": 256
         }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Animation.Animation",
+      "$Data": {
+        "FrameIndecies": [
+          {
+            "X": 1,
+            "Y": 0
+          },
+          {
+            "X": 2,
+            "Y": 0
+          },
+          {
+            "X": 3,
+            "Y": 0
+          },
+          {
+            "X": 1,
+            "Y": 0
+          },
+          {
+            "X": 2,
+            "Y": 0
+          },
+          {
+            "X": 3,
+            "Y": 0
+          },
+          {
+            "X": 1,
+            "Y": 0
+          },
+          {
+            "X": 2,
+            "Y": 0
+          },
+          {
+            "X": 3,
+            "Y": 0
+          },
+          {
+            "X": 1,
+            "Y": 0
+          },
+          {
+            "X": 2,
+            "Y": 0
+          },
+          {
+            "X": 3,
+            "Y": 0
+          }
+        ],
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 32,
+          "SpriteHeight": 32,
+          "SpritePivot": {
+            "X": 0.5,
+            "Y": 0.5
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
+        },
+        "PlaySpeedMultiplier": 2.0
       }
     }
   ],
@@ -378,7 +268,7 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "",
+              "Path": null,
               "Texture": "$Path{Core/Sprites/Components/ScatterLaserT1.png}",
               "Rect": {
                 "X": 0.0,

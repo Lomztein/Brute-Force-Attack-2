@@ -61,8 +61,8 @@
             "RequiredPoints": 1
           }
         ],
-        "_name": "Dual Heavy Rocket Launcher",
-        "_description": "FWO-FWOOOOOMPF",
+        "_name": "Superheavy Rocket Launcher",
+        "_description": "Fires very large high-explosive rocket that do both high single-target damage, as well as deal a small amount of damage in an area.",
         "_uniqueIdentifier": "Core.RocketLauncherT3",
         "_cost": {
           "Elements": [
@@ -117,99 +117,23 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Visuals.FireAnimations.SimpleFireAnimation",
+      "$Type": "Lomztein.BFA2.Animation.SimpleAnimation",
       "$Data": {
-        "AnimationSprites": [
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
-            "Rect": {
-              "X": 16.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
-            "Rect": {
-              "X": 48.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
-            "Rect": {
-              "X": 80.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        ],
-        "DefaultSprite": {
-          "Path": "",
-          "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 16.0,
-            "Height": 16.0
-          },
-          "Pivot": {
+        "HorStart": 1,
+        "HorEnd": -1,
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 16,
+          "SpriteHeight": 16,
+          "SpritePivot": {
             "X": 0.5,
             "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
         },
         "PlaySpeedMultiplier": 4.0
       }
@@ -257,7 +181,7 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "",
+              "Path": null,
               "Texture": "$Path{Core/Sprites/Components/RocketLauncherT3.png}",
               "Rect": {
                 "X": 0.0,

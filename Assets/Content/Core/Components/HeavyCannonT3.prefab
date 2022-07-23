@@ -229,79 +229,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dddf44777d0cfc4cab4c569922e1ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultSprite:
-    Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
+  SpriteSheet:
+    SpriteTexture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
+    SpritePPU: 16
+    SpriteWidth: 32
+    SpriteHeight: 32
+    SpritePivot: {x: 0.5, y: 0.5}
+  DefaultSpriteIndex: {x: 0, y: 0}
   PlaySpeedMultiplier: 4
-  AnimationSprites:
-  - Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 32
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 64
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 96
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 160
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
-  - Path: 
-    Texture: {fileID: 2800000, guid: 8fed81d7506c8ba41975f083b60aadbf, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 192
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
+  HorStart: 0
+  HorEnd: -1
 --- !u!114 &6811950628459896760
 MonoBehaviour:
   m_ObjectHideFlags: 0
