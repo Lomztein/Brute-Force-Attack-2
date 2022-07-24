@@ -26,6 +26,7 @@ namespace Lomztein.BFA2.Weaponary
         public float Range { get; set; }
         public float Speed { get; set; }
         public float Spread { get; set; }
+        public float Pierce { get; set; }
         public int MuzzleCount => _muzzles.Length;
 
         public Transform Target { get; set; }
@@ -143,6 +144,7 @@ namespace Lomztein.BFA2.Weaponary
             proj.Speed = GetSpeed() * UnityEngine.Random.Range(0.9f, 1.1f);
             proj.Damage = GetDamage();
             proj.Range = GetRange() * UnityEngine.Random.Range(0.9f, 1.1f); ;
+            proj.Pierce = Pierce;
             proj.Layer = HitLayer;
             proj.Color = Color;
             proj.Target = Target;

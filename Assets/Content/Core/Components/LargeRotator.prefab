@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8239035313664505803}
   - component: {fileID: -678891761187152143}
   m_Layer: 9
-  m_Name: TurretMediumRotator
+  m_Name: LargeRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,62 +46,112 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684cf289d825ee64a8137fa2bca5b6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Medium Rotator
+  _name: Large Rotator
   _description: 
-  _uniqueIdentifier: Core.MediumRotator
+  _uniqueIdentifier: Core.LargeRotator
   _cost:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
-      Value: 250
+      Value: 1000
   Tags:
     _tags: []
-  _width: 2
-  _height: 2
+  _width: 3
+  _height: 3
   Category: {fileID: 11400000, guid: 252151bc563a0a54897c11b30e9e0ff5, type: 2}
   BaseComplexity: 0
   AttachmentSlots:
     _attachmentPoints:
     - Type: 1
       MinSupportedSize: 1
-      MaxSupportedSize: 2
-      LocalPosition: {x: 0.5, y: 0.5, z: 0}
+      MaxSupportedSize: 3
+      LocalPosition: {x: 0, y: 0, z: 0}
       LocalAngle: 0
     - Type: 1
       MinSupportedSize: 1
-      MaxSupportedSize: 2
-      LocalPosition: {x: 0.5, y: -0.5, z: 0}
+      MaxSupportedSize: 3
+      LocalPosition: {x: 1, y: 0, z: 0}
       LocalAngle: 0
     - Type: 1
       MinSupportedSize: 1
-      MaxSupportedSize: 2
-      LocalPosition: {x: -0.5, y: -0.5, z: 0}
+      MaxSupportedSize: 3
+      LocalPosition: {x: 1, y: 1, z: 0}
       LocalAngle: 0
     - Type: 1
       MinSupportedSize: 1
-      MaxSupportedSize: 2
-      LocalPosition: {x: -0.5, y: 0.5, z: 0}
+      MaxSupportedSize: 3
+      LocalPosition: {x: 0, y: 1, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 3
+      LocalPosition: {x: -1, y: 1, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 3
+      LocalPosition: {x: -1, y: 0, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 3
+      LocalPosition: {x: -1, y: -1, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 3
+      LocalPosition: {x: 0, y: -1, z: 0}
+      LocalAngle: 0
+    - Type: 1
+      MinSupportedSize: 1
+      MaxSupportedSize: 3
+      LocalPosition: {x: 1, y: -1, z: 0}
       LocalAngle: 0
   AttachmentPoints:
   - Type: 0
-    Size: 2
-    LocalPosition: {x: 0.5, y: 0.5, z: 0}
+    Size: 3
+    LocalPosition: {x: 0, y: 0, z: 0}
     LocalAngle: 0
-    RequiredPoints: 4
+    RequiredPoints: 9
   - Type: 0
-    Size: 2
-    LocalPosition: {x: -0.5, y: 0.5, z: 0}
+    Size: 3
+    LocalPosition: {x: 1, y: 0, z: 0}
     LocalAngle: 0
-    RequiredPoints: 4
+    RequiredPoints: 9
   - Type: 0
-    Size: 2
-    LocalPosition: {x: 0.5, y: -0.5, z: 0}
+    Size: 3
+    LocalPosition: {x: 1, y: 1, z: 0}
     LocalAngle: 0
-    RequiredPoints: 4
+    RequiredPoints: 9
   - Type: 0
-    Size: 2
-    LocalPosition: {x: -0.5, y: -0.5, z: 0}
+    Size: 3
+    LocalPosition: {x: -1, y: 1, z: 0}
     LocalAngle: 0
-    RequiredPoints: 4
+    RequiredPoints: 9
+  - Type: 0
+    Size: 3
+    LocalPosition: {x: -1, y: 0, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 9
+  - Type: 0
+    Size: 3
+    LocalPosition: {x: 0, y: 1, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 9
+  - Type: 0
+    Size: 3
+    LocalPosition: {x: -1, y: -1, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 9
+  - Type: 0
+    Size: 3
+    LocalPosition: {x: 0, y: -1, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 9
+  - Type: 0
+    Size: 3
+    LocalPosition: {x: 1, y: -1, z: 0}
+    LocalAngle: 0
+    RequiredPoints: 9
   TurnrateInfo: {fileID: 11400000, guid: 323095ad0ac69e74c91019c9a9e38e3e, type: 2}
   BaseTurnrate: 180
 --- !u!58 &-678891761187152143
@@ -193,7 +243,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a6bb8eecd77f194ea18564039e855fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea1c45722efd6a1478ad607656c33bcd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

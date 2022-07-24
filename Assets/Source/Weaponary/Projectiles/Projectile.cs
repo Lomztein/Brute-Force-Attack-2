@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles
 {
@@ -22,6 +23,8 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public double Damage;
         [ModelProperty]
         public float Range;
+        [ModelProperty, Range(0f, 1f)]
+        public float Pierce;
         [ModelProperty]
         public LayerMask Layer;
         [ModelProperty]
@@ -67,6 +70,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
                 _trailEffectObj.transform.localRotation = _trailEffectLocalRotation;
                 _trailEffectObj.Activate();
             }
+        }
+
+        public float GetPierceFactor ()
+        {
+            Assert.IsTrue(Pierce >= 0f && Pierce <= 1f, "Pierce must be between 0 and 1.");
+            return 1 - Pierce;
         }
 
         public void Awake()

@@ -36,8 +36,8 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
                 if (damagable != null)
                 {
                     DamageInfo damageInfo = parent.Hit(damagable, hit.collider, hit.point, hit.normal);
-                    _parent.Damage -= damageInfo.DamageDealt;
-                    if (parent.Damage <= 0f)
+                    _parent.Damage -= damageInfo.DamageDealt * _parent.GetPierceFactor();
+                    if (parent.Damage <= 1f)
                     {
                         _renderer.SetPositions(transform.position, hit.point);
                         break;

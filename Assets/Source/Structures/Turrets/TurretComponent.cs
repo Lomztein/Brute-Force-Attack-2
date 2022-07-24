@@ -39,6 +39,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public bool PreInitialized { get; private set; }
         public bool Initialized { get; private set; }
+        public bool PostInitialized { get; private set; }
 
         protected override void AwakeInit()
         {
@@ -60,6 +61,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         private void InitComponent()
         {
             Init();
+            Initialized = true;
             StartCoroutine(DelayedPostInit());
         }
 
@@ -68,7 +70,7 @@ namespace Lomztein.BFA2.Structures.Turrets
             yield return new WaitForEndOfFrame();
             Assert.IsTrue(PreInitialized, "Post-init run before pre-init.");
             PostInit();
-            Initialized = true;
+            PostInitialized = true;
         }
 
         public void FixedUpdate()
