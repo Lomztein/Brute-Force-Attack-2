@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
-  m_Name: ChargedRounds
+  m_Name: Rifling
   m_EditorClassIdentifier: 
-  Name: Charged Rounds
-  Description: +100% small blue weapons damage.
+  Name: Rifling
+  Description: Learn the secrets of rifling, and unlock the Anti-Material Rifle.
   Sprite:
-    Path: Core/Sprites/Collectables/DamageUpgrade.png
-    Texture: {fileID: 0}
+    Path: 
+    Texture: {fileID: 2800000, guid: 681ade2e8baa60d408a949e2edec299c, type: 3}
     Rect:
       serializedVersion: 2
       x: 0
@@ -25,17 +25,17 @@ MonoBehaviour:
       height: 32
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
-  SpriteTint: {r: 0, g: 1, b: 1, a: 1}
+  SpriteTint: {r: 1, g: 1, b: 1, a: 1}
   ResourceCost:
     Elements:
     - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
-      Value: 9
+      Value: 6
   TimeCost: 0
-  Identifier: Core.ChargedRounds
+  Identifier: Core.Rifling
   Prerequisites:
-  - Identifier: Core.NanoRecievers
+  - Identifier: Core.SpecializedWeapons
     Required: 1
-  - Identifier: Core.PlasmaCores
+  - Identifier: Core.NanoRecievers
     Required: 1
   UniquePrerequisites: []
   Rewards:
@@ -44,8 +44,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 0
-      type: {class: GlobalStructureModReward, ns: Lomztein.BFA2.Research.Rewards,
-        asm: Assembly-CSharp}
+      type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
-        Mod:
-          Mod: {fileID: 11400000, guid: addf7e8cee6b776459cd051f28ff86cd, type: 2}
+        Unlocks:
+        - Identifier: Core.AntiMaterialRifleT1
+          Prerequisites: []

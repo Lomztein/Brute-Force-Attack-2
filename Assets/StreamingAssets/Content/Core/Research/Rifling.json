@@ -1,14 +1,14 @@
 {
-  "Name": "Nano-Supercollider",
-  "Description": "Unlocks the Antimatter Launcher T2.",
+  "Name": "Rifling",
+  "Description": "Learn the secrets of rifling, and unlock the Anti-Material Rifle.",
   "Sprite": {
     "Path": "",
-    "Texture": "$Path{Core/Sprites/Components/AntimatterLauncherT2.png}",
+    "Texture": "$Path{Core/Sprites/Components/AntiMaterialRifleT1.png}",
     "Rect": {
       "X": 0.0,
       "Y": 0.0,
-      "Width": 48.0,
-      "Height": 48.0
+      "Width": 32.0,
+      "Height": 32.0
     },
     "Pivot": {
       "X": 0.5,
@@ -26,15 +26,19 @@
     "Elements": [
       {
         "Resource": "$Path{Core/Resources/Research.json}",
-        "Value": 14
+        "Value": 6
       }
     ]
   },
   "TimeCost": 0,
-  "Identifier": "Core.NanoSupercollider",
+  "Identifier": "Core.Rifling",
   "Prerequisites": [
     {
-      "Identifier": "Core.AntimatterContainment",
+      "Identifier": "Core.SpecializedWeapons",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.NanoRecievers",
       "Required": true
     }
   ],
@@ -45,7 +49,7 @@
       "$Data": {
         "Unlocks": [
           {
-            "Identifier": "Core.AntimatterLauncherT2",
+            "Identifier": "Core.AntiMaterialRifleT1",
             "Prerequisites": []
           }
         ]
