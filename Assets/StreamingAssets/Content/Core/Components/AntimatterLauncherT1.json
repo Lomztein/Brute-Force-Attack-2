@@ -1,0 +1,374 @@
+{
+  "Name": "AntimatterLauncherT1(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.Weapons.TurretWeapon",
+      "$Data": {
+        "FireTreshold": 1.0,
+        "DamageInfo": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "ProjectileAmountInfo": "$Path{Core/Modifiers/Stats/ProjectileAmount.json}",
+        "SpreadInfo": "$Path{Core/Modifiers/Stats/Spread.json}",
+        "SpeedInfo": "$Path{Core/Modifiers/Stats/Speed.json}",
+        "FirerateInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "PierceInfo": "$Path{Core/Modifiers/Stats/Pierce.json}",
+        "OnFireInfo": "$Path{Core/Modifiers/Events/OnFire.json}",
+        "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
+        "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
+        "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
+        "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
+        "BaseDamage": 800000.0,
+        "BaseProjectileAmount": 1,
+        "BaseSpread": 0.0,
+        "BaseSpeed": 30.0,
+        "BaseFirerate": 0.4,
+        "BasePierce": 0.0,
+        "Color": "Red",
+        "BaseComplexity": 0.0,
+        "AttachmentSlots": {
+          "_attachmentPoints": []
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": 1.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": -1.0,
+              "Y": 1.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": -1.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 1.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": -1.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          },
+          {
+            "Type": "Lower",
+            "Size": "Large",
+            "LocalPosition": {
+              "X": 1.0,
+              "Y": -1.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 9
+          }
+        ],
+        "_name": "Antimatter Launcher",
+        "_description": "Launches orbs of antimatter that disentregrate all it touches.",
+        "_uniqueIdentifier": "Core.AntimatterLauncherT1",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 12000
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Large",
+        "_height": "Large",
+        "Category": "$Path{Core/StructureCategories/Weapon.json}"
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Animation.SimpleAnimation",
+      "$Data": {
+        "HorStart": 1,
+        "HorEnd": -1,
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/AntimatterLauncherT1.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 48,
+          "SpriteHeight": 48,
+          "SpritePivot": {
+            "X": 0.5,
+            "Y": 0.5
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
+        },
+        "PlaySpeedMultiplier": 2.0
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 3.0,
+          "Y": 3.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Weaponary.Weapon",
+      "$Data": {
+        "ProjectilePrefab": {
+          "Path": "Resources/Projectiles/SmallAntimatterOrb"
+        },
+        "HitLayer": {
+          "Mask": 256
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/AntimatterLauncherT1.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 48.0,
+                "Height": 48.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Muzzles",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "Muzzle",
+          "Tag": "Untagged",
+          "Layer": 9,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 1.49,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            }
+          ],
+          "Children": [
+            {
+              "Name": "FireParticle",
+              "Tag": "Untagged",
+              "Layer": 0,
+              "Static": false,
+              "Components": [
+                {
+                  "$Type": "UnityEngine.Transform",
+                  "$Data": {
+                    "Position": {
+                      "X": 0.25,
+                      "Y": 0.0,
+                      "Z": 0.0
+                    },
+                    "Rotation": {
+                      "X": 0.0,
+                      "Y": 90.0,
+                      "Z": 0.0
+                    },
+                    "Scale": {
+                      "X": 1.0,
+                      "Y": 1.0,
+                      "Z": 1.0
+                    }
+                  }
+                },
+                {
+                  "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                  "$Data": {
+                    "Reference": {
+                      "Path": "Resources/Particles/FireEffects/CannonFireEffect"
+                    }
+                  }
+                }
+              ],
+              "Children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

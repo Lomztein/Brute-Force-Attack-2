@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Visuals.Effects;
 using Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents;
 using System;
 using System.Collections.Generic;
@@ -40,14 +41,15 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         private Vector3 _trailEffectLocalPosition = Vector3.zero;
         private Quaternion _trailEffectLocalRotation = Quaternion.identity;
 
-        // TODO: Expand to an Effect system that supports both particle systems and any other types of effect.
-        private ParticleSystem _hitEffect;
-        private ParticleSystem _trailEffect;
+        private Effect _hitEffect;
+        private Effect _trailEffect;
 
         [ModelProperty]
         public float HitEffectLife;
         [ModelProperty]
         public float TrailEffectLife;
+        [ModelProperty]
+        public bool PlayHitEffectOnEnd;
 
         public event Action<HitInfo> OnHit;
         public event Action<HitInfo> OnKill;
@@ -88,14 +90,14 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             if (hitEffect)
             {
                 _hitEffectObj = hitEffect.GetComponent<GameObjectActiveToggle>();
-                _hitEffect = hitEffect.GetComponent<ParticleSystem>();
+                _hitEffect = hitEffect.GetComponent<Effect>();
             }
             if (trailEffect)
             {
                 _trailEffectObj = trailEffect.GetComponent<GameObjectActiveToggle>();
                 if (_trailEffectObj)
                 {
-                    _trailEffect = _trailEffectObj.GetComponent<ParticleSystem>();
+                    _trailEffect = _trailEffectObj.GetComponent<Effect>();
                     _trailEffectLocalPosition = _trailEffectObj.transform.localPosition;
                     _trailEffectLocalRotation = _trailEffectObj.transform.localRotation;
                 }
@@ -161,6 +163,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
             if (_hitEffectObj)
             {
+                if (PlayHitEffectOnEnd)
+                {
+                    _hitEffect.Play();
+                }
+
                 _hitEffectObj.transform.parent = null;
                 _hitEffectObj.DelayedDeactivate(HitEffectLife);
             }

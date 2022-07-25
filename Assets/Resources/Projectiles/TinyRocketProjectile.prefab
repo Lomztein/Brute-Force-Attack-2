@@ -53,6 +53,7 @@ MonoBehaviour:
   Speed: 0
   Damage: 0
   Range: 0
+  Pierce: 0
   Layer:
     serializedVersion: 2
     m_Bits: 0
@@ -142,6 +143,7 @@ GameObject:
   - component: {fileID: 7709528950651714644}
   - component: {fileID: 8995572966473975916}
   - component: {fileID: 6255136534436101848}
+  - component: {fileID: 4207458148157018022}
   m_Layer: 0
   m_Name: HitEffect
   m_TagString: Untagged
@@ -5025,6 +5027,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e191aa6798539584dac80919eb59ed10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4207458148157018022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232017341030680463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374bf2ba387334f428d8f6bbfe9f54ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  System: {fileID: 0}
 --- !u!1 &772468655111480636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5121,6 +5136,7 @@ GameObject:
   - component: {fileID: 8405707810420776744}
   - component: {fileID: 3640688883260033023}
   - component: {fileID: 2698079619145780074}
+  - component: {fileID: 6803766714426339624}
   m_Layer: 0
   m_Name: TrailEffect
   m_TagString: Untagged
@@ -9946,3 +9962,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e191aa6798539584dac80919eb59ed10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6803766714426339624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3112793069823815181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374bf2ba387334f428d8f6bbfe9f54ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  System: {fileID: 0}

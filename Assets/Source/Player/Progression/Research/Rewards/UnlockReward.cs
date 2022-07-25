@@ -26,8 +26,10 @@ namespace Lomztein.BFA2.Research.Rewards
                     Action<ResearchOption> action = null;
                     action = (x) =>
                     {
-                       CheckUnlock(unlock);
-                       ResearchController.Instance.OnResearchCompleted -= action;
+                       if (CheckUnlock(unlock))
+                        {
+                            ResearchController.Instance.OnResearchCompleted -= action;
+                        }
                     };
 
                     // Each time something is researched, then check again.
@@ -36,12 +38,14 @@ namespace Lomztein.BFA2.Research.Rewards
             }
         }
 
-        void CheckUnlock(Unlock unlock)
+        bool CheckUnlock(Unlock unlock)
         {
             if (ResearchController.Instance.ArePrerequisitesResearched(unlock.Prerequisites))
             {
                 Player.Player.Unlocks.SetUnlocked(unlock.Identifier, true);
+                return true;
             }
+            return false;
         }
 
 

@@ -1,0 +1,63 @@
+{
+  "Name": "Antimatter Containment",
+  "Description": "Unlocks the Antimatter Launcher T1, a super powerful weapon that disintegrates everything in sight.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/AntimatterLauncherT1.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 48.0,
+      "Height": 48.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 12
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.AntimatterContainment",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ChargeCoherence",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.BlastAbsorbers",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.IndustrialMotors",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.AntimatterLauncherT1",
+            "Prerequisites": []
+          }
+        ]
+      }
+    }
+  ]
+}

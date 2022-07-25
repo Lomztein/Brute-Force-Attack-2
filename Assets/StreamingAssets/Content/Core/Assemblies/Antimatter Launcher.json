@@ -1,0 +1,168 @@
+{
+  "Name": "Antimatter Launcher",
+  "Description": "",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Unnamed Tier",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Unnamed Tier",
+      "Tier": 2,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.LargeBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.LargeRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.AntimatterLauncherT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.LargeBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.LargeRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.AntimatterLauncherT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.LargeBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.LargeRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.AntimatterLauncherT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    }
+  }
+}
