@@ -33,6 +33,7 @@
         "SpreadInfo": "$Path{Core/Modifiers/Stats/Spread.json}",
         "SpeedInfo": "$Path{Core/Modifiers/Stats/Speed.json}",
         "FirerateInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "PierceInfo": "$Path{Core/Modifiers/Stats/Pierce.json}",
         "OnFireInfo": "$Path{Core/Modifiers/Events/OnFire.json}",
         "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
         "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
@@ -43,6 +44,7 @@
         "BaseSpread": 0.0,
         "BaseSpeed": 20.0,
         "BaseFirerate": 0.5,
+        "BasePierce": 0.0,
         "Color": "Red",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
@@ -76,7 +78,8 @@
           "_tags": []
         },
         "_width": "Small",
-        "_height": "Small"
+        "_height": "Small",
+        "Category": "$Path{Core/StructureCategories/Weapon.json}"
       }
     },
     {
@@ -116,99 +119,23 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Visuals.FireAnimations.SimpleFireAnimation",
+      "$Type": "Lomztein.BFA2.Animation.SimpleAnimation",
       "$Data": {
-        "AnimationSprites": [
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
-            "Rect": {
-              "X": 16.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
-            "Rect": {
-              "X": 48.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
-            "Rect": {
-              "X": 80.0,
-              "Y": 0.0,
-              "Width": 16.0,
-              "Height": 16.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        ],
-        "DefaultSprite": {
-          "Path": "",
-          "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 16.0,
-            "Height": 16.0
-          },
-          "Pivot": {
+        "HorStart": 1,
+        "HorEnd": -1,
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 16,
+          "SpriteHeight": 16,
+          "SpritePivot": {
             "X": 0.5,
             "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
         },
         "PlaySpeedMultiplier": 4.0
       }
@@ -256,7 +183,7 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "",
+              "Path": null,
               "Texture": "$Path{Core/Sprites/Components/RocketLauncherT2.png}",
               "Rect": {
                 "X": 0.0,

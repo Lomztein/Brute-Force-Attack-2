@@ -26,18 +26,14 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 
         public GameObject ToolTipPrefab;
 
-        public string Title => _purchasable.Name + " - " + _purchasable.Cost.Format();
-        public string Description => _purchasable.Description;
-        public string Footnote => string.Empty;
-
-        public GameObject GetToolTip()
+        public virtual GameObject GetToolTip()
         {
             GameObject newToolTip = Instantiate(ToolTipPrefab);
             newToolTip.GetComponent<IPurchasableToolTip>().Assign(_purchasable);
             return newToolTip;
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             Button.onClick.AddListener(() => HandlePurchase());
 
@@ -48,7 +44,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
             UpdateInteractable();
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (_resourceContainer != null)
             {
@@ -73,16 +69,11 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
             }
         }
 
-        protected void UpdateInteractable ()
+        protected virtual void UpdateInteractable ()
         {
-            bool interactable = IsInteractable();
+            bool interactable = _resourceContainer.HasEnough(_purchasable.Cost);
             Button.interactable = interactable;
             Image.color = interactable ? Color.white : new Color(1f, 1f, 1f, 0.5f);
-        }
-
-        protected virtual bool IsInteractable ()
-        {
-            return _resourceContainer.HasEnough(_purchasable.Cost);
         }
 
         public void HandlePurchase()

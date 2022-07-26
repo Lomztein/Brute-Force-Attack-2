@@ -17,16 +17,16 @@ MonoBehaviour:
     Expression: Pleased
     Text: Alrightus! We'll just quickly go over the most important things you need
       to know. Firstly, to defend the green shit you must place turrets, also known
-      as Assemblies, as well as structures. Assemblies are what do the damage while
-      structures support your efforts. They are both available in corrosponding tabs
-      on the Purchase Menu beneath.
+      as Assemblies, as well as structures. These can be accessed in the menu below
+      me.
     Options:
     - Text: Understood
       Result:
-        id: 0
+        rid: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: StartNewDialogOptionResult, ns: Lomztein.BFA2.UI.Displays.Dialog.OptionResults,
         asm: Assembly-CSharp}
       data:

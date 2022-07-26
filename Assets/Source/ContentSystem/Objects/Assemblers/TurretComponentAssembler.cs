@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
 {
     public class TurretComponentAssembler
     {
-        private static readonly string COMPONENTS_CONTENT_PATH = "*/Components";
+        private static readonly string COMPONENTS_CONTENT_PATH = "*/Components/*";
         private IContentCachedPrefab[] _allComponents;
 
         public TurretComponent Assemble (ObjectModel model, Transform parent, TurretAssembly assembly, AssemblyContext context)
@@ -47,17 +47,12 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 TurretComponent parentComponent = parent.GetComponent<TurretComponent>();
                 foreach (var point in newComponent.AttachmentPoints)
                 {
-                    AttachmentSlot slot = FindSlotForPoint(parentComponent.AttachmentSlots.GetSupportingPoints(point), point, obj.transform, parent.transform);
+                    AttachmentSlot slot = FindSlotForPoint(parentComponent.AttachmentSlots.GetSupportingSlots(point), point, obj.transform, parent.transform);
                     if (slot != null)
                     {
                         slot.Attach(newComponent);
                     }
                 }
-            }
-            else
-            {
-                obj.transform.SetParent(assembly.transform);
-                obj.transform.localPosition = Vector3.zero;
             }
 
             foreach (ValueModel child in model.GetArray("Children"))
@@ -118,5 +113,5 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
         {
             return GetComponents().First(x => x.GetCache().GetComponent<TurretComponent>().Identifier == identifier);
         }
-    }
+    }   
 }

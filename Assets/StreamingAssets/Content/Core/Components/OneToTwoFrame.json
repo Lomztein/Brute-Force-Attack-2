@@ -1,0 +1,160 @@
+{
+  "Name": "OneToTwoFrame(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": -1.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.PassiveTurretComponent",
+      "$Data": {
+        "BaseComplexity": 0.0,
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Small",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Small",
+            "LocalPosition": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
+          }
+        ],
+        "_name": "One-to-Two Frame",
+        "_description": "Splits a single attachment slot into two.",
+        "_uniqueIdentifier": "Core.OneToTwoFrame",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 50
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Small",
+        "_height": "Small",
+        "Category": "$Path{Core/StructureCategories/Structural.json}"
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 2.0
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/OneByTwoConnector.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 32.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

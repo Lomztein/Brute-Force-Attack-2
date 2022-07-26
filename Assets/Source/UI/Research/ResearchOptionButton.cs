@@ -11,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Lomztein.BFA2.Research.UI
 {
-    public class ResearchOptionButton : MonoBehaviour
+    public class ResearchOptionButton : MonoBehaviour, IHasToolTip
     {
         public Image Image;
         public Text Name;
@@ -24,6 +24,11 @@ namespace Lomztein.BFA2.Research.UI
         {
             Research = option;
             UpdateButton(true);
+        }
+
+        public GameObject GetToolTip()
+        {
+            return SimpleToolTip.InstantiateToolTip(Research.Name, Research.Description, Research.TimeCost == 0 ? "Time: Instant" : "Time: " + Research.TimeCost + " Waves");
         }
 
         // Feels a bit strange to bring the container here, but it's easy to implement and change.
@@ -41,15 +46,7 @@ namespace Lomztein.BFA2.Research.UI
 
             if (Research.UniquePrerequisitesCompleted)
             {
-                Cost.text = "Cost: " + Research.ResourceCost.ToString();
-                if (Research.TimeCost != 0)
-                {
-                    Cost.text += ", Waves: " + Research.TimeCost;
-                }
-                else
-                {
-                    Cost.text += ", Waves: Instant";
-                }
+                Cost.text = Research.ResourceCost.Format(false);
             }
         }
     }

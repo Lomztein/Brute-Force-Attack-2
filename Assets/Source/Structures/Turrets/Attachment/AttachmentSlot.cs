@@ -24,6 +24,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Attachment
 
         public void Attach(IAttachable attachable)
             => Attachment = new Attachment(this, attachable);
+        public void ClearAttachment()
+            => Attachment = null;
 
         public bool CanSupport(AttachmentPoint point) => point.Size >= MinSupportedSize && point.Size <= MaxSupportedSize && Invert(point.Type) == Type;
         public bool IsEmpty() => Attachment == null || Attachment.Attachable == null;

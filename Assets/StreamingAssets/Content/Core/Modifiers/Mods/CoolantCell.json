@@ -8,7 +8,14 @@
       }
     ],
     "AddStatIfMissing": false,
-    "Filters": [],
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Firerate.json}"
+        }
+      }
+    ],
     "Identifier": "Core.CoolantCell",
     "Name": "Overclocked",
     "Description": "This fires faster due to overclocking."

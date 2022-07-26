@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2145106305163990941}
   m_Father: {fileID: 5246017201175003112}
@@ -61,6 +62,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5246017202535924012}
   - {fileID: 2152964982032201438}
@@ -96,17 +98,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Side Mounted Kinetic Rocket Launcher
-  _description: Small attachment that fires a rocket each time it's parent weapon
-    gets a kill.
+  _description: Small mount that fires a rocket each time it's parent weapon gets
+    a kill.
   _uniqueIdentifier: Core.KineticMissle
   _cost:
     Elements:
     - Resource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
-      Value: 400
+      Value: 1200
   Tags:
     _tags: []
   _width: 1
   _height: 1
+  Category: {fileID: 11400000, guid: 3e8143e23e3b06144ab36a1955a05db9, type: 2}
   BaseComplexity: 0
   AttachmentSlots:
     _attachmentPoints:
@@ -127,6 +130,7 @@ MonoBehaviour:
   SpreadInfo: {fileID: 11400000, guid: e360944867a30134b85bffba1627be26, type: 2}
   SpeedInfo: {fileID: 11400000, guid: 0034107c83f3d7440b375192bedaa8f6, type: 2}
   FirerateInfo: {fileID: 11400000, guid: df34151e64bf40546a3c14ab03cc820a, type: 2}
+  PierceInfo: {fileID: 11400000, guid: 7233e164d570f1340a778d9030485ab3, type: 2}
   OnFireInfo: {fileID: 11400000, guid: 6ccacca67d7ee2745aed7c09eed5892e, type: 2}
   OnProjectileInfo: {fileID: 11400000, guid: 38b5366228cb4c44d883265024c10e9d, type: 2}
   OnProjectileDepletedInfo: {fileID: 11400000, guid: b8eb24eba95e4754fb1082373a605e3d,
@@ -135,12 +139,13 @@ MonoBehaviour:
     type: 2}
   OnProjectileKillInfo: {fileID: 11400000, guid: 0f2f8fe425805474ea140d6cb72be164,
     type: 2}
-  BaseDamage: 20
+  BaseDamage: 100
   BaseProjectileAmount: 1
   BaseSpread: 10
   BaseSpeed: 40
   BaseFirerate: 5
-  Color: 4
+  BasePierce: 0
+  Color: 3
   Parent: {fileID: 0}
   ToFire: 0
   RangeInfo: {fileID: 11400000, guid: 61ed24ad66405534e9dab80daced4889, type: 2}
@@ -161,7 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04dcc6afa8d557458713189d8f675a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Color: 4
   ProjectilePrefab:
     Path: Resources/Projectiles/TinyRocketProjectile
   HitLayer:
@@ -179,7 +183,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0085c4a098d948948adb9904b5212c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _evalutator: {fileID: 0}
+  _evalutator:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &5246017202535924015
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +217,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5246017201175003112}
   m_RootOrder: 0
@@ -222,6 +233,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -288,6 +300,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.45, y: -0.275, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2152964982032201438}
   m_RootOrder: 0

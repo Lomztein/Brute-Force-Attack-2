@@ -19,12 +19,12 @@ namespace Lomztein.BFA2.Enemies
 {
     public class Enemy : MonoBehaviour, IIdentifiable, IDamagable
     {
-        public const string ENEMIES_CCONTENT_PATH = "*/Enemies";
+        public const string ENEMIES_CCONTENT_PATH = "*/Enemies/*";
 
         private const float CRITICAL_DAMAGE_MULT = 2f;
 
         [ModelProperty]
-        public float MaxHealth;
+        public double MaxHealth;
         [ModelProperty]
         public float Armor;
         [ModelProperty]
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Enemies
         public float Speed { get => _motor.Speed; set => _motor.Speed = value; }
         public int PathIndex { get => _motor.PathIndex; set => _motor.PathIndex = value; }
 
-        public float Health;
+        public double Health { get; private set; }
         private bool _isDead;
 
         [ModelProperty]
@@ -59,6 +59,11 @@ namespace Lomztein.BFA2.Enemies
         private Queue<EnemyBuff> _toRemove = new Queue<EnemyBuff>();
 
         public IEnumerable<EnemyBuff> Buffs => _buffs;
+
+        private void Awake()
+        {
+            Health = MaxHealth;
+        }
 
         private void FixedUpdate()
         {
@@ -177,15 +182,15 @@ namespace Lomztein.BFA2.Enemies
             }
         }
 
-        public float TakeDamage(DamageInfo damageInfo)
+        public double TakeDamage(DamageInfo damageInfo)
         {
-            float damage = GetDamage(damageInfo);
-            float reduction = GetDamageReduction(damage);
+            double damage = GetDamage(damageInfo);
+            double reduction = GetDamageReduction(damage);
 
-            damageInfo.DamageDealt = Mathf.Min (Health + reduction, damageInfo.Damage);
+            damageInfo.DamageDealt = Math.Min (Health + reduction, damageInfo.Damage);
 
-            Health -= Mathf.Min (damage, Health);
-            Shields = Mathf.Max (Shields - 1, 0);
+            Health -= Math.Min (damage, Health);
+            Shields = Math.Max (Shields - 1, 0);
 
             if (Health <= 0f && !_isDead)
             {
@@ -194,14 +199,14 @@ namespace Lomztein.BFA2.Enemies
             return Health;
         }
 
-        private float GetDamage (DamageInfo info)
+        private double GetDamage (DamageInfo info)
         {
-            float damage = info.Damage * (info.Color == Color ? CRITICAL_DAMAGE_MULT : 1f);
-            damage = Mathf.Max(damage - GetDamageReduction(damage), damage / Mathf.Max(GetDamageReduction(damage), 1));
+            double damage = info.Damage * (info.Color == Color ? CRITICAL_DAMAGE_MULT : 1.0);
+            damage = Math.Max(damage - GetDamageReduction(damage), damage / Math.Max(GetDamageReduction(damage), 1));
             return damage;
         }
 
-        private float GetDamageReduction (float damage)
+        private double GetDamageReduction (double damage)
         {
             return Armor + Shields;
         }
@@ -243,7 +248,7 @@ namespace Lomztein.BFA2.Enemies
             _motor.Path = path;
         }
 
-        public static IContentCachedPrefab[] GetEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMIES_CCONTENT_PATH);
+        public static IContentCachedPrefab[] GetEnemies() => Content.GetAll<IContentCachedPrefab>(ENEMIES_CCONTENT_PATH).ToArray();
         public static IContentCachedPrefab GetEnemy(string identifier) => GetEnemies().FirstOrDefault(x => x.GetCache().GetComponent<Enemy>().Identifier == identifier);
     }
 }

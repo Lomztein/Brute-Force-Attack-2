@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Structures;
+﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Structures;
 using Lomztein.BFA2.World;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ namespace Lomztein.BFA2.Modification.Filters
     [System.Serializable]
     public class StructureSizeFilter : StructureFilter
     {
-        private Size _minWidth = Size.Small;
-        private Size _minHeight = Size.Small;
-        private Size _maxWidth = Size.Huge;
-        private Size _maxHeight = Size.Huge;
+        [SerializeField, ModelProperty] private Size _minWidth = Size.Small;
+        [SerializeField, ModelProperty] private Size _minHeight = Size.Small;
+        [SerializeField, ModelProperty] private Size _maxWidth = Size.Huge;
+        [SerializeField, ModelProperty] private Size _maxHeight = Size.Huge;
 
         public override bool Check(Structure structure)
             => IsWithin(structure.Width, _minWidth, _minHeight) &&

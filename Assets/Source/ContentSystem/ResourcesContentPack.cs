@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem.Loaders.ResourceLoaders;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ResourcesContentPack : IContentPack
     {
+        public static string GetResourcesIndexPath() => System.IO.Path.Combine(Application.streamingAssetsPath, "ResourcesIndex.txt");
+
         public string Name => "Resources";
         public string Author => "Brute Force Attack 2";
         public string Description => "Built-in resources.";
@@ -25,21 +28,7 @@ namespace Lomztein.BFA2.ContentSystem
             new GameObjectToCachedGameObjectResourceConverter(),
         };
 
-        public object[] GetAllContent(string path, Type type)
-        {
-            var converter = GetConverter(type);
-
-            if (converter == null)
-            {
-                return Resources.LoadAll(path, type);
-            }
-            else
-            {
-                return Resources.LoadAll(path, converter.InputType).Select (x => converter.Convert(x)).ToArray();
-            }
-        }
-
-        public object GetContent(string path, Type type)
+        public object LoadContent(string path, Type type)
         {
             var converter = GetConverter(type);
 
@@ -65,6 +54,11 @@ namespace Lomztein.BFA2.ContentSystem
 
         public void Init()
         {
+        }
+
+        public string[] GetContentPaths()
+        {
+            return System.IO.File.ReadAllLines(GetResourcesIndexPath()).Select(x => System.IO.Path.ChangeExtension(x, null)).ToArray();
         }
     }
 }

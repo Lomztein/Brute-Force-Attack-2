@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Collectables
     // TODO: Somehow extend to allow unique effects for different rarities.
     public class RarityEffect : MonoBehaviour
     {
-        public const string CONTENT_PATH = "*/Rarities/Effects";
+        public const string CONTENT_PATH = "*/Rarities/Effects/*";
 
         [ModelAssetReference]
         public Rarity Rarity;
@@ -75,7 +75,7 @@ namespace Lomztein.BFA2.Collectables
 
         public static GameObject Instantiate (Rarity rarity)
         {
-            IContentCachedPrefab[] all = Content.GetAll<IContentCachedPrefab>(CONTENT_PATH);
+            IContentCachedPrefab[] all = Content.GetAll<IContentCachedPrefab>(CONTENT_PATH).ToArray();
             IContentCachedPrefab defaultEffect = all.First(x => x.GetCache().GetComponent<RarityEffect>().Rarity == null);
             IContentCachedPrefab fit = all.FirstOrDefault(x => x.GetCache().GetComponent<RarityEffect>().Rarity?.Identifier == rarity.Identifier);
             return (fit ?? defaultEffect).Instantiate();

@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Visuals.Effects;
 using Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Lomztein.BFA2.Weaponary.Projectiles
 {
@@ -19,9 +21,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         [ModelProperty]
         public float Speed;
         [ModelProperty]
-        public float Damage;
+        public double Damage;
         [ModelProperty]
         public float Range;
+        [ModelProperty, Range(0f, 1f)]
+        public float Pierce;
         [ModelProperty]
         public LayerMask Layer;
         [ModelProperty]
@@ -37,14 +41,15 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         private Vector3 _trailEffectLocalPosition = Vector3.zero;
         private Quaternion _trailEffectLocalRotation = Quaternion.identity;
 
-        // TODO: Expand to an Effect system that supports both particle systems and any other types of effect.
-        private ParticleSystem _hitEffect;
-        private ParticleSystem _trailEffect;
+        private Effect _hitEffect;
+        private Effect _trailEffect;
 
         [ModelProperty]
         public float HitEffectLife;
         [ModelProperty]
         public float TrailEffectLife;
+        [ModelProperty]
+        public bool PlayHitEffectOnEnd;
 
         public event Action<HitInfo> OnHit;
         public event Action<HitInfo> OnKill;
@@ -69,6 +74,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             }
         }
 
+        public float GetPierceFactor ()
+        {
+            Assert.IsTrue(Pierce >= 0f && Pierce <= 1f, "Pierce must be between 0 and 1.");
+            return 1 - Pierce;
+        }
+
         public void Awake()
         {
             _projectileComponents.AddRange(GetComponents<IProjectileComponent>());
@@ -79,14 +90,14 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             if (hitEffect)
             {
                 _hitEffectObj = hitEffect.GetComponent<GameObjectActiveToggle>();
-                _hitEffect = hitEffect.GetComponent<ParticleSystem>();
+                _hitEffect = hitEffect.GetComponent<Effect>();
             }
             if (trailEffect)
             {
                 _trailEffectObj = trailEffect.GetComponent<GameObjectActiveToggle>();
                 if (_trailEffectObj)
                 {
-                    _trailEffect = _trailEffectObj.GetComponent<ParticleSystem>();
+                    _trailEffect = _trailEffectObj.GetComponent<Effect>();
                     _trailEffectLocalPosition = _trailEffectObj.transform.localPosition;
                     _trailEffectLocalRotation = _trailEffectObj.transform.localRotation;
                 }
@@ -116,7 +127,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public DamageInfo Hit (IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal)
         {
             DamageInfo damage = new DamageInfo(Damage, Color);
-            float life = damagable.TakeDamage(damage);
+            double life = damagable.TakeDamage(damage);
 
             HitInfo info = new HitInfo(damage, col, position, normal, this, _weapon, Damage <= 0f);
 
@@ -152,6 +163,11 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
             if (_hitEffectObj)
             {
+                if (PlayHitEffectOnEnd)
+                {
+                    _hitEffect.Play();
+                }
+
                 _hitEffectObj.transform.parent = null;
                 _hitEffectObj.DelayedDeactivate(HitEffectLife);
             }

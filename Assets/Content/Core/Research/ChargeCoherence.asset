@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
+  m_Name: ChargeCoherence
+  m_EditorClassIdentifier: 
+  Name: Charge Coherence
+  Description: Unlock the Plasma Cannon T3 and Scatter Laser T3, by understanding
+    how to maintain a high charge coherence in energy cells.
+  Sprite:
+    Path: 
+    Texture: {fileID: 2800000, guid: 241b793ab567a1049a41811e48d77004, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SpriteTint: {r: 1, g: 1, b: 1, a: 1}
+  ResourceCost:
+    Elements:
+    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+      Value: 8
+  TimeCost: 0
+  Identifier: Core.ChargeCoherence
+  Prerequisites:
+  - Identifier: Core.FluxCoils
+    Required: 1
+  UniquePrerequisites: []
+  Rewards:
+  - rid: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 0
+      type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
+      data:
+        Unlocks:
+        - Identifier: Core.PlasmaCannonT3
+          Prerequisites:
+          - Identifier: Core.PlasmaCores
+            Required: 1
+        - Identifier: Core.ScatterLaserT3
+          Prerequisites:
+          - Identifier: Core.RefractorCrystals
+            Required: 1

@@ -1,0 +1,42 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "Value": 1.5
+      },
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "Value": 1.5
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasUnityComponentFilter",
+        "$Data": {
+          "ApplicableComponentClassNames": [
+            "Weapon"
+          ],
+          "RequireAll": false
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Firerate.json}"
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Damage.json}"
+        }
+      }
+    ],
+    "Identifier": "Core.EmergencyCharge",
+    "Name": "Emergency Charge",
+    "Description": "This weapon is supercharged for a short while."
+  }
+}

@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Modification.Filters
 {
     [System.Serializable]
     public class OrFilter : IModdableFilter
     {
-        [ModelProperty]
+        [ModelProperty, SerializeReference, SR]
         public IModdableFilter[] Filters;
 
         public bool Check(IModdable moddable)

@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Enemies.Loot
 {
     public class CommonLootDropper : MonoBehaviour
     {
-        public const string COMMON_LOOT_PATH = "*/Loot/Common";
+        public const string COMMON_LOOT_PATH = "*/Loot/Common/*";
         public const int BASE_FRACTION = 1;
 
         private static LootTable _commonLootTable;
@@ -57,7 +57,7 @@ namespace Lomztein.BFA2.Enemies.Loot
         {
             if (_commonLootTable == null)
             {
-                _commonLootTable = LootTable.Combine(Content.GetAll<LootTable>(COMMON_LOOT_PATH));
+                _commonLootTable = LootTable.Combine(Content.GetAll<LootTable>(COMMON_LOOT_PATH).ToArray());
             }
             return _commonLootTable;
         }

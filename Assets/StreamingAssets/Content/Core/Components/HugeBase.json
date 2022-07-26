@@ -1,0 +1,500 @@
+{
+  "Name": "HugeBase(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
+      "$Data": {
+        "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
+        "OnTargetAcquiredInfo": "$Path{Core/Modifiers/Events/OnTargetAcquired.json}",
+        "BaseRange": 25.0,
+        "TargetLayer": {
+          "Mask": 256
+        },
+        "BaseComplexity": 0.0,
+        "AttachmentSlots": {
+          "_attachmentPoints": [
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 1.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 1.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 1.5,
+                "Y": 1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": 1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": 1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -1.5,
+                "Y": 1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -1.5,
+                "Y": 0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -1.5,
+                "Y": -0.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -1.5,
+                "Y": -1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": -0.5,
+                "Y": -1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 0.5,
+                "Y": -1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            },
+            {
+              "Type": "Upper",
+              "MinSupportedSize": "Small",
+              "MaxSupportedSize": "Huge",
+              "LocalPosition": {
+                "X": 1.5,
+                "Y": -1.5,
+                "Z": 0.0
+              },
+              "LocalAngle": 0.0
+            }
+          ]
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 1.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 1.5,
+              "Y": 1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": 1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 1.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": 1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -1.5,
+              "Y": 1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -1.5,
+              "Y": 0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -1.5,
+              "Y": -0.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -1.5,
+              "Y": -1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": -0.5,
+              "Y": -1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 0.5,
+              "Y": -1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          },
+          {
+            "Type": "Lower",
+            "Size": "Huge",
+            "LocalPosition": {
+              "X": 1.5,
+              "Y": -1.5,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 16
+          }
+        ],
+        "_name": "Huge Base",
+        "_description": "Targets nearby hostiles.",
+        "_uniqueIdentifier": "Core.HugeBase",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 3500
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Huge",
+        "_height": "Huge",
+        "Category": "$Path{Core/StructureCategories/Base.json}"
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
+      "$Data": {
+        "_evalutator": null
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 2.0,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.SelfModBroadcaster",
+      "$Data": {
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/AddModuleSlot.json}"
+        },
+        "ModCoeffecient": 3.0
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Base",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/HugeBase.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 64.0,
+                "Height": 64.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

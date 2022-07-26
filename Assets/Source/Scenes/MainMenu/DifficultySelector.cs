@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
         private IEnumerable<Difficulty> _difficulties;
         private Dictionary<string, Button> _difficultyButtonMap = new Dictionary<string, Button>();
 
-        private string DIFFICULTY_PATH = "*/Difficulty";
+        private string DIFFICULTY_PATH = "*/Difficulty/*";
         private string DEFAULT_IDENTIFIER = "Core.Medium";
 
         private void Awake ()
@@ -97,7 +97,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         private IEnumerable<Difficulty> LoadDifficulties ()
         {
-            Difficulty[] loaded = Content.GetAll<Difficulty>(DIFFICULTY_PATH);
+            Difficulty[] loaded = Content.GetAll<Difficulty>(DIFFICULTY_PATH).ToArray();
             var grouped = loaded.GroupBy(x => x.Identifier);
             List<Difficulty> result = new List<Difficulty>();
 

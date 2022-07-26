@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
     public class ResourceCost : IResourceCost
     {
         [ModelProperty]
-        public Element[] Elements;
+        public Element[] Elements = new Element[0];
 
         [Serializable]
         public class Element
@@ -47,10 +47,9 @@ namespace Lomztein.BFA2.Purchasing.Resources
         {
             return Elements.ToDictionary(x => x.Resource, y => y.Value);
         }
-
         public override string ToString()
         {
-            return this.Format();
+            return this.Format(true);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Lomztein.BFA2.Abilities;
 using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Enemies.Waves;
@@ -49,6 +50,7 @@ namespace Lomztein.BFA2.Battlefield
             InitMap(settings);
             InitWaves(settings);
             InitDefaultUnlocks(settings);
+            InitStartingAbilities(settings);
             InitStartingItems(settings);
             InitDifficulty(settings);
             InitMutators(settings);
@@ -86,6 +88,14 @@ namespace Lomztein.BFA2.Battlefield
             }
         }
 
+        private void InitStartingAbilities(BattlefieldSettings settings)
+        {
+            foreach (var ability in settings.StartingAbilities)
+            {
+                AbilityManager.Instance.AddAbility(Instantiate(ability), this);
+            }
+        }
+
         private void SendStartingMessage()
         {
             DialogDisplay.DisplayDialog(Introduction);
@@ -93,13 +103,13 @@ namespace Lomztein.BFA2.Battlefield
 
         private void InitMap(BattlefieldSettings settings)
         {
-            MapData mapData = Content.GetAll<MapData>("*/Maps").First(x => x.Identifier == settings.MapIdentifier);
+            MapData mapData = Content.GetAll<MapData>("*/Maps/*").First(x => x.Identifier == settings.MapIdentifier);
             MapController.ApplyMapData(mapData.DeepClone());
         }
 
         private void InitWaves(BattlefieldSettings settings)
         {
-            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections").First(x => x.Identifier == settings.WaveCollectionIdentifier);
+            WaveCollection waves = Content.GetAll<WaveCollection>("*/WaveCollections/*").First(x => x.Identifier == settings.WaveCollectionIdentifier);
             RoundController.SetWaveCollection(waves.DeepClone());
         }
 

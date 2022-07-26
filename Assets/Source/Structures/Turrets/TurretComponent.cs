@@ -11,6 +11,7 @@ using Lomztein.BFA2.Serialization.Assemblers;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets.Attachment;
 using Lomztein.BFA2.World;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public bool PreInitialized { get; private set; }
         public bool Initialized { get; private set; }
+        public bool PostInitialized { get; private set; }
 
         protected override void AwakeInit()
         {
@@ -59,6 +61,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         private void InitComponent()
         {
             Init();
+            Initialized = true;
             StartCoroutine(DelayedPostInit());
         }
 
@@ -67,7 +70,7 @@ namespace Lomztein.BFA2.Structures.Turrets
             yield return new WaitForEndOfFrame();
             Assert.IsTrue(PreInitialized, "Post-init run before pre-init.");
             PostInit();
-            Initialized = true;
+            PostInitialized = true;
         }
 
         public void FixedUpdate()
@@ -95,7 +98,7 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public void OnDrawGizmosSelected()
         {
-            foreach (var point in AttachmentSlots.GetPoints().Select(x => x.GetWorldPosition(transform)))
+            foreach (var point in AttachmentSlots.GetSlots().Select(x => x.GetWorldPosition(transform)))
             {
                 Gizmos.DrawWireSphere(point, 0.25f);
             }
@@ -112,5 +115,35 @@ namespace Lomztein.BFA2.Structures.Turrets
         public virtual ValueModel DisassembleData (DisassemblyContext context) { return null; }
 
         public virtual void AssembleData(ValueModel data, AssemblyContext context) { }
+
+        public void RebuildAttachmentToParent ()
+        {
+            // For each attachment point, find corrosponding point on parent.
+            if (transform.parent.TryGetComponent(out TurretComponent parent))
+            {
+                foreach (AttachmentPoint point in AttachmentPoints)
+                {
+                    // Find the corrosponding slot on the parent and attach to it.
+                    AttachmentSlot slot = parent.AttachmentSlots.GetNearestSupportingSlot(point, parent.transform, transform);
+                    if (slot != null)
+                    {
+                        slot.Attach(this);
+                    }
+                }
+            }
+        }
+
+        public void RemoveAttachmentsToDeadChildren ()
+        {
+            foreach (AttachmentSlot slot in AttachmentSlots.GetSlots())
+            {
+                // If the attachment exists, but the attachable does not..
+                if (slot.Attachment != null && slot.Attachment.Attachable as UnityEngine.Object == null)
+                {
+                    // Clear the attachment.
+                    slot.ClearAttachment();
+                }
+            }
+        }
     }
 }

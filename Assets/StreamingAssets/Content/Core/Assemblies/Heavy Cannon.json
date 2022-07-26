@@ -1,0 +1,847 @@
+{
+  "Name": "Heavy Cannon",
+  "Description": "The heavy slugs of molten metal fired from this turret can tear through many enemies and punch through a lot of armor.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Double Heavy Cannon",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Triple Heavy Cannon",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Double Heavy Autocannon",
+      "Tier": 1,
+      "Variant": -1
+    },
+    {
+      "Name": "Triple Heavy Autocannon",
+      "Tier": 2,
+      "Variant": -1
+    },
+    {
+      "Name": "Unnamed Tier",
+      "Tier": 1,
+      "Variant": 1
+    },
+    {
+      "Name": "Triple Superheavy Cannon",
+      "Tier": 2,
+      "Variant": 1
+    },
+    {
+      "Name": "Triple Supreme Heavy Autocannon",
+      "Tier": 3,
+      "Variant": -1
+    },
+    {
+      "Name": "Triple Supreme Heavy Cannon",
+      "Tier": 3,
+      "Variant": 0
+    },
+    {
+      "Name": "Triple Supreme Superheavy Cannon",
+      "Tier": 3,
+      "Variant": 1
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0",
+          "1_-1",
+          "1_1"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0",
+          "2_-1",
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "1_-1",
+        "NextTiers": [
+          "2_-1"
+        ]
+      },
+      {
+        "Tier": "1_1",
+        "NextTiers": [
+          "2_1"
+        ]
+      },
+      {
+        "Tier": "2_-1",
+        "NextTiers": [
+          "3_-1"
+        ]
+      },
+      {
+        "Tier": "2_0",
+        "NextTiers": [
+          "3_0",
+          "3_-1",
+          "3_1"
+        ]
+      },
+      {
+        "Tier": "2_1",
+        "NextTiers": [
+          "3_1"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.MediumBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_-1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT2",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -1.125,
+                    "Y": -0.375
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -1.125,
+                    "Y": 0.375
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_-1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.KineticMissle",
+                  "LocalPosition": {
+                    "X": -0.4375,
+                    "Y": 1.125
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.KineticMissle",
+                  "LocalPosition": {
+                    "X": -0.4375,
+                    "Y": -1.125
+                  },
+                  "Angle": 0.0,
+                  "Flipped": true,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -1.125,
+                    "Y": 0.375
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.CoolantCell",
+                  "LocalPosition": {
+                    "X": -1.125,
+                    "Y": -0.375
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_1": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 1.490116E-08,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT2",
+              "LocalPosition": {
+                "X": -1.490116E-08,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.ExternalModuleSlot",
+                  "LocalPosition": {
+                    "X": -1.0625,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_1": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.HeavyCannonT3",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.ExternalModuleSlot",
+                  "LocalPosition": {
+                    "X": -1.0625,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_-1": {
+      "UniqueIdentifier": "Core.MediumFirerateBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumTFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.HeavyCannonT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.CoolantCell",
+                      "LocalPosition": {
+                        "X": -1.125,
+                        "Y": -0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.CoolantCell",
+                      "LocalPosition": {
+                        "X": -1.125,
+                        "Y": 0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.KineticMissle",
+                      "LocalPosition": {
+                        "X": -0.4375,
+                        "Y": 1.125
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.KineticMissle",
+                      "LocalPosition": {
+                        "X": -0.4375,
+                        "Y": -1.125
+                      },
+                      "Angle": 0.0,
+                      "Flipped": true,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.MachineGunT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_0": {
+      "UniqueIdentifier": "Core.MediumModularBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumTFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.HeavyCannonT3",
+                  "LocalPosition": {
+                    "X": 1.490116E-08,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.ExternalModuleSlot",
+                      "LocalPosition": {
+                        "X": -1.0625,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.KineticMissle",
+                      "LocalPosition": {
+                        "X": -0.4375,
+                        "Y": 1.125
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.KineticMissle",
+                      "LocalPosition": {
+                        "X": -0.4375,
+                        "Y": -1.125
+                      },
+                      "Angle": 0.0,
+                      "Flipped": true,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.RocketLauncherT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.RocketLauncherT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_1": {
+      "UniqueIdentifier": "Core.MediumDamageBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.MediumRotator",
+          "LocalPosition": {
+            "X": 1.490116E-08,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.MediumTFrame",
+              "LocalPosition": {
+                "X": -1.490116E-08,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.HeavyCannonT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.ExternalModuleSlot",
+                      "LocalPosition": {
+                        "X": -1.0625,
+                        "Y": 0.0
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.KineticMissle",
+                      "LocalPosition": {
+                        "X": -0.4375,
+                        "Y": 1.125
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.KineticMissle",
+                      "LocalPosition": {
+                        "X": -0.4375,
+                        "Y": -1.125
+                      },
+                      "Angle": 0.0,
+                      "Flipped": true,
+                      "Children": [],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.RocketLauncherT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": -1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                },
+                {
+                  "UniqueIdentifier": "Core.RocketLauncherT3",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 1.5
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    }
+  }
+}

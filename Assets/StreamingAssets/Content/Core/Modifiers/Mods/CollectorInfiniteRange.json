@@ -1,0 +1,29 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Range.json}",
+        "Value": 1000.0
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Range.json}"
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasIdentityFilter",
+        "$Data": {
+          "Identiifier": "Core.CollectorBase"
+        }
+      }
+    ],
+    "Identifier": "Core.CollectorInfiniteRange",
+    "Name": "Infinite Range",
+    "Description": "This collector has been granted near infinite range."
+  }
+}

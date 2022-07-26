@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.AssemblyEditor
         }
 
         private IContentCachedPrefab[] LoadComponents()
-            => ContentSystem.Content.GetAll<IContentCachedPrefab>("*/Components/");
+            => ContentSystem.Content.GetAll<IContentCachedPrefab>("*/Components/*").ToArray();
 
         private void OnDestroy()
         {

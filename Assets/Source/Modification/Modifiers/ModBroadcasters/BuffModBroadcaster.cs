@@ -25,13 +25,15 @@ namespace Lomztein.BFA2.Modification.Modifiers.ModBroadcasters
         public static IEnumerable<BuffModBroadcaster> AddBuffsInArea(Mod modPrefab, Vector3 position, float range, float time, int layerMask = Physics2D.AllLayers)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(position, range, layerMask);
-            foreach (var collider in colliders)
+            BuffModBroadcaster[] broadcasters = new BuffModBroadcaster[colliders.Length];
+            for (int i = 0; i < colliders.Length; i++)
             {
-                if (collider.TryGetComponent(out IModdable _))
+                if (colliders[i].TryGetComponent(out IModdable _))
                 {
-                    yield return AddBuff(Instantiate(modPrefab), collider.gameObject, time);
+                    broadcasters[i] = AddBuff(Instantiate(modPrefab), colliders[i].gameObject, time);
                 }
             }
+            return broadcasters;
         }
 
         private void FixedUpdate()

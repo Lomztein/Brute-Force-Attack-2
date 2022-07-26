@@ -1,24 +1,4 @@
-﻿using Lomztein.BFA2.Visuals.FireAnimations;
-using Lomztein.BFA2.Colorization;
-using Lomztein.BFA2.ContentSystem.References;
-using Lomztein.BFA2.Modification.Events;
-using Lomztein.BFA2.Modification.Stats;
-using Lomztein.BFA2.Pooling;
-using Lomztein.BFA2.Serialization;
-using Lomztein.BFA2.Structures.Turrets.Attachment;
-using Lomztein.BFA2.Structures.Turrets.Rangers;
-using Lomztein.BFA2.Structures.Turrets.Targeters;
-using Lomztein.BFA2.Structures.Turrets.TargetProviders;
-using Lomztein.BFA2.Utilities;
-using Lomztein.BFA2.Weaponary;
-using Lomztein.BFA2.Weaponary.FireSequence;
-using Lomztein.BFA2.Weaponary.FireSynchronization;
-using Lomztein.BFA2.Weaponary.Projectiles;
-using Lomztein.BFA2.World;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Color = Lomztein.BFA2.Colorization.Color;
+﻿using Lomztein.BFA2.Serialization;
 
 namespace Lomztein.BFA2.Structures.Turrets.Weapons
 {

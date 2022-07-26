@@ -1,0 +1,59 @@
+{
+  "Name": "External Decompilation",
+  "Description": "Offloading some of the decompilation to extermal dedicated processor units allows for increased Lines of Code income.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Structures/Disassembler.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 6
+      },
+      {
+        "Resource": "$Path{Core/Resources/Binaries.json}",
+        "Value": 4
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.DecompilationOffloading",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.EffecientDecompilation",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.Decompiler",
+            "Prerequisites": []
+          }
+        ]
+      }
+    }
+  ]
+}

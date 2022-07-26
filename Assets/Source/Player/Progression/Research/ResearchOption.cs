@@ -34,9 +34,7 @@ namespace Lomztein.BFA2.Research
         [ModelProperty]
         public string Identifier;
         [ModelProperty]
-        public string[] PrerequisiteIdentifiers = Array.Empty<string>();
-        [ModelProperty]
-        public string PinIdentifier;
+        public Prerequisite[] Prerequisites;
 
         [ModelProperty, SerializeReference, SR]
         public UniquePrerequisite[] UniquePrerequisites = Array.Empty<UniquePrerequisite>();

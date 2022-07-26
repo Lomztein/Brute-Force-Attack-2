@@ -32,21 +32,21 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         private void TargetEvaluatorChanger_Changed(Structure structure, GameObject obj, object source)
         {
-            StartCoroutine(DelayedUpdateEvaluator());
+            StartCoroutine(DelayedUpdateEvaluator(false));
         }
 
         private void Start()
         {
-            StartCoroutine(DelayedUpdateEvaluator());
+            StartCoroutine(DelayedUpdateEvaluator(false));
         }
 
-        private IEnumerator DelayedUpdateEvaluator ()
+        private IEnumerator DelayedUpdateEvaluator (bool overrideCurrent)
         {
             yield return new WaitForEndOfFrame();
-            UpdateEvaluator();
+            UpdateEvaluator(overrideCurrent);
         }
 
-        private void UpdateEvaluator()
+        private void UpdateEvaluator(bool overrideCurrent)
         {
             if (CurrentEvaluator.Evaluator is ColoredTargetEvaluator evaluator)
             {
@@ -55,7 +55,10 @@ namespace Lomztein.BFA2.Structures.Turrets
 
             foreach (TurretBase b in GetComponentsInChildren<TurretBase>())
             {
-                b.SetEvaluator(CurrentEvaluator.Evaluator);
+                if (b.GetEvaluator() == null || overrideCurrent)
+                {
+                    b.SetEvaluator(CurrentEvaluator.Evaluator);
+                }
             }
         }
 
@@ -83,7 +86,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             _evaluatorIndex++;
             _evaluatorIndex %= EvaluatorOptions.Length;
-            UpdateEvaluator();
+            UpdateEvaluator(true);
             TooltipController.ForceResetToolTip();
             return false;
         }

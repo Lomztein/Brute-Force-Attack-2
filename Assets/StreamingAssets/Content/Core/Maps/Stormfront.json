@@ -6001,7 +6001,7 @@
               "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.GlobalStructureModMutator",
               "$Data": {
                 "Mod": {
-                  "Mod": "$Path{Core/Mods/SuperRange.json}",
+                  "Mod": "$Path{Core/Modifiers/Mods/SuperRange.json}",
                   "Filters": []
                 },
                 "Name": "Global Mod",
@@ -6047,10 +6047,41 @@
               "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingResourceMultiplierMutator",
               "$Data": {
                 "Name": "Starting Resource Multiplier",
-                "Description": "Embedded multiplier",
-                "Identifier": "Omegakek",
+                "Description": "For some reason, you start with more resources..",
+                "Identifier": "Core.MapStormfront.StartingResources",
                 "CreditsMultiplier": 2,
                 "ResearchMultiplier": 1
+              }
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.EmbeddedMutator",
+          "$Data": {
+            "Mutator": {
+              "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.PlayerModMutator",
+              "$Data": {
+                "Name": "Double Resources",
+                "Description": "Something is giving you double credits..",
+                "Identifier": "Core.MapStormfront.DoubleCredits",
+                "Mod": "$Path{Core/Modifiers/Mods/DoubleCredits.json}"
+              }
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.EmbeddedMutator",
+          "$Data": {
+            "Mutator": {
+              "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.GlobalStructureModMutator",
+              "$Data": {
+                "Name": "Collector Infinite Range",
+                "Description": "Something is giving your collectors infinite range..",
+                "Identifier": "Core.MapStormfront.CollectorInfiniteRange",
+                "Mod": {
+                  "Mod": "$Path{Core/Modifiers/Mods/CollectorInfiniteRange.json}",
+                  "Filters": []
+                }
               }
             }
           }

@@ -1,0 +1,157 @@
+{
+  "Name": "Scattergun",
+  "Description": "Tiny pellets are fired fired from this turret, which spread out in a wide arc.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Unnamed Tier",
+      "Tier": 1,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.ShotgunT1",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.SmallBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 0.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallTwinFireSynchronizer",
+                  "LocalPosition": {
+                    "X": 0.0,
+                    "Y": 0.0
+                  },
+                  "Angle": 0.0,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.ShotgunT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": -0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.CoolantCell",
+                          "LocalPosition": {
+                            "X": -0.625,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.ShotgunT1",
+                      "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.5
+                      },
+                      "Angle": 0.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.CoolantCell",
+                          "LocalPosition": {
+                            "X": -0.625,
+                            "Y": 0.0
+                          },
+                          "Angle": 0.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": null
+    }
+  }
+}

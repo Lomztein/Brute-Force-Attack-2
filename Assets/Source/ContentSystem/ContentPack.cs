@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.ContentSystem.Loaders;
 using Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,49 +50,35 @@ namespace Lomztein.BFA2.ContentSystem
         private bool ShouldLoadFromBundle (string path)
             => path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
 
-        public object GetContent(string path, Type type)
+        public object LoadContent(string path, Type asType)
         {
             if (ShouldLoadFromBundle(path))
             {
-                return _includedAssets.GetContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), type);
+                return _includedAssets.LoadContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), asType);
             }
             else
             {
-                return _contentLoader.LoadContent(System.IO.Path.Combine(Path, path), type);
+                string absolutePath = System.IO.Path.Combine(Path, path);
+                try
+                {
+                    return _contentLoader.LoadContent(absolutePath, asType);
+                }
+                catch (Exception exc)
+                {
+                    Debug.LogException(exc);
+                    Debug.LogWarning($"File '{absolutePath}' could not be loaded. See preceeding callstack for more info.");
+                    return null;
+                }
             }
         }
 
-        public object[] GetAllContent(string path, Type type)
+        public string[] GetContentPaths()
         {
-            if (ShouldLoadFromBundle(path))
-            {
-                return _includedAssets.GetAllContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), type);
-            }
-
-            List<object> content = new List<object>();
-            string spath = System.IO.Path.Combine (Path, path);
-
-            if (Directory.Exists(spath))
-            {
-                IEnumerable<string> files = Directory.GetFiles(spath).Where(x => System.IO.Path.GetExtension(x) != IGNORE_SUFFIX);
-                foreach (string file in files)
-                {
-                    if (!System.IO.Path.GetFileName(file).StartsWith(IGNORE_PREFIX))
-                    {
-                        try
-                        {
-                            var loaded = _contentLoader.LoadContent(file, type);
-                            content.Add(loaded);
-                        }catch (Exception exc)
-                        {
-                            Debug.LogException(exc);
-                            Debug.LogWarning($"File '{file}' could not be loaded. See preceeding callstack for more info.");
-                        }
-                    }
-                }
-            }
-
-            return content.ToArray();
+            return Directory.GetFiles(Path, "*", SearchOption.AllDirectories)
+                .Where(x => System.IO.Path.GetExtension(x) != IGNORE_SUFFIX)
+                .Where(x => !System.IO.Path.GetFileName(x).StartsWith(IGNORE_PREFIX))
+                .Select(x => x.Substring(Path.Length))
+                .ToArray();
         }
 
         public override string ToString()

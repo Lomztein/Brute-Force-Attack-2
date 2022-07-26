@@ -1,0 +1,31 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "Value": 0.3
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.StructureColorFilter",
+        "$Data": {
+          "ApplicableColors": [
+            "Red"
+          ]
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+        "$Data": {
+          "CategoryName": "Weapon"
+        }
+      }
+    ],
+    "Identifier": "Core.Autoloader",
+    "Name": "Autoloader",
+    "Description": "An autoloader is installed, resulting in drastically increased firerate."
+  }
+}

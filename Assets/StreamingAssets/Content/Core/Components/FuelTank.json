@@ -1,0 +1,146 @@
+{
+  "Name": "FuelTank(Clone)",
+  "Tag": "Untagged",
+  "Layer": 9,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Turrets.PassiveTurretComponent",
+      "$Data": {
+        "BaseComplexity": 0.1,
+        "AttachmentSlots": {
+          "_attachmentPoints": []
+        },
+        "AttachmentPoints": [
+          {
+            "Type": "Extension",
+            "Size": "Small",
+            "LocalPosition": {
+              "X": 0.1875,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "LocalAngle": 0.0,
+            "RequiredPoints": 1
+          }
+        ],
+        "_name": "Small Fuel Tank",
+        "_description": "Relatively large fuel cell containing a volatile mix of combustable unknowables. Embues a weapon with the power of fire.",
+        "_uniqueIdentifier": "Core.SmallFuelTank",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 500
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Small",
+        "_height": "Small",
+        "Category": "$Path{Core/StructureCategories/Extension.json}"
+      }
+    },
+    {
+      "$Type": "UnityEngine.CircleCollider2D",
+      "$Data": {
+        "Radius": 0.25,
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "IsTrigger": false,
+        "UsedByEffector": false
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Modification.Modifiers.ModBroadcasters.ParentModBroadcaster",
+      "$Data": {
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.AddEnemyBuffOnHit",
+          "$Data": "$Path{Core/Modifiers/Mods/FlamethrowerFireOnHit.json}"
+        },
+        "ModCoeffecient": 1.0
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 9,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/FuelTank.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 16.0,
+                "Height": 20.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

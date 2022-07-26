@@ -21,6 +21,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
         private IUnlockList UnlockList => Player.Player.Unlocks; // TODO: Replace with something like a PlayerUnlockListLink.
 
         private IContentCachedPrefab[] _allPrefabs;
+        private List<string> _currentlyUnlocked;
 
         public event Action<IEnumerable<IContentCachedPrefab>> OnAdded;
         public event Action<IEnumerable<IContentCachedPrefab>> OnRemoved;
@@ -41,7 +42,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
             {
                 IEnumerable<IContentCachedPrefab> newlyUnlocked = _allPrefabs
                     .Where(x => ContainsComponent(x.GetCache().GetComponent<TurretAssembly>(), identifier))
-                    .Where(x => IsUnlocked(x.GetCache().GetComponent<TurretAssembly>()));
+                    .Where(x => IsPartiallyUnlocked(x.GetCache().GetComponent<TurretAssembly>()));
 
                 OnAdded?.Invoke(newlyUnlocked);
             }
@@ -51,9 +52,11 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
 
         private bool IsUnlocked(TurretAssembly assembly) => assembly.GetComponents().All(x => UnlockList.IsUnlocked(x.Identifier));
 
+        private bool IsPartiallyUnlocked(TurretAssembly assembly) => assembly.GetComponents().Any(x => UnlockList.IsUnlocked(x.Identifier));
+
         private IContentCachedPrefab[] GetUnlocked ()
         {
-            return _allPrefabs.Where(x => IsUnlocked(x.GetCache().GetComponent<TurretAssembly>())).ToArray();
+            return _allPrefabs.Where(x => IsPartiallyUnlocked(x.GetCache().GetComponent<TurretAssembly>())).ToArray();
         }
 
         public IContentCachedPrefab[] Get()

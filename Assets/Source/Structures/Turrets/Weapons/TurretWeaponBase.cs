@@ -33,6 +33,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public StatInfo SpeedInfo;
         [ModelAssetReference]
         public StatInfo FirerateInfo;
+        [ModelAssetReference]
+        public StatInfo PierceInfo;
 
         [ModelAssetReference]
         public EventInfo OnFireInfo;
@@ -55,12 +57,15 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public float BaseSpeed;
         [ModelProperty]
         public float BaseFirerate;
+        [ModelProperty]
+        public float BasePierce;
 
         public IStatReference Damage;
         public IStatReference ProjectileAmount;
         public IStatReference Spread;
         public IStatReference Speed;
         public IStatReference Firerate;
+        public IStatReference Pierce;
 
         public IEventCaller OnFire;
         public IEventCaller OnProjectile;
@@ -69,8 +74,6 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public IEventCaller OnProjectileKill;
 
         private bool _statsInitialized;
-
-        public override StructureCategory Category => StructureCategories.Weapon;
 
         [ModelProperty]
         public Color Color;
@@ -90,6 +93,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             Spread = Stats.AddStat(SpreadInfo, BaseSpread, this);
             Speed = Stats.AddStat(SpeedInfo, BaseSpeed, this);
             Firerate = Stats.AddStat(FirerateInfo, BaseFirerate, this);
+            Pierce = Stats.AddStat(PierceInfo, BasePierce, this);
             _statsInitialized = true;
 
             OnFire = Events.AddEvent(OnFireInfo, this);
@@ -125,6 +129,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
                 Weapon.Speed = Speed.GetValue();
                 Weapon.Firerate = Firerate.GetValue();
                 Weapon.Range = GetRange();
+                Weapon.Pierce = Pierce.GetValue();
+                Weapon.Color = Color;
             }
         }
 

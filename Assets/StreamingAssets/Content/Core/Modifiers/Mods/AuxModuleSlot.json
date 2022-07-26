@@ -1,0 +1,32 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/ModuleSlots.json}",
+        "Value": 1.0
+      }
+    ],
+    "AddStatIfMissing": true,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+        "$Data": {
+          "_minWidth": "Small",
+          "_minHeight": "Small",
+          "_maxWidth": "Small",
+          "_maxHeight": "Small"
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.StructureClassFilter",
+        "$Data": {
+          "_typeName": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase"
+        }
+      }
+    ],
+    "Identifier": "Core.AuxModuleSlot",
+    "Name": "Auxilliary Module Slot",
+    "Description": "An additional module slot has somehow been fitted to this base."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Damage.json}",
+        "Value": 1.0
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.StructureColorFilter",
+        "$Data": {
+          "ApplicableColors": [
+            "Blue"
+          ]
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+        "$Data": {
+          "CategoryName": "Weapon"
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+        "$Data": {
+          "_minWidth": "Small",
+          "_minHeight": "Small",
+          "_maxWidth": "Small",
+          "_maxHeight": "Small"
+        }
+      }
+    ],
+    "Identifier": "Core.ChargedRounds",
+    "Name": "Charged Rounds",
+    "Description": "The rounds of this weapon has been supercharged, increasing damage by +100%."
+  }
+}

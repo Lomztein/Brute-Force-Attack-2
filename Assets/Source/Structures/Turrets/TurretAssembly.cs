@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Lomztein.BFA2.World;
 using Lomztein.BFA2.Modification.Stats;
+using Lomztein.BFA2.Structures.Turrets.Attachment;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {
@@ -144,6 +145,28 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             BoxCollider2D col = GetComponent<BoxCollider2D>();
             col.size = new Vector2(World.Grid.SizeOf(Width), World.Grid.SizeOf(Height));
+        }
+
+        /// <summary>
+        /// Loops through all components and reconstructs the connections between attachment points and attachment slots.
+        /// </summary>
+        public void RebuildComponentAttachments (Tier tier)
+        {
+            IEnumerable<TurretComponent> components = GetComponents(tier);
+
+            foreach (TurretComponent component in components)
+            {
+                component.RebuildAttachmentToParent();
+                component.RemoveAttachmentsToDeadChildren();
+            }
+        }
+
+        public void RebuildComponentAttachments()
+        {
+            foreach (Tier tier in _tiers)
+            {
+                RebuildComponentAttachments(tier);
+            }
         }
     }
 }

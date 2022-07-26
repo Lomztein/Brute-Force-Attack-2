@@ -25,6 +25,8 @@ namespace Lomztein.BFA2.MainMenu
             _buttonCallback = buttonCallback;
             _toggleCallback = toggleCallback;
 
+            Enabled.isOn = ContentManager.IsContentPackEnabled(pack.GetUniqueIdentifier());
+
             Button.onClick.AddListener(OnButtonClick);
             Enabled.onValueChanged.AddListener(OnEnabledToggle);
         }

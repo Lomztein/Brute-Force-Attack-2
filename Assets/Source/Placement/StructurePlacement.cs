@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ObjectVisualizers;
 using Lomztein.BFA2.Structures;
-using Lomztein.BFA2.Structures.Highlighters;
 using Lomztein.BFA2.Structures.StructureManagement;
 using Lomztein.BFA2.UI.ToolTip;
 using Lomztein.BFA2.Utilities;
@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Placement
 {
     public class StructurePlacement : ISimplePlacement
     {
-        private const string HIGHLIGHTER_SET_PATH = "Core/HighlighterSets/Placement.json";
+        private const string VISUALIZER_SET_PATH = "Core/VisualizerSets/Placement.json";
 
         private GameObject _obj;
         private GameObject _model;
@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Placement
         public event Action OnFinished;
 
         private Func<string>[] _placeRequirements;
-        private HighlighterCollection _highlighters;
+        private CompositeGameObjectVisualizer _visualizers;
 
         private const string SpawnPointTag = "EnemySpawnPoint";
         private Transform[] _enemySpawnPoints;
@@ -38,7 +38,7 @@ namespace Lomztein.BFA2.Placement
             _placeRequirements = placeRequirements;
         }
 
-        private HighlighterSet GetHighlighterSet() => Content.Get<HighlighterSet>(HIGHLIGHTER_SET_PATH);
+        private ObjectVisualizerSet GetVisualizerSet() => Content.Get<ObjectVisualizerSet>(VISUALIZER_SET_PATH);
 
         public bool Pickup(GameObject obj)
         {
@@ -48,8 +48,8 @@ namespace Lomztein.BFA2.Placement
                 GlobalStructureModManager.Instance.ApplyMods(objStructure);
             }
 
-            _highlighters = HighlighterCollection.Create(obj, GetHighlighterSet());
-            _highlighters.Highlight();
+            _visualizers = CompositeGameObjectVisualizer.CreateFrom(GetVisualizerSet());
+            _visualizers.Visualize(obj);
 
             _obj = obj;
             _obj.SetActive(false);
@@ -90,20 +90,49 @@ namespace Lomztein.BFA2.Placement
             return false;
         }
 
+        // Returns width with rotation taken into consideration.
+        private static Size GetWidth (IGridObject structure)
+        {
+            int rotIndex = GetRotationIndex(structure);
+            if (rotIndex == 0 || rotIndex == 2) return structure.Width;
+            if (rotIndex == 1 || rotIndex == 3) return structure.Height;
+            throw new InvalidOperationException("RotIndex somehow not between 0-4");
+        }
+
+        // Returns height with rotation taken into consideration.
+        private static Size GetHeight(IGridObject structure)
+        {
+            int rotIndex = GetRotationIndex(structure);
+            if (rotIndex == 0 || rotIndex == 2) return structure.Height;
+            if (rotIndex == 1 || rotIndex == 3) return structure.Width;
+            throw new InvalidOperationException("RotIndex somehow not between 0-4");
+        }
+
+        // Returns 0 for pointing right, 1 for up, 2 for right, 3 for down.
+        private static int GetRotationIndex(IGridObject structure)
+        {
+            if (structure is Component component)
+            {
+                float angle = component.transform.eulerAngles.z;
+                return Mathf.RoundToInt(angle / 90f);
+            }
+            return 0;
+        }
+
         public bool ToPosition(Vector2 position)
         {
-            position = World.Grid.SnapToGrid(position, _placeable.Width, _placeable.Height);
+            position = World.Grid.SnapToGrid(position, GetWidth(_placeable), GetHeight(_placeable));
             _obj.transform.position = position;
             _model.transform.position = position;
             string canPlace = CanPlace(_model.transform.position, _model.transform.rotation);
             if (string.IsNullOrEmpty(canPlace)) {
-                _highlighters.Tint(Color.green);
+                _visualizers.Tint(Color.green);
                 TintObject(_model, Color.green);
                 ForcedTooltipUpdater.ResetTooltip();
                 return true;
             }
             else {
-                _highlighters.Tint(Color.red);
+                _visualizers.Tint(Color.red);
                 TintObject(_model, Color.red);
                 ForcedTooltipUpdater.SetTooltip(() => SimpleToolTip.InstantiateToolTip("Cannot place here", canPlace, null), canPlace);
                 return false;
@@ -113,8 +142,7 @@ namespace Lomztein.BFA2.Placement
         private string CanPlace (Vector2 position, Quaternion rotation)
         {
             CannotPlaceReasons reasons = new CannotPlaceReasons();
-            Vector2 size = new Vector2(World.Grid.SizeOf (_placeable.Width), World.Grid.SizeOf(_placeable.Height));
-
+            Vector2 size = new Vector2(World.Grid.SizeOf(GetWidth(_placeable)), World.Grid.SizeOf(GetHeight(_placeable)));
 
             if (Physics2D.OverlapBox(position, size * 0.9f, 0, _blockingLayer))
             {
@@ -220,7 +248,7 @@ namespace Lomztein.BFA2.Placement
             UnityEngine.Object.Destroy(_obj);
             UnityEngine.Object.Destroy(_model);
             OnFinished?.Invoke();
-            _highlighters.EndHighlight();
+            _visualizers.EndVisualization();
             ForcedTooltipUpdater.ResetTooltip();
             SetNoBuildTiles(false);
             return true;

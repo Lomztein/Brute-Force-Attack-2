@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.ContentSystem;
+﻿using Lomztein.BFA2.Abilities;
+using Lomztein.BFA2.ContentSystem;
 using Lomztein.BFA2.Enemies.Scalers;
 using Lomztein.BFA2.Enemies.Waves;
 using Lomztein.BFA2.Inventory.Items;
@@ -32,6 +33,10 @@ namespace Lomztein.BFA2.Battlefield
         [ModelProperty, SerializeField]
         private List<Item> _startingItems;
         public IEnumerable<Item> StartingItems => _startingItems;
+
+        [ModelProperty, SerializeField]
+        private List<Ability> _startingAbilities;
+        public IEnumerable<Ability> StartingAbilities => _startingAbilities;
 
         public void AddMutator(Mutator mutator) => _mutatorsList.Add(mutator);
         public void RemoveMutator(Mutator mutator) => _mutatorsList.RemoveAll (x => x.Identifier == mutator.Identifier);

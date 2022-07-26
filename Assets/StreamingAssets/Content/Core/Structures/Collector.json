@@ -25,24 +25,20 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Structures.Structure",
+      "$Type": "Lomztein.BFA2.Structures.Turrets.TurretAssembly",
       "$Data": {
         "_name": "Collector",
         "_description": "Collects loot dropped from enemies in range.",
         "_uniqueIdentifier": "Core.Collector",
         "_cost": {
-          "Elements": [
-            {
-              "Resource": "$Path{Core/Resources/Credits.json}",
-              "Value": 1000
-            }
-          ]
+          "Elements": []
         },
         "Tags": {
           "_tags": []
         },
         "_width": "Medium",
-        "_height": "Medium"
+        "_height": "Medium",
+        "Category": "$Path{Core/StructureCategories/Structure.json}"
       }
     },
     {
@@ -84,9 +80,9 @@
   ],
   "Children": [
     {
-      "Name": "CollectorBase",
+      "Name": "0_0",
       "Tag": "Untagged",
-      "Layer": 9,
+      "Layer": 10,
       "Static": false,
       "Components": [
         {
@@ -108,59 +104,11 @@
               "Z": 1.0
             }
           }
-        },
-        {
-          "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
-          "$Data": {
-            "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
-            "OnTargetAcquiredInfo": "$Path{Core/Modifiers/Events/OnTargetAcquired.json}",
-            "BaseRange": 15.0,
-            "TargetLayer": {
-              "Mask": 4096
-            },
-            "BaseComplexity": 0.0,
-            "AttachmentSlots": {
-              "_attachmentPoints": []
-            },
-            "AttachmentPoints": [],
-            "_name": "Collector Base",
-            "_description": "Searches for collectables.",
-            "_uniqueIdentifier": "",
-            "_cost": {
-              "Elements": []
-            },
-            "Tags": {
-              "_tags": []
-            },
-            "_width": "Medium",
-            "_height": "Medium"
-          }
-        },
-        {
-          "$Type": "UnityEngine.CircleCollider2D",
-          "$Data": {
-            "Radius": 0.5,
-            "Offset": {
-              "X": 0.0,
-              "Y": 0.0
-            },
-            "IsTrigger": false,
-            "UsedByEffector": false
-          }
-        },
-        {
-          "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
-          "$Data": {
-            "_evalutator": {
-              "$Type": "Lomztein.BFA2.Targeting.RandomTargetEvaluator",
-              "$Data": {}
-            }
-          }
         }
       ],
       "Children": [
         {
-          "Name": "Base",
+          "Name": "CollectorBase",
           "Tag": "Untagged",
           "Layer": 9,
           "Static": false,
@@ -186,81 +134,36 @@
               }
             },
             {
-              "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+              "$Type": "Lomztein.BFA2.Structures.Turrets.TargetProviders.TurretBase",
               "$Data": {
-                "Reference": {
-                  "Path": "Core/Sprites/Structures/ResearchCollectorBase.png",
-                  "Texture": null,
-                  "Rect": {
-                    "X": 0.0,
-                    "Y": 0.0,
-                    "Width": 0.0,
-                    "Height": 0.0
-                  },
-                  "Pivot": {
-                    "X": 0.5,
-                    "Y": 0.5
-                  },
-                  "PixelsPerUnit": 16.0
+                "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
+                "OnTargetAcquiredInfo": "$Path{Core/Modifiers/Events/OnTargetAcquired.json}",
+                "BaseRange": 15.0,
+                "TargetLayer": {
+                  "Mask": 4096
                 },
-                "Color": {
-                  "Red": 1.0,
-                  "Green": 1.0,
-                  "Blue": 1.0,
-                  "Alpha": 1.0
-                }
-              }
-            }
-          ],
-          "Children": []
-        },
-        {
-          "Name": "CollectorRotator",
-          "Tag": "Untagged",
-          "Layer": 9,
-          "Static": false,
-          "Components": [
-            {
-              "$Type": "UnityEngine.Transform",
-              "$Data": {
-                "Position": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": -1.0
-                },
-                "Rotation": {
-                  "X": 0.0,
-                  "Y": 0.0,
-                  "Z": 0.0
-                },
-                "Scale": {
-                  "X": 1.0,
-                  "Y": 1.0,
-                  "Z": 1.0
-                }
-              }
-            },
-            {
-              "$Type": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
-              "$Data": {
-                "TurnrateInfo": "$Path{Core/Modifiers/Stats/Turnrate.json}",
-                "BaseTurnrate": 60.0,
                 "BaseComplexity": 0.0,
                 "AttachmentSlots": {
                   "_attachmentPoints": []
                 },
                 "AttachmentPoints": [],
-                "_name": "Collector Rotator",
-                "_description": "",
-                "_uniqueIdentifier": "",
+                "_name": "Collector Base",
+                "_description": "Searches for collectables.",
+                "_uniqueIdentifier": "Core.CollectorBase",
                 "_cost": {
-                  "Elements": []
+                  "Elements": [
+                    {
+                      "Resource": "$Path{Core/Resources/Credits.json}",
+                      "Value": 1000
+                    }
+                  ]
                 },
                 "Tags": {
                   "_tags": []
                 },
                 "_width": "Medium",
-                "_height": "Medium"
+                "_height": "Medium",
+                "Category": null
               }
             },
             {
@@ -274,11 +177,20 @@
                 "IsTrigger": false,
                 "UsedByEffector": false
               }
+            },
+            {
+              "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
+              "$Data": {
+                "_evalutator": {
+                  "$Type": "Lomztein.BFA2.Targeting.RandomTargetEvaluator",
+                  "$Data": {}
+                }
+              }
             }
           ],
           "Children": [
             {
-              "Name": "Rotator",
+              "Name": "Base",
               "Tag": "Untagged",
               "Layer": 9,
               "Static": false,
@@ -307,7 +219,7 @@
                   "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
                   "$Data": {
                     "Reference": {
-                      "Path": "Core/Sprites/Structures/ResearchCollectorRotator.png",
+                      "Path": "Core/Sprites/Structures/ResearchCollectorBase.png",
                       "Texture": null,
                       "Rect": {
                         "X": 0.0,
@@ -333,7 +245,7 @@
               "Children": []
             },
             {
-              "Name": "Collector",
+              "Name": "CollectorRotator",
               "Tag": "Untagged",
               "Layer": 9,
               "Static": false,
@@ -344,7 +256,7 @@
                     "Position": {
                       "X": 0.0,
                       "Y": 0.0,
-                      "Z": 0.0
+                      "Z": -1.0
                     },
                     "Rotation": {
                       "X": 0.0,
@@ -359,16 +271,17 @@
                   }
                 },
                 {
-                  "$Type": "Lomztein.BFA2.Structures.Collector",
+                  "$Type": "Lomztein.BFA2.Structures.Turrets.Targeters.TurretRotator",
                   "$Data": {
-                    "AngleTreshold": 1.0,
+                    "TurnrateInfo": "$Path{Core/Modifiers/Stats/Turnrate.json}",
+                    "BaseTurnrate": 60.0,
                     "BaseComplexity": 0.0,
                     "AttachmentSlots": {
                       "_attachmentPoints": []
                     },
                     "AttachmentPoints": [],
-                    "_name": "Collector",
-                    "_description": "Collects stuff",
+                    "_name": "Collector Rotator",
+                    "_description": "",
                     "_uniqueIdentifier": "",
                     "_cost": {
                       "Elements": []
@@ -377,13 +290,26 @@
                       "_tags": []
                     },
                     "_width": "Medium",
-                    "_height": "Medium"
+                    "_height": "Medium",
+                    "Category": null
+                  }
+                },
+                {
+                  "$Type": "UnityEngine.CircleCollider2D",
+                  "$Data": {
+                    "Radius": 0.5,
+                    "Offset": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "IsTrigger": false,
+                    "UsedByEffector": false
                   }
                 }
               ],
               "Children": [
                 {
-                  "Name": "Collector",
+                  "Name": "Rotator",
                   "Tag": "Untagged",
                   "Layer": 9,
                   "Static": false,
@@ -412,7 +338,7 @@
                       "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
                       "$Data": {
                         "Reference": {
-                          "Path": "Core/Sprites/Structures/ResearchCollector.png",
+                          "Path": "Core/Sprites/Structures/ResearchCollectorRotator.png",
                           "Texture": null,
                           "Rect": {
                             "X": 0.0,
@@ -438,7 +364,7 @@
                   "Children": []
                 },
                 {
-                  "Name": "Beam",
+                  "Name": "Collector",
                   "Tag": "Untagged",
                   "Layer": 9,
                   "Static": false,
@@ -464,159 +390,267 @@
                       }
                     },
                     {
-                      "$Type": "UnityEngine.LineRenderer",
+                      "$Type": "Lomztein.BFA2.Structures.Collector",
                       "$Data": {
-                        "PositionCount": 2,
-                        "Positions": [
-                          {
-                            "X": 0.0,
-                            "Y": 0.0,
-                            "Z": 0.0
-                          },
-                          {
-                            "X": 0.0,
-                            "Y": 0.0,
-                            "Z": 1.0
+                        "AngleTreshold": 1.0,
+                        "BaseComplexity": 0.0,
+                        "AttachmentSlots": {
+                          "_attachmentPoints": []
+                        },
+                        "AttachmentPoints": [],
+                        "_name": "Collector",
+                        "_description": "Collects stuff",
+                        "_uniqueIdentifier": "",
+                        "_cost": {
+                          "Elements": []
+                        },
+                        "Tags": {
+                          "_tags": []
+                        },
+                        "_width": "Medium",
+                        "_height": "Medium",
+                        "Category": null
+                      }
+                    }
+                  ],
+                  "Children": [
+                    {
+                      "Name": "Collector",
+                      "Tag": "Untagged",
+                      "Layer": 9,
+                      "Static": false,
+                      "Components": [
+                        {
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Rotation": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Scale": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            }
                           }
-                        ],
-                        "Curve": {
-                          "Keyframes": [
-                            {
-                              "Time": 0.0,
-                              "Value": 0.1365433,
-                              "InTangent": 0.0,
-                              "OutTangent": 0.0,
-                              "InWeight": 0.3333333,
-                              "OutWeight": 0.3333333
-                            }
-                          ]
                         },
-                        "Colors": {
-                          "ColorKeys": [
-                            {
-                              "Time": 0.0,
-                              "Color": {
-                                "Red": 1.0,
-                                "Green": 1.0,
-                                "Blue": 1.0,
-                                "Alpha": 1.0
-                              }
+                        {
+                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+                          "$Data": {
+                            "Reference": {
+                              "Path": "Core/Sprites/Structures/ResearchCollector.png",
+                              "Texture": null,
+                              "Rect": {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Width": 0.0,
+                                "Height": 0.0
+                              },
+                              "Pivot": {
+                                "X": 0.5,
+                                "Y": 0.5
+                              },
+                              "PixelsPerUnit": 16.0
                             },
-                            {
-                              "Time": 1.0,
-                              "Color": {
-                                "Red": 1.0,
-                                "Green": 1.0,
-                                "Blue": 1.0,
-                                "Alpha": 1.0
-                              }
-                            }
-                          ],
-                          "AlphaKeys": [
-                            {
-                              "Time": 0.0,
-                              "Alpha": 1.0
-                            },
-                            {
-                              "Time": 1.0,
+                            "Color": {
+                              "Red": 1.0,
+                              "Green": 1.0,
+                              "Blue": 1.0,
                               "Alpha": 1.0
                             }
-                          ],
-                          "Mode": 0
-                        },
-                        "CornerVerticies": 0,
-                        "CapVerticies": 3,
-                        "Alignment": "View",
-                        "TextureMode": "Stretch",
-                        "ShadowBias": 0.5,
-                        "GenerateLighingData": false,
-                        "UseWorldSpace": true,
-                        "ShadowCastingMode": "Off",
-                        "RecieveShadows": false,
-                        "LightProbeUsage": "Off",
-                        "ReflectionProbeUsage": "Off",
-                        "MotionVectorGenerationMode": "Camera",
-                        "AllowOcclusionWhenDynamic": true,
-                        "SortingLayer": 0,
-                        "OrderInLayer": 0
-                      }
+                          }
+                        }
+                      ],
+                      "Children": []
                     },
                     {
-                      "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentMaterial",
-                      "$Data": {
-                        "Reference": {
-                          "Path": "Resources/Materials/BrightGreen"
+                      "Name": "Beam",
+                      "Tag": "Untagged",
+                      "Layer": 9,
+                      "Static": false,
+                      "Components": [
+                        {
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Rotation": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Scale": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            }
+                          }
+                        },
+                        {
+                          "$Type": "UnityEngine.LineRenderer",
+                          "$Data": {
+                            "PositionCount": 2,
+                            "Positions": [
+                              {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 0.0
+                              },
+                              {
+                                "X": 0.0,
+                                "Y": 0.0,
+                                "Z": 1.0
+                              }
+                            ],
+                            "Curve": {
+                              "Keyframes": [
+                                {
+                                  "Time": 0.0,
+                                  "Value": 0.1365433,
+                                  "InTangent": 0.0,
+                                  "OutTangent": 0.0,
+                                  "InWeight": 0.3333333,
+                                  "OutWeight": 0.3333333
+                                }
+                              ]
+                            },
+                            "Colors": {
+                              "ColorKeys": [
+                                {
+                                  "Time": 0.0,
+                                  "Color": {
+                                    "Red": 1.0,
+                                    "Green": 1.0,
+                                    "Blue": 1.0,
+                                    "Alpha": 1.0
+                                  }
+                                },
+                                {
+                                  "Time": 1.0,
+                                  "Color": {
+                                    "Red": 1.0,
+                                    "Green": 1.0,
+                                    "Blue": 1.0,
+                                    "Alpha": 1.0
+                                  }
+                                }
+                              ],
+                              "AlphaKeys": [
+                                {
+                                  "Time": 0.0,
+                                  "Alpha": 1.0
+                                },
+                                {
+                                  "Time": 1.0,
+                                  "Alpha": 1.0
+                                }
+                              ],
+                              "Mode": 0
+                            },
+                            "CornerVerticies": 0,
+                            "CapVerticies": 3,
+                            "Alignment": "View",
+                            "TextureMode": "Stretch",
+                            "ShadowBias": 0.5,
+                            "GenerateLighingData": false,
+                            "UseWorldSpace": true,
+                            "ShadowCastingMode": "Off",
+                            "RecieveShadows": false,
+                            "LightProbeUsage": "Off",
+                            "ReflectionProbeUsage": "Off",
+                            "MotionVectorGenerationMode": "Camera",
+                            "AllowOcclusionWhenDynamic": true,
+                            "SortingLayer": 0,
+                            "OrderInLayer": 0
+                          }
+                        },
+                        {
+                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentMaterial",
+                          "$Data": {
+                            "Reference": {
+                              "Path": "Resources/Materials/BrightGreen"
+                            }
+                          }
                         }
-                      }
-                    }
-                  ],
-                  "Children": []
-                },
-                {
-                  "Name": "BeamStart",
-                  "Tag": "Untagged",
-                  "Layer": 9,
-                  "Static": false,
-                  "Components": [
-                    {
-                      "$Type": "UnityEngine.Transform",
-                      "$Data": {
-                        "Position": {
-                          "X": 0.5,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Rotation": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Scale": {
-                          "X": 1.0,
-                          "Y": 1.0,
-                          "Z": 1.0
-                        }
-                      }
-                    }
-                  ],
-                  "Children": []
-                },
-                {
-                  "Name": "Forcefield",
-                  "Tag": "Untagged",
-                  "Layer": 12,
-                  "Static": false,
-                  "Components": [
-                    {
-                      "$Type": "UnityEngine.Transform",
-                      "$Data": {
-                        "Position": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Rotation": {
-                          "X": 0.0,
-                          "Y": 0.0,
-                          "Z": 0.0
-                        },
-                        "Scale": {
-                          "X": 1.0,
-                          "Y": 1.0,
-                          "Z": 1.0
-                        }
-                      }
+                      ],
+                      "Children": []
                     },
                     {
-                      "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
-                      "$Data": {
-                        "Reference": {
-                          "Path": "Resources/Prefabs/CollectorForcefield"
+                      "Name": "BeamStart",
+                      "Tag": "Untagged",
+                      "Layer": 9,
+                      "Static": false,
+                      "Components": [
+                        {
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "X": 0.5,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Rotation": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Scale": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            }
+                          }
                         }
-                      }
+                      ],
+                      "Children": []
+                    },
+                    {
+                      "Name": "Forcefield",
+                      "Tag": "Untagged",
+                      "Layer": 12,
+                      "Static": false,
+                      "Components": [
+                        {
+                          "$Type": "UnityEngine.Transform",
+                          "$Data": {
+                            "Position": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Rotation": {
+                              "X": 0.0,
+                              "Y": 0.0,
+                              "Z": 0.0
+                            },
+                            "Scale": {
+                              "X": 1.0,
+                              "Y": 1.0,
+                              "Z": 1.0
+                            }
+                          }
+                        },
+                        {
+                          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+                          "$Data": {
+                            "Reference": {
+                              "Path": "Resources/Prefabs/CollectorForcefield"
+                            }
+                          }
+                        }
+                      ],
+                      "Children": []
                     }
-                  ],
-                  "Children": []
+                  ]
                 }
               ]
             }

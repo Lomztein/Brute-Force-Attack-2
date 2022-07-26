@@ -1,0 +1,317 @@
+{
+  "Name": "Sniper Rifle",
+  "Description": "Long range and intensely high damage, with the tradeoff of a very slow firing rate.",
+  "Tiers": [
+    {
+      "Name": "Initial Tier",
+      "Tier": 0,
+      "Variant": 0
+    },
+    {
+      "Name": "Semi-Auto Snipe Rifle",
+      "Tier": 1,
+      "Variant": 0
+    },
+    {
+      "Name": "Automatic Sniper Rifle",
+      "Tier": 2,
+      "Variant": 0
+    },
+    {
+      "Name": "Dual Automatic Sniper Rifle",
+      "Tier": 3,
+      "Variant": 0
+    }
+  ],
+  "UpgradeMap": {
+    "Options": [
+      {
+        "Tier": "0_0",
+        "NextTiers": [
+          "1_0"
+        ]
+      },
+      {
+        "Tier": "1_0",
+        "NextTiers": [
+          "2_0"
+        ]
+      },
+      {
+        "Tier": "2_0",
+        "NextTiers": [
+          "3_0"
+        ]
+      }
+    ]
+  },
+  "Children": {
+    "0_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 90.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.AntiMaterialRifleT1",
+                  "LocalPosition": {
+                    "X": 5.960464E-08,
+                    "Y": -1.192093E-07
+                  },
+                  "Angle": 270.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "1_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 0.0,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 90.0,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.AntiMaterialRifleT2",
+                  "LocalPosition": {
+                    "X": 5.960464E-08,
+                    "Y": -1.192093E-07
+                  },
+                  "Angle": 270.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "2_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 1.001791E-05,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 89.99999,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.AntiMaterialRifleT3",
+                  "LocalPosition": {
+                    "X": -1.984212E-09,
+                    "Y": 5.960464E-08
+                  },
+                  "Angle": 270.0,
+                  "Flipped": false,
+                  "Children": [],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    },
+    "3_0": {
+      "UniqueIdentifier": "Core.ScoutBase",
+      "LocalPosition": {
+        "X": 0.0,
+        "Y": 0.0
+      },
+      "Angle": 0.0,
+      "Flipped": false,
+      "Children": [
+        {
+          "UniqueIdentifier": "Core.SmallRotator",
+          "LocalPosition": {
+            "X": 0.0,
+            "Y": 0.0
+          },
+          "Angle": 2.003582E-05,
+          "Flipped": false,
+          "Children": [
+            {
+              "UniqueIdentifier": "Core.OneToTwoFrame",
+              "LocalPosition": {
+                "X": 0.0,
+                "Y": 0.0
+              },
+              "Angle": 2.003582E-05,
+              "Flipped": false,
+              "Children": [
+                {
+                  "UniqueIdentifier": "Core.SmallTwinFireSynchronizer",
+                  "LocalPosition": {
+                    "X": -1.748455E-07,
+                    "Y": 1.222839E-13
+                  },
+                  "Angle": 2.003582E-05,
+                  "Flipped": false,
+                  "Children": [
+                    {
+                      "UniqueIdentifier": "Core.OneToTwoFrame",
+                      "LocalPosition": {
+                        "X": 5.684342E-14,
+                        "Y": -0.5
+                      },
+                      "Angle": 90.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.AntiMaterialRifleT3",
+                          "LocalPosition": {
+                            "X": -1.192093E-07,
+                            "Y": 5.166806E-08
+                          },
+                          "Angle": 270.0,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    },
+                    {
+                      "UniqueIdentifier": "Core.OneToTwoFrame",
+                      "LocalPosition": {
+                        "X": -9.723919E-10,
+                        "Y": 0.5
+                      },
+                      "Angle": 270.0,
+                      "Flipped": false,
+                      "Children": [
+                        {
+                          "UniqueIdentifier": "Core.AntiMaterialRifleT3",
+                          "LocalPosition": {
+                            "X": 5.960467E-08,
+                            "Y": -1.341106E-07
+                          },
+                          "Angle": 89.99999,
+                          "Flipped": false,
+                          "Children": [],
+                          "Data": null
+                        }
+                      ],
+                      "Data": null
+                    }
+                  ],
+                  "Data": null
+                }
+              ],
+              "Data": null
+            }
+          ],
+          "Data": null
+        }
+      ],
+      "Data": {
+        "$Type": "Lomztein.BFA2.Targeting.ColoredTargetEvaluator",
+        "$Data": {
+          "Evaluator": {
+            "$Type": "Lomztein.BFA2.Targeting.EnemyProgressTargetEvaluator",
+            "$Data": {}
+          }
+        }
+      }
+    }
+  }
+}

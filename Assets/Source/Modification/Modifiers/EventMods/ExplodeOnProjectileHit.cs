@@ -65,7 +65,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         {
             HitInfo hitInfo = args.GetArgs<HitInfo>();
 
-            float damage = hitInfo.DamageInfo.Damage * _damageMult.GetValue();
+            double damage = hitInfo.DamageInfo.Damage * _damageMult.GetValue();
             float range = _range.GetValue();
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();

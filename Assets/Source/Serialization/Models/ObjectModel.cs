@@ -55,12 +55,27 @@ namespace Lomztein.BFA2.Serialization.Models
         }
 
         public ValueModel GetProperty(string name)
+            => GetField(name)?.Model;
+
+        public bool TryGetProperty(string name, out ValueModel model)
         {
-            return GetField(name)?.Model;
+            if (HasProperty(name))
+            {
+                model = GetProperty(name);
+                return true;
+            }
+            model = null;
+            return false;
         }
 
         public T GetProperty<T>(string name) where T : ValueModel
             => (T)GetProperty(name);
+
+        public bool TryGetProperty<T>(string name, out T model) where T : ValueModel
+        {
+            model = GetProperty<T>(name);
+            return model != null;
+        }
 
         public T GetValue<T>(string name)
         {
@@ -69,11 +84,28 @@ namespace Lomztein.BFA2.Serialization.Models
             return property.ToObject<T>();
         }
 
+        public bool TryGetValue<T>(string name, out T value)
+        {
+            if (TryGetProperty(name, out PrimitiveModel model))
+            {
+                value = model.ToObject<T>();
+                return true;
+            }
+            value = default;
+            return false;
+        }
+
         public ArrayModel GetArray(string name)
             => GetProperty<ArrayModel>(name);
 
+        public bool TryGetArray(string name, out ArrayModel array)
+            => TryGetProperty(name, out array);
+
         public ObjectModel GetObject(string name)
             => GetProperty<ObjectModel>(name);
+
+        public bool TryGetObject(string name, out ObjectModel model)
+            => TryGetProperty(name, out model);
 
         public bool HasProperty(string name)
             => GetField(name) != null;

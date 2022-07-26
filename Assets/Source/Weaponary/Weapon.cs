@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Visuals.FireAnimations;
+﻿using Lomztein.BFA2.Animation;
 using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
@@ -26,15 +26,16 @@ namespace Lomztein.BFA2.Weaponary
         public float Range { get; set; }
         public float Speed { get; set; }
         public float Spread { get; set; }
+        public float Pierce { get; set; }
         public int MuzzleCount => _muzzles.Length;
 
         public Transform Target { get; set; }
-        public Colorization.Color Color;
+        public Colorization.Color Color { get; set; }
         public float Cooldown => 1f / Firerate;
 
         private IObjectPool<IProjectile> _pool;
         private IProjectilePool _projectilePool;
-        private IFireAnimation _fireAnimation;
+        private IAnimation _fireAnimation;
         private IFireSequence _fireSequence;
         private readonly List<IFireControl> _fireControl = new List<IFireControl>();
 
@@ -67,7 +68,7 @@ namespace Lomztein.BFA2.Weaponary
                 _muzzles = GetMuzzles();
                 _fireParticles = GetFireParticles(_muzzles);
 
-                _fireAnimation = GetComponent<IFireAnimation>() ?? new NoFireAnimation();
+                _fireAnimation = GetComponent<IAnimation>() ?? new NoAnimation();
                 _fireSequence = GetComponent<IFireSequence>() ?? new InstantFireSequence();
 
                 if (TryGetComponent(out IFireControl ctrl))
@@ -143,6 +144,7 @@ namespace Lomztein.BFA2.Weaponary
             proj.Speed = GetSpeed() * UnityEngine.Random.Range(0.9f, 1.1f);
             proj.Damage = GetDamage();
             proj.Range = GetRange() * UnityEngine.Random.Range(0.9f, 1.1f); ;
+            proj.Pierce = Pierce;
             proj.Layer = HitLayer;
             proj.Color = Color;
             proj.Target = Target;

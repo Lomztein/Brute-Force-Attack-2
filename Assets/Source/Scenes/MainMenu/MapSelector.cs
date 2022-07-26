@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         private MapData[] LoadMaps ()
         {
-            List<MapData> maps = Content.GetAll("*/Maps", typeof(MapData), false).Cast<MapData>().ToList();
+            List<MapData> maps = Content.LoadAll("*/Maps/*", typeof(MapData)).Cast<MapData>().ToList();
             maps.Sort((x, y) => (x.Width * x.Height) - (y.Width * y.Height));
             return maps.ToArray();
         }

@@ -1,0 +1,55 @@
+{
+  "Name": "Nano-Supercollider",
+  "Description": "Unlocks the Antimatter Launcher T2.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/AntimatterLauncherT2.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 48.0,
+      "Height": 48.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 14
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.NanoSupercollider",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.AntimatterContainment",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.AntimatterLauncherT2",
+            "Prerequisites": []
+          }
+        ]
+      }
+    }
+  ]
+}

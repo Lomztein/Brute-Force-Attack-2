@@ -4,6 +4,7 @@ using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.UI.Messages;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,52 +17,133 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentManager : MonoBehaviour
     {
-
         public static ContentManager Instance;
+        public static bool NeedsContentReload { get; private set; }
+        public static bool NeedsApplicationReload => PluginManager.PluginsCleared;
+        public static int LoadedContentPackCount => Instance._loadedAndActivePacks.Count;
+
         readonly IContentPackSource _source = new ContentPackSource();
+        private readonly List<IContentPack> _loadedAndActivePacks = new List<IContentPack>();
 
-        private const string WILDCARD = "*";
-        private List<IContentPack> _activePacks;
-        private PluginManager _pluginManager = new PluginManager();
+        private ContentIndex _index = new ContentIndex();
+        private ContentCache _cache = new ContentCache();
 
-        private Dictionary<string, object> _cache = new Dictionary<string, object>();
+        public static event Action<IEnumerable<IContentPack>> OnPreContentReload;
+        public static event Action<IEnumerable<IContentPack>> OnPostContentReload;
 
-        public IEnumerable<IContentPack> GetContentPacks()
+        private void Awake()
         {
-            if (_activePacks == null)
-            {
-                _activePacks = new List<IContentPack>();
-                IEnumerable<IContentPack> loaded = _source.GetPacks();
-                Message.Send("Loaded " + loaded.Count() + " content packs.", Message.Type.Minor);
-                _activePacks.AddRange(loaded);
-            }
-            return _activePacks;
+            Instance = this;
         }
 
-        internal void LoadPlugins ()
+        internal static void SaveEnabledContentPackIdentifiers(IEnumerable<string> enabledPlugins)
         {
-            foreach (IContentPack pack in GetContentPacks())
+            PlayerPrefs.SetString("EnabledContentPacks", string.Join("\n", enabledPlugins));
+        }
+
+        public static IEnumerable<string> GetEnabledContentPackIdentifiers ()
+        {
+            return PlayerPrefs.GetString("EnabledContentPacks", string.Join("\n", GetDefaultContentPacks())).Split('\n');
+        }
+
+        private static IEnumerable<string> GetDefaultContentPacks ()
+        {
+            yield return "Brute Force Attack 2-Core";
+            yield return "Brute Force Attack 2-Resources";
+            yield return "You-Custom";
+        }
+
+        internal void ReloadContent ()
+        {
+            OnPreContentReload?.Invoke(_loadedAndActivePacks);
+
+            Debug.Log("Stopping plugins..");
+            PluginManager.StopPlugins();
+            PluginManager.ClearPlugins();
+
+            Debug.Log("Clearing cache..");
+            _cache.ClearCache();
+
+            Debug.Log("Loading enabled content packs..");
+            // Only load enabled packs.
+            _loadedAndActivePacks.Clear();
+            var allPacks = FindContentPacks();
+            var shouldLoad = allPacks.Where(x => GetEnabledContentPackIdentifiers().Any(y => ContentPackUtils.MatchesUniqueIdentifier(x.GetUniqueIdentifier(), y, false)));
+            _loadedAndActivePacks.AddRange(shouldLoad);
+
+            Debug.Log("Clearing and setting up index..");
+            ResetIndex();
+            
+            Debug.Log("Loading assemblies into memory..");
+            LoadPluginAssembliesIntoMemory(_loadedAndActivePacks);
+
+            Debug.Log("Starting plugins..");
+            PluginManager.StartPlugins();
+
+            NeedsContentReload = false;
+            OnPostContentReload?.Invoke(_loadedAndActivePacks);
+        }
+
+        internal void EnableContentPack(string identifier)
+        {
+            if (!IsContentPackEnabled(identifier))
+            {
+                var enabled = GetEnabledContentPackIdentifiers().ToList();
+                enabled.Add(identifier);
+                SaveEnabledContentPackIdentifiers(enabled);
+                NeedsContentReload = true;
+            }
+        }
+
+        internal bool DisableContentPack(string identifier)
+        {
+            var enabled = GetEnabledContentPackIdentifiers().ToList();
+            bool removed = enabled.Remove(identifier);
+            SaveEnabledContentPackIdentifiers(enabled);
+            NeedsContentReload = true;
+            return removed;
+        }
+
+        internal bool SetContentPackEnabled(string identifier, bool enable)
+        {
+            if (enable)
+            {
+                EnableContentPack(identifier);
+            }
+            else
+            {
+                DisableContentPack(identifier);
+            }
+            return IsContentPackEnabled(identifier);
+        }
+
+        internal bool ToggleContentPackEnabled(string identifier)
+            => SetContentPackEnabled(identifier, !IsContentPackEnabled(identifier));
+
+        private void LoadPluginAssembliesIntoMemory(IEnumerable<IContentPack> from)
+        {
+            foreach (IContentPack pack in from)
             {
                 if (pack is ContentPack contentPack)
                 {
-                    _pluginManager.LoadAllPlugins(contentPack.GetPluginAssemblies());
+                    PluginManager.LoadPluginsIntoMemory(contentPack.GetPluginAssemblies());
                 }
             }
 
-
-            if (_pluginManager.LoadedCount > 0)
+            if (PluginManager.AnyLoadedPlugins)
             {
-                Message.Send("Loaded " + _pluginManager.LoadedCount + " plugin assemblies.", Message.Type.Minor);
+                Message.Send("Loaded " + PluginManager.LoadedPluginCount + " plugin assemblies.", Message.Type.Minor);
             }
-
-            _pluginManager.StartPlugins();
         }
 
-        internal void InitializeContent ()
+        public IEnumerable<IContentPack> FindContentPacks()
         {
-            GetContentPacks();
-            Instance = this;
+            IEnumerable<IContentPack> loaded = _source.GetPacks();
+            return loaded;
         }
+
+        public  static bool IsContentPackEnabled(string identifier)
+            => GetEnabledContentPackIdentifiers().Any(x => ContentPackUtils.MatchesUniqueIdentifier(x, identifier, false));
 
         private string OSAgnosticPath(string path)
         {
@@ -70,96 +152,22 @@ namespace Lomztein.BFA2.ContentSystem
                 .Replace('\\', Path.DirectorySeparatorChar);
         }
 
-        private object GetCache (string path)
-        {
-            if (_cache.ContainsKey(path))
-            {
-                return _cache[path];
-            }
-            return null;
-        }
-
-        private object SetCache (string path, object obj)
-        {
-            if (_cache.ContainsKey(path))
-            {
-                _cache[path] = obj;
-            }
-            else
-            {
-                _cache.Add(path, obj);
-            }
-            return obj;
-        }
-
-        public object GetContent(string path, Type type, bool useCache)
+        public object GetCacheOrLoadContent(string path, Type type)
         {
             path = OSAgnosticPath(path);
-            var start = DateTime.Now;
-
-            if (useCache)
+            if (_cache.TryGetCache(path, out object cache))
             {
-                object cache = GetCache(path);
-                if (!IsCacheValid(cache))
-                {
-                    var obj = SetCache(path, GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type));
-                    Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
-                    return obj;
-                }
-                else
-                {
-                    return cache;
-                }
+                return cache;
             }
-            else
-            {
-                var obj = GetPack(GetPackFolder(path)).GetContent(GetContentPath(path), type);
-                Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
-                return obj;
-            }
+            return LoadContent(path, type);
         }
 
-        private bool IsCacheValid (object cacheObj)
+        public object LoadContent(string path, Type type)
         {
-            if (cacheObj == null)
-            {
-                return false;
-            }
-            if (cacheObj is IDisposableContent disposable)
-            {
-                return !disposable.IsDisposed();
-            }
-            if (cacheObj is object[] array)
-            {
-                return array.All(x => IsCacheValid(x));
-            }
-            return true;
-        }
-
-        public void ClearCache (string path)
-        {
-            object cache = GetCache(path);
-            DisposeCacheObject(cache);
-            _cache.Remove(path);
-        }
-
-        private void DisposeCacheObject (object cacheObj)
-        {
-            if (cacheObj is object[] array)
-            {
-                foreach (object obj in array)
-                {
-                    DisposeCacheObject(obj);
-                }
-            } else if (cacheObj is IDisposableContent disposable)
-            {
-                disposable.Dispose();
-            }
-            
-            if (IsCacheValid(cacheObj))
-            {
-                throw new Exception("An object cache was disposed but is still considered valid. Plz fix.");
-            }
+            path = OSAgnosticPath(path);
+            object obj = GetPack(GetPackFolder(path)).LoadContent(GetContentPath(path), type);
+            _cache.SetCache(path, obj);
+            return obj;
         }
 
         private string GetPackFolder(string path)
@@ -169,67 +177,56 @@ namespace Lomztein.BFA2.ContentSystem
 
         private string GetContentPath(string path)
         {
-            return path.Substring(path.IndexOf(Path.DirectorySeparatorChar) +1);
+            return path.Substring(path.IndexOf(Path.DirectorySeparatorChar) + 1);
         }
 
-        public object[] GetAllContent(string path, Type type, bool useCache)
+        public IEnumerable<object> GetCacheOrLoadAllContent(string path, Type type)
         {
             path = OSAgnosticPath(path);
-
-            if (useCache)
+            var query = _index.Query(path);
+            foreach (var match in query)
             {
-                object cache = GetCache(path);
-                if (IsCacheValid(cache))
+                if (_cache.TryGetCache(match, out object cache))
                 {
-                    return cache as object[];
+                    yield return cache;
+                }
+                else
+                {
+                    yield return LoadContent(match, type);
                 }
             }
+        }
 
-            var start = DateTime.Now;
-
-            string packFolder = GetPackFolder(path);
-            bool wildcard = packFolder == WILDCARD;
-
-            string contentPath = GetContentPath(path);
-
-            if (wildcard)
+        public IEnumerable<object> LoadAllContent(string path, Type type)
+        {
+            path = OSAgnosticPath(path);
+            var query = _index.Query(path);
+            foreach (var match in query)
             {
-                List<object> objects = new List<object>();
-                foreach (IContentPack pack in GetContentPacks())
-                {
-                    objects.AddRange(pack.GetAllContent(contentPath, type));
-                }
-
-                object[] array = objects.ToArray();
-                if (useCache)
-                {
-                    SetCache(path, array);
-                }
-                Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
-
-                return array;
-            }
-            else
-            {
-                object[] array = GetPack(packFolder).GetAllContent(contentPath, type);
-                if (useCache)
-                {
-                    SetCache(path, array);
-                }
-                Debug.Log($"Loaded '{path}' in {(DateTime.Now - start).Milliseconds} milliseconds.");
-
-                return array;
+                yield return LoadContent(match, type);
             }
         }
 
         private IContentPack GetPack(string name)
         {
-            IContentPack pack = GetContentPacks().FirstOrDefault(x => x.Name == name);
+            IContentPack pack = _loadedAndActivePacks.FirstOrDefault(x => x.Name == name);
             if (pack == null)
             {
                 throw new ArgumentException($"Content Pack '{name}' not found.");
             }
             return pack;
+        }
+
+        public void ClearCache() => _cache.ClearCache();
+        public void ClearCache(string path) => _cache.ClearCache(path);
+        public IEnumerable<string> QueryContentIndex(string pattern) => _index.Query(pattern);
+        public void ResetIndex()
+        {
+            _index.ClearIndex();
+            foreach (var pack in _loadedAndActivePacks)
+            {
+                _index.AddIndices(pack.GetContentPaths().Select(y => pack.Name + Path.DirectorySeparatorChar + y));
+            }
         }
     }
 }

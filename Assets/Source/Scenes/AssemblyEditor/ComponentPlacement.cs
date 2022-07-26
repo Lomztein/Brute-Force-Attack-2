@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.Placement;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ObjectVisualizers;
+using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Structures.Turrets.Attachment;
 using Lomztein.BFA2.Utilities;
@@ -13,6 +15,8 @@ namespace Lomztein.BFA2.AssemblyEditor
 {
     public class ComponentPlacement : ISimplePlacement
     {
+        private const string VISUALIZER_SET_PATH = "Core/VisualizerSets/AssemblyEditorComponent.json";
+
         public event Action<GameObject> OnPlaced;
         public event Action OnFinished;
 
@@ -23,12 +27,18 @@ namespace Lomztein.BFA2.AssemblyEditor
         private Transform _probe;
         private float _angleOffset;
 
+        private CompositeGameObjectVisualizer _componentVisualizer;
+
+        private ObjectVisualizerSet GetVisualizerSet() => Content.Get<ObjectVisualizerSet>(VISUALIZER_SET_PATH);
+
         public bool Finish()
         {
             OnFinished?.Invoke();
             UnityEngine.Object.Destroy(_model);
             UnityEngine.Object.Destroy(_obj);
             UnityEngine.Object.Destroy(_probe.gameObject);
+            _componentVisualizer.EndVisualization();
+            UnityEngine.Object.Destroy(_componentVisualizer);
             return true;
         }
 
@@ -43,6 +53,8 @@ namespace Lomztein.BFA2.AssemblyEditor
             _model = UnityUtils.InstantiateMockGO(_obj);
             _componenet = _obj.GetComponent<TurretComponent>();
             _obj.SetActive(false);
+            _componentVisualizer = CompositeGameObjectVisualizer.CreateFrom(GetVisualizerSet());
+            _componentVisualizer.Visualize(_obj);
             return _componenet != null;
         }
 
@@ -55,6 +67,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 placed.transform.position = _currentMatch.Position + Vector3.back * 0.1f;
                 placed.transform.rotation = _currentMatch.Rotation;
                 placed.transform.parent = _currentMatch.Component.transform;
+                placed.GetComponentInParent<TurretAssembly>().InvokeHierarchyChanged(placed, this);
 
                 foreach (var pair in _currentMatch.SlotPointMappings)
                 {
@@ -79,7 +92,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
                 foreach (TurretComponent component in components)
                 {
-                    IEnumerable<AttachmentSlot> compatables = component.AttachmentSlots.GetSupportingPoints(point).Where(x => x.IsEmpty());
+                    IEnumerable<AttachmentSlot> compatables = component.AttachmentSlots.GetSupportingSlots(point).Where(x => x.IsEmpty());
                     foreach (var compatable in compatables)
                     {
                         Vector2 diffPos = point.GetWorldPosition(_probe) - compatable.GetWorldPosition(component.transform);
@@ -150,6 +163,12 @@ namespace Lomztein.BFA2.AssemblyEditor
             {
                 _model.transform.position = position;
                 _model.transform.rotation = Quaternion.Euler(0f, 0f, _angleOffset);
+
+                _obj.transform.SetParent(null);
+                _obj.transform.position = _model.transform.position;
+                _obj.transform.rotation = _model.transform.rotation;
+                _componentVisualizer.Tint(Color.red);
+
                 return false;
             }
             else
@@ -157,6 +176,12 @@ namespace Lomztein.BFA2.AssemblyEditor
                 _currentMatch = GetClosestMatch(matches, position);
                 _model.transform.position = _currentMatch.Position + Vector3.back * 0.1f;
                 _model.transform.rotation = _currentMatch.Rotation;
+
+                _obj.transform.SetParent(_currentMatch.Component.transform);
+                _obj.transform.position = _model.transform.position;
+                _obj.transform.rotation = _model.transform.rotation;
+                _componentVisualizer.Tint(Color.green);
+
                 return true;
             }
         }

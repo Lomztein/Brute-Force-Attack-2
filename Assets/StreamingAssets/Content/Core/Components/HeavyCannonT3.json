@@ -33,16 +33,18 @@
         "SpreadInfo": "$Path{Core/Modifiers/Stats/Spread.json}",
         "SpeedInfo": "$Path{Core/Modifiers/Stats/Speed.json}",
         "FirerateInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "PierceInfo": "$Path{Core/Modifiers/Stats/Pierce.json}",
         "OnFireInfo": "$Path{Core/Modifiers/Events/OnFire.json}",
         "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
         "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
         "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
         "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
-        "BaseDamage": 8000.0,
+        "BaseDamage": 16000.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
         "BaseSpeed": 100.0,
         "BaseFirerate": 0.5,
+        "BasePierce": 0.0,
         "Color": "Red",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
@@ -72,10 +74,10 @@
             {
               "Type": "Extension",
               "MinSupportedSize": "Small",
-              "MaxSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
               "LocalPosition": {
                 "X": -1.0,
-                "Y": -0.375,
+                "Y": -0.5,
                 "Z": 0.0
               },
               "LocalAngle": 0.0
@@ -83,10 +85,10 @@
             {
               "Type": "Extension",
               "MinSupportedSize": "Small",
-              "MaxSupportedSize": "Small",
+              "MaxSupportedSize": "Medium",
               "LocalPosition": {
                 "X": -1.0,
-                "Y": 0.375,
+                "Y": 0.5,
                 "Z": 0.0
               },
               "LocalAngle": 0.0
@@ -154,118 +156,28 @@
           "_tags": []
         },
         "_width": "Medium",
-        "_height": "Medium"
+        "_height": "Medium",
+        "Category": "$Path{Core/StructureCategories/Weapon.json}"
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Visuals.FireAnimations.SimpleFireAnimation",
+      "$Type": "Lomztein.BFA2.Animation.SimpleAnimation",
       "$Data": {
-        "AnimationSprites": [
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-            "Rect": {
-              "X": 32.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-            "Rect": {
-              "X": 64.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-            "Rect": {
-              "X": 96.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-            "Rect": {
-              "X": 128.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-            "Rect": {
-              "X": 160.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          },
-          {
-            "Path": "",
-            "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-            "Rect": {
-              "X": 192.0,
-              "Y": 0.0,
-              "Width": 32.0,
-              "Height": 32.0
-            },
-            "Pivot": {
-              "X": 0.5,
-              "Y": 0.5
-            },
-            "PixelsPerUnit": 16.0
-          }
-        ],
-        "DefaultSprite": {
-          "Path": "",
-          "Texture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
-          "Rect": {
-            "X": 0.0,
-            "Y": 0.0,
-            "Width": 32.0,
-            "Height": 32.0
-          },
-          "Pivot": {
+        "HorStart": 0,
+        "HorEnd": -1,
+        "SpriteSheet": {
+          "SpriteTexture": "$Path{Core/Sprites/Components/HeavyCannonT3.png}",
+          "SpritePPU": 16,
+          "SpriteWidth": 32,
+          "SpriteHeight": 32,
+          "SpritePivot": {
             "X": 0.5,
             "Y": 0.5
-          },
-          "PixelsPerUnit": 16.0
+          }
+        },
+        "DefaultSpriteIndex": {
+          "X": 0,
+          "Y": 0
         },
         "PlaySpeedMultiplier": 4.0
       }

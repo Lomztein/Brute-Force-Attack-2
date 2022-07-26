@@ -35,17 +35,18 @@ namespace Lomztein.BFA2
 
         internal void InitializeGame()
         {
-            Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
             SerializationFileAccess.SetAccessor(new ContentFileAccessor());
-            BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
 
             Input.Init();
             Facade.Init();
 
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None; // TODO: Implement as setting
+            CustomContentUtils.TryGenerateCustomContentPack();
+            ContentManager.ReloadContent();
 
-            ContentManager.LoadPlugins();
-            ContentManager.InitializeContent();
+            Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
+            BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
+
             InterceptLogs();
         }
 

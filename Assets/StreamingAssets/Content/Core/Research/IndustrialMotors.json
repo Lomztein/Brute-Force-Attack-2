@@ -1,0 +1,59 @@
+{
+  "Name": "Industrial Motors",
+  "Description": "Unlocks the Large Rotator, which can support weapons of even greater scale.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/LargeRotator.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 48.0,
+      "Height": 48.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 6
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.IndustrialMotors",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.IndustrialComputing",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.LargeRotator",
+            "Prerequisites": []
+          }
+        ]
+      }
+    }
+  ]
+}

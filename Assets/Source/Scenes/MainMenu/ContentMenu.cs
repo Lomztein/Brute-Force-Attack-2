@@ -3,6 +3,8 @@ using Lomztein.BFA2.Scenes.MainMenu.ContentMenuContentDisplay;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Lomztein.BFA2.MainMenu
@@ -12,14 +14,16 @@ namespace Lomztein.BFA2.MainMenu
         public GameObject ContentPackPrefab;
         public Transform ContentPackParent;
 
+        public IContentPack CurrentPack;
         public Text NameText;
         public Text AuthorText;
         public Text VersionText;
         public Text DescriptionText;
         public RawImage Image;
 
-        public GameObject RequireReload;
         public ContentDisplay ContentDisplay;
+        public Button ReloadContentButton;
+        public Button OpenFolderButton;
 
         public Texture2D DefaultImage;
 
@@ -30,7 +34,7 @@ namespace Lomztein.BFA2.MainMenu
 
         private void LoadPacks ()
         {
-            IEnumerable<IContentPack> packs = ContentManager.Instance.GetContentPacks();
+            IEnumerable<IContentPack> packs = ContentManager.Instance.FindContentPacks();
             foreach (IContentPack pack in packs)
             {
                 GameObject newButton = Instantiate(ContentPackPrefab, ContentPackParent);
@@ -42,6 +46,7 @@ namespace Lomztein.BFA2.MainMenu
         private void OnContentPackClicked (IContentPack pack)
         {
             SetText(pack);
+            ContentDisplay.DisplayContent(pack);
         }
 
         private void SetText(IContentPack source)
@@ -53,7 +58,6 @@ namespace Lomztein.BFA2.MainMenu
                 VersionText.text = string.Empty;
                 DescriptionText.text = string.Empty;
                 Image.texture = DefaultImage;
-                RequireReload.SetActive(false);
                 //ContentDisplay.Clear();
             }
             else
@@ -62,7 +66,7 @@ namespace Lomztein.BFA2.MainMenu
                 AuthorText.text = source.Author;
                 VersionText.text = source.Version;
                 DescriptionText.text = source.Description;
-                RequireReload.SetActive(source.RequireReload);
+                CurrentPack = source;
                 //ContentDisplay.DisplayContent(source);
 
                 if (source.Image != null)
@@ -76,9 +80,29 @@ namespace Lomztein.BFA2.MainMenu
             }
         }
 
+        private void Update()
+        {
+            ReloadContentButton.interactable = ContentManager.NeedsContentReload;
+            OpenFolderButton.interactable = CurrentPack != null && CurrentPack is ContentPack;
+        }
+
         private bool OnContentPackToggled (IContentPack pack, bool enabled)
         {
-            return true;
+            return ContentManager.Instance.SetContentPackEnabled(pack.GetUniqueIdentifier(), enabled);
+        }
+
+        public void ReloadContent ()
+        {
+            ContentManager.Instance.ReloadContent();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //Preloader.Instance.BeginPreload();
+        }
+
+        public void OpenFolder ()
+        {
+            Assert.IsTrue(CurrentPack is ContentPack);
+            var pack = CurrentPack as ContentPack;
+            Application.OpenURL($"file://{pack.Path}");
         }
     }
 }

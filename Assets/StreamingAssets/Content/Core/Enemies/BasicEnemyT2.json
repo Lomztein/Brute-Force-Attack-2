@@ -1,5 +1,5 @@
 {
-  "Name": "BasicEnemyT2",
+  "Name": "BasicEnemyT2(Clone)",
   "Tag": "Untagged",
   "Layer": 8,
   "Static": false,
@@ -27,13 +27,12 @@
     {
       "$Type": "Lomztein.BFA2.Enemies.Enemy",
       "$Data": {
-        "_difficultyValue": 10.0,
         "MaxHealth": 100.0,
         "Armor": 0.0,
         "Shields": 0.0,
         "MaxSpeed": 5.0,
         "_UniqueIdentifier": "Core.BasicEnemyT2",
-        "Color": 0,
+        "Color": "Blue",
         "DeathParticleLife": 1.0
       }
     },
@@ -88,12 +87,13 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Enemies/BasicEnemyT2.png",
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Enemies/BasicEnemyT2.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
+                "Width": 16.0,
+                "Height": 16.0
               },
               "Pivot": {
                 "X": 0.5,
@@ -143,8 +143,7 @@
           "$Data": {
             "Reference": {
               "Path": "Resources/Particles/BlueDeathParticle"
-            },
-            "NameOverride": ""
+            }
           }
         }
       ],

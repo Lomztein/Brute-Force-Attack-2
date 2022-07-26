@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Purchasing.Resources
         [ModelProperty]
         public ContentSpriteReference Sprite;
 
-        public static Resource[] GetResources() => Content.GetAll<Resource>("*/Resources");
+        public static Resource[] GetResources() => Content.GetAll<Resource>("*/Resources/*").ToArray();
         public static Resource GetResource(string identifier) => GetResources().FirstOrDefault(x => x.Identifier == identifier);
 
         public override bool Equals(object other)

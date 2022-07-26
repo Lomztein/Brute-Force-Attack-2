@@ -1,25 +1,21 @@
-﻿using System;
+﻿using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {
-    public static class StructureCategories
+    [CreateAssetMenu(fileName = "New Structure Category", menuName = "BFA2/Structure Category")]
+    public class StructureCategory : ScriptableObject
     {
-        public static StructureCategory TargetFinder => new StructureCategory("Target Finder", "Common root component. Finds and provides targets to other components.");
-        public static StructureCategory Targeter => new StructureCategory("Targeter", "Targets the target provided by an underlying target finder.");
-        public static StructureCategory Weapon => new StructureCategory("Weapon", "Fires towards targets with the intend to destroy.");
-        public static StructureCategory Connector => new StructureCategory("Connector", "Connects components to a target component so that they may support it.");
-        public static StructureCategory Structural => new StructureCategory("Structural", "Does nothing except provide space for other components.");
-        public static StructureCategory Utility => new StructureCategory("Utility", "Provides utilities to other components.");
-        public static StructureCategory Misc => new StructureCategory("Miscellaneous", "Miscellaneous components with unique functionality.");
-    }
-
-    public class StructureCategory
-    {
+        [ModelProperty]
+        public string Identifier;
+        [ModelProperty]
         public string Name;
+        [ModelProperty]
         public string Description;
 
         public StructureCategory(string name, string desc)
@@ -30,6 +26,8 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         public override bool Equals(object obj)
         {
+            if (obj == null) return false;
+
             if (obj is StructureCategory category)
             {
                 return Name.Equals(category.Name);

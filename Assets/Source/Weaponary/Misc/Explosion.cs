@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
         [ModelProperty]
         public float Life;
 
-        public void Explode (float damage, float range, Action<Collider2D> onHit)
+        public void Explode (double damage, float range, Action<Collider2D> onHit)
         {
             var particles = GetComponentInChildren<ParticleSystem>();
             particles.transform.localScale = Vector3.one * range / ParticleBaseRange;

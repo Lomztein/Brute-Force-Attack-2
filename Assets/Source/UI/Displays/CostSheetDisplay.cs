@@ -18,7 +18,7 @@ namespace Lomztein.BFA2
             {
                 GameObject newElementObject = Instantiate(CostElementPrefab, CostElementParent);
                 newElementObject.GetComponentInChildren<Image>().sprite = element.Resource.Sprite.Get();
-                newElementObject.GetComponentInChildren<Text>().text = element.Value + " " + element.Resource.Shorthand;
+                newElementObject.GetComponentInChildren<Text>().text = element.Value + " " + element.Resource.Name;
             }
         }
     }

@@ -1,0 +1,55 @@
+{
+  "Name": "Refined Optics",
+  "Description": "Unlocks the Scout Base, which can hit reach from a very long distance.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/ScoutBase.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 16.0,
+      "Height": 16.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 5
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.RefinedOptics",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.ScoutBase",
+            "Prerequisites": []
+          }
+        ]
+      }
+    }
+  ]
+}

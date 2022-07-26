@@ -18,6 +18,7 @@ namespace Lomztein.BFA2.MapEditor.Objects
 
         private void Start()
         {
+            Console.WriteLine("Ass");
             Input.PrimaryClickStarted += PrimaryClick;
         }
 

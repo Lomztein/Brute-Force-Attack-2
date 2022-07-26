@@ -1,4 +1,4 @@
-﻿using Lomztein.BFA2.Structures.Highlighters;
+﻿using Lomztein.BFA2.ObjectVisualizers;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
 using Lomztein.BFA2.UI.Windows;
 using System.Collections.Generic;
@@ -12,13 +12,13 @@ namespace Lomztein.BFA2.UI.ContextMenu
     {
         public GameObject MenuPrefab;
         public Transform MenuParent;
-        public HighlighterSet Highlighter;
+        public ObjectVisualizerSet Visualizers;
 
         public LayerMask TargetLayer;
         private Dictionary<Object, Object> _activeMenus = new Dictionary<Object, Object>();
 
         private Collider2D _currentHover;
-        private HighlighterCollection _highlighters;
+        private CompositeGameObjectVisualizer _visualizers;
 
         public void Update()
         {
@@ -51,16 +51,16 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
         private void OnHoverChanged (Collider2D cur, Collider2D prev)
         {
-            if (_highlighters != null)
+            if (_visualizers != null)
             {
-                _highlighters.EndHighlight();
+                _visualizers.EndVisualization();
             }
 
             if (cur != null)
             {
-                _highlighters = HighlighterCollection.Create(cur.transform.root.gameObject, Highlighter);
-                _highlighters.Highlight();
-                _highlighters.Tint(Color.green);
+                _visualizers = CompositeGameObjectVisualizer.CreateFrom(Visualizers);
+                _visualizers.Visualize(cur.transform.root.gameObject);
+                _visualizers.Tint(Color.green);
             }
         }
 
@@ -76,9 +76,9 @@ namespace Lomztein.BFA2.UI.ContextMenu
                 GameObject menuObj = WindowManager.OpenWindow(MenuPrefab);
                 if (menuObj)
                 {
-                    HighlighterCollection highlighter = HighlighterCollection.Create(obj.transform.root.gameObject, Highlighter);
+                    CompositeGameObjectVisualizer highlighter = CompositeGameObjectVisualizer.CreateFrom(Visualizers);
 
-                    highlighter.Highlight();
+                    highlighter.Visualize(obj.transform.root.gameObject);
                     highlighter.Tint(Color.green);
 
                     menuObj.transform.position = position;
@@ -91,7 +91,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
                     menu.OnClosed += () =>
                     {
                         RemoveActiveWindow(obj);
-                        highlighter.EndHighlight();
+                        highlighter.EndVisualization();
                     };
                 }
             }

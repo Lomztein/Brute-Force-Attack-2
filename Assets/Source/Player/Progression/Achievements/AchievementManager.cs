@@ -3,6 +3,7 @@ using Lomztein.BFA2.Player.Profile;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,7 +13,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
     {
         public static AchievementManager Instance;
 
-        private const string ACHIEVEMENTS_PATH = "*/Achievements";
+        private const string ACHIEVEMENTS_PATH = "*/Achievements/*";
         public Achievement[] Achievements;
 
         public event Action<Achievement> OnAchievementCompleted;
@@ -36,7 +37,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
 
         private Achievement[] LoadAchievements ()
         {
-            return Content.GetAll<Achievement>(ACHIEVEMENTS_PATH);
+            return Content.GetAll<Achievement>(ACHIEVEMENTS_PATH).ToArray();
         }
 
         private void InitAchievements()

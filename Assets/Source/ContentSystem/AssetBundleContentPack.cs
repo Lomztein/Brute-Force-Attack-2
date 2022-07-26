@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,19 +19,13 @@ namespace Lomztein.BFA2.ContentSystem
         public Texture2D Image => null;
 
         private AssetBundle _assetBundle;
-        private string[] _assetPaths;
 
         public AssetBundleContentPack(AssetBundle bundle)
         {
             _assetBundle = bundle;
         }
 
-        public object[] GetAllContent(string path, Type type)
-        {
-            return _assetPaths.Where(x => x.StartsWith(path)).Select(x => GetContent(x, type)).Where(x => x != null).ToArray();
-        }
-
-        public object GetContent(string path, Type type)
+        public object LoadContent(string path, Type type)
         {
             if (_assetBundle.Contains(path))
             {
@@ -43,11 +38,6 @@ namespace Lomztein.BFA2.ContentSystem
             }
         }
 
-        public void Init()
-        {
-            _assetPaths = _assetBundle.GetAllAssetNames();
-        }
-
         public static AssetBundleContentPack FromFile(string path)
         {
             if (File.Exists(path))
@@ -55,6 +45,13 @@ namespace Lomztein.BFA2.ContentSystem
                 return new AssetBundleContentPack(AssetBundle.LoadFromFile(path));
             }
             return null;
+        }
+
+        public void Init () { }
+
+        public string[] GetContentPaths()
+        {
+            return _assetBundle.GetAllAssetNames();
         }
     }
 }

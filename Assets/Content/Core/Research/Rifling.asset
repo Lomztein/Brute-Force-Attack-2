@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
+  m_Name: Rifling
+  m_EditorClassIdentifier: 
+  Name: Rifling
+  Description: Learn the secrets of rifling, and unlock the Anti-Material Rifle.
+  Sprite:
+    Path: 
+    Texture: {fileID: 2800000, guid: 681ade2e8baa60d408a949e2edec299c, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 32
+      height: 32
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  SpriteTint: {r: 1, g: 1, b: 1, a: 1}
+  ResourceCost:
+    Elements:
+    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+      Value: 6
+  TimeCost: 0
+  Identifier: Core.Rifling
+  Prerequisites:
+  - Identifier: Core.SpecializedWeapons
+    Required: 1
+  - Identifier: Core.NanoRecievers
+    Required: 1
+  UniquePrerequisites: []
+  Rewards:
+  - rid: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 0
+      type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
+      data:
+        Unlocks:
+        - Identifier: Core.AntiMaterialRifleT1
+          Prerequisites: []

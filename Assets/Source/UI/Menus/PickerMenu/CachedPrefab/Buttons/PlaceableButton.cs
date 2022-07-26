@@ -22,6 +22,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         public Image Image;
 
         public string Title;
+        public string Description;
 
         private void Awake()
         {
@@ -49,6 +50,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 
             SimpleToolTip toolTip = GetComponent<SimpleToolTip>();
             toolTip.Title = Title;
+            toolTip.Description = GetDescription(_prefab);
 
             UpdateGraphics();
         }
@@ -64,6 +66,15 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
             {
                 return prefab.GetCache().name;
             }
+        }
+
+        private string GetDescription(IContentCachedPrefab prefab)
+        {
+            if (prefab.GetCache().TryGetComponent(out INamed named))
+            {
+                return named.Description;
+            }
+            return String.Empty;
         }
     }
 }

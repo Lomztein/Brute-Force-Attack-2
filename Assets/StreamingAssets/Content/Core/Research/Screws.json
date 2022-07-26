@@ -1,0 +1,59 @@
+{
+  "Name": "Screws",
+  "Description": "The invention of these fancy \"screws\" allows for more complex frames. Unlocks the Side Mount and Medium T-Frame components.",
+  "Sprite": {
+    "Path": "Core/Sprites/Components/Base.png",
+    "Texture": "$Path{Core/Sprites/Components/SmallSideAttachmentPoint.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 3
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.Screws",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.BallBearings",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.SideMount",
+            "Prerequisites": []
+          },
+          {
+            "Identifier": "Core.MediumTFrame",
+            "Prerequisites": []
+          }
+        ]
+      }
+    }
+  ]
+}

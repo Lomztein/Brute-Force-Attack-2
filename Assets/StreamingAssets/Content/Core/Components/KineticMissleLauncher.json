@@ -50,17 +50,19 @@
         "SpreadInfo": "$Path{Core/Modifiers/Stats/Spread.json}",
         "SpeedInfo": "$Path{Core/Modifiers/Stats/Speed.json}",
         "FirerateInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+        "PierceInfo": "$Path{Core/Modifiers/Stats/Pierce.json}",
         "OnFireInfo": "$Path{Core/Modifiers/Events/OnFire.json}",
         "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
         "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
         "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
         "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
-        "BaseDamage": 20.0,
+        "BaseDamage": 100.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 10.0,
         "BaseSpeed": 40.0,
         "BaseFirerate": 5.0,
-        "Color": "Orange",
+        "BasePierce": 0.0,
+        "Color": "Purple",
         "BaseComplexity": 0.0,
         "AttachmentSlots": {
           "_attachmentPoints": [
@@ -91,13 +93,13 @@
           }
         ],
         "_name": "Side Mounted Kinetic Rocket Launcher",
-        "_description": "Small attachment that fires a rocket each time it's parent weapon gets a kill.",
+        "_description": "Small mount that fires a rocket each time it's parent weapon gets a kill.",
         "_uniqueIdentifier": "Core.KineticMissle",
         "_cost": {
           "Elements": [
             {
               "Resource": "$Path{Core/Resources/Credits.json}",
-              "Value": 400
+              "Value": 1200
             }
           ]
         },
@@ -105,7 +107,8 @@
           "_tags": []
         },
         "_width": "Small",
-        "_height": "Small"
+        "_height": "Small",
+        "Category": "$Path{Core/StructureCategories/Attachment.json}"
       }
     },
     {
