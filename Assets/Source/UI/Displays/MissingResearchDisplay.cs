@@ -19,9 +19,20 @@ namespace Lomztein.BFA2
             foreach (var research in missingResearch)
             {
                 GameObject newObj = Instantiate(Prefab, Parent);
-                newObj.GetComponentInChildren<Text>().text = research.Value.Name;
-                newObj.transform.Find("Image").GetChild(0).GetComponent<Image>().sprite = research.Value.Sprite.Get();
-                newObj.transform.Find("Image").GetChild(0).GetComponent<Image>().color = research.Value.SpriteTint;
+                newObj.transform.Find("Image").GetChild(0).GetComponent<Image>().sprite = research.Sprite.Get();
+
+                if (ResearchController.Instance.GetAvailable().Contains(research))
+                {
+                    newObj.GetComponentInChildren<Text>().text = research.Name;
+                    newObj.transform.Find("Image").GetChild(0).GetComponent<Image>().color = research.SpriteTint;
+                    newObj.transform.SetAsFirstSibling();
+                }
+                else
+                {
+                    newObj.GetComponentInChildren<Text>().text = "???";
+                    newObj.transform.Find("Image").GetChild(0).GetComponent<Image>().color = Color.black;
+                    newObj.transform.SetAsLastSibling();
+                }
             }
             return missingResearch.Count();
         }

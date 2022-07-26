@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Player.Progression
         public static IEnumerable<string> GetLocked(this IUnlockList list, IEnumerable<string> identifiers)
             => identifiers.Where(x => !list.IsUnlocked(x));
 
-        public static IEnumerable<KeyValuePair<string, ResearchOption>> GetRequiredResearchToUnlock(this IUnlockList list, IEnumerable<ResearchOption> options, IEnumerable<string> identifiers)
+        public static IEnumerable<ResearchOption> GetRequiredResearchToUnlock(this IUnlockList list, IEnumerable<ResearchOption> options, IEnumerable<string> identifiers)
         {
             foreach (string identifier in identifiers)
             {
@@ -30,7 +30,11 @@ namespace Lomztein.BFA2.Player.Progression
                         {
                             if (reward is UnlockReward unlockReward && unlockReward.Unlocks.Any(x => x.Identifier == identifier))
                             {
-                                yield return new KeyValuePair<string, ResearchOption>(identifier, option);
+                                var missingPrerequisites = ResearchController.Instance.GetAllUnresearchedPrerequisites(option);
+                                foreach (var missing in missingPrerequisites)
+                                {
+                                    yield return missing;
+                                }
                             }
                         }
                     }

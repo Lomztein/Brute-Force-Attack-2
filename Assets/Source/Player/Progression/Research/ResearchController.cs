@@ -51,6 +51,25 @@ namespace Lomztein.BFA2.Research
 
         public ResearchOption[] GetAll() => _all.ToArray();
 
+        public ResearchOption GetOption(string identifier) => _all.FirstOrDefault(x => x.Identifier == identifier);
+
+        public IEnumerable<ResearchOption> GetAllUnresearchedPrerequisites(ResearchOption option)
+        {
+            if (!IsCompleted(option.Identifier))
+            {
+                yield return option;
+            }
+            var prerequisites = option.Prerequisites.Select(x => GetOption(x.Identifier));
+            foreach (var prerequisite in prerequisites)
+            {
+                var unresearched = GetAllUnresearchedPrerequisites(prerequisite);
+                foreach (var missing in unresearched)
+                {
+                    yield return missing;
+                }
+            }
+        }
+
         private void Awake()
         {
             Instance = this;

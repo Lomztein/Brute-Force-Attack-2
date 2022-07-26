@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.ContentSystem
         {
             if (_cache.TryGetValue(key, out object cache) && !IsCacheValid(cache))
             {
-                throw new InvalidOperationException("Cache is unset or invalid.");
+                throw new InvalidOperationException($"Cache '{key}' is unset or invalid.");
             }
             return cache;
         }

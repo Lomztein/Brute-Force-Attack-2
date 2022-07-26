@@ -2,6 +2,7 @@
 using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Player.Progression;
+using Lomztein.BFA2.Research;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using System;
@@ -17,6 +18,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
     {
         public string ContentPath;
         public string UnlockListName;
+        public int MissingResearchThreshold;
 
         private IUnlockList UnlockList => Player.Player.Unlocks; // TODO: Replace with something like a PlayerUnlockListLink.
 
@@ -50,9 +52,11 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
 
         private bool ContainsComponent(TurretAssembly assembly, string identifier) => assembly.GetComponents().Any(x => x.Identifier == identifier);
 
-        private bool IsUnlocked(TurretAssembly assembly) => assembly.GetComponents().All(x => UnlockList.IsUnlocked(x.Identifier));
-
-        private bool IsPartiallyUnlocked(TurretAssembly assembly) => assembly.GetComponents().Any(x => UnlockList.IsUnlocked(x.Identifier));
+        private bool IsPartiallyUnlocked(TurretAssembly assembly)
+        {
+            var missingResearch = UnlockList.GetRequiredResearchToUnlock(ResearchController.Instance.GetAll(), assembly.GetComponents(assembly.CurrentTeir).Select(x => x.Identifier)).Distinct().ToArray();
+            return missingResearch.Length <= MissingResearchThreshold;
+        }
 
         private IContentCachedPrefab[] GetUnlocked ()
         {
