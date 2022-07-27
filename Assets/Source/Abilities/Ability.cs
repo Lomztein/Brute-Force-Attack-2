@@ -38,7 +38,7 @@ namespace Lomztein.BFA2.Abilities
                 placement.Assign(this, InstantiateVisualizer());
                 PlacementController.Instance.TakePlacement(placement);
             }
-            else
+            else if (Player.Player.Resources.HasEnough(ActivationCost))
             {
                 Activate(null);
             }

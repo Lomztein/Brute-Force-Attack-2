@@ -1,5 +1,6 @@
 using Lomztein.BFA2.Abilities.Visualizers;
 using Lomztein.BFA2.Placement;
+using Lomztein.BFA2.Purchasing.Resources;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,9 @@ namespace Lomztein.BFA2.Abilities.Placements
             OnFinished?.Invoke();
             return true;
         }
+
+        protected bool TrySpendActivationCost ()
+            => Player.Player.Resources.TrySpend(Ability.ActivationCost);
 
         public virtual void Init()
         {

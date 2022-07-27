@@ -27,9 +27,13 @@ namespace Lomztein.BFA2.Abilities.Placements
 
         public bool Place()
         {
-            Ability.Activate(this);
-            Finish();
-            return true;
+            if (TrySpendActivationCost())
+            {
+                Ability.Activate(this);
+                Finish();
+                return true;
+            }
+            return false;
         }
 
         public bool ToPosition(Vector2 position)
