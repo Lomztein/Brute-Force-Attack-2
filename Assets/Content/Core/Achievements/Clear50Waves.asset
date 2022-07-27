@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Clear50Waves
   m_EditorClassIdentifier: 
   Name: In waves, they fall
-  Description: Clear 50 waves of enemies. Unlocks the Starting Wave mutator, with
-    which you can select which wave to start on.
+  Description: Clear 50 waves of enemies across multiple games. Unlocks the Starting
+    Wave mutator, with which you can select which wave to start on.
   Identifier: Core.Clear50Waves
   Sprite:
     Path: 
@@ -29,18 +29,19 @@ MonoBehaviour:
     PixelsPerUnit: 16
   Hidden: 0
   Requirement:
-    id: 0
+    rid: 0
   Reward:
-    id: 1
+    rid: 1
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: ClearWavesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
         Target: 50
         CrossGames: 1
-    00000001:
+    - rid: 1
       type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
         asm: Assembly-CSharp}
       data:
