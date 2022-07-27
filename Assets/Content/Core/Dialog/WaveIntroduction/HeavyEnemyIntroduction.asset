@@ -17,11 +17,13 @@ MonoBehaviour:
   Text: Heads up, you will face heavy enemies next round. These ones are slow, but
     very tanky, and even comes with a bit of flat damage reduction, meaning that
     high single-shot damage weapons such as rocket launchers are highly recommended.
+    You need to research these, however!
   Predicate:
-    id: 0
+    rid: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: FirstApperanceOfEnemyPredicate, ns: Lomztein.BFA2.UI.Displays.Dialog,
         asm: Assembly-CSharp}
       data:

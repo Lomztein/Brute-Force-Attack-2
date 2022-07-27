@@ -13,9 +13,9 @@ namespace Lomztein.BFA2.Abilities
 {
     public abstract class Ability : ScriptableObject, INamed, IIdentifiable
     {
-        [SerializeField, ModelProperty] private string _name;
-        [SerializeField, ModelProperty] private string _description;
-        [SerializeField, ModelProperty] private string _identifier;
+        [SerializeField, ModelProperty] protected string _name;
+        [SerializeField, ModelProperty] protected string _description;
+        [SerializeField, ModelProperty] protected string _identifier;
 
         public string Name => _name;
         public string Description => _description;
@@ -24,18 +24,18 @@ namespace Lomztein.BFA2.Abilities
         [ModelProperty] public ContentSpriteReference Sprite;
         [ModelProperty] public int MaxCharges = 1;
         [ModelProperty] public int MaxCooldown;
-        [ModelProperty] public IResourceCost ActivationCost;
+        [ModelProperty] public ResourceCost ActivationCost;
         [ModelProperty] public ContentPrefabReference Visualizer;
 
-        public int CurrentCooldown;
-        public int CurrentCharges;
+        [ModelProperty] public int CurrentCooldown;
+        [ModelProperty] public int CurrentCharges;
 
         public virtual void Select ()
         {
             var placement = GetPlacement();
-            placement.Assign(this, InstantiateVisualizer());
             if (placement != null)
             {
+                placement.Assign(this, InstantiateVisualizer());
                 PlacementController.Instance.TakePlacement(placement);
             }
             else
@@ -55,7 +55,11 @@ namespace Lomztein.BFA2.Abilities
 
         public virtual AbilityVisualizer InstantiateVisualizer()
         {
-            return Visualizer.Instantiate().GetComponent<AbilityVisualizer>();
+            if (Visualizer != null)
+            {
+                return Visualizer.Instantiate().GetComponent<AbilityVisualizer>();
+            }
+            return null;
         }
 
         public virtual void Activate(AbilityPlacement placement)
@@ -82,6 +86,21 @@ namespace Lomztein.BFA2.Abilities
             {
                 CurrentCooldown = 0;
             }
+        }
+
+        public virtual bool Available (out IEnumerable<string> reasons)
+        {
+            List<string> reasonsList = new List<string>();
+            if (!Player.Player.Resources.HasEnough(ActivationCost))
+            {
+                reasonsList.Add("Not enough resources");
+            }
+            if (CurrentCharges == 0)
+            {
+                reasonsList.Add("Cooldown: " + CurrentCooldown);
+            }
+            reasons = reasonsList;
+            return reasonsList.Count == 0;
         }
     }
 }

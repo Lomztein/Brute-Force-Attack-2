@@ -10,6 +10,9 @@
     "Layer": {
       "Mask": 512
     },
+    "_name": "Emergency Charge",
+    "_description": "Supercharges a small group of turrets for a short while.",
+    "_identifier": "Core.EmergencyCharge",
     "Sprite": {
       "Path": "",
       "Texture": "$Path{Core/Sprites/Abilities/Charge.png}",
@@ -27,9 +30,13 @@
     },
     "MaxCharges": 1,
     "MaxCooldown": 3,
-    "ActivationCost": null,
+    "ActivationCost": {
+      "Elements": []
+    },
     "Visualizer": {
       "Path": "Core/Abilities/Visualizers/EmergencyOverdrive.json"
-    }
+    },
+    "CurrentCooldown": 0,
+    "CurrentCharges": 1
   }
 }

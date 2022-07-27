@@ -1,0 +1,46 @@
+{
+  "$Type": "Lomztein.BFA2.Abilities.ResourceGrantAbility",
+  "$Data": {
+    "Grant": {
+      "Elements": [
+        {
+          "Resource": "$Path{Core/Resources/Research.json}",
+          "Value": 5
+        }
+      ]
+    },
+    "_name": "Recompile",
+    "_description": "Instantly recompile 5 binaries into 5 research.",
+    "_identifier": "Core.Recompile",
+    "Sprite": {
+      "Path": "",
+      "Texture": "$Path{Core/Sprites/Collectables/Research.png}",
+      "Rect": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Width": 0.0,
+        "Height": 0.0
+      },
+      "Pivot": {
+        "X": 0.5,
+        "Y": 0.5
+      },
+      "PixelsPerUnit": 16.0
+    },
+    "MaxCharges": 1,
+    "MaxCooldown": 2,
+    "ActivationCost": {
+      "Elements": [
+        {
+          "Resource": "$Path{Core/Resources/Binaries.json}",
+          "Value": 5
+        }
+      ]
+    },
+    "Visualizer": {
+      "Path": ""
+    },
+    "CurrentCooldown": 0,
+    "CurrentCharges": 1
+  }
+}

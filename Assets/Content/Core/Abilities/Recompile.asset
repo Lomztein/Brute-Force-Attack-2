@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d482080b7f63a47b8d1218a0bfbe65, type: 3}
+  m_Name: Recompile
+  m_EditorClassIdentifier: 
+  _name: Recompile
+  _description: Instantly recompile 5 binaries into 5 research.
+  _identifier: Core.Recompile
+  Sprite:
+    Path: 
+    Texture: {fileID: 2800000, guid: 5afcfb1507b8791448437381f863c06e, type: 3}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  MaxCharges: 1
+  MaxCooldown: 2
+  ActivationCost:
+    Elements:
+    - Resource: {fileID: 11400000, guid: a8f1c14068cc53644890d1a8dfec5af9, type: 2}
+      Value: 5
+  Visualizer:
+    Path: 
+  CurrentCooldown: 0
+  CurrentCharges: 1
+  Grant:
+    Elements:
+    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+      Value: 5

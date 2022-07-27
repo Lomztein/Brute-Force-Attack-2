@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lomztein.BFA2.Weaponary.FireSynchronization
+namespace Lomztein.BFA2.Weaponary.FireControl
 {
     public class SequencedFireControl : IFireControl
     {

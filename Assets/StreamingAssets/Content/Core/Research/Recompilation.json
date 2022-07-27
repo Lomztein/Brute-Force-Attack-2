@@ -1,9 +1,9 @@
 {
-  "Name": "Recompilation (WIP)",
+  "Name": "Recompilation",
   "Description": "Unlocks the Recompiler, which allows for the convertion from binaries to research.",
   "Sprite": {
     "Path": "",
-    "Texture": null,
+    "Texture": "$Path{Core/Sprites/Structures/Recompiler.png}",
     "Rect": {
       "X": 0.0,
       "Y": 0.0,
@@ -38,7 +38,7 @@
   "Identifier": "Core.Recompilation",
   "Prerequisites": [
     {
-      "Identifier": "Core.EffecientDecompilation",
+      "Identifier": "Core.CodeGeneration",
       "Required": true
     }
   ],
@@ -49,7 +49,7 @@
       "$Data": {
         "Unlocks": [
           {
-            "Identifier": "Core.Decompiler",
+            "Identifier": "Core.Recompiler",
             "Prerequisites": []
           }
         ]

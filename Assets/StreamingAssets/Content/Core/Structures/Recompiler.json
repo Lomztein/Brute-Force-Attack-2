@@ -1,0 +1,285 @@
+{
+  "Name": "Recompiler(Clone)",
+  "Tag": "Untagged",
+  "Layer": 10,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": -6.25,
+          "Y": -4.5,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Structures.Structure",
+      "$Data": {
+        "_name": "Recompiler",
+        "_description": "Grants the ability to convert 5 binaries to 5 research.",
+        "_uniqueIdentifier": "Core.Recompiler",
+        "_cost": {
+          "Elements": [
+            {
+              "Resource": "$Path{Core/Resources/Credits.json}",
+              "Value": 1400
+            },
+            {
+              "Resource": "$Path{Core/Resources/Binaries.json}",
+              "Value": 4
+            }
+          ]
+        },
+        "Tags": {
+          "_tags": []
+        },
+        "_width": "Medium",
+        "_height": "Large",
+        "Category": "$Path{Core/StructureCategories/Structure.json}"
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Turrets.TurretSeller",
+      "$Data": {
+        "SellSprite": {
+          "Path": "",
+          "Texture": null,
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        }
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 2.0,
+          "Y": 3.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Abilities.AbilityGranter",
+      "$Data": {
+        "Ability": {
+          "$Type": "Lomztein.BFA2.Abilities.ResourceGrantAbility",
+          "$Data": "$Path{Core/Abilities/Recompile.json}"
+        },
+        "ChargesPerStack": 1,
+        "GrantCharge": true
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Structures/Recompiler.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 32.0,
+                "Height": 48.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": -0.25,
+              "Y": -1.0,
+              "Z": 0.01
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Misc.Rotator",
+          "$Data": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 1440.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/IntegratedMachineryGear.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 8.0,
+                "Height": 8.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Fan (1)",
+      "Tag": "Untagged",
+      "Layer": 10,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.25,
+              "Y": -1.0,
+              "Z": 0.01
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Misc.Rotator",
+          "$Data": {
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": -1440.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Components/IntegratedMachineryGear.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 8.0,
+                "Height": 8.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}

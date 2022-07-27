@@ -2,7 +2,7 @@ using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets.Weapons;
 using Lomztein.BFA2.Weaponary;
-using Lomztein.BFA2.Weaponary.FireSynchronization;
+using Lomztein.BFA2.Weaponary.FireControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

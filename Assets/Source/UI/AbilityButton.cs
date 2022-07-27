@@ -18,6 +18,8 @@ namespace Lomztein.BFA2.UI
         public Image AbilityProgress;
         public Text ChargesText;
 
+        private IEnumerable<string> _unavailableReasons;
+
         public void Assign(Ability ability)
         {
             Ability = ability;
@@ -27,7 +29,7 @@ namespace Lomztein.BFA2.UI
 
         public GameObject GetToolTip()
         {
-            return SimpleToolTip.InstantiateToolTip(Ability.Name, Ability.Description, Ability.CurrentCooldown > 0 ? "Cooldown: " + Ability.CurrentCooldown : "Ready");
+            return SimpleToolTip.InstantiateToolTip(Ability.Name, Ability.Description, _unavailableReasons.Count() == 0 ? "Ready" : string.Join("\n", _unavailableReasons));
         }
 
         public void OnClick ()
@@ -56,7 +58,9 @@ namespace Lomztein.BFA2.UI
             {
                 AbilityProgress.fillAmount = 0;
             }
-            Button.interactable = Ability.CurrentCharges > 0;
-        }
+            Button.interactable = Ability.Available(out _unavailableReasons);
+            AbilityImage.color = Button.interactable ? Color.white : new Color(0.5f, 0.5f, 0.5f);
+
     }
+}
 }

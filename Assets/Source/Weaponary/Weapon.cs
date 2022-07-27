@@ -4,7 +4,7 @@ using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.Weaponary.FireSequence;
-using Lomztein.BFA2.Weaponary.FireSynchronization;
+using Lomztein.BFA2.Weaponary.FireControl;
 using Lomztein.BFA2.Weaponary.Projectiles;
 using System;
 using System.Collections;

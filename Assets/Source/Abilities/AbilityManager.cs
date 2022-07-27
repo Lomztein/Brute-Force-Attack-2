@@ -53,7 +53,7 @@ namespace Lomztein.BFA2.Abilities
         {
             if (_currentAbilities.RemoveAll(x => x.Identifier.Equals(identifier)) > 0)
             {
-                OnAbilityRemoved(identifier, source);
+                OnAbilityRemoved?.Invoke(identifier, source);
                 return true;
             }
             return false;

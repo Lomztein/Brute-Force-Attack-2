@@ -1,6 +1,6 @@
 ﻿using Lomztein.BFA2.Structures.Turrets.Weapons;
 using Lomztein.BFA2.Weaponary;
-using Lomztein.BFA2.Weaponary.FireSynchronization;
+using Lomztein.BFA2.Weaponary.FireControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;

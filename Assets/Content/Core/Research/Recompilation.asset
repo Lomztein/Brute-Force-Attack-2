@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
   m_Name: Recompilation
   m_EditorClassIdentifier: 
-  Name: Recompilation (WIP)
+  Name: Recompilation
   Description: Unlocks the Recompiler, which allows for the convertion from binaries
     to research.
   Sprite:
     Path: 
-    Texture: {fileID: 2800000, guid: a39e8a19af58f184a824f7bbea8adc76, type: 3}
+    Texture: {fileID: 2800000, guid: 48c2f22528b5386419f1a0c7c81b990c, type: 3}
     Rect:
       serializedVersion: 2
       x: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
   TimeCost: 0
   Identifier: Core.Recompilation
   Prerequisites:
-  - Identifier: Core.EffecientDecompilation
+  - Identifier: Core.CodeGeneration
     Required: 1
   UniquePrerequisites: []
   Rewards:
@@ -48,5 +48,5 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Identifier: Core.Decompiler
+        - Identifier: Core.Recompiler
           Prerequisites: []
