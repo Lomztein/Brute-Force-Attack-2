@@ -13,38 +13,87 @@ namespace Lomztein.BFA2.Scenes.MainMenu
     {
         public Image Image;
         public Sprite LockedSprite;
+        public GameObject ToolTipPrefab;
 
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public string Footnote { get; private set; }
+        private Achievement _achievement;
+        private bool _isAchievementUnlocked;
 
         public void Assign (Achievement achievement, bool unlocked)
         {
+            _achievement = achievement;
+            _isAchievementUnlocked = unlocked;
             if (unlocked)
             {
-                Image.sprite = achievement.Sprite.Get();
-                Footnote = "Achieved on: " + ProfileManager.CurrentProfile.GetAchievementStatus(achievement.Identifier).CompletedOn.ToString(Localization.GetCurrentCulture());
+                Image.sprite = _achievement.Sprite.Get();
             }
             else
             {
                 Image.sprite = LockedSprite;
             }
-
-            if (!unlocked && achievement.Hidden)
-            {
-                Title = "Hidden achievement";
-                Description = "You have to unlock this to know what it's about.";
-            }
-            else
-            {
-                Title = achievement.Name;
-                Description = achievement.Description;
-            }
         }
 
         public GameObject GetToolTip()
         {
-            return SimpleToolTip.InstantiateToolTip(Title, Description, Footnote);
+            GameObject toolTip = Instantiate(ToolTipPrefab);
+            Text title = toolTip.transform.Find("Main/Title").GetComponent<Text>();
+            Text description = toolTip.transform.Find("Main/Description").GetComponent<Text>();
+            Transform reward = toolTip.transform.Find("Reward");
+            Text rewardText = toolTip.transform.Find("Reward/Text").GetComponent<Text>();
+            Transform funFact = toolTip.transform.Find("FunFact");
+            Text funFactText = toolTip.transform.Find("FunFact/Text").GetComponent<Text>();
+            Text achievedOn = toolTip.transform.Find("AchievedOn").GetComponent<Text>();
+
+            if (_isAchievementUnlocked)
+            {
+                achievedOn.text = "Achieved on: " + ProfileManager.CurrentProfile.GetAchievementStatus(_achievement.Identifier).CompletedOn.ToString(Localization.GetCurrentCulture());
+            }
+            else
+            {
+                achievedOn.gameObject.SetActive(false);
+            }
+
+            if (!_isAchievementUnlocked && _achievement.Hidden)
+            {
+                title.text = "Hidden achievement";
+                description.text = "You have to unlock this to know what it's about.";
+
+                reward.gameObject.SetActive(false);
+                rewardText.gameObject.SetActive(false);
+                funFact.gameObject.SetActive(false);
+                funFactText.gameObject.SetActive(false);
+            }
+            else
+            {
+                title.text = _achievement.Name;
+                description.text = _achievement.Description;
+
+                if (_isAchievementUnlocked)
+                {
+                    if (string.IsNullOrEmpty(_achievement.RewardDescription))
+                    {
+                        reward.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        rewardText.text = _achievement.RewardDescription;
+                    }
+
+                    if (string.IsNullOrEmpty(_achievement.FunFact))
+                    {
+                        funFact.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        funFactText.text = _achievement.FunFact;
+                    }
+                }
+                else
+                {
+                    reward.gameObject.SetActive(false);
+                    funFact.gameObject.SetActive(false);
+                }
+            }
+            return toolTip;
         }
     }
 }

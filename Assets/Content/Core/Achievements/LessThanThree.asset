@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
-  m_Name: DeployQuadCannon
+  m_Name: LessThanThree
   m_EditorClassIdentifier: 
-  Name: Puncture the Next Thing That Moves
-  Description: Deploy a turret with four synchronized machine guns. Legend has it
-    these are great at shooting down aircraft.
+  Name: <3
+  Description: Play the game during Pride Month.
   RewardDescription: 
-  FunFact: The series which this achievement references is a primary source of inspiration
-    for many of Lomzie's productions, as he practically grew up on it.
-  Identifier: Core.DeployQuad
+  FunFact: It is important to kiss your homies goodnight, you must foster a close
+    friendship.
+  Identifier: Core.LessThanThree
   Sprite:
     Path: 
-    Texture: {fileID: 2800000, guid: f33b876aeab70424d87f29bac73399b0, type: 3}
+    Texture: {fileID: 0}
     Rect:
       serializedVersion: 2
       x: 0
@@ -32,7 +31,7 @@ MonoBehaviour:
     PixelsPerUnit: 16
   Hidden: 0
   Requirement:
-    rid: 0
+    rid: 1449225127908343886
   Reward:
     rid: -2
   references:
@@ -40,9 +39,8 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 0
-      type: {class: SynchronizerTurretRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+    - rid: 1449225127908343886
+      type: {class: PlayGameDuringMonth, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
-        WeaponIdentifier: Core.MachineGun
-        WeaponAmount: 4
+        MonthIndex: 6

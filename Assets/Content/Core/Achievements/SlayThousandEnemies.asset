@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: SlayThousandEnemies
   m_EditorClassIdentifier: 
-  Name: A million more on their way
-  Description: You've slain ten thousand enemies, but they never end. Unlocks the
-    Mitosis Mode mutator, which has enemies splitting into lower tier variants on
-    death.
+  Name: Millions More
+  Description: Kill ten thousand enemies.
+  RewardDescription: Unlocks the Mitosis Mode mutator, which has enemies splitting
+    into lower tier variants on death.
+  FunFact: The way BFA2 is designed, the strength of waves grows exponentially at
+    an approximate increase of some 20%-30% more "difficulty credits" each wave.
+    The player, however, is not so lucky, as they must constantly research new things
+    in order to keep up with this.
   Identifier: Core.SlayTenThousandEnemies
   Sprite:
     Path: Core\Sprites\Enemies\BasicEnemyT2.png
@@ -30,18 +34,19 @@ MonoBehaviour:
     PixelsPerUnit: 32
   Hidden: 0
   Requirement:
-    id: 0
+    rid: 0
   Reward:
-    id: 1
+    rid: 1
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: SlayEnemiesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
         TargetEnemies: 1000
         TargetColors: 00000000010000000200000003000000040000000500000006000000
-    00000001:
+    - rid: 1
       type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
         asm: Assembly-CSharp}
       data:

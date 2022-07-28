@@ -21,6 +21,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
         [ModelProperty] [TextArea]
         public string Description;
         [ModelProperty]
+        [TextArea]
+        public string RewardDescription;
+        [ModelProperty]
+        [TextArea]
+        public string FunFact;
+        [ModelProperty]
         public string Identifier;
         [ModelProperty]
         public ContentSpriteReference Sprite;

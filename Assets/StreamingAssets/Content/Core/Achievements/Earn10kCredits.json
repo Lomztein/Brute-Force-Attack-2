@@ -1,7 +1,9 @@
 {
-  "Name": "We're rich!",
-  "Description": "Earn 10k credts from the ruthless slaughter of enemies in a single game. Unlocks the Inflation Mode Mutator, where you start with a bunch of money but cannot earn any more. \n\nWhat do you mean \"derivative\"..?",
-  "Identifier": "Core.Clear50Waves",
+  "Name": "Riches Galore",
+  "Description": "Earn 10k credts from the ruthless slaughter of enemies in a single game.",
+  "RewardDescription": " Unlocks the Inflation Mode Mutator, where you start with a bunch of money but cannot earn any more.",
+  "FunFact": "BFA2 draws inspiration from many classic flash tower defense games, as these have been a key part of Lomzie's childhood. A noteworthy example is VectorTD, from which BFA2 heavily draws its visual style from.",
+  "Identifier": "Core.Earn10kCredits",
   "Sprite": {
     "Path": "",
     "Texture": "$Path{Core/Sprites/Components/QuadSmallFireSynchronizer.png}",
@@ -73,7 +75,7 @@
               "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingResourceMultiplierMutator",
               "$Data": {
                 "DefaultMultiplier": 2.0,
-                "_multipliers": null,
+                "_multipliers": [],
                 "Name": "",
                 "Description": "",
                 "Identifier": ""

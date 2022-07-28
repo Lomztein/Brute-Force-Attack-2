@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: SlayMillionEnemies
   m_EditorClassIdentifier: 
-  Name: It never truly ends
-  Description: One million enemies down, a most impressive effort. Unlocks the Apocalypse
-    Mode mutator, where the enemies NEVER. STOP. COMING.
+  Name: They Never Stop
+  Description: Kill one million enemies.
+  RewardDescription: Unlocks the Apocalypse Mode mutator, where the enemies NEVER.
+    STOP. COMING.
+  FunFact: Originally, BFA2 did not support running more than one wave at a time,
+    however due to the mutator unlocked by this, it was decided to rework the entire
+    wave system to allow for multiple waves at the same time. Worth the several hours
+    it took? Definitely.
   Identifier: Core.SlayMillionEnemies
   Sprite:
     Path: Core\Sprites\Enemies\BasicEnemyT3.png
@@ -29,18 +34,19 @@ MonoBehaviour:
     PixelsPerUnit: 32
   Hidden: 0
   Requirement:
-    id: 0
+    rid: 0
   Reward:
-    id: 1
+    rid: 1
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: SlayEnemiesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
         TargetEnemies: 1000000
         TargetColors: 00000000010000000200000003000000040000000500000006000000
-    00000001:
+    - rid: 1
       type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
         asm: Assembly-CSharp}
       data:

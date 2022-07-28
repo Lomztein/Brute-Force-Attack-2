@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: Earn10kCredits
   m_EditorClassIdentifier: 
-  Name: We're rich!
-  Description: "Earn 10k credts from the ruthless slaughter of enemies in a single
-    game. Unlocks the Inflation Mode Mutator, where you start with a bunch of money
-    but cannot earn any more. \n\nWhat do you mean \"derivative\"..?"
-  Identifier: Core.Clear50Waves
+  Name: Riches Galore
+  Description: Earn 10k credts from the ruthless slaughter of enemies in a single
+    game.
+  RewardDescription: ' Unlocks the Inflation Mode Mutator, where you start with a
+    bunch of money but cannot earn any more.'
+  FunFact: BFA2 draws inspiration from many classic flash tower defense games, as
+    these have been a key part of Lomzie's childhood. A noteworthy example is VectorTD,
+    from which BFA2 heavily draws its visual style from.
+  Identifier: Core.Earn10kCredits
   Sprite:
     Path: 
     Texture: {fileID: 2800000, guid: b21ffe2a2f37307428635e1c9f4ba1fd, type: 3}
@@ -30,19 +34,20 @@ MonoBehaviour:
     PixelsPerUnit: 16
   Hidden: 0
   Requirement:
-    id: 0
+    rid: 0
   Reward:
-    id: 1
+    rid: 1
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: EarnResourceRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
         Type: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
         Amount: 10000
         CrossGames: 0
-    00000001:
+    - rid: 1
       type: {class: AddMutatorReward, ns: Lomztein.BFA2.Player.Progression.Achievements.Rewards,
         asm: Assembly-CSharp}
       data:

@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
   m_Name: SlayAnEnemy
   m_EditorClassIdentifier: 
-  Name: One down, thousands to go
-  Description: Slay but a single enemy. Don't worry, there are MANY more where that
-    came from.
+  Name: Immune Response
+  Description: Kill a single enemy.
+  RewardDescription: 
+  FunFact: The colors of this game, Blue, Yellow, Red, Purple, Orange, and Green
+    are all primary and secondary colors. Each color has a particular meaning in
+    the context of this game. Blue is the "default", so to speak, while yellow represents
+    speed, red represents power, purple represents swarms, orange protection, and
+    green represents health.
   Identifier: Core.SlayOneEnemy
   Sprite:
     Path: Core\Sprites\Enemies\BasicEnemyT1.png
@@ -29,16 +34,17 @@ MonoBehaviour:
     PixelsPerUnit: 32
   Hidden: 0
   Requirement:
-    id: 0
+    rid: 0
   Reward:
-    id: 1
+    rid: -2
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 0
       type: {class: SlayEnemiesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
         TargetEnemies: 1
         TargetColors: 00000000010000000200000003000000040000000500000006000000
-    00000001:
-      type: {class: , ns: , asm: }
