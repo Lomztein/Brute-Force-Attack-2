@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         public override bool Binary => false;
         public override float Progression => Mathf.Clamp01(_enemiesSlain / (float)TargetEnemies);
-        public override bool Completed => _enemiesSlain / (float)TargetEnemies > 1f;
+        public override bool RequirementsMet => _enemiesSlain / (float)TargetEnemies > 1f;
 
         public override void End()
         {
@@ -38,11 +38,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 if (TargetColors.Contains (enemy.Color))
                 {
                     _enemiesSlain++;
-                    _onProgressedCallback();
-                    if (_enemiesSlain >= TargetEnemies)
-                    {
-                        _onCompletedCallback();
-                    }
+                    CheckProgress();
                 }
             }
         }

@@ -1,0 +1,53 @@
+{
+  "Name": "Embrace the Void",
+  "Description": "Have only Voidinators on the field at any given point.",
+  "RewardDescription": "",
+  "FunFact": "The void will embrace us all eventually.",
+  "Identifier": "Core.EmbraceTheVoid",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.OnlyCertainAssemblyComponentsOnFieldRequirement",
+          "$Data": {
+            "PermaFailUntillNewGame": false,
+            "CheckAgainst": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+                "$Data": {
+                  "CategoryName": "Weapon"
+                }
+              }
+            ],
+            "MustPass": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.HasIdentityFilter",
+                "$Data": {
+                  "Identiifier": "Core.Voidinator"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

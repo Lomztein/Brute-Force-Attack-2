@@ -1,0 +1,62 @@
+{
+  "Name": "Dabudidabudai",
+  "Description": "Reach wave 30 with only blue weapons.",
+  "RewardDescription": "",
+  "FunFact": "The achivement system effectively works by each achievement having one or more requirements assigned. Each requirement can then let the achievement know if the requirement is met or not, and can tell the achievement when to check. Requirements are only checked when appropiate, through the use of the Facade.",
+  "Identifier": "Core.BlueWorld",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
+          "$Data": {
+            "Target": 30,
+            "CrossGames": false
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.OnlyCertainAssemblyComponentsOnFieldRequirement",
+          "$Data": {
+            "PermaFailUntillNewGame": true,
+            "CheckAgainst": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+                "$Data": {
+                  "CategoryName": "Weapon"
+                }
+              }
+            ],
+            "MustPass": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.StructureColorFilter",
+                "$Data": {
+                  "ApplicableColors": [
+                    "Blue"
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

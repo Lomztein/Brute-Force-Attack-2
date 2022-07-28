@@ -28,7 +28,7 @@ namespace Lomztein.BFA2
 
         public void BringItOn()
         {
-            MasteryModeController.Instance.IncrementMasteryMode();
+            MasteryModeController.Instance.IncrementMasteryMode(this);
             ActuallyClose();
         }
 

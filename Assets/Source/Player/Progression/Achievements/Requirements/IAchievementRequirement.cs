@@ -11,10 +11,9 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
     {
         bool Binary { get; }
         float Progression { get; }
+        bool RequirementsMet { get; }
 
-        bool Completed { get; }
-
-        void Init(Action onCompletedCallback, Action onProgressedCallback);
+        void Init(Action onProgressedCallback);
 
         void End();
 

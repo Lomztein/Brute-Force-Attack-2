@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: ScottishCyclops
+  m_EditorClassIdentifier: 
+  Name: Scottish Cyclips
+  Description: Place 4 Explosive Rounds modules on a single assembly.
+  RewardDescription: 
+  FunFact: People who knowingly run bots to ruin other peoples fun are statistically
+    much more likely to be greatly disliked by everyone they know and love.
+  Identifier: 
+  Sprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    rid: 1449225142554067365
+  Reward:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1449225142554067365
+      type: {class: ModuleUpgradeRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        CheckAgainst:
+        - rid: -2
+        ApplicableModuleIdentifiers:
+        - Core.ExplosiveRoundsModule
+        RequiredAmount: 4

@@ -13,8 +13,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
     public class SynchronizerTurretRequirement : AchievementRequirement
     {
         public override bool Binary => true;
-        public override float Progression => Completed ? 1 : 0;
-        public override bool Completed => _completed;
+        public override float Progression => RequirementsMet ? 1 : 0;
+        public override bool RequirementsMet => _completed;
         private bool _completed;
 
         [ModelProperty]
@@ -52,8 +52,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 }
                 if (allTrue && amount == WeaponAmount)
                 {
-                    _onCompletedCallback();
-                    _onProgressedCallback();
+                    CheckProgress();
                     _completed = true;
                 }
             }

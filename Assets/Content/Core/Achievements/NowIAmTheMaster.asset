@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: NowIAmTheMaster
+  m_EditorClassIdentifier: 
+  Name: Now I am the Msater
+  Description: Reach Mastery Mode level 1.
+  RewardDescription: 
+  FunFact: Mastery Mode was purely implemented because it was found to be unfeasible
+    to simply generate stronger and stronger waves, without dynamically modifying
+    enemy health, as the amount of enemies would outgrow what the engine could handle
+    quite quickly. The first BFA game did in fact modify enemy health dynamically,
+    however this was deemed boring, and as such this game instead has tiers of enemies
+    that replace earlier tiers, but even these run out, and as such Mastery Mode
+    comes into play in order to facilitate infinite waves.
+  Identifier: Core.NowIAmTheMaster
+  Sprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    rid: 1449225142554067298
+  Reward:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1449225142554067298
+      type: {class: ReachMasteryModeRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        TargetMasteryLevel: 1

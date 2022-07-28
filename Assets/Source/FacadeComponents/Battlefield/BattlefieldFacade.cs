@@ -17,6 +17,7 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
         public StructureSubFacade Structures => Facade.GetComponent<StructureSubFacade>();
         public PlayerSubFacade Player => Facade.GetComponent<PlayerSubFacade>();
         public EnemySubFacade Enemies => Facade.GetComponent<EnemySubFacade>();
+        public MasterySubFacade Mastery => Facade.GetComponent<MasterySubFacade>();
 
         protected override int SceneBuildIndex => 1;
 

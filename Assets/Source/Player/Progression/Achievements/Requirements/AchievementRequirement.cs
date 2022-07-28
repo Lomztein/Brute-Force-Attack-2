@@ -12,26 +12,31 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
     {
         public abstract bool Binary { get; }
         public abstract float Progression { get; }
-        public abstract bool Completed { get; }
+        public abstract bool RequirementsMet { get; }
 
         public abstract void End();
 
-        protected Action _onCompletedCallback;
-        protected Action _onProgressedCallback;
+        private Action _onProgressedCallback;
 
-        public void Init(Action onCompletedCallback, Action onProgressedCallback)
+        public void Init(Action onProgressedCallback)
         {
-            _onCompletedCallback = onCompletedCallback;
             _onProgressedCallback = onProgressedCallback;
-
             Init();
         }
 
         public abstract void Init();
 
+        protected float BinaryProgression()
+            => RequirementsMet ? 1f : 0f;
+
         public virtual ValueModel SerializeProgress()
         {
             return new NullModel();
+        }
+
+        protected void CheckProgress ()
+        {
+            _onProgressedCallback();
         }
 
         public virtual void DeserializeProgress(ValueModel source)

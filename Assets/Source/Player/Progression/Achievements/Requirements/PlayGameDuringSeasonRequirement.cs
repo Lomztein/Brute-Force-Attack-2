@@ -9,10 +9,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
     public class PlayGameDuringMonth : AchievementRequirement
     {
         public override bool Binary => true;
-        public override float Progression => Completed ? 1f : 0f;
-        public override bool Completed => _completed;
-
-        private bool _completed = false;
+        public override float Progression => RequirementsMet ? 1f : 0f;
+        public override bool RequirementsMet => DateTime.Now.Month == MonthIndex;
 
         [ModelProperty]
         public int MonthIndex; 
@@ -25,8 +23,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         {
             if (DateTime.Now.Month == MonthIndex)
             {
-                _onCompletedCallback();
-                _completed = true;
+                CheckProgress();
             }
         }
     }

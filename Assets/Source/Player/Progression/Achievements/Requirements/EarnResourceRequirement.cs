@@ -13,7 +13,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
     {
         public override bool Binary => false;
         public override float Progression => (float)_earned / Amount;
-        public override bool Completed => _earned >= Amount;
+        public override bool RequirementsMet => _earned >= Amount;
 
         private int _earned;
         [ModelProperty]
@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private void Battlefield_OnSceneLoaded()
         {
             _earned = 0;
-            _onProgressedCallback();
+            CheckProgress();
         }
 
         private void Player_OnResourceChanged(Resource type, int arg2, int arg3)
@@ -54,12 +54,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 int change = arg3 - arg2;
                 if (change > 0)
                 {
-                    _onProgressedCallback();
                     _earned += change;
-                    if (_earned >= Amount)
-                    {
-                        _onCompletedCallback();
-                    }
+                    CheckProgress();
                 }
             }
         }

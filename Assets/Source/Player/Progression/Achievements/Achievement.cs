@@ -45,7 +45,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
 
         public void Init ()
         {
-            Requirement.Init(OnRequirementCompleted, OnRequirementProgressed);
+            Requirement.Init(OnRequirementProgressed);
         }
 
         public void End ()
@@ -66,14 +66,13 @@ namespace Lomztein.BFA2.Player.Progression.Achievements
             }
         }
 
-        private void OnRequirementCompleted()
-        {
-            Complete();
-        }
-
         private void OnRequirementProgressed()
         {
             OnProgressed?.Invoke(this);
+            if (Requirement.RequirementsMet)
+            {
+                Complete();
+            }
         }
 
         public ValueModel SerializeProgress() => Requirement.SerializeProgress();

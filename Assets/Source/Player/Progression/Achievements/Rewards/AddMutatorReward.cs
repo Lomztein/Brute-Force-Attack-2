@@ -12,7 +12,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Rewards
 {
     public class AddMutatorReward : IAchievementReward
     {
-        [ModelProperty]
+        [ModelAssetReference]
         public Mutator Mutator;
 
         public void Apply()

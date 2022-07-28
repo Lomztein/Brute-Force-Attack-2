@@ -135,7 +135,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
 
         private Mutator[] LoadMutators()
         {
-            return Content.GetAll<Mutator>("*/Mutators/*").ToArray();
+            return Content.GetAll<Mutator>("*/Mutators/DefaultUnlocked/*").ToArray();
         }
 
         public void ApplyBattlefieldSettings(BattlefieldSettings settings)

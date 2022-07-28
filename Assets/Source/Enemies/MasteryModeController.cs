@@ -3,6 +3,7 @@ using Lomztein.BFA2.Enemies.Scalers;
 using Lomztein.BFA2.UI;
 using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.UI.Windows;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace Lomztein.BFA2.Enemies
         public float ScalerCoeffecient;
 
         public int MasteryLevel;
+
+        public event Action<int, object> OnMasteryLevelChanged;
 
         private void Awake()
         {
@@ -46,7 +49,7 @@ namespace Lomztein.BFA2.Enemies
             }
             else
             {
-                IncrementMasteryMode();
+                IncrementMasteryMode(this);
             }
         }
 
@@ -55,11 +58,12 @@ namespace Lomztein.BFA2.Enemies
             SceneManager.LoadScene(0);
         }
 
-        public void IncrementMasteryMode ()
+        public void IncrementMasteryMode (object source)
         {
             MasteryLevel++;
             RoundController.SetWave(1);
             MasteryScaler.HealthMult *= Mathf.Pow(ScalerCoeffecient, RoundController.WaveCollection.GetWaveCount());
+            OnMasteryLevelChanged?.Invoke(MasteryLevel, source);
             Message.Send($"Mastery Mode Level {MasteryLevel}.\nPrepare to die.", Message.Type.Major);
         }
     }

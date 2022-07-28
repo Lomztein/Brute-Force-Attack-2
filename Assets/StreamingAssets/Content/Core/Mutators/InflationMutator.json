@@ -1,0 +1,29 @@
+{
+  "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.CompositeMutator",
+  "$Data": {
+    "Children": [
+      {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.PlayerModMutator",
+        "$Data": {
+          "Mod": null,
+          "Name": "",
+          "Description": "",
+          "Identifier": ""
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Scenes.Battlefield.Mutators.StartingResourceMultiplierMutator",
+        "$Data": {
+          "DefaultMultiplier": 2.0,
+          "_multipliers": null,
+          "Name": "",
+          "Description": "",
+          "Identifier": ""
+        }
+      }
+    ],
+    "Name": "Inflation Mode",
+    "Description": "You start with riches, but no money flows in.",
+    "Identifier": "Core.InflationMode"
+  }
+}

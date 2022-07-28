@@ -1,0 +1,43 @@
+{
+  "Name": "UNLIMITED POWAH!",
+  "Description": "Upgrade a Tesla Coil with 3 overclock modules.",
+  "RewardDescription": "",
+  "FunFact": "Assembly modules have undergone a large amount of iterations, starting out first as \"Expansion Cards\" that you could purchase using a unique resource, though assemblies could only contain a set amount. Later, they were reworked to \"Boosters\" that dropped as loot from enemies, but you could have as many as you wanted on any assembly. The final iteration combined the two, by having \"Modules\" dropped from enemies, with assemblies having only a certain amoung of slots.",
+  "Identifier": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ModuleUpgradeRequirement",
+    "$Data": {
+      "CheckAgainst": [
+        {
+          "$Type": "Lomztein.BFA2.Modification.Filters.HasTurretComponentFilter",
+          "$Data": {
+            "ApplicableComponentIdentifiers": [
+              "Core.TeslaCoil"
+            ]
+          }
+        }
+      ],
+      "ApplicableModuleIdentifiers": [
+        "Core.OverclockModule"
+      ],
+      "RequiredAmount": 3
+    }
+  },
+  "Reward": null
+}

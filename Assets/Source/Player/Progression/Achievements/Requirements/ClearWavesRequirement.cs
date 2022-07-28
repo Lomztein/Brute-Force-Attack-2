@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public bool CrossGames;
 
         public override float Progression => (float)_amount / Target;
-        public override bool Completed => _amount >= Target;
+        public override bool RequirementsMet => _amount >= Target;
 
         public override void End()
         {
@@ -43,18 +43,18 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private void Battlefield_OnSceneLoaded()
         {
             _amount = 0;
-            _onProgressedCallback();
+            CheckProgress();
         }
 
         private void OnWaveCleared(int index, WaveHandler wave)
         {
             if (index > _amount)
             {
-                _onProgressedCallback();
+                CheckProgress();
                 _amount = index;
                 if (_amount >= Target)
                 {
-                    _onCompletedCallback();
+                    CheckProgress();
                 }
             }
         }

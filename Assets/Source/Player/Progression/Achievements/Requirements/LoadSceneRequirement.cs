@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
-    [System.Serializable]
+    [Serializable]
     public class LoadSceneRequirement : AchievementRequirement
     {
         private bool _sceneLoaded;
@@ -16,8 +16,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public string SceneName;
 
         public override bool Binary => true;
-        public override float Progression => Completed ? 1f : 0f;
-        public override bool Completed => _sceneLoaded;
+        public override float Progression => RequirementsMet ? 1f : 0f;
+        public override bool RequirementsMet => _sceneLoaded;
 
         public override void End()
         {
@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 if (arg0.buildIndex == SceneBuildIndex)
                 {
                     _sceneLoaded = true;
-                    _onCompletedCallback();
+                    CheckProgress ();
                 }
             }
             else
@@ -44,7 +44,6 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 if (arg0.name == SceneName)
                 {
                     _sceneLoaded = true;
-                    _onCompletedCallback();
                 }
             }
         }

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: UnlimitedPower
+  m_EditorClassIdentifier: 
+  Name: UNLIMITED POWAH!
+  Description: Upgrade a Tesla Coil with 3 overclock modules.
+  RewardDescription: 
+  FunFact: Assembly modules have undergone a large amount of iterations, starting
+    out first as "Expansion Cards" that you could purchase using a unique resource,
+    though assemblies could only contain a set amount. Later, they were reworked
+    to "Boosters" that dropped as loot from enemies, but you could have as many as
+    you wanted on any assembly. The final iteration combined the two, by having "Modules"
+    dropped from enemies, with assemblies having only a certain amoung of slots.
+  Identifier: 
+  Sprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    rid: 1449225142554067361
+  Reward:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1449225142554067361
+      type: {class: ModuleUpgradeRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        CheckAgainst:
+        - rid: 1449225142554067362
+        ApplicableModuleIdentifiers:
+        - Core.OverclockModule
+        RequiredAmount: 3
+    - rid: 1449225142554067362
+      type: {class: HasTurretComponentFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        ApplicableComponentIdentifiers:
+        - Core.TeslaCoil

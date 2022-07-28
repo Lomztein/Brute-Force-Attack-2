@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private bool _visitedWindow;
 
         public override float Progression => _visitedWindow ? 1f : 0f;
-        public override bool Completed => _visitedWindow;
+        public override bool RequirementsMet => _visitedWindow;
         public override bool Binary => true;
 
         public override void End()
@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         {
             if (arg2.Name == WindowToVisit)
             {
-                _onCompletedCallback();
+                CheckProgress();
                 _visitedWindow = true;
             }
         }
