@@ -1,0 +1,33 @@
+{
+  "Name": "Life on the Edge",
+  "Identifier": "Core.LifeOnTheEdge",
+  "Description": "Kill ten thousand enemies in total just before they reach the datastream.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.KillEnemyNearEndRequirement",
+    "$Data": {
+      "DistanceThreshold": 3.0,
+      "ApplicableEnemyIdentifiers": [],
+      "RequiredCount": 10000,
+      "CrossGames": true
+    }
+  },
+  "Reward": null
+}

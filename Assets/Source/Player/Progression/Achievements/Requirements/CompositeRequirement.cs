@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         private void ProgressPart ()
         {
-            CheckProgress();
+            CheckRequirements();
         }
 
         public override void DeserializeProgress(ValueModel source)

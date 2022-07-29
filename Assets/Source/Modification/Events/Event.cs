@@ -14,7 +14,8 @@ namespace Lomztein.BFA2.Modification.Events
         public event Action<IEvent, object> OnListenerAdded;
         public event Action<IEvent, object> OnListenerRemoved;
 
-        private event Action<EventArgs> OnExecute;
+        private event Action<EventArgs> DoExecute;
+        public event Action<IEvent, object> OnExecute;
 
         public Event (string identifier, string name, string description)
         {
@@ -23,17 +24,21 @@ namespace Lomztein.BFA2.Modification.Events
             Description = description;
         }
 
-        public void Execute(EventArgs args) => OnExecute?.Invoke(args);
+        public void Execute(EventArgs args, object source)
+        {
+            DoExecute?.Invoke(args);
+            OnExecute?.Invoke(this, source);
+        }
 
         public void AddListener(Action<EventArgs> listener, object source)
         {
-            OnExecute += listener;
+            DoExecute += listener;
             OnListenerAdded?.Invoke(this, source);
         }
 
         public void RemoveListener(Action<EventArgs> listener, object source)
         {
-            OnExecute -= listener;
+            DoExecute -= listener;
             OnListenerRemoved?.Invoke(this, source);
         }
     }

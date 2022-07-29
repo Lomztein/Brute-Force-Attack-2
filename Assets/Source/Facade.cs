@@ -18,6 +18,8 @@ namespace Lomztein.BFA2
         private List<IFacadeComponent> _components = new List<IFacadeComponent>();
 
         public static MainMenuFacade MainMenu => GetComponent<MainMenuFacade>();
+        public static AssemblyEditorFacade AssemblyEditor => GetComponent<AssemblyEditorFacade>();
+        public static MapEditorFacade MapEditor => GetComponent<MapEditorFacade>();
         public static BattlefieldFacade Battlefield => GetComponent<BattlefieldFacade>();
 
         private static Facade GetInstance ()

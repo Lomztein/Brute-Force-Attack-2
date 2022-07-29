@@ -1,0 +1,43 @@
+{
+  "Name": "Bullet Hell",
+  "Identifier": "Core.BulletHell",
+  "Description": "Fire one million projectiles in a single game.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.StructureEventExecutionCountRequirement",
+    "$Data": {
+      "ListenTo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
+      "IncludeAssemblyComponents": false,
+      "CheckAgainst": [
+        {
+          "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+          "$Data": {
+            "CategoryName": "Assembly"
+          }
+        }
+      ],
+      "RequiredCount": 1000000,
+      "AllowGreater": false,
+      "AllowLesser": false,
+      "CrossGames": false
+    }
+  },
+  "Reward": null
+}

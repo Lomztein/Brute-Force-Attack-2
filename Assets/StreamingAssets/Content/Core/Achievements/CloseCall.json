@@ -1,0 +1,48 @@
+{
+  "Name": "Close Call",
+  "Identifier": "Core.CloseCall",
+  "Description": "Kill an enemy just before they reach the datastream, while the dataastream has critically low health.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.KillEnemyNearEndRequirement",
+          "$Data": {
+            "DistanceThreshold": 3.0,
+            "ApplicableEnemyIdentifiers": [],
+            "RequiredCount": 1,
+            "CrossGames": false
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.PlayerHealthRequirement",
+          "$Data": {
+            "Threshold": 1.0,
+            "AllowGreater": false,
+            "AllowLesser": true
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

@@ -83,7 +83,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
                 _target = _targetFinder.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, range, TargetLayer).Where(x => IsWithinRange(x.transform, range)));
                 if (_target != null)
                 {
-                    _onTargetAcquired.CallEvent(new Modification.Events.EventArgs(this, _target));
+                    _onTargetAcquired.CallEvent(new Modification.Events.EventArgs(this, _target), this);
                 }
             }
             if (_target && !IsWithinRange(_target, range))

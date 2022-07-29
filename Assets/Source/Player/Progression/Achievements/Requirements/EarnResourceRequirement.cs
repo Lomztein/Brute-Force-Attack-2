@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private void Battlefield_OnSceneLoaded()
         {
             _earned = 0;
-            CheckProgress();
+            CheckRequirements();
         }
 
         private void Player_OnResourceChanged(Resource type, int arg2, int arg3)
@@ -55,7 +55,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 if (change > 0)
                 {
                     _earned += change;
-                    CheckProgress();
+                    CheckRequirements();
                 }
             }
         }

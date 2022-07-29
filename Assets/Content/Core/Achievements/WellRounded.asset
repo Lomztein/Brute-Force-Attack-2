@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: WellRounded
+  m_EditorClassIdentifier: 
+  Name: Well Rounded
+  Identifier: Core.WellRounded
+  Description: Have at least one small, medium, large, and huge assembly on the field
+    at once.
+  RewardDescription: 
+  FunFact: 
+  Sprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    rid: 1449225167980462188
+  Reward:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1449225167980462188
+      type: {class: CompositeRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Requirements:
+        - rid: 1449225167980462189
+        - rid: 1449225167980462194
+        - rid: 1449225167980462195
+        - rid: 1449225167980462196
+    - rid: 1449225167980462189
+      type: {class: OnlyCertainStructuresOnFieldRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        PermaFailUntillNewGame: 0
+        CheckAgainst:
+        - rid: 1449225167980462191
+        MustPass:
+        - rid: 1449225167980462193
+    - rid: 1449225167980462191
+      type: {class: CategoryStructureFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        CategoryName: Assembly
+    - rid: 1449225167980462193
+      type: {class: StructureSizeFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        _minWidth: 1
+        _minHeight: 1
+        _maxWidth: 1
+        _maxHeight: 1
+    - rid: 1449225167980462194
+      type: {class: OnlyCertainStructuresOnFieldRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        PermaFailUntillNewGame: 0
+        CheckAgainst:
+        - rid: 1449225167980462197
+        MustPass:
+        - rid: 1449225167980462202
+    - rid: 1449225167980462195
+      type: {class: OnlyCertainStructuresOnFieldRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        PermaFailUntillNewGame: 0
+        CheckAgainst:
+        - rid: 1449225167980462198
+        MustPass:
+        - rid: 1449225167980462201
+    - rid: 1449225167980462196
+      type: {class: OnlyCertainStructuresOnFieldRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        PermaFailUntillNewGame: 0
+        CheckAgainst:
+        - rid: 1449225167980462199
+        MustPass:
+        - rid: 1449225167980462200
+    - rid: 1449225167980462197
+      type: {class: CategoryStructureFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        CategoryName: Assembly
+    - rid: 1449225167980462198
+      type: {class: CategoryStructureFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        CategoryName: Assembly
+    - rid: 1449225167980462199
+      type: {class: CategoryStructureFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        CategoryName: Assembly
+    - rid: 1449225167980462200
+      type: {class: StructureSizeFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        _minWidth: 4
+        _minHeight: 4
+        _maxWidth: 4
+        _maxHeight: 4
+    - rid: 1449225167980462201
+      type: {class: StructureSizeFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        _minWidth: 3
+        _minHeight: 3
+        _maxWidth: 3
+        _maxHeight: 3
+    - rid: 1449225167980462202
+      type: {class: StructureSizeFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        _minWidth: 2
+        _minHeight: 2
+        _maxWidth: 2
+        _maxHeight: 2

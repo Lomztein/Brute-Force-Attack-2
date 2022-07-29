@@ -1,0 +1,36 @@
+{
+  "Name": "Never Enough",
+  "Identifier": "Core.NeverEnough",
+  "Description": "Activate \"Recompile\" 5 times in a single wave.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ActivateAbilityRequirement",
+    "$Data": {
+      "ApplicableAbilities": [
+        "Core.Recompile"
+      ],
+      "ResetOnNoActiveWaves": true,
+      "RequiredCount": 5,
+      "AllowGreater": true,
+      "AllowLesser": false
+    }
+  },
+  "Reward": null
+}

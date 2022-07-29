@@ -1,9 +1,9 @@
 {
   "Name": "Mutare Ad Custodiam",
+  "Identifier": "Core.MutareAdCustodiam",
   "Description": "Start a game with a mutator enabled.",
   "RewardDescription": "",
   "FunFact": "Mutators function by running a small piece of code at the very start of the game which applies the mutation. This code often subscribes to certain events or changes certain stats, but it can do any verity of things, whatever the developer desires. There is truly no limitation (within reason).",
-  "Identifier": "Core.MutareAdCustodiam",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -28,13 +28,6 @@
           "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.HasMutatorEnabledRequirement",
           "$Data": {
             "ApplicableMutatorIdentifiers": []
-          }
-        },
-        {
-          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
-          "$Data": {
-            "Target": 1,
-            "CrossGames": false
           }
         }
       ]

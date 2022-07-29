@@ -1,0 +1,131 @@
+{
+  "Name": "Well Rounded",
+  "Identifier": "Core.WellRounded",
+  "Description": "Have at least one small, medium, large, and huge assembly on the field at once.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.OnlyCertainStructuresOnFieldRequirement",
+          "$Data": {
+            "PermaFailUntillNewGame": false,
+            "CheckAgainst": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+                "$Data": {
+                  "CategoryName": "Assembly"
+                }
+              }
+            ],
+            "MustPass": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+                "$Data": {
+                  "_minWidth": "Small",
+                  "_minHeight": "Small",
+                  "_maxWidth": "Small",
+                  "_maxHeight": "Small"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.OnlyCertainStructuresOnFieldRequirement",
+          "$Data": {
+            "PermaFailUntillNewGame": false,
+            "CheckAgainst": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+                "$Data": {
+                  "CategoryName": "Assembly"
+                }
+              }
+            ],
+            "MustPass": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+                "$Data": {
+                  "_minWidth": "Medium",
+                  "_minHeight": "Medium",
+                  "_maxWidth": "Medium",
+                  "_maxHeight": "Medium"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.OnlyCertainStructuresOnFieldRequirement",
+          "$Data": {
+            "PermaFailUntillNewGame": false,
+            "CheckAgainst": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+                "$Data": {
+                  "CategoryName": "Assembly"
+                }
+              }
+            ],
+            "MustPass": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+                "$Data": {
+                  "_minWidth": "Large",
+                  "_minHeight": "Large",
+                  "_maxWidth": "Large",
+                  "_maxHeight": "Large"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.OnlyCertainStructuresOnFieldRequirement",
+          "$Data": {
+            "PermaFailUntillNewGame": false,
+            "CheckAgainst": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.CategoryStructureFilter",
+                "$Data": {
+                  "CategoryName": "Assembly"
+                }
+              }
+            ],
+            "MustPass": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+                "$Data": {
+                  "_minWidth": "Huge",
+                  "_minHeight": "Huge",
+                  "_maxWidth": "Huge",
+                  "_maxHeight": "Huge"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

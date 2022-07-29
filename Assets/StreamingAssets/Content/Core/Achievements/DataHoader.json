@@ -1,0 +1,59 @@
+{
+  "Name": "Data Hoader",
+  "Identifier": "Core.DataHoader",
+  "Description": "Collect a total of 250 binaries.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.EarnResourceRequirement",
+    "$Data": {
+      "Type": {
+        "Name": "Binaries",
+        "Shorthand": "Bins",
+        "Identifier": "Core.Binaries",
+        "Description": "Raw binary code which can be decompiled using a Decompiler into other resources.",
+        "Color": {
+          "Red": 0.0,
+          "Green": 0.0,
+          "Blue": 1.0,
+          "Alpha": 1.0
+        },
+        "BinaryValue": 1,
+        "Sprite": {
+          "Path": "",
+          "Texture": "$Path{Core/Sprites/Collectables/Binaries.png}",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        }
+      },
+      "Amount": 250,
+      "CrossGames": true
+    }
+  },
+  "Reward": null
+}

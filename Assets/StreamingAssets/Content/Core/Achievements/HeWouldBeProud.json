@@ -1,0 +1,53 @@
+{
+  "Name": "He Would be Proud",
+  "Identifier": "Core.HeWouldBeProud",
+  "Description": "Sell a small structure while wave 66 is active.",
+  "RewardDescription": "",
+  "FunFact": "It had to be done, Pappa P. said so himself!",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.WaveActiveRequirement",
+          "$Data": {
+            "Wave": 66
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.DestroyStructureRequirement",
+          "$Data": {
+            "Filter": [
+              {
+                "$Type": "Lomztein.BFA2.Modification.Filters.StructureSizeFilter",
+                "$Data": {
+                  "_minWidth": "Small",
+                  "_minHeight": "Small",
+                  "_maxWidth": "Small",
+                  "_maxHeight": "Small"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

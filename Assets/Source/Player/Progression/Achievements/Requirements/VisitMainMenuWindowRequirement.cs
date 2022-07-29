@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             if (arg2.Name == WindowToVisit)
             {
                 _visitedWindow = true;
-                CheckProgress();
+                CheckRequirements();
             }
         }
 

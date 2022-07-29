@@ -23,12 +23,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         public override void End()
         {
-            Facade.Battlefield.Enemies.OnEnemyKill -= OnEnemySpawn;
+            Facade.Battlefield.Enemies.OnEnemyKilled -= OnEnemySpawn;
         }
 
         public override void Init()
         {
-            Facade.Battlefield.Enemies.OnEnemyKill += OnEnemySpawn;
+            Facade.Battlefield.Enemies.OnEnemyKilled += OnEnemySpawn;
         }
 
         private void OnEnemySpawn(Enemy obj)
@@ -38,7 +38,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 if (TargetColors.Contains (enemy.Color))
                 {
                     _enemiesSlain++;
-                    CheckProgress();
+                    CheckRequirements();
                 }
             }
         }

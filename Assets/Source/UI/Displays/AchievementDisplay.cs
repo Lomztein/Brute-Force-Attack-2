@@ -20,18 +20,25 @@ namespace Lomztein.BFA2.UI.Displays
         public Image Image;
 
         private AchievementManager _subscribedInstance;
-        private Vector3 _targetPosition;
 
-        private void Start()
+        public static Achievement CurrentShown { get; private set; }
+        private static float _showTime; // It's showtime, baby.
+        private static Queue<Achievement> _toShow = new Queue<Achievement>();
+
+        private void Awake()
         {
             _subscribedInstance = AchievementManager.Instance;
             _subscribedInstance.OnAchievementCompleted += OnAchievementCompleted;
-            Hide();
         }
 
         private void OnAchievementCompleted(Achievement obj)
         {
-            Show(obj);
+            Enqueue(obj);
+        }
+
+        public void Enqueue(Achievement achievement)
+        {
+            _toShow.Enqueue(achievement);
         }
 
         private void OnDestroy()
@@ -41,23 +48,38 @@ namespace Lomztein.BFA2.UI.Displays
 
         private void Show (Achievement achievement)
         {
-            _targetPosition = ShowPosition;
-
-            NameText.text = achievement.Name;
-            DescriptionText.text = achievement.Description;
-            Image.sprite = achievement.Sprite.Get();
-
-            Invoke(nameof(Hide), ShowTime);
+            CurrentShown = achievement;
+            _showTime = ShowTime;
         }
 
-        private void Hide ()
+        private Vector3 GetTargetPosition()
+            => CurrentShown == null ? HidePosition : ShowPosition;
+
+        private void EndShow()
         {
-            _targetPosition = HidePosition;
+            CurrentShown = null;
         }
 
         private void Update()
         {
-            Transform.anchoredPosition = Vector3.Lerp(Transform.anchoredPosition, _targetPosition, LerpTime * Time.deltaTime);
+            Transform.anchoredPosition = Vector3.Lerp(Transform.anchoredPosition, GetTargetPosition(), LerpTime * Time.deltaTime);
+
+            if (CurrentShown == null && _toShow.Count > 0)
+            {
+                Show(_toShow.Dequeue());
+            }
+            if (CurrentShown != null)
+            {
+                NameText.text = CurrentShown.Name;
+                DescriptionText.text = CurrentShown.Description;
+                Image.sprite = CurrentShown.Sprite.Get();
+
+                _showTime -= Time.deltaTime;
+                if (_showTime < 0f)
+                {
+                    EndShow();
+                }
+            }
         }
     }
 }

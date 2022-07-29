@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             Facade.Battlefield.Structures.OnStructureAdded += OnStructureAdded;
         }
 
-        private void OnStructureAdded(Structures.Structure obj)
+        private void OnStructureAdded(Structures.Structure obj, object source)
         {
             TurretWeaponFireSynchronizer syncer = obj.GetComponentInChildren<TurretWeaponFireSynchronizer>();
             if (syncer)
@@ -52,7 +52,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 }
                 if (allTrue && amount == WeaponAmount)
                 {
-                    CheckProgress();
+                    CheckRequirements();
                     _completed = true;
                 }
             }

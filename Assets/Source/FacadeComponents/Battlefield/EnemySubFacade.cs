@@ -5,42 +5,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lomztein.BFA2.Enemies.RoundController;
 
 namespace Lomztein.BFA2.FacadeComponents.Battlefield
 {
     public class EnemySubFacade : SceneFacadeSubComponent<BattlefieldFacade>
     {
-        public event Action<Enemy> OnEnemySpawn;
-        public event Action<Enemy> OnEnemyFinish;
-        public event Action<Enemy> OnEnemyKill;
-
+        public event Action<int> OnWavePreparing;
         public event Action<int, WaveHandler> OnWaveStarted;
         public event Action<int, WaveHandler> OnWaveEnemiesSpawned;
-        public event Action<int, WaveHandler> OnWaveCleared;
+        public event Action<int, WaveHandler> OnWaveFinished;
+        public event Action<int> OnWavesExhausted;
+        public event Action<int> OnNextWaveChanged;
 
-        public override void OnSceneUnloaded()
-        {
-            if (RoundController.Instance)
-            {
-                RoundController.Instance.OnEnemyAdded -= OnEnemySpawn;
-                RoundController.Instance.OnEnemyFinished -= OnEnemyFinish;
-                RoundController.Instance.OnEnemyKilled -= OnEnemyKill;
+        public event Action<Enemy> OnEnemySpawned;
+        public event Action<Enemy> OnEnemyAdded;
+        public event Action<Enemy> OnEnemyKilled;
+        public event Action<Enemy> OnEnemyFinished;
 
-                RoundController.Instance.OnWaveStarted -= OnWaveStarted;
-                RoundController.Instance.OnWaveEnemiesSpawned -= OnWaveEnemiesSpawned;
-                RoundController.Instance.OnWaveFinished -= OnWaveCleared;
-            }
-        }
+        public event Action<RoundState> OnStateChanged;
+        public event Action<WaveTimeline> OnNewWave;
 
         public override void OnSceneLoaded()
         {
-            RoundController.Instance.OnEnemyAdded += OnEnemySpawn;
-            RoundController.Instance.OnEnemyFinished += OnEnemyFinish;
-            RoundController.Instance.OnEnemyKilled += OnEnemyKill;
+            Instance.OnWavePreparing += OnWavePreparing;
+            Instance.OnWaveStarted += OnWaveStarted;
+            Instance.OnWaveEnemiesSpawned += OnWaveEnemiesSpawned;
+            Instance.OnWaveFinished += OnWaveFinished;
+            Instance.OnWavesExhausted += OnWavesExhausted;
+            Instance.OnNextWaveChanged += OnNextWaveChanged;
 
-            RoundController.Instance.OnWaveStarted += OnWaveStarted;
-            RoundController.Instance.OnWaveEnemiesSpawned += OnWaveEnemiesSpawned;
-            RoundController.Instance.OnWaveFinished += OnWaveCleared;
+            Instance.OnEnemySpawned += OnEnemySpawned;
+            Instance.OnEnemyAdded += OnEnemyAdded;
+            Instance.OnEnemyKilled += OnEnemyKilled;
+            Instance.OnEnemyFinished += OnEnemyFinished;
+
+            Instance.OnStateChanged += OnStateChanged;
+            Instance.OnNewWave += OnNewWave;
+        }
+
+        public override void OnSceneUnloaded()
+        {
+            if (Instance)
+            {
+                Instance.OnWavePreparing -= OnWavePreparing;
+                Instance.OnWaveStarted -= OnWaveStarted;
+                Instance.OnWaveEnemiesSpawned -= OnWaveEnemiesSpawned;
+                Instance.OnWaveFinished -= OnWaveFinished;
+                Instance.OnWavesExhausted -= OnWavesExhausted;
+                Instance.OnNextWaveChanged -= OnNextWaveChanged;
+
+                Instance.OnEnemySpawned -= OnEnemySpawned;
+                Instance.OnEnemyAdded -= OnEnemyAdded;
+                Instance.OnEnemyKilled -= OnEnemyKilled;
+                Instance.OnEnemyFinished -= OnEnemyFinished;
+
+                Instance.OnStateChanged -= OnStateChanged;
+                Instance.OnNewWave -= OnNewWave;
+            }
         }
     }
 }

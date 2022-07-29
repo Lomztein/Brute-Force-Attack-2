@@ -1,0 +1,45 @@
+{
+  "Name": "That's Life",
+  "Identifier": "Core.ThatsLife",
+  "Description": "Loose the game on brutal difficulty.",
+  "RewardDescription": "",
+  "FunFact": "The difficulty system in BFA2 works by assigning each difficulty a set of \"Diffuculty Aspects\", which are then reach responsible for altering the game in a way that will make it more or less difficult. This can for instance be to increase the health of enemies, or the amount that spawns.",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.DifficultyRequirement",
+          "$Data": {
+            "ApplicableDifficultyIdentifiers": [
+              "Core.Brutal"
+            ]
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.PlayerDeathRequirement",
+          "$Data": {
+            "FlagTimeout": 0.1
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

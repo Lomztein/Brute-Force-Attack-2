@@ -1,0 +1,34 @@
+{
+  "Name": "Ovedoing It",
+  "Identifier": "Core.OverdoingIt",
+  "Description": "Reach a weapon component firerate above 50 / second.",
+  "RewardDescription": "",
+  "FunFact": "Due to engine limitations, it is not possible for weapons to achieve a firerate above 50 / second. This is due to the game updating at a fixed 50 times per second, which that the game is simply not updating fast enough to check it the weapon can fire again beyond a 50 / second firerate.",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.StructureStatRequirement",
+    "$Data": {
+      "StatInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
+      "CheckAgainst": null,
+      "Threshold": 50.0,
+      "AllowGreater": true,
+      "AllowLesser": false
+    }
+  },
+  "Reward": null
+}

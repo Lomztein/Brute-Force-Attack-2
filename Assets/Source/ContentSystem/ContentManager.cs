@@ -24,6 +24,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         readonly IContentPackSource _source = new ContentPackSource();
         private readonly List<IContentPack> _loadedAndActivePacks = new List<IContentPack>();
+        public IEnumerable<IContentPack> LoadedAndActivePacks => _loadedAndActivePacks;
 
         private ContentIndex _index = new ContentIndex();
         private ContentCache _cache = new ContentCache();

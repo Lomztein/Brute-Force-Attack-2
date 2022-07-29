@@ -34,6 +34,9 @@ namespace Lomztein.BFA2.AssemblyEditor
         public InputField DescriptionText;
         public StatSheet StatDisplay;
 
+        public static event Action<TurretAssembly, string> OnAssemblyLoaded;
+        public static event Action<TurretAssembly, string> OnAssemblySaved;
+
         public void Awake()
         {
             Instance = this;
@@ -114,6 +117,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
             var model = assembler.Disassemble(assembly);
             File.WriteAllText(path, ObjectPipeline.SerializeObject(model).ToString());
+            OnAssemblySaved?.Invoke(assembly, path);
             Content.ResetIndex();
             Alert.Open("Assembly has been saved.");
         }
@@ -139,6 +143,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 TierDisplay.AddTierButton(tierParent, Tier.Parse(tierParent.name));
             }
 
+            OnAssemblyLoaded?.Invoke(CurrentAsssembly, path);
             TierDisplay.UpdateUpgradePaths();
             SetTier(Tier.Initial);
         }

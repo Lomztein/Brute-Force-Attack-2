@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.Modification.Events
 
         public event Action<IEventReference, object> OnEventAdded;
         public event Action<IEventReference, object> OnEventChanged;
+        public event Action<IEvent, object> OnEventExecuted;
 
         public IEventCaller AddEvent(EventInfo info, object source)
         {
@@ -21,6 +22,7 @@ namespace Lomztein.BFA2.Modification.Events
                 eve = new Event(info.Identifier, info.Name, info.Description);
                 eve.OnListenerAdded += Eve_OnListenerAdded;
                 eve.OnListenerRemoved += Eve_OnListenerRemoved;
+                eve.OnExecute += Eve_OnExecute;
                 OnEventAdded?.Invoke(new EventReference(eve), source);
                 _events.Add (eve);
             }
@@ -29,6 +31,11 @@ namespace Lomztein.BFA2.Modification.Events
                 eve = FindEvent(info.Identifier);
             }
             return new EventCaller(eve);
+        }
+
+        private void Eve_OnExecute(IEvent arg1, object arg2)
+        {
+            OnEventExecuted?.Invoke(arg1, arg2);
         }
 
         private void Eve_OnListenerRemoved(IEvent arg1, object arg2)

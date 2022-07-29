@@ -13,10 +13,11 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
 {
     public class StructureSubFacade : SceneFacadeSubComponent<BattlefieldFacade>
     {
-        public event Action<Structure> OnStructureAdded;
+        public event Action<Structure, object> OnStructureAdded;
         public event Action<Structure, GameObject, object> OnStructureHierarchyChanged;
         public event Action<Structure, IStatReference, object> OnStructureStatChanged;
         public event Action<Structure, IEventReference, object> OnStructureEventChanged;
+        public event Action<Structure, IEvent, object> OnStructureEventExecuted;
         public event Action<Structure> OnStructureRemoved;
 
         public override void OnSceneLoaded()
@@ -25,6 +26,7 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
             StructureManager.OnStructureHierarchyChanged += OnStructureHierarchyChanged;
             StructureManager.OnStructureStatChanged += OnStructureStatChanged;
             StructureManager.OnStructureEventChanged += OnStructureEventChanged;
+            StructureManager.OnStructureEventExecuted += OnStructureEventExecuted;
             StructureManager.OnStructureRemoved += OnStructureRemoved;
         }
 
@@ -36,6 +38,7 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
                 StructureManager.OnStructureHierarchyChanged -= OnStructureHierarchyChanged;
                 StructureManager.OnStructureStatChanged -= OnStructureStatChanged;
                 StructureManager.OnStructureEventChanged -= OnStructureEventChanged;
+                StructureManager.OnStructureEventExecuted -= OnStructureEventExecuted;
                 StructureManager.OnStructureRemoved -= OnStructureRemoved;
             }
         }

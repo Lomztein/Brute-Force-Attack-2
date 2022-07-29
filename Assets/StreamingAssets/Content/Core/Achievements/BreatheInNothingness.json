@@ -1,0 +1,31 @@
+{
+  "Name": "Breathe in the Nothingness",
+  "Identifier": "Core.BreatheInNothingness",
+  "Description": "Have no content packs enabled.",
+  "RewardDescription": "",
+  "FunFact": "BFA2 does not handle having no content packs enabled very well, and if you open up your log file, you will likely see a plethora of exceptions after disabling all content packs. This is because many of the games system that loads assets from content packs does not check for zero returns, but often expect at least one. This could technically be solved, but is not worth the effort.",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.NumActiveContentPacksRequirement",
+    "$Data": {
+      "RequiredAmount": 0,
+      "AllowGreaterThan": false
+    }
+  },
+  "Reward": null
+}

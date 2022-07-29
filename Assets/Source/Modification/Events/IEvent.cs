@@ -11,10 +11,11 @@ namespace Lomztein.BFA2.Modification.Events
         void AddListener(Action<EventArgs> listener, object source);
         void RemoveListener(Action<EventArgs> listener, object source);
 
+        public event Action<IEvent, object> OnExecute;
         public event Action<IEvent, object> OnListenerAdded;
         public event Action<IEvent, object> OnListenerRemoved;
 
-        void Execute(EventArgs args);
+        void Execute(EventArgs args, object source);
     }
 
     public interface IEvent<T> : IEvent where T : EventArgs
@@ -22,6 +23,6 @@ namespace Lomztein.BFA2.Modification.Events
         void AddListener(Action<T> listener);
         void RemoveListener(Action<T> listener, object source);
 
-        void Execute(T args);
+        void Execute(T args, object source);
     }
 }

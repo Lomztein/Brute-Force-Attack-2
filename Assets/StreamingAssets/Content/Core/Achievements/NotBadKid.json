@@ -1,0 +1,48 @@
+{
+  "Name": "Not Bad, Kid",
+  "Identifier": "Core.NotBadKid",
+  "Description": "Clear 50 waves on normal difficulty.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
+          "$Data": {
+            "Target": 50,
+            "CrossGames": false,
+            "AllowGreater": true,
+            "AllowLess": false
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.DifficultyRequirement",
+          "$Data": {
+            "ApplicableDifficultyIdentifiers": [
+              "Core.Normal"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

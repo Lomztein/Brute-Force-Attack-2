@@ -1,0 +1,28 @@
+{
+  "Name": "World-class Scientist",
+  "Identifier": "Core.WorldClassScientist",
+  "Description": "Research all available research options.",
+  "RewardDescription": "",
+  "FunFact": "The research system and achievement system shares a lot of functionality in how they work. Both systems manage a list of research options / achievements, which both has a set of requirements and potential rewards. The difference lies in how the requirements are checked, as achievements are checked according to their own rules, while research is checked every time a research option has been completed.",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.AllResearchCompletedRequirement",
+    "$Data": {}
+  },
+  "Reward": null
+}

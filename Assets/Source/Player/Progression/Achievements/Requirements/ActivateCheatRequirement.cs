@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             if (!ApplicableCodes.Any() || ApplicableCodes.Any(x => arg1.Code.StartsWith(x)))
             {
                 _cheatActivated = true;
-                CheckProgress();
+                CheckRequirements();
             }
         }
     }

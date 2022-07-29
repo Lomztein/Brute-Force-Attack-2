@@ -38,7 +38,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private void ClickStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
             _clicks++;
-            CheckProgress();
+            CheckRequirements();
         }
 
         public override ValueModel SerializeProgress()

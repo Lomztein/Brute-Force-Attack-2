@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Collectables;
 using Lomztein.BFA2.Misc;
+using Lomztein.BFA2.Modification.Events;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Structures.Turrets.Targeters;
@@ -29,8 +30,18 @@ namespace Lomztein.BFA2.Structures
         private Transform _target;
         private Collectable _collectable;
 
+        [ModelAssetReference]
+        public EventInfo OnCollectedInfo;
+        public IEventCaller OnCollected;
+
         public override void End()
         {
+        }
+
+        public override void PreInit()
+        {
+            base.PreInit();
+            OnCollected = Events.AddEvent(OnCollectedInfo, this);
         }
 
         public override void Init()
@@ -70,6 +81,7 @@ namespace Lomztein.BFA2.Structures
             {
                 if (_collectable.TickCollection(deltaTime))
                 {
+                    OnCollected.CallEvent(new Modification.Events.EventArgs(this, _collectable), this);
                     SetTarget(null);
                 }
                 UpdateBeam(true);

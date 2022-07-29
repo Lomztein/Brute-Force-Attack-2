@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         {
             if (DateTime.Now.Month == MonthIndex)
             {
-                CheckProgress();
+                CheckRequirements();
             }
         }
     }

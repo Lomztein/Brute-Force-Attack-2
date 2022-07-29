@@ -69,6 +69,7 @@ namespace Lomztein.BFA2.Structures
 
         public event Action<Structure, IStatReference, object> StatChanged;
         public event Action<Structure, IEventReference, object> EventChanged;
+        public event Action<Structure, IEvent, object> EventExecuted;
         public event Action<Structure, GameObject, object> HierarchyChanged;
         public event Action<Structure> Destroyed;
 
@@ -89,12 +90,15 @@ namespace Lomztein.BFA2.Structures
 
                 Events.OnEventChanged += Events_OnEventChanged;
                 Events.OnEventAdded += Events_OnEventChanged;
+                Events.OnEventExecuted += Events_OnEventExecuted;
 
                 AwakeInit();
 
                 _initialized = true;
             }
         }
+
+
 
         private void Awake() => InternalInit();
         public void OnInstantiated() => InternalInit();
@@ -111,6 +115,11 @@ namespace Lomztein.BFA2.Structures
         private void Stats_OnStatChanged(IStatReference arg1, object arg2)
         {
             InvokeStatChanged(arg1, arg2);
+        }
+
+        private void Events_OnEventExecuted(IEvent arg1, object arg2)
+        {
+            InvokeEventExecuted(arg1, arg2);
         }
 
         public void Flip ()
@@ -141,6 +150,12 @@ namespace Lomztein.BFA2.Structures
         {
             BroadcastMessage("OnEventChanged", SendMessageOptions.DontRequireReceiver);
             EventChanged?.Invoke(this, eventRef, source);
+        }
+
+        public void InvokeEventExecuted(IEvent arg1, object arg2)
+        {
+            BroadcastMessage("OnEventExecuted", SendMessageOptions.DontRequireReceiver);
+            EventExecuted?.Invoke(this, arg1, arg2);
         }
 
         protected virtual void OnDestroy ()

@@ -1,0 +1,41 @@
+{
+  "Name": "Rage Quit",
+  "Identifier": "Core.RageQuit",
+  "Description": "Exit the battlefield within 2 seconds of loosing the game.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.UnloadSceneRequirement",
+          "$Data": {}
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.PlayerDeathRequirement",
+          "$Data": {
+            "FlagTimeout": 2.0
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

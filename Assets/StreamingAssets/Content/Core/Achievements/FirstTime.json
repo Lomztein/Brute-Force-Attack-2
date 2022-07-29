@@ -1,0 +1,45 @@
+{
+  "Name": "First Time?",
+  "Identifier": "Core.FirstTime",
+  "Description": "Loose the game on normal difficulty.",
+  "RewardDescription": "",
+  "FunFact": "It happens, sometimes life is just cruel and bad things happen outside our control. It is better to simply accept this fact than to try to control everything, as that will only result in stress and unrealistic expectations.",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.PlayerDeathRequirement",
+          "$Data": {
+            "FlagTimeout": 0.1
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.DifficultyRequirement",
+          "$Data": {
+            "ApplicableDifficultyIdentifiers": [
+              "Core.Normal"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

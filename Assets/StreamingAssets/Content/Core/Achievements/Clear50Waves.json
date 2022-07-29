@@ -1,9 +1,9 @@
 {
   "Name": "Just an Introduction",
+  "Identifier": "Core.Clear50Waves",
   "Description": "Clear 50 waves of enemies in total.",
   "RewardDescription": "Unlocks the Starting Wave mutator, with which you can select the wave at which you start at.",
   "FunFact": "Waves in BFA2 are managed by a \"RoundController\", which has been assigned a particular wave collection, by default one that is generated procedurally. When a wave is started, the RoundController instantiates a WaveHandler object, that is then responsible for that particular wave. This seperation of concern is effectively what allows the RoundController to run an arbitrary amount of waves at the same time.",
-  "Identifier": "Core.Clear50Waves",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -24,7 +24,9 @@
     "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
     "$Data": {
       "Target": 50,
-      "CrossGames": true
+      "CrossGames": true,
+      "AllowGreater": false,
+      "AllowLess": false
     }
   },
   "Reward": {

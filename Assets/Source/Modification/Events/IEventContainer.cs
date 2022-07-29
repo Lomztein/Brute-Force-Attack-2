@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Modification.Events
     {
         event Action<IEventReference, object> OnEventAdded;
         event Action<IEventReference, object> OnEventChanged;
+        event Action<IEvent, object> OnEventExecuted;
 
         IEventCaller AddEvent(EventInfo info, object source);
 

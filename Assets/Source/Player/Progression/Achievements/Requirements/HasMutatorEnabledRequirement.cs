@@ -46,7 +46,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         private void Battlefield_OnSceneLoaded()
         {
-            CheckProgress();
+            CheckRequirements();
         }
     }
 }

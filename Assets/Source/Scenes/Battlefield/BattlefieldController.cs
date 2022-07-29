@@ -10,6 +10,7 @@ using Lomztein.BFA2.UI.Displays.Dialog;
 using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,22 @@ namespace Lomztein.BFA2.Battlefield
 {
     public class BattlefieldController : MonoBehaviour, InputMaster.IBattlefieldActions
     {
+        public static BattlefieldController Instance { get; private set; }
+
         public MapController MapController;
         public RoundController RoundController;
         public InterruptIfDialogOpen StartWaveIntterupt;
+        public BattlefieldSettings CurrentSettings;
 
         private InputMaster _master;
         public DialogTree Introduction;
+
+        public event Action OnBattlefieldInitialized;
+
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         private void Start()
         {
@@ -38,6 +49,7 @@ namespace Lomztein.BFA2.Battlefield
             {
                 InitializeBattlefield(BattlefieldSave.LoadFromFile(BattlefieldInitializeInfo.LoadFileName));
             }
+            OnBattlefieldInitialized?.Invoke();
         }
 
         private void OnDestroy()
@@ -47,6 +59,8 @@ namespace Lomztein.BFA2.Battlefield
 
         public void InitializeBattlefield (BattlefieldSettings settings)
         {
+            CurrentSettings = settings;
+
             InitMap(settings);
             InitWaves(settings);
             InitDefaultUnlocks(settings);
@@ -64,6 +78,7 @@ namespace Lomztein.BFA2.Battlefield
 
         public void InitializeBattlefield(BattlefieldSave save)
         {
+            CurrentSettings = save.Settings;
             BattlefieldSave.LoadToBattlefield(save, this);
         }
 

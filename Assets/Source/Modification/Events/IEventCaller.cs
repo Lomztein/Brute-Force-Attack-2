@@ -2,6 +2,6 @@
 {
     public interface IEventCaller
     {
-        void CallEvent(EventArgs args);
+        void CallEvent(EventArgs args, object source);
     }
 }

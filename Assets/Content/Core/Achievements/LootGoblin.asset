@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: LootGoblin
+  m_EditorClassIdentifier: 
+  Name: Loot Goblin
+  Identifier: Core.LootGoblin
+  Description: Loot 1000 items dropped from enemies.
+  RewardDescription: 
+  FunFact: 
+  Sprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    rid: 1449225163900715170
+  Reward:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1449225163900715170
+      type: {class: StructureEventExecutionCountRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        ListenTo: {fileID: 11400000, guid: 45b8c38259e11fc4cb44a2a17985e89f, type: 2}
+        IncludeAssemblyComponents: 0
+        CheckAgainst:
+        - rid: 1449225163900715171
+        RequiredCount: 1000
+        AllowGreater: 0
+        AllowLesser: 0
+        CrossGames: 1
+    - rid: 1449225163900715171
+      type: {class: HasTurretComponentFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        ApplicableComponentIdentifiers:
+        - Core.Collector

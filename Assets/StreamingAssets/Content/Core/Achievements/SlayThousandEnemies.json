@@ -1,9 +1,9 @@
 {
   "Name": "Millions More on Their Way",
+  "Identifier": "Core.SlayTenThousandEnemies",
   "Description": "Kill ten thousand enemies.",
   "RewardDescription": "Unlocks the Mitosis Mode mutator, which has enemies splitting into lower tier variants on death.",
   "FunFact": "The way BFA2 is designed, the strength of waves grows exponentially at an approximate increase of some 20%-30% more \"difficulty credits\" each wave. The player, however, is not so lucky, as they must constantly research new things in order to keep up with this.",
-  "Identifier": "Core.SlayTenThousandEnemies",
   "Sprite": {
     "Path": "Core\\Sprites\\Enemies\\BasicEnemyT2.png",
     "Texture": null,
@@ -23,15 +23,14 @@
   "Requirement": {
     "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.SlayEnemiesRequirement",
     "$Data": {
-      "TargetEnemies": 1000,
+      "TargetEnemies": 10000,
       "TargetColors": [
         "Blue",
         "Yellow",
         "Red",
         "Purple",
         "Orange",
-        "Green",
-        "White"
+        "Green"
       ]
     }
   },

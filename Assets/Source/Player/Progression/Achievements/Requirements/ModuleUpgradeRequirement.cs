@@ -66,12 +66,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         private void Structures_OnStructureEventChanged(Structures.Structure arg1, Modification.Events.IEventReference arg2, object arg3)
         {
-            CheckProgress();
+            CheckRequirements();
         }
 
         private void Structures_OnStructureStatChanged(Structures.Structure arg1, Modification.Stats.IStatReference arg2, object arg3)
         {
-            CheckProgress();
+            CheckRequirements();
         }
     }
 }

@@ -1,9 +1,9 @@
 {
   "Name": "Ultimate Lifeform",
+  "Identifier": "Core.UltimateLifeform",
   "Description": "Reach wave 100 with a mutator enabled.",
   "RewardDescription": "",
   "FunFact": "",
-  "Identifier": "Core.UltimateLifeform",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -28,7 +28,9 @@
           "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
           "$Data": {
             "Target": 100,
-            "CrossGames": false
+            "CrossGames": false,
+            "AllowGreater": false,
+            "AllowLess": false
           }
         },
         {

@@ -1,0 +1,59 @@
+{
+  "Name": "Head Researcher",
+  "Identifier": "Core.HeadResearcher",
+  "Description": "Gather a total of 500 research.",
+  "RewardDescription": "",
+  "FunFact": "",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.EarnResourceRequirement",
+    "$Data": {
+      "Type": {
+        "Name": "Research",
+        "Shorthand": "Res",
+        "Identifier": "Core.Research",
+        "Description": "Research used to unlock new components as well as bonuses to existing components.",
+        "Color": {
+          "Red": 0.0,
+          "Green": 1.0,
+          "Blue": 1.0,
+          "Alpha": 1.0
+        },
+        "BinaryValue": 1,
+        "Sprite": {
+          "Path": "",
+          "Texture": "$Path{Core/Sprites/Collectables/Research.png}",
+          "Rect": {
+            "X": 0.0,
+            "Y": 0.0,
+            "Width": 0.0,
+            "Height": 0.0
+          },
+          "Pivot": {
+            "X": 0.5,
+            "Y": 0.5
+          },
+          "PixelsPerUnit": 16.0
+        }
+      },
+      "Amount": 500,
+      "CrossGames": true
+    }
+  },
+  "Reward": null
+}

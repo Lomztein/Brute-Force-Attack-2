@@ -5,6 +5,7 @@ using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,8 @@ namespace Lomztein.BFA2.Abilities
 
         [ModelProperty] public int CurrentCooldown;
         [ModelProperty] public int CurrentCharges;
+
+        public event Action<Ability, object> OnActivated;
 
         public virtual void Select ()
         {
@@ -72,6 +75,7 @@ namespace Lomztein.BFA2.Abilities
             {
                 CurrentCharges--;
             }
+            OnActivated?.Invoke(this, placement);
         }
 
         public virtual void Cooldown(int amount)

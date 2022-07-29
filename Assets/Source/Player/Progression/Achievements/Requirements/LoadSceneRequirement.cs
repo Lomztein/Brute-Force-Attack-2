@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 if (arg0.buildIndex == SceneBuildIndex)
                 {
                     _sceneLoaded = true;
-                    CheckProgress ();
+                    CheckRequirements ();
                 }
             }
             else

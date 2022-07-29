@@ -106,7 +106,7 @@ namespace Lomztein.BFA2.Structures.StructureManagement
             RefreshMods(obj);
         }
 
-        private void OnStructureAdded(Structure obj)
+        private void OnStructureAdded(Structure obj, object source)
         {
             ApplyMods(obj);
         }

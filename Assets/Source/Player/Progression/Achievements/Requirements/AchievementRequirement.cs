@@ -10,9 +10,11 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
     public abstract class AchievementRequirement : IAchievementRequirement
     {
-        public abstract bool Binary { get; }
-        public abstract float Progression { get; }
-        public abstract bool RequirementsMet { get; }
+        public virtual bool Binary => true;
+        public virtual float Progression => BinaryProgression();
+        public virtual bool RequirementsMet => MeetsRequirements();
+
+        protected virtual bool MeetsRequirements() => false;
 
         public abstract void End();
 
@@ -34,7 +36,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             return new NullModel();
         }
 
-        protected void CheckProgress ()
+        protected void CheckRequirements ()
         {
             _onProgressedCallback();
         }

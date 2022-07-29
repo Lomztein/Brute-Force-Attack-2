@@ -16,10 +16,11 @@ namespace Lomztein.BFA2.Structures.StructureManagement
         private static readonly List<Structure> _structures = new List<Structure>();
 
         // Beware of potential event leaks.
-        public static event Action<Structure> OnStructureAdded;
+        public static event Action<Structure, object> OnStructureAdded;
         public static event Action<Structure, GameObject, object> OnStructureHierarchyChanged;
         public static event Action<Structure, IStatReference, object> OnStructureStatChanged;
         public static event Action<Structure, IEventReference, object> OnStructureEventChanged;
+        public static event Action<Structure, IEvent, object> OnStructureEventExecuted;
         public static event Action<Structure> OnStructureRemoved;
 
         public void Awake()
@@ -34,7 +35,7 @@ namespace Lomztein.BFA2.Structures.StructureManagement
 
         public static Structure[] GetStructures() => _structures.ToArray();
 
-        public static void AddStructure (Structure structure)
+        public static void AddStructure (Structure structure, object source)
         {
             _structures.Add(structure);
 
@@ -42,10 +43,16 @@ namespace Lomztein.BFA2.Structures.StructureManagement
             structure.HierarchyChanged += Structure_HierarchyChanged;
             structure.StatChanged += Structure_StatChanged;
             structure.EventChanged += Structure_EventChanged;
+            structure.EventExecuted += Structure_EventExecuted;
 
-            OnStructureAdded?.Invoke(structure);
+            OnStructureAdded?.Invoke(structure, source);
 
             Message.Send($"Placed structure '{structure.Name}'", Message.Type.Minor);
+        }
+
+        private static void Structure_EventExecuted(Structure arg1, IEvent arg2, object arg3)
+        {
+            OnStructureEventExecuted?.Invoke(arg1, arg2, arg3);
         }
 
         private static void Structure_EventChanged(Structure arg1, IEventReference arg2, object arg3)

@@ -14,6 +14,8 @@ namespace Lomztein.BFA2.Abilities
         private List<Ability> _currentAbilities = new List<Ability>();
         public IEnumerable<Ability> CurrentAbilities => _currentAbilities;
 
+        public event Action<Ability, object> OnAbilityActivated;
+
         private void Awake()
         {
             Instance = this;
@@ -47,13 +49,21 @@ namespace Lomztein.BFA2.Abilities
         {
             _currentAbilities.Add(ability);
             OnAbilityAdded?.Invoke(ability, source);
+            ability.OnActivated += Ability_OnActivated;
+        }
+
+        private void Ability_OnActivated(Ability arg1, object arg2)
+        {
+            throw new NotImplementedException();
         }
 
         public bool RemoveAbility(string identifier, object source)
         {
-            if (_currentAbilities.RemoveAll(x => x.Identifier.Equals(identifier)) > 0)
+            Ability current = GetAbility(identifier);
+            if (_currentAbilities.Remove(current))
             {
                 OnAbilityRemoved?.Invoke(identifier, source);
+                current.OnActivated -= Ability_OnActivated;
                 return true;
             }
             return false;

@@ -18,13 +18,19 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         public int Target;
         [ModelProperty]
         public bool CrossGames;
+        [ModelProperty]
+        public bool AllowGreater;
+        [ModelProperty]
+        public bool AllowLess;
 
         public override float Progression => (float)_amount / Target;
-        public override bool RequirementsMet => _amount >= Target;
+        public override bool RequirementsMet => _amount == Target ||
+            (AllowGreater && _amount > Target) ||
+            (AllowLess && _amount > Target);
 
         public override void End()
         {
-            Facade.Battlefield.Enemies.OnWaveCleared -= OnWaveCleared;
+            Facade.Battlefield.Enemies.OnWaveFinished -= OnWaveCleared;
             if (!CrossGames)
             {
                 Facade.Battlefield.OnSceneLoaded -= Battlefield_OnSceneLoaded;
@@ -33,7 +39,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         public override void Init()
         {
-            Facade.Battlefield.Enemies.OnWaveCleared += OnWaveCleared;
+            Facade.Battlefield.Enemies.OnWaveFinished += OnWaveCleared;
             if (!CrossGames) // If not Cross Games, reset when loading the new battlefield. Might cause issues with save-games?
             {
                 Facade.Battlefield.OnSceneLoaded += Battlefield_OnSceneLoaded;
@@ -43,18 +49,18 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private void Battlefield_OnSceneLoaded()
         {
             _amount = 0;
-            CheckProgress();
+            CheckRequirements();
         }
 
         private void OnWaveCleared(int index, WaveHandler wave)
         {
             if (index > _amount)
             {
-                CheckProgress();
+                CheckRequirements();
                 _amount = index;
                 if (_amount >= Target)
                 {
-                    CheckProgress();
+                    CheckRequirements();
                 }
             }
         }

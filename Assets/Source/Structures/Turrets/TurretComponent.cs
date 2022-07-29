@@ -59,7 +59,14 @@ namespace Lomztein.BFA2.Structures.Turrets
             PreInit();
             Stats.OnStatChanged += Stats_OnStatChanged;
             Events.OnEventChanged += Events_OnEventChanged;
+            Events.OnEventExecuted += Events_OnEventExecuted;
             PreInitialized = true;
+        }
+
+        private void Events_OnEventExecuted(IEvent arg1, object arg2)
+        {
+            if (Assembly != null)
+                Assembly.InvokeEventExecuted(arg1, arg2);
         }
 
         private void Events_OnEventChanged(IEventReference arg1, object arg2)
@@ -99,6 +106,7 @@ namespace Lomztein.BFA2.Structures.Turrets
             base.OnDestroy();
             Stats.OnStatChanged -= Stats_OnStatChanged;
             Events.OnEventChanged -= Events_OnEventChanged;
+            Events.OnEventExecuted -= Events_OnEventExecuted;
             End();
         }
 

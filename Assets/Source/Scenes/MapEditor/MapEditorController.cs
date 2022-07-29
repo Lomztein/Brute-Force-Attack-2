@@ -50,6 +50,9 @@ namespace Lomztein.BFA2.MapEditor
         public InputField NameInput;
         public InputField DescriptionInput;
 
+        public event Action<MapData, string> OnMapSaved;
+        public event Action<MapData, string> OnMapLoaded;
+
         public void OpenSaveDialog ()
         {
             MapData.Name = NameInput.text;
@@ -86,6 +89,7 @@ namespace Lomztein.BFA2.MapEditor
             File.WriteAllText(path, serializer.Serialize(model).ToString());
             Content.ResetIndex();
 
+            OnMapSaved?.Invoke(MapData, path);
             Alert.Open("Map succesfully saved.");
         }
 
@@ -237,6 +241,8 @@ namespace Lomztein.BFA2.MapEditor
 
             NameInput.text = MapData.Name;
             DescriptionInput.text = MapData.Description;
+
+            OnMapLoaded?.Invoke(MapData, file);
         }
 
         private ObjectModel[] DisassembleMapObjects ()

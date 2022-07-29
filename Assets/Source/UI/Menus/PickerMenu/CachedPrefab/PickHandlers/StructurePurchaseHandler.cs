@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PickHandlers
             Structure structure = go.GetComponent<Structure>();
             if (structure != null)
             {
-                StructureManager.AddStructure(structure);
+                StructureManager.AddStructure(structure, this);
             }
         }
     }

@@ -1,9 +1,9 @@
 {
   "Name": "Dabudidabudai",
+  "Identifier": "Core.BlueWorld",
   "Description": "Reach wave 30 with only blue weapons.",
   "RewardDescription": "",
   "FunFact": "The achivement system effectively works by each achievement having one or more requirements assigned. Each requirement can then let the achievement know if the requirement is met or not, and can tell the achievement when to check. Requirements are only checked when appropiate, through the use of the Facade.",
-  "Identifier": "Core.BlueWorld",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -28,7 +28,9 @@
           "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
           "$Data": {
             "Target": 30,
-            "CrossGames": false
+            "CrossGames": false,
+            "AllowGreater": false,
+            "AllowLess": false
           }
         },
         {

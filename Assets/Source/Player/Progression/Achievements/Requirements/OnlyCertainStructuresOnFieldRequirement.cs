@@ -90,12 +90,12 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         private void Structures_OnStructureHierarchyChanged(Structures.Structure arg1, GameObject arg2, object arg3)
         {
-            CheckProgress();
+            CheckRequirements();
         }
 
-        private void Structures_OnStructureAdded(Structures.Structure obj)
+        private void Structures_OnStructureAdded(Structures.Structure obj, object source)
         {
-            CheckProgress();
+            CheckRequirements();
         }
     }
 }

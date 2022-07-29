@@ -9,6 +9,8 @@ namespace Lomztein.BFA2.Modification.Stats
     {
         private IStat _stat;
 
+        public string Identifier => _stat.Identifier;
+
         public StatReference (IStat stat)
         {
             _stat = stat;

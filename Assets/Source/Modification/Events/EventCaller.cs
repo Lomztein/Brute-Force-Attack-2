@@ -15,9 +15,9 @@ namespace Lomztein.BFA2.Modification.Events
             _event = @event;
         }
 
-        public void CallEvent(EventArgs args)
+        public void CallEvent(EventArgs args, object source)
         {
-            _event.Execute(args);
+            _event.Execute(args, source);
         }
 
     }

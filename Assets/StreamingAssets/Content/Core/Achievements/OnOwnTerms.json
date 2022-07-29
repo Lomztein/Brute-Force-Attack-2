@@ -1,0 +1,50 @@
+{
+  "Name": "On Your Own Terms",
+  "Identifier": "Core.OnOwnTerms",
+  "Description": "Loose the game without any structures on the field after the first wave.",
+  "RewardDescription": "",
+  "FunFact": "This is the first achievement added to the game with more than two requirements.",
+  "Sprite": {
+    "Path": "",
+    "Texture": null,
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 0.0,
+      "Height": 0.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "Hidden": false,
+  "Requirement": {
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
+    "$Data": {
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
+          "$Data": {
+            "Target": 2,
+            "CrossGames": false,
+            "AllowGreater": true,
+            "AllowLess": false
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.PlayerDeathRequirement",
+          "$Data": {
+            "FlagTimeout": 0.1
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.StructureCountRequirement",
+          "$Data": {}
+        }
+      ]
+    }
+  },
+  "Reward": null
+}

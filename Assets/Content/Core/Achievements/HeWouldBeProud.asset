@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ea7b1c338dc464c8722bd3ef09ba2f, type: 3}
+  m_Name: HeWouldBeProud
+  m_EditorClassIdentifier: 
+  Name: He Would be Proud
+  Identifier: Core.HeWouldBeProud
+  Description: Sell a small structure while wave 66 is active.
+  RewardDescription: 
+  FunFact: It had to be done, Pappa P. said so himself!
+  Sprite:
+    Path: 
+    Texture: {fileID: 0}
+    Rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    Pivot: {x: 0.5, y: 0.5}
+    PixelsPerUnit: 16
+  Hidden: 0
+  Requirement:
+    rid: 1449225167980462177
+  Reward:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1449225167980462177
+      type: {class: CompositeRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Requirements:
+        - rid: 1449225167980462178
+        - rid: 1449225167980462179
+    - rid: 1449225167980462178
+      type: {class: WaveActiveRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Wave: 66
+    - rid: 1449225167980462179
+      type: {class: DestroyStructureRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Filter:
+        - rid: 1449225167980462180
+    - rid: 1449225167980462180
+      type: {class: StructureSizeFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        _minWidth: 1
+        _minHeight: 1
+        _maxWidth: 1
+        _maxHeight: 1

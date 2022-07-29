@@ -154,27 +154,27 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         private void Weapon_OnFire(IProjectile[] projs)
         {
-            OnFire.CallEvent(new Modification.Events.EventArgs(this, projs));
+            OnFire.CallEvent(new Modification.Events.EventArgs(this, projs), this);
         }
 
         private void Weapon_OnProjectile(IProjectile proj)
         {
-            OnProjectile.CallEvent(new Modification.Events.EventArgs(this, proj));
+            OnProjectile.CallEvent(new Modification.Events.EventArgs(this, proj), this);
         }
 
         private void Weapon_OnProjectileDepleted(HitInfo obj)
         {
-            OnProjectileDepleted.CallEvent(new Modification.Events.EventArgs(this, obj));
+            OnProjectileDepleted.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }
 
         private void Weapon_OnProjectileKill(HitInfo obj)
         {
-            OnProjectileKill.CallEvent(new Modification.Events.EventArgs(this, obj));
+            OnProjectileKill.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }
 
         private void Weapon_OnProjectileHit(HitInfo obj)
         {
-            OnProjectileHit.CallEvent(new Modification.Events.EventArgs(this, obj));
+            OnProjectileHit.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }
 
         public bool TryFire()
