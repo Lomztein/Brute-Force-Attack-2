@@ -1,7 +1,7 @@
 {
   "Name": "Close Call",
   "Identifier": "Core.CloseCall",
-  "Description": "Kill an enemy just before they reach the datastream, while the dataastream has critically low health.",
+  "Description": "Finish a wave with less than 1% health remaining.",
   "RewardDescription": "",
   "FunFact": "",
   "Sprite": {
@@ -25,12 +25,11 @@
     "$Data": {
       "Requirements": [
         {
-          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.KillEnemyNearEndRequirement",
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.NumWavesActiveRequirement",
           "$Data": {
-            "DistanceThreshold": 3.0,
-            "ApplicableEnemyIdentifiers": [],
-            "RequiredCount": 1,
-            "CrossGames": false
+            "RequiredAmount": 0,
+            "AllowGreater": false,
+            "AllowLesser": false
           }
         },
         {

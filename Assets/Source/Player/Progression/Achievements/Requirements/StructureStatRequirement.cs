@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
@@ -12,7 +13,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
     {
         [ModelAssetReference]
         public StatInfo StatInfo;
-        [ModelProperty]
+        [ModelProperty, SerializeReference, SR]
         public IModdableFilter[] CheckAgainst;
         [ModelProperty]
         public float Threshold;

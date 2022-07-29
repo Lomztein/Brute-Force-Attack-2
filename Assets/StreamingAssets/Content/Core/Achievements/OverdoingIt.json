@@ -24,7 +24,14 @@
     "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.StructureStatRequirement",
     "$Data": {
       "StatInfo": "$Path{Core/Modifiers/Stats/Firerate.json}",
-      "CheckAgainst": null,
+      "CheckAgainst": [
+        {
+          "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+          "$Data": {
+            "Info": "$Path{Core/Modifiers/Stats/Firerate.json}"
+          }
+        }
+      ],
       "Threshold": 50.0,
       "AllowGreater": true,
       "AllowLesser": false

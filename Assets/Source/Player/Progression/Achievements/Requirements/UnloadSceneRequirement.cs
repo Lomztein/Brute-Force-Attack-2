@@ -7,11 +7,11 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 {
     public class UnloadSceneRequirement : AchievementRequirement
     {
-        private bool _sceneUnloaded;
         public int SceneBuildIndex;
         public string SceneName;
 
-        public override bool RequirementsMet => _sceneUnloaded;
+        private TimedFlag _flag = new TimedFlag(0.1f);
+        public override bool RequirementsMet => _flag.Get();
 
         public override void End()
         {
@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             {
                 if (arg0.buildIndex == SceneBuildIndex)
                 {
-                    _sceneUnloaded = true;
+                    _flag.Mark();
                     CheckRequirements();
                 }
             }
@@ -37,7 +37,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             {
                 if (arg0.name == SceneName)
                 {
-                    _sceneUnloaded = true;
+                    _flag.Mark();
+                    CheckRequirements();
                 }
             }
         }

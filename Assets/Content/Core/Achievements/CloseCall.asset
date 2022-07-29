@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Close Call
   Identifier: Core.CloseCall
-  Description: Kill an enemy just before they reach the datastream, while the dataastream
-    has critically low health.
+  Description: Finish a wave with less than 1% health remaining.
   RewardDescription: 
   FunFact: 
   Sprite:
@@ -44,16 +43,8 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         Requirements:
-        - rid: 1449225167980462301
+        - rid: 1449225173295432598
         - rid: 1449225167980462302
-    - rid: 1449225167980462301
-      type: {class: KillEnemyNearEndRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
-        asm: Assembly-CSharp}
-      data:
-        DistanceThreshold: 3
-        ApplicableEnemyIdentifiers: []
-        RequiredCount: 1
-        CrossGames: 0
     - rid: 1449225167980462302
       type: {class: PlayerHealthRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
@@ -61,3 +52,10 @@ MonoBehaviour:
         Threshold: 1
         AllowGreater: 0
         AllowLesser: 1
+    - rid: 1449225173295432598
+      type: {class: NumWavesActiveRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        RequiredAmount: 0
+        AllowGreater: 0
+        AllowLesser: 0

@@ -54,7 +54,7 @@ namespace Lomztein.BFA2.Abilities
 
         private void Ability_OnActivated(Ability arg1, object arg2)
         {
-            throw new NotImplementedException();
+            OnAbilityActivated?.Invoke(arg1, arg2);
         }
 
         public bool RemoveAbility(string identifier, object source)
