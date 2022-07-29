@@ -66,7 +66,7 @@ jobs:
         with:
           path: ./build/${{ matrix.buildTarget }}/channel.txt
                 
-      - uses: josephbmanley/butler-publish-itchio-action@master
+      - uses: manleydev/butler-publish-itchio-action@master
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: ${{ steps.channel.outputs.content }}
