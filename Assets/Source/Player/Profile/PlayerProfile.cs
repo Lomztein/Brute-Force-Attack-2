@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lomztein.BFA2.Player.Progression.Achievements;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.UI.Style;
 using Newtonsoft.Json.Linq;
@@ -32,6 +33,12 @@ namespace Lomztein.BFA2.Player.Profile
         public void MutateAchievementStatus (string identifier, Action<PlayerAchievementStatus> action)
         {
             action(GetAchievementStatus(identifier));
+        }
+
+        public void ResetAllAchievementStatus()
+        {
+            AchievementStatus.Clear();
+            ProfileManager.Save(this);
         }
 
         public PlayerAchievementStatus GetAchievementStatus(string identifier)

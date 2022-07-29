@@ -33,7 +33,7 @@ MonoBehaviour:
     PixelsPerUnit: 16
   Hidden: 0
   Requirement:
-    rid: 1449225142554067396
+    rid: 1449225153797685573
   Reward:
     rid: -2
   references:
@@ -41,8 +41,21 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1449225142554067396
+    - rid: 1449225153797685573
+      type: {class: CompositeRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Requirements:
+        - rid: 1449225153797685574
+        - rid: 1449225153797685575
+    - rid: 1449225153797685574
       type: {class: HasMutatorEnabledRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
         asm: Assembly-CSharp}
       data:
         ApplicableMutatorIdentifiers: []
+    - rid: 1449225153797685575
+      type: {class: ClearWavesRequirement, ns: Lomztein.BFA2.Player.Progression.Achievements.Requirements,
+        asm: Assembly-CSharp}
+      data:
+        Target: 1
+        CrossGames: 0

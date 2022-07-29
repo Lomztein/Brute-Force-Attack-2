@@ -28,6 +28,19 @@ namespace Lomztein.BFA2.Player.Profile
             OnProfileChanged?.Invoke(old, CurrentProfile);
         }
 
+        public static PlayerProfile ResetProfile(PlayerProfile profile)
+        {
+            var newProfile = new PlayerProfile(profile.Name);
+            Save(newProfile);
+            return newProfile;
+        }
+
+        public static void ResetCurrentProfile()
+        {
+            var newProfile = ResetProfile(CurrentProfile);
+            SetProfile(newProfile);
+        }
+
         public static void Save(PlayerProfile profile)
         {
             JToken json = ObjectPipeline.UnbuildObject(profile, true);

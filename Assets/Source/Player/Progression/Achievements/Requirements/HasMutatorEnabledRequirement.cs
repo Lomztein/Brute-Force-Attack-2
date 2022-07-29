@@ -26,7 +26,10 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
                 {
                     return true;
                 }
-                return BattlefieldInitializeInfo.NewSettings.Mutators.All(x => ApplicableMutatorIdentifiers.Contains(x.Identifier));
+                if (BattlefieldInitializeInfo.NewSettings.Mutators.Count() > 0 && BattlefieldInitializeInfo.NewSettings.Mutators.All(x => ApplicableMutatorIdentifiers.Contains(x.Identifier)))
+                {
+                    return true;
+                }
             }
             return false;
         }

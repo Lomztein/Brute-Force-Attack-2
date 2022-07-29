@@ -37,6 +37,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""01ca495e-e7e4-48e1-bd0f-34b5f61e4c06"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""PrimaryClick"",
                     ""type"": ""Button"",
                     ""id"": ""cd9ba05f-9020-4e5e-a037-d00d36b404eb"",
@@ -49,6 +58,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""name"": ""SecondaryClick"",
                     ""type"": ""Button"",
                     ""id"": ""e07a1f54-8814-4fa0-bc1b-6271c096c54f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenCheatWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""19c1c224-0603-4f92-8a9b-6f568abc0b54"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -86,6 +104,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Default"",
                     ""action"": ""SecondaryClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab71b0cb-a05f-41a5-be3f-f892bfe3a51c"",
+                    ""path"": ""<Keyboard>/#(P)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenCheatWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75dd666d-ea4d-48d3-bbd5-54df54be431a"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -393,8 +433,10 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         // General
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_CancelPause = m_General.FindAction("CancelPause", throwIfNotFound: true);
+        m_General_Enter = m_General.FindAction("Enter", throwIfNotFound: true);
         m_General_PrimaryClick = m_General.FindAction("PrimaryClick", throwIfNotFound: true);
         m_General_SecondaryClick = m_General.FindAction("SecondaryClick", throwIfNotFound: true);
+        m_General_OpenCheatWindow = m_General.FindAction("OpenCheatWindow", throwIfNotFound: true);
         // Battlefield
         m_Battlefield = asset.FindActionMap("Battlefield", throwIfNotFound: true);
         m_Battlefield_StartWave = m_Battlefield.FindAction("StartWave", throwIfNotFound: true);
@@ -477,15 +519,19 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_General;
     private IGeneralActions m_GeneralActionsCallbackInterface;
     private readonly InputAction m_General_CancelPause;
+    private readonly InputAction m_General_Enter;
     private readonly InputAction m_General_PrimaryClick;
     private readonly InputAction m_General_SecondaryClick;
+    private readonly InputAction m_General_OpenCheatWindow;
     public struct GeneralActions
     {
         private @InputMaster m_Wrapper;
         public GeneralActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @CancelPause => m_Wrapper.m_General_CancelPause;
+        public InputAction @Enter => m_Wrapper.m_General_Enter;
         public InputAction @PrimaryClick => m_Wrapper.m_General_PrimaryClick;
         public InputAction @SecondaryClick => m_Wrapper.m_General_SecondaryClick;
+        public InputAction @OpenCheatWindow => m_Wrapper.m_General_OpenCheatWindow;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -498,12 +544,18 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @CancelPause.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancelPause;
                 @CancelPause.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancelPause;
                 @CancelPause.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancelPause;
+                @Enter.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnEnter;
+                @Enter.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnEnter;
+                @Enter.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnEnter;
                 @PrimaryClick.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPrimaryClick;
                 @PrimaryClick.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPrimaryClick;
                 @PrimaryClick.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnPrimaryClick;
                 @SecondaryClick.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnSecondaryClick;
                 @SecondaryClick.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnSecondaryClick;
                 @SecondaryClick.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnSecondaryClick;
+                @OpenCheatWindow.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnOpenCheatWindow;
+                @OpenCheatWindow.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnOpenCheatWindow;
+                @OpenCheatWindow.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnOpenCheatWindow;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -511,12 +563,18 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @CancelPause.started += instance.OnCancelPause;
                 @CancelPause.performed += instance.OnCancelPause;
                 @CancelPause.canceled += instance.OnCancelPause;
+                @Enter.started += instance.OnEnter;
+                @Enter.performed += instance.OnEnter;
+                @Enter.canceled += instance.OnEnter;
                 @PrimaryClick.started += instance.OnPrimaryClick;
                 @PrimaryClick.performed += instance.OnPrimaryClick;
                 @PrimaryClick.canceled += instance.OnPrimaryClick;
                 @SecondaryClick.started += instance.OnSecondaryClick;
                 @SecondaryClick.performed += instance.OnSecondaryClick;
                 @SecondaryClick.canceled += instance.OnSecondaryClick;
+                @OpenCheatWindow.started += instance.OnOpenCheatWindow;
+                @OpenCheatWindow.performed += instance.OnOpenCheatWindow;
+                @OpenCheatWindow.canceled += instance.OnOpenCheatWindow;
             }
         }
     }
@@ -763,8 +821,10 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     public interface IGeneralActions
     {
         void OnCancelPause(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
         void OnPrimaryClick(InputAction.CallbackContext context);
         void OnSecondaryClick(InputAction.CallbackContext context);
+        void OnOpenCheatWindow(InputAction.CallbackContext context);
     }
     public interface IBattlefieldActions
     {

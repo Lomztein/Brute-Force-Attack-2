@@ -18,6 +18,9 @@ namespace Lomztein.BFA2.UI.Windows
         private bool _openedThisFrame = false;
         private static Dictionary<Type, int> _maxOfType;
 
+        public static event Action<IWindow> OnWindowOpened;
+        public static event Action<IWindow> OnWindowClosed;
+
         private void Awake()
         {
             _instance = this;
@@ -44,9 +47,10 @@ namespace Lomztein.BFA2.UI.Windows
 
                 w.OnClosed += () =>
                 {
-                    _instance.OnWindowClosed(w, window);
+                    _instance.InternalOnWindowClosed(w, window);
                 };
 
+                OnWindowOpened?.Invoke(w);
                 return window;
             }
 
@@ -70,10 +74,11 @@ namespace Lomztein.BFA2.UI.Windows
             }
         }
 
-        private void OnWindowClosed (IWindow window, GameObject windowObj)
+        private void InternalOnWindowClosed (IWindow window, GameObject windowObj)
         {
             _windows.Remove(window);
             _windowObjects.Remove(windowObj);
+            OnWindowClosed?.Invoke(window);
 
             CheckDarkOverlay();
         }

@@ -21,9 +21,23 @@
   },
   "Hidden": false,
   "Requirement": {
-    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.HasMutatorEnabledRequirement",
+    "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.CompositeRequirement",
     "$Data": {
-      "ApplicableMutatorIdentifiers": []
+      "Requirements": [
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.HasMutatorEnabledRequirement",
+          "$Data": {
+            "ApplicableMutatorIdentifiers": []
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ClearWavesRequirement",
+          "$Data": {
+            "Target": 1,
+            "CrossGames": false
+          }
+        }
+      ]
     }
   },
   "Reward": null

@@ -41,6 +41,8 @@ namespace Lomztein.BFA2.Structures.Turrets
         public bool Initialized { get; private set; }
         public bool PostInitialized { get; private set; }
 
+        public TurretAssembly Assembly => transform.root.GetComponentInChildren<TurretAssembly>(true);
+
         protected override void AwakeInit()
         {
             InitSelf();
@@ -55,7 +57,21 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             _assembly = GetComponentInParent<TurretAssembly>();
             PreInit();
+            Stats.OnStatChanged += Stats_OnStatChanged;
+            Events.OnEventChanged += Events_OnEventChanged;
             PreInitialized = true;
+        }
+
+        private void Events_OnEventChanged(IEventReference arg1, object arg2)
+        {
+            if (Assembly != null) 
+                Assembly.InvokeEventChanged(arg1, arg2);
+        }
+
+        private void Stats_OnStatChanged(IStatReference arg1, object arg2)
+        {
+            if (Assembly != null)
+                Assembly.InvokeStatChanged(arg1, arg2);
         }
 
         private void InitComponent()
@@ -81,6 +97,8 @@ namespace Lomztein.BFA2.Structures.Turrets
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            Stats.OnStatChanged -= Stats_OnStatChanged;
+            Events.OnEventChanged -= Events_OnEventChanged;
             End();
         }
 

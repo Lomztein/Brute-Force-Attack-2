@@ -17,7 +17,7 @@ MonoBehaviour:
   RewardDescription: 
   FunFact: People who knowingly run bots to ruin other peoples fun are statistically
     much more likely to be greatly disliked by everyone they know and love.
-  Identifier: 
+  Identifier: Core.ScottishCyclops
   Sprite:
     Path: 
     Texture: {fileID: 0}
@@ -44,7 +44,12 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         CheckAgainst:
-        - rid: -2
+        - rid: 1449225152314475087
         ApplicableModuleIdentifiers:
         - Core.ExplosiveRoundsModule
         RequiredAmount: 4
+    - rid: 1449225152314475087
+      type: {class: HasModulesFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        ApplicableModuleIdentifiers: []
+        RequiredAmount: 1

@@ -40,9 +40,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         public IEnumerable<TurretComponent> GetComponents() => GetComponents(CurrentTeir);
 
         public override string ToString()
-        {
-            return $"Free Module Slots: {FreeModuleSlots()}\n{string.Join("\n", GetComponents(CurrentTeir).Select(x => x.ToString()))}";
-        }
+            => Name;
 
         public TurretComponent GetRootComponent(Tier tier)
         {

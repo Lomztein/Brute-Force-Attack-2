@@ -28,8 +28,8 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         {
             if (arg2.Name == WindowToVisit)
             {
-                CheckProgress();
                 _visitedWindow = true;
+                CheckProgress();
             }
         }
 

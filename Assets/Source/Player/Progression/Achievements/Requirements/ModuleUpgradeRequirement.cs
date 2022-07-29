@@ -26,54 +26,50 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
         private bool CheckRequirement ()
         {
             var structures = StructureManager.GetStructures();
-            int checkCount = 0;
             foreach (var structure in structures)
             {
                 if (structure is TurretAssembly assembly)
                 {
-                    if (CheckAgainst.All(x => x.Check(structure)))
+                    if (!CheckAgainst.Any() || CheckAgainst.All(x => x.Check(structure)))
                     {
-                        if (!CheckAssembly(assembly))
-                        {
-                            return false;
-                        }
-                        checkCount++;
+                        return CheckAssembly(assembly);
                     }
                 }
             }
-            return checkCount > 0;
+            return false;
         }
 
         private bool CheckAssembly (TurretAssembly assembly)
         {
             if (ApplicableModuleIdentifiers.Length == 0)
             {
-                return assembly.Modules.Count() > RequiredAmount;
+                return assembly.Modules.Count() >= RequiredAmount;
             }
             else
             {
-                return assembly.Modules.Count(x => ApplicableModuleIdentifiers.Contains(x.Item.Identifier)) > RequiredAmount;
+                int count = assembly.Modules.Count(x => ApplicableModuleIdentifiers.Contains(x.Item.Identifier));
+                return count >= RequiredAmount;
             }
         }
 
         public override void End()
         {
-            Facade.Battlefield.Structures.OnStructureAdded -= Structures_OnStructureAdded;
-            Facade.Battlefield.Structures.OnStructureHierarchyChanged -= Structures_OnStructureHierarchyChanged;
+            Facade.Battlefield.Structures.OnStructureStatChanged -= Structures_OnStructureStatChanged;
+            Facade.Battlefield.Structures.OnStructureEventChanged -= Structures_OnStructureEventChanged;
         }
 
         public override void Init()
         {
-            Facade.Battlefield.Structures.OnStructureAdded += Structures_OnStructureAdded;
-            Facade.Battlefield.Structures.OnStructureHierarchyChanged += Structures_OnStructureHierarchyChanged;
+            Facade.Battlefield.Structures.OnStructureStatChanged += Structures_OnStructureStatChanged;
+            Facade.Battlefield.Structures.OnStructureEventChanged += Structures_OnStructureEventChanged;
         }
 
-        private void Structures_OnStructureHierarchyChanged(Structures.Structure arg1, GameObject arg2, object arg3)
+        private void Structures_OnStructureEventChanged(Structures.Structure arg1, Modification.Events.IEventReference arg2, object arg3)
         {
             CheckProgress();
         }
 
-        private void Structures_OnStructureAdded(Structures.Structure obj)
+        private void Structures_OnStructureStatChanged(Structures.Structure arg1, Modification.Stats.IStatReference arg2, object arg3)
         {
             CheckProgress();
         }

@@ -3,7 +3,7 @@
   "Description": "Upgrade a Tesla Coil with 3 overclock modules.",
   "RewardDescription": "",
   "FunFact": "Assembly modules have undergone a large amount of iterations, starting out first as \"Expansion Cards\" that you could purchase using a unique resource, though assemblies could only contain a set amount. Later, they were reworked to \"Boosters\" that dropped as loot from enemies, but you could have as many as you wanted on any assembly. The final iteration combined the two, by having \"Modules\" dropped from enemies, with assemblies having only a certain amoung of slots.",
-  "Identifier": "",
+  "Identifier": "Core.UnlimitedPower",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -30,6 +30,13 @@
             "ApplicableComponentIdentifiers": [
               "Core.TeslaCoil"
             ]
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Modification.Filters.HasModulesFilter",
+          "$Data": {
+            "ApplicableModuleIdentifiers": [],
+            "RequiredAmount": 1
           }
         }
       ],

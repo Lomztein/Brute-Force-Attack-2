@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.UI.Displays
         public float ShowTime = 5f;
 
         public Text NameText;
+        public Text DescriptionText;
         public Image Image;
 
         private AchievementManager _subscribedInstance;
@@ -43,6 +44,7 @@ namespace Lomztein.BFA2.UI.Displays
             _targetPosition = ShowPosition;
 
             NameText.text = achievement.Name;
+            DescriptionText.text = achievement.Description;
             Image.sprite = achievement.Sprite.Get();
 
             Invoke(nameof(Hide), ShowTime);

@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
 
         public override bool Binary => false;
         public override float Progression => Mathf.Clamp01(_enemiesSlain / (float)TargetEnemies);
-        public override bool RequirementsMet => _enemiesSlain / (float)TargetEnemies > 1f;
+        public override bool RequirementsMet => _enemiesSlain >= TargetEnemies;
 
         public override void End()
         {

@@ -21,7 +21,7 @@ MonoBehaviour:
     to "Boosters" that dropped as loot from enemies, but you could have as many as
     you wanted on any assembly. The final iteration combined the two, by having "Modules"
     dropped from enemies, with assemblies having only a certain amoung of slots.
-  Identifier: 
+  Identifier: Core.UnlimitedPower
   Sprite:
     Path: 
     Texture: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
       data:
         CheckAgainst:
         - rid: 1449225142554067362
+        - rid: 1449225152314475086
         ApplicableModuleIdentifiers:
         - Core.OverclockModule
         RequiredAmount: 3
@@ -58,3 +59,8 @@ MonoBehaviour:
       data:
         ApplicableComponentIdentifiers:
         - Core.TeslaCoil
+    - rid: 1449225152314475086
+      type: {class: HasModulesFilter, ns: Lomztein.BFA2.Modification.Filters, asm: Assembly-CSharp}
+      data:
+        ApplicableModuleIdentifiers: []
+        RequiredAmount: 1

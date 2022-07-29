@@ -3,7 +3,7 @@
   "Description": "Place 4 Explosive Rounds modules on a single assembly.",
   "RewardDescription": "",
   "FunFact": "People who knowingly run bots to ruin other peoples fun are statistically much more likely to be greatly disliked by everyone they know and love.",
-  "Identifier": "",
+  "Identifier": "Core.ScottishCyclops",
   "Sprite": {
     "Path": "",
     "Texture": null,
@@ -23,6 +23,15 @@
   "Requirement": {
     "$Type": "Lomztein.BFA2.Player.Progression.Achievements.Requirements.ModuleUpgradeRequirement",
     "$Data": {
+      "CheckAgainst": [
+        {
+          "$Type": "Lomztein.BFA2.Modification.Filters.HasModulesFilter",
+          "$Data": {
+            "ApplicableModuleIdentifiers": [],
+            "RequiredAmount": 1
+          }
+        }
+      ],
       "ApplicableModuleIdentifiers": [
         "Core.ExplosiveRoundsModule"
       ],
