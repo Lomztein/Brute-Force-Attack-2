@@ -12,6 +12,6 @@ namespace Lomztein.BFA2.Modification.Filters
         [ModelProperty]
         public string CategoryName = "Misc";
 
-        public override bool Check(Structure structure) => structure.Category.Name == CategoryName;
+        public override bool Check(Structure structure) => (!structure.Category && string.IsNullOrEmpty(CategoryName)) || (structure.Category && structure.Category.Name == CategoryName);
     }
 }

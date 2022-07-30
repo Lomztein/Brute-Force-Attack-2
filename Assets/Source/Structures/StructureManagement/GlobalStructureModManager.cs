@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.Modification.Stats;
+﻿using Lomztein.BFA2.Modification.Modifiers;
+using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Utilities;
 using System;
 using System.Collections.Generic;
@@ -73,7 +74,11 @@ namespace Lomztein.BFA2.Structures.StructureManagement
 
         private bool IsGlobalMod (object obj)
         {
-            return _mods.Any(x => x.Mod.Equals(obj));
+            if (obj is Mod mod)
+            {
+                return _mods.Any(x => x.Mod.Identifier.Equals(mod.Identifier));
+            }
+            return false;
         }
 
         public void AddMod (GlobalStructureMod mod)
