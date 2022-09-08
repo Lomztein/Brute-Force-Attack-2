@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Lomztein.BFA2.ContentSystem
 {
@@ -28,8 +29,9 @@ namespace Lomztein.BFA2.ContentSystem
             new GameObjectToCachedGameObjectResourceConverter(),
         };
 
-        public object LoadContent(string path, Type type)
+        public object LoadContent(string path, Type type, IEnumerable<string> patches)
         {
+            Assert.IsTrue(patches.Count() == 0, "Cannot patch built-in resources.");
             var converter = GetConverter(type);
 
             if (converter == null)
@@ -41,6 +43,17 @@ namespace Lomztein.BFA2.ContentSystem
                 return converter.Convert (Resources.Load(path, converter.InputType));
             }
         }
+
+        public IEnumerable<string> GetContentPaths()
+        {
+            return System.IO.File.ReadAllLines(GetResourcesIndexPath()).Select(x => System.IO.Path.ChangeExtension(x, null)).ToArray();
+        }
+
+        public IEnumerable<ContentOverride> GetContentOverrides()
+            => ContentPackUtils.GetOverridesFromContentPaths(this);
+
+        public IEnumerable<ContentPatch> GetContentPatches()
+            => ContentPackUtils.GetPatchesFromContentPaths(this);
 
         public override string ToString()
         {
@@ -54,11 +67,6 @@ namespace Lomztein.BFA2.ContentSystem
 
         public void Init()
         {
-        }
-
-        public string[] GetContentPaths()
-        {
-            return System.IO.File.ReadAllLines(GetResourcesIndexPath()).Select(x => System.IO.Path.ChangeExtension(x, null)).ToArray();
         }
     }
 }

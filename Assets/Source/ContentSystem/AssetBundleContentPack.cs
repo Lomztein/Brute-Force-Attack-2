@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Lomztein.BFA2.ContentSystem
 {
@@ -25,8 +26,9 @@ namespace Lomztein.BFA2.ContentSystem
             _assetBundle = bundle;
         }
 
-        public object LoadContent(string path, Type type)
+        public object LoadContent(string path, Type type, IEnumerable<string> patches)
         {
+            Assert.IsTrue(patches.Count() == 0, "Cannot patch AssetBundle assets.");
             if (_assetBundle.Contains(path))
             {
                 return _assetBundle.LoadAsset(path, type);
@@ -49,9 +51,15 @@ namespace Lomztein.BFA2.ContentSystem
 
         public void Init () { }
 
-        public string[] GetContentPaths()
+        public IEnumerable<string> GetContentPaths()
         {
             return _assetBundle.GetAllAssetNames();
         }
+
+        public IEnumerable<ContentOverride> GetContentOverrides()
+            => ContentPackUtils.GetOverridesFromContentPaths(this);
+
+        public IEnumerable<ContentPatch> GetContentPatches()
+            => ContentPackUtils.GetPatchesFromContentPaths(this);
     }
 }

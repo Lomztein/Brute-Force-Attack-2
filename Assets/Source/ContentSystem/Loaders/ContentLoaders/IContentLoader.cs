@@ -7,6 +7,6 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
 {
     public interface IContentLoader
     {
-        object LoadContent(string path, Type type);
+        object LoadContent(string path, Type type, IEnumerable<string> patches);
     }
 }

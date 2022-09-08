@@ -9,6 +9,6 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
     {
         bool CanLoad(Type type);
 
-        object Load(string path, Type type);
+        object Load(string path, Type type, IEnumerable<string> patches);
     }
 }

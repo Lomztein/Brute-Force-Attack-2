@@ -50,18 +50,18 @@ namespace Lomztein.BFA2.ContentSystem
         private bool ShouldLoadFromBundle (string path)
             => path.StartsWith(ASSET_BUNDLE_RELATIVE_PATH) && _includedAssets != null;
 
-        public object LoadContent(string path, Type asType)
+        public object LoadContent(string path, Type asType, IEnumerable<string> patches)
         {
             if (ShouldLoadFromBundle(path))
             {
-                return _includedAssets.LoadContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), asType);
+                return _includedAssets.LoadContent(path.Substring(ASSET_BUNDLE_RELATIVE_PATH.Length), asType, patches);
             }
             else
             {
                 string absolutePath = System.IO.Path.Combine(Path, path);
                 try
                 {
-                    return _contentLoader.LoadContent(absolutePath, asType);
+                    return _contentLoader.LoadContent(absolutePath, asType, patches);
                 }
                 catch (Exception exc)
                 {
@@ -72,14 +72,20 @@ namespace Lomztein.BFA2.ContentSystem
             }
         }
 
-        public string[] GetContentPaths()
+        public IEnumerable<string> GetContentPaths()
         {
             return Directory.GetFiles(Path, "*", SearchOption.AllDirectories)
                 .Where(x => System.IO.Path.GetExtension(x) != IGNORE_SUFFIX)
                 .Where(x => !System.IO.Path.GetFileName(x).StartsWith(IGNORE_PREFIX))
-                .Select(x => x.Substring(Path.Length))
+                .Select(x => x[Path.Length..])
                 .ToArray();
         }
+
+        public IEnumerable<ContentOverride> GetContentOverrides()
+            => ContentPackUtils.GetOverridesFromContentPaths(this);
+
+        public IEnumerable<ContentPatch> GetContentPatches()
+            => ContentPackUtils.GetPatchesFromContentPaths(this);
 
         public override string ToString()
         {

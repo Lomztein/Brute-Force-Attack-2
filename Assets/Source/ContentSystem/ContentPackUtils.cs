@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -45,6 +46,33 @@ namespace Lomztein.BFA2.ContentSystem
             }
 
             return all;
+        }
+
+        public const string OVERRIDES_SUBFOLDER = "Override";
+        public static IEnumerable<ContentOverride> GetOverridesFromContentPaths(this IContentPack pack)
+        {
+            var content = pack.GetContentPaths().ToArray();
+            var overrides = pack.GetContentPaths().Where(x => x.StartsWith(OVERRIDES_SUBFOLDER));
+            foreach (var over in overrides)
+            {
+                string sub = over.Substring(OVERRIDES_SUBFOLDER.Length + 1);
+                string overridePack = sub.Substring(0, sub.IndexOf('\\'));
+                string localPath = sub.Substring(sub.IndexOf('\\'));
+                yield return new ContentOverride(overridePack + localPath, over);
+            }
+        }
+
+        public const string PATCH_SUBFOLDER = "Patch";
+        public static IEnumerable<ContentPatch> GetPatchesFromContentPaths(this IContentPack pack)
+        {
+            var patches = pack.GetContentPaths().Where(x => x.StartsWith(PATCH_SUBFOLDER));
+            foreach (var patch in patches)
+            {
+                string sub = patch.Substring(PATCH_SUBFOLDER.Length + 1);
+                string patchPack = sub.Substring(0, sub.IndexOf('/'));
+                string localPath = sub.Substring(sub.IndexOf('/'));
+                yield return new ContentPatch(patchPack + localPath, new[] { patch });
+            }
         }
     }
 }

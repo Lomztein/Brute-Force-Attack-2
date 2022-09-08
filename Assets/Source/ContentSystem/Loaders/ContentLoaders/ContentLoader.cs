@@ -19,12 +19,12 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
             }
         }
 
-        public object LoadContent(string path, Type type)
+        public object LoadContent(string path, Type type, IEnumerable<string> patches)
         {
             var loader = _loaders.FirstOrDefault(x => x.CanLoad(type));
             if (loader != null)
             {
-                return loader.Load(path, type);
+                return loader.Load(path, type, patches);
             }
             throw new NotImplementedException($"Failed to load object of {nameof(type)} {type.FullName}, no fitting RawContentTypeLoader available.");
         }

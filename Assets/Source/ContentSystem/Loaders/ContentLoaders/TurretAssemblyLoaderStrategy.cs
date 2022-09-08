@@ -15,9 +15,9 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
     {
         public bool CanLoad (Type type) => typeof(ContentCachedTurretAssemblyPrefab).IsAssignableFrom(type);
 
-        public object Load(string path, Type type)
+        public object Load(string path, Type type, IEnumerable<string> patches)
         {
-            var data = DataSerialization.FromFile(path);
+            var data = DataSerialization.FromFile(path, patches);
             var model = ObjectPipeline.DeserializeObject(data);
             return new ContentCachedTurretAssemblyPrefab (model);
         }

@@ -1,18 +1,18 @@
 using DotNet.Globbing;
-using Lomztein.BFA2.ContentSystem.Objects;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
-using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentIndex
     {
+        public const string OVERRIDES_FOLDER = "Override";
+        public const string PATCH_FOLDER = "Patch";
+
         private List<string> _index = new List<string>();
+        private Dictionary<string, string> _overrides = new Dictionary<string, string>();
+        private Dictionary<string, List<string>> _patches = new Dictionary<string, List<string>>();
 
         internal void AddIndices (IEnumerable<string> indices)
         {
@@ -27,6 +27,43 @@ namespace Lomztein.BFA2.ContentSystem
             _index.Add(path);
         }
 
+        internal void AddOverride(string toOverridePath, string overridePath)
+        {
+            if (!_overrides.ContainsKey(toOverridePath))
+            {
+                _overrides.Add(toOverridePath, overridePath);
+            }
+            else
+            {
+                _overrides[toOverridePath] = overridePath;
+            }
+        }
+
+        internal void AddPatch(string toPatchPath, string patchPath)
+        {
+            if (!_patches.ContainsKey(toPatchPath))
+            {
+                _patches.Add(toPatchPath, new List<string>());
+                _patches[toPatchPath].Add(patchPath);
+            }
+            _patches[toPatchPath].Add(patchPath);
+        }
+
+        internal bool TryGetOverride(string path, out string overridePath)
+            => _overrides.TryGetValue(path, out overridePath);
+
+        internal IEnumerable<string> GetPatches(string path)
+        {
+            if (_patches.TryGetValue(path, out List<string> patchPaths))
+            {
+                return patchPaths;
+            }
+            else
+            {
+                return Array.Empty<string>();
+            }
+        }
+
         internal IEnumerable<string> Query(string pattern)
         {
             return Query(_index, pattern);
@@ -38,6 +75,12 @@ namespace Lomztein.BFA2.ContentSystem
             return against.Where(x => glob.IsMatch(x));
         }
 
-        internal void ClearIndex() => _index.Clear();
+        internal void ClearIndex()
+        {
+            _index.Clear();
+            _overrides.Clear();
+            _patches.Clear();
+        }
+
     }
 }

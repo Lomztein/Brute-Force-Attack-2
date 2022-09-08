@@ -18,16 +18,16 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
 
         public bool CanLoad(Type type) => type == typeof(MapData);
 
-        public object Load(string path, Type type)
+        public object Load(string path, Type type, IEnumerable<string> patches)
         {
             string folder = Path.GetDirectoryName(path);
             string previewFolder = Path.Combine(folder, PREVIEW_SUBFOLDER);
 
-            MapData data = (MapData)_mapLoader.Load(path, type);
+            MapData data = (MapData)_mapLoader.Load(path, type, patches);
             string previewPath = Path.Combine(previewFolder, data.Name + ".png");
             if (File.Exists(previewPath))
             {
-                Texture2D preview = (Texture2D)_textureLoader.Load(previewPath, typeof(Texture2D));
+                Texture2D preview = (Texture2D)_textureLoader.Load(previewPath, typeof(Texture2D), Array.Empty<string>());
                 data.SetPreview(preview);
             }
 

@@ -11,7 +11,14 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
     {
         public bool CanLoad(Type type) => type == typeof(string);
 
-        public object Load(string path, Type type)
-            => File.ReadAllText(path);
+        public object Load(string path, Type type, IEnumerable<string> patches)
+        {
+            StringBuilder builder = new(File.ReadAllText(path));
+            foreach (var pat in patches)
+            {
+                builder.Append(File.ReadAllText(pat));
+            }
+            return builder.ToString();
+        }
     }
 }

@@ -15,9 +15,9 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         public bool CanLoad(Type type)
             => typeof(IContentCachedPrefab) == type || type == typeof (IContentPrefab);
 
-        public object Load(string path, Type type)
+        public object Load(string path, Type type, IEnumerable<string> patches)
         {
-            JToken data = DataSerialization.FromFile(path);
+            JToken data = DataSerialization.FromFile(path, patches);
             var serializer = new RootSerializer();
             var model = serializer.Deserialize(data);
             return new ContentCachedPrefab (model);

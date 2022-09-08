@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 namespace Lomztein.BFA2.ContentSystem
@@ -73,7 +74,7 @@ namespace Lomztein.BFA2.ContentSystem
             _loadedAndActivePacks.AddRange(shouldLoad);
 
             Debug.Log("Clearing and setting up index..");
-            ResetIndex();
+            RebuildIndex();
             
             Debug.Log("Loading assemblies into memory..");
             LoadPluginAssembliesIntoMemory(_loadedAndActivePacks);
@@ -165,8 +166,19 @@ namespace Lomztein.BFA2.ContentSystem
 
         public object LoadContent(string path, Type type)
         {
+            // TODO: Implement patching for both defaults and overrides.
+
             path = OSAgnosticPath(path);
-            object obj = GetPack(GetPackFolder(path)).LoadContent(GetContentPath(path), type);
+            object obj;
+            // Check for overrides
+            if (_index.TryGetOverride(path, out string overridePath))
+            {
+                obj = GetPack(GetPackFolder(overridePath)).LoadContent(GetContentPath(overridePath), type, _index.GetPatches(overridePath));
+            }
+            else
+            {
+                obj = GetPack(GetPackFolder(path)).LoadContent(GetContentPath(path), type, _index.GetPatches(path));
+            }
             _cache.SetCache(path, obj);
             return obj;
         }
@@ -221,12 +233,26 @@ namespace Lomztein.BFA2.ContentSystem
         public void ClearCache() => _cache.ClearCache();
         public void ClearCache(string path) => _cache.ClearCache(path);
         public IEnumerable<string> QueryContentIndex(string pattern) => _index.Query(pattern);
-        public void ResetIndex()
+
+        public void RebuildIndex()
         {
             _index.ClearIndex();
             foreach (var pack in _loadedAndActivePacks)
             {
                 _index.AddIndices(pack.GetContentPaths().Select(y => pack.Name + Path.DirectorySeparatorChar + y));
+
+                foreach (var over in pack.GetContentOverrides())
+                {
+                    _index.AddOverride(over.OriginalPath, pack.Name + Path.DirectorySeparatorChar + over.OverridePath);
+                }
+
+                foreach (var patch in pack.GetContentPatches())
+                {
+                    foreach (var patchPath in patch.PatchPaths)
+                    {
+                        _index.AddPatch(patch.OriginalPath, pack.Name + Path.DirectorySeparatorChar + patchPath);
+                    }
+                }
             }
         }
     }

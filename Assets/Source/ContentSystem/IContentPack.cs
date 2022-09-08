@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Lomztein.BFA2.ContentSystem
@@ -15,7 +16,10 @@ namespace Lomztein.BFA2.ContentSystem
 
         void Init();
 
-        object LoadContent(string path, Type asType);
-        string[] GetContentPaths();
+        object LoadContent(string path, Type asType, IEnumerable<string> patches);
+
+        IEnumerable<string> GetContentPaths();
+        IEnumerable<ContentOverride> GetContentOverrides();
+        IEnumerable<ContentPatch> GetContentPatches();
     }
 }

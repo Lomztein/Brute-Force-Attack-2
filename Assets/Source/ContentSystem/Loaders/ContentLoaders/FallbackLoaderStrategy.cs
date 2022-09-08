@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,11 +17,10 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         public bool CanLoad(Type type)
             => true;
 
-        public object Load(string path, Type type)
+        public object Load(string path, Type type, IEnumerable<string> patches)
         {
-            string json = File.ReadAllText(path);
-            var jtoken = JToken.Parse(json);
-            return ObjectPipeline.BuildObject(jtoken, type);
+            var token = DataSerialization.FromFile(path, patches);
+            return ObjectPipeline.BuildObject(token, type);
         }
     }
 }
