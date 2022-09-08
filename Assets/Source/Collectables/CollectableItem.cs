@@ -20,6 +20,7 @@ namespace Lomztein.BFA2.Collectables
         protected override void Start()
         {
             Sprite = Item.Sprite;
+            SpriteTint = Item.SpriteTint;
             base.Start();
         }
 

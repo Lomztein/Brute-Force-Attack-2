@@ -16,6 +16,7 @@ namespace Lomztein.BFA2.Enemies.Buffs
         public float Time;
         [ModelProperty]
         public float Coeffecient = 1f;
+        public float Power;
         public Enemy Target;
 
         public bool Ended => Time < 0;

@@ -17,11 +17,9 @@ namespace Lomztein.BFA2.Enemies.Buffs
         private GameObject _effectObj;
 
         [ModelProperty]
-        public float DPSPerStack;
-        [ModelProperty]
         public Colorization.Color DamageColor;
 
-        private float CurrentDPS => DPSPerStack * CurrentStack;
+        private float CurrentDPS => Power * CurrentStack;
 
         public override void Begin(Enemy target, int stackSize, float time)
         {

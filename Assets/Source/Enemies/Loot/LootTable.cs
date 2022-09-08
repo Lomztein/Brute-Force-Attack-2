@@ -1,4 +1,5 @@
-﻿using Lomztein.BFA2.ContentSystem.Objects;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.Objects;
 using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections;
@@ -13,23 +14,34 @@ namespace Lomztein.BFA2.Enemies.Loot
     [CreateAssetMenu(fileName = "NewLootTable", menuName = "BFA2/Enemies/Loot Table")]
     public class LootTable : ScriptableObject, IEnumerable<LootItem>
     {
-        [ModelProperty, SerializeField]
+        [ModelProperty]
+        public string LootPath;
         private List<LootItem> _items = new List<LootItem>();
         public LootItem[] Items => _items.ToArray();
         public int Count => _items.Count;
 
-        public RollResult Roll(float chanceScalar, int wave)
+        public void Init ()
+        {
+            _items = LoadItems().ToList();
+        }
+
+        public RollResult Roll(Enemy enemy, int wave)
         {
             RollResult result = new RollResult();
             foreach (LootItem item in _items)
             {
-                int amount = item.Roll(chanceScalar, wave);
-                if (amount != 0)
+                var roll = item.RollItem(enemy, wave);
+                if (roll != null && roll.Amount > 0)
                 {
-                    result.Add(item.Prefab, amount);
+                    result.Add(roll);
                 }
             }
             return result;
+        }
+
+        private IEnumerable<LootItem> LoadItems ()
+        {
+            return Content.GetAll<LootItem>(LootPath);
         }
 
         public void AddItem(LootItem item) => _items.Add(item);

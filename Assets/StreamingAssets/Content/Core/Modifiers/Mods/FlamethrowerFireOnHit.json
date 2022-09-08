@@ -9,6 +9,8 @@
     "BuffTimeInfo": "$Path{Core/Modifiers/Stats/OnFireBurnTime.json}",
     "BuffStacksInfo": "$Path{Core/Modifiers/Stats/OnFireStacks.json}",
     "BuffCoeffecientInfo": "$Path{Core/Modifiers/Stats/OnFireBurnTime.json}",
+    "BuffPowerStatInfo": "$Path{Core/Modifiers/Stats/Damage.json}",
+    "PowerStatFactor": 0.25,
     "BuffTime": 10.0,
     "BuffTimePerStack": 2.0,
     "BuffStacks": 1,
@@ -20,6 +22,12 @@
         "$Type": "Lomztein.BFA2.Modification.Filters.HasEventFilter",
         "$Data": {
           "Info": "$Path{Core/Modifiers/Events/OnProjectileHit.json}"
+        }
+      },
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Damage.json}"
         }
       }
     ],

@@ -26,5 +26,8 @@ namespace Lomztein.BFA2.Inventory.Items
         public ContentSpriteReference Sprite;
         [ModelProperty]
         public Color SpriteTint;
+
+        public virtual void OnAddedToInventory(IInventory inventory) { }
+        public virtual void OnRemovedFromInventory(IInventory inventory) { }
     }
 }

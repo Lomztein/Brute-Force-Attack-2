@@ -24,6 +24,10 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         public StatInfo BuffStacksInfo;
         [ModelAssetReference]
         public StatInfo BuffCoeffecientInfo;
+        [ModelAssetReference]
+        public StatInfo BuffPowerStatInfo;
+        [ModelProperty]
+        public float PowerStatFactor;
         [ModelProperty]
         public float BuffTime = -1;
         [ModelProperty]
@@ -40,6 +44,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         private IStatReference _time;
         private IStatReference _stacks;
         private IStatReference _coeffecient;
+        private IStatReference _buffPowerStat;
 
         public override void ApplyBase(IModdable moddable, IStatContainer stats, IEventContainer events)
         {
@@ -47,6 +52,10 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
             _time = stats.AddStat(BuffTimeInfo, BuffTime, this);
             _stacks = stats.AddStat(BuffStacksInfo, BuffStacks, this);
             _coeffecient = stats.AddStat(BuffCoeffecientInfo, BuffCoeffecient, this);
+            if (BuffPowerStatInfo != null)
+            {
+                _buffPowerStat = stats.GetStat(BuffPowerStatInfo.Identifier);
+            }
         }
 
         public override void ApplyStack(IModdable moddable, IStatContainer stats, IEventContainer events)
@@ -76,6 +85,10 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
             if (args.TryGetArgs(out HitInfo info) && info.Collider.TryGetComponent(out Enemy enemy))
             {
                 EnemyBuff newBuff = Instantiate(Buff);
+                if (BuffPowerStatInfo != null)
+                {
+                    newBuff.Power = _buffPowerStat.GetValue() * PowerStatFactor;
+                }
                 newBuff.Coeffecient = _coeffecient.GetValue() * Coeffecient;
                 enemy.TryAddBuff(newBuff, _time.GetValue(), Mathf.RoundToInt(_stacks.GetValue()));
             }

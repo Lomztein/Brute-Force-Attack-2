@@ -41,7 +41,7 @@ namespace Lomztein.BFA2.UI.Style
 
         public void Update()
         {
-            if (Application.isEditor)
+            if (!Application.isPlaying)
             {
                 ApplyStyle(GetCurrentStyle());
             }

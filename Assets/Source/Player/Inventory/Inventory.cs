@@ -22,11 +22,13 @@ namespace Lomztein.BFA2.Inventory
         {
             _items.Add(item);
             OnItemAdded?.Invoke(item);
+            item.OnAddedToInventory(this); // Not a fan of having this here.
         }
         public void RemoveItem(Item item)
         {
             _items.Remove(item);
             OnItemRemoved?.Invoke(item);
+            item.OnRemovedFromInventory(this); // Nor this
         }
 
         public IEnumerator<Item> GetEnumerator() => _items.GetEnumerator();

@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace Lomztein.BFA2.Enemies.Loot
 {
-    public class RollResult : IEnumerable<KeyValuePair<ContentPrefabReference, int>>
+    public class RollResult : IEnumerable<Roll>
     {
-        private Dictionary<ContentPrefabReference, int> _dict = new Dictionary<ContentPrefabReference, int>();
+        private List<Roll> _rolls = new List<Roll>();
 
-        public void Add(ContentPrefabReference prefab, int amount) => _dict.Add(prefab, amount);
+        public void Add(Roll roll) => _rolls.Add(roll);
 
-        public IEnumerator<KeyValuePair<ContentPrefabReference, int>> GetEnumerator()
+        public IEnumerator<Roll> GetEnumerator()
         {
-            return ((IEnumerable<KeyValuePair<ContentPrefabReference, int>>)_dict).GetEnumerator();
+            return ((IEnumerable<Roll>)_rolls).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable<KeyValuePair<ContentPrefabReference, int>>)_dict).GetEnumerator();
+            return ((IEnumerable)_rolls).GetEnumerator();
         }
     }
 }
