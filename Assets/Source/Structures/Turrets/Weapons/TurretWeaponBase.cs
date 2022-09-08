@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Structures.Turrets.Weapons
 {
@@ -60,6 +61,9 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         [ModelProperty]
         public float BasePierce;
 
+        [ModelAssetReference]
+        public AudioClip FireAudio;
+
         public IStatReference Damage;
         public IStatReference ProjectileAmount;
         public IStatReference Spread;
@@ -76,7 +80,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         private bool _statsInitialized;
 
         [ModelProperty]
-        public Color Color;
+        public Colorization.Color Color;
 
 
         public override void End()
@@ -154,6 +158,10 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
 
         private void Weapon_OnFire(IProjectile[] projs)
         {
+            if (FireAudio != null)
+            {
+                AudioManager.TryPlayEffect(FireAudio);
+            }
             OnFire.CallEvent(new Modification.Events.EventArgs(this, projs), this);
         }
 
@@ -182,7 +190,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             return Weapon.TryFire();
         }
 
-        public Color GetColor()
+        public Colorization.Color GetColor()
         {
             return Color;
         }
