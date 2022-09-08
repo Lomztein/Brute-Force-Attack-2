@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2
+namespace Lomztein.BFA2.Audio
 {
     public class AudioManager : MonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace Lomztein.BFA2
             _instance = this;
         }
 
-        public static bool CanPlayEffect(AudioClip clip)
+        public static bool CanPlay(AudioClip clip)
         {
             if (_instance._totalCurrentPlaying >= _instance.MaxSimultaniousEffects)
             {
@@ -41,9 +41,9 @@ namespace Lomztein.BFA2
             return true;
         }
 
-        public static bool TryPlayEffect(AudioClip clip)
+        public static bool TryPlayOneShot(AudioClip clip)
         {
-            if (CanPlayEffect(clip))
+            if (CanPlay(clip))
             {
                 _instance.StartCoroutine(_instance.InternalPlay(_instance.EffectsSource, clip, _instance.EffectsVolume));
                 return true;
@@ -51,20 +51,28 @@ namespace Lomztein.BFA2
             return false;
         }
 
-        private IEnumerator InternalPlay(AudioSource source, AudioClip clip, float scale)
+        public void RegisterPlaying(AudioClip clip)
         {
             if (!_currentPlaying.ContainsKey(clip))
                 _currentPlaying.Add(clip, 0);
-            float length = clip.length;
-            source.PlayOneShot(clip, scale);
-
             _currentPlaying[clip]++;
             _totalCurrentPlaying++;
+        }
 
-            yield return new WaitForSecondsRealtime(length);
-
+        public void UnregisterPlaying(AudioClip clip)
+        {
             _currentPlaying[clip]--;
             _totalCurrentPlaying--;
+        }
+
+        private IEnumerator InternalPlay(AudioSource source, AudioClip clip, float scale)
+        {
+
+            float length = clip.length;
+            source.PlayOneShot(clip, scale);
+            RegisterPlaying(clip);
+            yield return new WaitForSecondsRealtime(length);
+            UnregisterPlaying(clip);
         }
     }
 }

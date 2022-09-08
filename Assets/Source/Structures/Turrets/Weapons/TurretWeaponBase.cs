@@ -160,7 +160,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         {
             if (FireAudio != null)
             {
-                AudioManager.TryPlayEffect(FireAudio);
+                AudioManager.TryPlayOneShot(FireAudio);
             }
             OnFire.CallEvent(new Modification.Events.EventArgs(this, projs), this);
         }
