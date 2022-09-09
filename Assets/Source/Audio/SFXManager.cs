@@ -4,14 +4,11 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Audio
 {
-    public class AudioManager : MonoBehaviour
+    public class SFXManager : MonoBehaviour
     {
-        private static AudioManager _instance;
-
-        public float MusicVolume { get; private set; } = 1f;
+        private static SFXManager _instance;
         public float EffectsVolume { get; private set; } = 1f;
 
-        public AudioSource MusicSource;
         public AudioSource EffectsSource;
 
         public int MaxSimultaniousEffects = 32;

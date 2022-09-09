@@ -18,15 +18,25 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
         {
             if (patches.Count() > 0)
             {
-                throw new InvalidOperationException("Patching audio clips is currently not supported.");
+                throw new InvalidOperationException("Patching audio clips is not supported.");
             }
 
-            //Assert.IsTrue(Path.GetExtension(path).Equals("mp3"), "Only MP3 files are supported at the moment.");
-            using UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.WAV);
+            using UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(path, ExtensionToAudioType(Path.GetExtension(path)));
             request.SendWebRequest();
 
             while (!request.isDone) { }
             return DownloadHandlerAudioClip.GetContent(request);
+        }
+
+        private AudioType ExtensionToAudioType(string ext)
+        {
+            return ext switch
+            {
+                ".mp3" or ".mp2" => AudioType.MPEG,
+                ".wav" => AudioType.WAV,
+                ".ogg" => AudioType.OGGVORBIS,
+                _ => throw new InvalidOperationException($"Extension '{ext}' not supported for audio clips."),
+            };
         }
     }
 }

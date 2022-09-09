@@ -7,6 +7,7 @@ using Lomztein.BFA2.Structures.Turrets.Targeters;
 using Lomztein.BFA2.Structures.Turrets.TargetProviders;
 using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.Projectiles;
+using Lomztein.BFA2.Audio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,7 +161,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         {
             if (FireAudio != null)
             {
-                AudioManager.TryPlayOneShot(FireAudio);
+                SFXManager.TryPlayOneShot(FireAudio);
             }
             OnFire.CallEvent(new Modification.Events.EventArgs(this, projs), this);
         }
