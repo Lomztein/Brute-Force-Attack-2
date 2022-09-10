@@ -2,6 +2,8 @@
 using Lomztein.BFA2.ContentSystem.References.PrefabProviders;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Player.Progression;
+using Lomztein.BFA2.Research;
+using Lomztein.BFA2.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,53 +15,52 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
 {
     public class IdentifiableUnlockPrefabProvider : MonoBehaviour, ICachedPrefabProvider, IDynamicProvider<IContentCachedPrefab>
     {
-        public string UnlockListName;
         public string ContentPath;
-        private IUnlockList UnlockList => Player.Player.Unlocks;
+        public string UnlockListName;
+        public int MissingResearchThreshold;
+
+        private IUnlockList UnlockList => Player.Player.Unlocks; // TODO: Replace with something like a PlayerUnlockListLink.
+
+        private IContentCachedPrefab[] _allPrefabs;
 
         public event Action<IEnumerable<IContentCachedPrefab>> OnAdded;
         public event Action<IEnumerable<IContentCachedPrefab>> OnRemoved;
 
-        private List<IContentCachedPrefab> _prefabs = new List<IContentCachedPrefab>();
-
-        public IContentCachedPrefab[] Get() => _prefabs.Where(x => IsUnlocked(x)).ToArray();
-
         private void Awake()
         {
-            _prefabs.AddRange(ContentSystem.Content.GetAll<IContentCachedPrefab>(ContentPath));
+            _allPrefabs = ContentSystem.Content.GetAll<IContentCachedPrefab>(ContentPath).ToArray();
         }
 
         private void Start()
         {
-            UnlockList.OnUnlockChange += OnUnlockChanged;
+            UnlockList.OnUnlockChange += OnUnlockChange;
         }
 
-        private void OnUnlockChanged(string identifier, bool value)
+        private void OnUnlockChange(string identifier, bool value)
         {
-            IContentCachedPrefab prefab = _prefabs.FirstOrDefault(x => x.GetCache().GetComponent<IIdentifiable>().Identifier == identifier);
-            if (prefab != null)
+            if (value == true)
             {
-                if (value == true)
-                {
-                    Add(new[] { prefab });
-                }
-                else
-                {
-                    Remove(new[] { prefab });
-                }
+                IEnumerable<IContentCachedPrefab> newlyUnlocked = _allPrefabs
+                    .Where(x => x.GetCache().GetComponent<Structure>().Identifier.Equals(identifier))
+                    .Where(x => IsPartiallyUnlocked(x.GetCache().GetComponent<Structure>()));
+
+                OnAdded?.Invoke(newlyUnlocked);
             }
         }
 
-        private void Remove(IEnumerable<IContentCachedPrefab> prefabs)
+
+        private bool IsPartiallyUnlocked(Structure structure)
         {
-            OnRemoved?.Invoke(prefabs);
+            var missingResearch = UnlockList.GetRequiredResearchToUnlock(ResearchController.Instance.GetAll(), new[] { structure.Identifier }).Distinct().ToArray();
+            return missingResearch.Length <= MissingResearchThreshold;
         }
 
-        private void Add (IEnumerable<IContentCachedPrefab> prefabs)
+        private IContentCachedPrefab[] GetPartiallyUnlocked()
         {
-            OnAdded?.Invoke(prefabs);
+            return _allPrefabs.Where(x => IsPartiallyUnlocked(x.GetCache().GetComponent<Structure>())).ToArray();
         }
 
-        private bool IsUnlocked(IContentCachedPrefab prefab) => UnlockList.IsUnlocked(prefab.GetCache().GetComponent<IIdentifiable>().Identifier);
+        public IContentCachedPrefab[] Get()
+            => GetPartiallyUnlocked();
     }
 }

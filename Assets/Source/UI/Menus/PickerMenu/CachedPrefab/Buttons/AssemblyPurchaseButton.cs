@@ -9,63 +9,9 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 {
-    public class AssemblyPurchaseButton : PurchaseButton
+    public class AssemblyPurchaseButton : UnlockablePurchaseButton
     {
-        private IUnlockList UnlockList => Player.Player.Unlocks;
-        public GameObject MissingResearchToolTip;
-
-        public override GameObject GetToolTip()
-        {
-            if (IsAssemblyUnlocked())
-            {
-                return base.GetToolTip();
-            }
-            else
-            {
-                GameObject newToolTip = Instantiate(MissingResearchToolTip);
-                newToolTip.GetComponent<IPurchasableToolTip>().Assign(_purchasable);
-                return newToolTip;
-            }
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-            if (ResearchController.Instance)
-            {
-                ResearchController.Instance.OnResearchCompleted += Instance_OnResearchCompleted;
-            }
-            if (!IsAssemblyUnlocked())
-            {
-                transform.SetAsLastSibling();
-            }
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            if (ResearchController.Instance)
-            {
-                ResearchController.Instance.OnResearchCompleted -= Instance_OnResearchCompleted;
-            }
-        }
-
-        private void Instance_OnResearchCompleted(ResearchOption obj)
-        {
-            UpdateInteractable();
-        }
-
-        protected override void UpdateInteractable()
-        {
-            base.UpdateInteractable();
-            if (!IsAssemblyUnlocked())
-            {
-                Image.color = Color.black;
-                Button.interactable = false;
-            }
-        }
-
-        private bool IsAssemblyUnlocked ()
+        protected override bool IsUnlocked ()
         {
             if (_prefab.GetCache().TryGetComponent(out TurretAssembly assembly))
             {

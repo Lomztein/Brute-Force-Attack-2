@@ -23,7 +23,6 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
         private IUnlockList UnlockList => Player.Player.Unlocks; // TODO: Replace with something like a PlayerUnlockListLink.
 
         private IContentCachedPrefab[] _allPrefabs;
-        private List<string> _currentlyUnlocked;
 
         public event Action<IEnumerable<IContentCachedPrefab>> OnAdded;
         public event Action<IEnumerable<IContentCachedPrefab>> OnRemoved;
@@ -58,12 +57,12 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.PrefabProviders
             return missingResearch.Length <= MissingResearchThreshold;
         }
 
-        private IContentCachedPrefab[] GetUnlocked ()
+        private IContentCachedPrefab[] GetPartiallyUnlocked ()
         {
             return _allPrefabs.Where(x => IsPartiallyUnlocked(x.GetCache().GetComponent<TurretAssembly>())).ToArray();
         }
 
         public IContentCachedPrefab[] Get()
-            => GetUnlocked();
+            => GetPartiallyUnlocked();
     }
 }

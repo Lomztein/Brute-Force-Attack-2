@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc399c68f0dc08c4ebf1e4707198d77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonPrefab: {fileID: 3679529093035341646, guid: 4a2595a7c7c539c4d8bdc294402e6ddf,
+  ButtonPrefab: {fileID: 3679529093035341646, guid: 097a741e46c142c419157d58edae9236,
     type: 3}
   ButtonParent: {fileID: 115108620}
   _Name: Structures
@@ -257,8 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ba2ff0b155ef0468d7c9ae04ca9fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnlockListName: Structures
   ContentPath: '*/Structures/*'
+  UnlockListName: Structures
+  MissingResearchThreshold: 3
 --- !u!4 &164220222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7241610221097344680, guid: 56d4025410dcd9a4299425a9153ace8c,
@@ -938,8 +939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 514.0004, y: -16}
-  m_SizeDelta: {x: 174.00014, y: 32}
+  m_AnchoredPosition: {x: 758.0004, y: -16}
+  m_SizeDelta: {x: 255.33348, y: 32}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &497787330
 MonoBehaviour:
@@ -1758,7 +1759,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 8, y: -16}
-  m_SizeDelta: {x: 174.00014, y: 32}
+  m_SizeDelta: {x: 255.33348, y: 32}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &715582710
 MonoBehaviour:
@@ -5059,8 +5060,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.0002, y: -16}
-  m_SizeDelta: {x: 174.00014, y: 32}
+  m_AnchoredPosition: {x: 383.0002, y: -16}
+  m_SizeDelta: {x: 255.33348, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556893455
 MonoBehaviour:
