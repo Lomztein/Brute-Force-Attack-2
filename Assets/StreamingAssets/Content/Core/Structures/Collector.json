@@ -42,18 +42,6 @@
       }
     },
     {
-      "$Type": "UnityEngine.CircleCollider2D",
-      "$Data": {
-        "Radius": 0.5,
-        "Offset": {
-          "X": 0.0,
-          "Y": 0.0
-        },
-        "IsTrigger": false,
-        "UsedByEffector": false
-      }
-    },
-    {
       "$Type": "Lomztein.BFA2.Purchasing.Resources.PlayerResourceContainerLink",
       "$Data": {}
     },
@@ -74,6 +62,19 @@
             "Y": 0.5
           },
           "PixelsPerUnit": 32.0
+        }
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
         }
       }
     }
@@ -164,18 +165,6 @@
                 "_width": "Medium",
                 "_height": "Medium",
                 "Category": "$Path{Core/StructureCategories/Base.json}"
-              }
-            },
-            {
-              "$Type": "UnityEngine.CircleCollider2D",
-              "$Data": {
-                "Radius": 0.5,
-                "Offset": {
-                  "X": 0.0,
-                  "Y": 0.0
-                },
-                "IsTrigger": false,
-                "UsedByEffector": false
               }
             },
             {
@@ -292,18 +281,6 @@
                     "_width": "Medium",
                     "_height": "Medium",
                     "Category": "$Path{Core/StructureCategories/Rotator.json}"
-                  }
-                },
-                {
-                  "$Type": "UnityEngine.CircleCollider2D",
-                  "$Data": {
-                    "Radius": 0.5,
-                    "Offset": {
-                      "X": 0.0,
-                      "Y": 0.0
-                    },
-                    "IsTrigger": false,
-                    "UsedByEffector": false
                   }
                 }
               ],

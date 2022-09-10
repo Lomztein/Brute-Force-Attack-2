@@ -70,8 +70,8 @@ namespace Lomztein.BFA2.UI
             GL.Clear(true, true, Color.clear);
 
             Camera.targetTexture = renderTexture;
-            Camera.transform.position = _instance.transform.position + bounds.center + Camera.transform.forward * -100f;
-            Camera.transform.LookAt(_instance.transform);
+            Camera.transform.position = _instance.transform.position + bounds.center + Vector3.forward * -100f;
+            Camera.transform.LookAt(_instance.transform, Vector3.up);
             Camera.Render();
 
             Texture2D texture = new Texture2D(renderSize, renderSize, TextureFormat.ARGB32, false);

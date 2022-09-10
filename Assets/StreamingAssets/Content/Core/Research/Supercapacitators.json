@@ -1,0 +1,81 @@
+{
+  "Name": "Supercapacitators",
+  "Description": "Unlock second tier specialized energy weapons.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Components/RailgunT2.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 8
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.Supercapacitators",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ImprovedCapacitators",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.SpecializedWeapons",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.Railguns",
+      "Required": false
+    },
+    {
+      "Identifier": "Core.TeslaCoils",
+      "Required": false
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.UnlockReward",
+      "$Data": {
+        "Unlocks": [
+          {
+            "Identifier": "Core.RailgunT2",
+            "Prerequisites": [
+              {
+                "Identifier": "Core.Railguns",
+                "Required": true
+              }
+            ]
+          },
+          {
+            "Identifier": "Core.TeslaCannonT2",
+            "Prerequisites": [
+              {
+                "Identifier": "Core.TeslaCoils",
+                "Required": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

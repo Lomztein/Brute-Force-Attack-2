@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8e0d6ea65833c14daeaf0859044e9e3, type: 3}
-  m_Name: FluxCoils
+  m_Name: Supercapacitators
   m_EditorClassIdentifier: 
-  Name: Flux Coils
-  Description: Unlock the Plasma Cannon T2 and Scatter Laser T2
+  Name: Supercapacitators
+  Description: Unlock second tier specialized energy weapons.
   Sprite:
     Path: 
-    Texture: {fileID: 2800000, guid: 7efe10e643d0b594486ba46ed6d9566f, type: 3}
+    Texture: {fileID: 2800000, guid: 1f79c0e5e2468ff49a061b893b828563, type: 3}
     Rect:
       serializedVersion: 2
       x: 0
@@ -29,13 +29,17 @@ MonoBehaviour:
   ResourceCost:
     Elements:
     - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
-      Value: 7
+      Value: 8
   TimeCost: 0
-  Identifier: Core.FluxCoils
+  Identifier: Core.Supercapacitators
   Prerequisites:
-  - Identifier: Core.PlasmaCores
+  - Identifier: Core.ImprovedCapacitators
+    Required: 1
+  - Identifier: Core.SpecializedWeapons
+    Required: 1
+  - Identifier: Core.Railguns
     Required: 0
-  - Identifier: Core.RefractorCrystals
+  - Identifier: Core.TeslaCoils
     Required: 0
   UniquePrerequisites: []
   Rewards:
@@ -47,11 +51,11 @@ MonoBehaviour:
       type: {class: UnlockReward, ns: Lomztein.BFA2.Research.Rewards, asm: Assembly-CSharp}
       data:
         Unlocks:
-        - Identifier: Core.PlasmaCannonT2
+        - Identifier: Core.RailgunT2
           Prerequisites:
-          - Identifier: Core.PlasmaCores
+          - Identifier: Core.Railguns
             Required: 1
-        - Identifier: Core.ScatterLaserT2
+        - Identifier: Core.TeslaCannonT2
           Prerequisites:
-          - Identifier: Core.RefractorCrystals
+          - Identifier: Core.TeslaCoils
             Required: 1
