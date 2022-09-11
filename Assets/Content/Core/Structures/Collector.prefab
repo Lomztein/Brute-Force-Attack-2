@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Collector
   _description: Collects stuff
-  _uniqueIdentifier: 
+  _uniqueIdentifier: Core.CollectorBeam
   _cost:
     Elements: []
   Tags:
@@ -246,6 +246,8 @@ MonoBehaviour:
   _beamStart: {fileID: 0}
   _beam: {fileID: 0}
   OnCollectedInfo: {fileID: 11400000, guid: 45b8c38259e11fc4cb44a2a17985e89f, type: 2}
+  CollectionRateInfo: {fileID: 11400000, guid: 2cba89237dd9e1340860e946a96c7f5e, type: 2}
+  BaseCollectionRate: 1
 --- !u!1 &3289635402291767203
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Collector Rotator
   _description: 
-  _uniqueIdentifier: 
+  _uniqueIdentifier: Core.CollectorRotator
   _cost:
     Elements: []
   Tags:

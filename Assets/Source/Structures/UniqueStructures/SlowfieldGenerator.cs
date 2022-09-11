@@ -16,13 +16,18 @@ namespace Lomztein.BFA2.Structures
 {
     public class SlowfieldGenerator : Structure, IRanger, IModdable
     {
-        [ModelProperty]
+        [ModelAssetReference]
         public StatInfo RangeInfo;
         [ModelProperty]
         public float BaseRange;
         private IStatReference _range;
+
+        [ModelAssetReference]
+        public StatInfo SlowFactorInfo;
         [ModelProperty]
-        public float SlowFactor;
+        public float BaseSlowFactor;
+        private IStatReference _slowFactor;
+
         [ModelProperty]
         public LayerMask Mask;
 
@@ -31,17 +36,18 @@ namespace Lomztein.BFA2.Structures
         protected override void AwakeInit()
         {
             _range = Stats.AddStat(RangeInfo, BaseRange, this);
+            _slowFactor = Stats.AddStat(SlowFactorInfo, BaseSlowFactor, this);
         }
 
         private void FixedUpdate()
         {
-            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, GetRange());
+            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, GetRange(), Mask);
             foreach (Collider2D col in cols)
             {
                 Enemy enemy = col.GetComponent<Enemy>();
                 if (enemy)
                 {
-                    enemy.Speed = enemy.MaxSpeed * SlowFactor;
+                    enemy.Speed = enemy.MaxSpeed * (1f - _slowFactor.GetValue());
                 }
             }
         }

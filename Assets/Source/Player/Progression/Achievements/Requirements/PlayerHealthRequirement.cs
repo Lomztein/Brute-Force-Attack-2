@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             Facade.Battlefield.Player.OnHealthChanged += Player_OnHealthChanged;
         }
 
-        private void Player_OnHealthChanged(float arg1, float arg2, float arg3)
+        private void Player_OnHealthChanged(float arg1, float arg2, float arg3, object source)
         {
             CheckRequirements();
         }

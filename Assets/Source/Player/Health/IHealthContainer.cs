@@ -9,9 +9,9 @@ namespace Lomztein.BFA2.Player.Health
     {
         float GetMaxHealth();
         float GetCurrentHealth();
-        float ChangeHealth(float amount);
+        float ChangeHealth(float amount, object source);
 
-        event Action<float, float, float> OnHealthChanged;
-        event Action OnHealthExhausted;
+        event Action<float, float, float, object> OnHealthChanged;
+        event Action<object> OnHealthExhausted;
     }
 }

@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Player.Health
             _healthContainer.OnHealthChanged += OnHealthChanged;
         }
 
-        private void OnHealthChanged(float before, float after, float max)
+        private void OnHealthChanged(float before, float after, float max, object source)
         {
             _camera.backgroundColor = Colors.Evaluate(Mathf.Clamp01(after / max));
         }
@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Player.Health
 
         public void UpdateColors ()
         {
-            OnHealthChanged(_healthContainer.GetCurrentHealth(), _healthContainer.GetCurrentHealth(), _healthContainer.GetMaxHealth());
+            OnHealthChanged(_healthContainer.GetCurrentHealth(), _healthContainer.GetCurrentHealth(), _healthContainer.GetMaxHealth(), this);
         }
     }
 }

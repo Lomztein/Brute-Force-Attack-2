@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426c0b1513f4a394ea758d9c5414a2e6, type: 3}
+  m_Name: Lootomatic2000
+  m_EditorClassIdentifier: 
+  Identifier: Core.Lootomatic2000
+  Name: Lootomatic 2000
+  Description: Upgrades the range and collection rate of collectors.
+  Filters:
+  - rid: 2033709743104327731
+  Stats:
+  - Info: {fileID: 11400000, guid: 61ed24ad66405534e9dab80daced4889, type: 2}
+    Value: 15
+  - Info: {fileID: 11400000, guid: 2cba89237dd9e1340860e946a96c7f5e, type: 2}
+    Value: 1
+  - Info: {fileID: 11400000, guid: 323095ad0ac69e74c91019c9a9e38e3e, type: 2}
+    Value: 1
+  AddStatIfMissing: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 2033709743104327731
+      type: {class: HasTurretComponentFilter, ns: Lomztein.BFA2.Modification.Filters,
+        asm: Assembly-CSharp}
+      data:
+        ApplicableComponentIdentifiers:
+        - Core.CollectorBase
+        - Core.CollectorRotator
+        - Core.CollectorBeam

@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Punishers
 
         public void Punish(Enemy enemy)
         {
-            Player.Player.Health.ChangeHealth(-TotalDamage / _total);
+            Player.Player.Instance.TakeDamage(TotalDamage / _total, enemy);
         }
 
         public FractionalWavePunisher(int total)

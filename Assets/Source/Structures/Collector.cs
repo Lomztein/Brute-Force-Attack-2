@@ -1,6 +1,7 @@
 ﻿using Lomztein.BFA2.Collectables;
 using Lomztein.BFA2.Misc;
 using Lomztein.BFA2.Modification.Events;
+using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Structures.Turrets.Targeters;
@@ -34,6 +35,11 @@ namespace Lomztein.BFA2.Structures
         public EventInfo OnCollectedInfo;
         public IEventCaller OnCollected;
 
+        [ModelAssetReference]
+        public StatInfo CollectionRateInfo;
+        public float BaseCollectionRate = 1f;
+        private IStatReference _collectionRate;
+
         public override void End()
         {
         }
@@ -42,6 +48,7 @@ namespace Lomztein.BFA2.Structures
         {
             base.PreInit();
             OnCollected = Events.AddEvent(OnCollectedInfo, this);
+            _collectionRate = Stats.AddStat(CollectionRateInfo, BaseCollectionRate, this);
         }
 
         public override void Init()
@@ -79,7 +86,7 @@ namespace Lomztein.BFA2.Structures
         {
             if (_target && _targeter.GetDistance() < AngleTreshold)
             {
-                if (_collectable.TickCollection(deltaTime))
+                if (_collectable.TickCollection(deltaTime, _collectionRate.GetValue()))
                 {
                     OnCollected.CallEvent(new Modification.Events.EventArgs(this, _collectable), this);
                     SetTarget(null);

@@ -20,8 +20,8 @@ namespace Lomztein.BFA2.World.Defendables
             _healthContainer.OnHealthExhausted += OnHealthExhausted;
         }
 
-        public abstract void OnHealthChanged(float before, float after, float total);
+        public abstract void OnHealthChanged(float before, float after, float total, object source);
 
-        public abstract void OnHealthExhausted();
+        public abstract void OnHealthExhausted(object source);
     }
 }

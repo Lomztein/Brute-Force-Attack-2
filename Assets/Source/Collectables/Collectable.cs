@@ -39,11 +39,11 @@ namespace Lomztein.BFA2.Collectables
             _effect.transform.position = transform.position;
         }
 
-        public bool TickCollection (float deltaTime)
+        public bool TickCollection (float deltaTime, float collectionRate)
         {
             if (!_isCollected)
             {
-                _collectionProgress += deltaTime;
+                _collectionProgress += deltaTime * collectionRate;
                 _effect.Scale(1 - (_collectionProgress / CollectionTime));
 
                 if (_collectionProgress >= CollectionTime)

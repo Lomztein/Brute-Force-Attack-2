@@ -23,12 +23,12 @@ namespace Lomztein.BFA2.World.Defendables
             _backgroundMaterial = transform.Find("Background").GetComponent<Renderer>().material;
         }
 
-        public override void OnHealthChanged(float before, float after, float total)
+        public override void OnHealthChanged(float before, float after, float total, object source)
         {
             _backgroundMaterial.SetFloat("_DatastreamHealth", Mathf.Clamp01(after / total));
         }
 
-        public override void OnHealthExhausted()
+        public override void OnHealthExhausted(object source)
         {
         }
     }

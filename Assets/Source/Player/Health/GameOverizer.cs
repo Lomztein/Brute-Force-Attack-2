@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Player.Health
             _health.OnHealthExhausted += LooseTheGame;
         }
 
-        private void LooseTheGame()
+        private void LooseTheGame(object source)
         {
             Debug.Log("You lost the game.");
             WindowManager.OpenWindowAboveOverlay(GameOverWindowPrefab);

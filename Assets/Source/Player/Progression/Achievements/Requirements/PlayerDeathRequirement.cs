@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Player.Progression.Achievements.Requirements
             Facade.Battlefield.Player.OnHealthExhausted += Player_OnHealthExhausted;
         }
 
-        private void Player_OnHealthExhausted()
+        private void Player_OnHealthExhausted(object source)
         {
             _flag.Mark();
             CheckRequirements();

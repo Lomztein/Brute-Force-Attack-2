@@ -19,9 +19,9 @@ namespace Lomztein.BFA2.UI.Displays
             return SimpleToolTip.InstantiateToolTip(GetTooltip(_healthContainer.GetCurrentHealth()));
         }
 
-        protected override void OnHealthChanged(float prev, float cur, float max)
+        protected override void OnHealthChanged(float prev, float cur, float max, object source)
         {
-            base.OnHealthChanged(prev, cur, max);
+            base.OnHealthChanged(prev, cur, max, source);
             Text.text = HealthText.Replace("{0}", Mathf.RoundToInt(_healthContainer.GetMaxHealth () - cur).ToString());
             GetTooltip(cur);
         }

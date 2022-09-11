@@ -7,7 +7,7 @@ namespace Lomztein.BFA2.Player.Health
 {
     public class PlayerHealthContainerLink : MonoBehaviour, IHealthContainer
     {
-        public event Action<float, float, float> OnHealthChanged {
+        public event Action<float, float, float, object> OnHealthChanged {
             add {
                 GetPlayerHealthContainer().OnHealthChanged += value;
             }
@@ -17,7 +17,7 @@ namespace Lomztein.BFA2.Player.Health
             }
         }
 
-        public event Action OnHealthExhausted {
+        public event Action<object> OnHealthExhausted {
             add {
                 GetPlayerHealthContainer().OnHealthExhausted += value;
             }
@@ -34,9 +34,9 @@ namespace Lomztein.BFA2.Player.Health
             return GetPlayerHealthContainer().GetCurrentHealth();
         }
 
-        public float ChangeHealth(float amount)
+        public float ChangeHealth(float amount, object source)
         {
-            return GetPlayerHealthContainer().ChangeHealth(amount);
+            return GetPlayerHealthContainer().ChangeHealth(amount, source);
         }
 
         public float GetMaxHealth() => GetPlayerHealthContainer().GetMaxHealth();

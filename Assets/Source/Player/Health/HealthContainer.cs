@@ -16,8 +16,8 @@ namespace Lomztein.BFA2.Player.Health
         private float _health;
         private bool _exhausted;
 
-        public event Action<float, float, float> OnHealthChanged;
-        public event Action OnHealthExhausted;
+        public event Action<float, float, float, object> OnHealthChanged;
+        public event Action<object> OnHealthExhausted;
 
         private void Awake()
         {
@@ -26,28 +26,27 @@ namespace Lomztein.BFA2.Player.Health
 
         private void Start()
         {
-            ChangeHealth(0);
+            ChangeHealth(0, this);
         }
 
-        public float ChangeHealth(float amount)
+        public float ChangeHealth(float amount, object source)
         {
             float prev = _health;
             _health += amount;
-            OnHealthChanged?.Invoke(prev, _health, MaxHealth);
+            OnHealthChanged?.Invoke(prev, _health, MaxHealth, source);
 
             if (!_exhausted && _health <= 0f)
             {
-                Die();
+                Die(source);
             }
 
             return _health;
         }
 
-        private void Die ()
+        private void Die (object source)
         {
             _exhausted = true;
-            Debug.Log("Die");
-            OnHealthExhausted?.Invoke();
+            OnHealthExhausted?.Invoke(source);
         }
 
         public float GetMaxHealth() => MaxHealth;

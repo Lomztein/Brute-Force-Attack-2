@@ -11,8 +11,8 @@ namespace Lomztein.BFA2.FacadeComponents.Battlefield
     {
         public event Action<Resource, int, int> OnResourceChanged;
 
-        public event Action<float, float, float> OnHealthChanged;
-        public event Action OnHealthExhausted;
+        public event Action<float, float, float, object> OnHealthChanged;
+        public event Action<object> OnHealthExhausted;
 
         public event Action<string, bool> OnUnlockChanged;
 

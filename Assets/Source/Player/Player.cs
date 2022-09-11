@@ -29,6 +29,7 @@ namespace Lomztein.BFA2.Player
         [ModelProperty]
         public StatInfo ResourceEarningMultiplierInfo;
 
+
         private IModContainer _mods;
         IModContainer IModdable.Mods => Instance._mods;
         public static IModContainer Mods => Instance._mods;
@@ -47,6 +48,10 @@ namespace Lomztein.BFA2.Player
         private Dictionary<string, float> _resourceFractionTrackers;
         public Dictionary<string, IStatReference> ResourceEarningMultiplier;
 
+        [ModelProperty]
+        public StatInfo DamageTakenMultiplierInfo;
+        private IStatReference _damageTakenMultiplierInfo;
+
         private void Awake()
         {
             Init();
@@ -64,11 +69,13 @@ namespace Lomztein.BFA2.Player
 
             if (_resources != null)
             {
-                _resources?.ChangeResource(CreditsResource, 0);
+                _resources.ChangeResource(CreditsResource, 0);
             }
 
             ResourceEarningMultiplier = new Dictionary<string, IStatReference>();
             _resourceFractionTrackers = new Dictionary<string, float>();
+
+            _damageTakenMultiplierInfo = _stats.AddStat(DamageTakenMultiplierInfo, 1f, this);
 
             Resource[] resources = Content.GetAll<Resource>("*/Resources/*").ToArray();
             foreach (Resource resource in resources)
@@ -86,6 +93,11 @@ namespace Lomztein.BFA2.Player
             StatInfo info = Content.GetAll<StatInfo>($"*/Modifiers/Stats/Player{resource.Identifier.Replace(".", "")}IncomeMultiplier.json").FirstOrDefault();
             Assert.IsNotNull(info, "Unable to find player resource multiplier for " + resource.Name);
             return info;
+        }
+
+        public void TakeDamage(float amount, object source)
+        {
+            Health.ChangeHealth(amount * _damageTakenMultiplierInfo.GetValue(), source);
         }
 
         public void Earn (Resource resource, float amount)

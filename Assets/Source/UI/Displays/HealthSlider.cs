@@ -15,10 +15,10 @@ namespace Lomztein.BFA2.UI.Displays
         {
             _healthContainer = GetComponent<IHealthContainer>();
             _healthContainer.OnHealthChanged += OnHealthChanged;
-            OnHealthChanged(0f, _healthContainer.GetCurrentHealth(), _healthContainer.GetCurrentHealth());
+            OnHealthChanged(0f, _healthContainer.GetCurrentHealth(), _healthContainer.GetCurrentHealth(), this);
         }
 
-        protected virtual void OnHealthChanged(float arg1, float arg2, float arg3)
+        protected virtual void OnHealthChanged(float arg1, float arg2, float arg3, object source)
         {
             Slider.value = _healthContainer.GetCurrentHealth() / _healthContainer.GetMaxHealth();
         }
