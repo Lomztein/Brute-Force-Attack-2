@@ -1,0 +1,23 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/SlowfieldFactor.json}",
+        "Value": 0.5
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasIdentityFilter",
+        "$Data": {
+          "Identiifier": "Core.SlowfieldGenerator"
+        }
+      }
+    ],
+    "Identifier": "Core.ZeroPointFields",
+    "Name": "Zero Point Fields",
+    "Description": "Increase Slowfield Generator slow by 50%"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "Name": "Machine Learning",
+  "Description": "Automatically generate an additional 2 research each round.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Collectables/Research.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 0.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 10
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.MachineLearning",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.CodeGeneration",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.ScalableComputing",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.PlayerModResearchReward",
+      "$Data": {
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.EventMods.ResourcesOnWaveEnd",
+          "$Data": "$Path{Core/Modifiers/Mods/CodeGeneration.json}"
+        }
+      }
+    }
+  ]
+}

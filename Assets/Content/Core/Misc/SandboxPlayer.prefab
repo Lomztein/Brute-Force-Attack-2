@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1287727199456782870
 Transform:
   m_ObjectHideFlags: 0
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,6 +51,9 @@ MonoBehaviour:
   CreditsResource: {fileID: 11400000, guid: 0301fcd8cbe623d40b01b16f91531dde, type: 2}
   ResourceEarningMultiplierInfo: {fileID: 11400000, guid: f92f37c38886c974092ca1319a308d27,
     type: 2}
+  DamageTakenMultiplierInfo: {fileID: 11400000, guid: f4a832b2be822ac4cb4905cf6b29427d,
+    type: 2}
+  OnDamageTakenInfo: {fileID: 11400000, guid: 6c2327fdbb991bb48a0a19d5dbf40646, type: 2}
 --- !u!114 &1287727199456782871
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -52,6 +52,9 @@ namespace Lomztein.BFA2.Player
         public StatInfo DamageTakenMultiplierInfo;
         private IStatReference _damageTakenMultiplierInfo;
 
+        public EventInfo OnDamageTakenInfo;
+        private IEventCaller _onDamageTaken;
+
         private void Awake()
         {
             Init();
@@ -76,6 +79,7 @@ namespace Lomztein.BFA2.Player
             _resourceFractionTrackers = new Dictionary<string, float>();
 
             _damageTakenMultiplierInfo = _stats.AddStat(DamageTakenMultiplierInfo, 1f, this);
+            _events.AddEvent(OnDamageTakenInfo, this);
 
             Resource[] resources = Content.GetAll<Resource>("*/Resources/*").ToArray();
             foreach (Resource resource in resources)
@@ -95,9 +99,15 @@ namespace Lomztein.BFA2.Player
             return info;
         }
 
+        public void Heal (float amount, object source)
+        {
+            Health.ChangeHealth(amount, source);
+        }
+
         public void TakeDamage(float amount, object source)
         {
-            Health.ChangeHealth(amount * _damageTakenMultiplierInfo.GetValue(), source);
+            Health.ChangeHealth(-amount * _damageTakenMultiplierInfo.GetValue(), source);
+            _onDamageTaken.CallEvent(new Modification.Events.EventArgs(this, source), this);
         }
 
         public void Earn (Resource resource, float amount)

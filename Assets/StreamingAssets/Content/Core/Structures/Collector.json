@@ -271,7 +271,7 @@
                     "AttachmentPoints": [],
                     "_name": "Collector Rotator",
                     "_description": "",
-                    "_uniqueIdentifier": "",
+                    "_uniqueIdentifier": "Core.CollectorRotator",
                     "_cost": {
                       "Elements": []
                     },
@@ -371,6 +371,7 @@
                       "$Data": {
                         "AngleTreshold": 1.0,
                         "OnCollectedInfo": "$Path{Core/Modifiers/Events/OnCollected.json}",
+                        "CollectionRateInfo": "$Path{Core/Modifiers/Stats/CollectionRate.json}",
                         "BaseComplexity": 0.0,
                         "AttachmentSlots": {
                           "_attachmentPoints": []
@@ -378,7 +379,7 @@
                         "AttachmentPoints": [],
                         "_name": "Collector",
                         "_description": "Collects stuff",
-                        "_uniqueIdentifier": "",
+                        "_uniqueIdentifier": "Core.CollectorBeam",
                         "_cost": {
                           "Elements": []
                         },

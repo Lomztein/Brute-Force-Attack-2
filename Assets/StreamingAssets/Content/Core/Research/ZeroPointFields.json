@@ -1,0 +1,59 @@
+{
+  "Name": "Zero Point Fields",
+  "Description": "Increase Slowfield Generator slow by 50%",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Structures/SlowFieldModule.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 1.0,
+    "Green": 1.0,
+    "Blue": 1.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 12
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.ZeroPointFields",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.ChargeCoherence",
+      "Required": true
+    },
+    {
+      "Identifier": "Core.Slowfields",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.GlobalStructureModReward",
+      "$Data": {
+        "Mod": {
+          "Mod": {
+            "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+            "$Data": "$Path{Core/Modifiers/Mods/ZeroPointFields.json}"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "Name": "Parity Bits",
+  "Description": "Unlock the secrets of Parity Bits, allowing your datastream to heal over time.",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Icons/Cross.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 64.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 0.0,
+    "Green": 1.0,
+    "Blue": 0.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 10
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.ParityBits",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.IndustrialComputing",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.PlayerModResearchReward",
+      "$Data": {
+        "Mod": null
+      }
+    }
+  ]
+}

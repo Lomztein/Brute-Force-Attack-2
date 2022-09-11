@@ -1,0 +1,53 @@
+{
+  "Name": "Strong Encryption",
+  "Description": "Improve datastream encryption, and reduce damage datastream damage taken by 30%",
+  "Sprite": {
+    "Path": "",
+    "Texture": "$Path{Core/Sprites/Collectables/Research.png}",
+    "Rect": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Width": 32.0,
+      "Height": 32.0
+    },
+    "Pivot": {
+      "X": 0.5,
+      "Y": 0.5
+    },
+    "PixelsPerUnit": 16.0
+  },
+  "SpriteTint": {
+    "Red": 0.0,
+    "Green": 1.0,
+    "Blue": 0.0,
+    "Alpha": 1.0
+  },
+  "ResourceCost": {
+    "Elements": [
+      {
+        "Resource": "$Path{Core/Resources/Research.json}",
+        "Value": 6
+      }
+    ]
+  },
+  "TimeCost": 0,
+  "Identifier": "Core.StrongEncryption",
+  "Prerequisites": [
+    {
+      "Identifier": "Core.MachineLearning",
+      "Required": true
+    }
+  ],
+  "UniquePrerequisites": [],
+  "Rewards": [
+    {
+      "$Type": "Lomztein.BFA2.Research.Rewards.PlayerModResearchReward",
+      "$Data": {
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/StrongEncryption.json}"
+        }
+      }
+    }
+  ]
+}

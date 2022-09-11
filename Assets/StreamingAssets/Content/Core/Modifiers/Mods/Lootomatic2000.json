@@ -1,0 +1,35 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Range.json}",
+        "Value": 15.0
+      },
+      {
+        "Info": "$Path{Core/Modifiers/Stats/CollectionRate.json}",
+        "Value": 1.0
+      },
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Turnrate.json}",
+        "Value": 1.0
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasTurretComponentFilter",
+        "$Data": {
+          "ApplicableComponentIdentifiers": [
+            "Core.CollectorBase",
+            "Core.CollectorRotator",
+            "Core.CollectorBeam"
+          ]
+        }
+      }
+    ],
+    "Identifier": "Core.Lootomatic2000",
+    "Name": "Lootomatic 2000",
+    "Description": "Upgrades the range and collection rate of collectors."
+  }
+}

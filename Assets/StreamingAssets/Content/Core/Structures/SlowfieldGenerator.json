@@ -27,23 +27,12 @@
     {
       "$Type": "Lomztein.BFA2.Structures.SlowfieldGenerator",
       "$Data": {
-        "RangeInfo": {
-          "Identifier": "Core.Range",
-          "Name": "Range",
-          "Description": "The range at which targets can be reached.",
-          "Function": {
-            "$Type": "Lomztein.BFA2.Modification.Stats.Functions.LiniarFunction",
-            "$Data": {}
-          },
-          "Formatter": {
-            "$Type": "Lomztein.BFA2.Modification.Stats.Formatters.DefaultFormatter",
-            "$Data": {}
-          }
-        },
+        "RangeInfo": "$Path{Core/Modifiers/Stats/Range.json}",
         "BaseRange": 2.5,
-        "SlowFactor": 0.5,
+        "SlowFactorInfo": "$Path{Core/Modifiers/Stats/SlowfieldFactor.json}",
+        "BaseSlowFactor": 0.5,
         "Mask": {
-          "Mask": 0
+          "Mask": 256
         },
         "_name": "Slowfield Generator",
         "_description": "Generates slowing slowfield that slows nearby enemies.",
