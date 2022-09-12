@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Targeting;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,16 +43,17 @@ namespace Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents
 
         public void Tick(float deltaTime)
         {
-            if (_parent != null && _parent.Target != null)
+            if (_parent != null && _parent.Target.ExistsAndIsValid())
             {
-                float angle = Mathf.Atan2(_parent.Target.position.y - transform.position.y, _parent.Target.position.x - transform.position.x) * Mathf.Rad2Deg;
-                float dot = Vector3.Dot(transform.right, Vector3.Normalize(_parent.Target.position - transform.position));
+                var pos = _parent.Target.GetPosition();
+                float angle = Mathf.Atan2(pos.y - transform.position.y, pos.x - transform.position.x) * Mathf.Rad2Deg;
+                float dot = Vector3.Dot(transform.right, Vector3.Normalize(pos - transform.position));
 
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0f, 0f, angle), GetRotSpeed(dot) * deltaTime);
             }
-            if (Retarget && _parent != null && _parent.Target == null)
+            if (Retarget && _parent != null && !_parent.Target.ExistsAndIsValid())
             {
-                _parent.Target = _retargeter.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, _parent.Range, _parent.Layer));
+                _parent.Target = new TransformTarget(_retargeter.FindTarget(gameObject, Physics2D.OverlapCircleAll(transform.position, _parent.Range, _parent.Layer)));
             }
         }
 

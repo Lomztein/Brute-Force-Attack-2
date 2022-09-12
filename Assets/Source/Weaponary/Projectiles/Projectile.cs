@@ -4,6 +4,7 @@ using Lomztein.BFA2.Pooling;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Visuals.Effects;
 using Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,9 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public LayerMask Layer;
         [ModelProperty]
         public Colorization.Color Color;
-        public Transform Target;
+
+        public ITarget Target;
+        public object Source;
         public IObjectPool<IProjectile> Pool;
 
         private List<IProjectileComponent> _projectileComponents = new List<IProjectileComponent>();
@@ -55,8 +58,14 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public event Action<HitInfo> OnKill;
         public event Action<HitInfo> OnDepleted;
 
+        public double DamageDealt;
+        public int Kills;
+
         public void Init()
         {
+            DamageDealt = 0;
+            Kills = 0;
+
             _projectileComponents.ForEach(x => x.Init(this));
 
             if (_hitEffectObj)
@@ -72,6 +81,12 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
                 _trailEffectObj.transform.localRotation = _trailEffectLocalRotation;
                 _trailEffectObj.Activate();
             }
+        }
+
+        public bool TryGetSource<T>(out T source) where T : class
+        {
+            source = Source as T;
+            return source != null;
         }
 
         public float GetPierceFactor ()
@@ -126,8 +141,10 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 
         public DamageInfo Hit (IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal)
         {
-            DamageInfo damage = new DamageInfo(Damage, Color);
+            DamageInfo damage = new DamageInfo(this, Target, Damage, Color);
+
             double life = damagable.TakeDamage(damage);
+            DamageDealt += damage.DamageDealt;
 
             HitInfo info = new HitInfo(damage, col, position, normal, this, _weapon, Damage <= 0f);
 
@@ -140,6 +157,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             OnHit?.Invoke(info);
             if (life <= 0.001f)
             {
+                Kills++;
                 OnKill?.Invoke(info);
             }
             return damage;

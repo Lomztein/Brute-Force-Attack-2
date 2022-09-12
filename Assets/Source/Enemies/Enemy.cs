@@ -39,6 +39,7 @@ namespace Lomztein.BFA2.Enemies
 
         public double Health { get; private set; }
         private bool _isDead;
+        public DamageInfo LastDamageTaken;
 
         [ModelProperty]
         public string _UniqueIdentifier;
@@ -188,6 +189,7 @@ namespace Lomztein.BFA2.Enemies
             double reduction = GetDamageReduction(damage);
 
             damageInfo.DamageDealt = Math.Min (Health + reduction, damageInfo.Damage);
+            LastDamageTaken = damageInfo;
 
             Health -= Math.Min (damage, Health);
             Shields = Math.Max (Shields - 1, 0);

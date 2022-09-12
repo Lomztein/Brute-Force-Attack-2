@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Weaponary.Projectiles;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System;
 using UnityEngine;
 
@@ -12,7 +13,6 @@ namespace Lomztein.BFA2.Weaponary
         event Action<HitInfo> OnProjectileHit;
         event Action<HitInfo> OnProjectileKill;
 
-        Transform Target { get; set; }
         float Damage { get; set; }
         float Firerate { get; set; }
         int ProjectileAmount { get; set; }
@@ -24,7 +24,7 @@ namespace Lomztein.BFA2.Weaponary
         int MuzzleCount { get; }
 
         void Init();
-        bool TryFire();
+        bool TryFire(ITarget target, object source);
         bool CanFire();
 
     }

@@ -30,7 +30,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
             {
                 if (col.TryGetComponent<IDamagable>(out var damagable))
                 {
-                    damagable.TakeDamage(new DamageInfo(damage, Colorization.Color.Red));
+                    damagable.TakeDamage(new DamageInfo(this, null, damage, Colorization.Color.Red));
                     onHit(col);
                 }
             }

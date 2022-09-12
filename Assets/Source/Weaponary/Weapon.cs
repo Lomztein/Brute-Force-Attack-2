@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Lomztein.BFA2.Weaponary.Targeting;
 
 namespace Lomztein.BFA2.Weaponary
 {
@@ -29,7 +30,6 @@ namespace Lomztein.BFA2.Weaponary
         public float Pierce { get; set; }
         public int MuzzleCount => _muzzles.Length;
 
-        public Transform Target { get; set; }
         public Colorization.Color Color { get; set; }
         public float Cooldown => 1f / Firerate;
 
@@ -106,11 +106,11 @@ namespace Lomztein.BFA2.Weaponary
         public float GetSpeed() => Speed;
         public float GetSpread() => Spread;
 
-        public bool TryFire()
+        public bool TryFire(ITarget target, object source)
         {
             if (CanFire() && _fireControl.All(x => x.TryFire()))
             {
-                Fire();
+                Fire(target, source);
                 _chambered = false;
                 StartCoroutine(Rechamber(Cooldown));
                 return true;
@@ -121,7 +121,7 @@ namespace Lomztein.BFA2.Weaponary
         public bool CanFire ()
             => _chambered;
 
-        private void Fire()
+        private void Fire(ITarget target, object source)
         {
             _fireAnimation.Play(Cooldown);
             _fireSequence.Fire(_muzzles.Length, Cooldown, (i) =>
@@ -130,7 +130,7 @@ namespace Lomztein.BFA2.Weaponary
 
                 foreach (IProjectile proj in projs)
                 {
-                    HandleProjectile(proj);
+                    HandleProjectile(proj, target, source);
                 }
 
                 OnFire?.Invoke(projs);
@@ -138,7 +138,7 @@ namespace Lomztein.BFA2.Weaponary
             });
         }
 
-        private void HandleProjectile(IProjectile projectile)
+        private void HandleProjectile(IProjectile projectile, ITarget target, object source)
         {
             Projectile proj = projectile as Projectile; // TODO: Extend this to an external ProjectileHandler class, to support other projectile implementations. If needed.
             proj.Speed = GetSpeed() * UnityEngine.Random.Range(0.9f, 1.1f);
@@ -147,8 +147,9 @@ namespace Lomztein.BFA2.Weaponary
             proj.Pierce = Pierce;
             proj.Layer = HitLayer;
             proj.Color = Color;
-            proj.Target = Target;
+            proj.Target = target;
             proj.Pool = _pool;
+            proj.Source = source;
             proj.Init();
         }
 

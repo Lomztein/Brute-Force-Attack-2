@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using Lomztein.BFA2.Weaponary.Targeting;
 
 namespace Lomztein.BFA2.Structures.Turrets.Weapons
 {
@@ -186,9 +187,9 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             OnProjectileHit.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }
 
-        public bool TryFire()
+        public bool TryFire(ITarget target, object source)
         {
-            return Weapon.TryFire();
+            return Weapon.TryFire(target, source);
         }
 
         public Colorization.Color GetColor()

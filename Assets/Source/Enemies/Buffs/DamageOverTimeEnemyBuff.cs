@@ -1,5 +1,6 @@
 using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace Lomztein.BFA2.Enemies.Buffs
         public override void Tick(float dt)
         {
             base.Tick(dt);
-            Target.TakeDamage(new Weaponary.DamageInfo(CurrentDPS * Coeffecient * dt, DamageColor));
+            Target.TakeDamage(new Weaponary.DamageInfo(this, new TransformTarget(Target.transform), CurrentDPS * Coeffecient * dt, DamageColor));
             _effectObj.transform.position = Target.transform.position;
         }
     }

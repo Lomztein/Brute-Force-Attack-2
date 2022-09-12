@@ -3,6 +3,7 @@ using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Weaponary;
 using Lomztein.BFA2.Weaponary.Projectiles;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,9 +60,9 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
                 var targets = Physics2D.OverlapCircleAll(transform.position, Range.GetValue(), TargetLayerMask);
                 if (targets.Length > 0)
                 {
-                    Weapon.Target = targets[UnityEngine.Random.Range(0, targets.Length)].transform;
+                    Transform target = targets[UnityEngine.Random.Range(0, targets.Length)].transform;
                     Weapon.Range = Range.GetValue();
-                    if (TryFire())
+                    if (TryFire(new TransformTarget(target), this))
                     {
                         ToFire--;
                     }

@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Weaponary.Targeting;
 
 namespace Lomztein.BFA2.Structures.Turrets.Weapons
 {
@@ -12,8 +13,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             base.Tick(deltaTime);
             if (Targeter != null && Targeter.GetDistance() < FireTreshold)
             {
-                Weapon.Target = Provider?.GetTarget();
-                TryFire();
+                TryFire(new TransformTarget(Provider?.GetTarget()), this);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Lomztein.BFA2.Colorization;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,26 @@ namespace Lomztein.BFA2.Weaponary
 {
     public class DamageInfo
     {
+        public object Source;
+        public ITarget IntendedTarget;
+
         public double Damage;
         public Color Color;
 
         public double DamageDealt { get; set; }
 
-        public DamageInfo(double damage, Color color)
+        public DamageInfo(object source, ITarget intendedTarget, double damage, Color color)
         {
             Damage = damage;
             Color = color;
+            Source = source;
+            IntendedTarget = intendedTarget;
+        }
+
+        public bool TryGetSource<T>(out T source) where T : class
+        {
+            source = Source as T;
+            return source != null;
         }
     }
 }
