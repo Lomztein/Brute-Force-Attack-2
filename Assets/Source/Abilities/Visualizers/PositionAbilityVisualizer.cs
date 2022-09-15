@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.Abilities.Visualizers
         {
             if (abilityPlacement is ClickAbilityPlacement clickPlacement)
             {
-                transform.position = clickPlacement.CurrentPosition;
+                transform.position = clickPlacement.Position;
             }
         }
     }

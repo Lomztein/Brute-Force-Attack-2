@@ -18,7 +18,6 @@ namespace Lomztein.BFA2.UI
         public Image AbilityProgress;
         public Text ChargesText;
 
-        private IEnumerable<string> _unavailableReasons;
 
         public void Assign(Ability ability)
         {
@@ -29,7 +28,8 @@ namespace Lomztein.BFA2.UI
 
         public GameObject GetToolTip()
         {
-            return SimpleToolTip.InstantiateToolTip(Ability.Name, Ability.Description, _unavailableReasons.Count() == 0 ? "Ready" : string.Join("\n", _unavailableReasons));
+            var reasons = Ability.GetUnavailableReasons();
+            return SimpleToolTip.InstantiateToolTip(Ability.Name, Ability.Description, reasons.Count() == 0 ? "Ready" : string.Join("\n", reasons));
         }
 
         public void OnClick ()
@@ -44,21 +44,21 @@ namespace Lomztein.BFA2.UI
 
         private void UpdateProgress ()
         {
-            AbilityProgress.fillAmount = ((float)Ability.CurrentCooldown / Ability.MaxCooldown);
-            if (Ability.MaxCharges > 1)
+            AbilityProgress.fillAmount = Ability.CooldownProgress;
+            if (Ability.Charges > 1)
             {
                 ChargesText.gameObject.SetActive(true);
-                ChargesText.text = Ability.CurrentCharges.ToString();
+                ChargesText.text = Ability.Charges.ToString();
             }
             else
             {
                 ChargesText.gameObject.SetActive(false);
             }
-            if (Ability.CurrentCharges > 0)
+            if (Ability.Charges > 0)
             {
                 AbilityProgress.fillAmount = 0;
             }
-            Button.interactable = Ability.Available(out _unavailableReasons);
+            Button.interactable = Ability.IsAvailable();
             AbilityImage.color = Button.interactable ? Color.white : new Color(0.5f, 0.5f, 0.5f);
 
     }

@@ -1,30 +1,29 @@
+﻿using Lomztein.BFA2.Abilities.Effects;
 using Lomztein.BFA2.Abilities.Placements;
+using Lomztein.BFA2.Modification.Modifiers;
+using Lomztein.BFA2.Modification.Modifiers.ModBroadcasters;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Lomztein.BFA2.Abilities
+namespace Lomztein.BFA2.Assets.Source.Abilities.Effects
 {
-    [CreateAssetMenu(fileName = "New Resource Grant Ability", menuName = "BFA2/Abilities/Resource Grant")]
-    public class ResourceGrantAbility : Ability
+    public class ResourceGrantEffect : IAbilityEffect
     {
         [ModelProperty]
         public ResourceCost Grant;
 
-        public override void Activate(AbilityPlacement placement)
+        public void Activate(AbilityPlacement placement)
         {
-            base.Activate(placement);
             foreach (var element in Grant.Elements)
             {
                 Player.Player.Instance.Earn(element.Resource, element.Value);
             }
-        }
-
-        public override AbilityPlacement GetPlacement()
-        {
-            return null;
         }
     }
 }

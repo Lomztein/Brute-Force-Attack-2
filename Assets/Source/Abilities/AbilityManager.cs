@@ -21,30 +21,6 @@ namespace Lomztein.BFA2.Abilities
             Instance = this;
         }
 
-        private void Start()
-        {
-            if (RoundController.Instance)
-            {
-                RoundController.Instance.OnWaveFinished += Instance_OnWaveFinished;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (RoundController.Instance)
-            {
-                RoundController.Instance.OnWaveFinished -= Instance_OnWaveFinished;
-            }
-        }
-
-        private void Instance_OnWaveFinished(int arg1, Enemies.Waves.WaveHandler arg2)
-        {
-            foreach (var ability in _currentAbilities)
-            {
-                ability.Cooldown(1);
-            }
-        }
-
         public void AddAbility(Ability ability, object source)
         {
             _currentAbilities.Add(ability);

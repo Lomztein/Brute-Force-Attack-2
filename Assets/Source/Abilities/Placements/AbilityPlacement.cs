@@ -15,6 +15,9 @@ namespace Lomztein.BFA2.Abilities.Placements
         public Ability Ability { get; private set; }
         public AbilityVisualizer Visualizer { get; private set; }
 
+        public Vector2 Position;
+        public Quaternion Rotation;
+
         public virtual void Assign(Ability ability, AbilityVisualizer visualizer)
         {
             Ability = ability;

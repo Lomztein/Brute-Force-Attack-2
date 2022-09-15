@@ -1,18 +1,13 @@
 {
-  "$Type": "Lomztein.BFA2.Abilities.AreaBuffAbility",
+  "$Type": "Lomztein.BFA2.Abilities.CooldownAbility",
   "$Data": {
-    "Mod": {
-      "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
-      "$Data": "$Path{Core/Modifiers/Mods/EmergencyCharge.json}"
-    },
-    "Range": 3.5,
-    "Time": 6.0,
-    "Layer": {
-      "Mask": 512
-    },
-    "_name": "Emergency Charge",
-    "_description": "Supercharges a small group of turrets for a short while.",
-    "_identifier": "Core.EmergencyCharge",
+    "MaxCooldown": 3,
+    "MaxCharges": 1,
+    "CurrentCooldown": 3,
+    "CurrentCharges": 1,
+    "_name": "Emergency Overdrive",
+    "_description": "Supercharge a small group of turrets for a short while.",
+    "_identifier": "Core.EmergencyOverdrive",
     "Sprite": {
       "Path": "",
       "Texture": "$Path{Core/Sprites/Abilities/Charge.png}",
@@ -28,15 +23,29 @@
       },
       "PixelsPerUnit": 16.0
     },
-    "MaxCharges": 1,
-    "MaxCooldown": 3,
     "ActivationCost": {
       "Elements": []
     },
+    "Effect": {
+      "$Type": "Lomztein.BFA2.Assets.Source.Abilities.Effects.AreaBuffEffect",
+      "$Data": {
+        "Mod": {
+          "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+          "$Data": "$Path{Core/Modifiers/Mods/EmergencyCharge.json}"
+        },
+        "Range": 3.5,
+        "Time": 6.0,
+        "Layer": {
+          "Mask": 1536
+        }
+      }
+    },
+    "Placement": {
+      "$Type": "Lomztein.BFA2.Abilities.Placements.ClickAbilityPlacement",
+      "$Data": {}
+    },
     "Visualizer": {
       "Path": "Core/Abilities/Visualizers/EmergencyOverdrive.json"
-    },
-    "CurrentCooldown": 0,
-    "CurrentCharges": 1
+    }
   }
 }

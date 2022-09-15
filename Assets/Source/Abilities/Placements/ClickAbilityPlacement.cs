@@ -13,8 +13,6 @@ namespace Lomztein.BFA2.Abilities.Placements
     {
         public event Action<GameObject> OnPlaced;
 
-        public Vector2 CurrentPosition { get; private set; }
-
         public bool Flip()
         {
             return false;
@@ -29,7 +27,7 @@ namespace Lomztein.BFA2.Abilities.Placements
         {
             if (TrySpendActivationCost())
             {
-                Ability.Activate(this);
+                Ability.Activate();
                 Finish();
                 return true;
             }
@@ -38,13 +36,14 @@ namespace Lomztein.BFA2.Abilities.Placements
 
         public bool ToPosition(Vector2 position)
         {
-            CurrentPosition = position;
+            Position = position;
             UpdateVisualizer();
             return true;
         }
 
         public bool ToRotation(Quaternion rotation)
         {
+            Rotation = rotation;
             return true;
         }
     }

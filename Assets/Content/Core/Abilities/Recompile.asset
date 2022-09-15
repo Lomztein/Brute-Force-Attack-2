@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d482080b7f63a47b8d1218a0bfbe65, type: 3}
+  m_Script: {fileID: 11500000, guid: f70680588a59bb849aee7c8fa847d526, type: 3}
   m_Name: Recompile
   m_EditorClassIdentifier: 
   _name: Recompile
-  _description: Instantly recompile 5 binaries into 5 research.
+  _description: Recompile 5 binaries into 5 research.
   _identifier: Core.Recompile
   Sprite:
     Path: 
@@ -26,17 +26,30 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
-  MaxCharges: 1
-  MaxCooldown: 2
   ActivationCost:
     Elements:
     - Resource: {fileID: 11400000, guid: a8f1c14068cc53644890d1a8dfec5af9, type: 2}
       Value: 5
+  Effect:
+    rid: 1894028982348414976
+  Placement:
+    rid: -2
   Visualizer:
     Path: 
+  MaxCooldown: 0
+  MaxCharges: 1
   CurrentCooldown: 0
   CurrentCharges: 1
-  Grant:
-    Elements:
-    - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
-      Value: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1894028982348414976
+      type: {class: ResourceGrantEffect, ns: Lomztein.BFA2.Assets.Source.Abilities.Effects,
+        asm: Assembly-CSharp}
+      data:
+        Grant:
+          Elements:
+          - Resource: {fileID: 11400000, guid: c812d9843d78c8f4d8eceda3171a8932, type: 2}
+            Value: 5

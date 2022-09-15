@@ -1,3 +1,4 @@
+using Lomztein.BFA2.Abilities.Effects;
 using Lomztein.BFA2.Abilities.Placements;
 using Lomztein.BFA2.Abilities.Visualizers;
 using Lomztein.BFA2.ContentSystem.Objects;
@@ -8,7 +9,9 @@ using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Abilities
 {
@@ -18,22 +21,25 @@ namespace Lomztein.BFA2.Abilities
         [SerializeField, ModelProperty] protected string _description;
         [SerializeField, ModelProperty] protected string _identifier;
 
+        public abstract float CooldownProgress { get; }
+        public abstract int Charges { get; }
+
         public string Name => _name;
         public string Description => _description;
         public string Identifier => _identifier;
 
         [ModelProperty] public ContentSpriteReference Sprite;
-        [ModelProperty] public int MaxCharges = 1;
-        [ModelProperty] public int MaxCooldown;
         [ModelProperty] public ResourceCost ActivationCost;
-        [ModelProperty] public ContentPrefabReference Visualizer;
+        [ModelProperty, SerializeReference, SR]
+        public IAbilityEffect Effect;
+        [ModelProperty, SerializeReference, SR]
+        public AbilityPlacement Placement;
+        [ModelProperty]
+        public ContentPrefabReference Visualizer;
 
-        [ModelProperty] public int CurrentCooldown;
-        [ModelProperty] public int CurrentCharges;
+        public event Action<Ability, AbilityPlacement> OnActivated;
 
-        public event Action<Ability, object> OnActivated;
-
-        public virtual void Select ()
+        public virtual void Select()
         {
             var placement = GetPlacement();
             if (placement != null)
@@ -43,68 +49,33 @@ namespace Lomztein.BFA2.Abilities
             }
             else if (Player.Player.Resources.TrySpend(ActivationCost))
             {
-                Activate(null);
+                GetEffect().Activate(null);
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>Ability placement, by default a ClickAbilityPlacement</returns>
+        public virtual IAbilityEffect GetEffect()
+            => Effect;
+
         public virtual AbilityPlacement GetPlacement()
-        {
-            return new ClickAbilityPlacement();
-        }
+            => Placement;
 
         public virtual AbilityVisualizer InstantiateVisualizer()
-        {
-            if (Visualizer != null)
-            {
-                return Visualizer.Instantiate().GetComponent<AbilityVisualizer>();
-            }
-            return null;
-        }
+            => Visualizer.Instantiate().GetComponent<AbilityVisualizer>();
 
-        public virtual void Activate(AbilityPlacement placement)
-        {
-            if (CurrentCooldown != 0 || CurrentCharges == MaxCharges)
-            {
-                CurrentCooldown = MaxCooldown;
-            }
-            if (MaxCooldown != 0)
-            {
-                CurrentCharges--;
-            }
-            OnActivated?.Invoke(this, placement);
-        }
+        public bool IsAvailable() => !GetUnavailableReasons().Any();
 
-        public virtual void Cooldown(int amount)
+        public virtual IEnumerable<string> GetUnavailableReasons()
         {
-            CurrentCooldown = Mathf.Max(0, CurrentCooldown - amount);
-            if (CurrentCooldown == 0 && CurrentCharges < MaxCharges)
-            {
-                CurrentCooldown = MaxCooldown;
-                CurrentCharges++;
-            }
-            if (CurrentCharges == MaxCharges)
-            {
-                CurrentCooldown = 0;
-            }
-        }
-
-        public virtual bool Available (out IEnumerable<string> reasons)
-        {
-            List<string> reasonsList = new List<string>();
             if (!Player.Player.Resources.HasEnough(ActivationCost))
             {
-                reasonsList.Add("Not enough resources");
+                yield return "Not enough resources.";
             }
-            if (CurrentCharges == 0)
-            {
-                reasonsList.Add("Cooldown: " + CurrentCooldown);
-            }
-            reasons = reasonsList;
-            return reasonsList.Count == 0;
+        }
+
+        public virtual void Activate()
+        {
+            GetEffect().Activate(GetPlacement());
+            OnActivated?.Invoke(this, GetPlacement());
         }
     }
 }

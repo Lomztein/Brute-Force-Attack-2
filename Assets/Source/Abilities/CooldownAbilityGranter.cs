@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Abilities
 {
-    public class AbilityGranter : MonoBehaviour
+    public class CooldownAbilityGranter : MonoBehaviour
     {
         [ModelAssetReference]
         public Ability Ability;
@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Abilities
 
         private void GrantAbility()
         {
-            Ability existing = AbilityManager.Instance.GetAbility(Ability.Identifier);
+            CooldownAbility existing = AbilityManager.Instance.GetAbility(Ability.Identifier) as CooldownAbility;
             if (existing != null)
             {
                 existing.MaxCharges += ChargesPerStack;
@@ -49,7 +49,7 @@ namespace Lomztein.BFA2.Abilities
 
         private void RemoveAbility()
         {
-            Ability existing = AbilityManager.Instance.GetAbility(Ability.Identifier);
+            CooldownAbility existing = AbilityManager.Instance.GetAbility(Ability.Identifier) as CooldownAbility;
             if (existing != null)
             {
                 if (existing.MaxCharges > ChargesPerStack)

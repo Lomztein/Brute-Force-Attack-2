@@ -21,8 +21,6 @@ namespace Lomztein.BFA2.Inventory.Items
                 existing = Instantiate(Ability);
                 AbilityManager.Instance.AddAbility(existing, this);
             }
-            existing.CurrentCharges += ChargesPerItem;
-            existing.MaxCharges += ChargesPerItem;
         }
 
         public override void OnRemovedFromInventory(IInventory inventory)

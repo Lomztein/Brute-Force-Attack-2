@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e34709bbde8b64ca59bd9d509faa85, type: 3}
+  m_Script: {fileID: 11500000, guid: f70680588a59bb849aee7c8fa847d526, type: 3}
   m_Name: EmergencyOverdrive
   m_EditorClassIdentifier: 
-  _name: Emergency Charge
-  _description: Supercharges a small group of turrets for a short while.
-  _identifier: Core.EmergencyCharge
+  _name: Emergency Overdrive
+  _description: Supercharge a small group of turrets for a short while.
+  _identifier: Core.EmergencyOverdrive
   Sprite:
     Path: 
     Texture: {fileID: 2800000, guid: 84b15b3366c25d14bb86e373fcbbf7a9, type: 3}
@@ -26,15 +26,34 @@ MonoBehaviour:
       height: 0
     Pivot: {x: 0.5, y: 0.5}
     PixelsPerUnit: 16
-  MaxCharges: 1
-  MaxCooldown: 3
+  ActivationCost:
+    Elements: []
+  Effect:
+    rid: 1894028982348414977
+  Placement:
+    rid: 1894028982348414978
   Visualizer:
     Path: Core/Abilities/Visualizers/EmergencyOverdrive.json
+  MaxCooldown: 0
+  MaxCharges: 1
   CurrentCooldown: 0
   CurrentCharges: 1
-  Mod: {fileID: 11400000, guid: 7f65bb5148f60a644bdc110e6237b690, type: 2}
-  Range: 3.5
-  Time: 6
-  Layer:
-    serializedVersion: 2
-    m_Bits: 512
+  references:
+    version: 2
+    RefIds:
+    - rid: 1894028982348414977
+      type: {class: AreaBuffEffect, ns: Lomztein.BFA2.Assets.Source.Abilities.Effects,
+        asm: Assembly-CSharp}
+      data:
+        Mod: {fileID: 11400000, guid: 7f65bb5148f60a644bdc110e6237b690, type: 2}
+        Range: 3.5
+        Time: 6
+        Layer:
+          serializedVersion: 2
+          m_Bits: 1536
+    - rid: 1894028982348414978
+      type: {class: ClickAbilityPlacement, ns: Lomztein.BFA2.Abilities.Placements,
+        asm: Assembly-CSharp}
+      data:
+        Position: {x: 0, y: 0}
+        Rotation: {x: 0, y: 0, z: 0, w: 0}
