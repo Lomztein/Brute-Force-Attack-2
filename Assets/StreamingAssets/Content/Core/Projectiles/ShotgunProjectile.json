@@ -41,10 +41,8 @@
       }
     },
     {
-      "$Type": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.HitscanProjectileComponent",
-      "$Data": {
-        "Life": 0.2
-      }
+      "$Type": "Lomztein.BFA2.Weaponary.Projectiles.ProjectileComponents.PhysicalProjectileComponent",
+      "$Data": {}
     }
   ],
   "Children": [
@@ -86,7 +84,7 @@
                 "Z": 0.0
               },
               {
-                "X": 1.0,
+                "X": 0.4,
                 "Y": 0.0,
                 "Z": 0.0
               }
@@ -95,11 +93,19 @@
               "Keyframes": [
                 {
                   "Time": 0.0,
-                  "Value": 0.1050662,
+                  "Value": 0.02015869,
                   "InTangent": 0.0,
                   "OutTangent": 0.0,
                   "InWeight": 0.3333333,
                   "OutWeight": 0.3333333
+                },
+                {
+                  "Time": 1.0,
+                  "Value": 0.1037736,
+                  "InTangent": 0.0,
+                  "OutTangent": 0.0,
+                  "InWeight": 0.0,
+                  "OutWeight": 0.0
                 }
               ]
             },
@@ -142,7 +148,7 @@
             "TextureMode": "Stretch",
             "ShadowBias": 0.5,
             "GenerateLighingData": false,
-            "UseWorldSpace": true,
+            "UseWorldSpace": false,
             "ShadowCastingMode": "Off",
             "RecieveShadows": false,
             "LightProbeUsage": "Off",

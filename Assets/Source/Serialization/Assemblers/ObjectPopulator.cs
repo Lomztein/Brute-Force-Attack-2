@@ -79,6 +79,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers
                 }
                 catch (Exception e)
                 {
+                    Debug.LogError($"Failed to extract object model for {obj}. See following exception for details.");
                     Debug.LogException(e);
                 }
 

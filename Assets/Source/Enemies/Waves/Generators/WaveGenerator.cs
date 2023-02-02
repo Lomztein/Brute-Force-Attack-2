@@ -56,19 +56,19 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             return shouldSpawn;
         }
 
-        public SpawnInterval Generate(float startTime, int wave, int seed, float credits, float baseFrequency)
+        public bool CanGenerate(int wave) => GetGeneratorEnemyDataCache().Any(x => ShouldSpawn(x, wave));
+
+        public SpawnInterval Generate(float startTime, float length, float baseFrequency, int wave, int seed)
         {
             _random = new System.Random(seed);
+            float credits = baseFrequency * length;
             (GeneratorEnemyData data, int amount) = GetRandomEnemy(credits, wave);
+
             if (data != null)
             {
-                double frequency = baseFrequency / data.DifficultyValue;
-                double time = amount / frequency;
-                return new SpawnInterval(startTime, (float)time, data.EnemyIdentifier, amount);
+                return new SpawnInterval(startTime, (float)length, data.EnemyIdentifier, amount);
             }
             else return null;
         }
-
-        public bool CanGenerate(int wave) => GetGeneratorEnemyDataCache().Any(x => ShouldSpawn(x, wave));
     }
 }

@@ -79,7 +79,7 @@ namespace Lomztein.BFA2.Player
             _resourceFractionTrackers = new Dictionary<string, float>();
 
             _damageTakenMultiplierInfo = _stats.AddStat(DamageTakenMultiplierInfo, 1f, this);
-            _events.AddEvent(OnDamageTakenInfo, this);
+            _onDamageTaken = _events.AddEvent(OnDamageTakenInfo, this);
 
             Resource[] resources = Content.GetAll<Resource>("*/Resources/*").ToArray();
             foreach (Resource resource in resources)

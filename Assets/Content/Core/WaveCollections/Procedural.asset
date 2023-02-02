@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Identifier: Core.Procedural
   Seed: 667
-  StartingCredits: 40
-  CreditsCoeffecient: 1.25
   StartingFrequency: 2
   FrequencyCoeffecient: 1.2
+  StartingLength: 30
+  LengthPerWave: 3
+  MaxWaveLength: 60
   InitialLoCFromKills: 50
   LoCFromKillsPerWave: 50
   InitialLoCOnCompletion: 250
@@ -26,6 +27,7 @@ MonoBehaviour:
   ParallelMax: 3
   SequenceDenomenator: 3
   ParallelDenomenator: 5
-  CreditsVariance: {x: -0.25, y: 0.25}
-  FrequencyVariance: {x: -0.1, y: 0.1}
-  TimeVariance: {x: -10, y: 3}
+  SequenceMinLength: 3
+  LengthVarianceMult: {x: -0.3, y: 0.3}
+  FrequencyVarianceMult: {x: -0.2, y: 0.2}
+  SubwaveVarianceVariance: {x: -5, y: 5}

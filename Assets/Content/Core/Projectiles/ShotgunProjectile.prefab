@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6640471606551175162}
   - component: {fileID: 6524774030102847367}
-  - component: {fileID: 3985917397101408206}
+  - component: {fileID: 3111419136810317704}
   m_Layer: 0
   m_Name: ShotgunProjectile
   m_TagString: Untagged
@@ -55,11 +55,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   Color: 0
-  Target: {fileID: 0}
   HitEffectLife: 0.1
   TrailEffectLife: 0
   PlayHitEffectOnEnd: 0
---- !u!114 &3985917397101408206
+  DamageDealt: 0
+  Kills: 0
+--- !u!114 &3111419136810317704
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,10 +69,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 180462137954481132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a27fba7942be1f4fa4155f1c7be11fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eae0ad89f787df46aadad143261d505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 0.2
 --- !u!1 &2063499918410931920
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
+  - {x: 0.4, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -205,13 +205,22 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.105066225
+        value: 0.020158693
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.10377359
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -250,7 +259,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!114 &5246361534334773701
 MonoBehaviour:

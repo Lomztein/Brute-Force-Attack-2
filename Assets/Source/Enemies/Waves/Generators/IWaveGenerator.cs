@@ -10,6 +10,6 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
     {
         bool CanGenerate(int wave);
 
-        SpawnInterval Generate(float startTime, int wave, int seed, float credits, float baseFrequency);
+        SpawnInterval Generate(float startTime, float length, float baseFrequency, int wave, int seed);
     }
 }

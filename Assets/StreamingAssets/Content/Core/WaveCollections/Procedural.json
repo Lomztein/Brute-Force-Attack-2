@@ -2,10 +2,11 @@
   "$Type": "Lomztein.BFA2.Enemies.Waves.GeneratorWaveCollection",
   "$Data": {
     "Seed": 667,
-    "StartingCredits": 40.0,
-    "CreditsCoeffecient": 1.25,
     "StartingFrequency": 2.0,
     "FrequencyCoeffecient": 1.2,
+    "StartingLength": 30.0,
+    "LengthPerWave": 3.0,
+    "MaxWaveLength": 60.0,
     "InitialLoCFromKills": 50.0,
     "LoCFromKillsPerWave": 50.0,
     "InitialLoCOnCompletion": 250.0,
@@ -14,17 +15,18 @@
     "ParallelMax": 3,
     "SequenceDenomenator": 3.0,
     "ParallelDenomenator": 5.0,
-    "CreditsVariance": {
-      "X": -0.25,
-      "Y": 0.25
+    "SequenceMinLength": 3.0,
+    "LengthVarianceMult": {
+      "X": -0.3,
+      "Y": 0.3
     },
-    "FrequencyVariance": {
-      "X": -0.1,
-      "Y": 0.1
+    "FrequencyVarianceMult": {
+      "X": -0.2,
+      "Y": 0.2
     },
-    "TimeVariance": {
-      "X": -10.0,
-      "Y": 3.0
+    "SubwaveVarianceVariance": {
+      "X": 0.0,
+      "Y": 5.0
     },
     "Identifier": "Core.Procedural"
   }

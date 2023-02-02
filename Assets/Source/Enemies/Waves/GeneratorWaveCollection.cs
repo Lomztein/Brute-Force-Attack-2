@@ -15,15 +15,18 @@ namespace Lomztein.BFA2.Enemies.Waves
     {
         [ModelProperty]
         public int Seed;
-        [ModelProperty]
-        public float StartingCredits;
-        [ModelProperty]
-        public float CreditsCoeffecient;
 
         [ModelProperty]
         public float StartingFrequency;
         [ModelProperty]
         public float FrequencyCoeffecient;
+
+        [ModelProperty]
+        public float StartingLength = 30;
+        [ModelProperty]
+        public float LengthPerWave = 3;
+        [ModelProperty]
+        public float MaxWaveLength = 60;
 
         [ModelProperty]
         public float InitialLoCFromKills;
@@ -44,13 +47,15 @@ namespace Lomztein.BFA2.Enemies.Waves
         public float SequenceDenomenator = 5;
         [ModelProperty]
         public float ParallelDenomenator = 5;
+        [ModelProperty]
+        public float SequenceMinLength;
 
         [ModelProperty]
-        public Vector2 CreditsVariance;
+        public Vector2 LengthVarianceMult;
         [ModelProperty]
-        public Vector2 FrequencyVariance;
+        public Vector2 FrequencyVarianceMult;
         [ModelProperty]
-        public Vector2 TimeVariance;
+        public Vector2 SubwaveVarianceVariance;
 
         private IWaveGenerator _generator = new WaveGenerator();
 
@@ -75,7 +80,9 @@ namespace Lomztein.BFA2.Enemies.Waves
         }
 
         private float GetSpawnFrequency(int wave) => StartingFrequency * Mathf.Pow(FrequencyCoeffecient, wave - 1);
-        private float GetAvailableCredits(int wave) => StartingCredits * Mathf.Pow(CreditsCoeffecient, wave - 1);
+        private float GetWaveTime(int wave) => Mathf.Min(StartingLength + LengthPerWave * wave, MaxWaveLength);
+        private float GetAvailableCredits(int wave) => GetSpawnFrequency(wave) * GetWaveTime(wave);
+
         private int GetSequenceAmount(int wave) => Mathf.Min(GetRandom().Next(1, Mathf.FloorToInt(wave / SequenceDenomenator + 1)), SequenceMax);
         private int GetParallelAmount(int wave) => Mathf.Min(GetRandom().Next(1, Mathf.FloorToInt(wave / ParallelDenomenator + 1)), ParallelMax);
 
@@ -102,35 +109,78 @@ namespace Lomztein.BFA2.Enemies.Waves
             return timeline;
         }
 
-        private float RandomRange(float min, float max) => Mathf.Lerp(min, max, (float)_random.NextDouble());
+        private float RandomRange(float min, float max) => Mathf.Lerp(min, max, (float)GetRandom().NextDouble());
 
         private void AddSequentialWaves(int wave, WaveTimeline timeline, ref int offset)
         {
-            float time = 0f;
+            float waveTime = GetWaveTime(wave) * (1 + RandomRange(LengthVarianceMult.x, LengthVarianceMult.y));
+            float frequency = GetSpawnFrequency(wave);
             int waves = GetSequenceAmount(wave);
+            float[,] times = GenerateSequentialWaveTimes(waveTime, waves);
 
-            float credits = GetAvailableCredits(wave);
-
-            for (int i = 0; i < waves; i++)
+            for (int i = 0; i < times.GetLength(0); i++)
             {
-                time = GenerateParallelWaves(timeline, time, wave, credits / waves, ref offset);
+                GenerateParallelWaves(timeline, times[i, 0], times[i, 1], frequency, wave, ref offset);
             }
         }
 
-        private float GenerateParallelWaves(WaveTimeline timeline, float startTime, int wave, float credits, ref int offset)
+        private float[,] GenerateSequentialWaveTimes (float totalLength, int numWaves)
         {
-            float frequency = GetSpawnFrequency(wave);
+            bool valid = true;
+            float[] splits = new float[numWaves - 1];
 
+            do
+            {
+                for (int i = 0; i < splits.Length; i++)
+                {
+                    splits[i] = RandomRange(0f, totalLength);
+                }
+                Array.Sort(splits);
+
+                float cur = 0;
+                valid = true;
+                for (int i = 0; i < splits.Length; i++)
+                {
+                    if (splits[i] - cur < SequenceMinLength)
+                    {
+                        valid = false;
+                    }
+                    cur = splits[i];
+                }
+            }while (valid == false);
+
+            float[,] times = new float[numWaves, 2];
+            float t = 0;
+            for (int i = 0; i < splits.Length; i++)
+            {
+                times[i, 0] = t;
+                times[i, 1] = splits[i];
+                t = splits[i];
+            }
+            if (splits.Length > 0)
+            {
+                times[splits.Length, 0] = splits[splits.Length - 1];
+                times[splits.Length, 1] = totalLength - splits[splits.Length - 1];
+            }
+            else
+            {
+                times[0, 0] = 0f;
+                times[0, 1] = totalLength;
+            }
+            return times;
+        }
+
+        private void GenerateParallelWaves(WaveTimeline timeline, float startTime, float length, float frequency, int wave, ref int offset)
+        {
             int waves = GetParallelAmount(wave);
             for (int i = 0; i < waves; i++)
             {
-                float waveFrequency = frequency * (1 + RandomRange(FrequencyVariance.x, FrequencyVariance.y));
-                float waveCredits = credits * (1 + RandomRange(CreditsVariance.x, CreditsVariance.y));
+                float waveFrequency = frequency * (1 + RandomRange(FrequencyVarianceMult.x, FrequencyVarianceMult.y));
+                float waveLength = length * 1 + RandomRange(SubwaveVarianceVariance.x, SubwaveVarianceVariance.y);
 
-                SpawnInterval interval = _generator.Generate(startTime, wave, Seed + offset++, waveCredits, waveFrequency);
+                SpawnInterval interval = _generator.Generate(startTime, waveLength, waveFrequency, wave, Seed + offset++);
                 timeline.AddSpawn(interval);
             }
-            return timeline.EndTime + RandomRange(TimeVariance.x, TimeVariance.y);
         }
 
         public override int GetWaveCount()
