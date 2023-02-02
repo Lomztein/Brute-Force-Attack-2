@@ -39,6 +39,9 @@ namespace Lomztein.BFA2.Abilities
 
         public event Action<Ability, AbilityPlacement> OnActivated;
 
+        public virtual void Initialize() { }
+        public virtual void End () { }
+
         public virtual void Select()
         {
             var placement = GetPlacement();

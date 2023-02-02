@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Abilities.Placements;
 using Lomztein.BFA2.Abilities.Visualizers;
 using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
@@ -25,6 +26,22 @@ namespace Lomztein.BFA2.Abilities
         public override float CooldownProgress => CurrentCooldown / (float)MaxCooldown;
         public override int Charges => CurrentCharges;
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            RoundController.Instance.OnWaveFinished += OnWaveFinished;
+        }
+
+        public override void End()
+        {
+            RoundController.Instance.OnWaveFinished -= OnWaveFinished;
+        }
+
+        private void OnWaveFinished(int arg1, Enemies.Waves.WaveHandler arg2)
+        {
+            Cooldown(1);
+        }
+
         public override AbilityVisualizer InstantiateVisualizer()
         {
             if (Visualizer != null)
@@ -42,9 +59,10 @@ namespace Lomztein.BFA2.Abilities
                 CurrentCooldown = MaxCooldown;
                 CurrentCharges++;
             }
-            if (CurrentCharges == MaxCharges)
+            if (CurrentCharges >= MaxCharges)
             {
                 CurrentCooldown = 0;
+                CurrentCharges = MaxCharges;
             }
         }
 
@@ -66,7 +84,7 @@ namespace Lomztein.BFA2.Abilities
             {
                 CurrentCooldown = MaxCooldown;
             }
-            if (MaxCooldown != 0)
+            if (MaxCooldown != 0) // The ability does not have a cooldown, so charges should essentially be ignored.
             {
                 CurrentCharges--;
             }

@@ -26,6 +26,7 @@ namespace Lomztein.BFA2.Abilities
             _currentAbilities.Add(ability);
             OnAbilityAdded?.Invoke(ability, source);
             ability.OnActivated += Ability_OnActivated;
+            ability.Initialize();
         }
 
         private void Ability_OnActivated(Ability arg1, object arg2)
@@ -40,6 +41,7 @@ namespace Lomztein.BFA2.Abilities
             {
                 OnAbilityRemoved?.Invoke(identifier, source);
                 current.OnActivated -= Ability_OnActivated;
+                current.End();
                 return true;
             }
             return false;
