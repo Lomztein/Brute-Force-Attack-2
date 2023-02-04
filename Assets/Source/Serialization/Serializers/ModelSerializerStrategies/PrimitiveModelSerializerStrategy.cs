@@ -22,11 +22,12 @@ namespace Lomztein.BFA2.Serialization.Serializers.ModelSerializerStrategies
         protected override JToken SerializeWithoutMetadata(ValueModel model)
         {
             PrimitiveModel prim = model as PrimitiveModel;
-            if (prim.Value == null || prim.StoreAs == null)
+            if (prim.Value == null)
             {
                 return JValue.CreateNull();
             }
-            return new JValue (Convert.ChangeType(prim.Value, prim.StoreAs));
+            return prim.StoreAs == null ?
+                new JValue(prim.Value) : new JValue (Convert.ChangeType(prim.Value, prim.StoreAs));
         }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "$Type": "Lomztein.BFA2.Modification.Modifiers.StatMod",
+  "$Data": {
+    "Stats": [
+      {
+        "Info": "$Path{Core/Modifiers/Stats/Speed.json}",
+        "Value": 1.0
+      }
+    ],
+    "AddStatIfMissing": false,
+    "Filters": [
+      {
+        "$Type": "Lomztein.BFA2.Modification.Filters.HasStatFilter",
+        "$Data": {
+          "Info": "$Path{Core/Modifiers/Stats/Speed.json}"
+        }
+      }
+    ],
+    "Identifier": "Core.MagRails",
+    "Name": "Magnetic Rails",
+    "Description": "Magnetic rails drastically accelerate projectiles."
+  }
+}

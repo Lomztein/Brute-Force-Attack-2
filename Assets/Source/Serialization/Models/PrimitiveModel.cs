@@ -43,7 +43,8 @@ namespace Lomztein.BFA2.Serialization.Models
         {
             return new PrimitiveModel()
             {
-                Value = token.Value.ToString()
+                Value = token.Value.ToString(),
+                StoreAs = token.Value.GetType()
             };
         }
 

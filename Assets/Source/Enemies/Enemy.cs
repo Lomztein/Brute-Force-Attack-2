@@ -72,7 +72,19 @@ namespace Lomztein.BFA2.Enemies
             {
                 Die(); // TODO: Fix me, appears that an enemy is sometimes spawned but not initialized at the end of a wave. This is a temporary workaround.
             }
-            _motor.Tick(Time.fixedDeltaTime);
+            else
+            {
+                _motor.Tick(Time.fixedDeltaTime);
+
+                if (_motor.HasReachedEnd())
+                {
+                    DoDamage();
+                }
+                else
+                {
+                    Accelerate(Time.fixedDeltaTime);
+                }
+            }
 
             foreach (EnemyBuff buff in _buffs)
             {
@@ -83,15 +95,6 @@ namespace Lomztein.BFA2.Enemies
                 EnemyBuff toRemove = _toRemove.Dequeue();
                 toRemove.End();
                 _buffs.Remove(toRemove);
-            }
-
-            if (_motor.HasReachedEnd ())
-            {
-                DoDamage();
-            }
-            else
-            {
-                Accelerate(Time.fixedDeltaTime);
             }
         }
 
@@ -198,6 +201,14 @@ namespace Lomztein.BFA2.Enemies
             {
                 Die();
             }
+            return Health;
+        }
+
+        public double Heal (double amount)
+        {
+            Health += amount;
+            if (Health > MaxHealth)
+                Health = MaxHealth;
             return Health;
         }
 
