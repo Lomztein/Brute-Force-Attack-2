@@ -23,7 +23,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Spawners
         public void Spawn(int amount, float delay, IContentPrefab prefab)
         {
             float f = 1f / delay;
-            int spawners = Mathf.CeilToInt(f / FrequencyPerSpawner);
+            int spawners = (int)Mathf.Max(1f, Mathf.Ceil(f / FrequencyPerSpawner));
             float d = delay * spawners;
             int a = Mathf.RoundToInt(amount / spawners);
             int remaining = amount - (a * spawners);

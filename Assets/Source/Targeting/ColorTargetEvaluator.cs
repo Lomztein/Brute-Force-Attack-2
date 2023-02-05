@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.Targeting
 
         protected override float DoEvaluate(GameObject source, Collider2D target)
         {
-            Enemy enemy = target.GetComponent<Enemy>();
+            Enemy enemy = target.GetComponentInParent<Enemy>();
             return enemy.Color == TargetColor ? 1f : -1f;
         }
     }

@@ -1,0 +1,13 @@
+{
+  "Character": "$Path{Core/Characters/Hackerman/Hackerman.json}",
+  "Expression": "Neutral",
+  "Text": "Oh no, the upcoming wave has shield enemies that project a shield around themselves. This shield provides cover to other nearby enemies and can take a large amount of punishment. Piercing weapons such as the Railgun can pierce through this shield.",
+  "Predicate": {
+    "$Type": "Lomztein.BFA2.UI.Displays.Dialog.FirstApperanceOfEnemyPredicate",
+    "$Data": {
+      "EnemyIdentifiersRegex": [
+        "Core\\.ShieldEnemy"
+      ]
+    }
+  }
+}

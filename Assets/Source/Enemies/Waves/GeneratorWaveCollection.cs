@@ -15,6 +15,8 @@ namespace Lomztein.BFA2.Enemies.Waves
     {
         [ModelProperty]
         public int Seed;
+        [ModelProperty]
+        public int MaxWaves = 100;
 
         [ModelProperty]
         public float StartingFrequency;
@@ -70,7 +72,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             {
                 return _waves[index];
             }
-            else if (_generator.CanGenerate(index))
+            else if (_generator.CanGenerate(index) && index <= MaxWaves)
             {
                 WaveTimeline wave = GenerateWave(index);
                 _waves.Add(index, wave);

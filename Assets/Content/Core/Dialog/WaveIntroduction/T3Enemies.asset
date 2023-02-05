@@ -15,12 +15,14 @@ MonoBehaviour:
   Character: {fileID: 11400000, guid: 77b3d5dccfabce34a9ba5ee73838b07e, type: 2}
   Expression: Neutral
   Text: Oh shoot, next wave comes with Tier 3 enemies! You should not underestimate
-    these, they will break your defenses if you don't go hard on them.
+    these, they will break your defenses if you don't go hard on them. Even higher
+    tiers will appear soon enough, so be prepared for that!
   Predicate:
-    id: 0
+    rid: 0
   references:
-    version: 1
-    00000000:
+    version: 2
+    RefIds:
+    - rid: 0
       type: {class: FirstApperanceOfEnemyPredicate, ns: Lomztein.BFA2.UI.Displays.Dialog,
         asm: Assembly-CSharp}
       data:

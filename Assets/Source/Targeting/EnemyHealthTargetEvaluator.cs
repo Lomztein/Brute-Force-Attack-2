@@ -11,6 +11,6 @@ namespace Lomztein.BFA2.Targeting
     public class EnemyHealthTargetEvaluator : TargetEvaluator
     {
         protected override float DoEvaluate(GameObject source, Collider2D target)
-            => (float)target.GetComponent<Enemy>().Health;
+            => (float)target.GetComponentInParent<Enemy>().Health;
     }
 }

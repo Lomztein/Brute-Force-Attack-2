@@ -1,5 +1,5 @@
 {
-  "Name": "FastEnemyT2",
+  "Name": "FastEnemyT2(Clone)",
   "Tag": "Untagged",
   "Layer": 8,
   "Static": false,
@@ -27,13 +27,12 @@
     {
       "$Type": "Lomztein.BFA2.Enemies.Enemy",
       "$Data": {
-        "_difficultyValue": 20.0,
         "MaxHealth": 100.0,
         "Armor": 0.0,
         "Shields": 0.0,
         "MaxSpeed": 10.0,
         "_UniqueIdentifier": "Core.FastEnemyT2",
-        "Color": 1,
+        "Color": "Yellow",
         "DeathParticleLife": 1.0
       }
     },
@@ -46,7 +45,7 @@
     {
       "$Type": "UnityEngine.Rigidbody2D",
       "$Data": {
-        "BodyType": 1
+        "BodyType": "Kinematic"
       }
     },
     {
@@ -94,12 +93,13 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Enemies/FastEnemyT2.png",
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Enemies/FastEnemyT2.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
+                "Width": 20.0,
+                "Height": 16.0
               },
               "Pivot": {
                 "X": 0.5,
@@ -149,8 +149,7 @@
           "$Data": {
             "Reference": {
               "Path": "Resources/Particles/YellowDeathParticle"
-            },
-            "NameOverride": ""
+            }
           }
         }
       ],

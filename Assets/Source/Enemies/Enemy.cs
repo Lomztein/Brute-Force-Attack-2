@@ -90,6 +90,20 @@ namespace Lomztein.BFA2.Enemies
             {
                 buff.Tick(Time.fixedDeltaTime);
             }
+            //EndBuffToRemoveQueue();
+        }
+
+        private void OnDestroy()
+        {
+            if (Application.isPlaying)
+            {
+                ClearBuffs();
+                EndBuffToRemoveQueue();
+            }
+        }
+
+        private void EndBuffToRemoveQueue ()
+        {
             while (_toRemove.Count > 0)
             {
                 EnemyBuff toRemove = _toRemove.Dequeue();
@@ -188,14 +202,14 @@ namespace Lomztein.BFA2.Enemies
 
         public double TakeDamage(DamageInfo damageInfo)
         {
+            double before = Health;
             double damage = GetDamage(damageInfo);
-            double reduction = GetDamageReduction(damage);
 
-            damageInfo.DamageDealt = Math.Min (Health + reduction, damageInfo.Damage);
             LastDamageTaken = damageInfo;
 
             Health -= Math.Min (damage, Health);
             Shields = Math.Max (Shields - 1, 0);
+            damageInfo.DamageDealt = Math.Min(before - Health, MaxHealth) + GetDamageReduction(damageInfo.Damage);
 
             if (Health <= 0f && !_isDead)
             {

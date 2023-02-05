@@ -25,10 +25,12 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             if (unlocked)
             {
                 Image.sprite = _achievement.Sprite.Get();
+                Image.color = Color.white;
             }
             else
             {
                 Image.sprite = LockedSprite;
+                Image.color = transform.parent.GetComponentInParent<Image>().color; // FIXME horrible hack, color does not update when UI theme changes.
             }
         }
 

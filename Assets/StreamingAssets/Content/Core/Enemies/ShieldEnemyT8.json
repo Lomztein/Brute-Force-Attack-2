@@ -1,0 +1,258 @@
+{
+  "Name": "ShieldEnemyT8(Clone)",
+  "Tag": "Untagged",
+  "Layer": 8,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 5000.0,
+          "Y": 5000.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Enemies.Enemy",
+      "$Data": {
+        "MaxHealth": 400000000.0,
+        "Armor": 0.0,
+        "Shields": 0.0,
+        "MaxSpeed": 4.0,
+        "_UniqueIdentifier": "Core.ShieldEnemyT8",
+        "Color": "Orange",
+        "DeathParticleLife": 1.0
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Enemies.Motors.FollowPathMotor",
+      "$Data": {
+        "Rotate": false
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "BasicEnemy",
+      "Tag": "Untagged",
+      "Layer": 8,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Enemies/ShieldEnemyT8.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 18.0,
+                "Height": 18.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "DeathParticle",
+      "Tag": "Untagged",
+      "Layer": 8,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+          "$Data": {
+            "Reference": {
+              "Path": "Resources/Particles/BlueDeathParticle"
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "Shield",
+      "Tag": "Untagged",
+      "Layer": 8,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.Enemies.Damagable",
+          "$Data": {
+            "MaxHealth": 4000000000.0,
+            "Color": "Orange",
+            "DestroyOnDeath": true
+          }
+        },
+        {
+          "$Type": "UnityEngine.CircleCollider2D",
+          "$Data": {
+            "Radius": 2.0,
+            "Offset": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "IsTrigger": false,
+            "UsedByEffector": false
+          }
+        }
+      ],
+      "Children": [
+        {
+          "Name": "ShieldEnemyShield",
+          "Tag": "Untagged",
+          "Layer": 0,
+          "Static": false,
+          "Components": [
+            {
+              "$Type": "UnityEngine.Transform",
+              "$Data": {
+                "Position": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": -0.1
+                },
+                "Rotation": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "Scale": {
+                  "X": 1.0,
+                  "Y": 1.0,
+                  "Z": 1.0
+                }
+              }
+            },
+            {
+              "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+              "$Data": {
+                "Reference": {
+                  "Path": null,
+                  "Texture": "$Path{Core/Sprites/Enemies/ShieldEnemyShield.png}",
+                  "Rect": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Width": 64.0,
+                    "Height": 64.0
+                  },
+                  "Pivot": {
+                    "X": 0.5,
+                    "Y": 0.5
+                  },
+                  "PixelsPerUnit": 16.0
+                },
+                "Color": {
+                  "Red": 1.0,
+                  "Green": 1.0,
+                  "Blue": 1.0,
+                  "Alpha": 1.0
+                }
+              }
+            }
+          ],
+          "Children": []
+        }
+      ]
+    }
+  ]
+}

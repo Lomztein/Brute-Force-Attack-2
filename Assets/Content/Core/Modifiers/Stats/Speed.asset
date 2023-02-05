@@ -16,14 +16,15 @@ MonoBehaviour:
   Name: Speed
   Description: The speed that projectiles leave the barrel at.
   Function:
-    id: 0
+    rid: 463917056710148283
   Formatter:
-    id: 1
+    rid: 463917056710148285
   references:
-    version: 1
-    00000000:
-      type: {class: LiniarFunction, ns: Lomztein.BFA2.Modification.Stats.Functions,
+    version: 2
+    RefIds:
+    - rid: 463917056710148283
+      type: {class: MultiplicativeFunction, ns: Lomztein.BFA2.Modification.Stats.Functions,
         asm: Assembly-CSharp}
-    00000001:
+    - rid: 463917056710148285
       type: {class: DefaultFormatter, ns: Lomztein.BFA2.Modification.Stats.Formatters,
         asm: Assembly-CSharp}

@@ -1,5 +1,5 @@
 {
-  "Name": "HeavyEnemyT3",
+  "Name": "HeavyEnemyT3(Clone)",
   "Tag": "Untagged",
   "Layer": 8,
   "Static": false,
@@ -27,13 +27,12 @@
     {
       "$Type": "Lomztein.BFA2.Enemies.Enemy",
       "$Data": {
-        "_difficultyValue": 300.0,
         "MaxHealth": 6000.0,
-        "Armor": 0.0,
+        "Armor": 200.0,
         "Shields": 0.0,
         "MaxSpeed": 2.5,
         "_UniqueIdentifier": "Core.HeavyEnemyT3",
-        "Color": 2,
+        "Color": "Red",
         "DeathParticleLife": 1.0
       }
     },
@@ -44,27 +43,22 @@
       }
     },
     {
-      "$Type": "UnityEngine.Rigidbody2D",
+      "$Type": "UnityEngine.BoxCollider2D",
       "$Data": {
-        "BodyType": 1
-      }
-    },
-    {
-      "$Type": "UnityEngine.CircleCollider2D",
-      "$Data": {
-        "Radius": 0.66,
         "Offset": {
           "X": 0.0,
           "Y": 0.0
         },
-        "IsTrigger": false,
-        "UsedByEffector": false
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
+        }
       }
     }
   ],
   "Children": [
     {
-      "Name": "BasicEnemy",
+      "Name": "Sprite",
       "Tag": "Untagged",
       "Layer": 8,
       "Static": false,
@@ -93,12 +87,13 @@
           "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
           "$Data": {
             "Reference": {
-              "Path": "Core/Sprites/Enemies/HeavyEnemyT3.png",
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Enemies/HeavyEnemyT3.png}",
               "Rect": {
                 "X": 0.0,
                 "Y": 0.0,
-                "Width": 0.0,
-                "Height": 0.0
+                "Width": 20.0,
+                "Height": 20.0
               },
               "Pivot": {
                 "X": 0.5,
@@ -148,8 +143,7 @@
           "$Data": {
             "Reference": {
               "Path": "Resources/Particles/RedDeathParticle"
-            },
-            "NameOverride": ""
+            }
           }
         }
       ],

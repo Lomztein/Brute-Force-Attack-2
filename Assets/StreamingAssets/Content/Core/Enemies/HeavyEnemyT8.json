@@ -1,0 +1,153 @@
+{
+  "Name": "HeavyEnemyT8(Clone)",
+  "Tag": "Untagged",
+  "Layer": 8,
+  "Static": false,
+  "Components": [
+    {
+      "$Type": "UnityEngine.Transform",
+      "$Data": {
+        "Position": {
+          "X": 5000.0,
+          "Y": 5000.0,
+          "Z": 0.0
+        },
+        "Rotation": {
+          "X": 0.0,
+          "Y": 0.0,
+          "Z": 0.0
+        },
+        "Scale": {
+          "X": 1.0,
+          "Y": 1.0,
+          "Z": 1.0
+        }
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Enemies.Enemy",
+      "$Data": {
+        "MaxHealth": 600000000.0,
+        "Armor": 2E+07,
+        "Shields": 0.0,
+        "MaxSpeed": 2.5,
+        "_UniqueIdentifier": "Core.HeavyEnemyT8",
+        "Color": "Red",
+        "DeathParticleLife": 1.0
+      }
+    },
+    {
+      "$Type": "Lomztein.BFA2.Enemies.Motors.FollowPathMotor",
+      "$Data": {
+        "Rotate": false
+      }
+    },
+    {
+      "$Type": "UnityEngine.BoxCollider2D",
+      "$Data": {
+        "Offset": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Size": {
+          "X": 1.0,
+          "Y": 1.0
+        }
+      }
+    }
+  ],
+  "Children": [
+    {
+      "Name": "Sprite",
+      "Tag": "Untagged",
+      "Layer": 8,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.ContentSpriteRenderer",
+          "$Data": {
+            "Reference": {
+              "Path": null,
+              "Texture": "$Path{Core/Sprites/Enemies/HeavyEnemyT8.png}",
+              "Rect": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Width": 24.0,
+                "Height": 24.0
+              },
+              "Pivot": {
+                "X": 0.5,
+                "Y": 0.5
+              },
+              "PixelsPerUnit": 16.0
+            },
+            "Color": {
+              "Red": 1.0,
+              "Green": 1.0,
+              "Blue": 1.0,
+              "Alpha": 1.0
+            }
+          }
+        }
+      ],
+      "Children": []
+    },
+    {
+      "Name": "DeathParticle",
+      "Tag": "Untagged",
+      "Layer": 8,
+      "Static": false,
+      "Components": [
+        {
+          "$Type": "UnityEngine.Transform",
+          "$Data": {
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Rotation": {
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0
+            },
+            "Scale": {
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            }
+          }
+        },
+        {
+          "$Type": "Lomztein.BFA2.ContentSystem.References.ReferenceComponents.GameObjectReferenceComponent",
+          "$Data": {
+            "Reference": {
+              "Path": "Resources/Particles/RedDeathParticle"
+            }
+          }
+        }
+      ],
+      "Children": []
+    }
+  ]
+}
