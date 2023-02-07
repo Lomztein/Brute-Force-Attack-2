@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.UI.ToolTip
             public object Marker;
             public Func<GameObject> Callback;
 
-            public GameObject GetToolTip()
+            public GameObject InstantiateToolTip()
             {
                 return Callback();
             }

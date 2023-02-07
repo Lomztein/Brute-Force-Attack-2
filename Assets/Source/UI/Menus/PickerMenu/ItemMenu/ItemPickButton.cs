@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
             Description = pickable.Description;
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(Title, Description, Footnote);
         }

@@ -13,29 +13,12 @@ MonoBehaviour:
   m_Name: Weakest
   m_EditorClassIdentifier: 
   Name: Weakest
-  Description: 
   Evaluator:
-    id: 0
-  Sprite:
-    Path: 
-    Texture: {fileID: 2800000, guid: 2dd9a22126afa074fa1e8a49ee16372d, type: 3}
-    Rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 0
-      height: 0
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
+    rid: 463917117002219848
   references:
-    version: 1
-    00000000:
-      type: {class: ColoredTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
-      data:
-        Invert: 0
-        Evaluator:
-          id: 1
-    00000001:
+    version: 2
+    RefIds:
+    - rid: 463917117002219848
       type: {class: EnemyHealthTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
       data:
         Invert: 1

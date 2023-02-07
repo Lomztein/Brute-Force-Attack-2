@@ -11,31 +11,48 @@ namespace Lomztein.BFA2.Targeting
 {
     public class TargetFinder : MonoBehaviour
     {
-        [SerializeReference, SR, ModelProperty]
-        private TargetEvaluator _evalutator;
+        private IEnumerable<TargetEvaluator> _evalutators;
 
-        public void SetEvaluator (TargetEvaluator evaluator)
+        public void SetEvaluator (IEnumerable<TargetEvaluator> evaluators)
         {
-            _evalutator = evaluator;
+            _evalutators = evaluators;
         }
 
         public Transform FindTarget(GameObject source, IEnumerable<Collider2D> options)
         {
             Collider2D best = options.FirstOrDefault();
-            float bestValue = -Mathf.Infinity;
 
-            foreach (Collider2D option in options)
+            var remaining = new Queue<Collider2D>(options);
+            foreach (var evaluator in _evalutators)
             {
-                float value = _evalutator?.Evaluate(source, option) ?? 0;
+                var next = new Queue<Collider2D>();
+                float bestValue = -Mathf.Infinity;
 
-                if (value > bestValue)
+                while (remaining.Count > 0)
                 {
-                    best = option;
-                    bestValue = value;
+                    var option = remaining.Dequeue();
+                    float value = evaluator.Evaluate(source, option);
+
+                    if (Mathf.Abs(value - bestValue) < Mathf.Epsilon)
+                    {
+                        next.Enqueue(option);
+                    }
+                    else if (value > bestValue)
+                    {
+                        next.Clear();
+                        next.Enqueue(option);
+                        best = option;
+                        bestValue = value;
+                    }
                 }
+                remaining = next;
             }
 
-            return best?.transform;
+            if (remaining.TryDequeue(out Collider2D val))
+            {
+                return val.transform;
+            }
+            return null;
         }
     }
 }

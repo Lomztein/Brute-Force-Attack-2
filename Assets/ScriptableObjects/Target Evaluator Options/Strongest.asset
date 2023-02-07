@@ -13,29 +13,12 @@ MonoBehaviour:
   m_Name: Strongest
   m_EditorClassIdentifier: 
   Name: Strongest
-  Description: 
   Evaluator:
-    id: 0
-  Sprite:
-    Path: 
-    Texture: {fileID: 2800000, guid: 2dd9a22126afa074fa1e8a49ee16372d, type: 3}
-    _cache: {fileID: 0}
-    Rect:
-      x: 0
-      y: 0
-      width: 32
-      height: 32
-    Pivot: {x: 0.5, y: 0.5}
-    PixelsPerUnit: 16
+    rid: 463917117002219847
   references:
-    version: 1
-    00000000:
-      type: {class: ColoredTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
-      data:
-        Invert: 0
-        Evaluator:
-          id: 1
-    00000001:
+    version: 2
+    RefIds:
+    - rid: 463917117002219847
       type: {class: EnemyHealthTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
       data:
         Invert: 0

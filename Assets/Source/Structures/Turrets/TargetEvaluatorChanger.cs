@@ -1,8 +1,10 @@
-﻿using Lomztein.BFA2.Structures.Turrets.TargetProviders;
+﻿using Lomztein.BFA2.ContentSystem.References;
+using Lomztein.BFA2.Structures.Turrets.TargetProviders;
 using Lomztein.BFA2.Structures.Turrets.Weapons;
 using Lomztein.BFA2.Targeting;
 using Lomztein.BFA2.UI.ContextMenu;
 using Lomztein.BFA2.UI.ContextMenu.Providers;
+using Lomztein.BFA2.UI.ContextMenu.SubMenus;
 using Lomztein.BFA2.UI.ToolTip;
 using System;
 using System.Collections;
@@ -17,9 +19,12 @@ namespace Lomztein.BFA2.Structures.Turrets
     public class TargetEvaluatorChanger : MonoBehaviour, IContextMenuOptionProvider
     {
         public TargetEvaluatorOption[] EvaluatorOptions;
+        public ContentSpriteReference Sprite;
+        public GameObject ChangerSubmenu;
 
-        private int _evaluatorIndex = 0;
-        private TargetEvaluatorOption CurrentEvaluator => EvaluatorOptions[_evaluatorIndex];
+        [SerializeField]
+        private List<int> _evaluatorIndex;
+        public TargetEvaluatorOption[] CurrentEvaluator => _evaluatorIndex.Select(x => EvaluatorOptions[x]).ToArray();
 
         private void Awake()
         {
@@ -28,6 +33,7 @@ namespace Lomztein.BFA2.Structures.Turrets
                 EvaluatorOptions[i] = Instantiate(EvaluatorOptions[i]); // Clone each to avoid weird shit.
             }
             GetComponent<Structure>().HierarchyChanged += TargetEvaluatorChanger_Changed;
+            _evaluatorIndex = GetDefaultOptionIndexes();
         }
 
         private void TargetEvaluatorChanger_Changed(Structure structure, GameObject obj, object source)
@@ -48,18 +54,48 @@ namespace Lomztein.BFA2.Structures.Turrets
 
         private void UpdateEvaluator(bool overrideCurrent)
         {
-            if (CurrentEvaluator.Evaluator is ColoredTargetEvaluator evaluator)
-            {
-                evaluator.SetColor(GetPriorityColor());
-            }
-
             foreach (TurretBase b in GetComponentsInChildren<TurretBase>())
             {
                 if (b.GetEvaluator() == null || overrideCurrent)
                 {
-                    b.SetEvaluator(CurrentEvaluator.Evaluator);
+                    b.SetEvaluators(CurrentEvaluator.Select(x => x.Evaluator));
                 }
             }
+        }
+
+        private GameObject InstantiateChangerSubmenu ()
+        {
+            GameObject changer = Instantiate(ChangerSubmenu);
+            changer.GetComponent<TargetPrioritySubMenu>().Assign(this);
+            return changer;
+        }
+
+        private List<int> GetDefaultOptionIndexes ()
+        {
+            int colorOptionIndex = GetColorOptionIndex(GetPriorityColor());
+            if (colorOptionIndex == -1)
+            {
+                return new List<int> { 0 };
+            }
+            else
+            {
+                return new List<int>() {
+                    GetColorOptionIndex(GetPriorityColor()), 
+                    0
+                };
+            }
+        }
+
+        private int GetColorOptionIndex (Colorization.Color color)
+        {
+            for (int i = 0; i < EvaluatorOptions.Length; i++)
+            {
+                if (EvaluatorOptions[i].Evaluator is ColorTargetEvaluator colorEvaluator && colorEvaluator.TargetColor == color)
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
 
         private Colorization.Color GetPriorityColor ()
@@ -82,20 +118,40 @@ namespace Lomztein.BFA2.Structures.Turrets
             return color;
         }
 
-        private bool NextEvaluator()
+        public void ChangeEvaluator(int slot, int change)
         {
-            _evaluatorIndex++;
-            _evaluatorIndex %= EvaluatorOptions.Length;
+            _evaluatorIndex[slot] += change;
+            _evaluatorIndex[slot] %= EvaluatorOptions.Length;
+            if (_evaluatorIndex[slot] < 0) _evaluatorIndex[slot] = EvaluatorOptions.Length - 1;
             UpdateEvaluator(true);
             TooltipController.ForceResetToolTip();
-            return false;
+        }
+
+        public void SetEvaluator(int slot, int value)
+        {
+            _evaluatorIndex[slot] = value;
+            UpdateEvaluator(true);
+            TooltipController.ForceResetToolTip();
+        }
+
+        public int AddSlot ()
+        {
+            _evaluatorIndex.Add(0);
+            return _evaluatorIndex.Count - 1;
+        }
+
+        public void RemoveSlot(int index)
+        {
+            _evaluatorIndex.RemoveAt(index);
         }
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption(CurrentEvaluator.Sprite.Get, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, NextEvaluator, () => true, () => SimpleToolTip.InstantiateToolTip($"Targeting: {CurrentEvaluator.Name}", CurrentEvaluator.Description))
+                new ContextMenuOption(Sprite.Get, () => UI.ContextMenu.ContextMenu.Side.Left)
+                .WithSubMenu(InstantiateChangerSubmenu)
+                .WithToolTip(() => SimpleToolTip.InstantiateToolTip("Target prioritization")),
             };
         }
     }

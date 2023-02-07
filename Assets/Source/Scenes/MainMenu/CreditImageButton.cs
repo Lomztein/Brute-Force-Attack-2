@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             Application.OpenURL(WebsiteUrl);
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(Name, Description, Footnote);
         }

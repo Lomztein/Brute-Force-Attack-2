@@ -18,7 +18,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
         public float ButtonDist;
         public float LerpSpeed;
 
-        private List<Button> _buttons = new List<Button>();
+        private List<GameObject> _buttons = new List<GameObject>();
         private List<IContextMenuOption> _options = new List<IContextMenuOption>();
         private Transform _stickTo;
 
@@ -55,7 +55,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
         private void ClearButtons ()
         {
-            foreach (Button obj in _buttons)
+            foreach (GameObject obj in _buttons)
             {
                 Destroy(obj.gameObject);
             }
@@ -66,13 +66,29 @@ namespace Lomztein.BFA2.UI.ContextMenu
         {
             GameObject buttObj = Instantiate(ButtonPrefab, transform.position, Quaternion.identity, transform);
             Button button = buttObj.GetComponent<Button>();
-            button.onClick.AddListener(() => ClickButton(option));
-            _buttons.Add(button);
+            if (option.HasSubMenu && button.TryGetComponent(out SubMenuHandler handler))
+            {
+                handler.OverrideSubmenuPrefab(option.InstantiateSubMenu);
+                handler.SetSide(option.Side);
+            }
+            if (option.HasOnClick)
+            {
+                button.onClick.AddListener(() => ClickButton(option));
+            }
+            else
+            {
+                Destroy(button);
+            }
+            if (!option.HasToolTip)
+            {
+                Destroy(button.GetComponent<IHasToolTip>() as Component);
+            }
+            _buttons.Add(buttObj);
         }
 
         private void ClickButton (IContextMenuOption option)
         {
-            bool value = option.Click();
+            bool value = option.OnClick();
             if (value == true)
             {
                 Close();
@@ -101,10 +117,15 @@ namespace Lomztein.BFA2.UI.ContextMenu
             for (int i = 0; i < _buttons.Count; i++)
             {
                 // Not really great to do every frame but there shouldn't be so many that it matters. Optimize if neccesary.
-                _buttons[i].transform.GetChild(0).GetComponent<Image>().sprite = arr[i].Sprite();
-                _buttons[i].GetComponent<AssignableToolTip>().SetToolTip(arr[i].ToolTip);
+                _buttons[i].transform.GetChild(0).GetComponent<Image>().sprite = arr[i].Sprite;
+                var loc = arr[i]; // Anonymous functions not big on indexing arrays, store value in seperate variable so compiler knows that it's THIS specific object.
+                
+                if (loc.HasToolTip)
+                {
+                    _buttons[i].GetComponent<AssignableToolTip>().SetToolTip(loc.InstantiateToolTip);
+                }
 
-                Color? color = arr[i].Tint();
+                Color? color = arr[i].Tint;
                 if (color.HasValue)
                 {
                     _buttons[i].transform.GetChild(0).GetComponent<UIGraphicStylizer>().enabled = false;
@@ -112,13 +133,16 @@ namespace Lomztein.BFA2.UI.ContextMenu
                 }
 
 
-                Side side = arr[i].Side();
+                Side side = arr[i].Side;
                 int si = indexOnSide[side];
 
-                LerpButton(_buttons[i].transform, si, arr[i].Side());
+                LerpButton(_buttons[i].transform, si, arr[i].Side);
                 indexOnSide[side]++;
                 
-                _buttons[i].interactable = _options[i].Interactable();
+                if (_buttons[i].TryGetComponent(out Button button))
+                {
+                    button.interactable = _options[i].Interactable;
+                }
             }
         }
 
@@ -153,7 +177,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
         private float GetEndingAngle(Side side)
             => GetStartingAngle(side) + 180f;
 
-        private int GetAmountOnSide(Side side) => _options.Count(x => x.Side() == side);
+        private int GetAmountOnSide(Side side) => _options.Count(x => x.Side == side);
 
         public void Init()
         {

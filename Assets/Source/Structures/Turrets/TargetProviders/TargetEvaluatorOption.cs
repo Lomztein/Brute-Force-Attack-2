@@ -16,12 +16,8 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
     {
         [ModelProperty]
         public string Name;
-        [ModelProperty]
-        public string Description;
 
         [SerializeReference, SR, ModelProperty]
         public TargetEvaluator Evaluator;
-        [ModelProperty]
-        public ContentSpriteReference Sprite;
     }
 }

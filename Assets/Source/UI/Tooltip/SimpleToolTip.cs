@@ -16,7 +16,7 @@ namespace Lomztein.BFA2.UI.ToolTip
         public string Description;
         public string Footer;
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return InstantiateToolTip(Title, Description, Footer);
         }

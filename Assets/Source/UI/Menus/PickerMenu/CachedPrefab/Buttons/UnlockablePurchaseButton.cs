@@ -14,11 +14,11 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
         protected IUnlockList UnlockList => Player.Player.Unlocks;
         public GameObject MissingResearchToolTip;
 
-        public override GameObject GetToolTip()
+        public override GameObject InstantiateToolTip()
         {
             if (IsUnlocked())
             {
-                return base.GetToolTip();
+                return base.InstantiateToolTip();
             }
             else
             {

@@ -11,19 +11,22 @@ namespace Lomztein.BFA2.UI
         public Component LayoutElement;
         private ILayoutElement InternalElement => LayoutElement as ILayoutElement;
 
+        public bool OverrideWidth = true;
+        public bool OverrideHeight = true;
+
         private void Awake()
         {
             if (LayoutElement == null)
                 LayoutElement = GetComponent<ILayoutElement>() as Component;
         }
 
-        public float minWidth => InternalElement.preferredWidth;
+        public float minWidth => OverrideWidth ? InternalElement.preferredWidth : InternalElement.minWidth;
 
         public float preferredWidth => InternalElement.preferredWidth;
 
         public float flexibleWidth => InternalElement.flexibleWidth;
 
-        public float minHeight => InternalElement.preferredHeight;
+        public float minHeight => OverrideHeight ? InternalElement.preferredHeight : InternalElement.minHeight;
 
         public float preferredHeight => InternalElement.preferredHeight;
 

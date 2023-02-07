@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Research.UI
             UpdateButton(true);
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(Research.Name, Research.Description, Research.TimeCost == 0 ? "Time: Instant" : "Time: " + Research.TimeCost + " Waves");
         }

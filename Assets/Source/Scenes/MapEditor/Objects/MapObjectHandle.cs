@@ -95,12 +95,12 @@ namespace Lomztein.BFA2.MapEditor.Objects
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption(() => SelectSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Select, () => true, () => SimpleToolTip.InstantiateToolTip($"Select {_object.name}", "Select this object.")),
-                new ContextMenuOption(() => DeleteSprite, () => null, () => UI.ContextMenu.ContextMenu.Side.Right, Delete, () => true, () => SimpleToolTip.InstantiateToolTip($"Delete {_object.name}", "Delete this object.")),
+                new ContextMenuOption(() => SelectSprite, () => UI.ContextMenu.ContextMenu.Side.Left).WithOnClick(Select).WithToolTip(() => SimpleToolTip.InstantiateToolTip($"Select {_object.name}", "Select this object.")),
+                new ContextMenuOption(() => DeleteSprite, () => UI.ContextMenu.ContextMenu.Side.Right).WithOnClick(Delete).WithToolTip(() => SimpleToolTip.InstantiateToolTip($"Delete {_object.name}", "Delete this object.")),
             };
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             if (_object.TryGetComponent(out INamed named))
                 return SimpleToolTip.InstantiateToolTip(named.Name, named.Description);

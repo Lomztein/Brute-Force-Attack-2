@@ -6,12 +6,17 @@ namespace Lomztein.BFA2.UI.ContextMenu
 {
     public interface IContextMenuOption : IHasToolTip
     {
-        Func<Sprite> Sprite { get; }
-        Func<Color?> Tint { get; }
-        Func<ContextMenu.Side> Side { get; }
-        Func<GameObject> ToolTip { get; }
+        Sprite Sprite { get; }
+        Color? Tint { get; }
+        ContextMenu.Side Side { get; }
+        bool Interactable { get; }
 
-        bool Click();
-        bool Interactable();
+        bool OnClick();
+
+        public GameObject InstantiateSubMenu();
+
+        bool HasOnClick { get; }
+        bool HasSubMenu { get; }
+        bool HasToolTip { get; }
     }
 }

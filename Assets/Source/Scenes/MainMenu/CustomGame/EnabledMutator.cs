@@ -47,7 +47,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             Properties.gameObject.SetActive(!Properties.gameObject.activeSelf);
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(Title, Description, Footnote);
         }

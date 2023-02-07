@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.UI.ToolTip
             _tooltipGetter = getter;
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return _tooltipGetter();
         }

@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.CachedPrefab.Buttons
 
         public GameObject ToolTipPrefab;
 
-        public virtual GameObject GetToolTip()
+        public virtual GameObject InstantiateToolTip()
         {
             GameObject newToolTip = Instantiate(ToolTipPrefab);
             newToolTip.GetComponent<IPurchasableToolTip>().Assign(_purchasable);

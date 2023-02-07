@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             EnableButton.onClick.AddListener(() => onClickEnable(mutator));
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(Title, Description);
         }

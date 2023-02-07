@@ -14,7 +14,7 @@ namespace Lomztein.BFA2.UI.Displays
         public Text Text;
         public string HealthText;
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(GetTooltip(_healthContainer.GetCurrentHealth()));
         }

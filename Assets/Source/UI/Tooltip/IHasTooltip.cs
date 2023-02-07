@@ -9,6 +9,6 @@ namespace Lomztein.BFA2.UI.ToolTip
 {
     public interface IHasToolTip
     {
-        GameObject GetToolTip();
+        GameObject InstantiateToolTip();
     }
 }

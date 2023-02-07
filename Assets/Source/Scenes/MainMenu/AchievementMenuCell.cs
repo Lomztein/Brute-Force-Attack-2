@@ -34,7 +34,7 @@ namespace Lomztein.BFA2.Scenes.MainMenu
             }
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             GameObject toolTip = Instantiate(ToolTipPrefab);
             Text title = toolTip.transform.Find("Main/Title").GetComponent<Text>();

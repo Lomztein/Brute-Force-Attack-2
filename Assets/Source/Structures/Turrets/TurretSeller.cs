@@ -18,12 +18,13 @@ namespace Lomztein.BFA2.Turrets
         [ModelProperty]
         public ContentSpriteReference SellSprite = new ContentSpriteReference();
         public float SellValueRatio = 0.75f;
+        public GameObject SubmenuPrefab;
 
         public IEnumerable<IContextMenuOption> GetContextMenuOptions()
         {
             return new IContextMenuOption[]
             {
-                new ContextMenuOption(SellSprite.Get, () => null, () => UI.ContextMenu.ContextMenu.Side.Left, Sell, () => true, GetToolTip)
+                new ContextMenuOption(SellSprite.Get, () => UI.ContextMenu.ContextMenu.Side.Left, Sell).WithToolTip(GetToolTip)
             };
         }
 

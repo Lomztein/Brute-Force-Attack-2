@@ -15,7 +15,7 @@ namespace Lomztein.BFA2.UI
             Application.OpenURL(Url);
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             return SimpleToolTip.InstantiateToolTip(Name, null, Url);
         }

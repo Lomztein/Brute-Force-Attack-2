@@ -60,7 +60,7 @@ namespace Lomztein.BFA2.UI.ToolTip
             }
             else if (hasChanged)
             {
-                GameObject newTooltip = _currentToolTip.GetToolTip();
+                GameObject newTooltip = _currentToolTip.InstantiateToolTip();
                 newTooltip.transform.SetParent(TooltipTransform);
                 TooltipTransform.gameObject.SetActive(true);
             }

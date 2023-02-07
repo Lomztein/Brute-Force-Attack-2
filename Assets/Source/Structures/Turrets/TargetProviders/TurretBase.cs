@@ -32,7 +32,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         private Transform _target;
         private TargetFinder _targetFinder;
-        private TargetEvaluator _targetEvaluator;
+        private IEnumerable<TargetEvaluator> _targetEvaluator;
 
         private IEventCaller _onTargetAcquired;
 
@@ -62,13 +62,14 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             _targetFinder = GetComponent<TargetFinder>();
         }
 
-        public void SetEvaluator(TargetEvaluator evaluator)
+        public void SetEvaluators(IEnumerable<TargetEvaluator> evaluators)
         {
             _targetFinder = GetComponent<TargetFinder>();
-            _targetEvaluator = evaluator;
+            var arr = evaluators?.ToArray();
+            _targetEvaluator = evaluators;
             _targetFinder.SetEvaluator(_targetEvaluator);
         }
-        public TargetEvaluator GetEvaluator()
+        public IEnumerable<TargetEvaluator> GetEvaluator()
             => _targetEvaluator;
 
         private bool IsWithinRange(Transform trans, float range)
@@ -108,7 +109,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             if (!ValueModel.IsNull(model))
             {
                 var assembly = GetComponentInChildren<TurretAssembly>(true);
-                SetEvaluator(assembler.Assemble(model, typeof(TargetEvaluator), context) as TargetEvaluator);
+                SetEvaluators(assembler.Assemble(model, typeof(List<TargetEvaluator>), context) as List<TargetEvaluator>);
             }
         }
 

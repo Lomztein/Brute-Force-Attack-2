@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.UI.ToolTip
     {
         public GameObject Prefab;
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             GameObject newToolTip = Instantiate(Prefab);
             newToolTip.GetComponent<StructureToolTip>().Assign(GetComponent<IPurchasable>());

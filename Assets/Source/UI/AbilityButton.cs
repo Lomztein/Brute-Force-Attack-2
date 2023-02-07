@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.UI
             Button.onClick.AddListener(OnClick);
         }
 
-        public GameObject GetToolTip()
+        public GameObject InstantiateToolTip()
         {
             var reasons = Ability.GetUnavailableReasons();
             return SimpleToolTip.InstantiateToolTip(Ability.Name, Ability.Description, reasons.Count() == 0 ? "Ready" : string.Join("\n", reasons));
