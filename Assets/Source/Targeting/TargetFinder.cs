@@ -20,8 +20,6 @@ namespace Lomztein.BFA2.Targeting
 
         public Transform FindTarget(GameObject source, IEnumerable<Collider2D> options)
         {
-            Collider2D best = options.FirstOrDefault();
-
             var remaining = new Queue<Collider2D>(options);
             foreach (var evaluator in _evalutators)
             {
@@ -41,7 +39,6 @@ namespace Lomztein.BFA2.Targeting
                     {
                         next.Clear();
                         next.Enqueue(option);
-                        best = option;
                         bestValue = value;
                     }
                 }
