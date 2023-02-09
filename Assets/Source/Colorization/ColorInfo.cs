@@ -21,6 +21,8 @@ namespace Lomztein.BFA2.Colorization
             new ColorInfo (Color.Purple, "Purple", "Purple ambition and riches, nobility and power.", UnityEngine.Color.magenta),
             new ColorInfo (Color.Orange, "Orange", "Orange is protecting warmth, sorrounding you as a pleasent aura.", new UnityEngine.Color(1f, 0.5f, 1f)),
             new ColorInfo (Color.Green, "Green", "Green is nature, fresh and vibrant. Jealousy will never gain you anything.", UnityEngine.Color.green),
+            new ColorInfo (Color.White, "White", "EMBRACE THE VOID", UnityEngine.Color.white),
+            new ColorInfo (Color.Black, "Black", "EMBRACE THE VOID", UnityEngine.Color.black),
         };
 
         public static ColorInfo Get(Color color)

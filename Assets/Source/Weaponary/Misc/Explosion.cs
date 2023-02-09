@@ -1,5 +1,6 @@
 ﻿using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.Weaponary.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Lomztein.BFA2.Weaponary.Misc
         [ModelProperty]
         public float Life;
 
-        public void Explode (double damage, float range, Action<Collider2D> onHit)
+        public void Explode (double damage, float range, Action<DamageInfo> onDoDamage)
         {
             var particles = GetComponentInChildren<ParticleSystem>();
             particles.transform.localScale = Vector3.one * range / ParticleBaseRange;
@@ -30,8 +31,9 @@ namespace Lomztein.BFA2.Weaponary.Misc
             {
                 if (col.TryGetComponent<IDamagable>(out var damagable))
                 {
-                    damagable.TakeDamage(new DamageInfo(this, null, damage, Colorization.Color.Red));
-                    onHit(col);
+                    var info = new DamageInfo(this, new TransformTarget(col.transform), damage, Colorization.Color.Red, true);
+                    damagable.TakeDamage(info);
+                    onDoDamage(info);
                 }
             }
 

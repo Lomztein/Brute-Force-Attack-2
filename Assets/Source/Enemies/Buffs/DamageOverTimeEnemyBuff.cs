@@ -39,7 +39,7 @@ namespace Lomztein.BFA2.Enemies.Buffs
         public override void Tick(float dt)
         {
             base.Tick(dt);
-            Target.TakeDamage(new Weaponary.DamageInfo(this, new TransformTarget(Target.transform), CurrentDPS * Coeffecient * dt, DamageColor));
+            Target.TakeDamage(new Weaponary.DamageInfo(this, new TransformTarget(Target.transform), CurrentDPS * Coeffecient * dt, DamageColor, true));
             _effectObj.transform.position = Target.transform.position;
         }
     }

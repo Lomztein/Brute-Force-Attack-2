@@ -28,7 +28,7 @@ namespace Lomztein.BFA2.Weaponary
         public float Speed { get; set; }
         public float Spread { get; set; }
         public float Pierce { get; set; }
-        public int MuzzleCount => _muzzles.Length;
+        public int MuzzleCount => GetMuzzles().Length;
 
         public Colorization.Color Color { get; set; }
         public float Cooldown => 1f / Firerate;
@@ -42,11 +42,12 @@ namespace Lomztein.BFA2.Weaponary
         private Transform[] _muzzles;
         private ParticleSystem[] _fireParticles;
 
-        public event Action<IProjectile[]> OnFire;
+        public event Action<IProjectile[], object> OnFire;
         public event Action<IProjectile> OnProjectile;
         public event Action<HitInfo> OnProjectileDepleted;
         public event Action<HitInfo> OnProjectileHit;
-        public event Action<HitInfo> OnProjectileKill;
+        public event Action<DamageInfo> OnProjectileDoDamage;
+        public event Action<KillInfo> OnProjectileKill;
 
         [ModelProperty]
         public ContentPrefabReference ProjectilePrefab;
@@ -133,7 +134,7 @@ namespace Lomztein.BFA2.Weaponary
                     HandleProjectile(proj, target, source);
                 }
 
-                OnFire?.Invoke(projs);
+                OnFire?.Invoke(projs, source);
                 EmitFireParticle(i);
             });
         }
@@ -166,6 +167,7 @@ namespace Lomztein.BFA2.Weaponary
             OnProjectile?.Invoke(obj);
             obj.OnHit += OnProjectileHit;
             obj.OnKill += OnProjectileKill;
+            obj.OnDoDamage += OnProjectileDoDamage;
             obj.OnDepleted += OnProjectileDepleted;
         }
 

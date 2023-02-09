@@ -15,15 +15,17 @@ namespace Lomztein.BFA2.Weaponary
 
         public double Damage;
         public Color Color;
+        public bool Direct;
 
         public double DamageDealt { get; set; }
 
-        public DamageInfo(object source, ITarget intendedTarget, double damage, Color color)
+        public DamageInfo(object source, ITarget intendedTarget, double damage, Color color, bool direct)
         {
             Damage = damage;
             Color = color;
             Source = source;
             IntendedTarget = intendedTarget;
+            Direct = direct;
         }
 
         public bool TryGetSource<T>(out T source) where T : class

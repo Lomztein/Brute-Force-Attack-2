@@ -24,10 +24,10 @@ namespace Lomztein.BFA2.Weaponary.FireControl
         {
             _weapon = GetComponent<IWeapon>();
             _baseFirerate = _weapon.Firerate;
-            _weapon.OnFire += _weapon_OnFire;
+            _weapon.OnFire += Weapon_OnFire;
         }
 
-        private void _weapon_OnFire(Projectiles.IProjectile[] obj)
+        private void Weapon_OnFire(Projectiles.IProjectile[] obj, object source)
         {
             if (ResetChargeOnFire)
             {

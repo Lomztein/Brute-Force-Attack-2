@@ -37,7 +37,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public IObjectPool<IProjectile> Pool;
 
         private List<IProjectileComponent> _projectileComponents = new List<IProjectileComponent>();
-        private IProjectilePool _weapon;
+        private IWeapon _weapon;
 
         private GameObjectActiveToggle _hitEffectObj;
         private GameObjectActiveToggle _trailEffectObj;
@@ -54,8 +54,9 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         [ModelProperty]
         public bool PlayHitEffectOnEnd;
 
-        public event Action<HitInfo> OnHit;
-        public event Action<HitInfo> OnKill;
+        public event Action<HitInfo> OnHit; // Executed when the projectile directly hits something
+        public event Action<DamageInfo> OnDoDamage; // Executed when the projectile damages something whether indiretly or not, ie on direct hit or AoE.
+        public event Action<KillInfo> OnKill;
         public event Action<HitInfo> OnDepleted;
 
         public double DamageDealt;
@@ -124,11 +125,6 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             _projectileComponents.ForEach(x => x.Tick(Time.fixedDeltaTime));
         }
 
-        public void Link(IProjectilePool weapon)
-        {
-            _weapon = weapon;
-        }
-
         public IDamagable CheckHit (Collider2D hit)
         {
             IDamagable damagable = hit.GetComponent<IDamagable>();
@@ -139,16 +135,14 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             return null;
         }
 
-        public DamageInfo Hit (IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal)
+        public HitInfo Hit (IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal)
         {
-            DamageInfo damage = new DamageInfo(this, Target, Damage, Color);
+            DamageInfo hitDamageInfo = new DamageInfo(this, Target, Damage, Color, true);
 
-            double life = damagable.TakeDamage(damage);
-            DamageDealt += damage.DamageDealt;
+            double life = DoDamage(damagable, hitDamageInfo);
+            HitInfo info = new HitInfo(hitDamageInfo, col, position, normal, this, _weapon, Damage <= 0f);
 
-            HitInfo info = new HitInfo(damage, col, position, normal, this, _weapon, Damage <= 0f);
-
-            if (Damage - damage.DamageDealt <= 0f)
+            if (Damage - hitDamageInfo.DamageDealt <= 0f)
             {
                 EmitHitEffect(position, normal);
                 OnDepleted?.Invoke(info);
@@ -158,9 +152,19 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
             if (life <= 0.001f)
             {
                 Kills++;
-                OnKill?.Invoke(info);
+                OnKill?.Invoke(new KillInfo(info, hitDamageInfo));
             }
-            return damage;
+
+            return info;
+        }
+
+        public double DoDamage(IDamagable damagable, DamageInfo info)
+        {
+            double life = damagable.TakeDamage(info);
+            DamageDealt += info.DamageDealt;
+            InvokeDoDamage(info);
+
+            return life;
         }
 
         public void EmitHitEffect(Vector3 position, Vector3 normal)
@@ -248,6 +252,16 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public Colorization.Color GetColor()
         {
             return Color;
+        }
+
+        public void InvokeDoDamage(DamageInfo damageInfo)
+        {
+            OnDoDamage?.Invoke(damageInfo);
+        }
+
+        public void InvokeKill(KillInfo killInfo)
+        {
+            OnKill?.Invoke(killInfo);
         }
     }
 }

@@ -48,6 +48,8 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         [ModelAssetReference]
         public EventInfo OnProjectileHitInfo;
         [ModelAssetReference]
+        public EventInfo OnProjectileDoDamageInfo;
+        [ModelAssetReference]
         public EventInfo OnProjectileKillInfo;
 
         [ModelProperty]
@@ -77,6 +79,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
         public IEventCaller OnProjectile;
         public IEventCaller OnProjectileDepleted;
         public IEventCaller OnProjectileHit;
+        public IEventCaller OnProjectileDoDamage;
         public IEventCaller OnProjectileKill;
 
         private bool _statsInitialized;
@@ -106,12 +109,14 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             OnProjectile = Events.AddEvent(OnProjectileInfo, this);
             OnProjectileDepleted = Events.AddEvent(OnProjectileDepletedInfo, this);
             OnProjectileHit = Events.AddEvent(OnProjectileHitInfo, this);
+            OnProjectileDoDamage = Events.AddEvent(OnProjectileDoDamageInfo, this);
             OnProjectileKill = Events.AddEvent(OnProjectileKillInfo, this);
 
             Weapon.OnFire += Weapon_OnFire;
             Weapon.OnProjectile += Weapon_OnProjectile;
             Weapon.OnProjectileDepleted += Weapon_OnProjectileDepleted;
             Weapon.OnProjectileHit += Weapon_OnProjectileHit;
+            Weapon.OnProjectileDoDamage += Weapon_OnProjectileDoDamage;
             Weapon.OnProjectileKill += Weapon_OnProjectileKill;
 
             Damage.OnChanged += UpdateStats;
@@ -123,6 +128,11 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             UpdateStats();
 
             Weapon.Init();
+        }
+
+        private void Weapon_OnProjectileDoDamage(DamageInfo obj)
+        {
+            OnProjectileDoDamage.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }
 
         private void UpdateStats()
@@ -158,7 +168,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             UpdateStats();
         }
 
-        private void Weapon_OnFire(IProjectile[] projs)
+        private void Weapon_OnFire(IProjectile[] projs, object source)
         {
             if (FireAudio != null)
             {
@@ -177,7 +187,7 @@ namespace Lomztein.BFA2.Structures.Turrets.Weapons
             OnProjectileDepleted.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }
 
-        private void Weapon_OnProjectileKill(HitInfo obj)
+        private void Weapon_OnProjectileKill(KillInfo obj)
         {
             OnProjectileKill.CallEvent(new Modification.Events.EventArgs(this, obj), this);
         }

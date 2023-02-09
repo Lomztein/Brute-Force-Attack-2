@@ -7,11 +7,12 @@ namespace Lomztein.BFA2.Weaponary
 {
     public interface IWeapon
     {
-        event Action<IProjectile[]> OnFire;
+        event Action<IProjectile[], object> OnFire;
         event Action<IProjectile> OnProjectile;
         event Action<HitInfo> OnProjectileDepleted;
         event Action<HitInfo> OnProjectileHit;
-        event Action<HitInfo> OnProjectileKill;
+        event Action<DamageInfo> OnProjectileDoDamage;
+        event Action<KillInfo> OnProjectileKill;
 
         float Damage { get; set; }
         float Firerate { get; set; }

@@ -16,5 +16,16 @@ namespace Lomztein.BFA2
         public int EarliestWave;
         [ModelProperty]
         public int LastWave;
+        [ModelProperty]
+        public Vector2 Weights;
+        [ModelProperty]
+        public AnimationCurve WeightOverWaves;
+
+        public float GetWeight (int wave)
+        {
+            float t = Mathf.InverseLerp(EarliestWave, LastWave, wave);
+            float e = WeightOverWaves.Evaluate(t);
+            return Mathf.Lerp(Weights.x, Weights.y, e);
+        }
     }
 }

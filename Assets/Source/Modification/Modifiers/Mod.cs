@@ -27,5 +27,10 @@ namespace Lomztein.BFA2.Modification.Modifiers
         public abstract void ApplyStack(IModdable moddable, IStatContainer stats, IEventContainer events);
         public abstract void RemoveBase(IModdable moddable, IStatContainer stats, IEventContainer events);
         public abstract void RemoveStack(IModdable moddable, IStatContainer stats, IEventContainer events);
+
+        public override string ToString()
+        {
+            return Identifier;
+        }
     }
 }

@@ -12,13 +12,16 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         void Deplete();
         void End();
 
-        void Link(IProjectilePool weapon);
-
         IDamagable CheckHit(Collider2D hit);
-        DamageInfo Hit(IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal);
+        HitInfo Hit(IDamagable damagable, Collider2D col, Vector3 position, Vector3 normal);
 
         event Action<HitInfo> OnDepleted;
         event Action<HitInfo> OnHit;
-        event Action<HitInfo> OnKill;
+
+        event Action<DamageInfo> OnDoDamage;
+        event Action<KillInfo> OnKill;
+
+        void InvokeDoDamage(DamageInfo damage);
+        void InvokeKill(KillInfo damage);
     }
 }

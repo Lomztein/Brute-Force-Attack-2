@@ -59,6 +59,9 @@ public class GeneratorEnemyDataGenerator : EditorWindow
             newData.EarliestWave = earliestWave;
             newData.LastWave = tierLastWave;
 
+            newData.Weights = baseData.Weights;
+            newData.WeightOverWaves = baseData.WeightOverWaves;
+
             string tierPath = Path.Combine(basePath, newData.name + ".asset");
             AssetDatabase.DeleteAsset(tierPath);
             AssetDatabase.CreateAsset(newData, tierPath);

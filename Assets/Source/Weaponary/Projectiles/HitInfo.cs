@@ -9,7 +9,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
 {
     public class HitInfo
     {
-        public HitInfo (DamageInfo damage, Collider2D collider, Vector3 point, Vector3 normal, IProjectile projectile, IProjectilePool weapon, bool final)
+        public HitInfo (DamageInfo damage, Collider2D collider, Vector3 point, Vector3 normal, IProjectile projectile, IWeapon weapon, bool final)
         {
             DamageInfo = damage;
             Collider = collider;
@@ -25,7 +25,7 @@ namespace Lomztein.BFA2.Weaponary.Projectiles
         public Vector3 Point;
         public Vector3 Normal;
         public IProjectile Projectile;
-        public IProjectilePool Weapon;
+        public IWeapon Weapon;
         public bool Final;
     }
 }

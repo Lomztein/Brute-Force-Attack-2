@@ -70,7 +70,10 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
 
             Explosion explosion = ExplosionPrefab.Instantiate().GetComponent<Explosion>();
             explosion.transform.position = hitInfo.Point;
-            explosion.Explode(damage, range, (x) => { });
+            explosion.Explode(damage, range, (x) => {
+                x.Direct = false; // The explosion is not the original source, thus not direct.
+                hitInfo.Projectile.InvokeDoDamage(x);
+            });
 
             if (DepleteProjectile)
             {

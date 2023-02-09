@@ -72,7 +72,7 @@ namespace Lomztein.BFA2.Enemies.Waves
             {
                 return _waves[index];
             }
-            else if (_generator.CanGenerate(index) && index <= MaxWaves)
+            else if (_generator.CanGenerate(index) && index < MaxWaves)
             {
                 WaveTimeline wave = GenerateWave(index);
                 _waves.Add(index, wave);

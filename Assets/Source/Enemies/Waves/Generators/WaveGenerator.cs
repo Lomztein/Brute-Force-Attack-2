@@ -29,12 +29,27 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
         {
             var cache = GetGeneratorEnemyDataCache();
             var applicable = cache.Where(x => ShouldSpawn(x, wave)).ToArray();
-            if (applicable.Length == 0)
+            float[] weights = applicable.Select(x => x.GetWeight(wave)).ToArray();
+            float maxWeight = weights.Sum();
+            float random = (float)_random.NextDouble() * maxWeight;
+
+            GeneratorEnemyData selection = null;
+            float cumWeight = 0;
+            foreach (var option in applicable)
+            {
+                float w = option.GetWeight(wave);
+                if (cumWeight <= random)
+                {
+                    selection = option;
+                }
+                cumWeight += w;
+            }
+
+            if (selection == null)
             {
                 return null;
             }
-            int index = _random.Next(0, applicable.Length);
-            return applicable[index];
+            return selection;
         }
 
         private (GeneratorEnemyData data, int amount) GetRandomEnemy(float credits, int wave)

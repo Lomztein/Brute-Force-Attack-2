@@ -38,13 +38,14 @@
         "OnProjectileInfo": "$Path{Core/Modifiers/Events/OnProjectile.json}",
         "OnProjectileDepletedInfo": "$Path{Core/Modifiers/Events/OnProjectileDepleted.json}",
         "OnProjectileHitInfo": "$Path{Core/Modifiers/Events/OnProjectileHit.json}",
+        "OnProjectileDoDamageInfo": "$Path{Core/Modifiers/Events/OnProjectileDoDamage.json}",
         "OnProjectileKillInfo": "$Path{Core/Modifiers/Events/OnProjectileKill.json}",
-        "BaseDamage": 1000.0,
+        "BaseDamage": 1500.0,
         "BaseProjectileAmount": 1,
         "BaseSpread": 0.0,
         "BaseSpeed": 100.0,
         "BaseFirerate": 0.6,
-        "BasePierce": 0.5,
+        "BasePierce": 0.1,
         "FireAudio": null,
         "Color": "Orange",
         "BaseComplexity": 0.0,
@@ -197,7 +198,7 @@
       }
     },
     {
-      "$GUID": "995a492b-4cfd-4024-9e97-2995e8301e50",
+      "$GUID": "36bbe26f-9452-4016-909c-eb9648012719",
       "$Type": "Lomztein.BFA2.Weaponary.FireControl.ChargeFireControl",
       "$Data": {
         "ChargeRate": 1.0,
@@ -317,7 +318,7 @@
         {
           "$Type": "Lomztein.BFA2.Visuals.ColorChargingWeaponAnimator",
           "$Data": {
-            "Weapon": "$Ref{995a492b-4cfd-4024-9e97-2995e8301e50}",
+            "Weapon": "$Ref{36bbe26f-9452-4016-909c-eb9648012719}",
             "ColorProperty": "_EmissionColor",
             "EmissionColor": {
               "Red": 1.0,
