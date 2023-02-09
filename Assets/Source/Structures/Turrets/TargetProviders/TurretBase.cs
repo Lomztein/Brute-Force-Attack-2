@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Util;
 
 namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 {
@@ -32,7 +33,6 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         private Transform _target;
         private TargetFinder _targetFinder;
-        private IEnumerable<TargetEvaluator> _targetEvaluator;
 
         private IEventCaller _onTargetAcquired;
 
@@ -63,14 +63,10 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         }
 
         public void SetEvaluators(IEnumerable<TargetEvaluator> evaluators)
-        {
-            _targetFinder = GetComponent<TargetFinder>();
-            var arr = evaluators?.ToArray();
-            _targetEvaluator = evaluators;
-            _targetFinder.SetEvaluator(_targetEvaluator);
-        }
+            => GetComponent<TargetFinder>().SetEvaluator(evaluators);
+
         public IEnumerable<TargetEvaluator> GetEvaluator()
-            => _targetEvaluator;
+            => GetComponent<TargetFinder>().TargetEvaluators;
 
         private bool IsWithinRange(Transform trans, float range)
             => (trans.position - transform.position).sqrMagnitude < range * range;
@@ -96,11 +92,12 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
         public override ValueModel DisassembleData(DisassemblyContext context)
         {
             ObjectAssembler assembler = new ObjectAssembler();
-            if (_targetEvaluator == null)
+            TargetFinder tf = GetComponent<TargetFinder>();
+            if (tf.TargetEvaluators == null || tf.TargetEvaluators.Length == 0)
             {
                 return null;
             }
-            return assembler.Disassemble(_targetEvaluator, typeof(TargetEvaluator), context).MakeExplicit(_targetEvaluator.GetType());
+            return assembler.Disassemble(tf.TargetEvaluators, typeof(TargetEvaluator), context).MakeExplicit(tf.TargetEvaluators.GetType());
         }
 
         public override void AssembleData(ValueModel model, AssemblyContext context)
@@ -108,8 +105,9 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
             ObjectAssembler assembler = new ObjectAssembler();
             if (!ValueModel.IsNull(model))
             {
-                var assembly = GetComponentInChildren<TurretAssembly>(true);
-                SetEvaluators(assembler.Assemble(model, typeof(List<TargetEvaluator>), context) as List<TargetEvaluator>);
+                var evaluators = assembler.Assemble(model, typeof(List<TargetEvaluator>), context) as List<TargetEvaluator>;
+                if (evaluators != null) 
+                    SetEvaluators(evaluators);
             }
         }
 

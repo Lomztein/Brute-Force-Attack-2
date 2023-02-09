@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Lomztein.BFA2.Targeting
 {
+    [System.Serializable]
     public abstract class TargetEvaluator
     {
         public bool Invert;

@@ -179,13 +179,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0085c4a098d948948adb9904b5212c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _evalutator:
-    rid: -2
+  TargetEvaluators:
+  - rid: 463917145500942339
+  - rid: 463917145500942340
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 463917145500942339
+      type: {class: ColorTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
+      data:
+        Invert: 0
+        TargetColor: 3
+    - rid: 463917145500942340
+      type: {class: DirectionTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
+      data:
+        Invert: 0
 --- !u!1 &5246017202535924015
 GameObject:
   m_ObjectHideFlags: 0

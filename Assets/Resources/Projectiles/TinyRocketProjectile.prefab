@@ -58,9 +58,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   Color: 0
-  Target: {fileID: 0}
   HitEffectLife: 1
   TrailEffectLife: 0.8
+  PlayHitEffectOnEnd: 0
+  DamageDealt: 0
+  Kills: 0
 --- !u!114 &9129561188470281380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,13 +124,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0085c4a098d948948adb9904b5212c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _evalutator:
-    rid: 0
+  TargetEvaluators:
+  - rid: 463917145500942337
+  - rid: 463917145500942338
   references:
     version: 2
     RefIds:
-    - rid: 0
-      type: {class: DistanceTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
+    - rid: 463917145500942337
+      type: {class: ColorTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
+      data:
+        Invert: 0
+        TargetColor: 3
+    - rid: 463917145500942338
+      type: {class: DirectionTargetEvaluator, ns: Lomztein.BFA2.Targeting, asm: Assembly-CSharp}
       data:
         Invert: 0
 --- !u!1 &232017341030680463

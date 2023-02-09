@@ -169,7 +169,14 @@
             },
             {
               "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
-              "$Data": {}
+              "$Data": {
+                "TargetEvaluators": [
+                  {
+                    "$Type": "Lomztein.BFA2.Targeting.RandomTargetEvaluator",
+                    "$Data": {}
+                  }
+                ]
+              }
             }
           ],
           "Children": [

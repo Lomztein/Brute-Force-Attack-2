@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5598630d43fe734b9a014e833dceed2, type: 3}
+  m_Name: Money
+  m_EditorClassIdentifier: 
+  Name: Money
+  Description: You are granted an excessive amount of resources, and are free to
+    experiment. What magnificant creations will you come up with?
+  Grade: {fileID: 11400000, guid: b89725343f32f4140a9658a3d8125a8d, type: 2}
+  Identifier: Core.Money
+  IsModified: 0
+  Aspects:
+  - rid: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 0
+      type: {class: ResourcesDifficultyAspect, ns: Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects,
+        asm: Assembly-CSharp}
+      data:
+        Amount:
+        - ResourceIdentifier: Core.Credits
+          Value: 999999999
+        - ResourceIdentifier: Core.Research
+          Value: 999999999

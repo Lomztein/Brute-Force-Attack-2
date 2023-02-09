@@ -113,7 +113,18 @@
     },
     {
       "$Type": "Lomztein.BFA2.Targeting.TargetFinder",
-      "$Data": {}
+      "$Data": {
+        "TargetEvaluators": [
+          {
+            "$Type": "Lomztein.BFA2.Targeting.ColorTargetEvaluator",
+            "$Data": {}
+          },
+          {
+            "$Type": "Lomztein.BFA2.Targeting.DirectionTargetEvaluator",
+            "$Data": {}
+          }
+        ]
+      }
     }
   ],
   "Children": [

@@ -56,7 +56,7 @@ namespace Lomztein.BFA2.Structures.Turrets
         {
             foreach (TurretBase b in GetComponentsInChildren<TurretBase>())
             {
-                if (b.GetEvaluator() == null || overrideCurrent)
+                if (b.GetEvaluator() == null || !b.GetEvaluator().Any() || overrideCurrent)
                 {
                     b.SetEvaluators(CurrentEvaluator.Select(x => x.Evaluator));
                 }

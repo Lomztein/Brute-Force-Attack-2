@@ -11,17 +11,18 @@ namespace Lomztein.BFA2.Targeting
 {
     public class TargetFinder : MonoBehaviour
     {
-        private IEnumerable<TargetEvaluator> _evalutators;
+        [SerializeReference, SR, ModelProperty]
+        public TargetEvaluator[] TargetEvaluators;
 
         public void SetEvaluator (IEnumerable<TargetEvaluator> evaluators)
         {
-            _evalutators = evaluators;
+            TargetEvaluators = evaluators.ToArray();
         }
 
         public Transform FindTarget(GameObject source, IEnumerable<Collider2D> options)
         {
             var remaining = new Queue<Collider2D>(options);
-            foreach (var evaluator in _evalutators)
+            foreach (var evaluator in TargetEvaluators)
             {
                 var next = new Queue<Collider2D>();
                 float bestValue = -Mathf.Infinity;

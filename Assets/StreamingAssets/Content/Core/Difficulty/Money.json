@@ -1,0 +1,23 @@
+{
+  "Name": "Money",
+  "Description": "You are granted an excessive amount of resources, and are free to experiment. What magnificant creations will you come up with?",
+  "Grade": "$Path{Core/Difficulty/Grades/Easy.json}",
+  "Identifier": "Core.Money",
+  "Aspects": [
+    {
+      "$Type": "Lomztein.BFA2.Scenes.Battlefield.Difficulty.Aspects.ResourcesDifficultyAspect",
+      "$Data": {
+        "Amount": [
+          {
+            "ResourceIdentifier": "Core.Credits",
+            "Value": 999999999
+          },
+          {
+            "ResourceIdentifier": "Core.Research",
+            "Value": 999999999
+          }
+        ]
+      }
+    }
+  ]
+}
