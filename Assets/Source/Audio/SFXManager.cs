@@ -7,7 +7,7 @@ namespace Lomztein.BFA2.Audio
     public class SFXManager : MonoBehaviour
     {
         private static SFXManager _instance;
-        public float EffectsVolume { get; private set; } = 1f;
+        public float EffectsVolume => Settings.Audio.SFXVolume;
 
         public AudioSource EffectsSource;
 
@@ -20,6 +20,11 @@ namespace Lomztein.BFA2.Audio
         private void Awake()
         {
             _instance = this;
+        }
+
+        private void Update()
+        {
+            EffectsSource.volume = EffectsVolume;
         }
 
         public static bool CanPlay(AudioClip clip)
@@ -42,7 +47,7 @@ namespace Lomztein.BFA2.Audio
         {
             if (CanPlay(clip))
             {
-                _instance.StartCoroutine(_instance.InternalPlay(_instance.EffectsSource, clip, _instance.EffectsVolume));
+                _instance.StartCoroutine(_instance.InternalPlay(_instance.EffectsSource, clip, 1f));
                 return true;
             }
             return false;

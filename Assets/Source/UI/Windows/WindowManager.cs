@@ -21,6 +21,8 @@ namespace Lomztein.BFA2.UI.Windows
         public static event Action<IWindow> OnWindowOpened;
         public static event Action<IWindow> OnWindowClosed;
 
+        public static IWindow[] CurrentWindows => _instance._windows.ToArray();
+
         private void Awake()
         {
             _instance = this;

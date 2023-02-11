@@ -1,4 +1,3 @@
-using Lomztein.BFA2.Settings;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace Lomztein.BFA2.Audio
         private int _currentTrackIndex;
         private bool _crossfading;
 
-        public float MusicVolume { get; private set; }
+        private float MusicVolume => Settings.Audio.MusicVolume;
 
         private void Awake()
         {
@@ -32,25 +31,14 @@ namespace Lomztein.BFA2.Audio
             {
                 SetMusicState(StartingState, false);
             }
-
-            GameSettings.AddOnChangedListener("Core.MusicVolume", OnMusicVolumeChanged);
-            GameSettings.AddOnChangedListener("Core.MasterVolume", OnMusicVolumeChanged);
-            OnMusicVolumeChanged();
         }
 
-        private void OnDestroy()
+        private void Update()
         {
-            if (Application.isPlaying)
+            if (!_crossfading)
             {
-                GameSettings.RemoveOnChangedListener("Core.MusicVolume", OnMusicVolumeChanged);
-                GameSettings.RemoveOnChangedListener("Core.MasterVolume", OnMusicVolumeChanged);
+                Source.volume = MusicVolume;
             }
-        }
-
-        private void OnMusicVolumeChanged()
-        {
-            MusicVolume = GameSettings.GetValue("Core.MusicVolume", 1f) * GameSettings.GetValue("Core.MasterVolume", 1f);
-            if (!_crossfading) Source.volume = MusicVolume;
         }
 
         public static void SetMusicState(MusicState state, bool crossfade)

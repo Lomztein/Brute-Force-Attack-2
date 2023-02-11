@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.Settings
         public static void Init ()
         {
             _settings = ContentSystem.Content.GetAll<Setting>("*/Settings/*").ToArray();
+            foreach (var setting in _settings) setting.Init();
             Load();
         }
 
@@ -21,11 +22,25 @@ namespace Lomztein.BFA2.Settings
             return _settings.FirstOrDefault(x => x.Identifier == identifier);
         }
 
-        public static void AddOnChangedListener(string identifier, Action onChanged)
+        public static void AddOnChangedListener(string identifier, Setting.OnChangedHandler onChanged)
             => Get(identifier).OnChanged += onChanged;
 
-        public static void RemoveOnChangedListener(string identifier, Action onChanged)
-            => Get(identifier).OnChanged -= onChanged;
+        public static Setting.OnChangedHandler AddOnChangedListener<T>(string identifier, Action<string, T> onChanged)
+        {
+            Setting setting = Get(identifier);
+            void Handle(string id, object val)
+            {
+                onChanged(id, (T)val);
+            }
+            setting.OnChanged += Handle;
+            return Handle;
+        }
+
+        public static void RemoveOnChangedListener(string identifier, Setting.OnChangedHandler handler)
+        {
+            Setting setting = Get(identifier);
+            setting.OnChanged -= handler;
+        }
 
         public static T GetValue<T>(string identifier, T defaultValue)
         {

@@ -1,5 +1,6 @@
 using Lomztein.BFA2.Settings;
 using Lomztein.BFA2.Settings.Controls;
+using Lomztein.BFA2.UI.Messages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,7 +88,12 @@ namespace Lomztein.BFA2.UI.Menus
         public void SaveSettings ()
         {
             GameSettings.Save();
-            Alert.Open("Settings succesfully saved and applied.");
+            Message.Send("Settings succesfully saved.", Message.Type.Minor);
+        }
+
+        public void RevertSettings ()
+        {
+            GameSettings.Load();
         }
     }
 }

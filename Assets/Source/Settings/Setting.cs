@@ -9,6 +9,7 @@ namespace Lomztein.BFA2.Settings
     public abstract class Setting : ScriptableObject
     {
         private enum ValueType { Int, Float, String }
+        public delegate void OnChangedHandler(string identifier, object value);
 
         [ModelProperty]
         public string Name;
@@ -21,7 +22,7 @@ namespace Lomztein.BFA2.Settings
         [ModelAssetReference]
         public SettingCategory Category;
 
-        public event Action OnChanged;
+        public event OnChangedHandler OnChanged;
 
         public static IEnumerable<Setting> LoadSettings()
             => ContentSystem.Content.GetAll<Setting>("*/Settings/*");
@@ -29,6 +30,7 @@ namespace Lomztein.BFA2.Settings
         protected object Value { get; private set; }
 
         protected abstract object GetDefaultValue();
+        public virtual void Init() { }
 
         public object Get()
             => Value?? GetDefaultValue();
@@ -39,7 +41,7 @@ namespace Lomztein.BFA2.Settings
         public void Set(object newValue)
         {
             Value = newValue;
-            OnChanged?.Invoke();
+            OnChanged?.Invoke(Identifier, newValue);
         }
 
         private ValueType GetValueType()

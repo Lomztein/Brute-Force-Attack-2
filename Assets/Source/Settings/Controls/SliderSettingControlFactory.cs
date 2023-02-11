@@ -20,14 +20,17 @@ namespace Lomztein.BFA2.Settings.Controls
             slider.wholeNumbers = setting.WholeNumbersOnly;
             slider.onValueChanged.AddListener(x => setting.Set(x));
             var text = newControl.transform.Find("Slider/Value").GetComponent<Text>();
-            setting.OnChanged += () => Setting_OnChanged(setting, text);
-            Setting_OnChanged(setting, text);
+            Setting.OnChangedHandler onChanged = (id, val) => Setting_OnChanged(setting, slider, text);
+            setting.OnChanged += onChanged;
+            newControl.GetComponent<NotifyOnDestroy>().Event.AddListener(() => setting.OnChanged -= onChanged);
+            Setting_OnChanged(setting, slider, text);
             return newControl;
         }
 
-        private void Setting_OnChanged(Setting obj, Text valueText)
+        private void Setting_OnChanged(Setting obj, Slider slider, Text valueText)
         {
             valueText.text = ((float)obj.Get()).ToString((obj as SliderSetting).ValueFormat);
+            slider.SetValueWithoutNotify(obj.Get<float>());
         }
     }
 }

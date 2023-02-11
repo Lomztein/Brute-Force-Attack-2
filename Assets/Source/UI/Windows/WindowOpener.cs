@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Lomztein.BFA2.UI.Windows
 {
@@ -12,16 +13,20 @@ namespace Lomztein.BFA2.UI.Windows
         public GameObject Window;
         public bool AboveOverlay;
 
+        public UnityEvent OnWindowClosed;
+
         public void Open ()
         {
+            IWindow window = null;
             if (AboveOverlay)
             {
-                WindowManager.OpenWindowAboveOverlay(Window);
+                window = WindowManager.OpenWindowAboveOverlay(Window).GetComponent<IWindow>();
             }
             else
             {
-                WindowManager.OpenWindow(Window);
+                window = WindowManager.OpenWindow(Window).GetComponent<IWindow>();
             }
+            window.OnClosed += OnWindowClosed.Invoke;
         }
     }
 }
