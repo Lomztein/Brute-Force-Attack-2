@@ -15,21 +15,26 @@ namespace Lomztein.BFA2.UI.Menus
 
         public GameObject TabButtonPrefab;
         public Transform TabButtonParent;
+        public Button[] TabButtons;
+
         public bool SelfInit = true;
-        private Button[] _tabButtons;
+        public bool BuildButtons = true;
 
         private void Start()
         {
             if (SelfInit)
             {
-                SetSubmenus(Submenus.Select(x => x.GetComponent<ITabMenuElement>()).ToArray());
+                SetSubmenus(Submenus.Select(x => x.GetComponent<ITabMenuElement>()).ToArray(), BuildButtons);
             }
 ;        }
 
-        public void SetSubmenus (ITabMenuElement[] submenus)
+        public void SetSubmenus (ITabMenuElement[] submenus, bool buildButtons)
         {
             _subMenus = submenus;
-            BuildButtons();
+
+            if (buildButtons) {
+                RebuildButtons();
+            }
 
             if (_subMenus.Length > 0)
             {
@@ -37,13 +42,13 @@ namespace Lomztein.BFA2.UI.Menus
             }
         }
 
-        private void BuildButtons ()
+        public void RebuildButtons ()
         {
             foreach (Transform child in TabButtonParent)
             {
                 Destroy(child.gameObject);
             }
-            _tabButtons = new Button[_subMenus.Length];
+            TabButtons = new Button[_subMenus.Length];
 
             for (int i = 0; i < _subMenus.Length; i++)
             {
@@ -52,7 +57,7 @@ namespace Lomztein.BFA2.UI.Menus
                 AddButtonListener(button, i);
                 newButton.GetComponentInChildren<Text>().text = _subMenus[i].Name;
 
-                _tabButtons[i] = button;
+                TabButtons[i] = button;
                 _subMenus[i].OnNameChanged += UpdateButton;
                 _subMenus[i].Init();
             }
@@ -61,7 +66,7 @@ namespace Lomztein.BFA2.UI.Menus
         private void UpdateButton (ITabMenuElement submenu)
         {
             int index = Array.IndexOf(_subMenus, submenu);
-            _tabButtons[index].GetComponentInChildren<Text>().text = submenu.Name;
+            TabButtons[index].GetComponentInChildren<Text>().text = submenu.Name;
         }
 
         private void AddButtonListener (Button button, int index)
@@ -69,18 +74,18 @@ namespace Lomztein.BFA2.UI.Menus
             button.onClick.AddListener(() => Open(index));
         }
 
-        private void Open (int index)
+        public void Open (int index)
         {
             _subMenus[index].OpenMenu();
             _currentOpen = index;
             CloseOthers(index);
-            _tabButtons[index].interactable = false;
+            TabButtons[index].interactable = false;
         }
 
         private void Close (int index)
         {
             _subMenus[index].CloseMenu();
-            _tabButtons[index].interactable = true;
+            TabButtons[index].interactable = true;
         }
 
         private void CloseOthers (int index)

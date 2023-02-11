@@ -1,3 +1,4 @@
+using Lomztein.BFA2.Settings;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Lomztein.BFA2.Audio
 
         public static MusicState CurrentState { get; private set; }
         private int _currentTrackIndex;
+        private bool _crossfading;
 
         public float MusicVolume { get; private set; }
 
@@ -30,6 +32,25 @@ namespace Lomztein.BFA2.Audio
             {
                 SetMusicState(StartingState, false);
             }
+
+            GameSettings.AddOnChangedListener("Core.MusicVolume", OnMusicVolumeChanged);
+            GameSettings.AddOnChangedListener("Core.MasterVolume", OnMusicVolumeChanged);
+            OnMusicVolumeChanged();
+        }
+
+        private void OnDestroy()
+        {
+            if (Application.isPlaying)
+            {
+                GameSettings.RemoveOnChangedListener("Core.MusicVolume", OnMusicVolumeChanged);
+                GameSettings.RemoveOnChangedListener("Core.MasterVolume", OnMusicVolumeChanged);
+            }
+        }
+
+        private void OnMusicVolumeChanged()
+        {
+            MusicVolume = GameSettings.GetValue("Core.MusicVolume", 1f) * GameSettings.GetValue("Core.MasterVolume", 1f);
+            if (!_crossfading) Source.volume = MusicVolume;
         }
 
         public static void SetMusicState(MusicState state, bool crossfade)
@@ -85,11 +106,12 @@ namespace Lomztein.BFA2.Audio
 
         private IEnumerator InternalCrossfade(AudioSource source, AudioClip clip)
         {
+            _crossfading = true;
             int steps = Mathf.RoundToInt(1f / CrossFadeTime / Time.fixedDeltaTime) / 2;
             // descend
             for (int i = 0; i < steps; i++)
             {
-                source.volume = Mathf.Lerp(0, 1, 1f - (i / (float)steps));
+                source.volume = Mathf.Lerp(0, 1, 1f - (i / (float)steps)) * MusicVolume;
                 yield return new WaitForFixedUpdate();
             }
 
@@ -100,9 +122,10 @@ namespace Lomztein.BFA2.Audio
             // ascend
             for (int i = 0; i < steps; i++)
             {
-                source.volume = Mathf.Lerp(0, 1, i / (float)steps);
+                source.volume = Mathf.Lerp(0, 1, i / (float)steps) * MusicVolume;
                 yield return new WaitForFixedUpdate();
             }
+            _crossfading = false;
         }
     }
 }

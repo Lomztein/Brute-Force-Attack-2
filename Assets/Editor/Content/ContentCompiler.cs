@@ -24,17 +24,19 @@ namespace Lomztein.BFA2.Editor.Content
         [MenuItem("BFA2/Build Content")]
         public static void CompileAll ()
         {
+            Debug.Log("Building all content..");
             string[] folders = Directory.GetDirectories(RootContentFolder);
             foreach (string folder in folders)
             {
                 string folderName = Path.GetFileName(folder);
-                CompileFolder(folder, Path.Combine(RootTargetContentFolder, folderName), true);
+                CompileFolder(folder, Path.Combine(RootTargetContentFolder, folderName));
             }
         }
 
         [MenuItem("BFA2/Index Resources")]
         public static void IndexResources ()
         {
+            Debug.Log("Indexing resources..");
             string root = Path.Combine(Application.dataPath, "Resources");
             string[] files = Directory.GetFiles(root, "*", SearchOption.AllDirectories)
                 .Where(x => Path.GetExtension(x) != ".meta")
@@ -42,8 +44,9 @@ namespace Lomztein.BFA2.Editor.Content
             File.WriteAllLines(ResourcesContentPack.GetResourcesIndexPath(), files);
         }
 
-        public static void CompileFolder (string folderPath, string targetPath, bool recursive)
+        public static void CompileFolder (string folderPath, string targetPath)
         {
+            Debug.Log($"Building folder '{folderPath}' to '{targetPath}'");
             IndexResources();
 
             string[] compilationTypeSearch = AssetDatabase.FindAssets("t:CompilationTypeReference", new string[] { folderPath });
@@ -78,13 +81,14 @@ namespace Lomztein.BFA2.Editor.Content
                 Directory.CreateDirectory(directory);
             }
 
+            Object asset = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof(Object));
+            Debug.Log($"Compiling '{asset.name}' as '{type}/{(implicitType ? "Implicit" : "Explicit")}' to '{targetPath}'");
+
             if (type == CompilationType.Copy)
             {
                 File.Copy(assetPath, targetPath, true);
                 return;
             }
-
-            object asset = AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(guid), typeof (Object));
             JToken json;
 
             switch (type)

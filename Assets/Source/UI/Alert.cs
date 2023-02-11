@@ -45,7 +45,7 @@ namespace Lomztein.BFA2.UI
         public static Alert Open (string alertText, Action onAccepted)
         {
             Alert alert = Open(alertText);
-            alert.AcceptButton.onClick.AddListener(() => onAccepted());
+            alert.AcceptButton.onClick.AddListener(onAccepted.Invoke);
             return alert;
         }
     }

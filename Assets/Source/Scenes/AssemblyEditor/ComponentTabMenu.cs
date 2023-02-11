@@ -36,7 +36,7 @@ namespace Lomztein.BFA2.AssemblyEditor
                 menus.Add(menu);
             }
 
-            TabMenu.SetSubmenus(menus.ToArray());
+            TabMenu.SetSubmenus(menus.ToArray(), true);
         }
 
         private IContentCachedPrefab[] LoadComponents()

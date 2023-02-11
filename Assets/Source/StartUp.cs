@@ -4,6 +4,7 @@ using Lomztein.BFA2.LocalizationSystem;
 using Lomztein.BFA2.Plugins;
 using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Serialization.IO;
+using Lomztein.BFA2.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,7 @@ namespace Lomztein.BFA2
             BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
 
             InterceptLogs();
+            GameSettings.Init();
         }
 
         private void InterceptLogs()
@@ -60,21 +62,28 @@ namespace Lomztein.BFA2
 
         private void OnLogMessageRecieved(string condition, string stackTrace, LogType type)
         {
-            switch (type)
+            try
             {
-                case LogType.Warning:
-                    MessageLogger.Warning($"{type}: {condition} -> {stackTrace}");
-                    break;
+                switch (type)
+                {
+                    case LogType.Warning:
+                        MessageLogger.Warning($"{type}: {condition} -> {stackTrace}");
+                        break;
 
-                case LogType.Error:
+                    case LogType.Error:
 
-                case LogType.Exception:
-                    MessageLogger.Error($"{type}: {condition} -> {stackTrace}");
-                    break;
+                    case LogType.Exception:
+                        MessageLogger.Error($"{type}: {condition} -> {stackTrace}");
+                        break;
 
-                default:
-                    MessageLogger.Write($"{type}: {condition}");
-                    break;
+                    default:
+                        MessageLogger.Write($"{type}: {condition}");
+                        break;
+                }
+            }catch (Exception e)
+            {
+                Debug.LogError("Something went wrong while attempting to display an exception.");
+                Debug.LogException(e);
             }
         }
     }
