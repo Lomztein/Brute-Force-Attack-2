@@ -43,6 +43,7 @@ namespace Lomztein.BFA2.Battlefield
             if (BattlefieldInitializeInfo.InitType == BattlefieldInitializeInfo.InitializeType.New)
             {
                 InitializeBattlefield(BattlefieldInitializeInfo.NewSettings);
+                Invoke(nameof(SendStartingMessage), 2f);
             }
 
             if (BattlefieldInitializeInfo.InitType == BattlefieldInitializeInfo.InitializeType.Load)
@@ -69,8 +70,6 @@ namespace Lomztein.BFA2.Battlefield
             InitDifficulty(settings);
             InitMutators(settings);
 
-            Invoke(nameof(SendStartingMessage), 2f);
-
             _master = new InputMaster();
             _master.Battlefield.SetCallbacks(this);
             _master.Battlefield.Enable();
@@ -78,7 +77,13 @@ namespace Lomztein.BFA2.Battlefield
 
         public void InitializeBattlefield(BattlefieldSave save)
         {
+            StartCoroutine(DelayedLoadSave(save));
+        }
+
+        private IEnumerator DelayedLoadSave(BattlefieldSave save)
+        {
             CurrentSettings = save.Settings;
+            yield return new WaitForEndOfFrame();
             BattlefieldSave.LoadToBattlefield(save, this);
         }
 

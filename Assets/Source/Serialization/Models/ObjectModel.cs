@@ -33,7 +33,8 @@ namespace Lomztein.BFA2.Serialization.Models
 
         public ObjectModel(ObjectModel baseModel, params ObjectField[] properties) : this(properties)
         {
-            _properties.AddRange(baseModel.GetProperties());
+            if (!IsNull(baseModel))
+                _properties.AddRange(baseModel.GetProperties());
         }
 
         public ObjectField[] GetProperties() => _properties.ToArray();

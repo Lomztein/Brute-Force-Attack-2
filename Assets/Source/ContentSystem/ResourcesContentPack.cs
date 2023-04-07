@@ -12,8 +12,6 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ResourcesContentPack : IContentPack
     {
-        public static string GetResourcesIndexPath() => System.IO.Path.Combine(Application.streamingAssetsPath, "ResourcesIndex.txt");
-
         public string Name => "Resources";
         public string Author => "Brute Force Attack 2";
         public string Description => "Built-in resources.";
@@ -46,7 +44,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         public IEnumerable<string> GetContentPaths()
         {
-            return System.IO.File.ReadAllLines(GetResourcesIndexPath()).Select(x => System.IO.Path.ChangeExtension(x, null)).ToArray();
+            return ContentManifest.Load().StartsWith("Resources", true).Select(x => System.IO.Path.ChangeExtension(x, null));
         }
 
         public IEnumerable<ContentOverride> GetContentOverrides()

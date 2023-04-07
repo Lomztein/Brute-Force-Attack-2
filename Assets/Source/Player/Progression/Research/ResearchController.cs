@@ -133,15 +133,30 @@ namespace Lomztein.BFA2.Research
             Message.Send($"New research option {option.Name}' available.", Message.Type.Minor);
         }
 
-        public void BeginResearch(ResearchOption option)
+        public bool TryPurchaseResearch(ResearchOption option)
         {
             if (_resourceContainer.TrySpend(option.ResourceCost))
             {
-                option.OnCompleted += ResearchCompleted;
-                _inProgress.Add(option);
+                BeginResearch(option);
+                return true;
+            }
+            return false;
+        }
 
-                option.BeginResearch();
-                OnResearchBegun?.Invoke(option);
+        public void BeginResearch(ResearchOption option)
+        {
+            option.OnCompleted += ResearchCompleted;
+            _inProgress.Add(option);
+
+            option.BeginResearch();
+            OnResearchBegun?.Invoke(option);
+        }
+
+        public void ForceCompleteResearch (ResearchOption option)
+        {
+            if (!option.IsCompleted)
+            {
+                option.CompleteResearch();
             }
         }
 

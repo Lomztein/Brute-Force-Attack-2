@@ -22,6 +22,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
                 ObjectModel obj = model.Root as ObjectModel;
                 assembly.Name = obj.GetValue<string>("Name");
                 assembly.Description = obj.GetValue<string>("Description");
+                assembly.Identifier = obj.GetValue<string>("Identifier");
                 ArrayModel tiers = obj.GetArray("Tiers");
                 ObjectModel children = obj.GetObject("Children");
                 UpgradeMap upgrades = _valueAssembler.Assemble(obj.GetObject("UpgradeMap"), typeof(UpgradeMap), new AssemblyContext()) as UpgradeMap;
@@ -76,6 +77,7 @@ namespace Lomztein.BFA2.ContentSystem.Assemblers
             return new RootModel(new ObjectModel(
                 new ObjectField("Name", ValueModelFactory.Create(assembly.Name, context)),
                 new ObjectField("Description", ValueModelFactory.Create(assembly.Description, context)),
+                new ObjectField("Identifier", ValueModelFactory.Create(assembly.Identifier, context)),
                 new ObjectField("Tiers", ValueModelFactory.Create(assembly.Tiers, context)),
                 new ObjectField("UpgradeMap", _valueAssembler.Disassemble(assembly.UpgradeMap, typeof(UpgradeMap), context)),
                 new ObjectField("Children", new ObjectModel(children.ToArray()))

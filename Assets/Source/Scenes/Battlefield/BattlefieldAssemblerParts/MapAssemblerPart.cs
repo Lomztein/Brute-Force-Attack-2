@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.BattlefieldAssemblerParts
     public class MapAssemblerPart : IBattlefieldAssemblerPart
     {
         public string Identifier => "Core.Map";
+        public int AssemblyOrder => 0;
 
         public void AssemblePart(BattlefieldController controller, ValueModel partData, AssemblyContext context)
         {

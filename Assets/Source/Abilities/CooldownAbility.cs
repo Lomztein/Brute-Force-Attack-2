@@ -6,6 +6,7 @@ using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,6 +90,21 @@ namespace Lomztein.BFA2.Abilities
                 CurrentCharges--;
             }
             base.Activate();
+        }
+
+        public override void AssembleData(ValueModel model)
+        {
+            ObjectModel objectModel = model as ObjectModel;
+            CurrentCooldown = objectModel.GetValue<int>("Cooldown");
+            CurrentCharges = objectModel.GetValue<int>("Charges");
+        }
+
+        public override ValueModel DisassembleData()
+        {
+            return new ObjectModel(
+                new ObjectField("Cooldown", new PrimitiveModel(CurrentCooldown)),
+                new ObjectField("Charges", new PrimitiveModel(CurrentCharges))
+                );
         }
     }
 }

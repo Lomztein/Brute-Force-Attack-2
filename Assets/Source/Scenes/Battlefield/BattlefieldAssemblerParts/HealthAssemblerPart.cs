@@ -13,14 +13,18 @@ namespace Lomztein.BFA2.Scenes.Battlefield.BattlefieldAssemblerParts
     public class HealthAssemblerPart : IBattlefieldAssemblerPart
     {
         public string Identifier => "Core.Health";
+        public int AssemblyOrder => 20;
 
         public void AssemblePart(BattlefieldController controller, ValueModel partData, AssemblyContext context)
         {
+            float health = (partData as PrimitiveModel).ToObject<float>();
+            float diff = health - Player.Player.Health.GetCurrentHealth();
+            Player.Player.Health.ChangeHealth(diff, this);
         }
 
         public ValueModel DisassemblePart(BattlefieldController controller, DisassemblyContext context)
         {
-            return new NullModel();
+            return new PrimitiveModel(Player.Player.Health.GetCurrentHealth());
         }
     }
 }

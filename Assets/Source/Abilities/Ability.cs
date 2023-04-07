@@ -6,6 +6,7 @@ using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -80,5 +81,9 @@ namespace Lomztein.BFA2.Abilities
             GetEffect().Activate(GetPlacement());
             OnActivated?.Invoke(this, GetPlacement());
         }
+
+        public virtual void AssembleData(ValueModel model) { }
+
+        public virtual ValueModel DisassembleData() { return new NullModel(); }
     }
 }

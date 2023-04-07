@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.BattlefieldAssemblerParts
     public class WaveAssemblerPart : IBattlefieldAssemblerPart
     {
         public string Identifier => "Core.Wave";
+        public int AssemblyOrder => 40;
 
         public void AssemblePart(BattlefieldController controller, ValueModel partData, AssemblyContext context)
         {

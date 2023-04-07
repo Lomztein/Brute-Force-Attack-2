@@ -6,6 +6,9 @@ using UnityEngine;
 using Lomztein.BFA2.World;
 using Lomztein.BFA2.Modification.Stats;
 using Lomztein.BFA2.Structures.Turrets.Attachment;
+using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Inventory.Items;
 
 namespace Lomztein.BFA2.Structures.Turrets
 {
@@ -165,6 +168,45 @@ namespace Lomztein.BFA2.Structures.Turrets
             {
                 RebuildComponentAttachments(tier);
             }
+        }
+
+        public override void AssembleData(ValueModel model, AssemblyContext context)
+        {
+            ObjectModel objectModel = model as ObjectModel;
+            ValueAssembler assembler = new ValueAssembler();
+            SetTier(Tier.Parse(objectModel.GetValue<string>("Tier")));
+            ArrayModel componentData = objectModel.GetArray("Components");
+            var zip = Enumerable.Zip(componentData, GetComponents(), (data, component) => (data, component));
+            foreach (var pair in zip)
+            {
+                pair.component.AssembleData(pair.data, context);
+            }
+
+            ArrayModel moduleItems = objectModel.GetArray("Modules");
+            foreach (var moduleModel in moduleItems)
+            {
+                ModuleItem item = (ModuleItem)assembler.Assemble(moduleModel, typeof(ModuleItem), context);
+                TurretAssemblyModule module = TurretAssemblyModule.CreateFor(item);
+                module.transform.SetParent(transform);
+                module.transform.position = transform.position;
+                AddModule(module);
+            }
+        }
+
+        public override ValueModel DisassembleData(DisassemblyContext context)
+        {
+            ValueAssembler assembler = new ValueAssembler();
+
+            var tier = new PrimitiveModel(CurrentTeir.ToString());
+            var componentData = new ArrayModel(GetComponents().Select(x => x.DisassembleData(context)));
+            var moduleData = new ArrayModel(Modules.Select(x => assembler.Disassemble(x.Item, typeof(ModuleItem), context)));
+
+            return new ObjectModel(
+                base.DisassembleData(context) as ObjectModel,
+                new ObjectField("Tier", tier),
+                new ObjectField("Components", componentData),
+                new ObjectField("Modules", moduleData)
+                );
         }
     }
 }

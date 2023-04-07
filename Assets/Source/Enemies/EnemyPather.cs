@@ -26,6 +26,9 @@ namespace Lomztein.BFA2.Enemies
 
         public IEnumerator ComputePaths ()
         {
+            if (_spawnPoints.Length == 0 || _endPoints.Length == 0)
+                CachePoints();
+
             foreach (EnemySpawnPoint point in _spawnPoints)
             {
                 point.ComputePath(_endPoints);

@@ -41,7 +41,9 @@ namespace Lomztein.BFA2.UI.Menus
 
         public void Save ()
         {
-            SaveFileDialog.Create(BattlefieldSave.PATH_ROOT, ".json", OnSave);
+            var window = SaveFileDialog.Create(BattlefieldSave.PATH_ROOT, ".json", OnSave);
+            window.OnClosed += Window_OnClosed;
+            Hide();
         }
 
         private void OnSave(string filename, string path)
@@ -52,7 +54,14 @@ namespace Lomztein.BFA2.UI.Menus
 
         public void Load ()
         {
-            FileBrowser.Create(BattlefieldSave.PATH_ROOT, ".json", OnLoad);
+            var window = FileBrowser.Create(BattlefieldSave.PATH_ROOT, ".json", OnLoad);
+            window.OnClosed += Window_OnClosed;
+            Hide();
+        }
+
+        private void Window_OnClosed()
+        {
+            Unhide();
         }
 
         private void OnLoad(string path)

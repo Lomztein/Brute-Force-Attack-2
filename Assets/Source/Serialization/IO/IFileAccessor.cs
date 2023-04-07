@@ -9,5 +9,7 @@ namespace Lomztein.BFA2.Serialization.IO
     public interface IFileAccessor
     {
         public object LoadObjectFromFile(string path, Type type);
+
+        public bool TryGetObjectFilePath(object obj, out string path);
     }
 }

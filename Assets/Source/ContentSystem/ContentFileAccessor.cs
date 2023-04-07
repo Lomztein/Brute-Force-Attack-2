@@ -9,6 +9,11 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public class ContentFileAccessor : IFileAccessor
     {
+        public bool TryGetObjectFilePath(object obj, out string path)
+        {
+            return ContentManager.Instance.TryGetPath(obj, out path);
+        }
+
         public object LoadObjectFromFile(string path, Type type)
         {
             return Content.Get(path, type);

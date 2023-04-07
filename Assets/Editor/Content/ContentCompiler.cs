@@ -24,6 +24,8 @@ namespace Lomztein.BFA2.Editor.Content
         [MenuItem("BFA2/Build Content")]
         public static void CompileAll ()
         {
+            BuildManifest();
+
             Debug.Log("Building all content..");
             string[] folders = Directory.GetDirectories(RootContentFolder);
             foreach (string folder in folders)
@@ -33,21 +35,16 @@ namespace Lomztein.BFA2.Editor.Content
             }
         }
 
-        [MenuItem("BFA2/Index Resources")]
-        public static void IndexResources ()
+        [MenuItem("BFA2/Build Manifest")]
+        public static void BuildManifest ()
         {
-            Debug.Log("Indexing resources..");
-            string root = Path.Combine(Application.dataPath, "Resources");
-            string[] files = Directory.GetFiles(root, "*", SearchOption.AllDirectories)
-                .Where(x => Path.GetExtension(x) != ".meta")
-                .Select(x => x.Substring(root.Length + 1)).ToArray();
-            File.WriteAllLines(ResourcesContentPack.GetResourcesIndexPath(), files);
+            var manifest = ContentManifest.BuildFromContentPacks();
+            manifest.Store();
         }
 
         public static void CompileFolder (string folderPath, string targetPath)
         {
             Debug.Log($"Building folder '{folderPath}' to '{targetPath}'");
-            IndexResources();
 
             string[] compilationTypeSearch = AssetDatabase.FindAssets("t:CompilationTypeReference", new string[] { folderPath });
             string[] compilationTypeFiles = compilationTypeSearch.Select(x => AssetDatabase.GUIDToAssetPath(x)).ToArray();

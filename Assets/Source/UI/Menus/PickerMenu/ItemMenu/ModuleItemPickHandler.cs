@@ -23,14 +23,7 @@ namespace Lomztein.BFA2.UI.Menus.PickerMenu.ItemMenu
             ModulePlacement placement = new ModulePlacement();
 
             placement.OnPlaced += (go) => OnPlaced(expItem);
-
-            RootModBroadcaster broadcaster = Instantiate(ModulePrefab).GetComponent<RootModBroadcaster>();
-            TurretAssemblyModule module = broadcaster.GetComponent<TurretAssemblyModule>();
-
-            Mod mod = expItem.Mod;
-            module.Item = expItem;
-            broadcaster.Mod = mod;
-            broadcaster.ModCoeffecient = expItem.Coeffecient;
+            var module = TurretAssemblyModule.CreateFor(expItem);
 
             placement.Pickup(module.gameObject);
 

@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.Battlefield
     [CreateAssetMenu(menuName = "BFA2/BattlefieldSettings", fileName = "New Battlefield Settings")]
     public class BattlefieldSettings : ScriptableObject
     {
-        public const string DEFAULT_SETTINGS_PATH = "Resources/DefaultBattlefieldSettings";
+        public const string DEFAULT_SETTINGS_PATH = "Core/BattlefieldSettings/Default.json";
 
         [ModelProperty]
         public string MapIdentifier = "Core.SnakinAbout";

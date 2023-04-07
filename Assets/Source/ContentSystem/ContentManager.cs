@@ -232,6 +232,10 @@ namespace Lomztein.BFA2.ContentSystem
 
         public void ClearCache() => _cache.ClearCache();
         public void ClearCache(string path) => _cache.ClearCache(path);
+
+        public string GetPath(object assetObj) => _cache.GetKey(assetObj);
+        public bool TryGetPath(object assetObj, out string path) => _cache.TryGetKey(assetObj, out path);
+
         public IEnumerable<string> QueryContentIndex(string pattern) => _index.Query(pattern);
 
         public void RebuildIndex()

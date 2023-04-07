@@ -113,6 +113,7 @@ namespace Lomztein.BFA2.AssemblyEditor
 
         public static void SaveFile(string path, TurretAssembly assembly)
         {
+            assembly.Identifier = Guid.NewGuid().ToString();
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
             var model = assembler.Disassemble(assembly);

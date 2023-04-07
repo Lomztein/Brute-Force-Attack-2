@@ -7,6 +7,8 @@ using Lomztein.BFA2.Placement;
 using Lomztein.BFA2.Purchasing;
 using Lomztein.BFA2.Purchasing.Resources;
 using Lomztein.BFA2.Serialization;
+using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.Turrets;
 using Lomztein.BFA2.UI;
@@ -35,7 +37,7 @@ namespace Lomztein.BFA2.Structures
         [SerializeField]
         [ModelProperty]
         public string _uniqueIdentifier;
-        public virtual string Identifier => _uniqueIdentifier;
+        public virtual string Identifier { get => _uniqueIdentifier; set => _uniqueIdentifier = value; }
 
         public virtual string Description { get => _description; set => _description = value; }
         public virtual IResourceCost Cost => _cost;
@@ -193,5 +195,8 @@ namespace Lomztein.BFA2.Structures
         {
             return Tags.HasTag(tag);
         }
+
+        public virtual ValueModel DisassembleData(DisassemblyContext context) => new NullModel();
+        public virtual void AssembleData(ValueModel model, AssemblyContext context) { }
     }
 }

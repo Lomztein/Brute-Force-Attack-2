@@ -15,6 +15,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.BattlefieldAssemblerParts
     public class PlayerAssemblerPart : IBattlefieldAssemblerPart
     {
         public string Identifier => "Core.Player";
+        public int AssemblyOrder => 10;
 
         public void AssemblePart(BattlefieldController controller, ValueModel partData, AssemblyContext context)
         {

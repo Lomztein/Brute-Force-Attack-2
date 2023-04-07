@@ -20,7 +20,7 @@ namespace Lomztein.BFA2.Collectables
         [ModelProperty]
         public Color SpriteTint = Color.white;
 
-        private RarityEffect _effect;
+        public RarityEffect Effect { get; private set; }
         private float _collectionProgress;
         private bool _isCollected;
 
@@ -33,10 +33,10 @@ namespace Lomztein.BFA2.Collectables
 
         private void CreateRarityEffect ()
         {
-            _effect = RarityEffect.Instantiate(Rarity).GetComponent<RarityEffect>();
-            _effect.Assign(Rarity, Sprite.Get(), SpriteTint);
-            _effect.transform.SetParent(transform);
-            _effect.transform.position = transform.position;
+            Effect = RarityEffect.Instantiate(Rarity).GetComponent<RarityEffect>();
+            Effect.Assign(Rarity, Sprite.Get(), SpriteTint);
+            Effect.transform.SetParent(transform);
+            Effect.transform.position = transform.position;
         }
 
         public bool TickCollection (float deltaTime, float collectionRate)
@@ -44,7 +44,7 @@ namespace Lomztein.BFA2.Collectables
             if (!_isCollected)
             {
                 _collectionProgress += deltaTime * collectionRate;
-                _effect.Scale(1 - (_collectionProgress / CollectionTime));
+                Effect.Scale(1 - (_collectionProgress / CollectionTime));
 
                 if (_collectionProgress >= CollectionTime)
                 {
@@ -70,7 +70,7 @@ namespace Lomztein.BFA2.Collectables
             Collect();
             _isCollected = true;
             OnCollected?.Invoke(this);
-            _effect.DetachAndStop();
+            Effect.DetachAndStop();
             Destroy(gameObject);
         }
 

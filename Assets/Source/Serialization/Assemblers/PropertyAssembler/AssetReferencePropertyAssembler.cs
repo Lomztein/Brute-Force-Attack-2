@@ -20,6 +20,7 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
             "Assets/Content/",
         };
         private string _resourcesPath = "Assets/Resources/";
+        private IValueAssembler _assembler = new ValueAssembler();
 
         private Dictionary<string, string> _assetToContentFileExtenisons = new Dictionary<string, string>()
         {
@@ -41,7 +42,11 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                     member.SetValue(obj, value);
                     return;
                 }
-                throw new InvalidOperationException(nameof(model) + " must be a " + nameof(PathModel));
+                else
+                {
+                    // Assume fallback to standard disassembly.
+                    member.SetValue(obj, _assembler.Assemble(model, expectedType, context));
+                }
             }
         }
 
@@ -53,24 +58,41 @@ namespace Lomztein.BFA2.Serialization.Assemblers.PropertyAssembler
                 return;
             } else if (obj is UnityEngine.Object uObj)
             {
-#if UNITY_EDITOR 
-                // This code cannot function without the UnityEditor assemblies.
-                string assetPath = AssetDatabase.GetAssetPath(uObj);
-                foreach (string path in _assetPaths)
+                if (Application.isPlaying)
                 {
-                    if (assetPath.StartsWith(path))
+                    // If used during runtime, use the cached file path from when the file was first loaded.
+                    if (SerializationFileAccess.TryGetObjectFilePath(obj, out string path))
                     {
-                        field.Model = new PathModel(Path.ChangeExtension(assetPath.Substring(path.Length), GetAssetToContentFileExtension(Path.GetExtension(assetPath))));
-                        return;
+                        field.Model = new PathModel(path);
+                    }
+                    else
+                    {
+                        // If no path exists, such as if the object has been instantiated during runtime, fallback to base disassembly.
+                        field.Model = _assembler.Disassemble(obj, expectedType, context);
+                        // If this further fails, then you're trying to store something that the serializer doesn't support anyways.
                     }
                 }
-                if (assetPath.StartsWith(_resourcesPath))
+                else
                 {
-                    field.Model = new PathModel(Path.ChangeExtension(assetPath.Substring(7), null)); // Hardcoded length for "Assets/" so that only the part with and after Resources remains. Is there an easier way to do this?
-                }
+#if UNITY_EDITOR
+                    // Else if during compile-time, assuming we are in the editor, use the editors asset database to figure out the path.
+                    string assetPath = AssetDatabase.GetAssetPath(uObj);
+                    foreach (string path in _assetPaths)
+                    {
+                        if (assetPath.StartsWith(path))
+                        {
+                            field.Model = new PathModel(Path.ChangeExtension(assetPath.Substring(path.Length), GetAssetToContentFileExtension(Path.GetExtension(assetPath))));
+                            return;
+                        }
+                    }
+                    if (assetPath.StartsWith(_resourcesPath))
+                    {
+                        field.Model = new PathModel(Path.ChangeExtension(assetPath.Substring(7), null)); // Hardcoded length for "Assets/" so that only the part with and after Resources remains. Is there an easier way to do this?
+                    }
 #else
-                Debug.LogError("AssetReferenceProperty assembler is no good without editor assemblies. Please use a ContentObjectReference instead.");
+                    Debug.LogError("Tried to use compile-time asset reference path finding outside of the Unity Editor, for some god-forsaken reason.");
 #endif
+                }
             }
             else
             {

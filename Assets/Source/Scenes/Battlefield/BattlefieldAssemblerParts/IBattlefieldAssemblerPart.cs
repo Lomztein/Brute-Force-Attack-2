@@ -12,6 +12,7 @@ namespace Lomztein.BFA2.Scenes.Battlefield.BattlefieldAssemblerParts
     public interface IBattlefieldAssemblerPart
     {
         public string Identifier { get; }
+        public int AssemblyOrder { get; }
 
         public void AssemblePart(BattlefieldController controller, ValueModel partData, AssemblyContext context);
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Lomztein.BFA2.Scenes.Battlefield
 {
@@ -19,7 +20,10 @@ namespace Lomztein.BFA2.Scenes.Battlefield
             get
             {
                 if (_parts == null)
+                {
                     _parts = ReflectionUtils.InstantiateAllOfType<IBattlefieldAssemblerPart>().ToArray();
+                    Array.Sort(_parts, (x, y) => x.AssemblyOrder - y.AssemblyOrder);
+                }
                 return _parts;
             }
         }
@@ -29,7 +33,15 @@ namespace Lomztein.BFA2.Scenes.Battlefield
             var fields = new List<ObjectField>();
             foreach (var part in Parts)
             {
-                fields.Add(new ObjectField(part.Identifier, part.DisassemblePart(controller, context)));
+                try
+                {
+                    var field = new ObjectField(part.Identifier, part.DisassemblePart(controller, context));
+                    fields.Add(field);
+                }catch (Exception exc)
+                {
+                    Debug.Log($"Something went wrong during save disassembly of part '{part.Identifier}'");
+                    Debug.LogError(exc);
+                }
             }
             return new ObjectModel(fields.ToArray());
         }
@@ -38,8 +50,15 @@ namespace Lomztein.BFA2.Scenes.Battlefield
         {
             foreach (var part in data)
             {
-                var assembler = Parts.FirstOrDefault(x => x.Identifier == part.Name);
-                assembler.AssemblePart(controller, part.Model, context);
+                try
+                {
+                    var assembler = Parts.FirstOrDefault(x => x.Identifier == part.Name);
+                    assembler.AssemblePart(controller, part.Model, context);
+                }catch (Exception exc)
+                {
+                    Debug.Log($"Something went wrong during save assembly of part '{part.Name}'");
+                    Debug.LogError(exc);
+                }
             }
         }
 

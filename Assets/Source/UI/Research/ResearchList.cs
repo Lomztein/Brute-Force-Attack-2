@@ -156,7 +156,7 @@ namespace Lomztein.BFA2.Research.UI
 
         private void OnReseachButtonClick(ResearchOption option)
         {
-            Controller.BeginResearch(option);
+            Controller.TryPurchaseResearch(option);
             RegenerateButtons();
         }
 

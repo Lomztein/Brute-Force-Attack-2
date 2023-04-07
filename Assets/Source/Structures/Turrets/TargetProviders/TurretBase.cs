@@ -91,7 +91,7 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override ValueModel DisassembleData(DisassemblyContext context)
         {
-            ObjectAssembler assembler = new ObjectAssembler();
+            ArrayModelAssembler assembler = new ArrayModelAssembler();
             TargetFinder tf = GetComponent<TargetFinder>();
             if (tf.TargetEvaluators == null || tf.TargetEvaluators.Length == 0)
             {
@@ -102,12 +102,17 @@ namespace Lomztein.BFA2.Structures.Turrets.TargetProviders
 
         public override void AssembleData(ValueModel model, AssemblyContext context)
         {
-            ObjectAssembler assembler = new ObjectAssembler();
-            if (!ValueModel.IsNull(model))
+            try
             {
-                var evaluators = assembler.Assemble(model, typeof(List<TargetEvaluator>), context) as List<TargetEvaluator>;
-                if (evaluators != null) 
-                    SetEvaluators(evaluators);
+                ArrayModelAssembler assembler = new ArrayModelAssembler();
+                if (!ValueModel.IsNull(model))
+                {
+                    var evaluators = assembler.Assemble(model, typeof(List<TargetEvaluator>), context) as List<TargetEvaluator>;
+                    if (evaluators != null)
+                        SetEvaluators(evaluators);
+                }
+            }catch (Exception)
+            {
             }
         }
 

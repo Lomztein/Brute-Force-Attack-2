@@ -29,7 +29,7 @@ namespace Lomztein.BFA2.Research
         public int TimeCost;
         public int TimePayed { get; private set; }
 
-        private bool _isCompleted = false;
+        public bool IsCompleted { get; private set; } = false;
 
         [ModelProperty]
         public string Identifier;
@@ -87,7 +87,7 @@ namespace Lomztein.BFA2.Research
         public void BeginResearch ()
         {
             TimePayed = 0;
-            if (TimePayed == TimeCost && !_isCompleted)
+            if (TimePayed == TimeCost && !IsCompleted)
             {
                 CompleteResearch();
             }
@@ -97,17 +97,17 @@ namespace Lomztein.BFA2.Research
         {
             TimePayed++;
             OnTick?.Invoke(this);
-            if (TimePayed == TimeCost && !_isCompleted)
+            if (TimePayed == TimeCost && !IsCompleted)
             {
                 CompleteResearch();
             }
         }
 
-        private void CompleteResearch ()
+        public void CompleteResearch ()
         {
             Reward();
             Stop();
-            _isCompleted = true;
+            IsCompleted = true;
             OnCompleted?.Invoke(this);
         }
 
