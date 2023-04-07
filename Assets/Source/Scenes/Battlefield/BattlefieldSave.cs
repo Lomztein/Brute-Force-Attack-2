@@ -12,6 +12,8 @@ namespace Lomztein.BFA2.Scenes.Battlefield
 {
     public class BattlefieldSave : IAssemblable
     {
+        public static string PATH_ROOT => Path.Combine(Application.persistentDataPath, "Saves");
+
         public BattlefieldSettings Settings;
         public ObjectModel BattlefieldData;
 
@@ -53,15 +55,17 @@ namespace Lomztein.BFA2.Scenes.Battlefield
         public static void LoadToBattlefield(BattlefieldSave save, BattlefieldController controller)
         {
             controller.InitializeBattlefield(save.Settings);
-            // Load ALL THE DATA
 
+            BattlefieldAssembler assembler = new BattlefieldAssembler();
+            assembler.Assemble(controller, save.BattlefieldData, new AssemblyContext());
         }
 
-        public static BattlefieldSave SaveFromBattlefield(BattlefieldController controller, BattlefieldSettings settings)
+        public static BattlefieldSave SaveFromBattlefield(BattlefieldController controller)
         {
-            // Save ALL THE DATA.
+            BattlefieldAssembler assembler = new BattlefieldAssembler();
+            var settings = controller.CurrentSettings;
 
-            ObjectModel data = new ObjectModel();
+            ObjectModel data = assembler.Disassemble(controller, new DisassemblyContext());
             return new BattlefieldSave(settings, data);
         }
     }

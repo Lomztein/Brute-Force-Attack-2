@@ -8,6 +8,7 @@ namespace Lomztein.BFA2.Modification.Events
 {
     public class EventContainer : IEventContainer
     {
+        public IEvent[] Events => _events.ToArray();
         private List<IEvent> _events = new List<IEvent>();
 
         public event Action<IEventReference, object> OnEventAdded;

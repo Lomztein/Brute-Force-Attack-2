@@ -7,6 +7,8 @@ namespace Lomztein.BFA2.Modification.Events
 {
     public interface IEventContainer
     {
+        IEvent[] Events { get; }
+
         event Action<IEventReference, object> OnEventAdded;
         event Action<IEventReference, object> OnEventChanged;
         event Action<IEvent, object> OnEventExecuted;

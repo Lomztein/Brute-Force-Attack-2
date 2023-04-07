@@ -36,6 +36,7 @@ namespace Lomztein.BFA2
 
         internal void InitializeGame()
         {
+            InitializeCriticalFolders();
             SerializationFileAccess.SetAccessor(new ContentFileAccessor());
 
             Input.Init();
@@ -50,6 +51,11 @@ namespace Lomztein.BFA2
 
             InterceptLogs();
             GameSettings.Init();
+        }
+
+        internal void InitializeCriticalFolders ()
+        {
+            System.IO.Directory.CreateDirectory(BattlefieldSave.PATH_ROOT);
         }
 
         private void InterceptLogs()

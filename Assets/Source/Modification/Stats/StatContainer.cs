@@ -10,6 +10,7 @@ namespace Lomztein.BFA2.Modification.Stats
     public class StatContainer : IStatContainer
     {
         private List<IStat> _stats = new List<IStat>();
+        public IStat[] Stats => _stats.ToArray();
 
         public event Action<IStatReference, object> OnStatAdded;
         public event Action<IStatReference, object> OnStatRemoved;
@@ -73,7 +74,7 @@ namespace Lomztein.BFA2.Modification.Stats
 
         public override string ToString()
         {
-            return _stats.Count != 0 ? string.Join("\n\t", _stats) : string.Empty;
+            return _stats.Count != 0 ? string.Join("\n", _stats) : string.Empty;
         }
     }
 }

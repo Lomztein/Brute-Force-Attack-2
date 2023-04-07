@@ -7,6 +7,8 @@ namespace Lomztein.BFA2.Modification.Stats
 {
     public interface IStatContainer
     {
+        IStat[] Stats { get; }
+
         event Action<IStatReference, object> OnStatAdded;
         event Action<IStatReference, object> OnStatRemoved;
         event Action<IStatReference, object> OnStatChanged;
