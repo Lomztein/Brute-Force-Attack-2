@@ -1,7 +1,11 @@
 using Lomztein.BFA2.Battlefield;
+using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Assemblers;
+using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.World;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,6 +71,35 @@ namespace Lomztein.BFA2.Scenes.Battlefield
 
             ObjectModel data = assembler.Disassemble(controller, new DisassemblyContext());
             return new BattlefieldSave(settings, data);
+        }
+
+        public static void SaveCurrentToFile(string path)
+        {
+            var save = SaveFromBattlefield(BattlefieldController.Instance);
+            var json = ToJSON(save);
+            json[FileBrowser.FILE_DESCRIPTION] = GetSaveDescription();
+            json[FileBrowser.FILE_IMAGE] = TakeScreenshot().ToBase64();
+            File.WriteAllText(path, json.ToString());
+        }
+
+        private static Texture2D TakeScreenshot()
+        {
+            MapData data = BattlefieldController.Instance.MapController.MapData;
+            Rect screenRect = new Rect(
+                -data.Width / 2f,
+                -data.Height / 2f,
+                data.Width,
+                data.Height
+                );
+            return CameraCapture.CaptureOrtho(screenRect, new Vector2Int(128, 128));
+        }
+
+        private static string GetSaveDescription()
+        {
+            var settings = BattlefieldController.Instance.CurrentSettings;
+            return $"Map: {BattlefieldController.Instance.MapController.MapData.Name}" +
+                $"\nDifficulty: {settings.Difficulty.Name}" +
+                $"\nWave: {RoundController.Instance.NextIndex}";
         }
     }
 }

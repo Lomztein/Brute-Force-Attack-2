@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Serialization.IO;
+using Lomztein.BFA2.UI.Messages;
 using Lomztein.BFA2.UI.Windows;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
@@ -50,33 +51,10 @@ namespace Lomztein.BFA2.UI.Menus
             Hide();
         }
 
-        private void OnSave(string filename, string path)
+        private void OnSave(string name, string path)
         {
-            var save = BattlefieldSave.SaveFromBattlefield(BattlefieldController.Instance);
-            var json = BattlefieldSave.ToJSON(save);
-            json[FileBrowser.FILE_DESCRIPTION] = GetSaveDescription();
-            json[FileBrowser.FILE_IMAGE] = TakeScreenshot().ToBase64();
-            File.WriteAllText(path, json.ToString());
-        }
-
-        private Texture2D TakeScreenshot()
-        {
-            MapData data = BattlefieldController.Instance.MapController.MapData;
-            Rect screenRect = new Rect(
-                -data.Width / 2f,
-                -data.Height / 2f,
-                data.Width,
-                data.Height
-                );
-            return CameraCapture.CaptureOrtho(screenRect, new Vector2Int(128, 128));
-        }
-
-        private string GetSaveDescription ()
-        {
-            var settings = BattlefieldController.Instance.CurrentSettings;
-            return $"Map: {BattlefieldController.Instance.MapController.MapData.Name}" +
-                $"\nDifficulty: {settings.Difficulty.Name}" +
-                $"\nWave: {RoundController.Instance.NextIndex}";
+            BattlefieldSave.SaveCurrentToFile(path);
+            Message.Send($"Saved progress as '{name}'.", Message.Type.Minor);
         }
 
         public void Load ()
