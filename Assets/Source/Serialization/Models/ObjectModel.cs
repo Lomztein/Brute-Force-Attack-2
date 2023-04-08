@@ -81,6 +81,8 @@ namespace Lomztein.BFA2.Serialization.Models
         public T GetValue<T>(string name)
         {
             var field = GetField(name);
+            if (field == null) return default(T);
+
             PrimitiveModel property = field.Model as PrimitiveModel;
             return property.ToObject<T>();
         }

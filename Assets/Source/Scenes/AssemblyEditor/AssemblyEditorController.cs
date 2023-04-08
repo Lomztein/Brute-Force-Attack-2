@@ -7,6 +7,7 @@ using Lomztein.BFA2.Serialization.Models;
 using Lomztein.BFA2.Structures.Turrets;
 using Lomztein.BFA2.UI;
 using Lomztein.BFA2.UI.Displays.Stats;
+using Lomztein.BFA2.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -97,18 +98,11 @@ namespace Lomztein.BFA2.AssemblyEditor
         public void SaveAssembly ()
         {
             CustomContentUtils.CreateDirectory("Assemblies");
-            string path = CustomContentUtils.ToAbsolutePath("Assemblies/" + CurrentAsssembly.Name + ".json");
-            if (File.Exists(path))
-            {
-                Confirm.Open("Saving will overwrite assembly file\n" + path + "\nConfirm?", () =>
-                {
-                    SaveFile(path, CurrentAsssembly);
-                });
-            }
-            else
+            string dir = CustomContentUtils.ToAbsolutePath("Assemblies/");
+            SaveFileDialog.Create(dir, ".json", (name, path) =>
             {
                 SaveFile(path, CurrentAsssembly);
-            }
+            });
         }
 
         public static void SaveFile(string path, TurretAssembly assembly)
@@ -117,7 +111,11 @@ namespace Lomztein.BFA2.AssemblyEditor
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             TurretAssemblyAssembler assembler = new TurretAssemblyAssembler();
             var model = assembler.Disassemble(assembly);
-            File.WriteAllText(path, ObjectPipeline.SerializeObject(model).ToString());
+            var json = ObjectPipeline.SerializeObject(model);
+            json[FileBrowser.FILE_NAME] = assembly.Name;
+            json[FileBrowser.FILE_DESCRIPTION] = assembly.Description;
+            json[FileBrowser.FILE_IMAGE] = Iconography.GenerateIcon(assembly.GetRootComponent(Tier.Initial).gameObject, 128).ToBase64();
+            File.WriteAllText(path, json.ToString());
             OnAssemblySaved?.Invoke(assembly, path);
             Content.ResetIndex();
             Alert.Open("Assembly has been saved.");

@@ -34,29 +34,29 @@ namespace Lomztein.BFA2.UI.Windows
             IWindow wPrefab = original.GetComponent<IWindow>();
             Type wType = wPrefab.GetType();
 
-            if (GetAmountOfType(wType) < GetMaxOfType(wType))
+            if (GetAmountOfType(wType) >= GetMaxOfType(wType))
             {
-                GameObject window = Instantiate(original, UIController.Instance.MainCanvas.transform);
-                window.transform.SetSiblingIndex(_instance.DarkOverlay.transform.GetSiblingIndex() - 1);
-                IWindow w = window.GetComponent<IWindow>();
-
-                _instance._openedThisFrame = true;
-
-                _instance._windows.Add(w);
-                _instance._windowObjects.Add(window);
-
-                w.Init();
-
-                w.OnClosed += () =>
-                {
-                    _instance.InternalOnWindowClosed(w, window);
-                };
-
-                OnWindowOpened?.Invoke(w);
-                return window;
+                _instance._windows.First(x => x.GetType() == wType).Close();
             }
 
-            return null;
+            GameObject window = Instantiate(original, UIController.Instance.MainCanvas.transform);
+            window.transform.SetSiblingIndex(_instance.DarkOverlay.transform.GetSiblingIndex() - 1);
+            IWindow w = window.GetComponent<IWindow>();
+
+            _instance._openedThisFrame = true;
+
+            _instance._windows.Add(w);
+            _instance._windowObjects.Add(window);
+
+            w.Init();
+
+            w.OnClosed += () =>
+            {
+                _instance.InternalOnWindowClosed(w, window);
+            };
+
+            OnWindowOpened?.Invoke(w);
+            return window;
         }
 
         private static int GetAmountOfType(Type type)

@@ -38,10 +38,14 @@ namespace Lomztein.BFA2.UI
         public static Confirm Open (string message, Action onConfirm)
         {
             GameObject prefab = Resources.Load<GameObject>(RESOURCE_PATH);
-            Confirm confirm = WindowManager.OpenWindow(prefab).GetComponent<Confirm>();
-            confirm.MessageText.text = message;
-            confirm.ConfirmButton.onClick.AddListener(() => onConfirm());
-            return confirm;
+            var confirmObj = WindowManager.OpenWindowAboveOverlay(prefab);
+            if (confirmObj.TryGetComponent(out Confirm confirm))
+            {
+                confirm.MessageText.text = message;
+                confirm.ConfirmButton.onClick.AddListener(() => onConfirm());
+                return confirm;
+            }
+            return null;
         }
 
         public static Confirm Open (string message, Action onConfirm, Action onCancel)

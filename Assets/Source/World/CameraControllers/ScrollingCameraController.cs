@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lomztein.BFA2.UI.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,7 +64,7 @@ namespace Lomztein.BFA2.World.CameraControllers
                 y = 1f;
             }
 
-            if (Application.isFocused)
+            if (Application.isFocused && !WindowManager.CurrentWindows.Any())
             {
                 transform.Translate((new Vector2(x, y) + _movement) * Speed * Time.deltaTime);
                 transform.position = Clamp(transform.position);

@@ -8,6 +8,7 @@ using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Scenes.Battlefield.Mutators;
 using Lomztein.BFA2.UI.Displays.Dialog;
 using Lomztein.BFA2.UI.Messages;
+using Lomztein.BFA2.UI.Windows;
 using Lomztein.BFA2.Utilities;
 using Lomztein.BFA2.World;
 using System;
@@ -143,7 +144,7 @@ namespace Lomztein.BFA2.Battlefield
 
         public void OnStartWave(InputAction.CallbackContext context)
         {
-            if (context.performed && !StartWaveIntterupt.IsInterrupted())
+            if (context.performed && !StartWaveIntterupt.IsInterrupted() && !WindowManager.CurrentWindows.Any())
             {
                 RoundController.BeginNextWave();
             }

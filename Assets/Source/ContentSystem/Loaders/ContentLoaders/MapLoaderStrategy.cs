@@ -25,10 +25,10 @@ namespace Lomztein.BFA2.ContentSystem.Loaders.ContentLoaders
 
             MapData data = (MapData)_mapLoader.Load(path, type, patches);
             string previewPath = Path.Combine(previewFolder, data.Name + ".png");
-            if (File.Exists(previewPath))
+            if (data.Preview == null && File.Exists(previewPath))
             {
                 Texture2D preview = (Texture2D)_textureLoader.Load(previewPath, typeof(Texture2D), Array.Empty<string>());
-                data.SetPreview(preview);
+                data.Preview = preview;
             }
 
             return data;

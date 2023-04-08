@@ -1,4 +1,6 @@
-﻿using Lomztein.BFA2.UI.Windows;
+﻿using Lomztein.BFA2.UI;
+using Lomztein.BFA2.UI.Messages;
+using Lomztein.BFA2.UI.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,6 +24,7 @@ namespace Lomztein.BFA2.Serialization.IO
         public InputField FileName;
 
         public event Action OnClosed;
+        private Confirm _currentConfirm;
 
         public void Close()
         {
@@ -31,7 +34,10 @@ namespace Lomztein.BFA2.Serialization.IO
 
         public static SaveFileDialog Create (string path, string extension, Action<string, string> callback)
         {
-            Directory.CreateDirectory(path);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
             GameObject go = Resources.Load<GameObject>(PrefabPath);
             SaveFileDialog dialog = WindowManager.OpenWindowAboveOverlay(go).GetComponent<SaveFileDialog>();
             dialog.InitDialog(path, extension, callback);
@@ -40,8 +46,33 @@ namespace Lomztein.BFA2.Serialization.IO
 
         public void Save ()
         {
-            _callback(FileName.text, _directory + "/" + FileName.text + _extenion);
-            Close();
+            string file = _directory + "/" + FileName.text + _extenion;
+            if (IsPathValid(file))
+            {
+                if (File.Exists(file))
+                {
+                    _currentConfirm = Confirm.Open($"File '{FileName.text + _extenion}' already exists. Overwrite?", () =>
+                    {
+                        _callback(FileName.text, file);
+                        Close();
+                    });
+                }
+                else
+                {
+                    _callback(FileName.text, file);
+                    Close();
+                }
+            }
+            else
+            {
+                Message.Send("File name invalid. Please use another name.", Message.Type.Minor);
+            }
+        }
+
+        private bool IsPathValid (string path)
+        {
+            var chars = Path.GetInvalidPathChars();
+            return !chars.Any(x => path.Contains(x));
         }
 
         public void Init()
@@ -59,6 +90,7 @@ namespace Lomztein.BFA2.Serialization.IO
         private void OnFileSelected(string obj)
         {
             FileName.text = Path.ChangeExtension(Path.GetFileName(obj), null);
+            if (_currentConfirm) _currentConfirm.Close();
         }
     }
 }

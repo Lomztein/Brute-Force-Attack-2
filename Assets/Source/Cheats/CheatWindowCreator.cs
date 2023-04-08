@@ -25,7 +25,7 @@ namespace Lomztein.BFA2
 
         private void OpenCheatWindow_performed(InputAction.CallbackContext obj)
         {
-            if (obj.phase == InputActionPhase.Performed)
+            if (obj.phase == InputActionPhase.Performed && UnityEngine.Input.GetKeyDown(KeyCode.LeftControl) && UnityEngine.Input.GetKeyDown(KeyCode.LeftShift))
             {
                 WindowManager.OpenWindowAboveOverlay(CheatWindowPrefab);
             }

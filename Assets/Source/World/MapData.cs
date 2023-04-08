@@ -19,7 +19,7 @@ namespace Lomztein.BFA2.World
         public string Name;
         public string Description;
         public string Identifier;
-        public Texture2D Preview { get; private set; }
+        public Texture2D Preview;
 
         public int Width;
         public int Height;
@@ -95,6 +95,7 @@ namespace Lomztein.BFA2.World
                 new ObjectField("Name", new PrimitiveModel(Name)),
                 new ObjectField("Description", new PrimitiveModel(Description)),
                 new ObjectField("Identifier", new PrimitiveModel(Identifier)),
+                new ObjectField("Preview", new PrimitiveModel(Preview.ToBase64())),
                 new ObjectField("Width", new PrimitiveModel(Width)),
                 new ObjectField("Height", new PrimitiveModel(Height)),
                 new ObjectField("Tiles", Tiles.Disassemble(context)),
@@ -111,6 +112,7 @@ namespace Lomztein.BFA2.World
             Name = obj.GetValue<string>("Name");
             Description = obj.GetValue<string>("Description");
             Identifier = obj.GetValue<string>("Identifier");
+            Preview = obj.GetValue<string>("Preview")?.ToTexture2D();
             Width = obj.GetValue<int>("Width");
             Height = obj.GetValue<int>("Height");
             Tiles = AssembleTileData(obj.GetArray("Tiles"), context);

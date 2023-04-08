@@ -85,8 +85,8 @@ namespace Lomztein.BFA2.Serialization.IO
         private void FileBrowser_OnEnter(string file)
         {
             // TODO: Consider caching these for optimization, so that we're not constantly reading a ton of files from disk.
-            FileNameText.transform.parent.gameObject.SetActive(false);
-            TimeStampText.transform.parent.gameObject.SetActive(false);
+            FileNameText.transform.parent.gameObject.SetActive(true);
+            TimeStampText.transform.parent.gameObject.SetActive(true);
 
             if (Path.GetExtension(file) == ".json")
             {

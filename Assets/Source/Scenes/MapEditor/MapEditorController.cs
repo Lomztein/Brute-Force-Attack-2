@@ -56,19 +56,16 @@ namespace Lomztein.BFA2.MapEditor
         public void OpenSaveDialog ()
         {
             MapData.Name = NameInput.text;
+            MapData.Description = DescriptionInput.text;
 
-            string path = Path.Combine(Content.CustomContentPath, MAP_FOLDER, MapData.Name) + ".json";
-            if (File.Exists(path))
-            {
-                Confirm.Open("File already exists at location\n" + path + "\nSaving will overwrite this. Confirm?", () => SaveMapFile(path));
-            }
-            else
+            Path.Combine(Content.CustomContentPath, MAP_FOLDER);
+            SaveFileDialog.Create(Path.Combine(Content.CustomContentPath, "Maps"), ".json", (name, path) =>
             {
                 SaveMapFile(path);
-            }
+            });
         }
 
-        private void SaveMapFile (string path)
+        private void SaveMapFile(string path)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path));
             MapData.Name = NameInput.text;
@@ -78,15 +75,19 @@ namespace Lomztein.BFA2.MapEditor
 
             // These paths are so hardcoded, severely needs to be improved if we are to ever have variable save destinations.
             Texture2D mapPreview = SnapMapPreview();
-            string previewPath = Path.Combine(Content.CustomContentPath, MAP_FOLDER, PREVIEW_SUB_FOLDER, MapData.Name) + ".png";
-           
-            SaveMapPreview(mapPreview, previewPath);
+            var previewBase64 = mapPreview.ToBase64();
+            MapData.Preview = mapPreview;
 
             MapData.Objects = DisassembleMapObjects();
-            var model = MapData.Disassemble(new Serialization.Assemblers.DisassemblyContext());
+            var model = MapData.Disassemble(new Serialization.Assemblers.DisassemblyContext()) as ObjectModel;
 
             ValueModelSerializer serializer = new ValueModelSerializer();
-            File.WriteAllText(path, serializer.Serialize(model).ToString());
+            var json = serializer.Serialize(model);
+            json[FileBrowser.FILE_NAME] = MapData.Name;
+            json[FileBrowser.FILE_DESCRIPTION] = MapData.Description;
+            json[FileBrowser.FILE_IMAGE] = mapPreview.ToBase64();
+
+            File.WriteAllText(path, json.ToString());
             Content.ResetIndex();
 
             OnMapSaved?.Invoke(MapData, path);
@@ -96,13 +97,6 @@ namespace Lomztein.BFA2.MapEditor
         public void ToggleGridSnap ()
         {
             GridSnapEnabled = GridSnapToggle.isOn;
-        }
-
-        private void SaveMapPreview (Texture2D texture, string path)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
-            byte[] raw = texture.EncodeToPNG();
-            File.WriteAllBytes(path, raw);
         }
 
         private Texture2D SnapMapPreview()
