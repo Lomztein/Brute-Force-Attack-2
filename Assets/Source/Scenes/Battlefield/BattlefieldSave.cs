@@ -46,10 +46,10 @@ namespace Lomztein.BFA2.Scenes.Battlefield
             return ObjectPipeline.BuildObject<BattlefieldSave>(json);
         }
 
-        public static void SaveToFile (BattlefieldSave save, string path)
+        public static JObject ToJSON (BattlefieldSave save)
         {
             var json = ObjectPipeline.UnbuildObject(save);
-            File.WriteAllText(path, json.ToString());
+            return json as JObject;
         }
 
         public static void LoadToBattlefield(BattlefieldSave save, BattlefieldController controller)

@@ -154,7 +154,7 @@ namespace Lomztein.BFA2.AssemblyEditor
             Confirm.Open("Loading an assembly will trash unsaved progress on current assembly.\nConfirm?", () =>
             {
                 CustomContentUtils.CreateDirectory("Assemblies");
-                FileBrowser.Create(CustomContentUtils.ToAbsolutePath("Assemblies"), ".json", LoadFile);
+                FileBrowser.Create("Select Assembly File", CustomContentUtils.ToAbsolutePath("Assemblies"), ".json", LoadFile);
             });
         }
 

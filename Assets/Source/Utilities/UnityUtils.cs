@@ -64,5 +64,19 @@ namespace Lomztein.BFA2.Utilities
                 bursts[i].minCount *= (short)(scale);
             }
         }
+
+        public static string ToBase64(this Texture2D tex)
+        {
+            byte[] bytes = tex.EncodeToPNG();
+            return Convert.ToBase64String(bytes);
+        }
+
+        public static Texture2D ToTexture2D(this string base64)
+        {
+            byte[] bytes = Convert.FromBase64String(base64);
+            var texture = new Texture2D(2, 2);
+            texture.LoadImage(bytes);
+            return texture;
+        }
     }
 }

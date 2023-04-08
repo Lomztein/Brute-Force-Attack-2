@@ -112,7 +112,7 @@ namespace Lomztein.BFA2.MapEditor
         {
             Confirm.Open("Loading a map will delete any currently unsaved progress.\nConfirm?", () =>
             {
-                FileBrowser.Create(Path.Combine(Content.CustomContentPath, "Maps"), ".json", LoadFile);
+                FileBrowser.Create("Select Map File", Path.Combine(Content.CustomContentPath, "Maps"), ".json", LoadFile);
             });
         }
 

@@ -13,6 +13,7 @@ namespace Lomztein.BFA2.Serialization.IO
     public class SaveFileDialog : MonoBehaviour, IWindow
     {
         private static string PrefabPath = "Prefabs/SaveFileDialog";
+        public FileBrowser Browser;
 
         private string _directory;
         private string _extenion;
@@ -52,6 +53,12 @@ namespace Lomztein.BFA2.Serialization.IO
             _directory = path;
             _callback = callback;
             _extenion = extension;
+            Browser.InitBrowser("Save File", path, extension, OnFileSelected, false);
+        }
+
+        private void OnFileSelected(string obj)
+        {
+            FileName.text = Path.ChangeExtension(Path.GetFileName(obj), null);
         }
     }
 }

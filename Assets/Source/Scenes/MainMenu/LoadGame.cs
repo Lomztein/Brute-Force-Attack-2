@@ -11,7 +11,7 @@ namespace Lomztein.BFA2.MainMenu
     {
         public void Load()
         {
-            FileBrowser.Create(BattlefieldSave.PATH_ROOT, ".json", OnLoad);
+            FileBrowser.Create("Select Save File", BattlefieldSave.PATH_ROOT, ".json", OnLoad);
         }
 
         private void OnLoad(string path)

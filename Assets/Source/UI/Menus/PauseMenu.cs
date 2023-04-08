@@ -1,10 +1,14 @@
 ﻿using Lomztein.BFA2.Battlefield;
+using Lomztein.BFA2.Enemies;
 using Lomztein.BFA2.Scenes.Battlefield;
 using Lomztein.BFA2.Serialization.IO;
 using Lomztein.BFA2.UI.Windows;
+using Lomztein.BFA2.Utilities;
+using Lomztein.BFA2.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -49,12 +53,35 @@ namespace Lomztein.BFA2.UI.Menus
         private void OnSave(string filename, string path)
         {
             var save = BattlefieldSave.SaveFromBattlefield(BattlefieldController.Instance);
-            BattlefieldSave.SaveToFile(save, path);
+            var json = BattlefieldSave.ToJSON(save);
+            json[FileBrowser.FILE_DESCRIPTION] = GetSaveDescription();
+            json[FileBrowser.FILE_IMAGE] = TakeScreenshot().ToBase64();
+            File.WriteAllText(path, json.ToString());
+        }
+
+        private Texture2D TakeScreenshot()
+        {
+            MapData data = BattlefieldController.Instance.MapController.MapData;
+            Rect screenRect = new Rect(
+                -data.Width / 2f,
+                -data.Height / 2f,
+                data.Width,
+                data.Height
+                );
+            return CameraCapture.CaptureOrtho(screenRect, new Vector2Int(128, 128));
+        }
+
+        private string GetSaveDescription ()
+        {
+            var settings = BattlefieldController.Instance.CurrentSettings;
+            return $"Map: {BattlefieldController.Instance.MapController.MapData.Name}" +
+                $"\nDifficulty: {settings.Difficulty.Name}" +
+                $"\nWave: {RoundController.Instance.NextIndex}";
         }
 
         public void Load ()
         {
-            var window = FileBrowser.Create(BattlefieldSave.PATH_ROOT, ".json", OnLoad);
+            var window = FileBrowser.Create("Select Save File", BattlefieldSave.PATH_ROOT, ".json", OnLoad);
             window.OnClosed += Window_OnClosed;
             Hide();
         }
@@ -68,7 +95,8 @@ namespace Lomztein.BFA2.UI.Menus
         {
             BattlefieldInitializeInfo.InitType = BattlefieldInitializeInfo.InitializeType.Load;
             BattlefieldInitializeInfo.LoadFileName = path;
-            Restart();
+            Resume();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public void Hide()
@@ -80,6 +108,7 @@ namespace Lomztein.BFA2.UI.Menus
         public void Restart ()
         {
             Resume();
+            BattlefieldInitializeInfo.InitType = BattlefieldInitializeInfo.InitializeType.New;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
