@@ -66,14 +66,16 @@ namespace Lomztein.BFA2.UI.ContextMenu
 
         private bool HasActiveWindow(GameObject obj) => _activeMenus.ContainsKey(obj) && _activeMenus[obj] != null;
         private void AddActiveWindow(GameObject obj, ContextMenu menu)
-                => _activeMenus.Add(obj, menu as Object);
+                => _activeMenus.Add(obj, menu);
         private void RemoveActiveWindow(GameObject obj) => _activeMenus.Remove(obj);
 
         private void Open (GameObject obj, IEnumerable<IContextMenuOption> options, Vector2 position)
         {
             if (!HasActiveWindow(obj))
             {
-                GameObject menuObj = WindowManager.OpenWindow(MenuPrefab);
+                GameObject menuObj = WindowManager.OpenWindowAboveOverlay(MenuPrefab);
+                DarkOverlay.SetCutout(Camera.main.WorldToScreenPoint(obj.transform.position), 150);
+
                 if (menuObj)
                 {
                     CompositeGameObjectVisualizer highlighter = CompositeGameObjectVisualizer.CreateFrom(Visualizers);
@@ -92,6 +94,7 @@ namespace Lomztein.BFA2.UI.ContextMenu
                     {
                         RemoveActiveWindow(obj);
                         highlighter.EndVisualization();
+                        DarkOverlay.ResetCutout();
                     };
                 }
             }

@@ -103,7 +103,7 @@ namespace Lomztein.BFA2.UI.Windows
             if (window)
             {
                 window.transform.SetSiblingIndex(_instance.DarkOverlay.transform.GetSiblingIndex() + 1);
-                _instance.DarkOverlay.FadeIn();
+                DarkOverlay.FadeIn();
                 return window;
             }
             return null;

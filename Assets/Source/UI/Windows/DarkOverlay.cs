@@ -12,8 +12,10 @@ namespace Lomztein.BFA2.UI.Windows
     public class DarkOverlay : MonoBehaviour
     {
         private static readonly float _deltaTime = 0.02f;
+        public static DarkOverlay Instance;
 
         public Image Image;
+        public RectTransform Cutout;
         public float FadeTime;
 
         public float MinAlpha = 0f;
@@ -21,14 +23,20 @@ namespace Lomztein.BFA2.UI.Windows
 
         private Coroutine _coroutine;
 
-        public void FadeIn ()
+        private void Awake()
         {
-            Fade(MaxAlpha);
+            Instance = this;
+            ResetCutout();
         }
 
-        public void FadeOut ()
+        public static void FadeIn ()
         {
-            Fade(MinAlpha);
+            Instance.Fade(Instance.MaxAlpha);
+        }
+
+        public static void FadeOut ()
+        {
+            Instance.Fade(Instance.MinAlpha);
         }
 
         private void Fade (float targetAlpha)
@@ -53,6 +61,26 @@ namespace Lomztein.BFA2.UI.Windows
                 yield return new WaitForSecondsRealtime(_deltaTime);
             }
             Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, targetAlpha);
+        }
+
+        public static void SetCutout (Vector2 position, float size)
+        {
+            Instance.Cutout.position = position;
+            Instance.Cutout.sizeDelta = Vector2.one * size;
+            Instance.ResetDarkness();
+        }
+
+        public static void ResetCutout ()
+        {
+            Instance.Cutout.position = Vector3.right * 1000000;
+            Instance.ResetDarkness();
+        }
+
+        private void ResetDarkness ()
+        {
+            Image.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+            Image.rectTransform.position = Image.rectTransform.sizeDelta / 2f;
+            (transform as RectTransform).ForceUpdateRectTransforms();
         }
     }
 }

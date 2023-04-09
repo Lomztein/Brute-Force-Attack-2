@@ -70,6 +70,8 @@ namespace Lomztein.BFA2.Serialization.IO
                 }
 
                 string[] files = Directory.GetFiles(_path, "*" + _extenison);
+                Array.Sort(files, (x, y) => Math.Sign((File.GetLastWriteTime(y) - File.GetLastWriteTime(x)).Ticks));
+
                 foreach (string file in files)
                 {
                     GameObject go = Instantiate(FileButtonPrefab, ButtonParent);
