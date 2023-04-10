@@ -22,7 +22,7 @@ namespace Lomztein.BFA2.Assets.Source.Abilities.Effects
         {
             foreach (var element in Grant.Elements)
             {
-                Player.Player.Instance.Earn(element.Resource, element.Value);
+                Player.Player.Instance.Earn(element.Resource, element.Value, true);
             }
         }
     }

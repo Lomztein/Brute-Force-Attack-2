@@ -15,9 +15,9 @@ namespace Lomztein.BFA2.Cheats
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void RegisterCheats ()
         {
-            CheatCode.RegisterCheat("motherlode", () => Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), 100000));
-            CheatCode.RegisterCheat("inthecode", () => Player.Player.Instance.Earn(Resource.GetResource("Core.Binaries"), 100));
-            CheatCode.RegisterCheat("smartypants", () => Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), 100));
+            CheatCode.RegisterCheat("motherlode", () => Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), 100000, false));
+            CheatCode.RegisterCheat("inthecode", () => Player.Player.Instance.Earn(Resource.GetResource("Core.Binaries"), 100, false));
+            CheatCode.RegisterCheat("smartypants", () => Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), 100, false));
             CheatCode.RegisterCheat("4bab2ab52bdcdb88e62e8063f6fa7dd95e16a1be75ec04c3a1eb0537898b4e84", CheatCode.EncryptionMethod.Sha256, NoGameOver);
         }
 

@@ -11,24 +11,17 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
     [Serializable]
     public class WaveGenerator : IWaveGenerator
     {
-        private const string GENERATOR_ENEMY_DATA_PATH = "*/WaveCollections/GeneratorEnemyData/*";
-
         private System.Random _random;
         private GeneratorEnemyData[] _enemyData;
 
-        private GeneratorEnemyData[] GetGeneratorEnemyDataCache ()
+        public WaveGenerator(GeneratorEnemyData[] enemyData)
         {
-            if (_enemyData == null)
-            {
-                _enemyData = Content.GetAll<GeneratorEnemyData>(GENERATOR_ENEMY_DATA_PATH).ToArray();
-            }
-            return _enemyData;
+            _enemyData = enemyData;
         }
 
         private GeneratorEnemyData GetRandomEnemyGeneratorData (int wave)
         {
-            var cache = GetGeneratorEnemyDataCache();
-            var applicable = cache.Where(x => ShouldSpawn(x, wave)).ToArray();
+            var applicable = _enemyData.Where(x => ShouldSpawn(x, wave)).ToArray();
             float[] weights = applicable.Select(x => x.GetWeight(wave)).ToArray();
             float maxWeight = weights.Sum();
             float random = (float)_random.NextDouble() * maxWeight;
@@ -71,7 +64,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Generators
             return shouldSpawn;
         }
 
-        public bool CanGenerate(int wave) => GetGeneratorEnemyDataCache().Any(x => ShouldSpawn(x, wave));
+        public bool CanGenerate(int wave) => _enemyData.Any(x => ShouldSpawn(x, wave));
 
         public SpawnInterval Generate(float startTime, float length, float baseFrequency, int wave, int seed)
         {

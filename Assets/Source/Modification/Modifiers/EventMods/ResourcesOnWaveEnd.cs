@@ -40,7 +40,7 @@ namespace Lomztein.BFA2.Modification.Modifiers.EventMods
         {
             foreach (var element in Resources.Elements)
             {
-                Player.Player.Instance.Earn(element.Resource, element.Value);
+                Player.Player.Instance.Earn(element.Resource, element.Value, true);
             }
         }
     }

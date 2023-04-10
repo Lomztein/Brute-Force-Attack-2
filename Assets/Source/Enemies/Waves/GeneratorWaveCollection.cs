@@ -1,10 +1,12 @@
-﻿using Lomztein.BFA2.ContentSystem.References;
+﻿using Lomztein.BFA2.ContentSystem;
+using Lomztein.BFA2.ContentSystem.References;
 using Lomztein.BFA2.Enemies.Waves.Generators;
 using Lomztein.BFA2.Enemies.Waves.Punishers;
 using Lomztein.BFA2.Enemies.Waves.Rewarders;
 using Lomztein.BFA2.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +15,8 @@ namespace Lomztein.BFA2.Enemies.Waves
     [CreateAssetMenu(fileName = "NewWaveCollection", menuName = "BFA2/Enemies/Waves/Generator Wave Collection")]
     public class GeneratorWaveCollection : WaveCollection
     {
+        private bool _initialized;
+
         [ModelProperty]
         public int Seed;
         [ModelProperty]
@@ -67,15 +71,29 @@ namespace Lomztein.BFA2.Enemies.Waves
         [ModelProperty]
         public Vector2 SubwaveVarianceVariance;
 
-        private IWaveGenerator _generator = new WaveGenerator();
+        [ModelProperty]
+        public string[] DontSpawn;
+        private const string GENERATOR_ENEMY_DATA_PATH = "*/WaveCollections/GeneratorEnemyData/*";
+        private IWaveGenerator _generator;
 
         private System.Random _random;
-        private int _offset;
 
         private readonly Dictionary<int, WaveTimeline> _waves = new Dictionary<int, WaveTimeline>();
 
+        private void Init ()
+        {
+            if (!_initialized)
+            {
+                var data = Content.GetAll<GeneratorEnemyData>(GENERATOR_ENEMY_DATA_PATH);
+                _generator = new WaveGenerator(data.Where(x => !DontSpawn.Contains(x.EnemyIdentifier)).ToArray());
+                _initialized = true;
+            }
+        }
+
         public override WaveTimeline GetWave(int index)
         {
+            Init();
+
             if (_waves.ContainsKey(index))
             {
                 return _waves[index];

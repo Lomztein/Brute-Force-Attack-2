@@ -26,7 +26,7 @@ namespace Lomztein.BFA2.Enemies.Waves.Rewarders
 
         private void Earn(float value)
         {
-            Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), value); // Bit hardcoded but it's alright.
+            Player.Player.Instance.Earn(Resource.GetResource("Core.Credits"), value, true); // Bit hardcoded but it's alright.
         }
 
         public FractionalWaveRewarder(int total, float finishReward, float totalKillReward)

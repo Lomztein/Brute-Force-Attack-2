@@ -43,7 +43,7 @@ namespace Lomztein.BFA2.Turrets
             IResourceCost sellValue = structure.Cost.Scale(SellValueRatio);
             foreach (var pair in sellValue.GetCost())
             {
-                Player.Player.Instance.Earn(pair.Key, pair.Value);
+                Player.Player.Instance.Earn(pair.Key, pair.Value, false);
             }
             Destroy(gameObject);
             return true;

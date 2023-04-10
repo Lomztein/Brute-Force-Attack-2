@@ -110,9 +110,12 @@ namespace Lomztein.BFA2.Player
             _onDamageTaken.CallEvent(new Modification.Events.EventArgs(this, source), this);
         }
 
-        public void Earn (Resource resource, float amount)
+        public void Earn (Resource resource, float amount, bool allowModification)
         {
-            amount *= ResourceEarningMultiplier[resource.Identifier].GetValue();
+            if (allowModification)
+            {
+                amount *= ResourceEarningMultiplier[resource.Identifier].GetValue();
+            }
 
             _resourceFractionTrackers[resource.Identifier] += amount;
             int floored = Mathf.FloorToInt(_resourceFractionTrackers[resource.Identifier]);
