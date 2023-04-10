@@ -26,10 +26,10 @@ namespace Lomztein.BFA2.Assets.Source.Enemies.Special
         private void FixedUpdate()
         {
             double max = _enemy.MaxHealth * MaxHealPercentage;
-            if (_enemy.Health > max)
+            if (_enemy.Health < max)
             {
                 double rate = _enemy.MaxHealth * HealRatePercentage;
-                _enemy.Heal(rate * Time.fixedTimeAsDouble);
+                _enemy.Heal(rate * (double)Time.fixedDeltaTime);
             }
         }
     }
