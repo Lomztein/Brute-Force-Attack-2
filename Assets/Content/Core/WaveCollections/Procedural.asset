@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Identifier: Core.Procedural
   Seed: 667
+  MaxWaves: 100
   StartingFrequency: 2
   FrequencyCoeffecient: 1.2
   StartingLength: 30
@@ -21,8 +22,12 @@ MonoBehaviour:
   MaxWaveLength: 60
   InitialLoCFromKills: 50
   LoCFromKillsPerWave: 50
+  LocFromKillsPerWaveExponentBase: 0
+  LoCFromKillsPerWaveExponentCoeffecient: 1
   InitialLoCOnCompletion: 250
   LoCOnCompletionPerWave: 0
+  LoCOnCompletionPerWaveExponentBase: 0
+  LoCOnCompletionPerWaveExponentCoeffecient: 1
   SequenceMax: 10
   ParallelMax: 3
   SequenceDenomenator: 3

@@ -202,11 +202,6 @@ namespace Lomztein.BFA2.Enemies
 
         public double TakeDamage(DamageInfo damageInfo)
         {
-            if (Armor > 0)
-            {
-                Debug.Log("no");
-            }
-
             double before = Health;
             double damage = GetDamage(damageInfo);
 

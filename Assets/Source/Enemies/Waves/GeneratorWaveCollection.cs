@@ -34,11 +34,19 @@ namespace Lomztein.BFA2.Enemies.Waves
         public float InitialLoCFromKills;
         [ModelProperty]
         public float LoCFromKillsPerWave;
+        [ModelProperty]
+        public float LocFromKillsPerWaveExponentBase = 50f;
+        [ModelProperty]
+        public float LoCFromKillsPerWaveExponentCoeffecient = 1.1f;
 
         [ModelProperty]
         public float InitialLoCOnCompletion;
         [ModelProperty]
         public float LoCOnCompletionPerWave;
+        [ModelProperty]
+        public float LoCOnCompletionPerWaveExponentBase = 1.1f;
+        [ModelProperty]
+        public float LoCOnCompletionPerWaveExponentCoeffecient = 1.1f;
 
         [ModelProperty]
         public int SequenceMax = 10;
@@ -88,8 +96,11 @@ namespace Lomztein.BFA2.Enemies.Waves
         private int GetSequenceAmount(int wave) => Mathf.Min(GetRandom().Next(1, Mathf.FloorToInt(wave / SequenceDenomenator + 1)), SequenceMax);
         private int GetParallelAmount(int wave) => Mathf.Min(GetRandom().Next(1, Mathf.FloorToInt(wave / ParallelDenomenator + 1)), ParallelMax);
 
-        private float GetEarnedFromKills(int wave) => InitialLoCFromKills + LoCFromKillsPerWave * (wave - 1);
-        private float GetCompletionReward(int wave) => InitialLoCOnCompletion + LoCOnCompletionPerWave * (wave - 1);
+        private float GetEarnedFromKills(int wave) => (InitialLoCFromKills + LoCFromKillsPerWave * (wave - 1))
+            + LocFromKillsPerWaveExponentBase * Mathf.Pow(LoCFromKillsPerWaveExponentCoeffecient, wave - 1);
+        private float GetCompletionReward(int wave) => InitialLoCOnCompletion + LoCOnCompletionPerWave * (wave - 1)
+            + LoCOnCompletionPerWaveExponentBase * Mathf.Pow(LoCOnCompletionPerWaveExponentCoeffecient, wave - 1);
+
 
         private System.Random GetRandom()
         {
