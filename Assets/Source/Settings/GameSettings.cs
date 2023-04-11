@@ -50,6 +50,13 @@ namespace Lomztein.BFA2.Settings
             return (T)setting.Get();
         }
 
+        public static void SetValue(string identifier, object value)
+        {
+            Setting setting = Get(identifier);
+            if (setting != null)
+                setting.Set(value);
+        }
+
         public static void Save ()
         {
             foreach (var setting in _settings)

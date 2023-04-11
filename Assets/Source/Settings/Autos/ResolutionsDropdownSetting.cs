@@ -16,7 +16,8 @@ namespace Lomztein.BFA2.Settings.Autos
 
         protected override object GetDefaultValue()
         {
-            return Screen.resolutions.ToList().IndexOf(Screen.currentResolution);
+            int value = Screen.resolutions.ToList().IndexOf(Screen.currentResolution);
+            return value;
         }
     }
 }

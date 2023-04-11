@@ -15,8 +15,8 @@ namespace Lomztein.BFA2.Settings.Controls
             GameObject newControl = Object.Instantiate(Resources.Load<GameObject>(RESOURCE_PATH));
             newControl.transform.Find("Label").GetComponent<Text>().text = setting.Name;
             Dropdown dropdown = newControl.transform.Find("Dropdown").GetComponent<Dropdown>();
-            dropdown.value = setting.Get<int>();
             dropdown.options = setting.Options.Select(x => new Dropdown.OptionData(x)).ToList();
+            dropdown.value = setting.Get<int>();
             dropdown.onValueChanged.AddListener(x => setting.Set(x));
             Setting.OnChangedHandler onChanged = (id, value) => Setting_OnChanged(dropdown, value);
             setting.OnChanged += onChanged;

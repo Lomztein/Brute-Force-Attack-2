@@ -27,8 +27,6 @@ namespace Lomztein.BFA2.MapEditor
 {
     public class MapEditorController : MonoBehaviour
     {
-        private const string MAP_FOLDER = "Maps";
-        private const string PREVIEW_SUB_FOLDER = "Previews";
         private const int PREVIEW_RENDER_SIZE = 1024;
 
         private LooseDependancy<MapController> _mapController = new LooseDependancy<MapController>();
@@ -58,8 +56,7 @@ namespace Lomztein.BFA2.MapEditor
             MapData.Name = NameInput.text;
             MapData.Description = DescriptionInput.text;
 
-            Path.Combine(Content.CustomContentPath, MAP_FOLDER);
-            SaveFileDialog.Create(Path.Combine(Content.CustomContentPath, "Maps"), ".json", (name, path) =>
+            SaveFileDialog.Create(Path.Combine(Content.UserContentPackPath, "Maps"), ".json", (name, path) =>
             {
                 SaveMapFile(path);
             });
@@ -106,7 +103,7 @@ namespace Lomztein.BFA2.MapEditor
         {
             Confirm.Open("Loading a map will delete any currently unsaved progress.\nConfirm?", () =>
             {
-                FileBrowser.Create("Select Map File", Path.Combine(Content.CustomContentPath, "Maps"), ".json", LoadFile);
+                FileBrowser.Create("Select Map File", Path.Combine(Content.UserContentPackPath, "Maps"), ".json", LoadFile);
             });
         }
 

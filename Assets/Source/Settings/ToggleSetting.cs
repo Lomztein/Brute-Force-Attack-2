@@ -1,21 +1,17 @@
+using Lomztein.BFA2.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Lomztein.BFA2
+namespace Lomztein.BFA2.Settings
 {
-    public class ToggleSetting : MonoBehaviour
+    [CreateAssetMenu(fileName = "New Toggle Setting", menuName = "BFA2/Settings/Toggle")]
+    public class ToggleSetting : Setting
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [ModelProperty]
+        public int DefaultValue = 0;
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        protected override object GetDefaultValue()
+            => DefaultValue;
     }
 }

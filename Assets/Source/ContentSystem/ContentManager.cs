@@ -2,6 +2,7 @@
 using Lomztein.BFA2.Plugins;
 using Lomztein.BFA2.Serialization;
 using Lomztein.BFA2.Serialization.Models;
+using Lomztein.BFA2.Settings;
 using Lomztein.BFA2.UI.Messages;
 using System;
 using System.Collections;

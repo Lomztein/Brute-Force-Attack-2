@@ -33,7 +33,13 @@ namespace Lomztein.BFA2.Settings
         public virtual void Init() { }
 
         public object Get()
-            => Value?? GetDefaultValue();
+        {
+            if (Value == null)
+            {
+                return GetDefaultValue();
+            }
+            return Value;
+        }
 
         public T Get<T>()
             => (T)Get();
@@ -50,7 +56,7 @@ namespace Lomztein.BFA2.Settings
             if (valueType == typeof(int)) return ValueType.Int;
             if (valueType == typeof(float)) return ValueType.Float;
             if (valueType == typeof(string)) return ValueType.String;
-            throw new InvalidOperationException($"Value type {valueType.Name} not supported. Please convert to float, int, or string.");
+            throw new InvalidOperationException($"Value type {valueType.Name} not supported. Please convert to float, bool, int, or string.");
         }
 
         public void Save ()

@@ -9,11 +9,10 @@ namespace Lomztein.BFA2.ContentSystem
 {
     public static class CustomContentUtils
     {
-        public static string CustomContentPath => Path.Combine (Paths.PersistantData, "Content", "Custom");
 
         internal static bool TryGenerateCustomContentPack()
         {
-            if (Directory.Exists(CustomContentPath) && File.Exists(Path.Combine(CustomContentPath, "About.json"))) return false;
+            if (Directory.Exists(Content.CustomContentPath) && File.Exists(Path.Combine(Content.CustomContentPath, "About.json"))) return false;
             ContentPackInfo info = new ContentPackInfo();
 
             info.Name = "Custom";
@@ -23,8 +22,8 @@ namespace Lomztein.BFA2.ContentSystem
 
             try
             {
-                Directory.CreateDirectory(CustomContentPath);
-                File.WriteAllText(Path.Combine(CustomContentPath, "About.json"), ObjectPipeline.UnbuildObject(info, true).ToString());
+                Directory.CreateDirectory(Content.CustomContentPath);
+                File.WriteAllText(Path.Combine(Content.CustomContentPath, "About.json"), ObjectPipeline.UnbuildObject(info, true).ToString());
                 return true;
             } catch (IOException exc)
             {
@@ -35,7 +34,7 @@ namespace Lomztein.BFA2.ContentSystem
 
         public static string ToAbsolutePath(string contentPath)
         {
-            return Path.Combine(CustomContentPath, contentPath);
+            return Path.Combine(Content.UserContentPackPath, contentPath);
         }
 
         public static void WriteFile(string contentPath, string contents)

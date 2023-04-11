@@ -49,8 +49,33 @@ namespace Lomztein.BFA2
             Localization.LoadLocalizations(PlayerPrefs.GetString("Culture", "en-US"));
             BattlefieldInitializeInfo.NewSettings = BattlefieldSettings.LoadDefaults();
 
-            InterceptLogs();
             GameSettings.Init();
+
+            GameSettings.AddOnChangedListener("Dev.DeveloperMode", HandleDevMode);
+            GameSettings.AddOnChangedListener("Dev.UserContentPack", HandleUserContentPack);
+            HandleDevMode("Dev.DeveloperMode", GameSettings.GetValue("Dev.DeveloperMode", 0));
+            HandleUserContentPack("Dev.UserContentPack", GameSettings.GetValue("Dev.UserContentPack", -1));
+        }
+
+        private void HandleUserContentPack(string identifier, object value)
+        {
+            if ((int)value == -1)
+            {
+                Content.SetUserContentPack(null);
+            }
+            else
+            {
+                var pack = ContentManager.Instance.FindContentPacks().Where(x => x is ContentPack).ToArray()[(int)value];
+                Content.SetUserContentPack((pack as ContentPack).Path);
+            }
+        }
+
+        private void HandleDevMode(string identifier, object value)
+        {
+            bool isOn = (int)value == 1;
+            if (isOn)
+                InterceptLogs();
+            else UnsubscribeLogs();
         }
 
         internal void InitializeCriticalFolders ()
@@ -60,10 +85,12 @@ namespace Lomztein.BFA2
 
         private void InterceptLogs()
         {
-            if (Application.isEditor || Debug.isDebugBuild)
-            {
-                Application.logMessageReceived += OnLogMessageRecieved;
-            }
+            Application.logMessageReceived += OnLogMessageRecieved;
+        }
+
+        private void UnsubscribeLogs()
+        {
+            Application.logMessageReceived -= OnLogMessageRecieved;
         }
 
         private void OnLogMessageRecieved(string condition, string stackTrace, LogType type)
