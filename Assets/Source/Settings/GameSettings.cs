@@ -23,7 +23,17 @@ namespace Lomztein.BFA2.Settings
         }
 
         public static void AddOnChangedListener(string identifier, Setting.OnChangedHandler onChanged)
-            => Get(identifier).OnChanged += onChanged;
+        {
+            Setting setting = Get(identifier);
+            if (setting != null)
+            {
+                setting.OnChanged += onChanged;
+            }
+            else
+            {
+                Debug.LogWarning($"Attempted to add OnChanged listener to non-existing setting '{identifier}'.");
+            }
+        }
 
         public static Setting.OnChangedHandler AddOnChangedListener<T>(string identifier, Action<string, T> onChanged)
         {
